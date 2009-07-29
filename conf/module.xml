@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants>
+        <grant name="write_document" default="manager">
+            <title xml:lang="ko">글쓰기</title>
+            <title xml:lang="en">Write a document</title>
+        </grant>
+        <grant name="write_comment" default="guest">
+            <title xml:lang="ko">댓글 입력</title>
+            <title xml:lang="en">Write a comment</title>
+        </grant>
+        <grant name="create" default="member">
+            <title xml:lang="ko">Textyle 생성</title>
+            <title xml:lang="en">Create a textyle</title>
+        </grant>
+    </grants>
+    <permissions>
+		<permission action="dispTextyleToolDashboard" target="manager" />
+		<permission action="dispTextyleToolPostManageWrite" target="manager" />
+		<permission action="dispTextyleToolPostManageList" target="manager" />
+		<permission action="dispTextyleToolPostManageDeposit" target="manager" />
+		<permission action="dispTextyleToolPostManageCategory" target="manager" />
+		<permission action="dispTextyleToolPostManageTag" target="manager" />
+		<permission action="dispTextyleToolPostManageBasket" target="manager" />
+		<permission action="dispTextyleToolCommunicationComment" target="manager" />
+		<permission action="dispTextyleToolCommunicationCommentReply" target="manager" />
+		<permission action="dispTextyleToolCommunicationGuestbook" target="manager" />
+		<permission action="dispTextyleToolCommunicationGuestbookReply" target="manager" />
+		<permission action="dispTextyleToolCommunicationTrackback" target="manager" />
+		<permission action="dispTextyleToolCommunicationTrackbacksended" target="manager" />
+		<permission action="dispTextyleToolCommunicationSpam" target="manager" />
+		<permission action="dispTextyleToolStatisticsVisitor" target="manager" />
+		<permission action="dispTextyleToolStatisticsVisitRoute" target="manager" />
+		<permission action="dispTextyleToolStatisticsSupporter" target="manager" />
+		<permission action="dispTextyleToolStatisticsPopular" target="manager" />
+		<permission action="dispTextyleToolLayoutConfigSkin" target="manager" />
+		<permission action="dispTextyleToolLayoutConfigEdit" target="manager" />
+		<permission action="dispTextyleToolConfigProfile" target="manager" />
+		<permission action="dispTextyleToolConfigInfo" target="manager" />
+		<permission action="dispTextyleToolConfigPostwrite" target="manager" />
+		<permission action="dispTextyleToolConfigCommunication" target="manager" />
+		<permission action="dispTextyleToolConfigBlogApi" target="manager" />
+		<permission action="dispTextyleToolConfigAddon" target="manager" />
+		<permission action="dispTextyleToolConfigData" target="manager" />
+		<permission action="dispTextyleToolConfigChangePassword" target="manager" />
+
+		<permission action="getTextyleSiteInfo" target="manager" />
+
+		<permission action="procTextyleProfileUpdate" target="manager" />
+		<permission action="procTextyleProfileImageUpload" target="manager" />
+		<permission action="procTextyleInfoUpdate" target="manager" />
+		<permission action="procTextyleToolLayoutConfigSkin" target="manager" />
+		<permission action="procTextyleToolLayoutConfigEdit" target="manager" />
+		<permission action="procTextyleToolLayoutResetConfigSkin" target="manager" />
+		<permission action="procTextyleToolImportPrepare" target="manager" />
+		<permission action="procTextyleToolImport" target="manager" />
+		<permission action="procTextyleInsertBlogApi" target="manager" />
+		<permission action="procTextyleDeleteBlogApi" target="manager" />
+		<permission action="procTextyleToggleEnableAPI" target="manager" />
+    </permissions>
+    <actions>
+        <action name="dispTextyle" type="view" index="true" />
+        <action name="dispTextyleToolLogin" type="view" />
+        <action name="rss" standalone="true" type="view" />
+        <action name="dispTextyleProfile" type="view" />
+        <action name="dispTextyleTag" type="view" />
+        <action name="dispTextyleCommentReply" type="view" />
+        <action name="dispTextyleCommentModify" type="view" />
+        <action name="dispTextyleLogin" type="view" />
+        <action name="dispTextyleTagSearch" type="view" />
+        <action name="dispTextyleContentSearch" type="view" />
+        <action name="dispTextyleContentTagSearch" type="view" />
+        <action name="dispReplyList" type="view" />
+		<action name="dispTextyleToolPostManageWrite" type="view" />
+		<action name="dispTextylePostCheckAlias" type="view" />
+		<action name="dispTextyleToolPostManageList" type="view" />
+		<action name="dispTextyleToolPostManageDeposit" type="view" />
+		<action name="dispTextyleToolPostManageCategory" type="view" />
+		<action name="dispTextyleToolPostManageTag" type="view" />
+		<action name="dispTextyleToolPostManageBasket" type="view" />
+		<action name="dispTextyleToolCommunicationComment" type="view" />
+		<action name="dispTextyleToolCommunicationCommentReply" type="view" />
+		<action name="dispTextyleToolCommunicationGuestbook" type="view" />
+		<action name="dispTextyleToolCommunicationGuestbookReply" type="view" />
+		<action name="dispTextyleToolCommunicationTrackback" type="view" />
+		<action name="dispTextyleToolCommunicationTrackbacksended" type="view" />
+		<action name="dispTextyleToolCommunicationSpam" type="view" />
+		<action name="dispTextyleToolStatisticsVisitor" type="view" />
+		<action name="dispTextyleToolStatisticsVisitRoute" type="view" />
+		<action name="dispTextyleToolStatisticsSupporter" type="view" />
+		<action name="dispTextyleToolStatisticsPopular" type="view" />
+		<action name="dispTextyleToolLayoutConfigSkin" type="view" />
+		<action name="dispTextyleToolLayoutConfigEdit" type="view" />
+		<action name="dispTextyleToolConfigProfile" type="view" />
+		<action name="dispTextyleToolConfigInfo" type="view" />
+		<action name="dispTextyleToolConfigPostwrite" type="view" />
+		<action name="dispTextyleToolConfigCommunication" type="view" />
+		<action name="dispTextyleToolConfigBlogApi" type="view" />
+		<action name="dispTextyleToolConfigAddon" type="view" />
+		<action name="dispTextyleToolConfigData" type="view" />
+		<action name="dispTextyleToolConfigChangePassword" type="view" />
+		<action name="dispTextyleGuestbook" type="view" />
+		<action name="dispTextyleGuestbookReply" type="view" />
+		<action name="dispTextyleToolDashboard" type="view" />
+
+		<action name="getTextyleSiteInfo" type="model" />
+
+        <action name="procTextyleLogin" type="controller" />
+        <action name="procTextyleDeleteDocument" type="controller" />
+        <action name="procTextyleInsertComment" type="controller" />
+        <action name="procTextyleDeleteComment" type="controller" />
+        <action name="procTextyleColorsetModify" type="controller" />
+        <action name="procTextyleContentWrite" type="controller" />
+        <action name="procTextyleContentTagModify" type="controller" />
+        <action name="procTextyleEnableRss" type="controller" />
+        <action name="procTextyleDisableRss" type="controller" />
+		<action name="procTextyleTagDelete" type="controller" />
+		<action name="procTextyleTagUpdate" type="controller" />
+		<action name="procTextyleCommentItemDelete" type="controller" />
+		<action name="procTextyleCommentItemSetSecret" type="controller" />
+		<action name="procTextyleTrackbackItemDelete" type="controller" />
+		<action name="procTextyleDenyInsert" type="controller" />
+		<action name="procTextyleDenyInsertList" type="controller" />
+		<action name="procTextyleDenyDelete" type="controller" />
+		<action name="procTextyleProfileUpdate" type="controller" />
+		<action name="procTextyleProfileImageUpload" type="controller" />
+		<action name="procTextyleInfoUpdate" type="controller" />
+		<action name="procTextyleConfigPostwriteInsert" type="controller" />
+		<action name="procTextyleCheckMe2day" type="controller" />
+		<action name="procTextylePostwrite" type="controller" />
+		<action name="procTextylePostDelete" type="controller" />
+		<action name="procTextylePostItemsCategoryMove" type="controller" />
+		<action name="procTextylePostItemsSetSecret" type="controller" />
+		<action name="procTextyleConfigCommunicationInsert" type="controller" />
+		<action name="procTextyleToolLayoutConfigSkin" type="controller" />
+		<action name="procTextyleToolLayoutConfigEdit" type="controller" />
+		<action name="procTextyleToolLayoutResetConfigSkin" type="controller" />
+		<action name="procTextylePostTrash" type="controller" />
+		<action name="procTextylePostTrashRestore" type="controller" />
+		<action name="procTextylePostItemsAllowCommentTrackback" type="controller" />
+		<action name="procTextyleGuestbookWrite" type="controller" />
+		<action name="procTextyleGuestbookDelete" type="controller" />
+		<action name="procTextyleGuestbookItemDelete" type="controller" />
+		<action name="procTextyleGuestbookItemsDelete" type="controller" />
+		<action name="procTextyleGuestbookItemUpdate" type="controller" />
+		<action name="procTextyleGuestbookItemsChangeSecret" type="controller" />
+		<action name="procTextyleGuestbookVerificationPassword" type="controller" />
+		<action name="procTextyleToolImportPrepare" type="controller" />
+		<action name="procTextyleToolImport" type="controller" />
+		<action name="procTextyleInsertBlogApi" type="controller" />
+		<action name="procTextyleDeleteBlogApi" type="controller" />
+
+        <action name="dispTextyleAdminList" type="view" standalone="true" admin_index="true" />
+        <action name="dispTextyleAdminInsert" type="view" standalone="true" />
+        <action name="dispTextyleAdminDelete" type="view" standalone="true" />
+
+		<action name="procTextyleAdminCreate" type="controller" standalone="true" />
+		<action name="procTextyleAdminUpdate" type="controller" standalone="true" />
+        <action name="procTextyleAdminDelete" type="controller" standalone="true" />
+        <action name="procTextyleToggleEnableAPI" type="controller" standalone="true" />
+    </actions>
+</module>

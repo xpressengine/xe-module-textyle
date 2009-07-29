@@ -1,0 +1,29 @@
+<query id="getTextyleList" action="select">
+    <tables>
+        <table name="modules" alias="modules" />
+        <table name="textyle" alias="textyle" />
+        <table name="member" alias="member" />
+        <table name="sites" alias="sites" />
+    </tables>
+    <columns>
+        <column name="sites.domain" alias="domain" />
+        <column name="sites.default_language" alias="default_language" />
+        <column name="member.nick_name" alias="nick_name"/>
+        <column name="member.user_name" alias="user_name"/>
+        <column name="member.user_id" alias="user_id"/>
+        <column name="member.email_address" alais="email_address"/>
+        <column name="modules.*" />
+        <column name="textyle.*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="modules.module_srl" default="textyle.module_srl" filter="number" pipe="and" />
+        <condition operation="equal" column="sites.site_srl" default="modules.site_srl" pipe="and" />
+        <condition operation="equal" column="textyle.member_srl" default="member.member_srl" filter="number" pipe="and" />
+    </conditions>
+    <navigation>
+        <index var="sort_index" default="modules.module_srl" order="desc" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+</query>

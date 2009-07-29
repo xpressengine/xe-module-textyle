@@ -1,0 +1,48 @@
+<!--#include("_tool_header.html")-->
+<!--%import("filter/insert_layout_edit.xml")-->
+
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- contentHeader -->
+				<div class="contentHeader editHeader">
+					<h3 class="h3">{$lang->textyle_second_menus[4]['dispTextyleToolLayoutConfigEdit']}</h3>
+				</div>
+				<!-- /contentHeader -->
+				
+				<form action="./" method="post" class="codeEdit" onsubmit="return procFilter(this,insert_layout_edit);">
+				
+					<fieldset>
+						<legend class="visible">{$lang->cmd_edit_html}</legend>
+						<textarea name="html" cols="50" rows="10">{htmlspecialchars($html)}</textarea>
+						<div class="resizeVertical">
+							<button type="button"><span>{$lang->resize_vertical}</span></button>
+						</div>
+					</fieldset>
+					<span class="buttonGray medium widgetCreator"><a href="{getUrl('','module','widget','act','dispWidgetGenerateCode')}" onclick="popopen(this.href); return false">{$lang->cmd_generate_widget_code}</a></span>
+
+					<fieldset>
+						<legend class="visible">{$lang->cmd_edit_css}</legend>
+						<textarea name="css" cols="50" rows="10">{htmlspecialchars($css)}</textarea>
+						<div class="resizeVertical">
+							<button type="button"><span>{$lang->resize_vertical}</span></button>
+						</div>
+					</fieldset>
+					
+				<!-- Button Area -->
+				<div class="buttonArea aCenter">
+					<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_save}" /></span>
+					<span class="buttonAction actionWhite"><input type="button" value="{$lang->cmd_reset}" onclick="if(confirm('{$lang->alert_reset_skin}')) doResetLayoutConfig(); return false;"/></span>
+				</div>
+				<!-- /Button Area -->
+				</form>
+
+			</div>
+			<hr />
+			<!-- /Content -->
+
+			<!-- Extension -->
+			<!--#include("_tool_menu.html")-->
+			<!-- Extension -->
+
+<!--#include("_tool_footer.html")-->

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">zen</title>
+    <description xml:lang="ko">
+        텍스타일의 기본 스킨입니다. 헤더/풋터가 검정이고 본문이 흰색인 흑백 투톤의 심플한 조화. 콘텐츠 영역의 좌우 배치를 변경하려면 HTML 편집창에서 class="ce"를 class="ec"로 변경하세요!
+    </description>
+    <version>0.1</version>
+    <date>2009-05-23</date>
+
+    <author email_address="dece24앳gmail.com" link="http://naradesign.net/">
+        <name xml:lang="ko">정찬명</name>
+    </author>
+    <author email_address="mada79앳naver.com" link="http://blog.naver.com/mada79">
+        <name xml:lang="ko">김지은</name>
+    </author>
+
+</skin>

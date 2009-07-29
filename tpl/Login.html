@@ -1,0 +1,83 @@
+<!--%unload("css/layout@textyleAdmin.css")-->
+<!--%import("css/layout.css")-->
+<!--%import("css/logon.css")-->
+<!--%import("css/button.css")-->
+<!--%import("js/tool_textyle.js")-->
+<!--%import("filter/textyle_login.xml")-->
+
+<script type="text/javascript">
+    var keep_signed_msg = "{$lang->about_keep_signed}";
+    jQuery(window).load( function() { jQuery('#uid').focus(); } );
+</script>
+
+<div id="textyleAdmin" class="textyleAdmin hybrid">
+	<div id="container" class="c">
+		<!-- Header -->
+		<div id="header">
+			<a href="#content" class="skipToContent">Skip to content</a>
+			<h1><a href="http://www.textyle.co.kr" onclick="window.open(this.href);return false;"><img src="img/hTextyle.gif" width="106" height="30" alt="textyle" /></a></h1>
+			<hr />
+			<div class="navigation">
+				<div class="section">
+					<h2>Navigation</h2>
+				</div>
+			</div>
+        </div>
+        <hr />
+		<!-- /Header -->
+		
+		<!-- Body -->
+		<div id="body">
+		
+			<!-- Content -->
+			<div id="content">
+			
+				<!-- Log On -->
+				<div class="logOnInterface default">
+					<!-- class="logOnInterface default" | class="logOnInterface openid" -->
+					<h2><img src="img/hTextyleLogOn.gif" width="92" height="28" alt="textyle" /></h2>
+                    <form action="./" method="post" onsubmit="return procFilter(this, textyle_login)" id="defaultLogOn">
+						<fieldset>
+							<legend>{$lang->cmd_login}</legend>
+							<dl>
+								<dt><label for="uid">{$lang->user_id}</label></dt>
+								<dd><input id="uid" name="user_id" type="text" /></dd>
+								<dt><label for="upw">{$lang->password}</label></dt>
+								<dd><input id="upw" name="password" type="password" /></dd>
+							</dl>
+							<p><input type="checkbox" name="keep_signed" class="inputCheck" value="Y" onclick="if(this.checked) return confirm(keep_signed_msg);" id="keepUid" /> <label for="keepUid">{$lang->keep_signed}</label> <span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span></p>
+						</fieldset>
+					</form>
+					<!-- p class="attention" | p class="attention open" -->
+					<p class="attention"><img src="img/iconAttention.gif" width="4" height="14" alt="" /></p>
+				</div>
+				<!-- /Log On -->
+				
+			</div>
+			<hr />
+			<!-- /Content -->
+			
+		</div>
+		<hr />
+		<!-- /Body -->
+
+		<!-- Footer -->
+		<div id="footer">
+			<div class="navigation">
+				<div class="section">
+					<h3>Navigation</h3>
+					<ul>
+						<li><a href="#">{$lang->cmd_send_suggestion}</a></li>
+						<li><a href="#">{$lang->cmd_view_help}</a></li>
+					</ul>
+				</div>
+			</div>
+			<hr />
+			<address>
+				<a href="http://www.xpressengine.com" title="XpressEngine"><img src="img/xeFooter.gif" width="103" height="18" alt="powered by XE&#8482;" /></a>
+			</address>
+		</div>
+		<!-- /Footer -->
+
+	</div>
+</div>

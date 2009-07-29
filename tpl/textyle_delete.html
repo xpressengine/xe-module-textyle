@@ -1,0 +1,30 @@
+<!--%import("filter/delete_textyle.xml")-->
+<!--%import("js/textle.js")-->
+<!--#include("header.html")-->
+
+<form action="./" method="get" onsubmit="return procFilter(this, delete_textyle)">
+<input type="hidden" name="page" value="{$page}" />
+<input type="hidden" name="site_srl" value="{$textyle_info->site_srl}" />
+
+    <h4 class="xeAdmin">{$lang->confirm_delete}</h4>
+    <table cellspacing="0" class="rowTable">
+    <tr>
+        <th scope="row"><div>{$lang->module_name}</div></th>
+        <td class="wide">{$textyle_info->mid}</td>
+    </tr>
+    <tr>
+        <th scope="row"><div>{$lang->textyle_title}</div></th>
+        <td class="wide">{$textyle_info->textyle_title}</td>
+    </tr>
+    <tr>
+        <th scope="row"><div><!--@if(isSiteId($textyle_info->domain))-->Site ID<!--@else-->{$lang->domain}<!--@end--></div></th>
+        <td class="wide"><a href="{getSiteUrl($textyle_info->domain)}" onclick="window.open(this.href); return false;">{$textyle_info->domain}</a></td>
+    </tr>
+    <tr>
+        <th colspan="2" class="button">
+            <span class="button black strong"><input type="submit" value="{$lang->cmd_delete}" /></span>
+            <a href="{getUrl('act','dispTextyleAdminList')}" class="button"><span>{$lang->cmd_back}</span></a>
+        </th>
+    </table>
+
+</form>
