@@ -822,6 +822,7 @@
          **/	
         function dispTextyleToolStatisticsVisitRoute() {
             global $lang;
+            $oDocumentModel = &getModel('document');
 
             // 정해진 일자가 없으면 오늘자로 설정
             $selected_date = Context::get('selected_date');
