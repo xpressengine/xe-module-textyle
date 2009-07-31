@@ -247,6 +247,12 @@ a.skipToContent:focus{ width:auto; height:auto; margin:0 0 10px 0; padding:5px;}
 #footer a:active,
 #footer a:focus{ text-decoration:underline;}
 #footer .rss{ float:left; margin:0;}
+#footer .language { float:left; margin:0 10px; position:relative;}
+#footer .language strong a { color:#b39e89; }
+#footer .language ul { position:absolute; left:40px; bottom:-20px; margin:0; padding:10px; list-style:none; background-color:#b39e89; border:1px solid #59514b;}
+#footer .language ul li { height:18px; }
+#footer .language ul li a { color:#59514b; white-space:nowrap; }
+#footer .language ul.hide { display:none; }
 #footer address{ float:right; height:16px; line-height:16px; color:#b39e89; font-size:10px; background:url(img/favicon.png) no-repeat right center; _background:url(img/favicon.gif) no-repeat right center; padding-right:25px;}
 #footer address a{ font-weight:bold; color:#b39e89;}
 

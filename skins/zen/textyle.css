@@ -248,7 +248,15 @@ a.skipToContent:focus{ width:auto; height:auto; margin:0 0 10px 0; padding:5px;}
 #footer address a,
 #footer address acronym,
 #footer address abbr{ font-weight:bold; color:#b3b3b3;}
-#footer address .rss{ position:absolute; white-space:normal; top:0; right:0; padding-left:13px; background:url(img/iconRss.gif) no-repeat left center; font-size:10px; font-weight:normal;}
+
+#footer address .language { position:absolute; top:0; right:0; }
+#footer address .language strong a { color:#b3b3b3; font-size:11px; margin-left:10px; font-weight:normal;}
+#footer address .language ul { position:absolute; right:50px; bottom:-10px; margin:0; padding:10px; list-style:none; background-color:#fff; border:1px solid #ccc;}
+#footer address .language ul li { height:18px; }
+#footer address .language ul li a { color:#999; white-space:nowrap; font-size:12px; font-weight:normal;}
+#footer address .language ul.hide { display:none; }
+#footer address .language .rss{ white-space:normal; padding-left:13px; background:url(img/iconRss.gif) no-repeat left center; font-size:10px; font-weight:normal;}
+
 
 /* Extension */
 #body .extension a{ text-decoration:none;}

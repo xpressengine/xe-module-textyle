@@ -245,6 +245,13 @@ a.skipToContent:focus{ width:auto; height:auto; margin:0 0 10px 0; padding:5px;}
 #footer address acronym,
 #footer address abbr{ font-weight:bold; color:#ccc;}
 
+#footer .language { position:absolute; right:0; top: 15px; }
+#footer .language strong a { color:#ccc; }
+#footer .language ul { position:absolute; right:50px; bottom:-20px; margin:0; padding:10px; list-style:none; background-color:#777; border:1px solid #555;}
+#footer .language ul li { height:18px; }
+#footer .language ul li a { color:#ccc; white-space:nowrap; }
+#footer .language ul.hide { display:none; }
+
 /* Body */
 #body .extension a{ text-decoration:none;}
 #body .extension a:hover,

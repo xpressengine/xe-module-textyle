@@ -662,6 +662,14 @@
 
 		<div id="footer">
 			<a href="{getSiteUrl($textyle->domain,'','mid',$mid,'act','rss')}" class="rss"><img src="img/iconRss.gif" width="16" height="16" alt="RSS" /></a>
+			<div class="language">
+				<strong title="{$lang_type}"><a href="#selectLang" onclick="jQuery('#selectLang').toggleClass('hide'); return false;">{$lang_supported[$lang_type]}</a></strong>
+            	<ul class="hide" id="selectLang">
+                	<!--@foreach($lang_supported as $key => $val)--><!--@if($key!= $lang_type)-->
+                	<li><a href="#" onclick="doChangeLangType('{$key}');return false;">{$val}</a></li>
+                	<!--@end--><!--@end-->
+            	</ul>
+			</div>
 			<address>
 			Powered by <a href="http://textyle.kr/">Textyle</a> / Designed by <a href="http://blog.naver.com/mada79" title="Kim Ji Eun">Mada</a> / UI Dev. <a href="http://naradesign.net/" title="Jeong Chan Myeong">Naradesign</a>
 			</address>
