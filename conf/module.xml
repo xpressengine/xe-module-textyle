@@ -4,14 +4,17 @@
         <grant name="write_document" default="manager">
             <title xml:lang="ko">글쓰기</title>
             <title xml:lang="en">Write a document</title>
+            <title xml:lang="jp">記事作成</title>
         </grant>
         <grant name="write_comment" default="guest">
             <title xml:lang="ko">댓글 입력</title>
             <title xml:lang="en">Write a comment</title>
+            <title xml:lang="jp">コメントを書く</title>
         </grant>
         <grant name="create" default="member">
             <title xml:lang="ko">Textyle 생성</title>
             <title xml:lang="en">Create a textyle</title>
+            <title xml:lang="jp">Textyle作成</title>
         </grant>
     </grants>
     <permissions>
