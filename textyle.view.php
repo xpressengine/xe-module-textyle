@@ -1137,7 +1137,15 @@
 					Context::setBrowserTitle($this->textyle->get('browser_title') . '&raquo;' . $oDocument->getTitle());
 
 					// meta keywords category + tag
-					$tag = htmlspecialchars(join(', ',$oDocument->get('tag_list')));
+                    $tag_array = $oDocument->get('tag_list');
+                    if($tag_array)
+                    {
+					    $tag = htmlspecialchars(join(', ',$tag_array));
+                    }
+                    else
+                    {
+                        $tag = '';
+                    }
 					$category_srl = $oDocument->get('category_srl');
 					if($tag && $category_srl >0) $tag = $category_list[$category_srl]->title .', ' . $tag;
 					Context::addHtmlHeader(sprintf('<meta name="keywords" content="%s" />',$tag));
