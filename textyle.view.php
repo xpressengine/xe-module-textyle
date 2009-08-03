@@ -1122,7 +1122,8 @@
             $oDocumentModel = &getModel('document');
             
             // set category
-            Context::set('category_list', $oDocumentModel->getCategoryList($this->module_srl));
+            $category_list = $oDocumentModel->getCategoryList($this->module_srl);
+            Context::set('category_list', $category_list);
             
             // 글 고유 링크가 있으면 처리
             if($document_srl) {
@@ -1131,6 +1132,15 @@
                 if($oDocument->isExists()) {
                     // 글과 요청된 모듈이 다르다면 오류 표시
                     if($oDocument->get('module_srl')!=$this->module_info->module_srl ) return $this->stop('msg_invalid_request');
+
+					// html title에 글제목 추가
+					Context::setBrowserTitle($this->textyle->get('browser_title') . '&raquo;' . $oDocument->getTitle());
+
+					// meta keywords category + tag
+					$tag = htmlspecialchars(join(', ',$oDocument->get('tag_list')));
+					$category_srl = $oDocument->get('category_srl');
+					if($tag && $category_srl >0) $tag = $category_list[$category_srl]->title .', ' . $tag;
+					Context::addHtmlHeader(sprintf('<meta name="keywords" content="%s" />',$tag));
 
                     // 관리 권한이 있다면 권한을 부여
                     if($this->grant->manager) $oDocument->setGrant();
