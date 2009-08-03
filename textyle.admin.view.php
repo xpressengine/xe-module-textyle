@@ -42,7 +42,7 @@
 				$textyle = $oTextyleModel->getTextyle($module_srl);
                 Context::set('textyle', $textyle);
 
-				$admin_list = $oModuleModel->getSiteAdmin($site_srl);
+				$admin_list = $oModuleModel->getSiteAdmin($textyle->site_srl);
 				$site_admin = array();	
 				if(is_array($admin_list)){
 					foreach($admin_list as $k => $v){
