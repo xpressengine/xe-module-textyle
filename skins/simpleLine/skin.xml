@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skin version="0.2">
     <title xml:lang="ko">Simple Line</title>
+	<title xml:lang="jp">Simple Line</title>
     <description xml:lang="ko">
         텍스타일의 기본 스킨입니다. 흰색 바탕과 검정색 라인으로 처리된 초절정 심플 스킨. 콘텐츠 영역의 좌우 배치를 변경하려면 HTML 편집창에서 class="ce"를 class="ec"로 변경하세요!
+    </description>
+	<description xml:lang="jp">
+        テキスタイルの基本スキンです。 白い背景と黒色のラインで完成されたシンプルなスキンです。 コンテンツ部分の左右配置を変更したい場合はHTML編集エディターにて「class="ce"」を「class="ec"」差し替えてください。
     </description>
     <version>0.1</version>
     <date>2009-05-23</date>
 
-    <author email_address="dece24앳gmail.com" link="http://naradesign.net/">
+    <author email_address="dece24@gmail.com" link="http://naradesign.net/">
         <name xml:lang="ko">정찬명</name>
+		<name xml:lang="jp">정찬명</name>
     </author>
-    <author email_address="comicbok앳naver.com" link="http://blog.naver.com/comicbok">
+    <author email_address="comicbok@naver.com" link="http://blog.naver.com/comicbok">
         <name xml:lang="ko">이명복</name>
+		<name xml:lang="jp">이명복</name>
     </author>
 
 </skin>

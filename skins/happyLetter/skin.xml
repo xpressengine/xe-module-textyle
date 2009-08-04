@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skin version="0.2">
     <title xml:lang="ko">Happy Letter</title>
+	<title xml:lang="jp">Happy Letter</title>
     <description xml:lang="ko">
         편지봉투 모양의 텍스타일 기본 스킨입니다. 글을 쓰면 금방이라도 친구에게 배달될 것만 같은 감성 스킨. 일상의 작은 행복들을 기록하기에 안성맞춤.
+    </description>
+	<description xml:lang="jp">
+        手紙の封筒のようなテキスタイルの基本スキンです。 書き込んだらすぐにも友達に送られそうな感覚的なスキン。 日常の小さな幸せを記録するのにぴったりです。
     </description>
     <version>0.1</version>
     <date>2009-05-23</date>
 
-    <author email_address="dece24앳gmail.com" link="http://naradesign.net/">
+    <author email_address="dece24@gmail.com" link="http://naradesign.net/">
         <name xml:lang="ko">정찬명</name>
+		<name xml:lang="jp">정찬명</name>
     </author>
-    <author email_address="mada79앳naver.com" link="http://blog.naver.com/mada79">
+    <author email_address="mada79@naver.com" link="http://blog.naver.com/mada79">
         <name xml:lang="ko">김지은</name>
+		<name xml:lang="jp">김지은</name>
     </author>
 
 </skin>
