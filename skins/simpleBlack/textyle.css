@@ -240,16 +240,16 @@ a.skipToContent:focus{ width:auto; height:auto; margin:0 0 10px 0; padding:5px;}
 #footer a:hover,
 #footer a:active,
 #footer a:focus{ text-decoration:underline;}
-#footer address{ text-align:left; font-size:9px; color:#ccc; height:16px; line-height:16px; padding-left:25px; background:url(img/favicon.png) no-repeat left center; _background:url(img/favicon.gif) no-repeat left center;}
+#footer address{ float:left; text-align:left; font-size:9px; color:#ccc; height:16px; line-height:16px; padding-left:25px; background:url(img/favicon.png) no-repeat left center; _background:url(img/favicon.gif) no-repeat left center;}
 #footer address a,
 #footer address acronym,
 #footer address abbr{ font-weight:bold; color:#ccc;}
 
-#footer .language { position:absolute; right:0; top: 15px; }
-#footer .language strong a { color:#ccc; }
-#footer .language ul { position:absolute; right:50px; bottom:-20px; margin:0; padding:10px; list-style:none; background-color:#777; border:1px solid #555;}
-#footer .language ul li { height:18px; }
-#footer .language ul li a { color:#ccc; white-space:nowrap; }
+#footer .language { float:right; position:relative;}
+#footer .language button{ cursor:pointer; padding:0; overflow:visible; background:none; border:0; font-size:11px; font-family:Dotum; white-space:nowrap;}
+#footer .language .selected { color:#777; height:16px; *height:18px;}
+#footer .language ul { position:absolute; right:0; bottom:20px; margin:0; padding:10px; list-style:none; background:#555; border:1px solid #666;}
+#footer .language ul li button { color:#ccc;}
 #footer .language ul.hide { display:none; }
 
 /* Body */
