@@ -144,8 +144,19 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .lnbClose #textyleAdmin #body .extension.e1 ul li li a{ width:auto; height:auto; overflow:visible; padding-left:19px; margin:0;}
 
 /* Go To Help */
-.goToHelp{ margin:0; padding:20px 0 0 0; overflow:hidden;}
+.goToHelp{ margin:0 0 15px 0; padding:20px 0 0 0; overflow:hidden;}
 .goToHelp a{ display:block; width:140px; margin:0 auto; height:24px; padding:13px 0 0 0; text-indent:33px; vertical-align:top; white-space:nowrap; font-weight:bold; color:#8b8f94; background:url(../img/bgHelp.gif) no-repeat; text-decoration:none !important;}
+.lnbClose .goToHelp a{ width:36px; text-indent:-100px; background:url(../img/bgHelpClosed.gif) no-repeat; font-size:0; line-height:0;}
+
+/* Language */
+.extension.e1 .language{ position:relative; width:140px; margin:0 auto; text-align:right;}
+.lnbClose .extension.e1 .language{ display:none;}
+.extension.e1 .language button{ cursor:pointer; padding:0; overflow:visible; background:none; border:0; font-size:11px; font-family:Dotum; white-space:nowrap;}
+.extension.e1 .language .selected{ color:#767676; height:16px; *height:18px;}
+.extension.e1 .language ul{ position:absolute; right:0; top:20px; margin:0; padding:10px !important; list-style:none; background:#fff; border:1px solid #ddd;}
+.extension.e1 .language ul li{ background:none !important; border:0 !important;}
+.extension.e1 .language ul li button{ color:#666;}
+.extension.e1 .language ul.hide{ display:none; }
 
 /* Dashboard Header */
 .dashboardHeader{ position:relative; padding:29px 0 23px 0; border-bottom:2px solid #cbd4df; background:url(../img/iconH3dashboard.gif) no-repeat left center;}

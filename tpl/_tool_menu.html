@@ -31,5 +31,14 @@
 				</div>
 				
 				<p class="goToHelp"><a href="http://textyle.xpressengine.net/?mid=wiki&act=dispWikiTreeIndex" target="_blank" title="새창">{$lang->cmd_go_help}</a></p>
+
+				<div class="language">
+					<button type="button" onclick="jQuery('#selectLang').toggleClass('hide'); return false;" class="selected" title="{$lang_type}">{$lang_supported[$lang_type]}</button>
+					<ul class="hide" id="selectLang">
+						<!--@foreach($lang_supported as $key => $val)--><!--@if($key!= $lang_type)-->
+						<li><button type="button" onclick="doChangeLangType('{$key}');return false;">{$val}</button></li>
+						<!--@end--><!--@end-->
+					</ul>
+				</div>
 				
 			</div>
