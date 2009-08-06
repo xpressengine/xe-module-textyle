@@ -8,7 +8,7 @@
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'TextyleはXpressEngineのブログ専用モジュールです。';
 
-	$lang->msg_create_textyle = 'Textyleが作成されました。';
+	$lang->msg_create_textyle = 'Textyleが生成されました。';
 	$lang->init_category_title = '基本カテゴリー';
 	$lang->add_category = 'カテゴリー追加';
     $lang->textyle_admin = 'Textyle管理者(ID)';
@@ -33,18 +33,18 @@
     $lang->last_week = '先週';
     $lang->this_week = '今週';
     $lang->display_name = '表示名';
-    $lang->about_display_name = '未作成の場合、IDを表示します。';
+    $lang->about_display_name = '未登録の場合、IDを表示します。';
     $lang->about_email = '未作成の場合、パスワードリマインダーからのメール送信が出来ません。';
     $lang->no_profile_image = 'プロフィル写真がありません。';
     $lang->allow_profile_image_type = '<strong>jpg, gif, png</strong>ファイルアップロード可能';
-    $lang->allow_profile_image_size = 'イメージサイズは<strong>%dx%d</strong>pxに自動リサイズ';
+    $lang->allow_profile_image_size = '画像サイズは<strong>%dx%d</strong>pxに自動リサイズ';
     $lang->signature = '自己紹介';
     $lang->default_config = '基本設定';
     $lang->blog_title = 'ブログタイトル';
     $lang->about_blog_title = 'ブログのタイトルとして使います。';
     $lang->blog_description = '簡単紹介';
-    $lang->about_blog_description = 'スキン種類によって、表示されるかHTML&middot;CSSエディターにて表示可否を決定します。';
-    $lang->favicon = 'ファビコン';
+    $lang->about_blog_description = '（スキンの種類やHTML・CSSエディターの調整によって、表示されない場合もあります。）';
+    $lang->favicon = 'ファビコン(favicon)';
     $lang->registed_favicon = '登録されたファビコン';
     $lang->about_favicon = '<strong>16x16px</strong>サイズの<strong>ico</strong>ファイルアップロード可能';
     $lang->about_addon = 'アドオンは、HTMLの出力をコントロールすると言うより、動作を制御する役割をします。お好みのアドオンを「使用/未使用」に設定するだけで、サイトの運営に有用な機能が利用出来ます。';
@@ -96,19 +96,19 @@
     $lang->website_address = 'ウェブサイトアドレス';
     $lang->required = '必須';
     $lang->selected = '選択';
-    $lang->notaccepted = '受け付けない';
+    $lang->notaccepted = '要らない';
     $lang->comment_editor = 'コメントエディター';
     $lang->guestbook_editor = 'ゲストブックエディター';
-    $lang->comment_list_count = 'ページあたりのコメント数';
-    $lang->guestbook_list_count = 'ページあたりのゲストブック数';
-    $lang->comment_grant = 'コメント作成権限';
-    $lang->about_comment_grant = 'コメント作成権限を会員のみ、もしくはすべての訪問者へも付与出来ます。';
-    $lang->disable_comment= 'コメント作成権限がありません。会員登録後、作成が可能となります。';
-    $lang->grant_to_all = '全て';
-    $lang->grant_to_member = '会員';
-    $lang->guestbook_grant = 'ゲストブック作成権限';
-    $lang->about_guestbook_grant = 'ゲストブック権限を会員のみ、もしくはすべての訪問者へも付与出来ます。';
-    $lang->disable_guestbook = 'ゲストブック作成権限がありません。会員登録後、作成が可能となります。';
+    $lang->comment_list_count = '1ページ毎のコメント数';
+    $lang->guestbook_list_count = '1ページ毎のゲストブック数';
+    $lang->comment_grant = 'コメント登録権限';
+    $lang->about_comment_grant = 'コメントを登録出来る範囲を設定します。';
+    $lang->disable_comment= 'コメント登録権限がありません。会員登録後、作成が可能となります。';
+    $lang->grant_to_all = '全ての人';
+    $lang->grant_to_member = '会員のみ';
+    $lang->guestbook_grant = 'ゲストブック登録権限';
+    $lang->about_guestbook_grant = 'ゲストブックに登録出来る範囲を設定します。';
+    $lang->disable_guestbook = 'ゲストブックに登録権限がありません。会員登録後、可能となります。';
     $lang->current_password = '現在パスワード';
     $lang->password1 = '新しいパスワード';
     $lang->password2 = '新しいパスワードの確認';
@@ -143,13 +143,13 @@
 	$lang->about_bookmarklet = 'いつも、とこでも<br />ブログに書く文材を収集して下さい。';
     $lang->about_set_bookmarklet = '文材収集機';
     $lang->data_export = 'データバックアップ';
-    $lang->data_import = 'データリストア (以前)';
+    $lang->data_import = 'データリストア (移転)';
     $lang->migration_prepare = 'ファイル分析中';
     $lang->data_import_progress = 'バックアップ進行率';
     $lang->data_export_progress = 'リストア進行率';
-    $lang->about_export_xexml = 'XpressEngine専用のXE XML形式として保存されたファイルを用いたデータの移管が可能です。';
-    $lang->about_export_ttxml = 'Textcube専用のTTXML形式として保存されたファイルを用いたデータの移管が可能です。';
-    $lang->migration_file_path = 'XMLファイル位置(URL、もしくはパス)';
+    $lang->about_export_xexml = 'XE XMLはXpressEngine専用ファイルタイプです。';
+    $lang->about_export_ttxml = 'TTXMLはTextcube専用ファイルタイプです。';
+    $lang->migration_file_path = 'XMLファイル場所(URL、もしくはパス)';
     $lang->msg_migration_file_is_null = 'リストアするXMLファイルの位置を入力して下さい。';
     $lang->cmd_import = 'インポートする';
     $lang->send_me2 = 'me2Dayへ投稿';
@@ -162,15 +162,15 @@
     $lang->msg_success_to_me2day = '入力したme2Day情報で連結確認が正常に完了しました。';
     $lang->msg_fail_to_me2day = 'me2Dayへ連結が失敗しました。もう一度、IDと利用者キーを確認してください。';
 
-    $lang->send_twitter = 'ツイッター発行';
-    $lang->about_send_twitter = '記事投稿時、タイトルを指定したツイッターへ発行出来るように設定します。';
+    $lang->send_twitter = 'ツイッター投稿';
+    $lang->about_send_twitter = 'テキスタイル記事投稿の際、記事のタイトルを指定したツイッターへも投稿出来るように設定します。';
     $lang->twitter_userid = 'ツイッターID';
     $lang->about_twitter_userid = 'ツイッターIDを入力して下さい。';
     $lang->twitter_password = 'ツイッターパスワード';
     $lang->about_twitter_password = 'ツイッターパスワードを入力して下さい。';
 
     $lang->blogapi_publish = 'BlogAPI発行';
-    $lang->about_blog_api = 'テキスタイルにて作成した記事をBlogAPIにて他ブログ、または掲示板などに同時投稿/修正/削除が可能です。<br/>サポートするBlogAPIはMetaWebLogのみで、他のAPIは準備中です。';
+    $lang->about_blog_api = 'テキスタイルにて作成した記事をBlogAPIを経由で他ブログ、または掲示板などに自動投稿・修正・削除することが可能になります。<br/>サポートするBlogAPIはMetaWebLogのみで、他のAPIは対応準備中です。';
     $lang->cmd_registration_blogapi = 'BlogAPIサイト登録';
     $lang->cmd_modification_blogapi = 'BlogAPIサイト情報修正';
     $lang->blogapi_site_url = 'API対象サイト';
@@ -207,9 +207,9 @@
     $lang->basket_list = 'ごみ箱の保管リスト';
     $lang->basket_empty = 'ごみ箱が空です。 ^^;';
 
-    $lang->document_all = '全ての記事を見る';
-    $lang->document_published = '発行された記事のみ見る';
-    $lang->document_reserved = '下書きの記事のみ見る';
+    $lang->document_all = '全記事';
+    $lang->document_published = '発行した記事';
+    $lang->document_reserved = '下書きの記事';
 
     $lang->my_document_management = 'マイ記事管理';
     $lang->set_publish = '公開設定';
@@ -234,7 +234,7 @@
     $lang->posting_option = '書き込みのオプション';
     $lang->post_url = 'ポストアドレス';
     $lang->about_tag = '複数のタグは半角コンマ「,」で区切ってください。';
-	$lang->success_temp_saved = '下書きとして臨時保存されました。';
+	$lang->success_temp_saved = '下書きとして保存されました。';
 
     $lang->daily = '日別';
     $lang->weekly = '週間';
@@ -268,7 +268,7 @@
     $lang->guestbook = 'ゲストブック';
 	$lang->add_denylist = 'ブロックリストに追加';
     $lang->summary = '合計';
-    $lang->no_supporter = '支持者がいません。';
+    $lang->no_supporter = '現在支持者はいません。';
     $lang->about_popular = '人気コンテンツとは閲覧、コメント、ピングバック、トラックバックが多い記事を意味します。';
     $lang->popular_rank = '人気コンテンツランキング';
     $lang->read = '閲覧';
@@ -313,7 +313,7 @@
         array(
             'dispTextyleToolConfigProfile'=>'マイプロフィル',
             'dispTextyleToolConfigInfo'=>'ブログ設定',
-            'dispTextyleToolConfigPostwrite'=>'書き込みの環境設定',
+            'dispTextyleToolConfigPostwrite'=>'投稿関連設定',
             'dispTextyleToolConfigCommunication'=>'発行&middot;コミュニケーション設定',
             'dispTextyleToolConfigBlogApi'=>'BlogAPI発行',
             'dispTextyleToolConfigAddon'=>'アドオン管理',
@@ -327,12 +327,12 @@
     $lang->cmd_textyle_list = 'Textyleリスト';
     $lang->cmd_textyle_creation = 'Textyle作成';
     $lang->cmd_textyle_update = 'Textyle修正';
-    $lang->cmd_new_post = '新規書き込み';
-    $lang->cmd_go_blog = 'ブログを見る';
+    $lang->cmd_new_post = '新規記事作成';
+    $lang->cmd_go_blog = 'ブログを確認する';
     $lang->cmd_send_suggestion = 'ご意見を送る';
     $lang->cmd_view_help = 'ヘルプを見る';
     $lang->cmd_folding_menu = 'メニュー折りたたむ/展開する';
-    $lang->cmd_folding_xe_news = 'お知らせを開く/閉じる';
+    $lang->cmd_folding_xe_news = 'お知らせリストを見る/閉じる';
     $lang->cmd_apply = '適用する';
     $lang->cmd_delete_favicon = 'ファビコン削除';
     $lang->cmd_change_password = 'パスワード更新';
@@ -347,7 +347,7 @@
     $lang->cmd_empty_basket = 'ごみ箱を空にする';
     $lang->cmd_change_category = 'カテゴリー変更';
     $lang->cmd_publish = '発行する';
-    $lang->cmd_save_temp = '臨時保存';
+    $lang->cmd_save_temp = '下書き保存';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS編集';
     $lang->cmd_edit_html = 'HTML編集';
     $lang->cmd_edit_css = 'CSS編集';
@@ -387,7 +387,7 @@
 	$lang->content_list = 'リスト';
 	$lang->msg_input_email_address = 'メールアドレスを入力して下さい。';
 	$lang->msg_input_homepage = 'ホームページを入力して下さい。';
-	$lang->msg_confirm_delete_post = '臨時保存の記事は復元できません。削除して宜しいですか？';
+	$lang->msg_confirm_delete_post = '下書き保存の記事は復元できません。削除して宜しいですか？';
 
     $lang->sample_title = 'テキスタイルへようこそ！';
     $lang->sample_tags = 'textyle ,  テキスタイル ,  テキスタイルエディター ,  文材収集機';
