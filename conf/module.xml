@@ -14,7 +14,7 @@
         <grant name="create" default="member">
             <title xml:lang="ko">Textyle 생성</title>
             <title xml:lang="en">Create a textyle</title>
-            <title xml:lang="jp">Textyle作成</title>
+            <title xml:lang="jp">Textyle生成</title>
         </grant>
     </grants>
     <permissions>
