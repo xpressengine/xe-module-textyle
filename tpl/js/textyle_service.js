@@ -62,7 +62,7 @@ function deleteGuestbookItem(textyle_guestbook_srl,page){
 function completeInsertGuestbook(ret_obj){
     var page = ret_obj.page;
 
-	location.href=current_url.setQuery('act','dispTextyleGuestbook').setQuery('mid',current_mid).setQuery('page',page);
+	location.href=current_url.setQuery('act','dispTextyleGuestbook').setQuery('mid',current_mid).setQuery('page',page).setQuery('reply','');
 }
 
 

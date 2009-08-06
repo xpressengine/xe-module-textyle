@@ -90,7 +90,7 @@
 
                 // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
                 Context::set('root_url', Context::getRequestUri());
-                Context::set('home_url', getSiteUrl($this->textyle->domain));
+                Context::set('home_url', getFullSiteUrl($this->textyle->domain));
                 Context::set('profile_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleProfile'));
                 Context::set('guestbook_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleGuestbook'));
                 Context::set('tag_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleTag'));
@@ -383,15 +383,15 @@
 			$permalink = '';
 			if(isSiteID($this->textyle->domain)){
 				if(Context::isAllowRewrite()){
-					$permalink = Context::getRequestUri().$this->textyle->domain.'/'.Context::get('mid').'/entry/';
+					$permalink = Context::getRequestUri().$this->textyle->domain.'/entry/';
 				}else{
 					$permalink = Context::getRequestUri() .'?vid='.$this->textyle->domain . '&mid='.Context::get('mid').'&entry=';
 				}
 			}else{
 				if(Context::isAllowRewrite()){
-					$permalink = getSiteUrl($textyle->domain,'','mid',Context::get('mid')).'/entry/';
+					$permalink = getSiteUrl($this->textyle->domain,'').'/entry/';
 				}else{
-					$premalink = getSiteUrl($textyle->domain,'','mid',Context::get('mid')).'&entry=';
+					$premalink = getSiteUrl($this->textyle->domain,'','mid',Context::get('mid')).'&entry=';
 				}
 			}
 			Context::set('permalink',$permalink);
@@ -1134,7 +1134,7 @@
                     if($oDocument->get('module_srl')!=$this->module_info->module_srl ) return $this->stop('msg_invalid_request');
 
 					// html title에 글제목 추가
-					Context::setBrowserTitle($this->textyle->get('browser_title') . '&raquo;' . $oDocument->getTitle());
+					Context::setBrowserTitle($this->textyle->get('browser_title') . ' &raquo; ' . $oDocument->getTitle());
 
 					// meta keywords category + tag
                     $tag_array = $oDocument->get('tag_list');

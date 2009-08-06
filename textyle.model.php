@@ -351,5 +351,12 @@
             $this->add('title', $site_info->title);
             $this->add('blogapi_url', $site_info->blogapi_url);
         }
+
+		function getTrackbackUrl($domain,$document_srl){
+			$oTrackbackModel = &getModel('trackback');
+			$key = $oTrackbackModel->getTrackbackKey($document_srl);
+			return getFullSiteUrl($domain,'','document_srl',$document_srl,'key',$key,'act','trackback');
+		}
+
    }
 ?>

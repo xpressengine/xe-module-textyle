@@ -3,7 +3,7 @@
 		<div id="header">
 			<a href="#content" class="skipToContent">Skip to content</a>
 			<h1><a href="{$home_url}">{$textyle_title}</a></h1>
-			<p class="blogURL"><a href="{$root_url}">{$root_url}</a></p>
+			<p class="blogURL"><a href="{$home_url}">{$home_url}</a></p>
 			<hr />
 			<div class="extension">
 				<ul>
@@ -346,7 +346,7 @@
                 <!--// display Post Summary -->
                 <!--@elseif($textyle_mode=='summary')-->
                     <!--@foreach($document_list as $no => $document)-->
-                    <h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a></h2>
+                    <h2 class="postTitle"><a href="{getUrl('','document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a></h2>
                     <div class="textyleContent xe_content">
                         <!--@if($document->thumbnailExists())-->
                         <p class="summarySpot"><img src="{$document->getThumbnail(200,133)}" class="summaryThumb" alt="" /></p>
@@ -359,7 +359,7 @@
                 <!--// display post body or body list -->
                 <!--@else-->
                     <!--@foreach($document_list as $document)-->
-                        <h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a> <span class="category">{$category_list[$document->get('category_srl')]->title}</span></h2>
+                        <h2 class="postTitle"><a href="{getUrl('','document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a> <span class="category">{$category_list[$document->get('category_srl')]->title}</span></h2>
                         <p class="postMeta"><span class="yymmdd">{$document->getRegdate('Y.m.d')}</span> <span class="hhmm">{$document->getRegdate('H:i')}</span> <span class="author">{$document->getNickName()}</span> <a href="{getSiteUrl($textyle->domain,'document_srl',$document->document_srl,'act','dispTextyleToolPostManageWrite')}" class="editPost">Edit</a></p>
                         <div class="textyleContent xe_content">
                             {$post_prefix}
@@ -384,10 +384,10 @@
                         <!--@if($prev_document || $next_document)-->
                         <div class="pagination paginationPost">
                             <!--@if($prev_document)-->
-                                <a href="{getUrl('document_srl',$prev_document->document_srl)}" class="prev">{$prev_document->getTitle()}</a>
+                                <a href="{getUrl('','document_srl',$prev_document->document_srl)}" class="prev">{$prev_document->getTitle()}</a>
                             <!--@end-->
                             <!--@if($next_document)-->
-                                <a href="{getUrl('document_srl',$next_document->document_srl)}" class="next">{$next_document->getTitle()}</a>
+                                <a href="{getUrl('','document_srl',$next_document->document_srl)}" class="next">{$next_document->getTitle()}</a>
                             <!--@end-->
                         </div>
                         <!--@end-->
@@ -397,7 +397,7 @@
                             <h3 class="feedbackTitle">Trackbacks <em>{$document->getTrackbackCount()}</em></h3>
                             <dl class="trackbackURL">
                                 <dt>{$lang->trackback_url}</dt>
-                                <dd><a href="{$document->getTrackbackUrl()}" onclick="return false">{$document->getTrackbackUrl()}</a></dd>
+                                <dd><a href="{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}" onclick="return false">{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}</a></dd>
                             </dl>
                             <!--@if($document->getTrackbackCount())-->
                             <ol class="feedbackOrder">
@@ -504,10 +504,10 @@
                             <!--@if($cpage == $page_no)-->
                             <strong>{$page_no}</strong>
                             <!--@else-->
-                            <a href="{getUrl('cpage',$page_no)}#comment">{$page_no}</a>
+                            <a href="{getUrl('','cpage',$page_no)}#comment">{$page_no}</a>
                             <!--@end-->
                             <!--@end-->
-                            <a href="{getUrl('cpage',$document->comment_page_navigation->last_page)}#comment" class="next"><span>{$lang->last_page}</span></a>
+                            <a href="{getUrl('','cpage',$document->comment_page_navigation->last_page)}#comment" class="next"><span>{$lang->last_page}</span></a>
                         </div>
                         <!--@end-->
 

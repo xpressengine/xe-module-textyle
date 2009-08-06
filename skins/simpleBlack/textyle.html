@@ -6,7 +6,7 @@
 			<hr />
 			<form action="{$root_url}" method="get" class="search">
 				<input name="vid" type="hidden" value="{$vid}" />
-				<input name="mid" type="hidden" value="textyle" />
+				<input name="mid" type="hidden" value="{$mid}" />
 				<input name="act" type="hidden" value="dispTextyle" />
 				<input name="search_target" type="hidden" value="title_content" />
 				<fieldset>
@@ -47,7 +47,7 @@
                     <div class="replyForm">
                         <!--@if($textyle->isEnableGuestbook())-->
                         <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                            <input name="mid" type="hidden" value="textyle" />
+							<input name="mid" type="hidden" value="{$mid}" />
                             <input type="hidden" name="content" value="" />
                             <fieldset>
                                 {$editor}
@@ -84,7 +84,7 @@
                             <li class="item replyForm">
                                 <!--@if($textyle->isEnableGuestbook())-->
                                 <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                                    <input name="mid" type="hidden" value="textyle" />
+									<input name="mid" type="hidden" value="{$mid}" />
                                     <input type="hidden" name="content" value="{htmlspecialchars($val->content)}" />
                                     <input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
                                     <fieldset>
@@ -158,12 +158,12 @@
 									<ul class="reAction">
 										<!--@if($val->view_grant)-->
 										<!--@if($val->parent_srl==0&&$textyle->isEnableGuestbook())-->
-										<li><a href="{getUrl('modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
+										<li><a href="{getUrl('','modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
 										<!--@end-->
 										
 										<!--@if($val->member_srl)-->
 											<!--@if($logged_info->member_srl == $val->member_srl)-->
-												<li><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
+												<li><a href="{getUrl('','reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
 
 											<!--@end-->
 											<!--@if($logged_info->is_site_admin || $logged_info->member_srl == $val->member_srl)-->
@@ -181,7 +181,7 @@
                             <li class="item replyForm">
                                 <!--@if($textyle->isEnableGuestbook())-->
                                 <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                                    <input name="mid" type="hidden" value="textyle" />
+									<input name="mid" type="hidden" value="{$mid}" />
                                     <input type="hidden" name="content" value="" />
                                     <input type="hidden" name="parent_srl" value="{$val->textyle_guestbook_srl}" />
                                     <fieldset>
@@ -275,7 +275,7 @@
                         <!--@if($textyle->isEnableComment())-->
                         <fieldset>
                             <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
-                                <input name="mid" type="hidden" value="textyle" />
+								<input name="mid" type="hidden" value="{$mid}" />
                                 <input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
                                 <input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
                                 <input type="hidden" name="content" value="{htmlspecialchars($oComment->get('content'))}" />
@@ -340,7 +340,7 @@
                 <!--// display Post Summary -->
                 <!--@elseif($textyle_mode=='summary')-->
                     <!--@foreach($document_list as $no => $document)-->
-                    <h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
+                    <h2 class="postTitle"><a href="{getUrl('','document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
 					<p class="postMeta"><span class="yymmdd">{$document->getRegdate('Y.m.d')}</span> <span class="hhmm">{$document->getRegdate('H:i')}</span></p>
                     <div class="textyleContent xe_content">
                         <!--@if($document->thumbnailExists())-->
@@ -392,7 +392,7 @@
                             <h3 class="feedbackTitle">Trackbacks <em>{$document->getTrackbackCount()}</em></h3>
                             <dl class="trackbackURL">
                                 <dt>{$lang->trackback_url}</dt>
-                                <dd><a href="{$document->getTrackbackUrl()}" onclick="return false">{$document->getTrackbackUrl()}</a></dd>
+                                <dd><a href="{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}" onclick="return false">{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}</a></dd>
                             </dl>
                             <!--@if($document->getTrackbackCount())-->
                             <ol class="feedbackOrder">
@@ -512,7 +512,7 @@
                             <!--@if($textyle->isEnableComment())-->
                             <fieldset>
                                 <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
-                                    <input name="mid" type="hidden" value="textyle" />
+                                    <input name="mid" type="hidden" value="{$mid}" />
                                     <input type="hidden" name="document_srl" value="{$document->document_srl}" />
                                     <input type="hidden" name="comment_srl" value="" />
                                     <input type="hidden" name="content" value="" />
