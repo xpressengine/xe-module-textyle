@@ -19,7 +19,7 @@
     $lang->textyle_summary = 'ブログ情報';
     $lang->item_unit = '個';
     $lang->newest_documents ='最近作成記事';
-    $lang->newest_no_documents ='作成した記事がありません。新しい記事を投稿して下さい。';
+    $lang->newest_no_documents ='投稿された記事がありません。新しい記事を投稿して下さい。';
     $lang->newest_materials = '最近文材';
 	$lang->newest_no_materials = '文材がありません。 <a href="%s">文材収集機をインストールして下さい。</a>';
 	$lang->newest_comments = '最近コメント';
@@ -56,7 +56,7 @@
     $lang->font_style = 'フォント設定';
     $lang->font_family = 'フォントタイプ';
     $lang->font_size = 'フォントサイズ';
-    $lang->about_font_family = '編集と発行時、内容の基本フォトを定めます。 （例： %s）';
+    $lang->about_font_family = '記事の作成・編集の時、内容の基本フォントを定めます。<br /> （例： %s）';
     $lang->font_family_list = array(
 		'ＭＳ Ｐゴシック, MS PGothic'=> 'ＭＳ Ｐゴシック',
 		'ＭＳ Ｐ明朝, MS PMincho'=> 'ＭＳ Ｐ明朝',
@@ -65,14 +65,14 @@
 		'Serif, Serif'=> 'Serif',
 		'Verdana, Verdana'=> 'Verdana'
 	);
-    $lang->about_font_size = '編集と発行時、内容の基本フォトサイズを定めます。 (例： 12px、または1emなどの単位を含む) ';
+    $lang->about_font_size = '記事の作成・編集の時、内容の基本フォントサイズを定めます。 (例： 12px、または1emなどの単位を含む) ';
     $lang->about_textyle_editor = '段落別編集方式のエディターです。';
     $lang->etc_editor = 'その他のエディター';
     $lang->about_etc_editor = '一般的なリッチテキストエディターです。';
     $lang->set_prefix = 'ヘッダー設定';
-    $lang->about_prefix = '作成した記事へ下の内容を自動挿入します。 (HTMLタグ可能)';
+    $lang->about_prefix = '作成記事のヘッダーに下の内容を自動挿入します。 (HTMLタグ可能)';
     $lang->set_suffix = 'フッター設定';
-    $lang->about_suffix = '作成した記事へ下の内容を自動挿入します。 (HTMLタグ可能)';
+    $lang->about_suffix = '作成記事のフッターに下の内容を自動挿入します。 (HTMLタグ可能)';
     $lang->blogapi = '遠隔投稿';
     $lang->blogapi_support = 'Blog API(Meta Weblog API)を利用して、遠隔投稿が出来ます。';
     $lang->blogapi_example = '例) Window Live Writer、 Google Docs、 MS Word 2007 など';
@@ -170,13 +170,13 @@
     $lang->about_twitter_password = 'ツイッターパスワードを入力して下さい。';
 
     $lang->blogapi_publish = 'BlogAPI発行';
-    $lang->about_blog_api = 'テキスタイルにて作成した記事をBlogAPIを経由で他ブログ、または掲示板などに自動投稿・修正・削除することが可能になります。<br/>サポートするBlogAPIはMetaWebLogのみで、他のAPIは対応準備中です。';
+    $lang->about_blog_api = 'BlogAPIを利用してテキスタイルで投稿した記事を他ブログ、または掲示板などにも自動投稿・修正・削除することが可能になります。<br/>サポートするBlogAPIはMetaWebLogのみで、他のAPIは対応準備中です。';
     $lang->cmd_registration_blogapi = 'BlogAPIサイト登録';
     $lang->cmd_modification_blogapi = 'BlogAPIサイト情報修正';
     $lang->blogapi_site_url = 'API対象サイト';
-    $lang->about_blogapi_site_url = 'BlogAPIにて投稿する対象サイトのアドレスを入力して下さい。';
+    $lang->about_blogapi_site_url = 'BlogAPI経由で投稿する対象サイトのアドレスを入力して下さい。';
     $lang->blogapi_site_title = 'サイトタイトル';
-    $lang->about_blogapi_site_title = 'BlogAPIにて投稿するサイトタイトルを決めます。';
+    $lang->about_blogapi_site_title = 'BlogAPI経由で投稿するサイトタイトルを決めます。';
     $lang->blogapi_api_url = 'API URL';
     $lang->about_blogapi_url = 'BlogAPI URLを入力して下さい。';
     $lang->blogapi_published = '投稿数';
@@ -221,7 +221,7 @@
     $lang->allow_comment = 'コメント許可';
     $lang->allow_trackback = 'トラックバック許可';
     $lang->publish_date = '発行時刻';
-    $lang->publish_now = '現在';
+    $lang->publish_now = '現在時刻';
     $lang->publish_reserve = '予約';
     $lang->ymd = '年.月.日';
     $lang->calendar = 'カレンダー';
@@ -248,9 +248,9 @@
     $lang->day_current = '当日';
     $lang->day_before = '前日';
     $lang->about_status = array(
-        'day'=>'時間帯別訪問数が確認出来ます。',
-        'week'=>'一週間・日付別訪問数が確認出来ます。',
-        'month'=>'一年間・月別訪問数が確認出来ます。',
+        'day'=>'時間帯別訪問数',
+        'week'=>'一週間の日付別訪問数',
+        'month'=>'一年間・月別訪問数',
     );
     $lang->about_unit = array(
         'day'=>'時間',
@@ -308,13 +308,13 @@
         ),
         array(
             'dispTextyleToolLayoutConfigSkin'=>'スキン選択',
-            'dispTextyleToolLayoutConfigEdit'=>'HTML&middot;CSS編集',
+            'dispTextyleToolLayoutConfigEdit'=>'HTML・CSS編集',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'マイプロフィル',
             'dispTextyleToolConfigInfo'=>'ブログ設定',
             'dispTextyleToolConfigPostwrite'=>'投稿関連設定',
-            'dispTextyleToolConfigCommunication'=>'発行&middot;コミュニケーション設定',
+            'dispTextyleToolConfigCommunication'=>'発行・コミュニケーション設定',
             'dispTextyleToolConfigBlogApi'=>'BlogAPI発行',
             'dispTextyleToolConfigAddon'=>'アドオン管理',
             'dispTextyleToolConfigData'=>'データ管理',
@@ -348,7 +348,7 @@
     $lang->cmd_change_category = 'カテゴリー変更';
     $lang->cmd_publish = '発行する';
     $lang->cmd_save_temp = '下書き保存';
-    $lang->cmd_edit_htmlcss = 'HTML&middot;CSS編集';
+    $lang->cmd_edit_htmlcss = 'HTML・CSS編集';
     $lang->cmd_edit_html = 'HTML編集';
     $lang->cmd_edit_css = 'CSS編集';
     $lang->cmd_use_ing = '利用中';
