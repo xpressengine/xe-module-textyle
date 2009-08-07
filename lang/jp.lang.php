@@ -217,7 +217,7 @@
     $lang->document_close = '非公開';
 
     $lang->category = 'カテゴリー';
-    $lang->comm_management = 'コミュニケーション設定';
+    $lang->comm_management = '登録設定';
     $lang->allow_comment = 'コメント許可';
     $lang->allow_trackback = 'トラックバック許可';
     $lang->publish_date = '発行時刻';
@@ -278,7 +278,7 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
     $lang->textyle_first_menus = array(
         array('dispTextyleToolDashboard','ダッシュボード'),
         array('','記事管理'),
-        array('','コミュニケーション管理'),
+        array('','登録管理'),
         array('','統計'),
         array('','デザイン'),
         array('','設定'),
@@ -314,7 +314,7 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
             'dispTextyleToolConfigProfile'=>'マイプロフィル',
             'dispTextyleToolConfigInfo'=>'ブログ設定',
             'dispTextyleToolConfigPostwrite'=>'投稿関連設定',
-            'dispTextyleToolConfigCommunication'=>'発行・コミュニケーション設定',
+            'dispTextyleToolConfigCommunication'=>'発行・登録設定',
             'dispTextyleToolConfigBlogApi'=>'BlogAPI発行',
             'dispTextyleToolConfigAddon'=>'アドオン管理',
             'dispTextyleToolConfigData'=>'データ管理',
