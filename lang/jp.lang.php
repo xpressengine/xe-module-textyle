@@ -33,10 +33,10 @@
     $lang->last_week = '先週';
     $lang->this_week = '今週';
     $lang->display_name = '表示名';
-    $lang->about_display_name = '未登録の場合、IDを表示します。';
-    $lang->about_email = '未作成の場合、パスワードリマインダーからのメール送信が出来ません。';
+    $lang->about_display_name = '特に未指定したの場合はIDを入力されます。';
+    $lang->about_email = '未登録の場合、パスワードリマインダーからのメール送信が出来ません。';
     $lang->no_profile_image = 'プロフィル写真がありません。';
-    $lang->allow_profile_image_type = '<strong>jpg, gif, png</strong>ファイルアップロード可能';
+    $lang->allow_profile_image_type = '<strong>jpg、gif、png</strong>ファイルアップロード可能';
     $lang->allow_profile_image_size = '画像サイズは<strong>%dx%d</strong>pxに自動リサイズ';
     $lang->signature = '自己紹介';
     $lang->default_config = '基本設定';
@@ -65,7 +65,7 @@
 		'Serif, Serif'=> 'Serif',
 		'Verdana, Verdana'=> 'Verdana'
 	);
-    $lang->about_font_size = '記事の作成・編集の時、内容の基本フォントサイズを定めます。 (例： 12px、または1emなどの単位を含む) ';
+    $lang->about_font_size = '記事の作成・編集の時、内容の基本フォントサイズを定めます。<br /> (例： 12px、または1emなどの単位を含む) ';
     $lang->about_textyle_editor = '段落別編集方式のエディターです。';
     $lang->etc_editor = 'その他のエディター';
     $lang->about_etc_editor = '一般的なリッチテキストエディターです。';
@@ -259,7 +259,7 @@
     );
     $lang->visit_count = '訪問数';
     $lang->visit_per = '比率';
-    $lang->trackback_division = '複数のトラックバックは改行(Enter)で区切ってください。';
+$lang->trackback_division = '複数のトラックバックの場合は改行(Enter)で区切ってください。';
 
     $lang->about_supporter = '支持者とはコメント、ゲストブック、トラックバックなどを登録したユーザーを意味します。';
     $lang->supporter_rank = '支持者ランキング';
@@ -276,7 +276,7 @@
     $lang->resize_vertical = '入力スペースのサイズ調整';
 
     $lang->textyle_first_menus = array(
-        array('dispTextyleToolDashboard','お知らせボード'),
+        array('dispTextyleToolDashboard','メイン'),
         array('','記事管理'),
         array('','コミュニケーション管理'),
         array('','統計'),
@@ -325,7 +325,7 @@
     $lang->cmd_go_help = 'ヘルプ';
     $lang->cmd_textyle_setup = '基本設定';
     $lang->cmd_textyle_list = 'Textyleリスト';
-    $lang->cmd_textyle_creation = 'Textyle作成';
+    $lang->cmd_textyle_creation = 'Textyles生成';
     $lang->cmd_textyle_update = 'Textyle修正';
     $lang->cmd_new_post = '新規記事作成';
     $lang->cmd_go_blog = 'ブログを確認する';
@@ -359,7 +359,7 @@
     $lang->cmd_generate_widget_code = 'ウィジェットコード生成';
 
     $lang->msg_already_used_url = '既に利用されているURLです。';
-    $lang->alert_reset_skin = '初期化すると入力したHTML&middot;CSSの内容全てが無くなります。\n\n初期化して宜しいですか？';
+    $lang->alert_reset_skin = '初期化すると入力したHTML・CSSの内容全てが無くなります。\n\n初期化して宜しいですか？';
 
 	$lang->msg_close_before_write = "変更した内容が保存されてません。";
 
@@ -375,7 +375,7 @@
     $lang->category_result = 'カテゴリー';
     $lang->newest_document = '最近記事';
     $lang->newest_comment = '最近コメント';
-    $lang->newest_trackback = '最近ラックバック';
+    $lang->newest_trackback = '最近トラックバック';
     $lang->archive = '記事まとめ';
     $lang->link = 'リンクまとめ';
 
