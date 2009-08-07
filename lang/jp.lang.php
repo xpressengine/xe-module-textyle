@@ -13,15 +13,15 @@
 	$lang->add_category = 'カテゴリー追加';
     $lang->textyle_admin = 'Textyle管理者(ID)';
     $lang->textyle_title = 'Textyleタイトル';
-    $lang->today_visitor = '本日の<strong>訪問ユーザー数</strong>';
+    $lang->today_visitor = '本日の<strong>訪問者数</strong>';
     $lang->today_comments = '本日の<strong>コメント数</strong>';
     $lang->today_trackbacks = '本日の<strong>トラックバック/ピングバック数</strong>';
     $lang->textyle_summary = 'ブログ情報';
     $lang->item_unit = '個';
     $lang->newest_documents ='最近作成記事';
     $lang->newest_no_documents ='投稿された記事がありません。新しい記事を投稿して下さい。';
-    $lang->newest_materials = '最近文材';
-	$lang->newest_no_materials = '文材がありません。 <a href="%s">文材収集機をインストールして下さい。</a>';
+    $lang->newest_materials = '最近ネタ';
+	$lang->newest_no_materials = 'ネタがありません。 <a href="%s">ネタ収集機をインストールして下さい。</a>';
 	$lang->newest_comments = '最近コメント';
 	$lang->newest_no_comments = '登録されたコメントがありません。';
 	$lang->newest_guestbooks = '最近ゲストブック';
@@ -91,8 +91,8 @@
     $lang->referer = 'リファラー';
     $lang->link_word = 'リンクワード';
     $lang->link_document = 'リンクドキュメント';
-    $lang->visitor = '訪問ユーザー';
-    $lang->about_referer = '訪問ユーザーのリファラー確認が出来ます。';
+    $lang->visitor = '訪問者';
+    $lang->about_referer = '訪問者のリファラー確認が出来ます。';
     $lang->website_address = 'ウェブサイトアドレス';
     $lang->required = '必須';
     $lang->selected = '選択';
@@ -133,15 +133,15 @@
     $lang->used_documents = '使われた記事数';
     $lang->order_desc = '降順並べ替え';
     $lang->update_tag = 'タグ修正/削除';
-    $lang->tag_name = 'タグ名';
-    $lang->tag_with_tags = '一緒に使われたタグ';
-    $lang->total_materials = '総 <strong>%d</strong>個の文材が保存されています。';
-    $lang->none_materials = '文材は有りません。';
-    $lang->install_bookmarklet = '文材収集機をインストールして下さい。';
+    $lang->tag_name = 'タグ';
+    $lang->tag_with_tags = '一緒に登録されたタグ';
+    $lang->total_materials = '総 <strong>%d</strong>個のネタが保存されています。';
+    $lang->none_materials = 'ネタは有りません。';
+    $lang->install_bookmarklet = 'ネタ収集機をインストールして下さい。';
     $lang->none_tags = 'タグはありません。';
     $lang->bookmarklet_install = 'ブックマークレットをインストールする';
-	$lang->about_bookmarklet = 'いつも、とこでも<br />ブログに書く文材を収集して下さい。';
-    $lang->about_set_bookmarklet = '文材収集機';
+	$lang->about_bookmarklet = 'いつも、とこでも<br />ブログに書くネタを収集して下さい。';
+    $lang->about_set_bookmarklet = 'ネタ収集機';
     $lang->data_export = 'データバックアップ';
     $lang->data_import = 'データリストア (移転)';
     $lang->migration_prepare = 'ファイル分析中';
@@ -198,10 +198,10 @@
 
     $lang->about_use_bookmarklet = 'ブックマークレットのヘルプ';
     $lang->about_use_bookmarklet_item = array(
-        '上の「文材収集機」ブックマークレットをブラウザーに追加（インストール）して下さい。',
+        '上の「ネタ収集機」ブックマークレットをブラウザーに追加（インストール）して下さい。',
         '記事を書く時、素材として使えるものを目付けたら、インストールしたブックマークレットをクリックして下さい。',
         'テキスト、画像、動画など、適切なタイプを選んで編集した後保存して下さい。',
-        'そうして収集した文材はただ今ご覧になっている文材保存箱ページに保存されます。',
+        'そうして収集したネタはただ今ご覧になっているネタ保存箱ページに保存されます。',
     );
     $lang->basket_management = 'ごみ箱の管理';
     $lang->basket_list = 'ごみ箱の保管リスト';
@@ -261,14 +261,14 @@
     $lang->visit_per = '比率';
 $lang->trackback_division = '複数のトラックバックの場合は改行(Enter)で区切ってください。';
 
-    $lang->about_supporter = '支持者とはコメント、ゲストブック、トラックバックなどを登録したユーザーを意味します。';
-    $lang->supporter_rank = '支持者ランキング';
+    $lang->about_supporter = 'ファンとはコメント、ゲストブック、トラックバックなどを登録したユーザーを意味します。';
+    $lang->supporter_rank = 'ファンランキング';
     $lang->rank = 'ランキング';
     $lang->user = 'ユーザー';
     $lang->guestbook = 'ゲストブック';
 	$lang->add_denylist = 'ブロックリストに追加';
     $lang->summary = '合計';
-    $lang->no_supporter = '現在支持者はいません。';
+    $lang->no_supporter = '現在ファンはいません。';
     $lang->about_popular = '人気コンテンツとは閲覧、コメント、ピングバック、トラックバックが多い記事を意味します。';
     $lang->popular_rank = '人気コンテンツランキング';
     $lang->read = '閲覧';
@@ -276,7 +276,7 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
     $lang->resize_vertical = '入力スペースのサイズ調整';
 
     $lang->textyle_first_menus = array(
-        array('dispTextyleToolDashboard','メイン'),
+        array('dispTextyleToolDashboard','ダッシュボード'),
         array('','記事管理'),
         array('','コミュニケーション管理'),
         array('','統計'),
@@ -289,7 +289,7 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
         array(
             'dispTextyleToolPostManageWrite'=>'新規作成',
             'dispTextyleToolPostManageList'=>'記事リスト',
-            'dispTextyleToolPostManageDeposit'=>'文材保存箱',
+            'dispTextyleToolPostManageDeposit'=>'ネタ保存箱',
             'dispTextyleToolPostManageCategory'=>'カテゴリー',
             'dispTextyleToolPostManageTag'=>'タグ管理',
             'dispTextyleToolPostManageBasket'=>'ごみ箱',
@@ -301,13 +301,13 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
             'dispTextyleToolCommunicationSpam'=>'スパムブロック',
         ),
         array(
-            'dispTextyleToolStatisticsVisitor'=>'訪問ユーザー',
+            'dispTextyleToolStatisticsVisitor'=>'訪問者',
             'dispTextyleToolStatisticsVisitRoute'=>'リファラー',
-            'dispTextyleToolStatisticsSupporter'=>'支持者',
+            'dispTextyleToolStatisticsSupporter'=>'ファン',
             'dispTextyleToolStatisticsPopular'=>'人気コンテンツ',
         ),
         array(
-            'dispTextyleToolLayoutConfigSkin'=>'スキン選択',
+            'dispTextyleToolLayoutConfigSkin'=>'スキン変更',
             'dispTextyleToolLayoutConfigEdit'=>'HTML・CSS編集',
         ),
         array(
@@ -341,7 +341,7 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
     $lang->cmd_reply_comment = 'コメントを書く';
     $lang->cmd_change_secret = '非公開にする';
     $lang->cmd_write_relation = '関連記事を書く';
-    $lang->cmd_delete_materials = '文材削除';
+    $lang->cmd_delete_materials = 'ネタ削除';
     $lang->cmd_restore = '差し戻し';
     $lang->cmd_empty = '空にする';
     $lang->cmd_empty_basket = 'ごみ箱を空にする';
@@ -364,7 +364,7 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
 	$lang->msg_close_before_write = "変更した内容が保存されてません。";
 
     $lang->no_post = '作成した記事がありません。<a href="%s">新しい記事を投稿して下さい。</a>';
-    $lang->no_trash = 'リストから削除したものがありません。';
+    $lang->no_trash = 'ごみ箱に移動されたものはありません。';
     $lang->no_comment = '登録されたコメントがありません。';
     $lang->no_guestbook = 'ゲストブックに登録された書き込みがありません。';
     $lang->no_trackback = '登録されたトラックバックがありません。';
@@ -390,6 +390,6 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
 	$lang->msg_confirm_delete_post = '下書き保存の記事は復元できません。削除して宜しいですか？';
 
     $lang->sample_title = 'テキスタイルへようこそ！';
-    $lang->sample_tags = 'textyle ,  テキスタイル ,  テキスタイルエディター ,  文材収集機';
+    $lang->sample_tags = 'textyle ,  テキスタイル ,  テキスタイルエディター ,  ネタ収集機';
     $lang->msg_preparation = '準備中です。';
 ?>
