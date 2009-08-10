@@ -122,9 +122,9 @@
                                     </div>
                                     <h4 class="author">
 										<!--@if($val->homepage)-->
-										<a href="{$val->homepage}" onclick="window.open(this.href);return false;">{$val->user_name}</a>
+										<a href="{$val->homepage}" onclick="window.open(this.href);return false;">{$val->nick_name}</a>
 										<!--@else-->
-										{$val->user_name}
+										{$val->nick_name}
 										<!--@end-->
 									</h4>
                                     <p class="date">{zdate($val->regdate,'Y.m.d')} <span class="hhmm">{zdate($val->regdate,'H:i')}</span></p>

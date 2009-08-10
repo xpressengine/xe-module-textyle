@@ -436,11 +436,11 @@
          * @brief Guestbook item delete
 		 **/
 		function procTextyleGuestbookItemDelete(){
-            $oTextyleModel = &getModel('textyle');
 			$textyle_guestbook_srl = Context::get('textyle_guestbook_srl');
 			if(!$textyle_guestbook_srl) return new Object(-1,'msg_invalid_request');
-   
-			if(!$_SESSION['own_textyle_guestbook'][$val->textyle_guestbook_srl]) return new Object(-1,'msg_not_permitted');
+
+			$logged_info = Context::get('logged_info');  
+			if(!($logged_info->is_site_admin || $_SESSION['own_textyle_guestbook'][$val->textyle_guestbook_srl])) return new Object(-1,'msg_not_permitted');
 			$output = $this->deleteGuestbookItem($textyle_guestbook_srl);
 			return $output;
 		}

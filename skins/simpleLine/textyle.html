@@ -122,9 +122,9 @@
                                     </div>
                                     <h4 class="author">
 										<!--@if($val->homepage)-->
-										<a href="{$val->homepage}" onclick="window.open(this.href);return false;">{$val->user_name}</a>
+										<a href="{$val->homepage}" onclick="window.open(this.href);return false;">{$val->nick_name}</a>
 										<!--@else-->
-										{$val->user_name}
+										{$val->nick_name}
 										<!--@end-->
 									</h4>
                                     <p class="date">{zdate($val->regdate,'Y.m.d')} <span class="hhmm">{zdate($val->regdate,'H:i')}</span></p>
@@ -158,12 +158,12 @@
 									<ul class="reAction">
 										<!--@if($val->view_grant)-->
 										<!--@if($val->parent_srl==0&&$textyle->isEnableGuestbook())-->
-										<li><a href="{getUrl('modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
+										<li><a href="{getUrl('','modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
 										<!--@end-->
 										
 										<!--@if($val->member_srl)-->
 											<!--@if($logged_info->member_srl == $val->member_srl)-->
-												<li><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
+												<li><a href="{getUrl('','reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
 
 											<!--@end-->
 											<!--@if($logged_info->is_site_admin || $logged_info->member_srl == $val->member_srl)-->
