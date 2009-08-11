@@ -369,7 +369,7 @@
 			$option->allow_fileupload = true;
 			$option->enable_autosave = true;
 			$option->enable_default_component = true;
-			$option->enable_component = true;
+			$option->enable_component = $option->skin =='dreditor' ? false : true;
 			$option->resizable = true;
 			$option->height = 500;
 			$option->content_font = $this->textyle->getFontFamily();
