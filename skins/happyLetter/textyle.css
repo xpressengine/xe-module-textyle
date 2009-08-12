@@ -201,7 +201,7 @@ img{ border:0;}
 a.skipToContent{ display:block; position:relative; clear:both; overflow:hidden; width:1px; height:1px; text-decoration:none !important; margin:0 0 -1px 0;}
 a.skipToContent:hover,
 a.skipToContent:active,
-a.skipToContent:focus{ width:auto; height:auto; margin:0 0 10px 0; padding:5px;}
+a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23px;}
 
 /* Layout */
 .fixed #container{ width:1083px; left:20px; overflow:hidden;}
