@@ -20,6 +20,7 @@
     $lang->item_unit = ' ';
     $lang->newest_documents ='Recent Posts';
     $lang->newest_no_documents = "You have written nothing. Write some posts!"; 
+    $lang->posts = 'Posts';
     $lang->newest_materials = 'Newest Ingredients';
 	$lang->newest_no_materials = 'There is no ingredient for writing. <a href="%s">Install a writing ingredients collector.</a>';
 	$lang->newest_comments = 'Recent Comments';
@@ -28,6 +29,8 @@
 	$lang->newest_no_guestbooks = 'There is no article in guestbook.';
 	$lang->reserve = 'Reservation';
     $lang->publish = 'Published';
+    $lang->published = 'Published';
+    $lang->saved = 'Saved';
     $lang->temp = 'Temporary';
     $lang->more = 'More';
     $lang->last_week = 'Last week';
@@ -48,7 +51,7 @@
     $lang->registed_favicon = 'Registered Favicon';
     $lang->about_favicon = '<strong>16x16px</strong> sized <strong>ico</strong> file can be uploaded.';
     $lang->about_addon = 'Addons are to control Textyle\'s actions. Turning on/off addons would add useful features to your sites.';
-
+    $lang->addon_using = 'Using';
     $lang->lang_time_zone = 'Language/Time zone';
     $lang->language = 'Language';
     $lang->timezone = 'Time Zone';
@@ -84,7 +87,8 @@
     $lang->content_summary = 'Summary';
     $lang->content_list = 'List';
     $lang->blog_display_count = 'Number of posts';
-    $lang->rss_type = '발행 대상';
+    $lang->feed_format = 'Feed type';
+    $lang->rss_type = 'RSS type';
     $lang->rss_total = 'Title + All Contents';
     $lang->rss_summary = 'Title + Summary';
     $lang->visitor_editor_style = 'Input form for Comments and Guestbook';
@@ -380,6 +384,7 @@
     $lang->newest_trackback = 'Recent Trackbacks';
     $lang->archive = 'Archive';
     $lang->link = 'Links';
+    $lang->visitor_count = 'Visitor';
 
     $lang->mail = 'Mail';
     $lang->ip = 'IP';

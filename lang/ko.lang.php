@@ -20,6 +20,7 @@
     $lang->item_unit = '개';
     $lang->newest_documents ='최근 작성글';
     $lang->newest_no_documents ='작성하신 글이 없습니다. 새 글을 써보세요.';
+    $lang->posts = '문서';
     $lang->newest_materials = '최근 글감';
 	$lang->newest_no_materials = '글감이 없습니다. <a href="%s">글감 수집기를 설치하세요.</a>';
 	$lang->newest_comments = '최근 댓글';
@@ -28,6 +29,8 @@
 	$lang->newest_no_guestbooks = '방명록에 남겨진 글이 아직 없습니다.';
 	$lang->reserve = '예약';
     $lang->publish = '발행';
+    $lang->published = '발행';
+    $lang->saved = '저장';
     $lang->temp = '임시';
     $lang->more = '더보기';
     $lang->last_week = '지난주';
@@ -48,6 +51,7 @@
     $lang->registed_favicon = '등록된 파비콘';
     $lang->about_favicon = '<strong>16x16px</strong> 크기의 <strong>ico</strong> 파일 업로드 가능.';
     $lang->about_addon = '애드온은 html결과물을 출력하기 보다 동작을 제어하는 역할을 합니다. 원하시는 애드온을 on/ off하시는 것만으로 사이트 운영에 유용한 기능을 연동할 수 있습니다.';
+    $lang->addon_using = '사용중';
     $lang->lang_time_zone = '언어/시간대';
     $lang->language = '언어';
     $lang->timezone = '시간대';
@@ -83,6 +87,7 @@
     $lang->content_summary = '글 요약';
     $lang->content_list = '글 목록';
     $lang->blog_display_count = '출력 개수';
+    $lang->feed_format = '출력할 피드(feed)형식';
     $lang->rss_type = '발행 대상';
     $lang->rss_total = '제목 + 본문 전체';
     $lang->rss_summary = '제목 + 본문 요약';
@@ -378,6 +383,7 @@
     $lang->newest_trackback = '최근 엮인글';
     $lang->archive = '글 모음';
     $lang->link = '링크 모음';
+    $lang->visitor_count = '방문자';
 
     $lang->mail = '메일';
     $lang->ip = '아이피';

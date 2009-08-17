@@ -17,46 +17,50 @@
     $lang->today_comments = '本日の<strong>コメント数</strong>';
     $lang->today_trackbacks = '本日の<strong>トラックバック/ピングバック数</strong>';
     $lang->textyle_summary = 'ブログ情報';
-    $lang->item_unit = '個';
-    $lang->newest_documents ='最近作成記事';
+    $lang->item_unit = '件';
+    $lang->newest_documents ='最新記事';
     $lang->newest_no_documents ='投稿された記事がありません。新しい記事を投稿して下さい。';
+    $lang->posts = '記事';
     $lang->newest_materials = '最近ネタ';
 	$lang->newest_no_materials = 'ネタがありません。 <a href="%s">ネタ収集機をインストールして下さい。</a>';
 	$lang->newest_comments = '最近コメント';
 	$lang->newest_no_comments = '登録されたコメントがありません。';
-	$lang->newest_guestbooks = '最近ゲストブック';
-	$lang->newest_no_guestbooks = 'ゲストブックに登録された書き込みがありません。';
+	$lang->newest_guestbooks = '最新ゲストブック';
+	$lang->newest_no_guestbooks = '登録された書き込みがありません。'; 
 	$lang->reserve = '予約';
     $lang->publish = '発行';
+    $lang->published = '発行済み';
+    $lang->saved = '下書き';
     $lang->temp = '下書き';
     $lang->more = 'もっと見る';
     $lang->last_week = '先週';
     $lang->this_week = '今週';
     $lang->display_name = '表示名';
-    $lang->about_display_name = '特に未指定したの場合はIDを入力されます。';
-    $lang->about_email = '未登録の場合、パスワードリマインダーからのメール送信が出来ません。';
+    $lang->about_display_name = '未入力の場合はIDを表示します。';
+    $lang->about_email = '未入力の場合はパスワードリマインダーでの メール送信ができません。';
     $lang->no_profile_image = 'プロフィル写真がありません。';
-    $lang->allow_profile_image_type = '<strong>jpg、gif、png</strong>ファイルアップロード可能';
-    $lang->allow_profile_image_size = '画像サイズは<strong>%dx%d</strong>pxに自動リサイズ';
+    $lang->allow_profile_image_type = '<strong>JPEG、GIF、PNG</strong>形式のみアップロードできます。';
+    $lang->allow_profile_image_size = 'イメージは<strong>%dx%d</strong>に自動的にリサイズされま';
     $lang->signature = '自己紹介';
     $lang->default_config = '基本設定';
     $lang->blog_title = 'ブログタイトル';
-    $lang->about_blog_title = 'ブログのタイトルとして使います。';
-    $lang->blog_description = '簡単紹介';
-    $lang->about_blog_description = '（スキンの種類やHTML・CSSエディターの調整によって、表示されない場合もあります。）';
+    $lang->about_blog_title = 'この説明文は必要ないです。'; 
+    $lang->blog_description = 'ブログの説明'; 
+    $lang->about_blog_description = '（スキンの種類によって表示されない場合がります。の場合はHTML·CSSエディターで表示可否を編集してください。）';
     $lang->favicon = 'ファビコン(favicon)';
     $lang->registed_favicon = '登録されたファビコン';
-    $lang->about_favicon = '<strong>16x16px</strong>サイズの<strong>ico</strong>ファイルアップロード可能';
-    $lang->about_addon = 'アドオンは、HTMLの出力をコントロールすると言うより、動作を制御する役割をします。お好みのアドオンを「使用/未使用」に設定するだけで、サイトの運営に有用な機能が利用出来ます。';
-    $lang->lang_time_zone = '言語/時間帯';
+    $lang->about_favicon = '<strong>16x16px</strong>のicoファイルのみアップロードできます。';
+    $lang->about_addon = 'アドオンを追加すると、記事の作成や管理がより便利になります。<br/>「使用中」もしくは「未使用」をクリックして、アドオンの追加/削除をおこなってください。';
+    $lang->addon_using = '使用中';
+    $lang->lang_time_zone = '言語/タイムゾーン';
     $lang->language = '言語';
-    $lang->timezone = '時間帯';
+    $lang->timezone = 'タイムゾーン';
     $lang->edit_style = '編集方法選択';
     $lang->textyle_editor = '段落別エディター';
     $lang->font_style = 'フォント設定';
     $lang->font_family = 'フォントタイプ';
     $lang->font_size = 'フォントサイズ';
-    $lang->about_font_family = '記事の作成・編集の時、内容の基本フォントを定めます。<br /> （例： %s）';
+    $lang->about_font_family = '記事内の基本フォントを設定します。<br /> （例： %s）';
     $lang->font_family_list = array(
 		'ＭＳ Ｐゴシック, MS PGothic'=> 'ＭＳ Ｐゴシック',
 		'ＭＳ Ｐ明朝, MS PMincho'=> 'ＭＳ Ｐ明朝',
@@ -65,28 +69,29 @@
 		'Serif, Serif'=> 'Serif',
 		'Verdana, Verdana'=> 'Verdana'
 	);
-    $lang->about_font_size = '記事の作成・編集の時、内容の基本フォントサイズを定めます。<br /> (例： 12px、または1emなどの単位を含む) ';
-    $lang->about_textyle_editor = '段落別編集方式のエディターです。';
+    $lang->about_font_size = '記事内の基本フォントサイズを設定します。<br/>(例： 12px、1emなどの単位を含む)';
+    $lang->about_textyle_editor = '段落別に編集するエディターです。';
     $lang->etc_editor = 'その他のエディター';
     $lang->about_etc_editor = '一般的なリッチテキストエディターです。';
     $lang->set_prefix = 'ヘッダー設定';
-    $lang->about_prefix = '作成記事のヘッダーに下の内容を自動挿入します。 (HTMLタグ可能)';
+    $lang->about_prefix = '記事の冒頭に下の内容を自動的に挿入します。HTMLタグ可能）';
     $lang->set_suffix = 'フッター設定';
-    $lang->about_suffix = '作成記事のフッターに下の内容を自動挿入します。 (HTMLタグ可能)';
+    $lang->about_suffix = '記事の末尾に下の内容を自動的に挿入します。HTMLタグ可能）';
     $lang->blogapi = '遠隔投稿';
     $lang->blogapi_support = 'Blog API(Meta Weblog API)を利用して、遠隔投稿が出来ます。';
     $lang->blogapi_example = '例) Window Live Writer、 Google Docs、 MS Word 2007 など';
     $lang->blogapi_url = 'APIのURL';
     $lang->blog_first_page = '最初のページ';
-    $lang->blog_display_target = '出力対象';
+    $lang->blog_display_target = '表示形式';
     $lang->content_body = 'コンテンツ本文';
     $lang->content_summary = 'コンテンツ要約';
     $lang->content_list = 'コンテンツリスト';
-    $lang->blog_display_count = 'リスト表示数';
+    $lang->blog_display_count = '表示件数';
+    $lang->feed_format = '出力するRSS';
     $lang->rss_type = '発行対象';
     $lang->rss_total = 'タイトル + 本文全体';
     $lang->rss_summary = 'タイトル + 本文要約';
-    $lang->visitor_editor_style = 'コメント、およびゲストブックの入力スタイル';
+    $lang->visitor_editor_style = 'コメント、ゲストブックの設定';
     $lang->host = '参照サイト';
     $lang->referer = 'リファラー';
     $lang->link_word = 'リンクワード';
@@ -99,21 +104,21 @@
     $lang->notaccepted = '要らない';
     $lang->comment_editor = 'コメントエディター';
     $lang->guestbook_editor = 'ゲストブックエディター';
-    $lang->comment_list_count = '1ページ毎のコメント数';
-    $lang->guestbook_list_count = '1ページ毎のゲストブック数';
-    $lang->comment_grant = 'コメント登録権限';
+    $lang->comment_list_count = '1ページのコメント表示数';
+    $lang->guestbook_list_count = '1ページのゲストブック表示数';
+    $lang->comment_grant = 'コメントの投稿許可 ';
     $lang->about_comment_grant = 'コメントを登録出来る範囲を設定します。';
     $lang->disable_comment= 'コメント登録権限がありません。会員登録後、作成が可能となります。';
-    $lang->grant_to_all = '全ての人';
+    $lang->grant_to_all = '全て';
     $lang->grant_to_member = '会員のみ';
-    $lang->guestbook_grant = 'ゲストブック登録権限';
+    $lang->guestbook_grant = 'ゲストブックの投稿許可';
     $lang->about_guestbook_grant = 'ゲストブックに登録出来る範囲を設定します。';
     $lang->disable_guestbook = 'ゲストブックに登録権限がありません。会員登録後、可能となります。';
     $lang->current_password = '現在パスワード';
     $lang->password1 = '新しいパスワード';
-    $lang->password2 = '新しいパスワードの確認';
-    $lang->about_change_password = '上に入力した新しいパスワードと同一のものを入力して下さい。';
-    $lang->name_nick = 'お名前(ニックネーム)';
+    $lang->password2 = '新しいパスワード（再入力）';
+    $lang->about_change_password = '※ パスワードはX～XX文字の半角英数で入力してください。';
+    $lang->name_nick = '名前（ニックネーム）';
     $lang->manage_trackback ='トラックバック管理';
     $lang->manage_guestbook ='ゲストブック管理';
     $lang->manage_comment ='コメント管理';
@@ -124,7 +129,7 @@
     $lang->search_result_count = '検索結果<strong>%d</strong>個の記事があります。';
     $lang->no_result_count = '検索結果がありません。';
     $lang->selected_articles = '選択したものを';
-    $lang->avatar = 'アバター';
+    $lang->avatar = 'アイコン';
     $lang->status = '状態';
     $lang->pingback = 'ピングバック';
     $lang->recent_tags = '最近使ったタグ';
@@ -139,11 +144,11 @@
     $lang->none_materials = 'ネタは有りません。';
     $lang->install_bookmarklet = 'ネタ収集機をインストールして下さい。';
     $lang->none_tags = 'タグはありません。';
-    $lang->bookmarklet_install = 'ブックマークレットをインストールする';
-	$lang->about_bookmarklet = 'いつも、とこでも<br />ブログに書くネタを収集して下さい。';
-    $lang->about_set_bookmarklet = 'ネタ収集機';
+    $lang->bookmarklet_install = 'ブックマークレットをインストール'; 
+	$lang->about_bookmarklet = 'ブラウザのお気に入りに追加して、気になる情報を簡単にスクラップできるツールです。';
+    $lang->about_set_bookmarklet = 'インストール'; 
     $lang->data_export = 'データバックアップ';
-    $lang->data_import = 'データリストア (移転)';
+    $lang->data_import = 'データのインポート';
     $lang->migration_prepare = 'ファイル分析中';
     $lang->data_import_progress = 'バックアップ進行率';
     $lang->data_export_progress = 'リストア進行率';
@@ -162,15 +167,15 @@
     $lang->msg_success_to_me2day = '入力したme2Day情報で連結確認が正常に完了しました。';
     $lang->msg_fail_to_me2day = 'me2Dayへ連結が失敗しました。もう一度、IDと利用者キーを確認してください。';
 
-    $lang->send_twitter = 'ツイッター投稿';
-    $lang->about_send_twitter = 'テキスタイル記事投稿の際、記事のタイトルを指定したツイッターへも投稿出来るように設定します。';
-    $lang->twitter_userid = 'ツイッターID';
-    $lang->about_twitter_userid = 'ツイッターIDを入力して下さい。';
-    $lang->twitter_password = 'ツイッターパスワード';
-    $lang->about_twitter_password = 'ツイッターパスワードを入力して下さい。';
+    $lang->send_twitter = 'Twitterで発言';
+    $lang->about_send_twitter = '記事発行時にTwitterで記事タイトルを発言します。';
+    $lang->twitter_userid = 'TwitterID';
+    $lang->about_twitter_userid = 'TwitterのIDを入力してください。';
+    $lang->twitter_password = 'Twitterパスワード';
+    $lang->about_twitter_password = 'Twitterのパスワードを入力してください。';
 
     $lang->blogapi_publish = 'BlogAPI発行';
-    $lang->about_blog_api = 'BlogAPIを利用してテキスタイルで投稿した記事を他ブログ、または掲示板などにも自動投稿・修正・削除することが可能になります。<br/>サポートするBlogAPIはMetaWebLogのみで、他のAPIは対応準備中です。';
+    $lang->about_blog_api = 'Textyleで作成した記事を、Blog APIで外部ブログや掲示板などに同時に投稿/修正/削除をすることができます。<br/> 現在サポートしているBlog APIはMetaWebLogのみです。他サービスについては随時追加予定です。';
     $lang->cmd_registration_blogapi = 'BlogAPIサイト登録';
     $lang->cmd_modification_blogapi = 'BlogAPIサイト情報修正';
     $lang->blogapi_site_url = 'API対象サイト';
@@ -198,18 +203,18 @@
 
     $lang->about_use_bookmarklet = 'ブックマークレットのヘルプ';
     $lang->about_use_bookmarklet_item = array(
-        '上の「ネタ収集機」ブックマークレットをブラウザーに追加（インストール）して下さい。',
-        '記事を書く時、素材として使えるものを目付けたら、インストールしたブックマークレットをクリックして下さい。',
-        'テキスト、画像、動画など、適切なタイプを選んで編集した後保存して下さい。',
-        'そうして収集したネタはただ今ご覧になっているネタ保存箱ページに保存されます。',
+        '上の「インストール」ボタンを右クリックして、「お気に入　<br/>りに追加」を選択します。',
+        'ネットサーフィン中にお気に入りの情報を見つけたら、<br/>お気に入りバーに追加したブックマークレットをクリック<br/>します。',
+        '文書のタイプを選択して保存します。',
+        'スクラップした情報は、「資料箱」に保存されます。',
     );
     $lang->basket_management = 'ごみ箱の管理';
     $lang->basket_list = 'ごみ箱の保管リスト';
     $lang->basket_empty = 'ごみ箱が空です。 ^^;';
 
-    $lang->document_all = '全記事';
-    $lang->document_published = '発行した記事';
-    $lang->document_reserved = '下書きの記事';
+    $lang->document_all = '全ての記事リスト';
+    $lang->document_published = '発行した記事リスト';
+    $lang->document_reserved = '下書きリスト'; 
 
     $lang->my_document_management = 'マイ記事管理';
     $lang->set_publish = '公開設定';
@@ -232,9 +237,9 @@
     $lang->new_post = '記事新規作成';
     $lang->modify_post = '記事を修正する';
     $lang->posting_option = '書き込みのオプション';
-    $lang->post_url = 'ポストアドレス';
+    $lang->post_url = '記事URL';
     $lang->about_tag = '複数のタグは半角コンマ「,」で区切ってください。';
-	$lang->success_temp_saved = '下書きとして保存されました。';
+	$lang->success_temp_saved = '下書きとして保存されました。'; 
 
     $lang->daily = '日別';
     $lang->weekly = '週間';
@@ -248,7 +253,7 @@
     $lang->day_current = '当日';
     $lang->day_before = '前日';
     $lang->about_status = array(
-        'day'=>'時間帯別訪問数',
+        'day'=>'時間帯別のアクセス数を確認できます。',
         'week'=>'一週間の日付別訪問数',
         'month'=>'一年間・月別訪問数',
     );
@@ -257,21 +262,21 @@
         'week'=>'年.月.日',
         'month'=>'年.月',
     );
-    $lang->visit_count = '訪問数';
-    $lang->visit_per = '比率';
-$lang->trackback_division = '複数のトラックバックの場合は改行(Enter)で区切ってください。';
+    $lang->visit_count = 'アクセス数';
+    $lang->visit_per = '割合';
+    $lang->trackback_division = '複数のトラックバックの場合は改行(Enter)で区切ってください。';
 
-    $lang->about_supporter = 'ファンとはコメント、ゲストブック、トラックバックなどを登録したユーザーを意味します。';
+    $lang->about_supporter = 'コメントやゲストブックへの書き込み、トラックバックの登録件数が多い訪問者をランキング形式で表示します。'; 
     $lang->supporter_rank = 'ファンランキング';
-    $lang->rank = 'ランキング';
-    $lang->user = 'ユーザー';
+    $lang->rank = '順位';
+    $lang->user = '名前';
     $lang->guestbook = 'ゲストブック';
 	$lang->add_denylist = 'ブロックリストに追加';
     $lang->summary = '合計';
     $lang->no_supporter = '現在ファンはいません。';
-    $lang->about_popular = '人気コンテンツとは閲覧、コメント、ピングバック、トラックバックが多い記事を意味します。';
+    $lang->about_popular = '閲覧数やコメント、トラックバックが多い記事をランキング形式で表示します。';
     $lang->popular_rank = '人気コンテンツランキング';
-    $lang->read = '閲覧';
+    $lang->read = '閲覧数';
     $lang->no_popular = '人気コンテンツがありません。';
     $lang->resize_vertical = '入力スペースのサイズ調整';
 
@@ -289,7 +294,7 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
         array(
             'dispTextyleToolPostManageWrite'=>'新規作成',
             'dispTextyleToolPostManageList'=>'記事リスト',
-            'dispTextyleToolPostManageDeposit'=>'ネタ保存箱',
+            'dispTextyleToolPostManageDeposit'=>'資料箱',
             'dispTextyleToolPostManageCategory'=>'カテゴリー',
             'dispTextyleToolPostManageTag'=>'タグ管理',
             'dispTextyleToolPostManageBasket'=>'ごみ箱',
@@ -301,9 +306,9 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
             'dispTextyleToolCommunicationSpam'=>'スパムブロック',
         ),
         array(
-            'dispTextyleToolStatisticsVisitor'=>'訪問者',
+            'dispTextyleToolStatisticsVisitor'=>'アクセス数',
             'dispTextyleToolStatisticsVisitRoute'=>'リファラー',
-            'dispTextyleToolStatisticsSupporter'=>'ファン',
+            'dispTextyleToolStatisticsSupporter'=>'読者',
             'dispTextyleToolStatisticsPopular'=>'人気コンテンツ',
         ),
         array(
@@ -311,10 +316,10 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
             'dispTextyleToolLayoutConfigEdit'=>'HTML・CSS編集',
         ),
         array(
-            'dispTextyleToolConfigProfile'=>'マイプロフィル',
-            'dispTextyleToolConfigInfo'=>'ブログ設定',
-            'dispTextyleToolConfigPostwrite'=>'投稿関連設定',
-            'dispTextyleToolConfigCommunication'=>'発行・登録設定',
+            'dispTextyleToolConfigProfile'=>'マイプロフィール',
+            'dispTextyleToolConfigInfo'=>'ブログの基本設定',
+            'dispTextyleToolConfigPostwrite'=>'記事の設定',
+            'dispTextyleToolConfigCommunication'=>'コミュニケーションの設定',
             'dispTextyleToolConfigBlogApi'=>'BlogAPI発行',
             'dispTextyleToolConfigAddon'=>'アドオン管理',
             'dispTextyleToolConfigData'=>'データ管理',
@@ -327,7 +332,7 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
     $lang->cmd_textyle_list = 'Textyleリスト';
     $lang->cmd_textyle_creation = 'Textyles生成';
     $lang->cmd_textyle_update = 'Textyle修正';
-    $lang->cmd_new_post = '新規記事作成';
+    $lang->cmd_new_post = '新規作成';
     $lang->cmd_go_blog = 'ブログを確認する';
     $lang->cmd_send_suggestion = 'ご意見を送る';
     $lang->cmd_view_help = 'ヘルプを見る';
@@ -335,14 +340,14 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
     $lang->cmd_folding_xe_news = 'お知らせリストを見る/閉じる';
     $lang->cmd_apply = '適用する';
     $lang->cmd_delete_favicon = 'ファビコン削除';
-    $lang->cmd_change_password = 'パスワード更新';
+    $lang->cmd_change_password = '変更';
     $lang->cmd_deny = 'ブロック';
     $lang->cmd_management = '管理';
     $lang->cmd_reply_comment = 'コメントを書く';
     $lang->cmd_change_secret = '非公開にする';
     $lang->cmd_write_relation = '関連記事を書く';
     $lang->cmd_delete_materials = 'ネタ削除';
-    $lang->cmd_restore = '差し戻し';
+    $lang->cmd_restore = '元に戻す';
     $lang->cmd_empty = '空にする';
     $lang->cmd_empty_basket = 'ごみ箱を空にする';
     $lang->cmd_change_category = 'カテゴリー変更';
@@ -374,10 +379,11 @@ $lang->trackback_division = '複数のトラックバックの場合は改行(En
     $lang->search_result = '検索結果';
     $lang->category_result = 'カテゴリー';
     $lang->newest_document = '最近記事';
-    $lang->newest_comment = '最近コメント';
+    $lang->newest_comment = '最新コメント';
     $lang->newest_trackback = '最近トラックバック';
     $lang->archive = '記事まとめ';
     $lang->link = 'リンクまとめ';
+    $lang->visitor_count = 'アクセス数';
 
     $lang->mail = 'メール';
     $lang->ip = 'IPアドレス';

@@ -45,7 +45,7 @@
 								</td>
 								<td>
                                     <!--@if($val->activated)-->
-									<span class="activeState turnOn"><button type="button" onclick="doToggleAddon('{$val->addon}');return false;" title="{htmlspecialchars($lang->use)}">{$lang->use}</button></span>
+									<span class="activeState turnOn"><button type="button" onclick="doToggleAddon('{$val->addon}');return false;" title="{htmlspecialchars($lang->use)}">{$lang->addon_using}</button></span>
                                     <!--@else-->
 									<span class="activeState turnOff"><button type="button" onclick="doToggleAddon('{$val->addon}');return false;" title="{htmlspecialchars($lang->notuse)}">{$lang->notuse}</button></span>
                                     <!--@end-->
