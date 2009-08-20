@@ -208,9 +208,9 @@
         'Choose proper type (e.g., text, image, movie), edit it and save',
         'Then, those ingredients will be stored in this page'
     );
-    $lang->basket_management = 'Trashcan Mangement';
-    $lang->basket_list = '휴지통 보관 목록';
-    $lang->basket_empty = '휴지통이 깨끗 하네요. ^^;';
+    $lang->basket_management = 'Recycle Bin';
+    $lang->basket_list = 'Recycle Bin List';
+    $lang->basket_empty = 'Recycle Bin is empty :)';
 
     $lang->document_all = 'View All';
     $lang->document_published = 'View Published';
@@ -267,7 +267,7 @@
     $lang->trackback_division = 'Multiple trackback urls are separated by newline(Enter)';
 
     $lang->about_supporter = 'Supporters mean users who wrote comments, trackbacks, and guestbooks.';
-    $lang->supporter_rank = '지지자 순위';
+    $lang->supporter_rank = 'Supporter Rank';
     $lang->rank = 'Rank';
     $lang->user = 'User';
     $lang->guestbook = 'Guestbook';
@@ -275,7 +275,7 @@
     $lang->summary = 'Summary';
     $lang->no_supporter = 'There is no supporter.';
     $lang->about_popular = 'Popular contents mean posts which have many views, comments, pingbacks and trackbacks.';
-    $lang->popular_rank = '인기 콘텐츠 순위';
+    $lang->popular_rank = 'Popular Contents Rank';
     $lang->read = 'View';
     $lang->no_popular = 'There is no popular content.';
     $lang->resize_vertical = 'Resize input form';
@@ -297,7 +297,7 @@
             'dispTextyleToolPostManageDeposit'=>'Writing Ingredients',
             'dispTextyleToolPostManageCategory'=>'Category',
             'dispTextyleToolPostManageTag'=>'Tags',
-            'dispTextyleToolPostManageBasket'=>'Trashcan',
+            'dispTextyleToolPostManageBasket'=>'Recycle Bin',
         ),
         array(
             'dispTextyleToolCommunicationComment'=>'Comments',
@@ -328,7 +328,7 @@
     );
 
     $lang->cmd_go_help = 'Go to HelpDesk';
-    $lang->cmd_textyle_setup = '기본 설정';
+    $lang->cmd_textyle_setup = 'Default Settings';
     $lang->cmd_textyle_list = 'Textyle List';
     $lang->cmd_textyle_creation = 'Create a Textyle';
     $lang->cmd_textyle_update = 'Modify a Textyle';
@@ -349,7 +349,7 @@
     $lang->cmd_delete_materials = 'Delete an ingredient';
     $lang->cmd_restore = 'Restore';
     $lang->cmd_empty = 'Empty';
-    $lang->cmd_empty_basket = 'Empty trash';
+    $lang->cmd_empty_basket = 'Clear Recycle Bin';
     $lang->cmd_change_category = 'Change Category';
     $lang->cmd_publish = 'Publish';
     $lang->cmd_save_temp = 'Temporarily save';
@@ -370,7 +370,7 @@
 	$lang->msg_close_before_write = "Changed contents are not saved.";
 
     $lang->no_post = 'You have not written a post, <a href="%s">Write a Post!</a>';
-    $lang->no_trash = 'There is no trash in your trashcan!';
+    $lang->no_trash = 'Recycle Bin is clean!';
     $lang->no_comment = 'There is no comment';
     $lang->no_guestbook = 'No one left a message in your guestbook';
     $lang->no_trackback = 'There is no trackback';
