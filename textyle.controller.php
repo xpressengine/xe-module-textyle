@@ -225,8 +225,9 @@
             if(!$output->toBool()) return $output;
 
             // 언어 변경
-            $args->module_srl = $this->module_srl;
+            $args->index_module_srl = $this->module_srl;
             $args->default_language = Context::get('language');
+			$args->site_srl = $this->site_srl;
             $output = $oModuleController->updateSite($args);
             if(!$output->toBool()) return $output;
 
