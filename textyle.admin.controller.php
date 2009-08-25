@@ -29,15 +29,25 @@
             if(!$user_id) return new Object(-1,'msg_invalid_request');
             if(!$domain) return new Object(-1,'msg_invalid_request');
 
+			$tmp_user_id_list = explode(',',$user_id);
+			$user_id_list = array();
+			foreach($tmp_user_id_list as $k => $v){
+				$v = trim($v);
+				if($v) $user_id_list[] = $v;
+			}
+            if(count($user_id_list)==0) return new Object(-1,'msg_invalid_request');
+
             // textyle 생성
-            $output = $this->insertTextyle($domain, $user_id);
+            $output = $this->insertTextyle($domain, $user_id_list);
             if(!$output->toBool()) return $output;
 
             $this->add('module_srl', $output->get('module_srl'));
             $this->setMessage('msg_create_textyle');
         }
 
-        function insertTextyle($domain, $user_id) {
+        function insertTextyle($domain, $user_id_list) {
+			if(!is_array($user_id_list)) $user_id_list = array($user_id_list);
+
             $oAddonAdminController = &getAdminController('addon');
 			$oMemberModel = &getModel('member');
             $oModuleModel = &getModel('module');
@@ -48,7 +58,7 @@
 			$oDocumentController = &getController('document');
 
             // 관리자 아이디 검사
-			$member_srl = $oMemberModel->getMemberSrlByUserID($user_id);
+			$member_srl = $oMemberModel->getMemberSrlByUserID($user_id_list[0]);
 			if(!$member_srl) return new Object(-1,'msg_not_user');
 
             // 관리자의 정보를 구함
@@ -76,7 +86,7 @@
             $output = $oModuleController->updateSite($site);
 
             // 가상 사이트의 관리자 지정
-            $output = $oModuleController->insertSiteAdmin($site_srl, array($user_id));
+            $output = $oModuleController->insertSiteAdmin($site_srl, $user_id_list);
 
             // 텍스타일 정보 기록
             $args->textyle_title = $textyle->browser_title;
@@ -155,11 +165,17 @@
             FileHandler::copyDir($this->module_path.'skins/'.$textyle->skin, $oTextyleModel->getTextylePath($module_srl));
 
 			// 모듈의 관리자 아이디로 지정
-			$output = $oModuleController->insertAdminId($module_srl, $user_id);
-			if(!$output->toBool()) return $output;
+			foreach($user_id_list as $k => $v){
+				$output = $oModuleController->insertAdminId($module_srl, $v);
+				if(!$output->toBool()) return $output;
+			}
 
             // 첫 글 등록
-            $file = $this->module_path.'sample/ko.html';
+			$langType = Context::getLangType();
+            $file = sprintf('%ssample/%s.html',$this->module_path,$langType);
+            if(!file_exists(FileHandler::getRealPath($file))){
+				$file = sprintf('%ssample/ko.html',$this->module_path);
+			}
             $doc->module_srl = $module_srl;
             $doc->title = Context::getLang('sample_title');
             $doc->tags = Context::getLang('sample_tags');
@@ -181,15 +197,26 @@
 
             // 관리자 아이디 검사
 			$oMemberModel = &getModel('member');
-			$member_srl = $oMemberModel->getMemberSrlByUserID($vars->user_id);
-			if(!$member_srl) return new Object(-1,'msg_not_user');
+
+            $tmp_member_list = explode(',',$vars->user_id);
+			$admin_list = array();
+			foreach($tmp_member_list as $k => $v){
+				$v = trim($v);
+				if($v){
+					$member_srl = $oMemberModel->getMemberSrlByUserID($v);
+					if($member_srl){ 
+						$admin_list[] = $v;
+					}else{
+						return new Object(-1,'msg_not_user');
+					}
+				}
+			}
 
 			$oModuleModel = &getModel('module');
 			$site_info = $oModuleModel->getSiteInfo($vars->site_srl);
 			if(!$site_info) return new Object(-1,'msg_invalid_request');
 
 			$oModuleController = &getController('module');
-            $admin_list = explode(',',$vars->user_id);
             $output = $oModuleController->insertSiteAdmin($vars->site_srl, $admin_list);
             if(!$output->toBool()) return $output;
 
