@@ -22,7 +22,7 @@
     $lang->newest_no_documents = "You have written nothing. Write some posts!"; 
     $lang->posts = 'Posts';
     $lang->newest_materials = 'Newest Ingredients';
-	$lang->newest_no_materials = 'There is no ingredient for writing. <a href="%s">Install a writing ingredients collector.</a>';
+	$lang->newest_no_materials = 'There is no ingredient for writing. <a href="%s">Install Writing Ingredients Collector.</a>';
 	$lang->newest_comments = 'Recent Comments';
 	$lang->newest_no_comments = 'There is no comment.';
 	$lang->newest_guestbooks = 'Recent Guestbook';
@@ -35,11 +35,11 @@
     $lang->more = 'More';
     $lang->last_week = 'Last week';
     $lang->this_week = 'This week';
-    $lang->display_name = 'Display name';
+    $lang->display_name = 'Nickname';
     $lang->about_display_name = 'If not entered, your ID will be displayed';
     $lang->about_email = 'If not entered, you cannot find your password via email when you forget it.';
     $lang->no_profile_image = 'There is no profile image';
-    $lang->allow_profile_image_type = '<strong>jpg, gif, png</strong> files can be uploade';
+    $lang->allow_profile_image_type = '<strong>jpg, gif, png</strong> files are available';
     $lang->allow_profile_image_size = 'Image size will be adjusted into <strong>%dx%d</strong>px automatically.';
     $lang->signature = 'Self Introduction';
     $lang->default_config = 'Deafult Configuration';
@@ -55,11 +55,11 @@
     $lang->lang_time_zone = 'Language/Time zone';
     $lang->language = 'Language';
     $lang->timezone = 'Time Zone';
-    $lang->edit_style = 'Select an Editor';
+    $lang->edit_style = 'Editor';
     $lang->textyle_editor = 'Paragraph Editor';
-    $lang->font_style = 'Font style';
-    $lang->font_family = 'Font family';
-    $lang->font_size = 'Font size';
+    $lang->font_style = 'Font';
+    $lang->font_family = 'Font Family';
+    $lang->font_size = 'Font Size';
     $lang->about_font_family = 'You can choose default fonts for contents (ex:%s)';
     $lang->font_family_list = array(
 		'돋움, Dotum'=> 'Dotum',
@@ -125,10 +125,10 @@
     $lang->document_list ='Document List';
     $lang->type = 'Type';
     $lang->trackback_site = 'Trackback Source';
-    $lang->total_result_count = 'There exist <strong>%d</strong> results.';
+    $lang->total_result_count = 'Total <strong>%d</strong> Items';
     $lang->search_result_count = '<strong>%d</strong> results are found.';
     $lang->no_result_count = 'There is no result';
-    $lang->selected_articles = 'Selected articles';
+    $lang->selected_articles = 'I want to';
     $lang->avatar = 'Avatar';
     $lang->status = 'Status';
     $lang->pingback = 'Pingback';
@@ -168,7 +168,7 @@
     $lang->msg_fail_to_me2day = 'Connection to Me2Day failed. Check ID and User Key';
 
     $lang->send_twitter = 'Publish to Twitter';
-    $lang->about_send_twitter = 'Writing a post, publish the title to Twitter';
+    $lang->about_send_twitter = 'writing a post, publish the title to Twitter';
     $lang->twitter_userid = 'Twitter ID';
     $lang->about_twitter_userid = 'Input Twitter ID';
     $lang->twitter_password = 'Twitter Password';
@@ -262,7 +262,7 @@
         'week'=>'Year.Month.Day',
         'month'=>'Year.Month'
     );
-    $lang->visit_count = '# of Visitors';
+    $lang->visit_count = 'Visitors';
     $lang->visit_per = 'Proportion';
     $lang->trackback_division = 'Multiple trackback urls are separated by newline(Enter)';
 
@@ -292,7 +292,7 @@
     $lang->textyle_second_menus = array(
         array(),
         array(
-            'dispTextyleToolPostManageWrite'=>'Write a Post',
+            'dispTextyleToolPostManageWrite'=>'Write',
             'dispTextyleToolPostManageList'=>'Posts',
             'dispTextyleToolPostManageDeposit'=>'Writing Ingredients',
             'dispTextyleToolPostManageCategory'=>'Category',
@@ -303,7 +303,7 @@
             'dispTextyleToolCommunicationComment'=>'Comments',
             'dispTextyleToolCommunicationGuestbook'=>'Guestbook',
             'dispTextyleToolCommunicationTrackback'=>'Trackbacks',
-            'dispTextyleToolCommunicationSpam'=>'Blocking Spams',
+            'dispTextyleToolCommunicationSpam'=>'Spam Filter',
         ),
         array(
             'dispTextyleToolStatisticsVisitor'=>'Visitor',
@@ -312,7 +312,7 @@
             'dispTextyleToolStatisticsPopular'=>'Popular Contents',
         ),
         array(
-            'dispTextyleToolLayoutConfigSkin'=>'Choose Skin',
+            'dispTextyleToolLayoutConfigSkin'=>'Skins',
             'dispTextyleToolLayoutConfigEdit'=>'HTML&middot;CSS Edit',
         ),
         array(
@@ -327,12 +327,12 @@
         ),
     );
 
-    $lang->cmd_go_help = 'Go to HelpDesk';
+    $lang->cmd_go_help = 'Help Desk';
     $lang->cmd_textyle_setup = 'Default Settings';
     $lang->cmd_textyle_list = 'Textyle List';
-    $lang->cmd_textyle_creation = 'Create a Textyle';
-    $lang->cmd_textyle_update = 'Modify a Textyle';
-    $lang->cmd_new_post = 'Write a Post';
+    $lang->cmd_textyle_creation = 'New Textyle';
+    $lang->cmd_textyle_update = 'Modify Textyle';
+    $lang->cmd_new_post = 'Write New Post';
     $lang->cmd_go_blog = 'Go to my blog';
     $lang->cmd_send_suggestion = 'Send a suggestion';
     $lang->cmd_view_help = 'View Help';
@@ -397,6 +397,6 @@
 	$lang->msg_confirm_delete_post = 'Temporary saved posts cannot be recovered. Are you sure to delete it?';
 
     $lang->sample_title = 'Welcome to Textyle world!';
-    $lang->sample_tags = 'textyle ,  Textyle editor,  a writing ingredients collector';
+    $lang->sample_tags = 'Textyle ,  Textyle Editor,  Writing Ingredients Collector';
     $lang->msg_preparation = 'In preparation';
 ?>
