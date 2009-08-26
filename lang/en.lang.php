@@ -333,7 +333,7 @@
     $lang->cmd_textyle_creation = 'New Textyle';
     $lang->cmd_textyle_update = 'Modify Textyle';
     $lang->cmd_new_post = 'Write New Post';
-    $lang->cmd_go_blog = 'Go to my blog';
+    $lang->cmd_go_blog = 'Go to My Blog';
     $lang->cmd_send_suggestion = 'Send a suggestion';
     $lang->cmd_view_help = 'View Help';
     $lang->cmd_folding_menu = 'Fold/Open Menu';
