@@ -25,6 +25,7 @@
 
             $oTextyleModel = &getModel('textyle');
             $output = $oTextyleModel->getTextyleList(20, $page, 'regdate');
+            if(!$output->toBool()) return $output;
 
             Context::set('textyle_list', $output->data);
             Context::set('page_navigation', $output->page_navigation);
