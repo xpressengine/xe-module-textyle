@@ -168,7 +168,7 @@
 
 										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
 									</form>
-									<form action="" method="post" class="deletePw pwForm guestbook{$key}"onsubmit="return checkPasswordForDeleteGuestbook(this)">
+									<form action="" method="post" class="deletePw pwForm guestbook{$key}" onsubmit="return checkPasswordForDeleteGuestbook(this)">
 										<input type="hidden" name="mid" value="{$mid}" />
 										<input type="hidden" name="page" value="{$page}" />
 										<input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
@@ -181,7 +181,7 @@
 										<li><a href="{getUrl('modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
 										<!--@end-->
 										
-										<!--@if($val->member_srl)-->
+										<!--@if($val->member_srl || $logged_info->is_site_admin)-->
 											<!--@if($logged_info->member_srl == $val->member_srl)-->
 												<li><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
 
