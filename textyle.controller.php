@@ -1181,8 +1181,34 @@
 			if(preg_match('/^([0-9,]+)$/',$document_srl)) $document_srl = explode(',',$document_srl);
 			else $document_srl = array($document_srl);
 
+			$oDocumentModel = &getModel('document');
 			$oDocumentAdminController = &getAdminController('document');
-			$oDocumentAdminController->moveDocumentModule($document_srl,$this->module_srl,$category_srl);
+
+			// check temp saved documents
+			$document_srls = array();
+			$temp_saved_document_srls = array();
+			$temp_saved_module_srl = 0;
+
+			foreach($document_srl as $k => $v){
+                $oDocument = $oDocumentModel->getDocument($v);
+				if($oDocument->get('module_srl') == $this->module_srl){
+					$document_srls[] = $v;
+				}else{
+					$temp_saved_document_srls[] = $v;
+					$temp_saved_module_srl = $oDocument->get('module_srl');
+				}
+			}
+
+			// published document
+			if(count($document_srls)>0){
+				$oDocumentAdminController->moveDocumentModule($document_srls,$this->module_srl,$category_srl);
+			}
+
+			// temp saved document
+			if(count($temp_saved_document_srls)>0){
+				$oDocumentAdminController->moveDocumentModule($temp_saved_document_srls,$temp_saved_module_srl,$category_srl);
+			}
+
 		}
 
 		function procTextylePostItemsSetSecret(){

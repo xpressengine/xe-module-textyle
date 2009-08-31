@@ -132,7 +132,7 @@
 
 				<!--@if($key>11)-->
 				<tr<!--@if($val->selected)--> class="realTime" <!--@end-->>
-					<td class="hm">{$key}:00</td>
+					<td class="hm">{$key}<!--@if(!$type || $type=='day')-->:00<!--@end--></td>
 					<td class="uv">{$val->val}</td>
 					<td class="pc">{number_format($val->val/ $detail_status->sum * 100)}<span class="percent">%</span></td>
 				</tr>
