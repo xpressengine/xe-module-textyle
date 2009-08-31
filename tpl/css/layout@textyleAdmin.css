@@ -93,7 +93,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 #textyleAdmin #footer address img{ display:block;}
 
 /* LNB Toggle */
-#textyleAdmin .lnbToggle{ position:fixed; z-index:3; _position:absolute; left:172px; top:50%; display:block; padding:0; width:14px; height:52px; margin-top:-26px; border:0; background-color:transparent; background-image:url(../img/buttonLnbToggle.gif); background-repeat:no-repeat; cursor:pointer; *zoom:1;}
+#textyleAdmin .lnbToggle{ position:absolute; z-index:3; left:172px; top:355px; display:block; padding:0; width:14px; height:52px; margin-top:-26px; border:0; background-color:transparent; background-image:url(../img/buttonLnbToggle.gif); background-repeat:no-repeat; cursor:pointer; *zoom:1;}
 #textyleAdmin .lnbToggle span{ position:absolute; font-size:0; line-height:0; z-index:-1; width:0; height:0; overflow:hidden; visibility:hidden;}
 .lnbClose #textyleAdmin .lnbToggle{ left:54px; background-position:0 -52px;}
 
