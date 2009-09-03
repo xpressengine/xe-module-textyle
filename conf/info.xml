@@ -6,8 +6,8 @@
     <description xml:lang="ko">XpressEngine 기반의 블로그 전용 모듈 입니다.</description>
     <description xml:lang="en">Textyle is an exclusive blog module based on the XpressEngine.</description>
     <description xml:lang="jp">XpressEngine基盤のブログ専用モジュールです。</description>
-    <version>0.9</version>
-    <date>2009-07-29</date>
+    <version>0.9.5</version>
+    <date>2009-09-03</date>
     <category>package</category>
     <author email_address="" link="http://textyle.xpressengine.net">
         <name xml:lang="ko">NHN</name>
