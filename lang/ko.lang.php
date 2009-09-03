@@ -115,8 +115,8 @@
     $lang->about_guestbook_grant = '방명록 쓰기 권한을 회원에게만 또는 모두에게 줄 수 있습니다';
     $lang->disable_guestbook = '방명록 쓰기 권한이 없습니다. 회원 가입후에 사용 가능합니다';
     $lang->current_password = '현 비밀번호';
-    $lang->password1 = '새 비밀번호';
-    $lang->password2 = '새 비밀번호 확인';
+    $lang->textyle_password1 = '새 비밀번호';
+    $lang->textyle_password2 = '새 비밀번호 확인';
     $lang->about_change_password = '위에 입력한 새 비밀번호와 동일하게 다시 입력해 주세요.';
     $lang->name_nick = '이름(닉네임)';
     $lang->manage_trackback ='엮인글 관리';

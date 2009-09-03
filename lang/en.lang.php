@@ -115,8 +115,8 @@
     $lang->about_guestbook_grant = 'You may allow only members or all to write posts to guestbook';
     $lang->disable_guestbook = 'You\'are not allowed to write posts to guestbook. Please sign in.';
     $lang->current_password = 'Current Password';
-    $lang->password1 = 'New Password';
-    $lang->password2 = 'Confirm new password';
+    $lang->textyle_password1 = 'New Password';
+    $lang->textyle_password2 = 'Confirm new password';
     $lang->about_change_password = 'Input new password again to check correctness.';
     $lang->name_nick = 'Name(Nickname)';
     $lang->manage_trackback ='Trackbacks';

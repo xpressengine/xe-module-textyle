@@ -115,8 +115,8 @@
     $lang->about_guestbook_grant = 'ゲストブックに登録出来る範囲を設定します。';
     $lang->disable_guestbook = 'ゲストブックに登録権限がありません。会員登録後、可能となります。';
     $lang->current_password = '現在パスワード';
-    $lang->password1 = '新しいパスワード';
-    $lang->password2 = '新しいパスワード（再入力）';
+    $lang->textyle_password1 = '新しいパスワード';
+    $lang->textyle_password2 = '新しいパスワード（再入力）';
     $lang->about_change_password = '※ パスワードはX～XX文字の半角英数で入力してください。';
     $lang->name_nick = '名前（ニックネーム）';
     $lang->manage_trackback ='トラックバック管理';
