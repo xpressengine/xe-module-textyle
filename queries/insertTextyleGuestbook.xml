@@ -15,6 +15,7 @@
 		<column name="homepage" var="homepage" default="" />
 		<column name="content" var="content"  notnull="notnull" default="" />
 		<column name="regdate" var="regdate" default="curdate()" />
+		<column name="last_update" default="curdate()" />
 		<column name="is_secret" var="is_secret" default="-1" />
 		<column name="list_order" var="list_order" default="0" />
 		<column name="ipaddress" var="ipaddress" default="ipaddress()" />
