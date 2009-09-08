@@ -1,8 +1,6 @@
 {@$lang_type=Context::getLangType();}
-<!--@if($lang_type == 'ko')-->
+<!--@if(in_array($lang_type,array('ko','zh-CN','jp')))-->
 	<!--#include('PostManageDepositHelp.ko.html')-->
-<!--@elseif($lang_type == 'zh-CN')-->
-	<!--#include('PostManageDepositHelp.zh-CN.html')-->
 <!--@else-->
 	<!--#include('PostManageDepositHelp.en.html')-->
 <!--@end-->

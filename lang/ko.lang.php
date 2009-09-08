@@ -398,4 +398,5 @@
     $lang->sample_title = '텍스타일의 세계로 오신것을 환영합니다!';
     $lang->sample_tags = 'textyle ,  텍스타일 ,  텍스타일에디터 ,  글감수집기';
     $lang->msg_preparation = '준비중입니다';
+    $lang->msg_not_user = '해당 사용자가 없습니다.';
 ?>

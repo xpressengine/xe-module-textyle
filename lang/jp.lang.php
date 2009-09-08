@@ -398,4 +398,5 @@
     $lang->sample_title = 'テキスタイルへようこそ！';
     $lang->sample_tags = 'textyle ,  テキスタイル ,  テキスタイルエディター ,  ネタ収集機';
     $lang->msg_preparation = '準備中です。';
+    $lang->msg_not_user = '해당 사용자가 없습니다.';
 ?>

@@ -398,4 +398,5 @@
     $lang->sample_title = '欢迎您来到Textyle世界！';
     $lang->sample_tags = 'textyle ,  textyle编辑器 ,  素材搜集器';
     $lang->msg_preparation = '正在开发当中…';
+    $lang->msg_not_user = '해당 사용자가 없습니다.';
 ?>
