@@ -399,5 +399,5 @@
     $lang->sample_title = 'Welcome to Textyle world!';
     $lang->sample_tags = 'Textyle ,  Textyle Editor,  Writing Ingredients Collector';
     $lang->msg_preparation = 'In preparation';
-    $lang->msg_not_user = '해당 사용자가 없습니다.';
+    $lang->msg_not_user = 'No one matches.';
 ?>
