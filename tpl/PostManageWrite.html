@@ -30,7 +30,7 @@
 			<div class="wTitle">
 				<fieldset>
 					<legend>{$lang->title}</legend>
-					<input name="title" type="text" value="<!--@if($oDocument->getTitle())-->{$oDocument->getTitle()}<!--@else-->{$lang->insert_title}<!--@end-->" title="{$lang->insert_title}"/>
+					<input name="title" type="text" value="<!--@if($oDocument->getTitleText())-->{$oDocument->getTitleText()}<!--@else-->{$lang->insert_title}<!--@end-->" title="{$lang->insert_title}"/>
 					<span class="essential">*</span> <span class="cap capLeft"></span> <span class="cap capRight"></span>
 				</fieldset>
 			</div>
