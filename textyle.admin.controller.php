@@ -81,8 +81,8 @@
             $module_srl = $output->get('module_srl');
 
             // 가상사이트에 index_module_srl 업데이트
-            $site->site_srl = $site_srl; 
-            $site->index_module_srl = $module_srl; 
+            $site->site_srl = $site_srl;
+            $site->index_module_srl = $module_srl;
             $output = $oModuleController->updateSite($site);
 
             // 가상 사이트의 관리자 지정
@@ -96,7 +96,7 @@
 			$args->post_list_count = $this->post_list_count;
 			$args->comment_list_count = $this->comment_list_count;
 			$args->guestbook_list_count = $this->guestbook_list_count;
-			$args->input_email = $this->input_email;//'R'; // Y, N 
+			$args->input_email = $this->input_email;//'R'; // Y, N
 			$args->input_website = $this->input_website;//'R'; // Y, N
 			$args->post_editor_skin = $this->post_editor_skin;
 			$args->post_use_prefix = $this->post_use_prefix;
@@ -156,7 +156,7 @@
             $oEditorController->insertComponent('image_gallery',true, $info->site_srl);
 
 
-			// set category 
+			// set category
 			$obj->module_srl = $module_srl;
 			$obj->title = Context::getLang('init_category_title');
 			$oDocumentController->insertCategory($obj);
@@ -176,11 +176,21 @@
             if(!file_exists(FileHandler::getRealPath($file))){
 				$file = sprintf('%ssample/ko.html',$this->module_path);
 			}
+            // 소유자 회원정보
+            $oMemberModel = &getModel('member');
+            $member_info = $oMemberModel->getMemberInfoByUserID($user_id_list[0]);
+
             $doc->module_srl = $module_srl;
             $doc->title = Context::getLang('sample_title');
             $doc->tags = Context::getLang('sample_tags');
             $doc->content = FileHandler::readFile($file);
-            $oDocumentController->insertDocument($doc);
+            $doc->member_srl = $member_info->member_srl;
+            $doc->user_id = $member_info->user_id;
+            $doc->user_name = $member_info->user_name;
+            $doc->nick_name = $member_info->nick_name;
+            $doc->email_address = $member_info->email_address;
+            $doc->homepage = $member_info->homepage;
+            $oDocumentController->insertDocument($doc, true);
 
             $output = new Object();
             $output->add('module_srl',$module_srl);
@@ -204,7 +214,7 @@
 				$v = trim($v);
 				if($v){
 					$member_srl = $oMemberModel->getMemberSrlByUserID($v);
-					if($member_srl){ 
+					if($member_srl){
 						$admin_list[] = $v;
 					}else{
 						return new Object(-1,'msg_not_user');
