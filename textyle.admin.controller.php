@@ -16,7 +16,7 @@
         /**
          * @brief textyle 생성
          **/
-		function procTextyleAdminCreate() {
+        function procTextyleAdminCreate() {
             $oModuleModel = &getModel('module');
 
             $user_id = Context::get('user_id');
@@ -29,12 +29,12 @@
             if(!$user_id) return new Object(-1,'msg_invalid_request');
             if(!$domain) return new Object(-1,'msg_invalid_request');
 
-			$tmp_user_id_list = explode(',',$user_id);
-			$user_id_list = array();
-			foreach($tmp_user_id_list as $k => $v){
-				$v = trim($v);
-				if($v) $user_id_list[] = $v;
-			}
+            $tmp_user_id_list = explode(',',$user_id);
+            $user_id_list = array();
+            foreach($tmp_user_id_list as $k => $v){
+                $v = trim($v);
+                if($v) $user_id_list[] = $v;
+            }
             if(count($user_id_list)==0) return new Object(-1,'msg_invalid_request');
 
             // textyle 생성
@@ -46,20 +46,20 @@
         }
 
         function insertTextyle($domain, $user_id_list) {
-			if(!is_array($user_id_list)) $user_id_list = array($user_id_list);
+            if(!is_array($user_id_list)) $user_id_list = array($user_id_list);
 
             $oAddonAdminController = &getAdminController('addon');
-			$oMemberModel = &getModel('member');
+            $oMemberModel = &getModel('member');
             $oModuleModel = &getModel('module');
             $oModuleController = &getController('module');
-			$oRssAdminController = &getAdminController('rss');
-			$oTextyleModel = &getModel('textyle');
-			$oTextyleController = &getController('textyle');
-			$oDocumentController = &getController('document');
+            $oRssAdminController = &getAdminController('rss');
+            $oTextyleModel = &getModel('textyle');
+            $oTextyleController = &getController('textyle');
+            $oDocumentController = &getController('document');
 
             // 관리자 아이디 검사
-			$member_srl = $oMemberModel->getMemberSrlByUserID($user_id_list[0]);
-			if(!$member_srl) return new Object(-1,'msg_not_user');
+            $member_srl = $oMemberModel->getMemberSrlByUserID($user_id_list[0]);
+            if(!$member_srl) return new Object(-1,'msg_not_user');
 
             // 관리자의 정보를 구함
             $member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
@@ -92,31 +92,31 @@
             $args->textyle_title = $textyle->browser_title;
             $args->module_srl = $module_srl;
             $args->member_srl = $member_srl;
-			$args->post_style = $this->post_style;
-			$args->post_list_count = $this->post_list_count;
-			$args->comment_list_count = $this->comment_list_count;
-			$args->guestbook_list_count = $this->guestbook_list_count;
-			$args->input_email = $this->input_email;//'R'; // Y, N
-			$args->input_website = $this->input_website;//'R'; // Y, N
-			$args->post_editor_skin = $this->post_editor_skin;
-			$args->post_use_prefix = $this->post_use_prefix;
-			$args->post_use_suffix = $this->post_use_suffix;
-			$args->comment_editor_skin = 'xpresseditor';
-			$args->comment_editor_colorset = 'white';
-			$args->guestbook_editor_skin = 'xpresseditor';
-			$args->guestbook_editor_colorset = 'white';
+            $args->post_style = $this->post_style;
+            $args->post_list_count = $this->post_list_count;
+            $args->comment_list_count = $this->comment_list_count;
+            $args->guestbook_list_count = $this->guestbook_list_count;
+            $args->input_email = $this->input_email;//'R'; // Y, N
+            $args->input_website = $this->input_website;//'R'; // Y, N
+            $args->post_editor_skin = $this->post_editor_skin;
+            $args->post_use_prefix = $this->post_use_prefix;
+            $args->post_use_suffix = $this->post_use_suffix;
+            $args->comment_editor_skin = 'xpresseditor';
+            $args->comment_editor_colorset = 'white';
+            $args->guestbook_editor_skin = 'xpresseditor';
+            $args->guestbook_editor_colorset = 'white';
             $args->timezone = $GLOBALS['_time_zone'];
-			$output = executeQuery('textyle.insertTextyle', $args);
+            $output = executeQuery('textyle.insertTextyle', $args);
             if(!$output->toBool()) return $output;
 
             $oTextyleController->updateTextyleCommentEditor($module_srl, $args->comment_editor_skin, $args->comment_editor_colorset);
 
-			//rss 등록
-			$output = $oRssAdminController->setRssModuleConfig($module_srl, 'Y', 'Y');
+            //rss 등록
+            $output = $oRssAdminController->setRssModuleConfig($module_srl, 'Y', 'Y');
             if(!$output->toBool()) return $output;
 
-			// file upload limit
-			// TODO : just site total check
+            // file upload limit
+            // TODO : just site total check
             $file_config->allowed_attach_size = 1024*1024*1024*5;
             $output = $oModuleController->insertModuleConfig('file',$file_config);
             if(!$output->toBool()) return $output;
@@ -156,26 +156,26 @@
             $oEditorController->insertComponent('image_gallery',true, $info->site_srl);
 
 
-			// set category
-			$obj->module_srl = $module_srl;
-			$obj->title = Context::getLang('init_category_title');
-			$oDocumentController->insertCategory($obj);
+            // set category
+            $obj->module_srl = $module_srl;
+            $obj->title = Context::getLang('init_category_title');
+            $oDocumentController->insertCategory($obj);
 
             // 기본 스킨 디자인 복사
             FileHandler::copyDir($this->module_path.'skins/'.$textyle->skin, $oTextyleModel->getTextylePath($module_srl));
 
-			// 모듈의 관리자 아이디로 지정
-			foreach($user_id_list as $k => $v){
-				$output = $oModuleController->insertAdminId($module_srl, $v);
-				if(!$output->toBool()) return $output;
-			}
+            // 모듈의 관리자 아이디로 지정
+            foreach($user_id_list as $k => $v){
+                $output = $oModuleController->insertAdminId($module_srl, $v);
+                if(!$output->toBool()) return $output;
+            }
 
             // 첫 글 등록
-			$langType = Context::getLangType();
+            $langType = Context::getLangType();
             $file = sprintf('%ssample/%s.html',$this->module_path,$langType);
             if(!file_exists(FileHandler::getRealPath($file))){
-				$file = sprintf('%ssample/ko.html',$this->module_path);
-			}
+                $file = sprintf('%ssample/ko.html',$this->module_path);
+            }
             // 소유자 회원정보
             $oMemberModel = &getModel('member');
             $member_info = $oMemberModel->getMemberInfoByUserID($user_id_list[0]);
@@ -197,8 +197,8 @@
             return $output;
         }
 
-		function procTextyleAdminUpdate(){
-			$vars = Context::gets('site_srl','user_id','domain','access_type','vid','module_srl');
+        function procTextyleAdminUpdate(){
+            $vars = Context::gets('site_srl','user_id','domain','access_type','vid','module_srl');
             if(!$vars->site_srl) return new Object(-1,'msg_invalid_request');
 
             if($vars->access_type=='domain') $args->domain = $vars->domain;
@@ -206,51 +206,51 @@
             if(!$args->domain) return new Object(-1,'msg_invalid_request');
 
             // 관리자 아이디 검사
-			$oMemberModel = &getModel('member');
+            $oMemberModel = &getModel('member');
 
             $tmp_member_list = explode(',',$vars->user_id);
-			$admin_list = array();
-			foreach($tmp_member_list as $k => $v){
-				$v = trim($v);
-				if($v){
-					$member_srl = $oMemberModel->getMemberSrlByUserID($v);
-					if($member_srl){
-						$admin_list[] = $v;
-					}else{
-						return new Object(-1,'msg_not_user');
-					}
-				}
-			}
+            $admin_list = array();
+            foreach($tmp_member_list as $k => $v){
+                $v = trim($v);
+                if($v){
+                    $member_srl = $oMemberModel->getMemberSrlByUserID($v);
+                    if($member_srl){
+                        $admin_list[] = $v;
+                    }else{
+                        return new Object(-1,'msg_not_user');
+                    }
+                }
+            }
 
-			$oModuleModel = &getModel('module');
-			$site_info = $oModuleModel->getSiteInfo($vars->site_srl);
-			if(!$site_info) return new Object(-1,'msg_invalid_request');
+            $oModuleModel = &getModel('module');
+            $site_info = $oModuleModel->getSiteInfo($vars->site_srl);
+            if(!$site_info) return new Object(-1,'msg_invalid_request');
 
-			$oModuleController = &getController('module');
+            $oModuleController = &getController('module');
             $output = $oModuleController->insertSiteAdmin($vars->site_srl, $admin_list);
             if(!$output->toBool()) return $output;
 
-			// 모듈의 관리자 아이디로 지정
+            // 모듈의 관리자 아이디로 지정
             $oModuleController->deleteAdminId($vars->module_srl);
 
-			foreach($admin_list as $k => $v){
-				$output = $oModuleController->insertAdminId($vars->module_srl, $v);
-				// TODO : insertAdminId return value
-				if(!$output) return new Object(-1,'msg_not_user');
-				if(!$output->toBool()) return $output;
-			}
+            foreach($admin_list as $k => $v){
+                $output = $oModuleController->insertAdminId($vars->module_srl, $v);
+                // TODO : insertAdminId return value
+                if(!$output) return new Object(-1,'msg_not_user');
+                if(!$output->toBool()) return $output;
+            }
 
             // 도메인 변경
-			$args->site_srl = $vars->site_srl;
+            $args->site_srl = $vars->site_srl;
             $output = $oModuleController->updateSite($args);
             if(!$output->toBool()) return $output;
 
             $this->setMessage('success_updated');
 
-			$output = new Object();
+            $output = new Object();
             $output->add('module_srl',$vars->module_srl);
             return $output;
-		}
+        }
 
         function procTextyleAdminDelete() {
             $oModuleController = &getController('module');
