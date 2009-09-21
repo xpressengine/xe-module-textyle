@@ -289,19 +289,34 @@
 
 		function getTextyleSupporterList($module_srl,$YYYYMM="",$sort_index="total_count"){
             $oMemberModel = &getModel('member');
+            $oModuleModel = &getModel('module');
+
+            $module_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl);
+            $site_admin_list = $oModuleModel->getSiteAdmin($module_info->site_srl);
+            $site_admin_srls = array();
+            foreach($site_admin_list as $k => $v){
+                $site_admin_srls[] = $v->member_srl;
+            }
+
 			$args->module_srl = $module_srl;
 			$args->sort_index = $sort_index;
             $args->list_count = $list_count;
             $args->page = $page;
 			$args->regdate = $YYYYMM ? $YYYYMM : date('Ym');
             $output = executeQueryArray('textyle.getTextyleSupporterList', $args);
+
+            $_data = array();
             if($output->data) {
                  foreach($output->data as $key => $val) {
-                      if(!$val->member_srl) continue;
+                      if(in_array($val->member_srl,$site_admin_srls)) continue;
+                        
+                      $_data[$key] = $val;
+                      if($val->member_srl<1) continue;
                       $img = $oMemberModel->getProfileImage($val->member_srl);
-                      if($img) $output->data[$key]->profile_image = $img->src;
+                      if($img) $_data[$key]->profile_image = $img->src;
                  }
             }
+            $output->data = $_data;
 			return $output;
 		}
         function getTextylePath($module_srl) {

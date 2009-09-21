@@ -420,14 +420,14 @@
 			// 검색과 정렬을 위한 변수 설정
             $args->search_target = Context::get('search_target'); 
             $args->search_keyword = Context::get('search_keyword'); 
-
+            $args->category_srl = Context::get('search_category_srl');
 			$args->sort_index = Context::get('sort_index');
 			//$args->order_type = Context::get('order_type');
-
 
 			// module_srl이 음수면 예약 발행글
 			$published = Context::get('published');
 			$logged_info = Context::get('logged_info');
+
 			// 모든글
 			if(!$published){
 			   	$args->module_srl = array($this->module_srl,$this->module_srl * -1,$logged_info->member_srl);
