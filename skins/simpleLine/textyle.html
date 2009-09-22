@@ -158,12 +158,12 @@
 									<ul class="reAction">
 										<!--@if($val->view_grant)-->
 										<!--@if($val->parent_srl==0&&$textyle->isEnableGuestbook())-->
-										<li><a href="{getUrl('','modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
+										<li><a href="{getUrl('modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
 										<!--@end-->
 										
 										<!--@if($val->member_srl || $logged_info->is_site_admin)-->
 											<!--@if($logged_info->member_srl == $val->member_srl)-->
-												<li><a href="{getUrl('','reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
+												<li><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
 
 											<!--@end-->
 											<!--@if($logged_info->is_site_admin || $logged_info->member_srl == $val->member_srl)-->
