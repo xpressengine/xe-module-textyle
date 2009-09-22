@@ -383,15 +383,15 @@
 			$permalink = '';
 			if(isSiteID($this->textyle->domain)){
 				if(Context::isAllowRewrite()){
-					$permalink = Context::getRequestUri().$this->textyle->domain.'/entry/';
+					$permalink = getFullSiteUrl($this->textyle->domain,'') . '/entry/';
 				}else{
-					$permalink = Context::getRequestUri() .'?vid='.$this->textyle->domain . '&mid='.Context::get('mid').'&entry=';
+					$permalink = getFullSiteUrl($this->textyle->domain).'?vid='.$this->textyle->domain . '&mid='.Context::get('mid').'&entry=';
 				}
 			}else{
 				if(Context::isAllowRewrite()){
-					$permalink = getSiteUrl($this->textyle->domain,'').'/entry/';
+					$permalink = getFullSiteUrl($this->textyle->domain,'').'entry/';
 				}else{
-					$premalink = getSiteUrl($this->textyle->domain,'','mid',Context::get('mid')).'&entry=';
+					$premalink = getFullSiteUrl($this->textyle->domain,'','mid',Context::get('mid')).'&entry=';
 				}
 			}
 			Context::set('permalink',$permalink);
