@@ -667,6 +667,26 @@
 			Context::set('deny_list',$deny_list);
 		}
 
+        /**
+         *
+         **/
+        function dispTextyleToolCommunicationCommentNotify() {
+            $args->page = Context::get('page'); ///< 페이지
+            $args->sort_index = 'list_order'; ///< 소팅 값
+            $oCommentNotifyModel = &getModel('tccommentnotify');
+            if(!$oCommentNotifyModel)
+            {
+		        return $this->dispTextyleToolDashboard();
+            }
+            $output = $oCommentNotifyModel->GetNotifiedList($args, $this->module_srl);
+
+            Context::set('total_count', $output->total_count);
+            Context::set('total_page', $output->total_page);
+            Context::set('page', $output->page);
+            Context::set('notify_list', $output->notify_list);
+            Context::set('page_navigation', $output->page_navigation);
+        }
+
 		/**
          * @brief tool 방문자 접속 현황
          **/	

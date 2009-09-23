@@ -112,6 +112,30 @@ function _deleteCommentItem(params){
 	exec_xml('textyle', 'procTextyleCommentItemDelete', params, completeReload, response_tags);
 }
 
+function deleteNotifyItems(page){
+	var val,srls = [],srls2 = [];
+	jQuery("input[name=notified_srl]:checked").each(function(){
+		val = jQuery(this).val();
+		if(val) srls.push(val);
+	});
+	jQuery("input[name=child_notified_srl]:checked").each(function(){
+		val = jQuery(this).val();
+		if(val) srls2.push(val);
+	});
+
+	if(srls.length<1 && srls2.length<1) return;
+	var params = new Array();
+	params['notified_srl'] = srls.join(',');
+    params['child_notified_srl'] = srls2.join(',');
+	params['page'] = page;
+	_deleteNotifyItem(params);
+}
+
+function _deleteNotifyItem(params){
+	var response_tags = new Array('error','message','page','mid');
+	exec_xml('textyle', 'procTextyleNotifyItemDelete', params, completeReload, response_tags);
+}
+
 function updateCommentItemSetSecret(srl,is_secret,page){
 	var params = new Array();
 	params['comment_srl'] = srl;

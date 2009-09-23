@@ -301,6 +301,7 @@
         ),
         array(
             'dispTextyleToolCommunicationComment'=>'댓글',
+            'dispTextyleToolCommunicationCommentNotify'=>'댓글알리미',
             'dispTextyleToolCommunicationGuestbook'=>'방명록',
             'dispTextyleToolCommunicationTrackback'=>'엮인글',
             'dispTextyleToolCommunicationSpam'=>'스팸 차단',
@@ -399,4 +400,6 @@
     $lang->sample_tags = 'textyle ,  텍스타일 ,  텍스타일에디터 ,  글감수집기';
     $lang->msg_preparation = '준비중입니다';
     $lang->msg_not_user = '해당 사용자가 없습니다.';
+
+    $lang->site = "사이트 이름";
 ?>

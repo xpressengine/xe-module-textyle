@@ -265,8 +265,7 @@
             $oCommentModel = &getModel('comment');
             $oCommentController = &getController('comment');
 
-            // 권한 체크
-            if(!$this->grant->write_comment) return new Object(-1, 'msg_not_permitted');
+            if(!$this->grant->write_comment) return new Object(-1, 'msg_not_permitted'); 
 
             // 댓글 입력에 필요한 데이터 추출
             $obj = Context::gets('document_srl','comment_srl','parent_srl','content','password','nick_name','member_srl','email_address','homepage','is_secret','notify_message');
@@ -432,6 +431,30 @@
 			$output = $this->updateTextyleSupporter($obj);
 			$this->add('page',$val->page?$val->page:1);
 		}	
+
+        function procTextyleNotifyItemDelete(){
+            $notified_srl = Context::get('notified_srl');
+            $child_notified_srl = Context::get('child_notified_srl');
+			if(!$notified_srl && !$child_notified_srl) return new Object(-1,'msg_invalid_request');
+            $oNotifyAdminController = &getAdminController('tccommentnotify');
+            if($notified_srl)
+            {
+                $parent_list = explode(',', $notified_srl);
+                foreach($parent_list as $parent_srl)
+                {
+                    $oNotifyAdminController->deleteParent($parent_srl);
+                }
+            }
+            if($child_notified_srl)
+            {
+                $children_list = explode(',', $child_notified_srl);
+                foreach($children_list as $child_srl)
+                {
+                    $oNotifyAdminController->deleteChild($child_srl);
+                }
+            }
+        }
+
 
 		/**
          * @brief Guestbook item delete

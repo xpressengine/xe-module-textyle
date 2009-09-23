@@ -1,0 +1,123 @@
+<!--#include("_tool_header.html")-->
+<!--%import("css/pagination.css",optimized=false)-->
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- contentHeader -->
+				<div class="contentHeader replyHeader lineBottom">
+					<h3 class="h3">{$lang->textyle_second_menus[2]['dispTextyleToolCommunicationCommentNotify']}</h3>
+				</div>
+				<!-- /contentHeader -->
+				<!-- listHeader -->
+				<div class="listHeader">
+					<p class="info"> <!--@if($search_keyword)-->{sprintf($lang->search_result_count,$page_navigation->total_count)}<!--@else-->{sprintf($lang->total_result_count,$page_navigation->total_count)}<!--@end--></p>
+				</div>
+				<!-- /listHeader -->
+
+				<!-- Table Data -->
+				<fieldset>
+					<legend>{$lang->manage_commentnotify}</legend>
+					<form action="" method="post">
+						<table border="1" cellspacing="0" summary="{$lang->content_list}" class="tableData">
+							<thead>
+								<tr>
+									<th scope="col">
+										<input type="checkbox" class="inputCheck" onclick="jQuery('input.boxlist').click()"/>
+									</th>
+									<th scope="col">{$lang->site}</th>
+									<th scope="col" class="replyArea">{$lang->comment}</th>
+									<th scope="col">{$lang->regdate}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!--@if(count($notify_list)==0)-->
+									<tr>
+                                        <td class="noData" colspan="5"><p>{$lang->no_notify}</p></td>
+									</tr>
+
+								<!--@else-->
+									<!--@foreach($notify_list as $k => $v)-->
+                                    {@ $parent = $v->parent; }
+									<tr>
+										<td>
+											<input type="checkbox" name="notified_srl" value="{$parent->notified_srl}" class="inputCheck boxlist" />
+										</td>
+                                        <td>
+                                            <a href="{$parent->siteurl}">{$parent->title}</a>
+                                        </td>
+										<td class="replyArea">
+                                        <dl>
+                                            <dt>
+                                            <a href="{$parent->entryurl}">{$parent->entrytitle}</a>
+                                            </dt>
+                                            <dd>
+                                            <a href="{$parent->commenturl}" onclick="window.open(this.href);return false;">{$parent->comment}</a>
+                                            </dd>
+                                        </dl>
+										</td>
+										<td class="regdate">{zdate($parent->written,"Y/m/d")}</td>
+									</tr>
+                                        <!--@foreach($v->children as $child)-->
+                                        <tr class="indent">
+                                        <td>
+											<input type="checkbox" name="child_notified_srl" value="{$child->notified_srl}" class="inputCheck boxlist" />
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td class="replyArea">
+                                            <dl>
+                                            <dt>
+                                            <!--@if($child->homepage)--><a href="{$child->homepage}">{$child->name}</a><!--@else-->{$child->name}<!--@end-->
+                                            </dt>
+                                            <dd>
+                                            <a href="{$child->url}">{$child->comment}</a>
+                                            </dd>
+                                            </dl>
+                                        </td>
+                                        <td>{zdate($child->written,"Y/m/d")}</td>
+                                        </tr>
+                                        <!--@end-->
+								    <!--@end-->
+								<!--@end-->
+						</tbody>
+						</table>
+						
+						<div class="listFooter">
+							
+							<!-- Change-->
+							<div class="change">
+								<p class="p1">{$lang->selected_articles}</p>
+								
+								<span class="buttonGray large"><button type="button" onclick="deleteNotifyItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
+								
+							</div>
+							<!-- /Change -->
+							
+							<!--@if($page_navigation)-->
+							<!-- Pagination -->
+							<div class="pagination">
+								<a href="{getUrl('page','','mid',$mid)}" class="prev"><span>{$lang->first_page}</span></a>
+								<!--@while($page_no = $page_navigation->getNextPage())-->
+									<!--@if($page == $page_no)-->
+										<strong>{$page_no}</strong> 
+									<!--@else-->
+										<a href="{getUrl('page',$page_no,'mid',$mid)}">{$page_no}</a> 
+									<!--@end-->
+								<!--@end-->
+
+								<a href="{getUrl('page',$page_navigation->last_page,'module_srl','')}" class="next"><span>{$lang->last_page}</span></a>
+							</div>
+							<!-- /Pagination -->
+							<!--@end-->
+						</div>
+						
+					</form>
+				</fieldset>
+				<!-- /Table Data -->
+			</div>
+			<hr />
+			<!-- /Content -->
+			<!-- Extension -->
+			<!--#include("_tool_menu.html")-->
+			<!-- Extension -->
+<!--#include("_tool_footer.html")-->
+<!--#include("_layerAddDeny.html")-->
