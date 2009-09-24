@@ -32,49 +32,41 @@
 							<tbody>
 								<!--@if(count($notify_list)==0)-->
 									<tr>
-                                        <td class="noData" colspan="5"><p>{$lang->no_notify}</p></td>
+                                        <td class="noData" colspan="4"><p>{$lang->no_comment}</p></td>
 									</tr>
 
 								<!--@else-->
 									<!--@foreach($notify_list as $k => $v)-->
                                     {@ $parent = $v->parent; }
-									<tr>
+									<tr class="articles">
 										<td>
 											<input type="checkbox" name="notified_srl" value="{$parent->notified_srl}" class="inputCheck boxlist" />
 										</td>
-                                        <td>
-                                            <a href="{$parent->siteurl}">{$parent->title}</a>
-                                        </td>
+                                        <th scope="row">
+                                            {$parent->title}
+                                        </th>
 										<td class="replyArea">
                                         <dl>
-                                            <dt>
-                                            <a href="{$parent->entryurl}">{$parent->entrytitle}</a>
-                                            </dt>
-                                            <dd>
-                                            <a href="{$parent->commenturl}" onclick="window.open(this.href);return false;">{$parent->comment}</a>
-                                            </dd>
+                                            <dt><a href="{$parent->commenturl}">{$parent->entrytitle}</a></dt>
+                                            <dd>{$parent->comment}</dd>
                                         </dl>
 										</td>
-										<td class="regdate">{zdate($parent->written,"Y/m/d")}</td>
+										<td class="regDate">{zdate($parent->written,"Y/m/d")}</td>
 									</tr>
                                         <!--@foreach($v->children as $child)-->
-                                        <tr class="indent">
+									<tr class="replies">
                                         <td>
 											<input type="checkbox" name="child_notified_srl" value="{$child->notified_srl}" class="inputCheck boxlist" />
                                         </td>
                                         <td>&nbsp;</td>
                                         <td class="replyArea">
                                             <dl>
-                                            <dt>
-                                            <!--@if($child->homepage)--><a href="{$child->homepage}">{$child->name}</a><!--@else-->{$child->name}<!--@end-->
-                                            </dt>
-                                            <dd>
-                                            <a href="{$child->url}">{$child->comment}</a>
-                                            </dd>
+												<dt>{$child->name}</dt>
+												<dd><a href="{$child->url}">{$child->comment}</a></dd>
                                             </dl>
                                         </td>
-                                        <td>{zdate($child->written,"Y/m/d")}</td>
-                                        </tr>
+                                        <td class="regDate">{zdate($child->written,"Y/m/d")}</td>
+									</tr>
                                         <!--@end-->
 								    <!--@end-->
 								<!--@end-->
@@ -82,13 +74,10 @@
 						</table>
 						
 						<div class="listFooter">
-							
 							<!-- Change-->
 							<div class="change">
 								<p class="p1">{$lang->selected_articles}</p>
-								
 								<span class="buttonGray large"><button type="button" onclick="deleteNotifyItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
-								
 							</div>
 							<!-- /Change -->
 							

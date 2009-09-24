@@ -362,6 +362,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 /* Table Data */
 .tableData{ width:100%; border:0; border-top:2px solid #cbd4df; border-bottom:2px solid #cbd4df; font-size:12px; margin-bottom:20px;}
 .tableData .inputCheck{ width:13px; height:13px; vertical-align:middle;}
+.tableData tr.articles{ background:#f9f9f9;}
 .tableData th,
 .tableData td{ border:0; padding:8px 10px 7px 10px; vertical-align:top; white-space:nowrap; color:#555; text-align:left;}
 .tableData td.title{ white-space:normal;}
@@ -369,6 +370,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .tableData th{ text-align:left; white-space:nowrap;}
 .tableData tbody th{ border-top:1px solid #e3e5e7;}
 .tableData td{ border-top:1px solid #e3e5e7;}
+.tableData tr.replies td{ border-top:0;}
 .tableData .buttonTableData{ border:0; width:19px; height:19px; padding:0; background:transparent url(../img/buttonTableDataX.gif) no-repeat center center; cursor:pointer;}
 .tableData .buttonTableData span{ position:absolute; width:0; height:0; overflow:hidden; z-index:-1; font-size:0; line-height:0; visibility:hidden;}
 .tableData a{ text-decoration:none; color:#648ab9;}
@@ -387,7 +389,8 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .tableData .thumb img{ border:1px solid #afb7cc; width:39px; height:39px;}
 .tableData .replyArea{ white-space:normal; color:#555; width:100%;}
 .tableData .replyArea dl{ margin:0;}
-.tableData tr.indent .replyArea dl{ padding-left:20px; background:url(../img/iconHierarchy.gif) no-repeat;}
+.tableData tr.indent .replyArea dl,
+.tableData tr.replies .replyArea dl{ padding-left:20px; background:url(../img/iconHierarchy.gif) no-repeat;}
 .tableData .replyArea dt{ margin-bottom:10px;}
 .tableData .replyArea dt strong,
 .tableData .replyArea dt a{ margin-right:5px;}
@@ -445,6 +448,9 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .tableData .user .thumb{ border:1px solid #afb7cc; vertical-align:top; margin-right:10px; width:32px; height:32px;}
 .tableData .buttonGray.small a{ _top:-1px;}
 .tableData .wrap{ white-space:normal;}
+.tableData .regDate{ color:#8b8b8b; font-size:11px;}
+.tableData tr.articles dt,
+.tableData tr.replies dt{ font-weight:bold;}
 
 /* Referer Domain */
 .refererDomain{ font-size:12px;}
