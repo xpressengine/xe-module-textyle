@@ -223,8 +223,6 @@
 
     $lang->category = 'カテゴリー';
     $lang->comm_management = '登録設定';
-    $lang->allow_comment = 'コメント許可';
-    $lang->allow_trackback = 'トラックバック許可';
     $lang->publish_date = '発行時刻';
     $lang->publish_now = '現在時刻';
     $lang->publish_reserve = '予約';
@@ -342,7 +340,6 @@
     $lang->cmd_delete_favicon = 'ファビコン削除';
     $lang->cmd_change_password = '変更';
     $lang->cmd_deny = 'ブロック';
-    $lang->cmd_management = '管理';
     $lang->cmd_reply_comment = 'コメントを書く';
     $lang->cmd_change_secret = '非公開にする';
     $lang->cmd_write_relation = '関連記事を書く';

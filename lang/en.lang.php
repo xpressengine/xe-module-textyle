@@ -223,8 +223,6 @@
 
     $lang->category = 'Category';
     $lang->comm_management = 'Communication';
-    $lang->allow_comment = 'Allow Comments';
-    $lang->allow_trackback = 'Allow Trackbacks';
     $lang->publish_date = 'When to publish';
     $lang->publish_now = 'Now';
     $lang->publish_reserve = 'Reservation';
@@ -342,7 +340,6 @@
     $lang->cmd_delete_favicon = 'Remove favicon';
     $lang->cmd_change_password = 'Change Password';
     $lang->cmd_deny = 'Deny';
-    $lang->cmd_management = 'Management';
     $lang->cmd_reply_comment = 'Reply to a comment';
     $lang->cmd_change_secret = 'Make it secret';
     $lang->cmd_write_relation = 'Write a related post';

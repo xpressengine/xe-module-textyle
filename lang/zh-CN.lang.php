@@ -223,8 +223,6 @@
 
     $lang->category = '分类';
     $lang->comm_management = '交流选项';
-    $lang->allow_comment = '允许评论';
-    $lang->allow_trackback = '允许引用';
     $lang->publish_date = '发布时间';
     $lang->publish_now = '现在';
     $lang->publish_reserve = '定时';
@@ -342,7 +340,6 @@
     $lang->cmd_delete_favicon = '删除网站头像';
     $lang->cmd_change_password = '修改密码';
     $lang->cmd_deny = '过滤';
-    $lang->cmd_management = '管理';
     $lang->cmd_reply_comment = '回复';
     $lang->cmd_change_secret = '转为密帖';
     $lang->cmd_write_relation = '撰写相关日志';

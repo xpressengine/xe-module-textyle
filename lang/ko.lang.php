@@ -223,8 +223,6 @@
 
     $lang->category = '카테고리';
     $lang->comm_management = '대화설정';
-    $lang->allow_comment = '댓글 허용';
-    $lang->allow_trackback = '엮인글 허용';
     $lang->publish_date = '발행시간';
     $lang->publish_now = '지금';
     $lang->publish_reserve = '예약';
@@ -343,7 +341,6 @@
     $lang->cmd_delete_favicon = '파비콘 삭제';
     $lang->cmd_change_password = '비밀번호 갱신';
     $lang->cmd_deny = '차단';
-    $lang->cmd_management = '관리';
     $lang->cmd_reply_comment = '댓글 달기';
     $lang->cmd_change_secret = '비밀전환';
     $lang->cmd_write_relation = '관련 글 쓰기';
