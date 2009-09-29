@@ -30,7 +30,7 @@
 	$lang->reserve = '예약';
     $lang->publish = '발행';
     $lang->publish_each = '이 블로그에 발행 하겠습니다.';
-    $lang->publish_update = '발행:업데이트';
+    $lang->publish_update = '재발행';
     $lang->published = '발행됨';
     $lang->publish_option = '발행옵션';
     $lang->publish_confirm = '발행여부';
