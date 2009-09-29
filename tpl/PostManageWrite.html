@@ -30,13 +30,38 @@
 			<div class="wTitle">
 				<fieldset>
 					<legend>{$lang->title}</legend>
-					<input name="title" type="text" value="<!--@if($oDocument->getTitleText())-->{$oDocument->getTitleText()}<!--@else-->{$lang->insert_title}<!--@end-->" title="{$lang->insert_title}"/>
-					<!-- wPublish -->
-					<div class="wPublish">
-						<span class="buttonAction actionWhite normal"><button type="button" onclick="savePostTemp(this)">{$lang->cmd_save}</button></span>
-						<span class="buttonAction actionBlue"><button type="submit">{$lang->cmd_save_publish}</button></span>
+					<div class="title">
+						<input name="title" type="text" class="inputTitle" value="<!--@if($oDocument->getTitleText())-->{$oDocument->getTitleText()}<!--@else-->{$lang->insert_title}<!--@end-->" title="{$lang->insert_title}"/>
+						<!-- wPublish -->
+						<div class="wPublish">
+							<span class="buttonAction actionWhite normal"><button type="button" onclick="savePostTemp(this)">{$lang->cmd_save}</button></span>
+							<span class="buttonAction actionBlue"><button type="submit">{$lang->cmd_save_publish}</button></span>
+						</div>
+						<!-- /wPublish -->
 					</div>
-					<!-- /wPublish -->
+					<div class="category">
+						{@$_idx=0;$i=0;}
+						<!--@foreach($category_list as $val)-->
+							<!--@if($val->grant&&$val->selected||$val->category_srl==$oDocument->get('category_srl'))-->
+								{@$_idx=$i;}
+							<!--@end-->
+							{@$i++;}
+						<!--@end-->
+						<select name="category_srl" id="category">
+							<option value="">{$lang->category}&nbsp;</option>
+
+							{@$i=0;}
+							<!--@foreach($category_list as $val)-->
+								<option <!--@if(!$val->grant)-->disabled="disabled"<!--@end--> value="{$val->category_srl}" <!--@if($_idx==$i)-->selected="selected"<!--@end-->>{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} ({$val->document_count})</option>
+							{@$i++;}
+							<!--@endforeach-->
+						</select>
+						<span class="buttonGray medium addCategoryToggle"><button type="button" onclick="jQuery('#add_category').toggleClass('open')"><img src="img/iconAdd.gif" width="8" height="8" alt="{$lang->add_category}" /></button></span>
+						<span id="add_category" class="addCategory">
+							<input type="text" name="add_category" class="inputText" />
+							<span class="buttonGray medium"><button type="button" onclick="addCategory()">{$lang->cmd_insert}</button></span>
+						</span>
+					</div>
 					<span class="cap capLeft"></span> <span class="cap capRight"></span>
 				</fieldset>
 			</div>
