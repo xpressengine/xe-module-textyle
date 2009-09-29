@@ -349,8 +349,9 @@
     $lang->cmd_empty = '비우기';
     $lang->cmd_empty_basket = '휴지통 비우기';
     $lang->cmd_change_category = '카테고리 변경';
+    $lang->cmd_save = '저장';
     $lang->cmd_publish = '발행하기';
-    $lang->cmd_save_temp = '임시저장';
+    $lang->cmd_save_publish = '저장 후 발행';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS 편집';
     $lang->cmd_edit_html = 'HTML 편집';
     $lang->cmd_edit_css = 'CSS 편집';

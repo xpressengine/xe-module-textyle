@@ -11,8 +11,8 @@ form{ margin:0; padding:0;}
 form input, 
 form textarea{ font-family:Tahoma, Sans-serif;}
 fieldset{ border:0; margin:0; padding:0;}
-legend{ position:absolute !important; width:0 !important; height:0 !important; overflow:hidden; visibility:hidden; font-size:0; line-height:0; z-index:-1;}
-legend.visible{ position:static !important; width:auto !important; height:auto !important; overflow:visible; visibility:visible; line-height:1.2; z-index:1;}
+legend{ position:absolute !important; width:0 !important; height:0 !important; overflow:hidden; left:-1000%; visibility:hidden; font-size:0; line-height:0; z-index:-1;}
+legend.visible{ position:static !important; width:auto !important; height:auto !important; overflow:visible; left:0; visibility:visible; line-height:1.2; z-index:1;}
 label{ cursor:pointer; vertical-align:middle;}
 .inputCheck,
 .inputRadio{ width:13px; height:13px; margin:0 3px 0 0; vertical-align:middle;}
@@ -534,12 +534,12 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 
 /* Writing Title */
 .wTitle{ position:relative; height:61px; padding:15px 20px 0 20px; margin-bottom:3em; background:#eee; border-top:1px solid #e9e9e9; border-bottom:1px solid #e9e9e9;}
+.wTitle fieldset{ border:1px solid #ddd; background:#fff url(../img/bgInputText.gif) no-repeat;}
 .wTitle .elementContainer{ margin:0 20px;}
 .wTitle .cap{ position:absolute; width:10px; height:78px; top:-1px; background:url(../img/bgWritingTitle.gif) no-repeat 0 0;}
 .wTitle .capLeft{ left:0; background-position:left top;}
 .wTitle .capRight{ right:0; background-position:right top}
-.wTitle input{ width:98%; height:35px; padding:10px 0 0 10px; border:1px solid #ddd; background:#fff url(../img/bgInputText.gif) no-repeat; color:#6e6e6e; font-size:24px; font-weight:bold;}
-.wTitle .essential{ position:absolute; top:28px; right:1%; margin-right:30px; font-size:32px; line-height:1; color:#d8dadf;}
+.wTitle input{ border:0; background:transparent; width:64%; height:35px; padding:10px 0 0 10px; color:#6e6e6e; font-size:24px; font-weight:bold;}
 
 /* Writing Option */
 .wOption{ position:relative; *zoom:1; border:1px solid #e9e9e9; margin-bottom:40px; *padding-top:20px; z-index:2;}
@@ -577,8 +577,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .wOption .buttonGray.medium button{ _top:0;}
 
 /* Writing Publish */
-.wPublish{ position:relative; text-align:center; z-index:1;}
-.dreditorKeepOn .wPublish{ padding-right:249px;}
+.wPublish{ position:absolute; top:20px; right:30px; text-align:right; z-index:1; background:#fff;}
 .wPublish .publish,
 .wPublish .publish button{ display:inline-block; height:58px; position:relative; background-image:url(../img/buttonPublish.gif); background-repeat:no-repeat; cursor:pointer;}
 .wPublish .publish{ background-position:left top; padding:0; border:0; cursor:pointer; vertical-align:top; padding-left:7px;}

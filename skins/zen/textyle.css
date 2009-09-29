@@ -250,7 +250,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 #footer address abbr{ font-weight:bold; color:#b3b3b3;}
 #footer address .rss{ position:absolute; top:0; right:60px; white-space:normal; padding-left:13px; background:url(img/iconRss.gif) no-repeat left center; font-size:10px; font-weight:normal;}
 
-#footer .language { width:960px; height:16px; margin:0 auto; position:relative; top:-16px;}
+#footer .language { width:960px; height:0; margin:0 auto; position:relative; top:-16px; overflow:visible;}
 #footer .language button{ cursor:pointer; padding:0; overflow:visible; background:none; border:0; font-size:11px; font-family:Dotum; white-space:nowrap;}
 #footer .language .selected { position:absolute; top:0; right:0; color:#767676; height:16px; *height:18px;}
 #footer .language ul { position:absolute; right:0; bottom:20px; margin:0; padding:10px; list-style:none; background:#fff; border:1px solid #ddd;}

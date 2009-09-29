@@ -15,7 +15,7 @@
 		</h3>
 	</div>
 	<!-- /writingHeader -->
-	<form action="" method="post" onsubmit="return insertPost(this,insert_post)" class="{$editor_skin} {$editor_skin}KeepOn">
+	<form action="" method="post" onsubmit="return insertPost(this,insert_post)" class="{$editor_skin}">
 		<input type="hidden" name="temp_save" value="" />
 		<input type="hidden" name="mid" value="{$mid}" />
 		<fieldset>
@@ -31,7 +31,13 @@
 				<fieldset>
 					<legend>{$lang->title}</legend>
 					<input name="title" type="text" value="<!--@if($oDocument->getTitleText())-->{$oDocument->getTitleText()}<!--@else-->{$lang->insert_title}<!--@end-->" title="{$lang->insert_title}"/>
-					<span class="essential">*</span> <span class="cap capLeft"></span> <span class="cap capRight"></span>
+					<!-- wPublish -->
+					<div class="wPublish">
+						<span class="buttonAction actionWhite normal"><button type="button" onclick="savePostTemp(this)">{$lang->cmd_save}</button></span>
+						<span class="buttonAction actionBlue"><button type="submit">{$lang->cmd_save_publish}</button></span>
+					</div>
+					<!-- /wPublish -->
+					<span class="cap capLeft"></span> <span class="cap capRight"></span>
 				</fieldset>
 			</div>
 			<!-- /Post Title -->
@@ -156,12 +162,6 @@
 				</fieldset>
 			</div>
 			<!-- /wOption -->
-			<!-- wPublish -->
-			<div class="wPublish">
-				<span class="buttonAction actionBlue"><button type="submit">{$lang->cmd_publish}</button></span>
-				<span class="buttonAction actionWhite normal"><button type="button" onclick="savePostTemp(this)">{$lang->cmd_save_temp}</button></span>
-			</div>
-			<!-- /wPublish -->
 		</fieldset>
 	</form>
 </div>
