@@ -74,8 +74,15 @@
 
             Context::set('textyle_info',$textyle_info);
 
-            // 템플릿 파일 지정
             $this->setTemplateFile('textyle_delete');
+        }
+
+        function dispTextyleAdminCustomMenu() {
+            $oTextyleModel = &getModel('textyle');
+            $custom_menu = $oTextyleModel->getTextyleCustomMenu();
+            Context::set('custom_menu', $custom_menu);
+
+            $this->setTemplateFile('textyle_custom_menu');
         }
     }
 

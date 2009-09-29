@@ -309,5 +309,56 @@
             $this->add('page',Context::get('page'));
             $this->setMessage('success_deleted');
         }
+
+        function procTextyleAdminInsertCustomMenu() {
+            $oModuleController = &getController('module');
+            $oModuleModel = &getModel('module');
+
+            $config = $oModuleModel->getModuleConfig('textyle');
+
+            $args = Context::getRequestVars();
+            foreach($args as $key => $val) {
+                if(strpos($key, 'hidden_')===false || $val!='Y') continue;
+                $hidden_menu[] = substr($key, 7);
+            }
+
+            $config->hidden_menu = $hidden_menu;
+
+            if(!$config->attached_menu || !is_array($config->attached_menu)) $config->attached_menu = array();
+
+            $attached = array();
+            foreach($args as $key => $val) {
+                if(strpos($key, 'custom_act_')!==false && $val) {
+                    $idx = substr($key, 11);
+                    $attached[$idx]->act = $val;
+                } elseif(strpos($key, 'custom_name_')!==false && $val) {
+                    $idx = substr($key, 12);
+                    $attached[$idx]->name = $val;
+                }
+            }
+            if(count($attached)) {
+                foreach($attached as $key => $val) {
+                    if(!$val->act || !$val->name) continue;
+                    $config->attached_menu[$key][$val->act] = $val->name;
+                }
+            }
+
+            foreach($args as $key => $val) {
+                if(strpos($key, 'delete_')===false || $val!='Y') continue;
+                $delete_menu[] = substr($key, 7);
+            }
+
+            if(count($delete_menu)) {
+                foreach($config->attached_menu as $key => $val) {
+                    if(!count($val)) continue;
+                    foreach($val as $k => $v) {
+                        if(in_array($k, $delete_menu)) unset($config->attached_menu[$key][$k]);
+                    }
+                }
+            }
+
+
+            $oModuleController->insertModuleConfig('textyle', $config);
+        }
     }
 ?>

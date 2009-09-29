@@ -331,6 +331,7 @@
     $lang->cmd_textyle_list = 'Textyleリスト';
     $lang->cmd_textyle_creation = 'Textyles生成';
     $lang->cmd_textyle_update = 'Textyle修正';
+    $lang->cmd_textyle_custom_menu = 'Textyle 메뉴 편집';
     $lang->cmd_new_post = '新規作成';
     $lang->cmd_go_blog = 'ブログを確認する';
     $lang->cmd_send_suggestion = 'ご意見を送る';
@@ -385,6 +386,8 @@
 
     $lang->mail = 'メール';
     $lang->ip = 'IPアドレス';
+
+    $lang->cmd_hide = '숨김';
 
 	$lang->secret_comment = '非公開コメント';
 	$lang->insert_comment = 'コメントを書く';

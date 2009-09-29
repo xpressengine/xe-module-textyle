@@ -41,6 +41,19 @@
         }
 
         /**
+         * @brief 개별 블로그 관리 메뉴에 대해 최고관리자가 설정한 내용을 구함
+         **/
+        function getTextyleCustomMenu() {
+            $oModuleModel = &getModel('module');
+            $config = $oModuleModel->getModuleConfig('textyle');
+            $custom_menu->hidden_menu = $config->hidden_menu;
+            if(!$custom_menu->hidden_menu) $custom_menu->hidden_menu = array();
+            $custom_menu->attached_menu = $config->attached_menu;
+            if(!$custom_menu->attached_menu) $custom_menu->attached_menu = array();
+            return $custom_menu;
+        }
+
+        /**
          * @brief 특정 회원의 Textyle 정보 얻기
          * 회원 번호를 입력하지 않으면 현재 로그인 사용자의 Textyle 정보를 구함
          **/

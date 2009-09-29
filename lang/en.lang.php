@@ -331,6 +331,7 @@
     $lang->cmd_textyle_list = 'Textyle List';
     $lang->cmd_textyle_creation = 'New Textyle';
     $lang->cmd_textyle_update = 'Modify Textyle';
+    $lang->cmd_textyle_custom_menu = 'Textyle 메뉴 편집';
     $lang->cmd_new_post = 'Write New Post';
     $lang->cmd_go_blog = 'Go to My Blog';
     $lang->cmd_send_suggestion = 'Send a suggestion';
@@ -386,6 +387,8 @@
 
     $lang->mail = 'Mail';
     $lang->ip = 'IP';
+
+    $lang->cmd_hide = '숨김';
 
 	$lang->secret_comment = 'Secret Comment';
 	$lang->insert_comment = 'Insert a comment';

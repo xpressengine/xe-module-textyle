@@ -161,11 +161,14 @@
 
         <action name="dispTextyleAdminList" type="view" standalone="true" admin_index="true" />
         <action name="dispTextyleAdminInsert" type="view" standalone="true" />
+        <action name="dispTextyleAdminCustomMenu" type="view" standalone="true" />
         <action name="dispTextyleAdminDelete" type="view" standalone="true" />
 
 		<action name="procTextyleAdminCreate" type="controller" standalone="true" />
 		<action name="procTextyleAdminUpdate" type="controller" standalone="true" />
         <action name="procTextyleAdminDelete" type="controller" standalone="true" />
+        <action name="procTextyleAdminInsertCustomMenu" type="controller" standalone="true" />
+
         <action name="procTextyleToggleEnableAPI" type="controller" standalone="true" />
     </actions>
 </module>

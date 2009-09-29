@@ -16,6 +16,8 @@
             $oTextyleController = &getController('textyle');
             $oModuleModel = &getModel('module');
 
+            Context::set('custom_menu', $custom_menu = $oTextyleModel->getTextyleCustomMenu());
+
             if(!$this->module_srl) {
                 $site_module_info = Context::get('site_module_info');
                 $site_srl = $site_module_info->site_srl;
@@ -43,9 +45,6 @@
 			Context::set('module_info',$this->module_info);
             Context::set('current_module_info', $this->module_info);
 
-			// 별도의 layout 사용하지 않음
-			Context::set('layout','none');
-
 			$this->textyle = $oTextyleModel->getTextyle($this->module_info->module_srl);
             $this->site_srl = $this->textyle->site_srl;
 			Context::set('textyle',$this->textyle);  
@@ -62,12 +61,34 @@
 				$output = $oTextyleController->publishPost($this->module_info->module_srl);
 			}
 
+            // 관리자가 설정한 추가 메뉴가 있다면 관리자 페이지에서 실행되도록 수정
+            $is_attached = false;
+            if(count($custom_menu->attached_menu)) {
+                foreach($custom_menu->attached_menu as $key => $val) {
+                    if(!count($val)) continue;
+                    foreach($val as $k => $v) {
+                        if($k == $this->act) {
+                            $is_attached = true;
+                            break(2);
+                        }
+                    }
+                }
+            }
+
 			// textyle 관리
-			if(preg_match("/TextyleTool/",Context::get('act'))) {
+			if(preg_match("/TextyleTool/",$this->act) || $is_attached) {
+
+                // 숨김 메뉴를 요청할 경우 대시보드로 변경
+                if(in_array(strtolower($this->act), $custom_menu->hidden_menu)) Context::set('act', $this->act= 'dispTextyleToolDashboard', true);
 
 				$template_path = sprintf("%stpl",$this->module_path);
 				$this->setTemplatePath($template_path);
-				$this->setTemplateFile(str_replace('dispTextyleTool','',Context::get('act')));
+				$this->setTemplateFile(str_replace('dispTextyleTool','',$this->act));
+
+                if($is_attached) {
+                    $this->setLayoutPath($template_path);
+                    $this->setLayoutFile('_tool_layout');
+                }
 
                 if($_COOKIE['tclnb']) Context::addBodyClass('lnbClose');
 			    else Context::addBodyClass('lnbToggleOpen');

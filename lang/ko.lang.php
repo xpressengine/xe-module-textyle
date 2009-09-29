@@ -344,6 +344,7 @@
     $lang->cmd_textyle_list = 'Textyle 목록';
     $lang->cmd_textyle_creation = 'Textyle 생성';
     $lang->cmd_textyle_update = 'Textyle 수정';
+    $lang->cmd_textyle_custom_menu = 'Textyle 메뉴 편집';
     $lang->cmd_new_post = '새글 쓰기';
     $lang->cmd_go_blog = '블로그 보기';
     $lang->cmd_send_suggestion = '사용의견 보내기';
@@ -399,6 +400,8 @@
 
     $lang->mail = '메일';
     $lang->ip = '아이피';
+
+    $lang->cmd_hide = '숨김';
 
 	$lang->secret_comment = '비밀답글';
 	$lang->insert_comment = '댓글입력';

@@ -35,3 +35,7 @@ function toggleAccessType(target) {
 			break;
 	}
 }
+
+function completeReload() {
+    location.reload();
+}
