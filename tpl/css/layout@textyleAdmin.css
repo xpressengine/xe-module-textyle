@@ -370,6 +370,8 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .tableData th{ text-align:left; white-space:nowrap;}
 .tableData tbody th{ border-top:1px solid #e3e5e7;}
 .tableData td{ border-top:1px solid #e3e5e7;}
+.tableData tr.first th,
+.tableData tr.first td{ border:0;}
 .tableData tr.replies td{ border-top:0;}
 .tableData .buttonTableData{ border:0; width:19px; height:19px; padding:0; background:transparent url(../img/buttonTableDataX.gif) no-repeat center center; cursor:pointer;}
 .tableData .buttonTableData span{ position:absolute; width:0; height:0; overflow:hidden; z-index:-1; font-size:0; line-height:0; visibility:hidden;}
@@ -451,6 +453,8 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .tableData .regDate{ color:#8b8b8b; font-size:11px;}
 .tableData tr.articles dt,
 .tableData tr.replies dt{ font-weight:bold;}
+.tableData .published{ opacity:.5; filter:alpha(opacity=50); *filter:none;}
+.tableData .published a{ filter:alpha(opacity=50); *filter:none; color:#999 !important;}
 
 /* Referer Domain */
 .refererDomain{ font-size:12px;}
@@ -550,7 +554,9 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .wTitle .category .addCategory.open{ display:inline;}
 
 /* Writing Publish */
-.wPublish{ position:absolute; top:3px; right:3px; text-align:right; z-index:1; background:#fff;}
+.wTitle .wPublish{ position:absolute; top:3px; right:3px; text-align:right; z-index:1; background:#fff;}
+.pTitle .wPublish{ position:absolute; top:9px; right:12px; text-align:right; z-index:1; background:#fff;}
+.wOption .wPublish{ text-align:center; position:relative; z-index:1;}
 .wPublish .publish,
 .wPublish .publish button{ display:inline-block; height:58px; position:relative; background-image:url(../img/buttonPublish.gif); background-repeat:no-repeat; cursor:pointer;}
 .wPublish .publish{ background-position:left top; padding:0; border:0; cursor:pointer; vertical-align:top; padding-left:7px;}
@@ -563,28 +569,37 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .wPublish .publish:active button{ background-position:right -200px;}
 .wPublish .booking button{ background-position:right -300px !important;}
 
+/* Publish Title */
+.pTitle{ position:relative; height:59px; padding:14px 20px 0 20px; margin-bottom:3em; background:#eee; border-top:1px solid #e9e9e9; border-bottom:1px solid #e9e9e9;}
+.pTitle .title{ position:relative; border:1px dotted #ddd; background:#fff;}
+.pTitle .title h2{ margin:0; color:#6e6e6e; font-size:24px; padding:8px 0 0 10px; height:35px;}
+.pTitle .elementContainer{ margin:0 20px;}
+.pTitle .cap{ position:absolute; width:10px; height:75px; top:-1px; background:url(../img/bgPublishTitle.gif) no-repeat 0 0;}
+.pTitle .capLeft{ left:0; background-position:left top;}
+.pTitle .capRight{ right:0; background-position:right top}
+
 /* Writing Option */
-.wOption{ position:relative; *zoom:1; border:1px solid #e9e9e9; margin-bottom:40px; *padding-top:20px; z-index:2;}
+.wOption{ position:relative; *zoom:1; margin-bottom:40px;}
+.wOption .optionTime{ position:relative; z-index:2;}
 .wOption .cap{ position:absolute; width:10px; height:10px; background-image:url(../img/bgRouningFF.gif); background-repeat:no-repeat; font-size:0; line-height:0; overflow:hidden;}
 .wOption .cap.capTL{ top:-1px; left:-1px; background-position:left top;}
 .wOption .cap.capTR{ top:-1px; right:-1px; background-position:right top;}
 .wOption .cap.capBL{ bottom:-1px; left:-1px; background-position:left bottom;}
 .wOption .cap.capBR{ bottom:-1px; right:-1px; background-position:right bottom;}
-.wOption table{ width:100%; border:0; border-spacing:0; font-size:12px; margin:20px 0;}
-.wOption th,
-.wOption td{ border:0; vertical-align:top;}
-.wOption th{ padding-top:4px; padding-left:30px; padding-right:15px; text-align:left; color:#444; white-space:nowrap;}
-.wOption td{ color:#555; width:100%; padding:2px 30px 2px 0;}
-.wOption select{ font-size:12px; vertical-align:middle;}
+.wOption select{ height:23px; font-size:12px; vertical-align:middle;}
+.wOption .addCategoryToggle button,
+.wOption .addTrackbackURL button{ padding:0 5px 0 3px !important; *padding:0 8px 0 6px !important;}
+.wOption .buttonGray button img{ vertical-align:middle !important;}
 .wOption .addCategory{ display:none;}
 .wOption .addCategory.open{ display:inline;}
-.wOption .inputText{ border:1px solid #c6c6c6; height:17px; padding-top:3px; text-indent:5px; font-size:12px; vertical-align:middle;}
+.wOption .addCategory .inputText{ width:140px; margin:-1px 0 0 0;}
+.wOption .inputText{ border:1px solid #c6c6c6; height:17px; width:96%; padding:3px 5px 0 5px; font-size:12px; vertical-align:middle; color:#767676;}
 .wOption .usedTag{ display:none; width:96%; list-style:none; margin:0; padding:0; background:#f8f8f8; border:1px solid #e9e9e9; line-height:1.6; padding:5px 10px; margin:5px 0; text-align:justify;}
 .wOption .usedTag.open{ display:block;}
 .wOption .usedTag li{ display:inline; margin-right:5px;}
 .wOption .usedTag li button{ border:0; padding:0; cursor:pointer; background:none; overflow:visible; font-size:12px; white-space:nowrap; color:#648ab9;}
 .wOption .usedTag li.more button{ color:#f60;}
-.wOption .bookingLayer{ display:none;}
+.wOption .bookingLayer{ display:none; margin:0 10px 0 0;}
 .wOption .bookingLayer.open{ display:inline;}
 .wOption .calendar{ left:-25px; margin-right:-10px;}
 .wOption .calendar .layerCalendar{ bottom:22px; left:-81px; *bottom:28px; *left:-82px;}
@@ -592,11 +607,19 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .wOption .inputText.hh{ width:25px; vertical-align:middle;}
 .wOption .inputText.mm{ width:25px; vertical-align:middle;}
 .wOption em{ font-style:normal; color:#ff6600;}
-.wOption .inputTextarea{ display:block; border:1px solid #c6c6c6; font-size:12px; width:96%; height:30px; margin-bottom:5px; padding:5px; overflow:auto; color:#777;}
-.wOption .inputTextareaNoneHeight{ display:block; border:1px solid #c6c6c6; font-size:12px; width:96%; margin-bottom:5px; padding:5px; overflow:auto; color:#777;}
-.wOption label{ margin-right:5px;}
+.wOption label{ margin-right:10px;}
 .wOption p{ margin:0;}
 .wOption .buttonGray.medium button{ _top:0;}
+.wOption .trackbackOption{ position:relative;}
+.wOption .trackbackOption *{ vertical-align:top;}
+.wOption .trackbackOption .item{ display:inline;}
+.wOption .trackbackURL,
+.wOption #postURL{ width:60%;}
+.wOption .tableData{ margin-bottom:30px;}
+.wOption .tableData caption.check{ text-align:left; font-weight:bold; padding:10px 0 10px 32px; font-size:12px; color:#333; background:url(../img/iconCheck.gif) no-repeat left center;}
+.wOption .tableData th{ color:#767676;}
+.wOption .optionMicroBlog p{ margin-bottom:5px;}
+.wOption em{ font-weight:bold;}
 
 /* Category */
 .category{ *zoom:1;}

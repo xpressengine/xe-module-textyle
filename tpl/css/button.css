@@ -71,22 +71,26 @@
 /* -- Button Action -- */
 .buttonAction,
 .buttonAction button,
-.buttonAction input{ position:relative; border:0; margin:0; display:inline-block; font-family:Tahoma, Sans-serif; font-weight:bold !important; cursor:pointer; text-decoration:none !important; white-space:nowrap; vertical-align:middle; *vertical-align:top; background-color:transparent; background-image:url(../img/buttonAction.gif); background-repeat:no-repeat;}
+.buttonAction input,
+.buttonAction a{ position:relative; border:0; margin:0; display:inline-block; font-family:Tahoma, Sans-serif; font-weight:bold !important; cursor:pointer; text-decoration:none !important; white-space:nowrap; vertical-align:middle; *vertical-align:top; background-color:transparent; background-image:url(../img/buttonAction.gif); background-repeat:no-repeat;}
 .buttonAction{ margin-right:7px;}
 
 /* Control Button + Submit Button */
 .buttonAction button,
-.buttonAction input { height:39px; padding:0 25px 0 0; font:12px/39px Sans-serif; background-position:right top; overflow:visible;}
+.buttonAction input,
+.buttonAction a{ height:39px; padding:0 25px 0 0; font:12px/39px Sans-serif; background-position:right top; overflow:visible;}
 
 /* Blue */
 .buttonAction.actionBlue { background-position:left top;}
 .buttonAction.actionBlue button,
-.buttonAction.actionBlue input{ left:7px; padding-left:40px; color:#fff; background-position:right top;}
+.buttonAction.actionBlue input,
+.buttonAction.actionBlue a{ left:7px; padding-left:40px; color:#fff; background-position:right top;}
 
 /* White */
 .buttonAction.actionWhite { background-position:left -40px;}
 .buttonAction.actionWhite button,
-.buttonAction.actionWhite input{ left:7px; color:#555; background-position:right -40px; padding-left:18px;}
+.buttonAction.actionWhite input,
+.buttonAction.actionWhite a{ left:7px; color:#555; background-position:right -40px; padding-left:18px;}
 
 /* Normal */
 .buttonAction.normal *{ font-weight:normal !important;}

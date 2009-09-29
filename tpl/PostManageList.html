@@ -103,7 +103,11 @@
 										<td class="small">{$post->getTrackbackCount()}</td>
 										<td>{$category_list[$post->get('category_srl')]->title}&nbsp;</td>
 										<td class="small">{zdate($post->get('last_update'),'Y.m.d')}</td>
-										<td><span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManageWrite','document_srl',$post->document_srl,'page',$page)}">{$lang->cmd_edit}</a></span></td>
+										<td>
+											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManageWrite','document_srl',$post->document_srl,'page',$page)}">{$lang->cmd_edit}</a></span>
+											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManagePublish','document_srl',$post->document_srl,'page',$page)}">{$lang->publish}</a></span>
+											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManagePublish','document_srl',$post->document_srl,'page',$page)}">{$lang->publish_update}</a></span>
+										</td>
 										<td>
 											<!--@if($post->get('module_srl') == $logged_info->member_srl)-->
 											<button type="button" class="buttonTableData" onclick="confirmDeletePostItem({$post->document_srl},{$page},'{$lang->msg_confirm_delete_post}')"><span>{$lang->cmd_delete}</span></button>
