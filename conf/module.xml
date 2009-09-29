@@ -35,7 +35,6 @@
 		<permission action="dispTextyleToolCommunicationTrackback" target="manager" />
 		<permission action="dispTextyleToolCommunicationTrackbacksended" target="manager" />
 		<permission action="dispTextyleToolCommunicationSpam" target="manager" />
-		<permission action="dispTextyleToolCommunicationCommentNotify" target="manager" />
 		<permission action="dispTextyleToolStatisticsVisitor" target="manager" />
 		<permission action="dispTextyleToolStatisticsVisitRoute" target="manager" />
 		<permission action="dispTextyleToolStatisticsSupporter" target="manager" />
@@ -92,7 +91,6 @@
 		<action name="dispTextyleToolCommunicationTrackback" type="view" />
 		<action name="dispTextyleToolCommunicationTrackbacksended" type="view" />
 		<action name="dispTextyleToolCommunicationSpam" type="view" />
-		<action name="dispTextyleToolCommunicationCommentNotify" type="view" />
 		<action name="dispTextyleToolStatisticsVisitor" type="view" />
 		<action name="dispTextyleToolStatisticsVisitRoute" type="view" />
 		<action name="dispTextyleToolStatisticsSupporter" type="view" />

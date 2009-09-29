@@ -44,13 +44,35 @@
          * @brief 개별 블로그 관리 메뉴에 대해 최고관리자가 설정한 내용을 구함
          **/
         function getTextyleCustomMenu() {
-            $oModuleModel = &getModel('module');
-            $config = $oModuleModel->getModuleConfig('textyle');
-            $custom_menu->hidden_menu = $config->hidden_menu;
-            if(!$custom_menu->hidden_menu) $custom_menu->hidden_menu = array();
-            $custom_menu->attached_menu = $config->attached_menu;
-            if(!$custom_menu->attached_menu) $custom_menu->attached_menu = array();
+            static $custom_menu = null;
+            if(is_null($custom_menu)) {
+                $oModuleModel = &getModel('module');
+                $config = $oModuleModel->getModuleConfig('textyle');
+                $custom_menu->hidden_menu = $config->hidden_menu;
+                if(!$custom_menu->hidden_menu) $custom_menu->hidden_menu = array();
+                $custom_menu->attached_menu = $config->attached_menu;
+                if(!$custom_menu->attached_menu) $custom_menu->attached_menu = array();
+            }
             return $custom_menu;
+        }
+
+        function isHiddenMenu($act) {
+            $custom_menu = $this->getTextyleCustomMenu();
+            if(!count($custom_menu->hidden_menu)) return false;
+
+            return in_array(strtolower($act), $custom_menu->hidden_menu)?true:false;
+        }
+
+        function isAttachedMenu($act) {
+            $custom_menu = $this->getTextyleCustomMenu();
+            if(!count($custom_menu->attached_menu)) return false;
+
+            foreach($custom_menu->attached_menu as $key => $val) {
+                if(!count($val)) continue;
+                foreach($val as $k => $v) {
+                    if(strtolower($k) == strtolower($act)) return true;
+                }
+            }
         }
 
         /**

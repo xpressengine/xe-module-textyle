@@ -49,7 +49,6 @@
             $this->site_srl = $this->textyle->site_srl;
 			Context::set('textyle',$this->textyle);  
 
-
             // time zone 지정
             if($this->textyle->timezone) $GLOBALS['_time_zone'] = $this->textyle->timezone;
 
@@ -61,34 +60,15 @@
 				$output = $oTextyleController->publishPost($this->module_info->module_srl);
 			}
 
-            // 관리자가 설정한 추가 메뉴가 있다면 관리자 페이지에서 실행되도록 수정
-            $is_attached = false;
-            if(count($custom_menu->attached_menu)) {
-                foreach($custom_menu->attached_menu as $key => $val) {
-                    if(!count($val)) continue;
-                    foreach($val as $k => $v) {
-                        if($k == $this->act) {
-                            $is_attached = true;
-                            break(2);
-                        }
-                    }
-                }
-            }
-
 			// textyle 관리
-			if(preg_match("/TextyleTool/",$this->act) || $is_attached) {
+			if(preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act) ) {
 
                 // 숨김 메뉴를 요청할 경우 대시보드로 변경
-                if(in_array(strtolower($this->act), $custom_menu->hidden_menu)) Context::set('act', $this->act= 'dispTextyleToolDashboard', true);
+                if($oTextyleModel->ishiddenMenu($this->act)) Context::set('act', $this->act= 'dispTextyleToolDashboard', true);
 
 				$template_path = sprintf("%stpl",$this->module_path);
 				$this->setTemplatePath($template_path);
 				$this->setTemplateFile(str_replace('dispTextyleTool','',$this->act));
-
-                if($is_attached) {
-                    $this->setLayoutPath($template_path);
-                    $this->setLayoutFile('_tool_layout');
-                }
 
                 if($_COOKIE['tclnb']) Context::addBodyClass('lnbClose');
 			    else Context::addBodyClass('lnbToggleOpen');
@@ -120,11 +100,6 @@
                 Context::set('textyle_title', $this->textyle->get('textyle_title'));
                 if($this->textyle->get('post_use_prefix')=='Y' && $this->textyle->get('post_prefix')) Context::set('post_prefix', $this->textyle->get('post_prefix'));
                 if($this->textyle->get('post_use_suffix')=='Y' && $this->textyle->get('post_suffix')) Context::set('post_suffix', $this->textyle->get('post_suffix'));
-
-                // 추가 메뉴 
-                $extra_menus = array(
-                );
-                Context::set('extra_menus', $extra_menus);
 
 				// browser title 지정
 				Context::setBrowserTitle($this->textyle->get('browser_title'));
@@ -687,26 +662,6 @@
 			$deny_list = $oTextyleModel->getTextyleDenyList($this->module_srl);
 			Context::set('deny_list',$deny_list);
 		}
-
-        /**
-         *
-         **/
-        function dispTextyleToolCommunicationCommentNotify() {
-            $args->page = Context::get('page'); ///< 페이지
-            $args->sort_index = 'list_order'; ///< 소팅 값
-            $oCommentNotifyModel = &getModel('tccommentnotify');
-            if(!$oCommentNotifyModel)
-            {
-		        return $this->dispTextyleToolDashboard();
-            }
-            $output = $oCommentNotifyModel->GetNotifiedList($args, $this->module_srl);
-
-            Context::set('total_count', $output->total_count);
-            Context::set('total_page', $output->total_page);
-            Context::set('page', $output->page);
-            Context::set('notify_list', $output->notify_list);
-            Context::set('page_navigation', $output->page_navigation);
-        }
 
 		/**
          * @brief tool 방문자 접속 현황

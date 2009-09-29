@@ -1612,6 +1612,7 @@
             return new Object();
         }
 		*/
+
         /**
          * @brief action forward이거나 다른 모듈이 호출될 경우 textyle의 레이아웃을 적용
          **/
@@ -1632,40 +1633,45 @@
             // 현재 요청된 사이트가 textyle이고 textyle의 action이면 pass~
             if($oModule->mid == 'textyle' && isset($oModule->xml_info->action->{$oModule->act})) return new Object();
 
+            $oTextyleModel = &getModel('textyle');
+            $oTextyleView = &getView('textyle');
+
             // 일단 레이아웃을 있음으로 변경
             Context::set('layout',null);
 
-            // 요청된 텍스타일의 정보를 구해서 레이아웃과 관련 정보를 설정
-            $oTextyleModel = &getModel('textyle');
-            $oTextyleView = &getView('textyle');
-			$textyle = $oTextyleModel->getTextyle($site_module_info->index_module_srl);
+            if($oTextyleModel->isAttachedMenu($oModule->act)) {
+                $oModule->setLayoutPath($this->module_path.'tpl');
+                $oModule->setLayoutFile('_tool_layout');
+            } else {
+                // 요청된 텍스타일의 정보를 구해서 레이아웃과 관련 정보를 설정
+                $textyle = $oTextyleModel->getTextyle($site_module_info->index_module_srl);
 
-            $oModule->module_info->layout_srl = null;
-            $oModule->setLayoutPath($oTextyleModel->getTextylePath($site_module_info->index_module_srl));
-            $oModule->setLayoutFile('textyle');
+                $oModule->module_info->layout_srl = null;
+                $oModule->setLayoutPath($oTextyleModel->getTextylePath($site_module_info->index_module_srl));
+                $oModule->setLayoutFile('textyle');
 
-            $module_path = './modules/textyle/';
-            Context::addHtmlHeader('<link rel="shortcut icon" href="'.$textyle->getFaviconSrc().'" />');
-            Context::addJsFile($module_path.'tpl/js/textyle_service.js');
-            Context::addCssFile($oModule->getLayoutPath().'textyle.css');
+                $module_path = './modules/textyle/';
+                Context::addHtmlHeader('<link rel="shortcut icon" href="'.$textyle->getFaviconSrc().'" />');
+                Context::addJsFile($module_path.'tpl/js/textyle_service.js');
+                Context::addCssFile($oModule->getLayoutPath().'textyle.css');
 
-            // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
-            Context::set('root_url', Context::getRequestUri());
-            Context::set('home_url', getSiteUrl($textyle->domain));
-            Context::set('profile_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleProfile'));
-            Context::set('guestbook_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleGuestbook'));
-            Context::set('tag_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleTag'));
-            if(Context::get('is_logged')) Context::set('admin_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleToolDashboard'));
-            else Context::set('admin_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleToolLogin'));
-            Context::set('textyle_title', $textyle->get('textyle_title'));
-            Context::set('textyle', $textyle);
+                // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
+                Context::set('root_url', Context::getRequestUri());
+                Context::set('home_url', getSiteUrl($textyle->domain));
+                Context::set('profile_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleProfile'));
+                Context::set('guestbook_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleGuestbook'));
+                Context::set('tag_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleTag'));
+                if(Context::get('is_logged')) Context::set('admin_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleToolDashboard'));
+                else Context::set('admin_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleToolLogin'));
+                Context::set('textyle_title', $textyle->get('textyle_title'));
+                Context::set('textyle', $textyle);
 
-            // 추가 메뉴 
-            $extra_menus = array(
-            );
-            Context::set('extra_menus', $extra_menus);
-            Context::set('textyle_mode', 'module');
-
+                // 추가 메뉴 
+                $extra_menus = array(
+                );
+                Context::set('extra_menus', $extra_menus);
+                Context::set('textyle_mode', 'module');
+            }
             return new Object();
         }
 

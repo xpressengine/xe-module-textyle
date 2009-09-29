@@ -312,7 +312,6 @@
         ),
         array(
             'dispTextyleToolCommunicationComment'=>'댓글',
-            'dispTextyleToolCommunicationCommentNotify'=>'댓글알리미',
             'dispTextyleToolCommunicationGuestbook'=>'방명록',
             'dispTextyleToolCommunicationTrackback'=>'엮인글',
             'dispTextyleToolCommunicationSpam'=>'스팸 차단',
