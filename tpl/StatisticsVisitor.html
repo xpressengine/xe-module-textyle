@@ -74,9 +74,9 @@
 							'menu':'false',
 							'wmode':'transparent',
 							<!--@if($type=='day')-->
-							'flashvars':"width=770&dSet=02&baseURL=modules/textyle/tpl/swf/common/flash/statistics/&toDay={$detail_status->today}&total={$detail_status->total}&base64Code="+encodeURIComponent('{$xml}')
+							'flashvars':"width=770&dSet=02&baseURL=modules/textyle/tpl/swf/common/flash/statistics/&toDay={$detail_status->today}&total={$detail_status->total}&base64Code="+encodeURIComponent('{$xml}')+"&alertLabel="+encodeURIComponent('{$lang->none_visitor}')
 							<!--@else-->
-							'flashvars':"width=770&dSet=02&baseURL=modules/textyle/tpl/swf/common/flash/statistics/&total={$detail_status->total}&base64Code="+encodeURIComponent('{$xml}')
+							'flashvars':"width=770&dSet=02&baseURL=modules/textyle/tpl/swf/common/flash/statistics/&total={$detail_status->total}&base64Code="+encodeURIComponent('{$xml}')+"&alertLabel="+encodeURIComponent('{$lang->none_visitor}')
 							<!--@end-->
 						});
 				</script>

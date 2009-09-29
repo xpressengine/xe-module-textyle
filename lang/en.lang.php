@@ -250,6 +250,7 @@
     $lang->today = 'Today';
     $lang->day_current = 'Today';
     $lang->day_before = 'Yesterday';
+    $lang->none_visitor = '해당기간에 방문자가 없습니다.';
     $lang->about_status = array(
         'day'=>'You can see the number of visitors by hours.',
         'week'=>'You can see the number of visitors by day over a week.',

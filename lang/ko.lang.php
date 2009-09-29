@@ -250,6 +250,7 @@
     $lang->today = '오늘';
     $lang->day_current = '당일';
     $lang->day_before = '전일';
+    $lang->none_visitor = '해당기간에 방문자가 없습니다.';
     $lang->about_status = array(
         'day'=>'시간대별 방문 횟수를 확인하실 수 있습니다.',
         'week'=>'한주간 날짜별 방문 횟수를 확인하실 수 있습니다.',
