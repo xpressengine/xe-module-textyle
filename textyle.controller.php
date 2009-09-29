@@ -1675,7 +1675,7 @@
         function insertReferer($oDocument) {
             if($_SESSION['textyleReferer'][$oDocument->document_srl]) return;
             $_SESSION['textyleReferer'][$oDocument->document_srl] = true;
-            $referer = urldecode($_SERVER['HTTP_REFERER']);
+            $referer = $_SERVER['HTTP_REFERER'];
             if(!$referer) return;
 
             $_url = parse_url(Context::getRequestUri());
@@ -1697,6 +1697,9 @@
             if(!$output->toBool()) return;
 
             if(preg_match('/(query|q|search_keyword)=([^&]+)/i',$referer, $matches)) $args->link_word = trim($matches[2]);
+            if(preg_match('/(naver\.com|daum\.net)\//i',$referer)) $args->link_word = iconv('euc-kr','utf-8',$args->link_word);
+
+            $args->link_word = urldecode($args->link_word);
             $args->referer_url = $referer;
 
             $output = executeQuery('textyle.getReferer', $args);
