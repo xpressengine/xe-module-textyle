@@ -45,6 +45,7 @@
          **/
         function getTextyleCustomMenu() {
             static $custom_menu = null;
+
             if(is_null($custom_menu)) {
                 $oModuleModel = &getModel('module');
                 $config = $oModuleModel->getModuleConfig('textyle');
@@ -53,6 +54,11 @@
                 $custom_menu->attached_menu = $config->attached_menu;
                 if(!$custom_menu->attached_menu) $custom_menu->attached_menu = array();
             }
+
+            // after 트리거
+            $output = ModuleHandler::triggerCall('textyle.getTextyleCustomMenu', 'after', $custom_menu);
+            if(!$output->toBool()) return $output;
+
             return $custom_menu;
         }
 
@@ -176,7 +182,7 @@
                 $profile_info = $oMemberModel->getProfileImage($val->member_srl);
                 if($profile_info) $output->data[$key]->profile_image = $profile_info->src;
             }
-			return $output;	
+			return $output;
 		}
 
 		function getTextyleGuestbook($textyle_guestbook_srl){
@@ -191,7 +197,7 @@
 					if($profile_info) $output->data[$key]->profile_image = $profile_info->src;
 				}
 			}
-			return $output;	
+			return $output;
 		}
 
 		function getDenyCacheFile($module_srl){
@@ -201,7 +207,7 @@
 		function getTextyleDenyList($module_srl){
 			$args->module_srl = $this->module_srl;
 			$cache_file = $this->getDenyCacheFile($module_srl);
-			
+
 			if($GlOBALS['XE_TEXTYLE_DENY_LIST'] && is_array($GLOBALS['XE_TEXTYLE_DENY_LIST'])){
 				return $GLOBALS['XE_TEXTYLE_DENY_LIST'];
 			}
@@ -218,7 +224,7 @@
 					}
 				}
 				$buff .= '?>';
-				
+
 				if(!is_dir(dirname($cache_file))) FileHandler::makeDir(dirname($cache_file));
 				FileHandler::writeFile($cache_file, $buff);
 			}else{
@@ -344,7 +350,7 @@
             if($output->data) {
                  foreach($output->data as $key => $val) {
                       if(in_array($val->member_srl,$site_admin_srls)) continue;
-                        
+
                       $_data[$key] = $val;
                       if($val->member_srl<1) continue;
                       $img = $oMemberModel->getProfileImage($val->member_srl);
