@@ -8,6 +8,8 @@
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'Textyle은 XpressEngine의 블로그 전문 모듈입니다.';
 
+	$lang->cmd_open_id = '오픈 아이디 로그인';
+	$lang->cmd_common_id = '일반 아이디 로그인';
 	$lang->msg_create_textyle = '텍스타일 생성이 되었습니다';
 	$lang->init_category_title = '기본 카테고리';
 	$lang->add_category = '카테고리 추가';

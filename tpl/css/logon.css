@@ -34,6 +34,13 @@ input{ font-family:Tahoma, Sans-serif;}
 .logOn .logOnInterface form p .buttonAction{ position:absolute; top:0; right:20px;}
 .logOn .logOnInterface form p .buttonAction input{ _top:-1px;}
 
+.logOn .logOnInterface .toggleID{ text-decoration:none; color:#333;}
+.logOn .logOnInterface #defaultLogOn .toggleID{ position:absolute; top:22px; left:30px; padding:0 0 0 15px; background:url(../img/iconOpenid.gif) no-repeat left top;}
+.logOn .logOnInterface #openidLogOn .toggleID{}
+
+.logOn .logOnInterface #openidLogOn dd input{ font-size:20px; font-weight:bold; padding:5px 0 0 40px; height:32px; width:247px; border:1px solid #ddd; background-image:url(../img/bgInputTextOpenid.gif); background-repeat:no-repeat;}
+.logOn .logOnInterface #openidLogOn dd input:focus{ background-color:#fbfbfb;}
+
 .logOn .logOnInterface .attention{ display:none; padding:12px 0; margin:5px 0 0 0; border:1px solid #f2f2f2; background:#f7fafc; font-size:12px; color:#ea3f22; text-align:center;}
 .logOn .logOnInterface .attention img{ vertical-align:middle; margin-right:5px;}
 .logOn .logOnInterface .attention.open{ display:block;}

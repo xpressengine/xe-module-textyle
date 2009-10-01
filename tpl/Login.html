@@ -33,7 +33,7 @@
 			<div id="content">
 			
 				<!-- Log On -->
-				<div class="logOnInterface default">
+				<div id="logOnInterface" class="logOnInterface default">
 					<!-- class="logOnInterface default" | class="logOnInterface openid" -->
 					<h2><img src="img/hTextyleLogOn.gif" width="92" height="28" alt="textyle" /></h2>
                     <form action="./" method="post" onsubmit="return procFilter(this, textyle_login)" id="defaultLogOn">
@@ -45,11 +45,26 @@
 								<dt><label for="upw">{$lang->password}</label></dt>
 								<dd><input id="upw" name="password" type="password" /></dd>
 							</dl>
-							<p><input type="checkbox" name="keep_signed" class="inputCheck" value="Y" onclick="if(this.checked) return confirm(keep_signed_msg);" id="keepUid" /> <label for="keepUid">{$lang->keep_signed}</label> <span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span></p>
+							<p>
+								<input type="checkbox" name="keep_signed" class="inputCheck" value="Y" onclick="if(this.checked) return confirm(keep_signed_msg);" id="keepUid" /> <label for="keepUid">{$lang->keep_signed}</label> 
+								<span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
+								<a href="#openidLogOn" class="toggleID" onclick="document.getElementById('logOnInterface').className='logOnInterface openid'">{$lang->cmd_open_id}</a>
+							</p>
 						</fieldset>
 					</form>
-					<!-- p class="attention" | p class="attention open" -->
-					<p class="attention"><img src="img/iconAttention.gif" width="4" height="14" alt="" /></p>
+                    <form action="./" method="post" onsubmit="" id="openidLogOn">
+						<fieldset>
+							<legend>Open ID {$lang->cmd_login}</legend>
+							<dl>
+								<dt><label for="oid">Open ID</label></dt>
+								<dd><input id="oid" name="open_id" type="text" /></dd>
+							</dl>
+							<p>
+								<span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
+								<a href="#defaultLogOn" class="toggleID" onclick="document.getElementById('logOnInterface').className='logOnInterface default'">{$lang->cmd_common_id}</a>
+							</p>
+						</fieldset>
+					</form>
 				</div>
 				<!-- /Log On -->
 				
