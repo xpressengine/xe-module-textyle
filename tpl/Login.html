@@ -4,7 +4,9 @@
 <!--%import("css/button.css")-->
 <!--%import("js/tool_textyle.js")-->
 <!--%import("filter/textyle_login.xml")-->
-
+<!--@if($enable_openid=='Y')-->
+    <!--%import("filter/openid_login.xml")-->
+<!--@end-->
 <script type="text/javascript">
     var keep_signed_msg = "{$lang->about_keep_signed}";
     jQuery(window).load( function() { jQuery('#uid').focus(); } );
@@ -34,7 +36,6 @@
 			
 				<!-- Log On -->
 				<div id="logOnInterface" class="logOnInterface default">
-					<!-- class="logOnInterface default" | class="logOnInterface openid" -->
 					<h2><img src="img/hTextyleLogOn.gif" width="92" height="28" alt="textyle" /></h2>
                     <form action="./" method="post" onsubmit="return procFilter(this, textyle_login)" id="defaultLogOn">
 						<fieldset>
@@ -48,23 +49,29 @@
 							<p>
 								<input type="checkbox" name="keep_signed" class="inputCheck" value="Y" onclick="if(this.checked) return confirm(keep_signed_msg);" id="keepUid" /> <label for="keepUid">{$lang->keep_signed}</label> 
 								<span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
-								<a href="#openidLogOn" class="toggleID" onclick="document.getElementById('logOnInterface').className='logOnInterface openid'">{$lang->cmd_open_id}</a>
+
+<!--@if($enable_openid=='Y')-->
+								<a href="#openidLogOn" class="toggleID" onclick="jQuery('#logOnInterface').attr('class','logOnInterface openid');">{$lang->cmd_open_id}</a>
+<!--@end-->
 							</p>
 						</fieldset>
 					</form>
-                    <form action="./" method="post" onsubmit="" id="openidLogOn">
+                    
+<!--@if($enable_openid=='Y')-->
+                    <form action="" method="post" onsubmit="return procFilter(this, openid_login)" id="openidLogOn">
 						<fieldset>
 							<legend>Open ID {$lang->cmd_login}</legend>
 							<dl>
 								<dt><label for="oid">Open ID</label></dt>
-								<dd><input id="oid" name="open_id" type="text" /></dd>
+								<dd><input id="oid" name="openid" type="text" /></dd>
 							</dl>
 							<p>
 								<span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
-								<a href="#defaultLogOn" class="toggleID" onclick="document.getElementById('logOnInterface').className='logOnInterface default'">{$lang->cmd_common_id}</a>
+								<a href="#defaultLogOn" class="toggleID" onclick="jQuery('#logOnInterface').attr('class','logOnInterface default')">{$lang->cmd_common_id}</a>
 							</p>
 						</fieldset>
 					</form>
+<!--@end-->                    
 				</div>
 				<!-- /Log On -->
 				
