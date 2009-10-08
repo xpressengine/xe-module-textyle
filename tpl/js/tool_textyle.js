@@ -297,27 +297,28 @@ function completeAddCategory(ret_obj, response_tags, args, fo_obj) {
 }
 
 
-function savePostTemp(obj){
-	jQuery('input[name=temp_save]',obj.form).val('Y');
+function savePost(obj){
+	jQuery('input[name=publish]',obj.form).val('N');
 	if(editorRelKeys[1]) editorRelKeys[1]["editor"].hidden_content = editorRelKeys[1]["editor"].getContent();
-
 	jQuery('input,textarea',obj.form).each(function(){
 		var j = jQuery(this);
 		if(j.val() && j.val() == j.attr('title')) j.val('');
 	});
-	return procFilter(obj.form,insert_post_temp);
+	return procFilter(obj.form,save_post);
 
 }
 
-function insertPost(obj,filter){
-	jQuery('input[name=temp_save]',obj.form).val('');
+function savePostPublish(obj,filter){
+	jQuery('input[name=publish]',obj.form).val('Y');
 	jQuery('input,textarea',obj).each(function(){
 		var j = jQuery(this);
 		if(j.val() && j.val() == j.attr('title')) j.val('');
 	});
-	return procFilter(obj,filter);
+	window.onbeforeunload = function(){};
+	return procFilter(obj,save_post);
 }
-function completePostwriteTemp(ret_obj, response_tags, args, fo_obj) {
+
+function completePostsave(ret_obj, response_tags, args, fo_obj) {
 	fo_obj.document_srl.value = ret_obj.document_srl;
 	alert(ret_obj.message);
 }
@@ -329,10 +330,7 @@ function completePostwrite(ret_obj, response_tags, args, fo_obj) {
 	var mid = ret_obj['mid'];
 
 	var url = current_url.setQuery('act','dispTextyleToolPostManageList');
-
-	window.onbeforeunload = function(){};
 	document.location.href = url;
-
 }
 
 function checkAlias(value,alias){
@@ -963,32 +961,48 @@ modifyNode = function(node,e) {
     });
 }
 
-function doGetSiteInfo() {
+function doBlogApiTest() {
     var fo = jQuery('#foBlogApi');
-    var blogapi_site_url = fo.find('input[name=blogapi_site_url]').val();
-    if(!blogapi_site_url) {
-        alert(_msg[0]);
-        fo.find('input[name=blogapi_site_url]').get(0).focus();
+
+    var params = new Array();
+    fo.find('input,select').each( function() {
+            if(this.type=='radio' && !this.checked) return;
+            params[this.name] = jQuery(this).val();
+    } );
+    if(params['blogapi_service']=='custom' && !params['blogapi_url']) {
+        alert(_msg[2]);
+        fo.find('input[name=blogapi_url]').get(0).focus();
+        return;
+    }
+    if(!params['blogapi_url']) {
+        alert(_msg[2]);
+        fo.find('input[name=blogapi_url]').get(0).focus();
+        return;
+    }
+    if(!params['blogapi_user_id']) {
+        alert(_msg[3]);
+        fo.find('input[name=blogapi_user_id]').get(0).focus();
+        return;
+    }
+    if(!params['blogapi_password']) {
+        alert(_msg[4]);
+        fo.find('input[name=blogapi_password]').get(0).focus();
         return;
     }
 
-    exec_xml('textyle','getTextyleSiteInfo', {"blogapi_site_url":blogapi_site_url}, showSiteInfo, new Array('error','message','site_url','title','blogapi_url'));
+    exec_xml('textyle','getTextyleAPITest', params, completeBlogApiTest, new Array('error','message','site_url','title'));
 }
 
-function showSiteInfo(ret_obj) {
+function completeBlogApiTest(ret_obj) {
     var site_url = ret_obj['site_url'];
     var title = ret_obj['title'];
-    var blogapi_url = ret_obj['blogapi_url'];
     var fo = jQuery('#foBlogApi');
     fo.find('input[name=blogapi_site_url]').val(site_url);
     fo.find('input[name=blogapi_site_title]').val(title);
-    fo.find('input[name=blogapi_url]').val(ret_obj['blogapi_url']);
-    fo.find('tr.hide').removeClass('hide');
-    jQuery('span.getinfo').css('display','none');
-	fo.get(0).onsubmit = function(){
-		return procFilter(fo.get(0),insert_blogapi);
-	}
-
+    if(site_url) {
+        fo.find('tr.hide').removeClass('hide');
+        jQuery('.submitButton').css('display','block');
+    }
 }
 
 function doCheckApiConnect() {
@@ -1016,4 +1030,13 @@ function doToggleAPI(obj, api_srl) {
 
 function doRemoveApi(api_srl) {
     exec_xml('textyle','procTextyleDeleteBlogApi', {api_srl:api_srl}, completeReload, new Array('error','message'));
+}
+
+function appendTrackbackForm() {
+    var o = jQuery(jQuery('div.item').get(0)).clone();
+    var l = jQuery('div.item').length;
+    o.find('input[name=trackback_url]').val('');
+    o.find('select[name=trackback_charset]');
+    o.html(o.html().replace(/trackback_(url|charset)/g, 'trackback_$1'+l));
+    o.appendTo(jQuery('.trackbackOption'));
 }

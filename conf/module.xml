@@ -26,6 +26,7 @@
     <permissions>
 		<permission action="dispTextyleToolDashboard" target="manager" />
 		<permission action="dispTextyleToolPostManageWrite" target="manager" />
+		<permission action="dispTextyleToolPostManagePublish" target="manager" />
 		<permission action="dispTextyleToolPostManageList" target="manager" />
 		<permission action="dispTextyleToolPostManageDeposit" target="manager" />
 		<permission action="dispTextyleToolPostManageCategory" target="manager" />
@@ -53,7 +54,7 @@
 		<permission action="dispTextyleToolConfigData" target="manager" />
 		<permission action="dispTextyleToolConfigChangePassword" target="manager" />
 
-		<permission action="getTextyleSiteInfo" target="manager" />
+		<permission action="getTextyleAPITest" target="manager" />
 
 		<permission action="procTextyleProfileUpdate" target="manager" />
 		<permission action="procTextyleProfileImageUpload" target="manager" />
@@ -81,6 +82,7 @@
         <action name="dispTextyleContentTagSearch" type="view" />
         <action name="dispReplyList" type="view" />
 		<action name="dispTextyleToolPostManageWrite" type="view" />
+		<action name="dispTextyleToolPostManagePublish" type="view" />
 		<action name="dispTextylePostCheckAlias" type="view" />
 		<action name="dispTextyleToolPostManageList" type="view" />
 		<action name="dispTextyleToolPostManageDeposit" type="view" />
@@ -112,14 +114,12 @@
 		<action name="dispTextyleGuestbookReply" type="view" />
 		<action name="dispTextyleToolDashboard" type="view" />
 
-		<action name="getTextyleSiteInfo" type="model" />
+		<action name="getTextyleAPITest" type="model" />
 
         <action name="procTextyleLogin" type="controller" />
-        <action name="procTextyleDeleteDocument" type="controller" />
         <action name="procTextyleInsertComment" type="controller" />
         <action name="procTextyleDeleteComment" type="controller" />
         <action name="procTextyleColorsetModify" type="controller" />
-        <action name="procTextyleContentWrite" type="controller" />
         <action name="procTextyleContentTagModify" type="controller" />
         <action name="procTextyleEnableRss" type="controller" />
         <action name="procTextyleDisableRss" type="controller" />
@@ -137,7 +137,8 @@
 		<action name="procTextyleInfoUpdate" type="controller" />
 		<action name="procTextyleConfigPostwriteInsert" type="controller" />
 		<action name="procTextyleCheckMe2day" type="controller" />
-		<action name="procTextylePostwrite" type="controller" />
+		<action name="procTextylePostsave" type="controller" />
+		<action name="procTextylePostPublish" type="controller" />
 		<action name="procTextylePostDelete" type="controller" />
 		<action name="procTextylePostItemsCategoryMove" type="controller" />
 		<action name="procTextylePostItemsSetSecret" type="controller" />
@@ -149,7 +150,6 @@
 		<action name="procTextylePostTrashRestore" type="controller" />
 		<action name="procTextylePostItemsAllowCommentTrackback" type="controller" />
 		<action name="procTextyleGuestbookWrite" type="controller" />
-		<action name="procTextyleGuestbookDelete" type="controller" />
 		<action name="procTextyleGuestbookItemDelete" type="controller" />
 		<action name="procTextyleGuestbookItemsDelete" type="controller" />
 		<action name="procTextyleGuestbookItemUpdate" type="controller" />

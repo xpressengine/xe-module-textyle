@@ -31,13 +31,10 @@
 	$lang->newest_no_guestbooks = '目前沒有留言。';
 	$lang->reserve = '預訂';
     $lang->publish = '發佈';
-    $lang->publish_each = '이 블로그에 발행 하겠습니다.';
     $lang->publish_update = '재발행';
     $lang->published = '발행됨';
     $lang->publish_option = '발행옵션';
     $lang->publish_confirm = '발행여부';
-    $lang->publish_time = '현재까지 발행 횟수';
-    $lang->publish_num = '회';
     $lang->ask_time_publish = '이 포스트를 지금 발행(또는 업데이트) 하시겠습니까?';
     $lang->ask_micro_publish = '마이크로 블로그에 발행 하시겠습니까?';
     $lang->noti_publish = '발행알림';
@@ -45,7 +42,6 @@
     $lang->add_input_trackback = '엮인글 발송 주소 추가';
     $lang->saved = '儲存';
     $lang->temp = '臨時';
-    $lang->preview = '미리보기';
     $lang->more = '更多';
     $lang->last_week = '上週';
     $lang->this_week = '本週';
@@ -91,10 +87,6 @@
     $lang->about_prefix = 'Each post contains following content. (You can use HTML)';
     $lang->set_suffix = '頁尾設定';
     $lang->about_suffix = 'Each post contains following content. (You can use HTML)';
-    $lang->blogapi = 'Blog API';
-    $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
-    $lang->blogapi_example = '例) Window Live Writer, Google Docs, MS Word 2007 等';
-    $lang->blogapi_url = 'API URL';
     $lang->blog_first_page = 'First Page';
     $lang->blog_display_target = '顯示目標';
     $lang->content_body = '本文';
@@ -192,12 +184,24 @@
     $lang->about_blog_api = '텍스타일로 작성한 글을 BlogAPI를 이용하여 다른 블로그 또는 게시판등에 동시 발행/ 수정/ 삭제할 수 있습니다<br/>지원하는 BlogAPI는 MetaWebLog 뿐이며 다른 API는 곧 지원할 수 있도록 하겠습니다';
     $lang->cmd_registration_blogapi = 'BlogAPI 사이트 등록';
     $lang->cmd_modification_blogapi = 'BlogAPI 사이트 정보 수정';
+    $lang->blogapi = 'Blog API';
+    $lang->blogapi_service = 'Blog API 서비스';
+    $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
+    $lang->blogapi_hosted = '서비스 블로그';
+    $lang->blogapi_custom = '직접 입력';
+    $lang->blogapi_host_provider = '서비스 블로그 제공자';
+    $lang->about_blogapi_host_provider = '등록을 원하는 서비스 제공자를 선택하세요';
+    $lang->blogapi_type = 'API 형식';
+    $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
+    $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
+    $lang->blogapi_example = '例) Window Live Writer, Google Docs, MS Word 2007 等';
+    $lang->blogapi_url = 'API URL';
     $lang->blogapi_site_url = 'API 대상 사이트';
     $lang->about_blogapi_site_url = 'BlogAPI로 발행할 대상 사이트의 주소를 입력해주세요';
-    $lang->blogapi_site_title = '사이트 제목';
+    $lang->blogapi_site_title = 'blogAPI 사이트 제목';
     $lang->about_blogapi_site_title = 'BlogAPI로 발행할 사이트의 제목을 정할 수 있습니다';
     $lang->blogapi_api_url = 'API URL';
-    $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요.';
+    $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
     $lang->blogapi_published = '발행 수';
     $lang->blogapi_user_id = '사용자 아이디';
     $lang->about_blogapi_user_id = 'API 대상 사이트에서 사용하는 사용자 아이디를 입력해주세요';
@@ -415,6 +419,4 @@
     $lang->sample_tags = 'textyle,  Textyle editor,  a writing ingredients collector';
     $lang->msg_preparation = '準備中';
     $lang->msg_not_user = '해당 사용자가 없습니다.';
-
-    $lang->site = "사이트 이름";
 ?>

@@ -310,24 +310,6 @@
             return $font_size;
         }
 
-        function sendMe2dayPost($content, $tags) {
-            if(!$this->getEnableMe2day() || !$this->getMe2dayUserID() || !$this->getMe2dayUserKey()) return;
-            require_once($this->module_path.'libs/me2day.api.php');
-            $oMe2 = new me2api($this->getMe2dayUserID(), $this->getMe2dayUserKey());
-            $oMe2->doPost($content, $tags);
-        }
-
-        function sendTwitterPost($content) {
-            if(!$this->getEnableTwitter() || !$this->getTwitterUserID() || !$this->getTwitterPassword()) return;
-
-            $url = 'http://twitter.com/statuses/update.xml';
-            $buff = FileHandler::getRemoteResource($url, 'status='.urlencode($content), 3, 'POST', 'application/x-www-form-urlencoded', 
-                        array(
-                            'Authorization'=>'Basic '.base64_encode($this->getTwitterUserID().':'.$this->getTwitterPassword()),
-                        )
-                    );
-        }
-
         function getCommentGrant() {
             return $this->get('comment_grant');
         }
@@ -349,40 +331,5 @@
             $output = executeQueryArray('textyle.getApis', $args);
             return $output->data;
         }
-
-        function sendAPI($oDocument) {
-            require_once($this->module_path.'libs/metaweblog.class.php');
-
-            if(!$oDocument || !$oDocument->isExists()) return;
-
-            $args->module_srl = $this->module_srl;
-            $args->enable = 'Y';
-            $output = executeQueryArray('textyle.getApis', $args);
-            if(!$output->data) return;
-            $list = $output->data;
-            foreach($list as $key => $val) {
-                unset($oMeta);
-                $oMeta = new metaWebLog($val->blogapi_url, $val->blogapi_user_id, $val->blogapi_password);
-                $output = $oMeta->getUsersBlogs();
-                if(!$output->toBool()) continue;
-                $blogid = $output->get('blogid');
-
-                if($oDocument->hasUploadedFiles()) {
-                    $file_list = $oDocument->getUploadedFiles();
-                    if(count($file_list)) {
-                        foreach($file_list as $file) {
-                            $output = $oMeta->newMediaObject($blogid, $file->source_filename, $file->uploaded_filename);
-                            $target_file = $output->get('target_file');
-                            if($target_file) {
-                                $oDocument->add('content', str_replace($file->uploaded_filename, $target_file, $oDocument->get('content')));
-                            }
-                        }
-                    }
-                }
-
-                $output = $oMeta->newPost($blogid, $oDocument);
-            }
-        }
-
    }
 ?>

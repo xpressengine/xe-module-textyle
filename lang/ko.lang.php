@@ -31,13 +31,10 @@
 	$lang->newest_no_guestbooks = '방명록에 남겨진 글이 아직 없습니다.';
 	$lang->reserve = '예약';
     $lang->publish = '발행';
-    $lang->publish_each = '이 블로그에 발행 하겠습니다.';
     $lang->publish_update = '재발행';
     $lang->published = '발행됨';
     $lang->publish_option = '발행옵션';
     $lang->publish_confirm = '발행여부';
-    $lang->publish_time = '현재까지 발행 횟수';
-    $lang->publish_num = '회';
     $lang->ask_time_publish = '이 포스트를 지금 발행(또는 업데이트) 하시겠습니까?';
     $lang->ask_micro_publish = '마이크로 블로그에 발행 하시겠습니까?';
     $lang->noti_publish = '발행알림';
@@ -45,7 +42,6 @@
     $lang->add_input_trackback = '엮인글 발송 주소 추가';
     $lang->saved = '저장';
     $lang->temp = '임시';
-    $lang->preview = '미리보기';
     $lang->more = '더보기';
     $lang->last_week = '지난주';
     $lang->this_week = '이번주';
@@ -92,6 +88,14 @@
     $lang->set_suffix = '꼬리말 설정';
     $lang->about_suffix = '글마다 아래 내용을 자동으로 삽입 합니다. (HTML 사용가능)';
     $lang->blogapi = '원격 발행';
+    $lang->blogapi_service = 'API 서비스';
+    $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
+    $lang->blogapi_hosted = '서비스 블로그';
+    $lang->blogapi_custom = '직접 입력';
+    $lang->blogapi_host_provider = '서비스 제공자';
+    $lang->about_blogapi_host_provider = '등록을 원하는 서비스 제공자를 선택하세요';
+    $lang->blogapi_type = 'API 형식';
+    $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
     $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
     $lang->blogapi_example = '예) Window Live Writer, Google Docs, MS Word 2007 등';
     $lang->blogapi_url = 'API 주소';
@@ -194,10 +198,10 @@
     $lang->cmd_modification_blogapi = 'BlogAPI 사이트 정보 수정';
     $lang->blogapi_site_url = 'API 대상 사이트';
     $lang->about_blogapi_site_url = 'BlogAPI로 발행할 대상 사이트의 주소를 입력해주세요';
-    $lang->blogapi_site_title = '사이트 제목';
+    $lang->blogapi_site_title = 'BlogAPI 사이트 제목';
     $lang->about_blogapi_site_title = 'BlogAPI로 발행할 사이트의 제목을 정할 수 있습니다';
     $lang->blogapi_api_url = 'API URL';
-    $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요.';
+    $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
     $lang->blogapi_published = '발행 수';
     $lang->blogapi_user_id = '사용자 아이디';
     $lang->about_blogapi_user_id = 'API 대상 사이트에서 사용하는 사용자 아이디를 입력해주세요';
@@ -228,7 +232,7 @@
 
     $lang->document_all = '모든글 보기';
     $lang->document_published = '발행된 글만 보기';
-    $lang->document_reserved = '임시보관된 글만 보기';
+    $lang->document_reserved = '저장된 글만 보기';
 
     $lang->my_document_management = '내글 관리';
     $lang->set_publish = '공개설정';
@@ -415,6 +419,4 @@
     $lang->sample_tags = 'textyle ,  텍스타일 ,  텍스타일에디터 ,  글감수집기';
     $lang->msg_preparation = '준비중입니다';
     $lang->msg_not_user = '해당 사용자가 없습니다.';
-
-    $lang->site = "사이트 이름";
 ?>

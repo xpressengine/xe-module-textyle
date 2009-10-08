@@ -16,7 +16,7 @@
             $oTextyleController = &getController('textyle');
             $oModuleModel = &getModel('module');
 
-            Context::set('custom_menu', $custom_menu = $oTextyleModel->getTextyleCustomMenu());
+            Context::set('custom_menu', $this->custom_menu = $oTextyleModel->getTextyleCustomMenu());
 
             if(!$this->module_srl) {
                 $site_module_info = Context::get('site_module_info');
@@ -57,14 +57,17 @@
 
 			// publish subscription
 			if($this->textyle->getSubscriptionDate() <= date('YmdHis')){
-				$output = $oTextyleController->publishPost($this->module_info->module_srl);
+				$output = $oTextyleController->publishSubscriptedPost($this->module_info->module_srl);
 			}
 
 			// textyle 관리
 			if(preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act) ) {
 
                 // 숨김 메뉴를 요청할 경우 대시보드로 변경
-                if($oTextyleModel->ishiddenMenu($this->act)) Context::set('act', $this->act= 'dispTextyleToolDashboard', true);
+                if($oTextyleModel->ishiddenMenu($this->act) || ($this->act == 'dispTextyleToolDashboard' && $oTextyleModel->isHiddenMenu(0)) ) {
+                    if($oTextyleModel->isHiddenMenu(0)) Context::set('act', $this->act = 'dispTextyleToolPostManageList', true);
+                    else Context::set('act', $this->act= 'dispTextyleToolDashboard', true);
+                }
 
 				$template_path = sprintf("%stpl",$this->module_path);
 				$this->setTemplatePath($template_path);
@@ -314,8 +317,7 @@
          **/
 		function dispTextyleToolPostManageWrite(){
 			// set filter
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_post.xml');
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_post_temp.xml');
+            Context::addJsFilter($this->module_path.'tpl/filter', 'save_post.xml');
 
 			$oDocumentModel = &getModel('document');
 			$document_srl = Context::get('document_srl');
@@ -396,6 +398,43 @@
 			}
 			Context::set('permalink',$permalink);
 		}
+
+        /**
+         * @brief 발행/ 재발행
+         **/
+        function dispTextyleToolPostManagePublish() {
+			$oDocumentModel = &getModel('document');
+            $oTextyleModel = &getModel('textyle');
+
+			$document_srl = Context::get('document_srl');
+			if(!$document_srl) return new Object(-1,'msg_invalid_request');
+
+            $oDocument = $oDocumentModel->getDocument($document_srl);
+            if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
+
+            $alias = $oDocumentModel->getAlias($document_srl);
+            Context::set('alias',$alias);
+
+            $output = $oTextyleModel->getSubscriptionByDocumentSrl($document_srl);
+            if($output->data){
+                $publish_date = $output->data[0]->publish_date;
+                $publish_date = sscanf($publish_date,'%04d%02d%02d%02d%02d');
+                Context::set('publish_date_yyyymmdd',sprintf("%s-%02d-%02d",$publish_date[0],$publish_date[1],$publish_date[2]));
+                Context::set('publish_date_hh',sprintf("%02d",$publish_date[3]));
+                Context::set('publish_date_ii',sprintf("%02d",$publish_date[4]));
+                Context::set('subscription','Y');
+            }
+
+            Context::set('oDocument', $oDocument);
+
+            Context::set('oTextyle', $oTextyleModel->getTextyle($this->module_srl));
+
+            Context::set('oPublish', $oTextyleModel->getPublishObject($oDocument->document_srl));
+
+            Context::set('category_list', $oDocumentModel->getCategoryList($this->module_srl));
+
+            Context::addJsFilter($this->module_path.'tpl/filter', 'publish_post.xml');
+        }
 
 		/**
          * @brief Document Alias check (API)
@@ -1061,6 +1100,10 @@
         }
 
         function dispTextyleToolConfigBlogApi() {
+            $oTextyleModel = &getModel('textyle');
+
+            Context::set('oPublish', $oTextyleModel->getPublishObject());
+
             $api_srl = Context::get('api_srl');
             if($api_srl) {
                 $args->api_srl = $api_srl;

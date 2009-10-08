@@ -613,6 +613,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .wOption .trackbackOption{ position:relative;}
 .wOption .trackbackOption *{ vertical-align:top;}
 .wOption .trackbackOption .item{ display:inline;}
+.wOption .trackbackLogs { list-style:none; padding:0; margin:10px 0 0 0; }
 .wOption .trackbackURL,
 .wOption #postURL{ width:60%;}
 .wOption .tableData{ margin-bottom:30px;}
@@ -801,6 +802,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .setUp .setupData th{ width:150px; font-weight:normal; color:#555; white-space:nowrap; padding-right:20px; text-align:left;}
 .setUp .setupData td{ color:#8b8b8b;}
 .setUp .setupData tr.hide { display:none; }
+.setUp .setupData.custom{ display:none; }
 .setUp p{ margin:5px 0; color:#555;}
 .setUp p strong{ color:#ea3f22;}
 .setUp .inputText{ border:1px solid #c6c6c6; padding:1px 4px; margin:-2px 0; height:16px;}

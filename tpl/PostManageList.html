@@ -85,7 +85,7 @@
 											{@$_target=''}
 											<!--@if($post->get('module_srl') == $logged_info->member_srl)-->
 											{@$_url=getUrl('act','dispTextyleToolPostManageWrite','document_srl',$post->document_srl,'page',$page)}
-												<strong class="publishState draft"><span>{$lang->temp}</span></strong>
+												<strong class="publishState draft"><span>{$lang->saved}</span></strong>
 											<!--@else if($post->get('module_srl')<=0)-->
 											{@$_url=getUrl('act','dispTextyleToolPostManageWrite','document_srl',$post->document_srl,'page',$page)}
 												<strong class="publishState draft"><span>{$lang->reserve}</span></strong>
@@ -105,8 +105,11 @@
 										<td class="small">{zdate($post->get('last_update'),'Y.m.d')}</td>
 										<td>
 											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManageWrite','document_srl',$post->document_srl,'page',$page)}">{$lang->cmd_edit}</a></span>
+                                            <!--@if($post->get('module_srl')==$logged_info->member_srl)-->
 											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManagePublish','document_srl',$post->document_srl,'page',$page)}">{$lang->publish}</a></span>
+                                            <!--@else-->
 											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManagePublish','document_srl',$post->document_srl,'page',$page)}">{$lang->publish_update}</a></span>
+                                            <!--@end-->
 										</td>
 										<td>
 											<!--@if($post->get('module_srl') == $logged_info->member_srl)-->

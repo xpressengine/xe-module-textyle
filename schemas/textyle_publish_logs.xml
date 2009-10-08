@@ -1,0 +1,4 @@
+<table name="textyle_publish_logs">
+  <column name="document_srl" type="number" size="11" notnull="notnull" primary_key="primary_key"/>
+  <column name="logs" type="text" />
+</table>

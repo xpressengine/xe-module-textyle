@@ -5,6 +5,9 @@
     <columns>
       <column name="module_srl" var="module_srl" notnull="notnull" />
       <column name="api_srl" var="api_srl" notnull="notnull" />
+      <column name="blogapi_service" var="blogapi_service" notnull="notnull" />
+      <column name="blogapi_host_provider" var="blogapi_host_provider" notnull="notnull" />
+      <column name="blogapi_type" var="blogapi_type" notnull="notnull" />
       <column name="blogapi_site_url" var="blogapi_site_url" notnull="notnull" />
       <column name="blogapi_site_title" var="blogapi_site_title" notnull="notnull" />
       <column name="blogapi_url" var="blogapi_url" notnull="notnull" />

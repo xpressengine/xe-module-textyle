@@ -1,4 +1,4 @@
-<filter name="insert_post_temp" module="textyle" act="procTextylePostwrite">
+<filter name="save_post" module="textyle" act="procTextylePostsave">
   <form>
     <node target="nick_name" required="true" />
     <node target="password" required="true" />
@@ -8,7 +8,7 @@
     <node target="content" required="true" />
     <node target="category_srl" required="true" />
   </form>
-  <response callback_func="completePostwriteTemp">
+  <response callback_func="completePostsave">
     <tag name="error" />
     <tag name="message" />
     <tag name="mid" />

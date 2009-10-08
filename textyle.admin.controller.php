@@ -315,11 +315,20 @@
             $oModuleModel = &getModel('module');
 
             $config = $oModuleModel->getModuleConfig('textyle');
+            $second_menus = Context::getLang('textyle_second_menus');
 
             $args = Context::getRequestVars();
             foreach($args as $key => $val) {
                 if(strpos($key, 'hidden_')===false || $val!='Y') continue;
-                $hidden_menu[] = substr($key, 7);
+                $k = substr($key, 7);
+                if(preg_match('/^([0-9]+)$/', $k)) {
+                    $subs = $second_menus[$k];
+                    if(count($subs)) {
+                        $h = array_keys($subs);
+                        for($i=0,$c=count($h);$i<$c;$i++) $hidden_menu[] = strtolower($h[$i]);
+                    }
+                }
+                $hidden_menu[] = $k;
             }
 
             $config->hidden_menu = $hidden_menu;
@@ -336,6 +345,7 @@
                     $attached[$idx]->name = $val;
                 }
             }
+
             if(count($attached)) {
                 foreach($attached as $key => $val) {
                     if(!$val->act || !$val->name) continue;
@@ -347,7 +357,6 @@
                 if(strpos($key, 'delete_')===false || $val!='Y') continue;
                 $delete_menu[] = substr($key, 7);
             }
-
             if(count($delete_menu)) {
                 foreach($config->attached_menu as $key => $val) {
                     if(!count($val)) continue;
@@ -356,7 +365,6 @@
                     }
                 }
             }
-
 
             $oModuleController->insertModuleConfig('textyle', $config);
         }

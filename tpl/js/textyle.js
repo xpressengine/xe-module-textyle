@@ -39,3 +39,8 @@ function toggleAccessType(target) {
 function completeReload() {
     location.reload();
 }
+
+function doApplySubChecked(obj, id) {
+    jQuery('div.menu_box_'+id).find('input[type=checkbox]').each(function() { this.checked = obj.checked; });
+
+}

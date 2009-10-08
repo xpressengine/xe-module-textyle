@@ -5,31 +5,10 @@
         var $password = null;
 
         function metaWebLog($url, $user_id = null, $password = null) {
+            if(!preg_match('/^(http|https)/i',$url)) $url = 'http://'.$url;
             $this->url = $url;
             $this->user_id = $user_id;
             $this->password = $password;
-        }
-
-        function getSiteInfo() {
-            $body = $this->_request($this->url);
-            if(!$body) return null;
-
-            preg_match('/<title>(.+)<\/title>/i', $body, $matches);
-            $title = $matches[1];
-
-            preg_match('/<link(.+)rel="EditURI"(.+)>/i', $body, $matches);
-            if($matches[2]) {
-                preg_match('/href=\"(.+)"/i',$matches[2],$matches);
-                $blogapi_url = $matches[1];
-                if(!preg_match('/^(http|https)/',$blogapi_url)) $blogapi_url= 'http://'.$blogapi_url;
-            } else {
-                $blogapi_url = '';
-            }
-
-            $output->title = $title;
-            $output->blogapi_url = $blogapi_url;
-            return $output;
-
         }
 
         function getUsersBlogs() {
@@ -42,6 +21,7 @@
                 $this->password
             );
             $output = $this->_request($this->url, $input, 'application/octet-stream','POST');
+
             $xmlDoc = $oXmlParser->parse($output);
 
             if(isset($xmlDoc->methodresponse->fault)) {
@@ -52,10 +32,40 @@
 
             $val = $xmlDoc->methodresponse->params->param->value->array->data->value->struct->member;
             $output = new Object();
-            $output->add('url', $val[0]->value->string->body);
-            $output->add('blogid', $val[1]->value->string->body);
-            $output->add('name', $val[2]->value->string->body);
+            $output->add('url', $val[0]->value->string->body?$val[0]->value->string->body:$val[0]->value->body);
+            $output->add('blogid', $val[1]->value->string->body?$val[1]->value->string->body:$val[1]->value->body);
+            $output->add('name', $val[2]->value->string->body?$val[2]->value->string->body:$val[2]->value->body);
             return $output;
+        }
+
+        function getCategories() {
+            $oXmlParser = new XmlParser();
+            
+            $input = sprintf(
+                '<?xml version="1.0" encoding="utf-8" ?><methodCall><methodName>metaWeblog.getCategories</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param></params></methodCall>',
+                'textyle',
+                $this->user_id,
+                $this->password
+            );
+            $output = $this->_request($this->url, $input, 'application/octet-stream','POST');
+
+            $xmlDoc = $oXmlParser->parse($output);
+
+            if(isset($xmlDoc->methodresponse->fault)) {
+                $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
+                $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
+            } 
+
+            $val = $xmlDoc->methodresponse->params->param->value->array->data->value;
+            if(!is_array($val)) $val[] = $val;
+
+            $categories = array();
+            for($i=0,$c=count($val);$i<$c;$i++) {
+                $category = trim($val[$i]->struct->member[0]->value->string->body);
+                if(!$category) continue;
+                $categories[] = $category;
+            }
+            return $categories;
         }
 
         function newMediaObject($blogid, $filename, $source_file) {
@@ -124,7 +134,38 @@
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
             } 
-            return new Object();
+            $postid = $xmlDoc->methodresponse->params->param->value->string->body;
+            if(!$postid) $postid = $xmlDoc->methodresponse->params->param->value->i4->body;
+            $output = new Object();
+            $output->add('postid', $postid);
+            return $output;
+        }
+
+        function editPost($postid, $oDocument) {
+            $oXmlParser = new XmlParser();
+            $oDocumentModel = &getModel('document');
+            $category_list = $oDocumentModel->getCategoryList($oDocument->get('module_srl'));
+
+            $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.editPost</methodName><params><param><value><i4>%s</i4></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>title</name><value><string>%s</string></value></member><member><name>description</name><value><string>%s</string></value></member><member><name>categories</name><value><array><data><value><string>%s</string></value></data></array></value></member><member><name>tagwords</name><value><array><data><value><string>%s</string></value></data></array></value></member></struct></value></param><param><value><boolean>1</boolean></value></param></params></methodCall>',
+                    $postid,
+                    $this->user_id,
+                    $this->password,
+                    str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('title')),
+                    str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('content')),
+                    str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$category_list[$oDocument->get('category_srl')]->title),
+                    str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('tags'))
+            );
+            $output = $this->_request($this->url, $input,  'application/octet-stream','POST');
+            $xmlDoc = $oXmlParser->parse($output);
+
+            if(isset($xmlDoc->methodresponse->fault)) {
+                $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
+                $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
+                return new Object($code, $message);
+            } 
+            $output = new Object();
+            $output->add('postid', $postid);
+            return $output;
         }
 
 

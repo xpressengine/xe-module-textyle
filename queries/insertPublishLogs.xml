@@ -1,0 +1,9 @@
+<query id="insertPublishLogs" action="insert">
+    <tables>
+        <table name="textyle_publish_logs" />
+    </tables>
+    <columns>
+      <column name="document_srl" var="document_srl" notnull="notnull" />
+      <column name="logs" var="logs" />
+    </columns>
+</query>

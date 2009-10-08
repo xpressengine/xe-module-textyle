@@ -5,57 +5,65 @@
 <form action="./" method="post" onsubmit="return procFilter(this, insert_custom_menu);">
 
     <!--@foreach($lang->textyle_first_menus as $key => $val)-->
-    <h4 class="xeAdmin">{$val[1]}</h4>
+    <h4 class="xeAdmin">
+        {$val[1]}
+        <input type="checkbox" name="hidden_{$key}" <!--@if(in_array($key, $custom_menu->hidden_menu))-->checked="checked"<!--@end--> value="Y" style="vertical-align:middle;" onchange="doApplySubChecked(this, '{$key}');" /> 
+    </h4>
 
     {@$_sub = $lang->textyle_second_menus[$key]}
     {@$_attached = $custom_menu->attached_menu[$key]}
-    <table class="rowTable">
-    <colgroup>
-        <col width="40%" />
-        <col width="40%" />
-        <col width="20%" />
-    </colgroup>
-    <thead>
-    <tr>
-        <th>action</th>
-        <th>title</th>
-        <th>&nbsp;</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--@foreach($_sub as $k => $v)-->
-    <tr>
-        <td>{$k}</td>
-        <td>{$v}</td>
-        <td>
-            <input type="checkbox" name="hidden_{$k}" <!--@if(in_array(strtolower($k), $custom_menu->hidden_menu))-->checked="checked"<!--@end--> value="Y" id="menu_{$k}" /> <label for="menu_{$k}">{$lang->cmd_hide}</label>
-        </td>
-    </tr>
+
+    <!--@if(count($_sub))-->
+    <div class="menu_box_{$key}">
+        <table class="rowTable">
+        <colgroup>
+            <col width="40%" />
+            <col width="40%" />
+            <col width="20%" />
+        </colgroup>
+        <thead>
+        <tr>
+            <th>action</th>
+            <th>title</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--@foreach($_sub as $k => $v)-->
+        <tr>
+            <td>{$k}</td>
+            <td>{$v}</td>
+            <td>
+                <input type="checkbox" name="hidden_{$k}" <!--@if(in_array(strtolower($k), $custom_menu->hidden_menu))-->checked="checked"<!--@end--> value="Y" id="menu_{$k}" /> <label for="menu_{$k}">{$lang->cmd_hide}</label>
+            </td>
+        </tr>
+        <!--@end-->
+        <!--@foreach($_attached  as $k => $v)-->
+        <tr>
+            <td>{$k}</td>
+            <td>{$v}</td>
+            <td>
+                <input type="checkbox" name="delete_{$k}" <!--@if($custom_menu->hidden_menu[$k])-->checked="checked"<!--@end--> value="Y" id="menu_{$k}" /> <label for="menu_{$k}">{$lang->cmd_delete}</label>
+            </td>
+        </tr>
+        <!--@end-->
+        <!--@if(count($_sub)||count($_attached))-->
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td>
+                <span class="button"><input type="submit" value="{$lang->cmd_apply}" /></span>
+            </td>
+        </tr>
+        <!--@end-->
+        <tr>
+            <td><input type="text" name="custom_act_{$key}" class="inputTypeText" style="width:80%;" /></td>
+            <td><input type="text" name="custom_name_{$key}" class="inputTypeText lang_code" style="width:80%;" id="custom_name_{$key}" /></td>
+            <td><span class="button"><input type="submit" value="{$lang->cmd_insert}" /></span></td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
     <!--@end-->
-    <!--@foreach($_attached  as $k => $v)-->
-    <tr>
-        <td>{$k}</td>
-        <td>{$v}</td>
-        <td>
-            <input type="checkbox" name="delete_{$k}" <!--@if($custom_menu->hidden_menu[$k])-->checked="checked"<!--@end--> value="Y" id="menu_{$k}" /> <label for="menu_{$k}">{$lang->cmd_delete}</label>
-        </td>
-    </tr>
-    <!--@end-->
-    <!--@if(count($_sub)||count($_attached))-->
-    <tr>
-        <td colspan="2">&nbsp;</td>
-        <td>
-            <span class="button"><input type="submit" value="{$lang->cmd_apply}" /></span>
-        </td>
-    </tr>
-    <!--@end-->
-    <tr>
-        <td><input type="text" name="custom_act_{$key}" class="inputTypeText" style="width:80%;" /></td>
-        <td><input type="text" name="custom_name_{$key}" class="inputTypeText lang_code" style="width:80%;" id="custom_name_{$key}" /></td>
-        <td><span class="button"><input type="submit" value="{$lang->cmd_insert}" /></span></td>
-    </tr>
-    </tbody>
-    </table>
     <!--@end-->
 
 </form>

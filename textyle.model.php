@@ -131,7 +131,21 @@
          * @brief Textyle 개별 정보 return
          **/
         function getTextyle($module_srl=0) {
-            return new TextyleInfo($module_srl);
+            static $textyles = array();
+            if(!isset($textyles[$module_srl])) $textyles[$module_srl] = new TextyleInfo($module_srl);
+            return $textyles[$module_srl];
+        }
+
+        /**
+         * @brief publishObject load
+         **/
+        function getPublishObject($document_srl = 0) {
+            static $objects = array();
+
+            require_once($this->module_path.'libs/publishObject.class.php');
+
+            if(!isset($objects[$document_srl])) $objects[$document_srl] = new publishObject($document_srl);
+            return $objects[$document_srl];
         }
 
         /**
@@ -391,21 +405,18 @@
             return FileHandler::readFile($filename);
         }
 
-        function getTextyleSiteInfo() {
-            require_once($this->module_path.'libs/metaweblog.class.php');
-
+        function getTextyleAPITest() {
+            $oTextyleModel = &getModel('textyle');
             $oTextyleController = &getController('textyle');
-            $blogapi_site_url = Context::get('blogapi_site_url');
-            if(!$blogapi_site_url) return new Object(-1,'msg_invalid_request');
-            if(!preg_match('/^(http|https)/',$blogapi_site_url)) $blogapi_site_url = 'http://'.$blogapi_site_url;
+            $oPublish = $oTextyleModel->getPublishObject();
 
-            $oMeta = new metaWebLog($blogapi_site_url);
-            $site_info = $oMeta->getSiteInfo();
-            if(!$site_info) return new Object(-1,'msg_url_is_invalid');
+            $var = Context::getRequestVars();
 
-            $this->add('site_url', $blogapi_site_url);
-            $this->add('title', $site_info->title);
-            $this->add('blogapi_url', $site_info->blogapi_url);
+            $output = $oPublish->getBlogAPIInfo($var->blogapi_service, $var->blogapi_host_provider, $var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password);
+            if(!$output->toBool()) return $output;
+
+            $this->add('site_url', $output->get('url'));
+            $this->add('title', $output->get('name'));
         }
 
 		function getTrackbackUrl($domain,$document_srl){

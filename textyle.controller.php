@@ -6,7 +6,6 @@
      **/
 
     class textyleController extends textyle {
-
         /**
          * @brief 초기화
          **/
@@ -26,9 +25,12 @@
                 }
             }
 
+            $this->custom_menu = $oTextyleModel->getTextyleCustomMenu();
+
 			$this->textyle = $oTextyleModel->getTextyle($this->module_srl);
             $this->site_srl = $this->textyle->site_srl;
 			Context::set('textyle',$this->textyle); 
+
 
 			// deny
 			if(!$this->grant->manager){
@@ -54,6 +56,8 @@
 		function procTextyleConfigCommunicationInsert(){
             $oModuleModel = &getModel('module');
             $oModuleController = &getController('module');
+
+            if(in_array(strtolower('dispTextyleToolConfigCommunication'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
             // textyle 정보 업데이트
             $args = Context::getRequestVars();
@@ -165,6 +169,8 @@
 		function procTextyleProfileUpdate(){
 			$oMemberController = &getController('member');
 
+            if(in_array(strtolower('dispTextyleToolConfigProfile'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
+
 			// nickname, email
             $args->member_srl = $this->textyle->member_srl;
             $args->nick_name = Context::get('nick_name');
@@ -212,6 +218,8 @@
             $oModuleController = &getController('module');
             $oModuleModel = &getModel('module');
             $oTextyleModel = &getModel('textyle');
+
+            if(in_array(strtolower('dispTextyleToolConfigInfo'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
             // 텍스타일 정보 수정
 			$val = Context::gets('textyle_title','textyle_content','timezone');
@@ -602,6 +610,8 @@
          * @brief deny insert
 		 **/
 		function procTextyleDenyInsert(){
+            if(in_array(strtolower('dispTextyleToolCommunicationSpam'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
+
 			$var = Context::getRequestVars();
 			if(!$var->deny_type || !$var->deny_content) return new Object(-1,'msg_invalid_request');
 
@@ -673,257 +683,124 @@
 			FileHandler::removeFile($cache_file);
 		}
 
-		function procTextylePostwrite(){
-			$var = Context::getRequestVars();
-			$var->source_category_srl = Context::get('category_srl');
-			if($var->temp_save =='Y'){
-				$logged_info = Context::get('logged_info');
-				$var->module_srl = $logged_info->member_srl;
-			}else{
-				$var->module_srl = $this->module_srl;
-			}
-			$var->this_module_srl = $this->module_srl;
-
-
+		function procTextylePostsave(){
             $oDocumentModel = &getModel('document');
+
+			$var = Context::getRequestVars();
+            $site_module_info = Context::get('site_module_info');
+
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
             if($oDocument->isExists()) $output = $this->updatePost($var);
-            else {
-                unset($GLOBALS['XE_DOCUMENT_LIST'][$var->document_srl]);
-                $output = $this->insertPost($var);
-            }
+            else $output = $this->savePost($var);
+            if(!$output->toBool()) return $output;
 
 			$this->add('mid', Context::get('mid'));
             $this->add('document_srl', $output->get('document_srl'));
 
-			if($var->temp_save =='Y'){
-				$this->add('temp_save', 'Y');
-	            $this->setMessage('success_temp_saved');
-			}else{
-				$this->add('temp_save', 'N');
-	            $this->setMessage('success_registed');
-			}
+            if($var->publish == 'Y') $this->setRedirectUrl( getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManagePublish', 'document_srl', $this->get('document_srl')) );
+
+            $this->setMessage('success_saved');
 		}
 
-		function insertPost($args,$manaul_inserted=false){
-			// insert document
+        function procTextylePostPublish() {
+            $oTextyleModel = &getModel('textyle');
+
+            require_once($this->module_path.'libs/publishObject.class.php');
+
+            $oDocumentModel = &getModel('document');
 			$oDocumentController = &getController('document');
-			$oDocumentModel = &getModel('document');
-			$output = $oDocumentController->insertDocument($args,$manual_inserted);
-			if(!$output->toBool()) return $output;
 
-			$document_srl = $output->get('document_srl');
+            $var = Context::getRequestVars();
 
-			// 임시저장일때는 category_srl을 다시 업데이트.
-			if($args->temp_save=='Y'){
-				$var->category_srl = $args->source_category_srl;
-				$var->document_srl = $document_srl;
-				executeQuery("textyle.updatePostCategorySrl",$var);
-			}
+            $oPublish = $oTextyleModel->getPublishObject($var->document_srl);
 
-			// insert alias
-			$args->alias = trim($args->alias);
-			if($args->use_alias=='Y' && $args->alias){
-				$output = $oDocumentController->insertAlias($args->module_srl,$document_srl,$args->alias);
+            foreach($var as $key => $val) {
+                if(preg_match('/^trackback_(url|charset)([0-9]*)$/i', $key, $match)&&$val) $publish_option->trackbacks[(int)$match[2]][$match[1]] = $val;
+                else if(preg_match('/^blogapi_([0-9]+)$/i', $key, $match) && $val=='Y') $publish_option->blogapis[$match[1]]->send_api = true;
+                else if(preg_match('/^blogapi_category_([0-9]+)$/i', $key, $match)) $publish_option->blogapis[$match[1]]->category = $val;
+                else if($key == 'send_me2day' && $val == 'Y') $publish_option->send_me2day = true;
+                else if($key == 'send_twitter' && $val == 'Y') $publish_option->send_twitter = true;
+            }
+            if(count($publish_option->trackbacks)) foreach($publish_option->trackbacks as $key => $val) $oPublish->addTrackback($val['url'], $val['charset']);
+            if(count($publish_option->blogapis)) foreach($publish_option->blogapis as $key => $val) if($val->send_api) $oPublish->addBlogApi($key, $val->category);
+            $oPublish->setMe2day($publish_option->send_me2day);
+            $oPublish->setTwitter($publish_option->send_twitter);
+            $oPublish->save();
+
+            $oDocument = $oDocumentModel->getDocument($var->document_srl);
+            $vars = $oDocument->getObjectVars();
+            $vars->title = $var->title;
+            $vars->module_srl = $this->module_srl;
+            $vars->category_srl = $var->category_srl;
+            if($oDocument->isExists()) $output = $this->updatePost($vars);
+            else $output = $this->insertPost($vars);
+
+			$var->alias = trim($var->alias);
+			if($var->use_alias=='Y' && $var->alias){
+				$output = $oDocumentController->insertAlias($this->module_srl,$var->document_srl,$var->alias);
 				if(!$output->toBool()) return $output;
 			}
 
-			// insert subscription
-			$args->publish_date_yyyymmdd = ereg_replace("[^0-9]",'',str_replace("-",'',$args->publish_date_yyyymmdd));
-			if($args->subscription=='Y' && $args->publish_date_yyyymmdd) {
-				$args->publish_date_hh = ereg_replace("[^0-9]",'',str_replace('-','',$args->publish_date_hh));
-				$args->publish_date_ii = ereg_replace("[^0-9]",'',str_replace('-','',$args->publish_date_ii));
-				$args->publish_date_hh = $args->publish_date_hh ? $args->publish_date_hh : 0;
-				$args->publish_date_ii = $args->publish_date_ii ? $args->publish_date_ii : 0;
-				$args->publish_date = sprintf("%s%02d%02d00",$args->publish_date_yyyymmdd, $args->publish_date_hh , $args->publish_date_ii);
+            $this->add('mid', Context::get('mid'));
+            $this->add('document_srl', $output->get('document_srl'));
 
-				// but time check
-				if($args->publish_date <= date('YmdHis')){
-					$args->subscription = 'N';
-					$args->publish_date = null;
-				}else{
-					$this->insertPostSubscription($args->module_srl,$document_srl,$args->publish_date);
+            $subscripted = false;
+			$var->publish_date_yyyymmdd = ereg_replace("[^0-9]",'',str_replace("-",'',$var->publish_date_yyyymmdd));
+			if($var->subscription=='Y' && $var->publish_date_yyyymmdd) {
+				$var->publish_date_hh = ereg_replace("[^0-9]",'',str_replace('-','',$var->publish_date_hh));
+				$var->publish_date_ii = ereg_replace("[^0-9]",'',str_replace('-','',$var->publish_date_ii));
+				$var->publish_date_hh = $var->publish_date_hh ? $var->publish_date_hh : 0;
+				$var->publish_date_ii = $var->publish_date_ii ? $var->publish_date_ii : 0;
+				$var->publish_date = sprintf("%s%02d%02d00",$var->publish_date_yyyymmdd, $var->publish_date_hh , $var->publish_date_ii);
+
+				if($var->publish_date > date('YmdHis')){
+                    $args->document_srl = $var->document_srl;
+                    $args->module_srl = $this->module_srl;
+                    $args->publish_date = $args->publish_date;
+
+                    $output = executeQuery('textyle.insertTextyleSubscription', $args);
+                    if(!$output->toBool()) return $output;
+
+                    // update module_srl for subscription
+                    $args->module_srl = abs($this->module_srl) * -1;
+                    $output = executeQuery('document.updateDocumentModule', $var);
+                    if(!$output->toBool()) return $output;
+
+                    $this->syncTextyleSubscriptionDate($args->module_srl);
+                    $subscripted = true;
 				}
 			}
 
-            $oDocument = $oDocumentModel->getDocument($document_srl);
+            if(!$subscripted) $oPublish->publish();
+        }
 
-			// trackback
-			if($args->subscription == 'N' && trim($args->send_trackback)){
-				$charset = Context::get('charset');
-				$oTrackbackController = &getController('trackback');
+        function savePost($args) {
+			$oDocumentController = &getController('document');
 
-				$trackback_url = explode('\n',$args->send_trackback);
-				for($i=0,$c=count($trackback_url);$i<$c;$i++){
-					$trackback_url[$i] = trim($trackback_url[$i]);
-					if($trackback_url[$i]){
-						$oTrackbackController->sendTrackback($oDocument,$trackback_url[$i],$charset);
-					}
-				}
-			}
+            $logged_info = Context::get('logged_info');
+            $args->module_srl = $logged_info->member_srl;
 
-            // send me2day
-            if($args->temp_save!='Y' && $args->subscription!='Y') {
-                $this->textyle->sendMe2dayPost(sprintf('"%s":%s?document_srl=%s', $args->title, Context::getRequestUri(), $document_srl), $args->tags);
-                $this->textyle->sendTwitterPost(sprintf('%s %s?document_srl=%s', $args->title, Context::getRequestUri(), $document_srl));
-                $this->textyle->sendAPI($oDocument);
-            }
-
-			$output->add('document_srl',$document_srl);
+			$output = $oDocumentController->insertDocument($args);
             return $output;
-		}
+        }
 
 		function updatePost($args){
 			$oDocumentModel = &getModel('document');	
 			$oDocumentController = &getController('document');
 			
-            // 이미 존재하는 글인지 체크
-            $oDocument = $oDocumentModel->getDocument($args->document_srl, $this->grant->manager);
+            $oDocument = $oDocumentModel->getDocument($args->document_srl);
 			if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
 
 			$output = $oDocumentController->updateDocument($oDocument, $args);
-			if(!$output->toBool()) return $output;
-
-			$logged_info = Context::get('logged_info');
-
-			$from_tmp = false;
-			$to_tmp = false;
-
-			// 발행->
-			if($oDocument->get('module_srl') == $args->this_module_srl){ 
-				$from_tmp = false;
-			// 임시저장->
-			}else{
-				$from_tmp = true;
-			}
-
-			// -> 발행
-			if($args->module_srl == $args->this_module_srl){ 
-				$to_tmp = false;
-			// -> 임시저장
-			}else{
-				$to_tmp = true;
-			}
-
-			// 임시저장-> 임시저장, 발행->임시저장
-			// 임시저장일때는 category_srl을 다시 업데이트.
-			if($to_tmp){
-				$var->category_srl = $args->source_category_srl;
-				$var->document_srl = $args->document_srl;
-				executeQuery("textyle.updatePostCategorySrl",$var);
-			}
-	
-			// 임시저장-> 발행
-			if($from_tmp && !$to_tmp){
-				$oDocumentController->updateCategoryCount($args->this_module_srl,$args->source_category_srl);
-				$var->document_srl = $args->document_srl;
-				$output=executeQuery("textyle.updatePostRegdate",$var);
-				$args->list_order = getNextSequence() *-1;
-				$args->update_order = $args->list_order;
-				$output = executeQuery('document.updateDocument', $args);
-
-			}
-
-			// 발행 -> 임시저장
-			if(!$from_tmp && $to_tmp){
-				$oDocumentController->updateCategoryCount($args->this_module_srl,$args->source_category_srl);
-			}
-
-			// insert alias
-			$oDocumentController->deleteDocumentALiasByDocument($args->document_srl);
-			$args->alias = trim($args->alias);
-			if($args->use_alias=='Y' && $args->alias){
-				$output = $oDocumentController->insertAlias($this->module_srl,$args->document_srl,$args->alias);
-				if(!$output->toBool()) return $output;
-			}
-
-			// publish from subscription
-			if(!$to_tmp){
-                $subscription_changed = false;
-				if($args->subscription!='Y'){
-					$oTextyleModel = &getModel('textyle');
-					$subscription_output = $oTextyleModel->getSubscriptionByDocumentSrl($args->document_srl);
-
-					// is subscription 
-					if($subscription_output->data){
-						// update document
-						$args->module_srl = abs($args->module_srl);
-						$args->list_order = getNextSequence() *-1;
-						$args->update_order = $args->list_order;
-						$output = executeQuery('document.updateDocument', $args);
-
-						// delete subscription
-						$this->deletePostSubscription($args->document_srl); // delete first
-					}
-
-				}else{
-					// insert subscription
-					$this->deletePostSubscription($args->document_srl); // delete first
-
-					$args->publish_date_yyyymmdd = ereg_replace("[^0-9]",'',str_replace("-",'',$args->publish_date_yyyymmdd));
-					if($args->publish_date_yyyymmdd) {
-						$args->publish_date_hh = ereg_replace("[^0-9]",'',str_replace('-','',$args->publish_date_hh));
-						$args->publish_date_ii = ereg_replace("[^0-9]",'',str_replace('-','',$args->publish_date_ii));
-						$args->publish_date_hh = $args->publish_date_hh ? $args->publish_date_hh : 0;
-						$args->publish_date_ii = $args->publish_date_ii ? $args->publish_date_ii : 0;
-						$args->publish_date = sprintf("%s%02d%02d00",$args->publish_date_yyyymmdd, $args->publish_date_hh , $args->publish_date_ii);
-
-
-						// but time check
-						if($args->publish_date <= date('YmdHis')){
-							$args->subscription = 'N';
-                            $subscription_changed = true;
-							$args->publish_date = null;
-						}else{
-							$this->insertPostSubscription($args->module_srl,$args->document_srl,$args->publish_date);
-						}
-					}
-				}
-
-                $document_srl = $output->get('document_srl');
-                $oDocument = $oDocumentModel->getDocument($document_srl);
-
-				// trackback
-				if($args->subscription == 'N' && trim($args->send_trackback)){
-					$charset = Context::get('charset');
-					$oTrackbackController = &getController('trackback');
-					$trackback_url = explode('\n',$args->send_trackback);
-					for($i=0,$c=count($trackback_url);$i<$c;$i++){
-						$trackback_url[$i] = trim($trackback_url[$i]);
-						if($trackback_url[$i]){
-							$oTrackbackController->sendTrackback($oDocument,$trackback_url[$i],$charset);
-						}
-					}
-				}
-
-                // send me2day
-                if($from_tmp || $subscription_changed) {
-                    $this->textyle->sendMe2dayPost(sprintf('"%s":%s?document_srl=%s', $args->title, Context::getRequestUri(), $args->document_srl), $args->tags);
-                    $this->textyle->sendTwitterPost(sprintf('%s %s?document_srl=%s', $args->title, Context::getRequestUri(), $args->document_srl));
-                    $this->textyle->sendAPI($oDocument);
-                }
-			}
-
-			$output->add('document_srl',$args->document_srl);
             return $output;
 		}
 
-		function insertPostSubscription($module_srl,$document_srl,$publish_date){
-			$args->document_srl = $document_srl;
-			$args->module_srl = $module_srl;
-			$args->publish_date = $publish_date;
+		function insertPost($args) {
+			$oDocumentController = &getController('document');
 
-            $output = executeQuery('textyle.insertTextyleSubscription', $args);
-			if(!$output->toBool()) return $output;
-
-			// update module_srl for subscription
-			$args->module_srl = abs($args->module_srl) * -1;
-            $output = executeQuery('document.updateDocumentModule', $args);
-
-			// sync to textyle
-			$this->syncTextyleSubscriptionDate($module_srl);
-			return $output;
-		}
+			$output = $oDocumentController->insertDocument($args);
+            return $output;
+        }
 
 		function procTextylePostTrashRestore(){
 			$document_srl = Context::get('document_srl');
@@ -1058,7 +935,6 @@
 		}
 
 		function syncTextyleSubscriptionDate($module_srl){
-
 			$oTextyleModel = &getModel('textyle');
 			$output = $oTextyleModel->getSubscriptionMinPublishDate($module_srl);
 
@@ -1068,7 +944,6 @@
 				$args->subscription_date = '';
 			}
 			$output = $this->updateTextyleInfo($module_srl,$args);
-
 		}
 
 
@@ -1275,7 +1150,7 @@
         /**
          * @brief 발행예약한 post 출판
          **/
-		function publishPost($module_srl){
+		function publishSubscriptedPost($module_srl){
 			$now = date('YmdHis');
 			$oTextyleModel = &getModel('textyle');
 
@@ -1300,6 +1175,8 @@
 		}
 
 		function _updatePublishPost($document_srl,$publish_date,$module_srl){
+            $oTextyleModel = &getModel('textyle');
+
 			$args->module_srl = $module_srl;
 			$args->document_srl = $document_srl;
 			$args->list_order =  getNextSequence() * -1;
@@ -1307,7 +1184,10 @@
 			$args->reg_date = $publish_date;
 
 			$output = executeQuery('document.updateDocumentOrder',$args);
-			return $output;
+            if(!$output->toBool()) return $output;
+
+            $oPublish = $oTextyleModel->getPublishObject($document_srl);
+            $oPublish->publish();
 		}
 
 		function _deleteSubscription($module_srl,$less_publish_date){
@@ -1321,6 +1201,8 @@
 		function procTextyleConfigPostwriteInsert(){
             $oEditorModel = &getModel('editor');
             $oModuleController = &getController('module');
+
+            if(in_array(strtolower('dispTextyleToolConfigPostwrite'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
 			$vars = Context::getRequestVars();
 
@@ -1511,6 +1393,8 @@
             $oModuleController = &getController('module');
             $oTextyleModel = &getModel('textyle');
 
+            if(in_array(strtolower('dispTextyleToolLayoutConfigSkin'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
+
             $skin = Context::get('skin');
             if(!is_dir($this->module_path.'skins/'.$skin)) return new Object();
 
@@ -1542,6 +1426,8 @@
 
         function procTextyleToolLayoutConfigEdit() {
             $oTextyleModel = &getModel('textyle');
+
+            if(in_array(strtolower('dispTextyleToolLayoutConfigEdit'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
             $html = trim(Context::get('html'));
             $html_file = $oTextyleModel->getTextyleUserHTMLFile($this->module_srl);
@@ -1719,11 +1605,14 @@
         }
 
         function procTextyleToolImportPrepare() {
+            $oImporterAdminController = &getAdminController('importer');
+            $oImporterAdminController->procImporterAdminPreProcessing();
+
+            if(in_array(strtolower('dispTextyleToolConfigData'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
+            
             $xml_file = Context::get('xml_file');
             if(!$xml_file || $xml_file == 'http://') return new Object(-1,'msg_migration_file_is_null');
 
-            $oImporterAdminController = &getAdminController('importer');
-            $oImporterAdminController->procImporterAdminPreProcessing();
             $this->setError($oImporterAdminController->getError());
             $this->setMessage($oImporterAdminController->getMessage());
             $this->adds($oImporterAdminController->getVariables());
@@ -1738,21 +1627,17 @@
         }
 
         function procTextyleInsertBlogApi() {
-            require_once($this->module_path.'libs/metaweblog.class.php');
+            if(in_array(strtolower('dispTextyleToolConfigBlogApi'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
             $msg = Context::getLang('msg_blogapi_registration');
-            $vars = Context::gets('blogapi_site_url', 'blogapi_site_title', 'blogapi_url', 'blogapi_user_id', 'blogapi_password');
-            $idx = 0;
-            foreach($vars as $key => $val) {
-                if(!$val) return new Object(-1,$msg[$idx]);
-                $idx++;
+            $vars = Context::getRequestVars();
+            $check_vars = array('blogapi_site_url', 'blogapi_site_title', 'blogapi_url', 'blogapi_user_id', 'blogapi_password');
+            foreach($check_vars as $key => $val) {
+                if(!$vars->{$val}) return new Object(-1,$msg[$key]);
             }
 
-            $oMeta = new metaWebLog($vars->blogapi_url, $vars->blogapi_user_id, $vars->blogapi_password);
-            $output = $oMeta->getUsersBlogs();
-            if(!$output->toBool()) return $output;
+            if(!preg_match('/^(http|https)/',$vars->blogapi_url)) $vars->blogapi_url = 'http://'.$vars->blogapi_url;
 
-            $vars->api_srl = Context::get('api_srl');
             $vars->module_srl = $this->module_srl;
             if($vars->api_srl) {
                 $output = executeQuery('textyle.getApiInfo',$vars);
@@ -1797,7 +1682,6 @@
             $output = executeQuery('textyle.deleteTextyleApi',$args);
             return $output;
 		}
-
     }
 
 ?>

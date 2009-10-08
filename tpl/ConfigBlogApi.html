@@ -18,73 +18,121 @@
                     <!--@if($type == 'registration')-->
                     <script type="text/javascript">
                         var _msg = new Array('{implode('\',\'',$lang->msg_blogapi_registration)}');
+                        var apis_url = new Array();
+                        <!--@foreach($oPublish->getHostedApis() as $key => $val)-->apis_url["{$key}"] = "{$val['blogapi_url']}";<!--@end-->
+
                     </script>
-					<form action="./" method="post" onsubmit="<!--@if($api_info->api_srl)-->return procFilter(this,insert_blogapi)<!--@else-->doGetSiteInfo(); return false;<!--@end-->" id="foBlogApi">
+					<form action="./" method="post" onsubmit="return procFilter(this,insert_blogapi);" id="foBlogApi">
+					<input type="hidden" name="vid" value="{$vid}" />
 					<input type="hidden" name="mid" value="{$mid}" />
 					<input type="hidden" name="api_srl" value="{$api_info->api_srl}" />
 						<fieldset>
-                            <!--@if($api_info->api_srl)-->
-                            {@$hide_class = ''}
-							<h4 class="h4">{$lang->cmd_modification_blogapi}</h4>
-                            <!--@else-->
-                            {@$hide_class = ' class="hide"'}
-							<h4 class="h4">{$lang->cmd_registration_blogapi}</h4>
-                            <!--@end-->
-							<table border="1" cellspacing="0" class="setupData">
+							<table border="0" cellspacing="0" class="setupData">
 								<tr>
-									<th scope="row" rowspan="2"><label for="site_url">{$lang->blogapi_site_url}</label></th>
+									<th scope="row" rowspan="2">{$lang->blogapi_service}</th>
 									<td>
-                                        <input name="blogapi_site_url" type="text" class="inputText" id="site_url" value="{htmlspecialchars($api_info->blogapi_site_url)}" style="width:400px" />
-                                        <!--@if(!$api_info->api_srl)--><span class="buttonGray medium getinfo"><button type="button" onclick="doGetSiteInfo(); return false;">{$lang->cmd_get_site_info}</button></span><!--@end-->
+                                        <input type="radio" name="blogapi_service" value="hosted" id="hosted" <!--@if($api_info->blogapi_service!='custom')-->checked="checked"<!--@end--> onclick="jQuery('.hosted').css('display','block');jQuery('.custom').css('display','none');" /> <label for="hosted">{$lang->blogapi_hosted}</label>
+                                        <input type="radio" name="blogapi_service" value="custom" id="custom" <!--@if($api_info->blogapi_service=='custom')-->checked="checked"<!--@end--> onclick="jQuery('.hosted').css('display','none');jQuery('.custom').css('display','block');" /> <label for="custom">{$lang->blogapi_custom}</label>
                                     </td>
 								</tr>
 								<tr>
-									<td>{$lang->about_blogapi_site_url}</td>
+									<td>{$lang->about_blogapi_service}</td>
 								</tr>
-								<tr{$hide_class}>
-									<th scope="row" rowspan="2"><label for="site_title">{$lang->blogapi_site_title}</label></th>
+                            </table>
+
+							<table border="0" cellspacing="0" class="setupData hosted" <!--@if($api_info->blogapi_service=='custom')-->style="display:none;"<!--@end-->>
+                                <tr>
+                                    <th scope="row" rowspan="2">{$lang->blogapi_host_provider}</th>
+                                    <td>
+                                        <select name="blogapi_host_provider" onchange="jQuery('input[name=blogapi_url]').val(apis_url[jQuery(this).val()]);">
+                                            <option value="">{$lang->blogapi_host_provider}</option>
+                                            <!--@foreach($oPublish->getHostedApis() as $key => $val)-->
+                                            <option value="{$key}" <!--@if($api_info->blogapi_host_provider==$key)-->selected="selected"<!--@end-->>{$val['title']}</option>
+                                            <!--@end-->
+                                        </select>
+                                    </td>
+                                </tr>
+								<tr>
+									<td>{$lang->about_blogapi_host_provider}</td>
+								</tr>
+                            </table>
+
+							<table border="0" cellspacing="0" class="setupData custom" <!--@if($api_info->blogapi_service!='custom')-->style="display:none;"<!--@end-->>
+								<tr>
+									<th scope="row" rowspan="2"><label for="api_type">{$lang->blogapi_type}</label></th>
 									<td>
-                                        <input name="blogapi_site_title" type="text" class="inputText" id="site_title" value="{htmlspecialchars($api_info->blogapi_site_title)}" style="width:400px" />
+                                        <select name="blogapi_type">
+                                            <option value="metaweblog" <!--@if($api_info->blogapi_type=='metaweblog')-->selected="selected"<!--@end-->>MetaWeblog API</option>
+                                            <!--
+                                            <option value="blogger" <!--@if($api_info->blogapi_type=='blogger')-->selected="selected"<!--@end-->>Blogger API</option>
+                                            <option value="movalbletype" <!--@if($api_info->blogapi_type=='movalbletype')-->selected="selected"<!--@end-->>MovableType API</option>
+                                            -->
+                                        </select>
                                     </td>
 								</tr>
-								<tr{$hide_class}>
-									<td>{$lang->about_blogapi_site_title}</td>
+								<tr>
+									<td>{$lang->about_blogapi_type}</td>
 								</tr>
-								<tr{$hide_class}>
+                            </table>
+
+							<table border="0" cellspacing="0" class="setupData">
+								<tr>
 									<th scope="row" rowspan="2"><label for="api_url">{$lang->blogapi_url}</label></th>
 									<td>
                                         <input name="blogapi_url" type="text" class="inputText" id="api_url" value="{htmlspecialchars($api_info->blogapi_url)}" style="width:400px" />
                                     </td>
 								</tr>
-								<tr{$hide_class}>
+								<tr>
 									<td>{$lang->about_blogapi_url}</td>
 								</tr>
-								<tr{$hide_class}>
+								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_userid">{$lang->user_id}</label></th>
 									<td><input name="blogapi_user_id" type="text" class="inputText" id="blogapi_userid" value="{htmlspecialchars($api_info->blogapi_user_id)}" style="width:200px" /></td>
 								</tr>
-								<tr{$hide_class}>
+								<tr>
 									<td>{$lang->about_blogapi_user_id}</td>
 								</tr>
-								<tr{$hide_class}>
+								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_password">{$lang->password}</label></th>
 									<td>
                                         <input name="blogapi_password" type="password" class="inputText" id="blogapi_password" value="{htmlspecialchars($api_info->blogapi_password)}" style="width:200px" />
                                     </td>
 								</tr>
-								<tr{$hide_class}>
+								<tr>
 									<td>{$lang->about_blogapi_password}</td>
 								</tr>
-                                <tr{$hide_class}>
-                                    <td colspan="2">
-                                        <!--@if($api_info->api_srl)-->
-                                        <span class="buttonGray medium"><button type="submit" >{$lang->cmd_modify}</button></span>
-                                        <!--@else-->
-                                        <span class="buttonGray medium"><button type="submit" >{$lang->cmd_registration}</button></span>
-                                        <!--@end-->
-                                    </td>
-                                </tr>
                             </table>
+                            <div class="buttonArea">
+                                    <span class="buttonGray medium"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>
+                            </div>
+
+							<table border="0" cellspacing="0" class="setupData">
+								<tr>
+									<th scope="row" rowspan="2"><label for="site_title">{$lang->blogapi_site_title}</label></th>
+									<td>
+                                        <input name="blogapi_site_title" type="text" class="inputText" id="site_title" value="{htmlspecialchars($api_info->blogapi_site_title)}" style="width:400px" />
+                                    </td>
+								</tr>
+								<tr>
+									<td>{$lang->about_blogapi_site_title}</td>
+								</tr>
+								<tr>
+									<th scope="row" rowspan="2"><label for="site_url">{$lang->blogapi_site_url}</label></th>
+									<td>
+                                        <input name="blogapi_site_url" type="text" class="inputText" id="site_url" value="{htmlspecialchars($api_info->blogapi_site_url)}" style="width:400px" />
+                                    </td>
+								</tr>
+								<tr>
+									<td>{$lang->about_blogapi_site_url}</td>
+								</tr>
+                            </table>
+                            <div class="buttonArea submitButton" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end-->>
+                                    <!--@if($api_info->api_srl)-->
+                                    <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_modify}</button></span>
+                                    <!--@else-->
+                                    <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_registration}</button></span>
+                                    <!--@end-->
+                            </div>
 						</fieldset>
 					</form>
 

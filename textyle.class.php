@@ -51,6 +51,7 @@
          * @brief 설치가 이상이 없는지 체크하는 method
          **/
         function checkUpdate() {
+            $oDB = &DB::getInstance();
             $oModuleModel = &getModel('module');
 
             if(!$oModuleModel->getTrigger('display', 'textyle', 'controller', 'triggerMemberMenu', 'before')) return true;
@@ -59,6 +60,10 @@
             if(!$oModuleModel->getTrigger('trackback.insertTrackback', 'textyle', 'controller', 'triggerInsertTrackback', 'after')) return true;
             if(!$oModuleModel->getTrigger('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after')) return true;
             if(!$oModuleModel->getTrigger('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after')) return true;
+
+            if(!$oDB->isColumnExists("textyle_api","blogapi_type")) return true;
+            if(!$oDB->isColumnExists("textyle_api","blogapi_service")) return true;
+            if(!$oDB->isColumnExists("textyle_api","blogapi_host_provider")) return true;
             return false;
         }
 
@@ -66,6 +71,7 @@
          * @brief 업데이트 실행
          **/
         function moduleUpdate() {
+            $oDB = &DB::getInstance();
             $oModuleModel = &getModel('module');
             $oModuleController = &getController('module');
 
@@ -81,6 +87,10 @@
                 $oModuleController->insertTrigger('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after');
             if(!$oModuleModel->getTrigger('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after') )
                 $oModuleController->insertTrigger('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after');
+
+            if(!$oDB->isColumnExists("textyle_api","blogapi_type")) $oDB->addColumn('textyle_api',"blogapi_type","varchar",50);
+            if(!$oDB->isColumnExists("textyle_api","blogapi_service")) $oDB->addColumn('textyle_api','blogapi_service','varchar',250);
+            if(!$oDB->isColumnExists("textyle_api","blogapi_host_provider")) $oDB->addColumn('textyle_api','blogapi_host_provider','varchar',250);
 
             return new Object(0, 'success_updated');
         }
