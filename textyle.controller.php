@@ -729,11 +729,10 @@
 
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
             $vars = $oDocument->getObjectVars();
-            $vars->title = $var->title;
+            $vars->tags = $var->tags;
             $vars->module_srl = $this->module_srl;
             $vars->category_srl = $var->category_srl;
-            if($oDocument->isExists()) $output = $this->updatePost($vars);
-            else $output = $this->insertPost($vars);
+            $output = $this->updatePost($vars);
 
 			$var->alias = trim($var->alias);
 			if($var->use_alias=='Y' && $var->alias){

@@ -96,7 +96,7 @@
         function getApis() {
             if(!$this->oDocument->isExists()) return array();
 
-            $args->module_srl = $this->module_srl;
+            $args->module_srl = $this->oDocument->get('module_srl');
             $output = executeQueryArray('textyle.getApis', $args);
             if(!$output->data) return array();
 
