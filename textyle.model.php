@@ -18,6 +18,7 @@
          **/
         function getTextyleConfig() {
             static $module_info = null;
+
             if(is_null($module_info)) {
                 // module module_info의 값을 구함
                 $oModuleModel = &getModel('module');
@@ -145,6 +146,7 @@
             require_once($this->module_path.'libs/publishObject.class.php');
 
             if(!isset($objects[$document_srl])) $objects[$document_srl] = new publishObject($document_srl);
+
             return $objects[$document_srl];
         }
 
@@ -160,13 +162,11 @@
 
             $args->member_srl = $member_srl;
             $output = executeQuery('textyle.getTextyleCount',$args);
+
             return $output->data->count;
         }
 
 		function getTextyleGuestbookList($vars){
-
-			$logged_info = Context::get('logged_info');
-
             $oMemberModel = &getModel('member');
             $oTextyleController = &getController('textyle');
 
@@ -178,7 +178,6 @@
             if(!$output->toBool() || !$output->data) return array();
 
             foreach($output->data as $key => $val) {
-
 				if($logged_info->is_site_admin || $val->is_secret!=1 || $val->member_srl == $logged_info->member_srl || $val->view_grant || $_SESSION['own_textyle_guestbook'][$val->textyle_guestbook_srl]){
 					$val->view_grant = true;
 					$oTextyleController->addGuestbookGrant($val->textyle_guestbook_srl);
@@ -188,7 +187,6 @@
 							$v->view_grant=true;
 						}
 					}
-
 				}else{
 					$val->view_grant = false;
 				}
@@ -196,6 +194,7 @@
                 $profile_info = $oMemberModel->getProfileImage($val->member_srl);
                 if($profile_info) $output->data[$key]->profile_image = $profile_info->src;
             }
+
 			return $output;
 		}
 
@@ -211,6 +210,7 @@
 					if($profile_info) $output->data[$key]->profile_image = $profile_info->src;
 				}
 			}
+
 			return $output;
 		}
 
@@ -245,6 +245,7 @@
 				@include($cache_file);
 			}
 			$GLOBALS['XE_TEXTYLE_DENY_LIST'] = $_textyle_deny;
+
 			return $GLOBALS['XE_TEXTYLE_DENY_LIST'];
 		}
 
@@ -258,18 +259,21 @@
 			if(!is_array($deny_list[$type])) return false;
 			if(count($deny_list[$type])==0) return false;
 			if(!in_array($deny_content,$deny_list[$type])) return false;
+
 			return true;
 		}
 
 		function checkDenyIP($module_srl,$ip){
 			$ip = trim($ip);
 			if(!$ip) return false;
+
 			return $this->_checkDeny($module_srl,'I',$ip);
 		}
 
 		function checkDenyEmail($module_srl,$email){
 			$email = trim($email);
 			if(!$email) return false;
+
 			return $this->_checkDeny($module_srl,'M',$email);
 		}
 
@@ -296,18 +300,21 @@
 		function getSubscription($args){
             $output = executeQueryArray('textyle.getTextyleSubscription', $args);
 			//$output->add('date',$publish_date);
+
 			return $output;
 		}
 
 		function getSubscriptionMinPublishDate($module_srl){
 			$args->module_srl = $module_srl;
             $output = executeQuery('textyle.getTextyleSubscriptionMinPublishDate', $args);
+
 			return $output;
 		}
 
 		function getSubscriptionByDocumentSrl($document_srl){
 			$args->document_srl = $document_srl;
 			$output = executeQueryArray('textyle.getTextyleSubscriptionByDocumentSrl',$args);
+
 			return $output;
 		}
 
@@ -318,6 +325,7 @@
             $oMemberModel = &getModel('member');
             $info = $oMemberModel->getProfileImage($member_srl);
             $filename = $info->file;
+
             if(!file_exists($filename)) return $this->getTextyleDefaultPhotoSrc();
             return $info->src;
 		}
@@ -422,6 +430,7 @@
 		function getTrackbackUrl($domain,$document_srl){
 			$oTrackbackModel = &getModel('trackback');
 			$key = $oTrackbackModel->getTrackbackKey($document_srl);
+
 			return getFullSiteUrl($domain,'','document_srl',$document_srl,'key',$key,'act','trackback');
 		}
 

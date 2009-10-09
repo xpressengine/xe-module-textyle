@@ -26,11 +26,9 @@
             }
 
             $this->custom_menu = $oTextyleModel->getTextyleCustomMenu();
-
 			$this->textyle = $oTextyleModel->getTextyle($this->module_srl);
             $this->site_srl = $this->textyle->site_srl;
 			Context::set('textyle',$this->textyle); 
-
 
 			// deny
 			if(!$this->grant->manager){
@@ -1683,5 +1681,4 @@
             return $output;
 		}
     }
-
 ?>

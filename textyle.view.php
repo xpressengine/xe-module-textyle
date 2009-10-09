@@ -288,17 +288,13 @@
                 Context::set('material_list',$output->data);
             }
 
-
 			unset($args);
 			$args->module_srl = $this->module_srl;
 			$args->page = 1;
 			$args->list_count = 5;
 
-			$oTextyleModel = &getModel('textyle');
 			$output = $oTextyleModel->getTextyleGuestbookList($args);
 			Context::set('guestbook_list',$output->data);
-
-
 		}
 
         /**
@@ -426,11 +422,8 @@
             }
 
             Context::set('oDocument', $oDocument);
-
             Context::set('oTextyle', $oTextyleModel->getTextyle($this->module_srl));
-
             Context::set('oPublish', $oTextyleModel->getPublishObject($oDocument->document_srl));
-
             Context::set('category_list', $oDocumentModel->getCategoryList($this->module_srl));
 
             Context::addJsFilter($this->module_path.'tpl/filter', 'publish_post.xml');
@@ -497,9 +490,9 @@
          * @brief Tool 글감보관함
          **/	
 		function dispTextyleToolPostManageDeposit(){
-			Context::set('containerClassName','ece');
-			$page = Context::get('page');
 			$oMaterialModel = &getModel('material');
+
+			$page = Context::get('page');
 			$logged_info = Context::get('logged_info');
 			$args->page = $page;
 			$args->member_srl = $logged_info->member_srl;
@@ -507,6 +500,7 @@
             if($oMaterialModel) {
                 $output = $oMaterialModel->getMaterialList($args);
                 $bookmark_url = $oMaterialModel->getBookmarkUrl($this->textyle->domain, $logged_info->member_srl);
+
                 Context::set('page',$output->page_navigation->cur_page);
                 Context::set('bookmark_url',$bookmark_url);
                 Context::set('material_list',$output->data);
@@ -514,16 +508,18 @@
             } else {
                 Context::set('bookmark_url','#');
             }
+
+			Context::set('containerClassName','ece');
 		}
 
 		/**
          * @brief Tool 카테고리 관리
          **/	
 		function dispTextyleToolPostManageCategory(){
-			
-			Context::set('module_srl',$this->module_srl);
 			$oDocumentModel = &getModel('document');
             $catgegory_content = $oDocumentModel->getCategoryHTML($this->module_srl);
+
+			Context::set('module_srl',$this->module_srl);
             Context::set('category_content', $catgegory_content);
             Context::set('module_info', $this->module_info);
 		}
@@ -611,18 +607,15 @@
             Context::set('oSourceComment',$oSourceComment);
             Context::set('oComment',$oComment);
             Context::set('module_srl',$this->textyle->module_srl);
-
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
             Context::set('textyle_mode','comment_form');
 
+            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
 		}
 
 		/**
          * @brief tool Guestbook 관리
          **/	
 		function dispTextyleToolCommunicationGuestbook(){
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_denylist.xml');
-
 			$page = Context::get('page');
 			if(!$page) $page = 1;
 			Context::set('page',$page);
@@ -635,14 +628,14 @@
 			$output = $oTextyleModel->getTextyleGuestbookList($args);
 			Context::set('guestbook_list',$output->data);
 			Context::set('page_navigation',$output->page_navigation);
+
+            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_denylist.xml');
 		}
 
 		/**
          * @brief tool Guestbook Reply
          **/	
 		function dispTextyleToolCommunicationGuestbookReply(){
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_guestbook_reply.xml');
-
 			$textyle_guestbook_srl = Context::get('textyle_guestbook_srl');
 			$page = Context::get('page');
 			if(!$page) $page = 1;
@@ -666,14 +659,14 @@
 			$option->height = 200;
 			$editor = $oEditorModel->getEditor(0, $option);
 			Context::set('editor', $editor);
+
+            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_guestbook_reply.xml');
 		}
 
 		/**
          * @brief tool Trackback 관리
          **/	
 		function dispTextyleToolCommunicationTrackback(){
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_denylist.xml');
-
 			$args->module_srl = $this->module_srl;
 			$args->search_target = Context::get('search_target');
 			$args->search_keyword = Context::get('search_keyword');
@@ -683,9 +676,7 @@
 
 			$document_srl = array();
 			if(count($output->data)>0){
-				foreach($output->data as $k => $v){
-					$document_srl[] = $v->document_srl;					
-				}
+				foreach($output->data as $k => $v) $document_srl[] = $v->document_srl;					
 
 				$oDocumentModel = &getModel('document');
 				$document_items = $oDocumentModel->getDocuments($document_srl,$is_admin=false);
@@ -694,16 +685,19 @@
 			Context::set('trackback_list',$output->data);
 			Context::set('document_items',$document_items);
 			Context::set('page_navigation',$output->page_navigation);
+
+            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_denylist.xml');
 		}
 
 		/**
          * @brief tool Spam 관리
          **/	
 		function dispTextyleToolCommunicationSpam(){
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_deny.xml');
 			$oTextyleModel = &getModel('textyle');
 			$deny_list = $oTextyleModel->getTextyleDenyList($this->module_srl);
 			Context::set('deny_list',$deny_list);
+
+            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_deny.xml');
 		}
 
 		/**
@@ -938,7 +932,6 @@
             Context::set('before_url', $before_url);
             Context::set('after_url', $after_url);
             Context::set('disp_selected_date', $disp_selected_date);
-
             Context::set('document_list', $document_list);
             Context::set('page_navigation', $output->page_navigation);
         }
@@ -1029,7 +1022,6 @@
             Context::set('html', $oTextyleModel->getTextyleUserHTML($this->module_srl));
             Context::set('css', $oTextyleModel->getTextyleUserCSS($this->module_srl));
         }
-
 
         function dispTextyleToolConfigProfile(){
             $oMemberModel = &getModel('member');
@@ -1155,15 +1147,15 @@
          * @brief Textyle home
          **/
         function dispTextyle(){
+            $oTextyleModel = &getModel('textyle');
+            $oTextyleController = &getController('textyle');
+            $oDocumentModel = &getModel('document');
+ 
             $document_srl = Context::get('document_srl');
             $page = Context::get('page');
             $page = $page>0 ? $page : 1;
             Context::set('page',$page);
-
-            $oTextyleModel = &getModel('textyle');
-            $oTextyleController = &getController('textyle');
-            $oDocumentModel = &getModel('document');
-            
+           
             // set category
             $category_list = $oDocumentModel->getCategoryList($this->module_srl);
             Context::set('category_list', $category_list);
@@ -1181,12 +1173,9 @@
 
 					// meta keywords category + tag
                     $tag_array = $oDocument->get('tag_list');
-                    if($tag_array)
-                    {
+                    if($tag_array) {
 					    $tag = htmlspecialchars(join(', ',$tag_array));
-                    }
-                    else
-                    {
+                    } else {
                         $tag = '';
                     }
 					$category_srl = $oDocument->get('category_srl');
@@ -1221,7 +1210,6 @@
             // 선택된 글이 하나라도 글 목록으로 형성
             if($oDocument->isExists()) {
                 $document_list[] = $oDocument;
-
                 Context::set('none_navigation', true);
             } else {
                 $args->list_count = $this->textyle->getPostListCount(); 
@@ -1254,7 +1242,6 @@
 
             Context::set('document_list', $document_list);
 
-
             if(!$args->category_srl && !$args->search_keyword) {
                 if($oDocument->isExists()) $mode = 'content';
                 else $mode = $this->textyle->getPostStyle();
@@ -1271,7 +1258,6 @@
             Context::addJsFilter($this->module_path.'tpl/filter', 'input_password.xml');
             Context::addJsFilter($this->module_path.'tpl/filter', 'input_password_for_modify_comment.xml');
         }
-
 
         function dispTextyleCommentReply(){
             // 목록 구현에 필요한 변수들을 가져온다
@@ -1325,21 +1311,15 @@
             // 필요한 정보들 세팅
             Context::set('oSourceComment', $oCommentModel->getComment());
             Context::set('oComment', $oComment);
-
-            /** 
-             * 사용되는 javascript 필터 추가
-             **/
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
-
             Context::set('textyle_mode','comment_form');
-        }
 
+            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
+        }
 
         /**
          * @brief Textyle guestbook
          **/
         function dispTextyleGuestbook(){
-
             $reply = Context::get('replay');
             $modify = Context::get('modify');
             $page = Context::get('page');
@@ -1354,7 +1334,6 @@
             $output = $oTextyleModel->getTextyleGuestbookList($args);
             Context::set('guestbook_list',$output->data);
             Context::set('page_navigation', $output->page_navigation);
-
 
 			// editor
             $oEditorModel = &getModel('editor');
@@ -1373,14 +1352,12 @@
             $option->disable_html = true;
             $editor = $oEditorModel->getEditor(0, $option);
             Context::set('editor', $editor);
-
             Context::set('textyle_mode','guestbook');
 
             Context::addJsFilter($this->module_path.'tpl/filter', 'insert_guestbook.xml');
             Context::addJsFilter($this->module_path.'tpl/filter', 'input_password_for_guestbook.xml');
             Context::addJsFilter($this->module_path.'tpl/filter', 'input_password_for_delete_guestbook.xml');
             Context::addJsFilter($this->module_path.'tpl/filter', 'input_password_for_modify_guestbook.xml');
-
         }
 
         /**
@@ -1500,7 +1477,5 @@
             Context::set('message', $msg);
             $this->setTemplateFile('message');
         }
-
     }
-
 ?>

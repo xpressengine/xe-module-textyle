@@ -357,15 +357,15 @@
                 if(strpos($key, 'delete_')===false || $val!='Y') continue;
                 $delete_menu[] = substr($key, 7);
             }
+
             if(count($delete_menu)) {
                 foreach($config->attached_menu as $key => $val) {
                     if(!count($val)) continue;
                     foreach($val as $k => $v) {
-                        if(in_array($k, $delete_menu)) unset($config->attached_menu[$key][$k]);
+                        if(in_array(strtolower($k), $delete_menu)) unset($config->attached_menu[$key][$k]);
                     }
                 }
             }
-
             $oModuleController->insertModuleConfig('textyle', $config);
         }
     }
