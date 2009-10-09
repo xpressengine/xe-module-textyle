@@ -516,6 +516,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .subjectList .item dd object,
 .subjectList .item dd embed{ max-width:100%; _width:100%;}
 .subjectList .item .goPost{ margin:0; text-align:right;}
+.subjectList .item .materialCart{ position:absolute; top:15px; right:20px;}
 .subjectList .item .buttonDeleteSubject{ position:absolute; width:19px; height:19px; top:15px; right:0; border:0; padding:0; cursor:pointer; background:transparent url(../img/buttonTableDataX.gif) no-repeat center center;}
 .subjectList .item .buttonDeleteSubject span{ position:absolute; width:0; height:0; overflow:hidden; font-size:0; line-height:0;}
 

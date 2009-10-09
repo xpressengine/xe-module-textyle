@@ -23,6 +23,7 @@
 						<p class="goPost">
 							<span class="buttonGray medium"><a href="{getUrl('act','dispTextyleToolPostManageWrite','document_srl','','material_srl',$v->material_srl)}">{$lang->cmd_write_relation}</a></span>
 						</p>
+                        <input type="checkbox" name="cart" value="{$v->material_srl}" class="materialCart" />
 						<button type="button" class="buttonDeleteSubject" onclick="deleteMaterialItem({$v->material_srl})"><span>{$lang->cmd_delete_materials}</span></button>
 					</div>
 
@@ -32,7 +33,11 @@
 
 					<!-- /item -->
 				<!-- /Subject List -->
-				
+
+                <div class="tRight">
+                    <span class="buttonGray medium"><button type="button" onclick="deleteMaterialItem();">선택된 글감 삭제</button></span>
+                </div>
+
 				<!-- Pagination -->
 				<div class="pagination">
 					<a href="{getUrl('page','','mid',$mid)}" class="prev"><span>{$lang->first_page}</span></a>

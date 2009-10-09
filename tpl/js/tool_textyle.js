@@ -546,7 +546,17 @@ function completeInsertProfile(ret_obj) {
 function deleteMaterialItem(material_srl){
 	var params = new Array();
 	params['mid'] = current_mid;
-	params['material_srl'] = material_srl;
+    if(material_srl) {
+        params['material_srl'] = material_srl;
+    } else {
+        var selectedEl = jQuery('#content .subjectList input:checked.materialCart');
+        var material_srls = [];
+        selectedEl.each(function() {
+            material_srls.push(this.value);
+        });
+        console.log(material_srls);
+        params['material_srl'] = material_srls.join(',');
+    }
 
 	var response_tags = new Array('error','message','page','mid');
 	exec_xml('material', 'procMaterialDelete', params, completeReload, response_tags);
@@ -1000,9 +1010,9 @@ function completeBlogApiTest(ret_obj) {
     fo.find('input[name=blogapi_site_url]').val(site_url);
     fo.find('input[name=blogapi_site_title]').val(title);
     if(site_url) {
-        fo.find('tr.hide').removeClass('hide');
+    fo.find('tr.hide').removeClass('hide');
         jQuery('.submitButton').css('display','block');
-    }
+	}
 }
 
 function doCheckApiConnect() {
