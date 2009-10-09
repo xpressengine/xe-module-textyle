@@ -71,7 +71,7 @@
 
             // textyle 모듈 생성
             $textyle->site_srl = $site_srl;
-            $textyle->mid = 'textyle';
+            $textyle->mid = $this->textyle_mid;
             $textyle->module = 'textyle';
             $textyle->module_srl = getNextSequence();
             $textyle->skin = $this->skin;

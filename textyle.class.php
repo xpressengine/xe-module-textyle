@@ -9,12 +9,15 @@
 
     class textyle extends ModuleObject {
 
-		var $search_option = array('title','content','title_content','comment','user_name','nick_name','user_id','tag'); ///< 검색 옵션
+        /**
+         * @berif default mid
+         **/
+        var $textyle_mid = 'textyle';
 
-		var $order_target = array('list_order', 'update_order', 'regdate', 'voted_count', 'readed_count', 'comment_count', 'title'); // 정렬 옵션
-
-		// default skin
-		var $skin = "happyLetter";
+		/**
+         * @berif default skin
+         **/
+		var $skin = 'happyLetter';
 
 		// post list 
 		var $post_style = 'content';//,'summary','list'
@@ -31,6 +34,9 @@
 
 		var $post_use_prefix = 'Y';//'Y','N';
 		var $post_use_suffix = 'Y';//'Y','N';
+
+		var $search_option = array('title','content','title_content','comment','user_name','nick_name','user_id','tag'); ///< 검색 옵션
+		var $order_target = array('list_order', 'update_order', 'regdate', 'voted_count', 'readed_count', 'comment_count', 'title'); // 정렬 옵션
 
         /**
          * @brief 설치시 추가 작업이 필요할시 구현
@@ -103,7 +109,7 @@
     }
 
 
-	// TODO : remove function 
+	// TODO : remove function
 	if(!function_exists('getFullUrl')){
 		function getFullUrl() {
 			$num_args = func_num_args();

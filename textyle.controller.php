@@ -28,7 +28,7 @@
             $this->custom_menu = $oTextyleModel->getTextyleCustomMenu();
 			$this->textyle = $oTextyleModel->getTextyle($this->module_srl);
             $this->site_srl = $this->textyle->site_srl;
-			Context::set('textyle',$this->textyle); 
+			Context::set('textyle',$this->textyle);
 
 			// deny
 			if(!$this->grant->manager){
@@ -177,11 +177,11 @@
             if(!$output->toBool()) return $output;
 
 			// 자기 소개글
-            $tex->module_srl = $this->module_srl; 
+            $tex->module_srl = $this->module_srl;
             $tex->profile_content = Context::get('profile_content');
 			$output = $this->updateTextyleInfo($this->module_srl,$tex);
             if(!$output->toBool()) return $output;
-			
+
 			// 사진 삭제
             if(Context::get('delete_photo')=='Y') {
                 $this->deleteTextylePhoto($this->module_srl);
@@ -241,12 +241,12 @@
             if(Context::get('delete_icon')=='Y') $this->deleteTextyleFavicon($this->module_srl);
 
             // favicon 등록
-            $favicon = Context::get('favicon'); 
+            $favicon = Context::get('favicon');
             if(Context::isUploaded()&&is_uploaded_file($favicon['tmp_name'])) $this->insertTextyleFavicon($this->module_srl,$favicon['tmp_name']);
 
 			$this->setTemplatePath($this->module_path.'tpl');
             $this->setTemplateFile('move_mytextyle');
-		}	
+		}
 
 		function insertTextyleFavicon($module_srl, $source) {
             $oTextyleModel = &getModel('textyle');
@@ -271,7 +271,7 @@
             $oCommentModel = &getModel('comment');
             $oCommentController = &getController('comment');
 
-            if(!$this->grant->write_comment) return new Object(-1, 'msg_not_permitted'); 
+            if(!$this->grant->write_comment) return new Object(-1, 'msg_not_permitted');
 
             // 댓글 입력에 필요한 데이터 추출
             $obj = Context::gets('document_srl','comment_srl','parent_srl','content','password','nick_name','member_srl','email_address','homepage','is_secret','notify_message');
@@ -335,10 +335,10 @@
          **/
         function procTextyleDeleteComment() {
             $oCommentController = &getController('comment');
-	
+
             $password = Context::get('password');
 			if($password){
-				$oBoardController = &getController('board');	
+				$oBoardController = &getController('board');
 				$output = $oBoardController->procBoardVerificationPassword();
 				if($output) return $output;
 			}
@@ -436,7 +436,7 @@
 			$obj->guestbook_count = 1;
 			$output = $this->updateTextyleSupporter($obj);
 			$this->add('page',$val->page?$val->page:1);
-		}	
+		}
 
         function procTextyleNotifyItemDelete(){
             $notified_srl = Context::get('notified_srl');
@@ -469,7 +469,7 @@
 			$textyle_guestbook_srl = Context::get('textyle_guestbook_srl');
 			if(!$textyle_guestbook_srl) return new Object(-1,'msg_invalid_request');
 
-			$logged_info = Context::get('logged_info');  
+			$logged_info = Context::get('logged_info');
 			if(!($logged_info->is_site_admin || $_SESSION['own_textyle_guestbook'][$textyle_guestbook_srl])) return new Object(-1,'msg_not_permitted');
 			$output = $this->deleteGuestbookItem($textyle_guestbook_srl);
 			return $output;
@@ -501,7 +501,7 @@
 
 			if(!$oGuest) return new Object(-1,'msg_invalid_request');
 
-			// delete children	
+			// delete children
 			$pobj->parent_srl = $textyle_guestbook_srl;
 			$output = executeQueryArray('textyle.getTextyleGuestbook', $pobj);
             if($output->data){
@@ -515,7 +515,7 @@
 			$obj->textyle_guestbook_srl = $textyle_guestbook_srl;
 			$output = executeQuery('textyle.deleteTextyleGuestbookItem', $obj);
             if(!$output->toBool()) return $output;
-	
+
             if($oGuest->textyle_guestbook_srl) {
                 $obj->module_srl = $oGuest->module_srl;
                 $obj->member_srl = $oGuest->member_srl;
@@ -629,7 +629,7 @@
 			$deny['M'] = explode('|',$var->email_address);
 			$deny['I'] = explode('|',$var->ipaddress);
 			$deny['N'] = explode('|',$var->user_name);
-			
+
 			$i=0;
 			foreach($deny as $type => $contents){
 				foreach($contents as $k => $content){
@@ -645,7 +645,7 @@
 					$i++;
 				}
 			}
-			
+
 			return $output;
 		}
 
@@ -781,9 +781,9 @@
         }
 
 		function updatePost($args){
-			$oDocumentModel = &getModel('document');	
+			$oDocumentModel = &getModel('document');
 			$oDocumentController = &getController('document');
-			
+
             $oDocument = $oDocumentModel->getDocument($args->document_srl);
             if(!$args->category_srl) $args->category_srl = $oDocument->get('category_srl');
 			if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
@@ -814,7 +814,7 @@
 
 			$args->document_srl = join(',',$document_srl);
             $output = executeQueryArray('document.getTrashByDocumentSrl', $args);
-			
+
 			$trash = array();
 			if($output->data){
 				foreach($output->data as $k => $v){
@@ -839,7 +839,7 @@
 					}
 				}
 
-				// TO DO : move DocumentController 
+				// TO DO : move DocumentController
 				unset($trash_args);
 				$trash_args->document_srls = $v->document_srl;
 				$trash_args->module_srl = $v->module_srl;
@@ -857,12 +857,12 @@
 
 			}
 
-			// TODO : move code document trash 
+			// TODO : move code document trash
 			$updated_category_srls = array_unique($updated_category_srls);
 			foreach($updated_category_srls as $k => $srl){
 				$oDocumentController->updateCategoryCount($this->module_srl,$srl);
 			}
-		
+
 			$oDB->commit();
 			return $output;
 		}
@@ -897,7 +897,7 @@
 					}
 				}
 
-				// TO DO : move DocumentController 
+				// TO DO : move DocumentController
 				unset($trash_args);
 				$trash_args->document_srls = $document_srls[$i];
 				$trash_args->module_srl = 0;
@@ -920,7 +920,7 @@
 			$msg_code = 'success_trashed';
             $this->setMessage($msg_code);
 		}
-	
+
 		function deletePostSubscription($document_srl){
 			$args->document_srl = $document_srl;
             $output = executeQuery('textyle.deleteTextyleSubscriptionByDocumentSrl', $args);
@@ -975,7 +975,7 @@
             $module_info = Context::get('module_info');
             if($module_info->module != 'textyle') return new Object();
 			if(!$obj->comment_srl) return new Object();
-            
+
 			$args->module_srl = $module_info->module_srl;
 			$args->nick_name = $obj->nick_name;
 			$args->member_srl = $obj->member_srl;
@@ -1140,7 +1140,7 @@
 			$args->document_srl = join(',',$document_srl);
 			$args->module_srl = $this->module_srl;
 			$output = executeQuery('document.updateDocumentsAllowCommentTrackback',$args);
-			return $output;	
+			return $output;
 		}
 
 
@@ -1212,7 +1212,7 @@
 			$output = $this->updateTextyleInfo($this->module_srl,$args);
             if(!$output->toBool()) return $output;
 
-            // 폰트종류/ 크기 저장 (editor 모듈 이용) 
+            // 폰트종류/ 크기 저장 (editor 모듈 이용)
             $editor_config = $oEditorModel->getEditorConfig($this->module_srl);
 
             $editor_config->editor_skin = $args->post_editor_skin;
@@ -1276,7 +1276,7 @@
 			if(!$selected_tag) return new Object(-1,'msg_invalid_request');
 
 			// get document_srl
-			$args->tag = $selected_tag; 
+			$args->tag = $selected_tag;
             $args->module_srl = $this->module_srl;
 
 			$oTagModel = &getModel('tag');
@@ -1305,7 +1305,7 @@
 			if(!$selected_tag || !$new_tag) return new Object(-1,'msg_invalid_request');
 
 			// get document_srl
-			$args->tag = $selected_tag; 
+			$args->tag = $selected_tag;
             $args->module_srl = $this->module_srl;
 
 			$oTagModel = &getModel('tag');
@@ -1318,22 +1318,22 @@
 			// delete tag table
             $output = executeQuery('tag.deleteTagByTag', $args);
 			if(!$output->toBool()) return $output;
-			
-			$args->tag = $new_tag; 
+
+			$args->tag = $new_tag;
 			$has_tag_document_srl = array();
 			$output = $oTagModel->getDocumentSrlByTag($args);
 			if($output->data){
 				foreach($output->data as $k => $v) $has_tag_document_srl[] = $v->document_srl;
 			}
-			
+
 			for($i=0,$c=count($document_srl);$i<$c;$i++){
 				$args->document_srl = $document_srl[$i];
 
 				// already has
-				if(in_array($args->document_srl,$has_tag_document_srl)) continue; 
+				if(in_array($args->document_srl,$has_tag_document_srl)) continue;
 
 				$args->tag_srl = getNextSequence();
-				$args->tag = $new_tag; 
+				$args->tag = $new_tag;
 				$output = executeQuery('tag.insertTag', $args);
 			}
 
@@ -1511,10 +1511,10 @@
 
             // 현재 가상사이트가 textyle이 아닐 경우 pass~
             $site_module_info = Context::get('site_module_info');
-            if(!$site_module_info || !$site_module_info->site_srl || $site_module_info->mid != 'textyle' ) return new Object();
+            if(!$site_module_info || !$site_module_info->site_srl || $site_module_info->mid != $this->textyle_mid) return new Object();
 
             // 현재 요청된 사이트가 textyle이고 textyle의 action이면 pass~
-            if($oModule->mid == 'textyle' && isset($oModule->xml_info->action->{$oModule->act})) return new Object();
+            if($oModule->mid == $this->textyle_mid && isset($oModule->xml_info->action->{$oModule->act})) return new Object();
 
             $oTextyleModel = &getModel('textyle');
             $oTextyleView = &getView('textyle');
@@ -1541,15 +1541,15 @@
                 // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
                 Context::set('root_url', Context::getRequestUri());
                 Context::set('home_url', getSiteUrl($textyle->domain));
-                Context::set('profile_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleProfile'));
-                Context::set('guestbook_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleGuestbook'));
-                Context::set('tag_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleTag'));
+                Context::set('profile_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleProfile'));
+                Context::set('guestbook_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleGuestbook'));
+                Context::set('tag_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleTag'));
                 if(Context::get('is_logged')) Context::set('admin_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleToolDashboard'));
-                else Context::set('admin_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleToolLogin'));
+                else Context::set('admin_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleToolLogin'));
                 Context::set('textyle_title', $textyle->get('textyle_title'));
                 Context::set('textyle', $textyle);
 
-                // 추가 메뉴 
+                // 추가 메뉴
                 $extra_menus = array(
                 );
                 Context::set('extra_menus', $extra_menus);
@@ -1606,7 +1606,7 @@
             $oImporterAdminController->procImporterAdminPreProcessing();
 
             if(in_array(strtolower('dispTextyleToolConfigData'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
-            
+
             $xml_file = Context::get('xml_file');
             if(!$xml_file || $xml_file == 'http://') return new Object(-1,'msg_migration_file_is_null');
 
@@ -1639,10 +1639,10 @@
             if($vars->api_srl) {
                 $output = executeQuery('textyle.getApiInfo',$vars);
                 if($output->data->api_srl) return executeQuery('textyle.updateBlogAPI', $vars);
-            } 
+            }
             $vars->api_srl = getNextSequence();
             return executeQuery('textyle.insertBlogAPI', $vars);
-        } 
+        }
 
         function procTextyleToggleEnableAPI() {
             $vars->api_srl = Context::get('api_srl');
