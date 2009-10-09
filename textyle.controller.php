@@ -788,6 +788,7 @@
 			$oDocumentController = &getController('document');
 			
             $oDocument = $oDocumentModel->getDocument($args->document_srl);
+            $args->category_srl = $oDocument->get('category_srl');
 			if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
 
 			$output = $oDocumentController->updateDocument($oDocument, $args);

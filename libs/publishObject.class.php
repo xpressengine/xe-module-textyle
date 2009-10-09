@@ -108,12 +108,17 @@
                         break;
                     default :
                             require_once(_XE_PATH_.'modules/textyle/libs/metaweblog.class.php');
+
                             $oMeta = new metaWebLog($val->blogapi_url, $val->blogapi_user_id, $val->blogapi_password);
-                            $val->categories = $oMeta->getCategories();
+                            $output = $oMeta->getUsersBlogs();
+                            if(!$output->toBool()) continue;
+                            $blogid = $output->get('blogid');
+                            $val->categories = $oMeta->getCategories($blogid);
                         break;
                 }
                 if($this->blogapis[$val->api_srl]) {
                     $val->log = $this->blogapis[$val->api_srl]->log;
+                    $val->category = $this->blogapis[$val->api_srl]->category;
                 }
                 $apis[$val->api_srl] = $val;
             }
@@ -136,8 +141,10 @@
 
         function addBlogApi($api_srl, $category = null) {
             if(!$api_srl) return;
-            if(isset($this->blogapis[$api_srl])) $this->blogapis[$api_srl]->reserve = true;
-            else {
+            if(isset($this->blogapis[$api_srl])) {
+                $this->blogapis[$api_srl]->reserve = true;
+                $this->blogapis[$api_srl]->category = $category;
+            } else {
                 $this->blogapis[$api_srl]->category = $category;
                 $this->blogapis[$api_srl]->postid = null;
                 $this->blogapis[$api_srl]->log = '';
@@ -187,8 +194,8 @@
                 foreach($this->blogapis as $api_srl => $val) {
                     if(!$apis[$api_srl] || !$val->reserve) continue;
 
-                    if($val->postid) $this->modifyBlogApi($apis[$api_srl], $val->postid);
-                    else $output = $this->sendBlogApi($apis[$api_srl]);
+                    if($val->postid) $this->modifyBlogApi($apis[$api_srl], $val->postid, $val->category);
+                    else $output = $this->sendBlogApi($apis[$api_srl], $val->category);
 
                     if($output->toBool()) {
                         $this->blogapis[$api_srl]->postid = $output->get('postid');
@@ -208,7 +215,7 @@
         }
 
 
-        function sendBlogApi($api) {
+        function sendBlogApi($api, $category) {
             if(!$this->oDocument->isExists()) return;
 
             switch($api->blogapi_type) {
@@ -227,24 +234,32 @@
                         if($this->oDocument->hasUploadedFiles()) {
                             $file_list = $this->oDocument->getUploadedFiles();
                             if(count($file_list)) {
+                                $content = $this->oDocument->get('content');
                                 foreach($file_list as $file) {
                                     $output = $oMeta->newMediaObject($blogid, $file->source_filename, $file->uploaded_filename);
                                     $target_file = $output->get('target_file');
-                                    if($target_file) {
-                                        $this->oDocument->add('content', str_replace($file->uploaded_filename, $target_file, $this->oDocument->get('content')));
-                                    }
+
+                                    if(!$target_file) continue;
+
+                                    preg_match('/(.+)\/'.preg_quote($file->source_filename).'$/',$file->uploaded_filename, $m);
+                                    $path = $m[1].'/';
+                                    $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
+
+                                    if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                                    if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
+
                                 }
+                                $this->oDocument->add('content', $content);
                             }
                         }
-
-                        $output = $oMeta->newPost($blogid, $this->oDocument);
+                        $output = $oMeta->newPost($blogid, $this->oDocument, $category);
                     break;
 
             }
             return $output;
         }
 
-        function modifyBlogApi($api, $postid) {
+        function modifyBlogApi($api, $postid, $category) {
             if(!$this->oDocument->isExists()) return;
 
             switch($api->blogapi_type) {
@@ -273,7 +288,7 @@
                             }
                         }
 
-                        $output = $oMeta->newPost($blogid, $this->oDocument);
+                        $output = $oMeta->editPost($blogid, $this->oDocument, $category);
                     break;
 
             }

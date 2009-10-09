@@ -38,12 +38,12 @@
             return $output;
         }
 
-        function getCategories() {
+        function getCategories($blogid) {
             $oXmlParser = new XmlParser();
             
             $input = sprintf(
                 '<?xml version="1.0" encoding="utf-8" ?><methodCall><methodName>metaWeblog.getCategories</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param></params></methodCall>',
-                'textyle',
+                $blogid,
                 $this->user_id,
                 $this->password
             );
@@ -61,7 +61,7 @@
 
             $categories = array();
             for($i=0,$c=count($val);$i<$c;$i++) {
-                $category = trim($val[$i]->struct->member[0]->value->string->body);
+                $category = trim($val[$i]->struct->member[1]->value->string->body);
                 if(!$category) continue;
                 $categories[] = $category;
             }
@@ -112,7 +112,7 @@
 
         }
 
-        function newPost($blogid, $oDocument) {
+        function newPost($blogid, $oDocument, $category = null) {
             $oXmlParser = new XmlParser();
             $oDocumentModel = &getModel('document');
             $category_list = $oDocumentModel->getCategoryList($oDocument->get('module_srl'));
@@ -123,7 +123,7 @@
                     $this->password,
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('title')),
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('content')),
-                    str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$category_list[$oDocument->get('category_srl')]->title),
+                    str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$category),
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('tags'))
             );
             $output = $this->_request($this->url, $input,  'application/octet-stream','POST');
@@ -141,7 +141,7 @@
             return $output;
         }
 
-        function editPost($postid, $oDocument) {
+        function editPost($postid, $oDocument, $category = null) {
             $oXmlParser = new XmlParser();
             $oDocumentModel = &getModel('document');
             $category_list = $oDocumentModel->getCategoryList($oDocument->get('module_srl'));
@@ -152,7 +152,7 @@
                     $this->password,
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('title')),
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('content')),
-                    str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$category_list[$oDocument->get('category_srl')]->title),
+                    str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$category),
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('tags'))
             );
             $output = $this->_request($this->url, $input,  'application/octet-stream','POST');
