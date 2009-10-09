@@ -1439,13 +1439,13 @@
         function _checkDisabledFunction($str){
             $disabled = array(
                     // file
-                    'fopen','link','unlink','popen','symlink','touch','readfile','rmdir','mkdir','rename','copy','delete','file_get_contents','file_put_contents','tmpname'
+                    'fopen','link','unlink','popen','symlink','touch','readfile','rmdir','mkdir','rename','copy','delete','file_get_contents','file_put_contents','tmpname','parse_ini_file'
                     // dir
-                    ,'chdir','readdir','opendir','scandir'
+                    ,'dir'
                    // database
-                   ,'mysql.*','sqlite.*','PDO.*','cubird.*','ibase.*','pg_.*','_pconnect','_connect'
+                   ,'mysql.*','sqlite.*','PDO.*','cubird.*','ibase.*','pg_.*','_pconnect','_connect','oci.*'
                    // network /etc
-                   ,'fsockopen','pfsockopen','shmop_.*','shm_.*','sem_.*'
+                   ,'fsockopen','pfsockopen','shmop_.*','shm_.*','sem_.*','dl','ini_.*','php.*','zend.*','header','create_function','call_*','imap','openlog','socket.*','ob_.*','*.cookie'
                    // XE
                    ,'db.*','filehandler.*','displayhandler.*','xehttprequest.*','context.*','getmodel','getcontroller','getview','getadminmodel','getadmincontroller','getadminview'
             );
