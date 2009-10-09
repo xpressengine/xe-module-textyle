@@ -78,6 +78,10 @@
 
             switch($type) {
                 case 'blogger' :
+                        require_once(_XE_PATH_.'modules/textyle/libs/blogger.class.php');
+                        $oBlogger = new blogger($url, $user_id, $password);
+                        $output = $oBlogger->getUsersBlogs();
+                        if(!$output->toBool()) return $output;
                     break;
                 case 'movalbletype' :
                     break;
@@ -106,6 +110,10 @@
             foreach($output->data as $key => $val) {
                 switch($val->blogapi_type) {
                     case 'blogger' :
+                            require_once(_XE_PATH_.'modules/textyle/libs/blogger.class.php');
+                            $oBlogger = new blogger($val->blogapi_url, $val->blogapi_user_id, $val->blogapi_password);
+                            $output = $oBlogger->getCategories();
+                            if(!$output->toBool()) return $output;
                         break;
                     case 'movalbletype' :
                         break;
@@ -213,6 +221,9 @@
 
             switch($api->blogapi_type) {
                 case 'blogger' :
+                        require_once(_XE_PATH_.'modules/textyle/libs/blogger.class.php');
+                        $oBlogger = new blogger($api->blogapi_url, $api->blogapi_user_id, $api->blogapi_password);
+                        $output = $oBlogger->newPost($this->oDocument, $category);
                     break;
                 case 'movalbletype' :
                     break;
@@ -231,6 +242,9 @@
 
             switch($api->blogapi_type) {
                 case 'blogger' :
+                        require_once(_XE_PATH_.'modules/textyle/libs/blogger.class.php');
+                        $oBlogger = new blogger($api->blogapi_url, $api->blogapi_user_id, $api->blogapi_password);
+                        $output = $oBlogger->editPost($postid, $this->oDocument, $category);
                     break;
                 case 'movalbletype' :
                     break;
