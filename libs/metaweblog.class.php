@@ -62,11 +62,13 @@
             } 
 
             $val = $xmlDoc->methodresponse->params->param->value->array->data->value;
-            if(!is_array($val)) $val[] = $val;
+            if(!is_array($val)) $list[] = $val;
+            else $list = $val;
 
             $categories = array();
-            for($i=0,$c=count($val);$i<$c;$i++) {
-                $category = trim($val[$i]->struct->member[1]->value->string->body);
+            for($i=0,$c=count($list);$i<$c;$i++) {
+		$category = trim($list[$i]->struct->member[1]->value->string->body);
+		if(!$category) $category = trim($list[$i]->struct->member[1]->value->body);
                 if(!$category) continue;
                 $categories[] = $category;
             }
@@ -136,7 +138,14 @@
 
                         preg_match('/(.+)\/'.preg_quote($file->source_filename).'$/',$file->uploaded_filename, $m);
                         $path = $m[1].'/';
+			$uploaded_filename = $file->uploaded_filename;
                         $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
+
+                        if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                        if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
+
+			$uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
+                        $encoded_filename = preg_replace('/^\.\//','',$path.str_replace('+','%20',urlencode($file->source_filename)));
 
                         if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
@@ -194,6 +203,11 @@
                         if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
 
+			$uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
+                        $encoded_filename = preg_replace('/^\.\//','',$path.str_replace('+','%20',urlencode($file->source_filename)));
+
+                        if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                        if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
                     }
                     $oDocument->add('content', $content);
                 }
