@@ -140,12 +140,12 @@
         /**
          * @brief publishObject load
          **/
-        function getPublishObject($document_srl = 0) {
+        function getPublishObject($module_srl, $document_srl = 0) {
             static $objects = array();
 
             require_once($this->module_path.'libs/publishObject.class.php');
 
-            if(!isset($objects[$document_srl])) $objects[$document_srl] = new publishObject($document_srl);
+            if(!isset($objects[$document_srl])) $objects[$document_srl] = new publishObject($module_srl, $document_srl);
 
             return $objects[$document_srl];
         }
@@ -416,7 +416,7 @@
         function getTextyleAPITest() {
             $oTextyleModel = &getModel('textyle');
             $oTextyleController = &getController('textyle');
-            $oPublish = $oTextyleModel->getPublishObject();
+            $oPublish = $oTextyleModel->getPublishObject($this->module_srl);
 
             $var = Context::getRequestVars();
 

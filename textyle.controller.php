@@ -703,14 +703,29 @@
         function procTextylePostPublish() {
             $oTextyleModel = &getModel('textyle');
 
-            require_once($this->module_path.'libs/publishObject.class.php');
-
             $oDocumentModel = &getModel('document');
 			$oDocumentController = &getController('document');
 
             $var = Context::getRequestVars();
 
-            $oPublish = $oTextyleModel->getPublishObject($var->document_srl);
+            $oDocument = $oDocumentModel->getDocument($var->document_srl);
+            $vars = $oDocument->getObjectVars();
+            $vars->tags = $var->tags;
+            $vars->module_srl = $this->module_srl;
+            $vars->category_srl = $var->category_srl;
+            $output = $this->updatePost($vars);
+            if(!$output->toBool()) return $output;
+
+			$var->alias = trim($var->alias);
+			if($var->use_alias=='Y' && $var->alias){
+				$output = $oDocumentController->insertAlias($this->module_srl,$var->document_srl,$var->alias);
+				if(!$output->toBool()) return $output;
+			}
+
+            $this->add('mid', Context::get('mid'));
+            $this->add('document_srl', $output->get('document_srl'));
+
+            $oPublish = $oTextyleModel->getPublishObject($this->module_srl, $var->document_srl);
 
             foreach($var as $key => $val) {
                 if(preg_match('/^trackback_(url|charset)([0-9]*)$/i', $key, $match)&&$val) $publish_option->trackbacks[(int)$match[2]][$match[1]] = $val;
@@ -724,22 +739,6 @@
             $oPublish->setMe2day($publish_option->send_me2day);
             $oPublish->setTwitter($publish_option->send_twitter);
             $oPublish->save();
-
-            $oDocument = $oDocumentModel->getDocument($var->document_srl);
-            $vars = $oDocument->getObjectVars();
-            $vars->tags = $var->tags;
-            $vars->module_srl = $this->module_srl;
-            $vars->category_srl = $var->category_srl;
-            $output = $this->updatePost($vars);
-
-			$var->alias = trim($var->alias);
-			if($var->use_alias=='Y' && $var->alias){
-				$output = $oDocumentController->insertAlias($this->module_srl,$var->document_srl,$var->alias);
-				if(!$output->toBool()) return $output;
-			}
-
-            $this->add('mid', Context::get('mid'));
-            $this->add('document_srl', $output->get('document_srl'));
 
             $subscripted = false;
 			$var->publish_date_yyyymmdd = ereg_replace("[^0-9]",'',str_replace("-",'',$var->publish_date_yyyymmdd));
@@ -786,7 +785,7 @@
 			$oDocumentController = &getController('document');
 			
             $oDocument = $oDocumentModel->getDocument($args->document_srl);
-            $args->category_srl = $oDocument->get('category_srl');
+            if(!$args->category_srl) $args->category_srl = $oDocument->get('category_srl');
 			if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
 
 			$output = $oDocumentController->updateDocument($oDocument, $args);
@@ -1184,7 +1183,7 @@
 			$output = executeQuery('document.updateDocumentOrder',$args);
             if(!$output->toBool()) return $output;
 
-            $oPublish = $oTextyleModel->getPublishObject($document_srl);
+            $oPublish = $oTextyleModel->getPublishObject($module_srl, $document_srl);
             $oPublish->publish();
 		}
 

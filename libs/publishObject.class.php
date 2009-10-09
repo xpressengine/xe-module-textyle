@@ -1,5 +1,6 @@
 <?php
     class publishObject {
+        var $module_srl = null;
         var $document_srl = null;
         var $oDocument = null;
 
@@ -31,7 +32,9 @@
                 ),
             );
 
-        function publishObject($document_srl = 0) {
+        function publishObject($module_srl, $document_srl = 0) {
+            $this->module_srl = $module_srl;
+            $this->document_srl = $document_srl;
             if(!$document_srl) return;
 
             $oDocumentModel = &getModel('document');
@@ -96,7 +99,7 @@
         function getApis() {
             if(!$this->oDocument->isExists()) return array();
 
-            $args->module_srl = $this->oDocument->get('module_srl');
+            $args->module_srl = $this->module_srl;
             $output = executeQueryArray('textyle.getApis', $args);
             if(!$output->data) return array();
 
@@ -108,12 +111,8 @@
                         break;
                     default :
                             require_once(_XE_PATH_.'modules/textyle/libs/metaweblog.class.php');
-
                             $oMeta = new metaWebLog($val->blogapi_url, $val->blogapi_user_id, $val->blogapi_password);
-                            $output = $oMeta->getUsersBlogs();
-                            if(!$output->toBool()) continue;
-                            $blogid = $output->get('blogid');
-                            $val->categories = $oMeta->getCategories($blogid);
+                            $val->categories = $oMeta->getCategories();
                         break;
                 }
                 if($this->blogapis[$val->api_srl]) {
@@ -141,14 +140,8 @@
 
         function addBlogApi($api_srl, $category = null) {
             if(!$api_srl) return;
-            if(isset($this->blogapis[$api_srl])) {
-                $this->blogapis[$api_srl]->reserve = true;
-                $this->blogapis[$api_srl]->category = $category;
-            } else {
-                $this->blogapis[$api_srl]->category = $category;
-                $this->blogapis[$api_srl]->postid = null;
-                $this->blogapis[$api_srl]->log = '';
-            }
+            $this->blogapis[$api_srl]->reserve = true;
+            $this->blogapis[$api_srl]->category = $category;
         }
 
         function setMe2day($flag = false) {
@@ -179,7 +172,7 @@
 
             if(!$this->oDocument->isExists()) return;
 
-            $oTextyle = $oTextyleModel->getTextyle($this->oDocument->get('module_srl'));
+            $oTextyle = $oTextyleModel->getTextyle($this->module_srl);
 
             if(count($this->trackbacks)) {
                 foreach($this->trackbacks as $trackback_url => $val) {
@@ -194,7 +187,7 @@
                 foreach($this->blogapis as $api_srl => $val) {
                     if(!$apis[$api_srl] || !$val->reserve) continue;
 
-                    if($val->postid) $this->modifyBlogApi($apis[$api_srl], $val->postid, $val->category);
+                    if($val->postid) $output = $this->modifyBlogApi($apis[$api_srl], $val->postid, $val->category);
                     else $output = $this->sendBlogApi($apis[$api_srl], $val->category);
 
                     if($output->toBool()) {
@@ -226,33 +219,7 @@
                 default :
                         require_once(_XE_PATH_.'modules/textyle/libs/metaweblog.class.php');
                         $oMeta = new metaWebLog($api->blogapi_url, $api->blogapi_user_id, $api->blogapi_password);
-                        $output = $oMeta->getUsersBlogs();
-                        if(!$output->toBool()) return $output;
-
-                        $blogid = $output->get('blogid');
-
-                        if($this->oDocument->hasUploadedFiles()) {
-                            $file_list = $this->oDocument->getUploadedFiles();
-                            if(count($file_list)) {
-                                $content = $this->oDocument->get('content');
-                                foreach($file_list as $file) {
-                                    $output = $oMeta->newMediaObject($blogid, $file->source_filename, $file->uploaded_filename);
-                                    $target_file = $output->get('target_file');
-
-                                    if(!$target_file) continue;
-
-                                    preg_match('/(.+)\/'.preg_quote($file->source_filename).'$/',$file->uploaded_filename, $m);
-                                    $path = $m[1].'/';
-                                    $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
-
-                                    if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
-                                    if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
-
-                                }
-                                $this->oDocument->add('content', $content);
-                            }
-                        }
-                        $output = $oMeta->newPost($blogid, $this->oDocument, $category);
+                        $output = $oMeta->newPost($this->oDocument, $category);
                     break;
 
             }
@@ -270,25 +237,8 @@
                 default :
                         require_once(_XE_PATH_.'modules/textyle/libs/metaweblog.class.php');
                         $oMeta = new metaWebLog($api->blogapi_url, $api->blogapi_user_id, $api->blogapi_password);
-                        $output = $oMeta->getUsersBlogs();
-                        if(!$output->toBool()) return $output;
+                        $output = $oMeta->editPost($postid, $this->oDocument, $category);
 
-                        $blogid = $output->get('blogid');
-
-                        if($this->oDocument->hasUploadedFiles()) {
-                            $file_list = $this->oDocument->getUploadedFiles();
-                            if(count($file_list)) {
-                                foreach($file_list as $file) {
-                                    $output = $oMeta->newMediaObject($blogid, $file->source_filename, $file->uploaded_filename);
-                                    $target_file = $output->get('target_file');
-                                    if($target_file) {
-                                        $this->oDocument->add('content', str_replace($file->uploaded_filename, $target_file, $this->oDocument->get('content')));
-                                    }
-                                }
-                            }
-                        }
-
-                        $output = $oMeta->editPost($blogid, $this->oDocument, $category);
                     break;
 
             }

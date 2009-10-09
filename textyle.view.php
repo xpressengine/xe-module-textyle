@@ -423,7 +423,7 @@
 
             Context::set('oDocument', $oDocument);
             Context::set('oTextyle', $oTextyleModel->getTextyle($this->module_srl));
-            Context::set('oPublish', $oTextyleModel->getPublishObject($oDocument->document_srl));
+            Context::set('oPublish', $oTextyleModel->getPublishObject($this->module_srl, $oDocument->document_srl));
             Context::set('category_list', $oDocumentModel->getCategoryList($this->module_srl));
 
             Context::addJsFilter($this->module_path.'tpl/filter', 'publish_post.xml');
@@ -1094,7 +1094,7 @@
         function dispTextyleToolConfigBlogApi() {
             $oTextyleModel = &getModel('textyle');
 
-            Context::set('oPublish', $oTextyleModel->getPublishObject());
+            Context::set('oPublish', $oTextyleModel->getPublishObject($this->module_srl));
 
             $api_srl = Context::get('api_srl');
             if($api_srl) {

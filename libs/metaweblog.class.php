@@ -3,6 +3,7 @@
         var $url = null;
         var $user_id = null;
         var $password = null;
+        var $blogid = null;
 
         function metaWebLog($url, $user_id = null, $password = null) {
             if(!preg_match('/^(http|https)/i',$url)) $url = 'http://'.$url;
@@ -33,17 +34,21 @@
             $val = $xmlDoc->methodresponse->params->param->value->array->data->value->struct->member;
             $output = new Object();
             $output->add('url', $val[0]->value->string->body?$val[0]->value->string->body:$val[0]->value->body);
-            $output->add('blogid', $val[1]->value->string->body?$val[1]->value->string->body:$val[1]->value->body);
+            $output->add('blogid', $blogid = $val[1]->value->string->body?$val[1]->value->string->body:$val[1]->value->body);
             $output->add('name', $val[2]->value->string->body?$val[2]->value->string->body:$val[2]->value->body);
             return $output;
         }
 
-        function getCategories($blogid) {
+        function getCategories() {
             $oXmlParser = new XmlParser();
+
+            $output = $this->getUsersBlogs();
+            if(!$output->toBool()) return array();
+            $this->blogid = $output->get('blogid');
             
             $input = sprintf(
                 '<?xml version="1.0" encoding="utf-8" ?><methodCall><methodName>metaWeblog.getCategories</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param></params></methodCall>',
-                $blogid,
+                $this->blogid,
                 $this->user_id,
                 $this->password
             );
@@ -68,7 +73,7 @@
             return $categories;
         }
 
-        function newMediaObject($blogid, $filename, $source_file) {
+        function newMediaObject($filename, $source_file) {
             $oXmlParser = new XmlParser();
             if(preg_match('/\.(jpg|gif|jpeg|png)$/i',$filename)) {
                 list($width, $height, $type, $attrs) = @getimagesize($source_file);
@@ -89,7 +94,7 @@
             }
 
             $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.newMediaObject</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>name</name><value><string>%s</string></value></member><member><name>type</name><value><string>%s</string></value></member><member><name>bits</name><value><base64>%s</base64></value></member></struct></value></param></params></methodCall>',
-                $blogid,
+                $this->blogid,
                 $this->user_id,
                 $this->password,
                 str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$filename),
@@ -112,13 +117,37 @@
 
         }
 
-        function newPost($blogid, $oDocument, $category = null) {
+        function newPost($oDocument, $category = null) {
             $oXmlParser = new XmlParser();
-            $oDocumentModel = &getModel('document');
-            $category_list = $oDocumentModel->getCategoryList($oDocument->get('module_srl'));
+
+            $output = $this->getUsersBlogs();
+            if(!$output->toBool()) return $output;
+            $this->blogid = $output->get('blogid');
+
+            if($oDocument->hasUploadedFiles()) {
+                $file_list = $oDocument->getUploadedFiles();
+                if(count($file_list)) {
+                    $content = $oDocument->get('content');
+                    foreach($file_list as $file) {
+                        $output = $this->newMediaObject($file->source_filename, $file->uploaded_filename);
+                        $target_file = $output->get('target_file');
+
+                        if(!$target_file) continue;
+
+                        preg_match('/(.+)\/'.preg_quote($file->source_filename).'$/',$file->uploaded_filename, $m);
+                        $path = $m[1].'/';
+                        $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
+
+                        if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                        if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
+
+                    }
+                    $oDocument->add('content', $content);
+                }
+            }
 
             $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.newPost</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>title</name><value><string>%s</string></value></member><member><name>description</name><value><string>%s</string></value></member><member><name>categories</name><value><array><data><value><string>%s</string></value></data></array></value></member><member><name>tagwords</name><value><array><data><value><string>%s</string></value></data></array></value></member></struct></value></param><param><value><boolean>1</boolean></value></param></params></methodCall>',
-                    $blogid,
+                    $this->blogid,
                     $this->user_id,
                     $this->password,
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('title')),
@@ -143,8 +172,32 @@
 
         function editPost($postid, $oDocument, $category = null) {
             $oXmlParser = new XmlParser();
-            $oDocumentModel = &getModel('document');
-            $category_list = $oDocumentModel->getCategoryList($oDocument->get('module_srl'));
+
+            $output = $this->getUsersBlogs();
+            if(!$output->toBool()) return $output;
+            $this->blogid = $output->get('blogid');
+
+            if($oDocument->hasUploadedFiles()) {
+                $file_list = $oDocument->getUploadedFiles();
+                if(count($file_list)) {
+                    $content = $oDocument->get('content');
+                    foreach($file_list as $file) {
+                        $output = $this->newMediaObject($file->source_filename, $file->uploaded_filename);
+                        $target_file = $output->get('target_file');
+
+                        if(!$target_file) continue;
+
+                        preg_match('/(.+)\/'.preg_quote($file->source_filename).'$/',$file->uploaded_filename, $m);
+                        $path = $m[1].'/';
+                        $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
+
+                        if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                        if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
+
+                    }
+                    $oDocument->add('content', $content);
+                }
+            }
 
             $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.editPost</methodName><params><param><value><i4>%s</i4></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>title</name><value><string>%s</string></value></member><member><name>description</name><value><string>%s</string></value></member><member><name>categories</name><value><array><data><value><string>%s</string></value></data></array></value></member><member><name>tagwords</name><value><array><data><value><string>%s</string></value></data></array></value></member></struct></value></param><param><value><boolean>1</boolean></value></param></params></methodCall>',
                     $postid,
