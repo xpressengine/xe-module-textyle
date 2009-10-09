@@ -5,7 +5,6 @@
     <node target="email_address" maxlength="250" />
     <node target="homepage" maxlength="250"/>
     <node target="title" required="true" minlength="1" maxlength="250" />
-    <node target="content" required="true" />
     <node target="category_srl" required="true" />
   </form>
   <response callback_func="completePostsave">
