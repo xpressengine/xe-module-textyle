@@ -382,6 +382,7 @@
 
     $lang->msg_already_used_url = '既に利用されているURLです。';
     $lang->alert_reset_skin = '初期化すると入力したHTML・CSSの内容全てが無くなります。\n\n初期化して宜しいですか？';
+    $lang->msg_used_disabled_function = '스킨에서 사용할 수 없는 구문이 있습니다.';
 
 	$lang->msg_close_before_write = "変更した内容が保存されてません。";
 

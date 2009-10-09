@@ -383,6 +383,7 @@
 
     $lang->msg_already_used_url = 'The URL is already being used.';
     $lang->alert_reset_skin = 'If you reset skin, all the HTML&middot;CSS you inputted will be removed.\n\nAre you sure to reset it?';
+    $lang->msg_used_disabled_function = '스킨에서 사용할 수 없는 구문이 있습니다.';
 
 	$lang->msg_close_before_write = "Changed contents are not saved.";
 

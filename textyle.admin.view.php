@@ -19,7 +19,6 @@
         }
 
         function dispTextyleAdminList() {
-
             $page = Context::get('page');
             if(!$page) $page = 1;
 
@@ -37,7 +36,6 @@
 			$oModuleModel = &getModel('module');
 
             $module_srl = Context::get('module_srl');
-
             if($module_srl) {
                 $oTextyleModel = &getModel('textyle');
 				$textyle = $oTextyleModel->getTextyle($module_srl);
@@ -85,5 +83,4 @@
             $this->setTemplateFile('textyle_custom_menu');
         }
     }
-
 ?>

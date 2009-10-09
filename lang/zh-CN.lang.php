@@ -382,6 +382,7 @@
 
     $lang->msg_already_used_url = '重复的地址。';
     $lang->alert_reset_skin = '初始化将删除所有被修改的HTML&middot;CSS代码。\n\n您确定要进行初始化吗？';
+    $lang->msg_used_disabled_function = '스킨에서 사용할 수 없는 구문이 있습니다.';
 
     $lang->msg_close_before_write = "更新内容尚没有被保存。";
 

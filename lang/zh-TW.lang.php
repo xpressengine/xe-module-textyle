@@ -383,6 +383,7 @@
 
     $lang->msg_already_used_url = '이미 사용중인 주소입니다.';
     $lang->alert_reset_skin = '초기화를 하시면 입력하신 HTML&middot;CSS 내용이 모두 사라집니다.\n\n초기화를 하시겠습니까?';
+    $lang->msg_used_disabled_function = '스킨에서 사용할 수 없는 구문이 있습니다.';
 
 	$lang->msg_close_before_write = "Changed contents are not saved.";
 

@@ -1422,17 +1422,40 @@
 
 
         function procTextyleToolLayoutConfigEdit() {
-            $oTextyleModel = &getModel('textyle');
-
             if(in_array(strtolower('dispTextyleToolLayoutConfigEdit'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
             $html = trim(Context::get('html'));
+            if($this->_checkDisabledFunction($html)) return new Object(-1,'msg_used_disabled_function');
+
+            $oTextyleModel = &getModel('textyle');
             $html_file = $oTextyleModel->getTextyleUserHTMLFile($this->module_srl);
             FileHandler::writeFile($html_file, $html);
 
             $css = trim(Context::get('css'));
             $css_file = $oTextyleModel->getTextyleUserCSSFile($this->module_srl);
             FileHandler::writeFile($css_file, $css);
+        }
+
+        function _checkDisabledFunction($str){
+            $disabled = array(
+                    // file
+                    'fopen','link','unlink','popen','symlink','touch','readfile','rmdir','mkdir','rename','copy','delete','file_get_contents','file_put_contents','tmpname'
+                    // dir
+                    ,'chdir','readdir','opendir','scandir'
+                   // database
+                   ,'mysql.*','sqlite.*','PDO.*','cubird.*','ibase.*','pg_.*','_pconnect','_connect'
+                   // network /etc
+                   ,'fsockopen','pfsockopen','shmop_.*','shm_.*','sem_.*'
+                   // XE
+                   ,'db.*','filehandler.*','displayhandler.*','xehttprequest.*','context.*','getmodel','getcontroller','getview','getadminmodel','getadmincontroller','getadminview'
+            );
+
+            preg_match_all('!<\!--@(.*?)-->!is',$str,$match1);
+            preg_match_all('/{([^{]*)}/i',$str,$match2);
+            $pattern = sprintf('/([^(]*)(%s)\(/i', join('|',$disabled));
+            $output =  preg_match_all($pattern, join(' ',$match1[1]) . join(' ',$match2[1]),$m);
+
+            return $output;
         }
 
         /**

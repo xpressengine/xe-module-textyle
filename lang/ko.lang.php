@@ -380,9 +380,9 @@
     $lang->msg_select_skin = '선택하신 스킨으로 Textyle 스킨을 변경합니다.\n\n지금 사용하시는 스킨 정보가 사라집니다.\n\n바꾸시겠습니까? ';
     $lang->cmd_preview_skin = '미리보기';
     $lang->cmd_generate_widget_code = '위젯 코드 생성';
-
     $lang->msg_already_used_url = '이미 사용중인 주소입니다.';
     $lang->alert_reset_skin = '초기화를 하시면 입력하신 HTML&middot;CSS 내용이 모두 사라집니다.\n\n초기화를 하시겠습니까?';
+    $lang->msg_used_disabled_function = '스킨에서 사용할 수 없는 구문이 있습니다.';
 
 	$lang->msg_close_before_write = "변경하신 내용이 저장되지 않았습니다.";
 
