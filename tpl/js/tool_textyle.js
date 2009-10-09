@@ -554,7 +554,6 @@ function deleteMaterialItem(material_srl){
         selectedEl.each(function() {
             material_srls.push(this.value);
         });
-        console.log(material_srls);
         params['material_srl'] = material_srls.join(',');
     }
 
