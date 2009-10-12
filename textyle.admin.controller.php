@@ -65,6 +65,7 @@
             $member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
 
             // 가상 사이트 생성
+            if(strpos($domain, '.') !== false) $domain = strtolower($domain);
             $output = $oModuleController->insertSite($domain, 0);
             if(!$output->toBool()) return $output;
             $site_srl = $output->get('site_srl');
@@ -201,7 +202,7 @@
             $vars = Context::gets('site_srl','user_id','domain','access_type','vid','module_srl');
             if(!$vars->site_srl) return new Object(-1,'msg_invalid_request');
 
-            if($vars->access_type=='domain') $args->domain = $vars->domain;
+            if($vars->access_type == 'domain') $args->domain = strtolower($vars->domain);
             else $args->domain = $vars->vid;
             if(!$args->domain) return new Object(-1,'msg_invalid_request');
 
