@@ -248,11 +248,11 @@
             $host = $url_info['host'];
 
             if(__PROXY_SERVER__!==null) {
-                $oRequest = new HTTP_Request(__PROXY_SERVER__);
+                $oRequest = new HTTP_Request(__PROXY_SERVER__, array('timeout'=>1, 'readTimeout'=>array(1,0)));
                 $oRequest->setMethod('POST');
                 $oRequest->addPostData('arg', serialize(array('Destination'=>$url, 'method'=>$method, 'body'=>$body, 'content_type'=>$content_type, "headers"=>$headers)));
             } else {
-                $oRequest = new HTTP_Request($url);
+                $oRequest = new HTTP_Request($url, array('timeout'=>1, 'readTimeout'=>array(1,0)));
                 if(count($headers)) {
                     foreach($headers as $key => $val) {
                         $oRequest->addHeader($key, $val);
