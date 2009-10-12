@@ -99,10 +99,10 @@
 								</tr>
                             </table>
                             <div class="buttonArea">
-                                    <span class="buttonGray medium"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>
+                                    <span class="buttonAction actionWhite"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>
                             </div>
 
-							<table border="0" cellspacing="0" class="setupData">
+							<table border="0" cellspacing="0" class="setupData" style="display:none" id="response_info">
 								<tr>
 									<th scope="row" rowspan="2"><label for="site_title">{$lang->blogapi_site_title}</label></th>
 									<td>
@@ -131,7 +131,7 @@
                             </div>
 						</fieldset>
 					</form>
-
+                    <p style="display:none">{$lang->}</p>
                     <!--@else-->
 
 					<table class="tableData" cellspacing="0" border="1" summary="Api List">

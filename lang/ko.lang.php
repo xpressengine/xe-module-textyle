@@ -100,6 +100,7 @@
     $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
     $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
     $lang->blogapi_example = '예) Window Live Writer, Google Docs, MS Word 2007 등';
+    $lang->not_permit_blogapi = 'API 연결확인이 되지 않았습니다.';
     $lang->blogapi_url = 'API 주소';
     $lang->target_site_url = '사이트 주소';
     $lang->blog_first_page = '첫 페이지';

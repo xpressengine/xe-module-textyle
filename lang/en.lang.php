@@ -197,6 +197,7 @@
     $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
     $lang->blogapi_support = 'Remote publishing via Blog API(Meta Weblog API) is available.';
     $lang->blogapi_example = 'ex) Window Live Writer, Google Docs, MS Word 2007, etc.';
+    $lang->not_permit_blogapi = 'API 연결확인이 되지 않았습니다.';
     $lang->blogapi_url = 'API URL';
     $lang->target_site_url = 'Site URL';
     $lang->blogapi_site_url = '발행 대상 사이트';

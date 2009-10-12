@@ -421,6 +421,10 @@
                 Context::set('subscription','Y');
             }
 
+            if($oDocument->get('module_srl') != $this->module_srl){
+                Context::set('from_saved',true);
+            }
+
             Context::set('oDocument', $oDocument);
             Context::set('oTextyle', $oTextyleModel->getTextyle($this->module_srl));
             Context::set('oPublish', $oTextyleModel->getPublishObject($this->module_srl, $oDocument->document_srl));

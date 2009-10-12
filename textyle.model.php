@@ -423,6 +423,8 @@
             $output = $oPublish->getBlogAPIInfo($var->blogapi_service, $var->blogapi_host_provider, $var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password);
             if(!$output->toBool()) return $output;
 
+            if(!$output->get('url')) $this->setMessage('not_permit_blogapi');
+
             $this->add('site_url', $output->get('url'));
             $this->add('title', $output->get('name'));
         }
