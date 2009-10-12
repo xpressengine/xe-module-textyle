@@ -182,7 +182,7 @@ A CSS framework ends here. We don't recommend modifying framework. You can overr
 */
 
 /* Element Reset */
-body { font-family:AppleGothic, Tahoma; font-size:12px; margin:0; background-color:#fff; color:#000;}
+body { font-family:AppleGothic, Tahoma, Sans-serif; font-size:12px; margin:0; background-color:#fff; color:#000;}
 address { font-style:normal;}
 hr{ display:none; position:absolute;}
 legend{ position:absolute; width:0; height:0; font-size:0; line-height:0; visibility:hidden;}
@@ -251,7 +251,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 #footer address .rss{ position:absolute; top:0; right:60px; white-space:normal; padding-left:13px; background:url(img/iconRss.gif) no-repeat left center; font-size:10px; font-weight:normal;}
 
 #footer .language { width:960px; height:0; margin:0 auto; position:relative; top:-16px; overflow:visible;}
-#footer .language button{ cursor:pointer; padding:0; overflow:visible; background:none; border:0; font-size:11px; font-family:Dotum; white-space:nowrap;}
+#footer .language button{ cursor:pointer; padding:0; overflow:visible; background:none; border:0; font-size:11px; white-space:nowrap;}
 #footer .language .selected { position:absolute; top:0; right:0; color:#767676; height:16px; *height:18px;}
 #footer .language ul { position:absolute; right:0; bottom:20px; margin:0; padding:10px; list-style:none; background:#fff; border:1px solid #ddd;}
 #footer .language ul li button { color:#666;}
@@ -279,7 +279,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 #body .extension .section.recentTag h2{ background-position:right -194px;}
 
 /* Content */
-#content .postTitle{ position:relative; padding:1em 0 5px 0; margin:0 0 20px 0; font-size:18px; font-family:Dotum; color:#000; border-top:2px solid #222;}
+#content .postTitle{ position:relative; padding:1em 0 5px 0; margin:0 0 20px 0; font-size:18px; color:#000; border-top:2px solid #222;}
 #content .postTitle em{ font-style:normal; color:#ff6600;}
 #content .postTitle .category{ padding:0 0 0 10px; margin:0 0 0 5px; font-size:14px; color:#b3b3b3; border-left:1px solid #b3b3b3;}
 
@@ -291,14 +291,14 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 #content .postMeta{ float:right; clear:both; position:relative; top:-40px; margin:0 0 -20px 0; right:0; font-size:11px; text-align:right;}
 #content .postMeta .yymmdd{ color:#666;}
 #content .postMeta .hhmm{ color:#8b8b8b;}
-#content .postMeta .author{ padding:0 0 0 6px; margin:0 0 0 4px; text-decoration:none; color:#000; background:url(img/lineVrText.gif) no-repeat left center; font-family:Dotum;}
+#content .postMeta .author{ padding:0 0 0 6px; margin:0 0 0 4px; text-decoration:none; color:#000; background:url(img/lineVrText.gif) no-repeat left center;}
 #content .postMeta a.editPost{ padding:0 0 0 8px; text-decoration:underline; margin-left:5px; color:#666; background:url(img/lineVrText.gif) no-repeat left center; *zoom:1;}
 
 #content .usedTag{ *zoom:1; font-size:11px;}
 #content .usedTag *{ display:inline; margin:0; padding:0;}
 #content .usedTag dt img{ vertical-align:middle;}
 #content .usedTag dd{ color:#8b8b8b; padding-left:5px;}
-#content .usedTag dd a{ color:#8b8b8b; text-decoration:none; font-family:Dotum;}
+#content .usedTag dd a{ color:#8b8b8b; text-decoration:none;}
 #content .usedTag dd a:hover,
 #content .usedTag dd a:active,
 #content .usedTag dd a:focus{ text-decoration:underline;}
@@ -417,7 +417,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 .feedback .pwForm *{ vertical-align:middle;}
 .feedback .pwForm{ margin:1em 0;}
 .feedback .pwForm .inputText{ font-size:11px; padding:2px 4px 4px 4px; height:12px; width:90px; margin:0 -1px 0 0;}
-.feedback .pwForm .submit{ border:1px solid #c2c2c2; border-top-color:#9c9c9c; border-left:0; background:#eee; padding:0 2px; height:20px; cursor:pointer; font:11px Dotum;}
+.feedback .pwForm .submit{ border:1px solid #c2c2c2; border-top-color:#9c9c9c; border-left:0; background:#eee; padding:0 2px; height:20px; cursor:pointer; font-size:11px;}
 
 .replyForm{ margin-bottom:50px; border-top:1px solid #808080; padding-top:1em;}
 .replyForm.guestBook{ border:0;}
@@ -529,7 +529,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 
 .recentComment .widgetA{ margin:0; padding:0; list-style:none;}
 .recentComment .widgetA li{ position:relative; padding:0; margin:0 0 5px 0;}
-.recentComment .widgetA li .author{ position:absolute; top:2px; right:0; font-size:11px; font-family:Dotum; color:#8b8b8b;}
+.recentComment .widgetA li .author{ position:absolute; top:2px; right:0; font-size:11px; color:#8b8b8b;}
 
 .recentTrackback .widgetA{ margin:0; padding:0; list-style:none;}
 .recentTrackback .widgetA li{ position:relative; padding:0; margin:0 0 5px 0;}
@@ -541,7 +541,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 /* widgetTagCloud */
 .widgetTagCloud { text-align:justify; font-size:12px; line-height:1.5; margin:0; padding:0;}
 .widgetTagCloud li{ display:inline; list-style:none;}
-.widgetTagCloud li a{ white-space:nowrap; font-family:Dotum;}
+.widgetTagCloud li a{ white-space:nowrap;}
 .widgetTagCloud li.level4 a{ font-size:12px; color:#8b8b8b !important;}
 .widgetTagCloud li.level3 a{ font-size:12px; color:#666 !important;}
 .widgetTagCloud li.level2 a{ font-size:12px; font-weight:bold; color:#666 !important;}
@@ -550,7 +550,6 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 /* Tag Cloud */
 .tagCloud { text-align:justify; font-size:12px; line-height:1.5; margin:0; padding:0;}
 .tagCloud li{ display:inline; white-space:nowrap; list-style:none;}
-.tagCloud li a{ font-family:Dotum;}
 .tagCloud li.level1 a{ font-size:11px; color:#888;}
 .tagCloud li.level2 a{ font-size:14px; color:#666;}
 .tagCloud li.level3 a{ font-size:18px; font-weight:bold; color:#444;}
@@ -571,7 +570,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 .searchResult li .date{ position:absolute; top:9px; right:0; font-size:9px; color:#8b8b8b;}
 
 /* textyleContent */
-.textyleContent{ font-size:12px; line-height:1.6; clear:both; font-family:Dotum;}
+.textyleContent{ font-size:12px; line-height:1.6; clear:both;}
 .textyleContent h1{ font-size:24px;}
 .textyleContent h2{ font-size:20px;}
 .textyleContent h3{ font-size:18px;}
@@ -619,7 +618,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 .textyleContent p{ margin:1em 0 !important;}
 
 /* Me2day Widget */
-.me2day_daily_digest{ line-height:1.5; font-family:Dotum;}
+.me2day_daily_digest{ line-height:1.5;}
 .me2day_daily_digest ul{ margin-left:0; padding-left:0; list-style:none;}
 .me2day_daily_digest li{ position:relative; clear:both; padding:0 0 16px 45px; margin-bottom:1em; *zoom:1; background:url(img/iconMe2day.gif) no-repeat 0 0;}
 .me2day_daily_digest .me2_tags{ display:block; padding:5px 0 5px 30px; margin:0; font-size:11px; line-height:1.2; color:#767676; background:url(img/iconMe2tag.gif) no-repeat left 5px;}

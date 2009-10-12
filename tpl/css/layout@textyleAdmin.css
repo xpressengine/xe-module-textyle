@@ -573,7 +573,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 /* Publish Title */
 .pTitle{ position:relative; height:59px; padding:14px 20px 0 20px; margin-bottom:3em; background:#eee; border-top:1px solid #e9e9e9; border-bottom:1px solid #e9e9e9;}
 .pTitle .title{ position:relative; border:1px dotted #ddd; background:#fff;}
-.pTitle .title h2{ margin:0; color:#6e6e6e; font-size:24px; padding:8px 0 0 10px; height:35px;}
+.pTitle .title h2{ margin:0; color:#6e6e6e; font-size:24px; padding:8px 0 0 10px; height:35px; background:#f8f8f8;}
 .pTitle .elementContainer{ margin:0 20px;}
 .pTitle .cap{ position:absolute; width:10px; height:75px; top:-1px; background:url(../img/bgPublishTitle.gif) no-repeat 0 0;}
 .pTitle .capLeft{ left:0; background-position:left top;}

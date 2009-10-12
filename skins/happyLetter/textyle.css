@@ -184,7 +184,7 @@ A CSS framework ends here. We don't recommend modifying framework. You can overr
 
 /* Element Reset */
 html{ background:#fff url(img/bgHtml.gif);}
-body { font-family:AppleGothic, Tahoma; font-size:12px; margin:0; color:#000;}
+body { font-family:AppleGothic, Tahoma, Sans-serif; font-size:12px; margin:0; color:#000;}
 address { font-style:normal;}
 hr{ display:none; position:absolute;}
 legend{ position:absolute; width:0; height:0; font-size:0; line-height:0; visibility:hidden;}
@@ -251,7 +251,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 #footer address{ float:right; height:16px; line-height:16px; color:#b39e89; font-size:10px; background:url(img/favicon.png) no-repeat right center; _background:url(img/favicon.gif) no-repeat right center; padding-right:25px;}
 
 #footer .language { float:left; position:relative;}
-#footer .language button{ cursor:pointer; padding:0; overflow:visible; background:none; border:0; font-size:11px; font-family:Dotum; white-space:nowrap;}
+#footer .language button{ cursor:pointer; padding:0; overflow:visible; background:none; border:0; font-size:11px; white-space:nowrap;}
 #footer .language .selected { color:#b39e89; height:16px; *height:18px;}
 #footer .language ul { position:absolute; left:0; bottom:20px; margin:0; padding:10px; list-style:none; background:#b39e89; border:1px solid #59514b;}
 #footer .language ul li button { color:#59514b;}
@@ -274,7 +274,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 #content:before,
 #content .ieMarginFixer{ content:""; display:block; clear:both; margin-top:-300px;}
 
-#content .postTitle{ padding:6px 0; margin:0 0 30px 0; font:bold 24px Dotum, Sans-serif; color:#333; text-align:center;}
+#content .postTitle{ padding:6px 0; margin:0 0 30px 0; font-weight:bold; font-size:24px; color:#333; text-align:center;}
 #content .postTitle em{ font-style:normal; color:#ff1a1a;}
 
 #content .postTitle a{ text-decoration:none; color:#333;}
@@ -282,7 +282,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 #content .postTitle a:active,
 #content .postTitle a:focus{ text-decoration:underline;}
 
-#content .postMeta{ margin:-30px 0 30px 0; clear:both; font:11px Dotum; text-align:center;}
+#content .postMeta{ margin:-30px 0 30px 0; clear:both; font-size:11px; text-align:center;}
 #content .postMeta *{ display:inline;}
 #content .postMeta dt{ color:#aaa; margin:0 1px;}
 #content .postMeta dd{ margin:0; color:#666; margin:0 1px;}
@@ -306,7 +306,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .usedTag:after{ content:""; display:block; clear:both;}
 .usedTag dt{ float:left; margin:0 10px 0 0;}
 .usedTag dd{ float:left; margin:0; color:#8b8b8b;}
-.usedTag dd a{ text-decoration:none; font-size:11px; font-family:Dotum; color:#8b8b8b;}
+.usedTag dd a{ text-decoration:none; font-size:11px; color:#8b8b8b;}
 .usedTag dd a:hover,
 .usedTag dd a:active,
 .usedTag dd a:focus{ text-decoration:underline;}
@@ -400,18 +400,18 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .feedback .reAction:after{ content:""; display:block; clear:both;}
 .feedback .reAction li{ position:relative; left:-5px; display:inline; margin:0; padding:0 0 0 5px; *padding:0 4px 0 5px; background:url(img/lineVrText.gif) no-repeat left center; *zoom:1; vertical-align:middle;}
 .feedback .reAction li *{ vertical-align:middle;}
-.feedback .reAction li a{ font:11px Dotum, Sans-serif; text-decoration:none; color:#666;}
+.feedback .reAction li a{ font-size:11px; text-decoration:none; color:#666;}
 .feedback .reAction li a:hover,
 .feedback .reAction li a:active,
 .feedback .reAction li a:focus{ text-decoration:underline;}
-.feedback .reAction li button{ overflow:visible; border:0; background:transparent; cursor:pointer; padding:0; font:11px Dotum; color:#666;}
+.feedback .reAction li button{ overflow:visible; border:0; background:transparent; cursor:pointer; padding:0; font-size:11px; color:#666;}
 
 .feedback .pwForm{ margin:0; padding:0; display:none;}
 .feedback .pwForm.active{ display:block;}
 .feedback .pwForm *{ vertical-align:middle;}
 .feedback .pwForm{ margin:1em 0;}
 .feedback .pwForm .inputText{ font-size:11px; padding:2px 4px 4px 4px; height:12px; width:90px; margin:0 -1px 0 0;}
-.feedback .pwForm .submit{ border:1px solid #c2c2c2; border-top-color:#9c9c9c; border-left:0; background:#eee; padding:0 2px; height:20px; cursor:pointer; font:11px Dotum;}
+.feedback .pwForm .submit{ border:1px solid #c2c2c2; border-top-color:#9c9c9c; border-left:0; background:#eee; padding:0 2px; height:20px; cursor:pointer; font-size:11px;}
 
 .replyForm{ margin-bottom:50px;}
 .replyForm.guestBook{ border:0;}
@@ -477,7 +477,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 /* Pagination Post */
 .pagination.paginationPost{ font-size:16px; line-height:1;}
 .pagination.paginationPost a.prev,
-.pagination.paginationPost a.next{ display:block; margin:0 0 15px 0 !important; background-repeat:no-repeat; background-color:transparent !important; white-space:normal; color:#333; font-family:Dotum; font-weight:bold !important;}
+.pagination.paginationPost a.next{ display:block; margin:0 0 15px 0 !important; background-repeat:no-repeat; background-color:transparent !important; white-space:normal; color:#333; font-weight:bold !important;}
 .pagination.paginationPost a.prev{ float:left; padding-left:30px; margin:0; background-image:url(img/iconPaginationPostPrev.gif); background-position:left 2px; text-align:left;}
 .pagination.paginationPost a.next{ float:right; padding-right:30px; margin:0; background-image:url(img/iconPaginationPostNext.gif); background-position:right 2px; text-align:right;}
 .pagination.paginationPost a.prev:hover,
@@ -494,12 +494,6 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .extensionHeader .section div{ overflow:visible !important;}
 .extensionHeader .section .widgetContainer{ position:relative; padding-top:50px !important; margin-top:-30px !important; *zoom:1;}
 .extensionHeader .section.sectionProfile .widgetContainer{ *margin-top:0; *top:-30px;}
-/*  
-.extensionHeader .section.sectionProfile .widgetContainer{ background:url(img/maskExtensionHeaderWhite.png) no-repeat !important;}
-.extensionHeader .section.sectionProfile .widgetContainer { _background:none !important; _filter:expression("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+request_uri+"modules/textyle/skins/happyLetter/img/maskExtensionHeaderWhite.png', sizingMethod='crop')") !important;}
-.extensionHeader .section.sectionCategory .widgetContainer{ background:url(img/maskExtensionHeaderYellow.png) no-repeat !important;}
-.extensionHeader .section.sectionCategory .widgetContainer { _background:none !important; _filter:expression("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+request_uri+"modules/textyle/skins/happyLetter/img/maskExtensionHeaderYellow.png', sizingMethod='crop')") !important;}
-*/
 
 /* sectionProfile */
 .extensionHeader .section.sectionProfile{ width:329px !important; left:180px;}
@@ -585,7 +579,6 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 /* Tag Cloud */
 .tagCloud { text-align:justify; font-size:12px; line-height:1.5; margin:0; padding:0;}
 .tagCloud li{ display:inline; white-space:nowrap; list-style:none;}
-.tagCloud li a{ font-family:Dotum;}
 .tagCloud li.level1 a{ font-size:11px; color:#888;}
 .tagCloud li.level2 a{ font-size:14px; color:#666;}
 .tagCloud li.level3 a{ font-size:18px; font-weight:bold; color:#444;}
@@ -599,14 +592,14 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 /* Search Result */
 .searchResult{ position:relative; margin:0; padding:0; list-style:none;}
 .searchResult li{ position:relative; padding:7px 100px 7px 0; border-top:1px solid #ccc; *zoom:1;}
-.searchResult li a{ text-decoration:none; color:#000; font-size:16px; font-weight:bold; font-family:Dotum;}
+.searchResult li a{ text-decoration:none; color:#000; font-size:16px; font-weight:bold;}
 .searchResult li a:hover,
 .searchResult li a:active,
 .searchResult li a:focus{ text-decoration:underline;}
 .searchResult li .date{ position:absolute !important; top:9px; right:0; font-size:9px; color:#8b8b8b;}
 
 /* textyleContent */
-.textyleContent{ font-size:12px; line-height:1.6; clear:both; font-family:Dotum; *zoom:1; *height:1%;}
+.textyleContent{ font-size:12px; line-height:1.6; clear:both; *zoom:1; *height:1%;}
 .textyleContent:after{ content:""; display:block; clear:both;}
 .textyleContent h1{ font-size:24px;}
 .textyleContent h2{ font-size:20px;}
@@ -662,7 +655,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .textyleContent .xe_dr_mov embed{ display:block; margin:0 auto;}
 
 /* Me2day Widget */
-.me2day_daily_digest{ line-height:1.5; font-family:Dotum;}
+.me2day_daily_digest{ line-height:1.5;}
 .me2day_daily_digest ul{ margin-left:0; padding-left:0; list-style:none;}
 .me2day_daily_digest li{ position:relative; clear:both; padding:0 0 16px 45px; margin-bottom:1em; *zoom:1; background:url(img/iconMe2day.gif) no-repeat 0 0;}
 .me2day_daily_digest .me2_tags{ display:block; padding:5px 0 5px 30px; margin:0; font-size:11px; line-height:1.2; color:#767676; background:url(img/iconMe2tag.gif) no-repeat left 5px;}
