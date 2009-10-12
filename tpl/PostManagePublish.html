@@ -143,7 +143,7 @@
 					<fieldset class="optionAPI">
 						<legend>API {$lang->posting_option}</legend>
 						<table border="1" cellspacing="0" summary="{$lang->posting_option}" class="tableData">
-							<caption class="check">{$val->blogapi_site_title} <span class="domain">({$val->blogapi_site_url})</span> - {$lang->publish_option}</caption>
+							<caption class="check">{$val->blogapi_site_title} <span class="domain">(<a href="{$val->blogapi_site_url}" onclick="window.open(this.href);return false;">{$val->blogapi_site_url}</a>)</span> - {$lang->publish_option}</caption>
 							<tr class="first">
 								<th scope="row">{$lang->publish}</th>
 								<td class="title"><input name="blogapi_{$val->api_srl}" type="checkbox" value="Y" class="inputCheck" id="blog_{$val->api_srl}" /><label for="blog_{$val->api_srl}">{$lang->publish_this_blog}</label> {$val->log}</td>
