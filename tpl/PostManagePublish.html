@@ -129,9 +129,9 @@
 							<tr>
 								<th scope="row">{$lang->comm_management}</th>
 								<td class="title">
-									<input name="allow_comment" type="checkbox" value="Y" class="inputCheck" id="checkReply" <!--@if($oDocument->allowComment())-->checked="checked"<!--@end--> />
+									<input name="allow_comment" type="checkbox" value="Y" class="inputCheck" id="checkReply" <!--@if($from_saved || $oDocument->allowComment())-->checked="checked"<!--@end--> />
 									<label for="checkReply">{$lang->allow_comment} </label>
-									<input name="allow_trackback" type="checkbox" value="Y" class="inputCheck" id="checkTrackback" <!--@if($oDocument->allowTrackback())-->checked="checked"<!--@end--> />
+									<input name="allow_trackback" type="checkbox" value="Y" class="inputCheck" id="checkTrackback" <!--@if($from_saved || $oDocument->allowTrackback())-->checked="checked"<!--@end--> />
 									<label for="checkTrackback">{$lang->allow_trackback} </label>
 								</td>
 							</tr>
