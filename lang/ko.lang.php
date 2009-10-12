@@ -364,6 +364,7 @@
     $lang->cmd_change_secret = '비밀전환';
     $lang->cmd_write_relation = '관련 글 쓰기';
     $lang->cmd_delete_materials = '글감 삭제';
+    $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
     $lang->cmd_restore = '복구';
     $lang->cmd_empty = '비우기';
     $lang->cmd_empty_basket = '휴지통 비우기';

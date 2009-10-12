@@ -2,7 +2,7 @@
     /**
      * @file   en.lang.php
      * @author haneul (haneul0318@gmail.com)
-     * @brief  Textyle(textyle) module's English language pack. 
+     * @brief  Textyle(textyle) module's English language pack.
      **/
 
     $lang->textyle = 'Textyle';
@@ -21,7 +21,7 @@
     $lang->textyle_summary = 'Summary of Textyle';
     $lang->item_unit = ' ';
     $lang->newest_documents ='Recent Posts';
-    $lang->newest_no_documents = "You have written nothing. Write some posts!"; 
+    $lang->newest_no_documents = "You have written nothing. Write some posts!";
     $lang->posts = 'Posts';
     $lang->newest_materials = 'Newest Ingredients';
 	$lang->newest_no_materials = 'There is no ingredient for writing. <a href="%s">Install Writing Ingredients Collector.</a>';
@@ -364,6 +364,7 @@
     $lang->cmd_change_secret = 'Make it secret';
     $lang->cmd_write_relation = 'Write a related post';
     $lang->cmd_delete_materials = 'Delete an ingredient';
+    $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
     $lang->cmd_restore = 'Restore';
     $lang->cmd_empty = 'Empty';
     $lang->cmd_empty_basket = 'Clear Recycle Bin';

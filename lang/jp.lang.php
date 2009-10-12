@@ -28,7 +28,7 @@
 	$lang->newest_comments = '最近コメント';
 	$lang->newest_no_comments = '登録されたコメントがありません。';
 	$lang->newest_guestbooks = '最新ゲストブック';
-	$lang->newest_no_guestbooks = '登録された書き込みがありません。'; 
+	$lang->newest_no_guestbooks = '登録された書き込みがありません。';
 	$lang->reserve = '予約';
     $lang->publish = '発行';
     $lang->publish_update = '재발행';
@@ -54,8 +54,8 @@
     $lang->signature = '自己紹介';
     $lang->default_config = '基本設定';
     $lang->blog_title = 'ブログタイトル';
-    $lang->about_blog_title = 'この説明文は必要ないです。'; 
-    $lang->blog_description = 'ブログの説明'; 
+    $lang->about_blog_title = 'この説明文は必要ないです。';
+    $lang->blog_description = 'ブログの説明';
     $lang->about_blog_description = '（スキンの種類によって表示されない場合がります。の場合はHTML·CSSエディターで表示可否を編集してください。）';
     $lang->favicon = 'ファビコン(favicon)';
     $lang->registed_favicon = '登録されたファビコン';
@@ -150,9 +150,9 @@
     $lang->none_materials = 'ネタは有りません。';
     $lang->install_bookmarklet = 'ネタ収集機をインストールして下さい。';
     $lang->none_tags = 'タグはありません。';
-    $lang->bookmarklet_install = 'ブックマークレットをインストール'; 
+    $lang->bookmarklet_install = 'ブックマークレットをインストール';
 	$lang->about_bookmarklet = 'ブラウザのお気に入りに追加して、気になる情報を簡単にスクラップできるツールです。';
-    $lang->about_set_bookmarklet = 'インストール'; 
+    $lang->about_set_bookmarklet = 'インストール';
     $lang->data_export = 'データバックアップ';
     $lang->data_import = 'データのインポート';
     $lang->migration_prepare = 'ファイル分析中';
@@ -232,7 +232,7 @@
 
     $lang->document_all = '全ての記事リスト';
     $lang->document_published = '発行した記事リスト';
-    $lang->document_reserved = '下書きリスト'; 
+    $lang->document_reserved = '下書きリスト';
 
     $lang->my_document_management = 'マイ記事管理';
     $lang->set_publish = '公開設定';
@@ -255,7 +255,7 @@
     $lang->posting_option = '書き込みのオプション';
     $lang->post_url = '記事URL';
     $lang->about_tag = '複数のタグは半角コンマ「,」で区切ってください。';
-	$lang->success_temp_saved = '下書きとして保存されました。'; 
+	$lang->success_temp_saved = '下書きとして保存されました。';
 
     $lang->daily = '日別';
     $lang->weekly = '週間';
@@ -283,7 +283,7 @@
     $lang->visit_per = '割合';
     $lang->trackback_division = '複数のトラックバックの場合は改行(Enter)で区切ってください。';
 
-    $lang->about_supporter = 'コメントやゲストブックへの書き込み、トラックバックの登録件数が多い訪問者をランキング形式で表示します。'; 
+    $lang->about_supporter = 'コメントやゲストブックへの書き込み、トラックバックの登録件数が多い訪問者をランキング形式で表示します。';
     $lang->supporter_rank = 'ファンランキング';
     $lang->rank = '順位';
     $lang->user = '名前';
@@ -364,6 +364,7 @@
     $lang->cmd_change_secret = '非公開にする';
     $lang->cmd_write_relation = '関連記事を書く';
     $lang->cmd_delete_materials = 'ネタ削除';
+    $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
     $lang->cmd_restore = '元に戻す';
     $lang->cmd_empty = '空にする';
     $lang->cmd_empty_basket = 'ごみ箱を空にする';
