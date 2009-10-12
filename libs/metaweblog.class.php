@@ -21,7 +21,7 @@
                 $this->user_id,
                 $this->password
             );
-            $output = $this->_request($this->url, $input, 'application/octet-stream','POST');
+            $output = $this->_request($this->url, $input, 'application/octet-stream','POST', array(), array(), array('timeout'=>1, 'readTimeout'=>array(1,0)));
 
             $xmlDoc = $oXmlParser->parse($output);
 
@@ -52,7 +52,7 @@
                 $this->user_id,
                 $this->password
             );
-            $output = $this->_request($this->url, $input, 'application/octet-stream','POST');
+            $output = $this->_request($this->url, $input, 'application/octet-stream','POST', array(), array(), array('timeout'=>1, 'readTimeout'=>array(1,0)));
 
             $xmlDoc = $oXmlParser->parse($output);
 
@@ -239,7 +239,7 @@
         }
 
 
-        function _request($url, $body = null, $content_type = 'text/html', $method='GET', $headers = array(), $cookies = array()) {
+        function _request($url, $body = null, $content_type = 'text/html', $method='GET', $headers = array(), $cookies = array(), $params = array()) {
             set_include_path(_XE_PATH_."libs/PEAR");
             require_once('PEAR.php');
             require_once('HTTP/Request.php');
@@ -248,11 +248,11 @@
             $host = $url_info['host'];
 
             if(__PROXY_SERVER__!==null) {
-                $oRequest = new HTTP_Request(__PROXY_SERVER__, array('timeout'=>1, 'readTimeout'=>array(1,0)));
+                $oRequest = new HTTP_Request(__PROXY_SERVER__);
                 $oRequest->setMethod('POST');
                 $oRequest->addPostData('arg', serialize(array('Destination'=>$url, 'method'=>$method, 'body'=>$body, 'content_type'=>$content_type, "headers"=>$headers)));
             } else {
-                $oRequest = new HTTP_Request($url, array('timeout'=>1, 'readTimeout'=>array(1,0)));
+                $oRequest = new HTTP_Request($url,$params);
                 if(count($headers)) {
                     foreach($headers as $key => $val) {
                         $oRequest->addHeader($key, $val);
