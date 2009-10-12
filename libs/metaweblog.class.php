@@ -68,6 +68,7 @@
             $categories = array();
             for($i=0,$c=count($list);$i<$c;$i++) {
 		$category = trim($list[$i]->struct->member[1]->value->string->body);
+		if(!$category) $category = trim($list[$i]->struct->member[2]->value->string->body);
 		if(!$category) $category = trim($list[$i]->struct->member[1]->value->body);
                 if(!$category) continue;
                 $categories[] = $category;
@@ -112,7 +113,9 @@
                 return new Object($code, $message);
             } 
 
-            $target_file = $xmlDoc->methodresponse->params->param->value->struct->member->value->string->body;
+            $t = $xmlDoc->methodresponse->params->param->value->struct->member;
+            if(is_array($t)) $target_file = $t[0]->value->string->body;
+            else $target_file = $xmlDoc->methodresponse->params->param->value->struct->member->value->string->body;
             $output = new Object();
             $output->add('target_file',$target_file);
             return $output;

@@ -12,6 +12,12 @@
         var $published_twitter = false; // true/false
 
         var $hosted_apis = array(
+                'naver_blog' => array(
+                    'title' => 'Naver Blog',
+                    'blogapi_type' => 'metaweblog',
+                    'blogapi_site_url' => '',
+                    'blogapi_url' => 'https://api.blog.naver.com/xmlrpc',
+                ),
                 'tistory.com' => array(
                     'title' => 'Tistory.com',
                     'blogapi_type' => 'metaweblog',
@@ -24,11 +30,17 @@
                     'blogapi_site_url' => '',
                     'blogapi_url' => 'http://[id].textcube.com/api/blogapi',
                 ),
-                'naver_blog' => array(
-                    'title' => 'Naver Blog',
+                'egloos' => array(
+                    'title' => 'Egloos',
                     'blogapi_type' => 'metaweblog',
                     'blogapi_site_url' => '',
-                    'blogapi_url' => 'https://api.blog.naver.com/xmlrpc',
+                    'blogapi_url' => 'https://rpc.egloos.com/rpc1',
+                ),
+                'cyworld' => array(
+                    'title' => 'Cyworld Blog',
+                    'blogapi_type' => 'metaweblog',
+                    'blogapi_site_url' => '',
+                    'blogapi_url' => 'http://cyhome.cyworld.com/[BlogAPI ID]/api',
                 ),
             );
 
