@@ -272,7 +272,7 @@
                     <!--@end-->
                     <div class="replyForm">
                         <h3>Leave Comments</h3>
-                        <!--@if($textyle->isEnableComment())-->
+                        <!--@if($textyle->isEnableComment() && $document->allowComment())-->
                         <fieldset>
                             <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
 								<input name="mid" type="hidden" value="{$mid}" />
@@ -387,13 +387,16 @@
                         </div>
                         <!--@end-->
 
+                        <!--@if($document->allowTrackback() || $document->getTrackbackCount())-->
                         <a name="trackback"></a>
                         <div class="feedback trackback">
                             <h3 class="feedbackTitle">Trackbacks <em>{$document->getTrackbackCount()}</em></h3>
+                            <!--@if($document->allowTrackback())-->
                             <dl class="trackbackURL">
                                 <dt>{$lang->trackback_url}</dt>
                                 <dd><a href="{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}" onclick="return false">{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}</a></dd>
                             </dl>
+                            <!--@end-->
                             <!--@if($document->getTrackbackCount())-->
                             <ol class="feedbackOrder">
                                 <!--@foreach($document->getTrackbacks() as $key => $val)-->
@@ -412,6 +415,7 @@
                             </ol>
                             <!--@end-->
                         </div>
+                        <!--@end-->
                         <a name="comment"></a>
                         <div class="feedback reply">
                             <h3 class="feedbackTitle">Comments <em>{$document->getCommentCount()}</em></h3>
@@ -509,7 +513,7 @@
 
                         <div class="replyForm">
                             <h3>Leave Comments</h3>
-                            <!--@if($textyle->isEnableComment())-->
+                            <!--@if($textyle->isEnableComment() && $document->allowComment())-->
                             <fieldset>
                                 <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
                                     <input name="mid" type="hidden" value="{$mid}" />

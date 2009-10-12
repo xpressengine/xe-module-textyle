@@ -704,7 +704,6 @@
 
         function procTextylePostPublish() {
             $oTextyleModel = &getModel('textyle');
-
             $oDocumentModel = &getModel('document');
 			$oDocumentController = &getController('document');
 
@@ -715,6 +714,8 @@
             $vars->tags = $var->tags;
             $vars->module_srl = $this->module_srl;
             $vars->category_srl = $var->category_srl;
+            $vars->allow_comment = $var->allow_comment;
+            $vars->allow_trackback = $var->allow_trackback;
             $output = $this->updatePost($vars);
             if(!$output->toBool()) return $output;
 

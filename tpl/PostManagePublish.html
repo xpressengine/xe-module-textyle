@@ -9,7 +9,7 @@
 		<h3 class="h3">{$lang->cmd_publish}</h3>
 	</div>
 	<!-- /writingHeader -->
-	<form action="" method="post" onsubmit="return procFilter(this, publish_post)" class="{$editor_skin}">
+	<form action="" method="post" onsubmit="return publishPost(this, publish_post)" class="{$editor_skin}">
 		<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
 		<input type="hidden" name="mid" value="{$mid}" />
 		<input type="hidden" name="vid" value="{$vid}" />

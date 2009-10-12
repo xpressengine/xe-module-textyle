@@ -288,9 +288,9 @@
                         </ol>
                     </div>
                     <!--@end-->
-                    <!--@if($textyle->isEnableComment())-->
                     <div class="replyForm">
                         <h3>Leave Comments</h3>
+                        <!--@if($textyle->isEnableComment() && $document->allowComment())-->
                         <fieldset>
                             <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
                                 <input name="mid" type="hidden" value="{$mid}" />
@@ -322,8 +322,10 @@
 								</div>
                             </form>
                         </fieldset>
+                        <!--@else-->
+                            {$lang->disable_comment}
+                        <!--@end-->
                     </div>
-                    <!--@end-->
 
                 <!--// display Post list --> 
                 <!--@elseif($textyle_mode=='list')-->
@@ -417,13 +419,16 @@
                         </div>
                         <!--@end-->
                         
+                        <!--@if($document->allowTrackback() || $document->getTrackbackCount())-->
                         <a name="trackback"></a>
                         <div class="feedback trackback">
                             <h3 class="feedbackTitle"><em>{$document->getTrackbackCount()}</em> Trackbacks</h3>
+                            <!--@if($document->allowTrackback())-->
                             <dl class="trackbackURL">
                                 <dt>{$lang->trackback_url}</dt>
                                 <dd><a href="{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}" onclick="return false">{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}</a></dd>
                             </dl>
+                            <!--@end-->
                             <!--@if($document->getTrackbackCount())-->
                             <ol class="feedbackOrder">
                                 <!--@foreach($document->getTrackbacks() as $key => $val)-->
@@ -444,6 +449,7 @@
                             </ol>
                             <!--@end-->
                         </div>
+                        <!--@end-->
                         <a name="comment"></a>
                         <div class="feedback reply">
                             <h3 class="feedbackTitle"><em>{$document->getCommentCount()}</em> Comments</h3>
@@ -540,7 +546,7 @@
 
                         <div class="replyForm">
                             <h3>Leave Comments</h3>
-                            <!--@if($textyle->isEnableComment())-->
+                            <!--@if($textyle->isEnableComment() && $document->allowComment())-->
                             <fieldset>
                                 <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
                                     <input name="mid" type="hidden" value="{$mid}" />
@@ -573,7 +579,7 @@
                                 </form>
                             </fieldset>
                             <!--@else-->
-                            <p>{$lang->disable_comment}</p>
+                                <p>{$lang->disable_comment}</p>
                             <!--@end-->
                         </div>
                     <!--@end-->

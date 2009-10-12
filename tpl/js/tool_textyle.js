@@ -40,6 +40,13 @@ function appendTag(tag){
 	area.val(tags.join(', '));
 }
 
+function publishPost(obj,filter){
+	jQuery('input,textarea',obj).each(function(){
+		var j = jQuery(this);
+		if(j.val() && j.val() == j.attr('title')) j.val('');
+	});
+    return procFilter(frm,filter);
+}
 
 function deleteTrackbackItem(srl,page){
 	var params = new Array();
