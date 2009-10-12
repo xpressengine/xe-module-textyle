@@ -30,8 +30,8 @@
 	$lang->newest_guestbooks = '최근 방명록';
 	$lang->newest_no_guestbooks = '방명록에 남겨진 글이 아직 없습니다.';
 	$lang->reserve = '예약';
-    $lang->publish = '발행';
-    $lang->publish_update = '재발행';
+    $lang->publish = '발행...';
+    $lang->publish_update = '재발행...';
     $lang->published = '발행됨';
     $lang->publish_option = '발행옵션';
     $lang->publish_confirm = '발행여부';
