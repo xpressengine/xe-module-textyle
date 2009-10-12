@@ -30,8 +30,9 @@
     $lang->newest_guestbooks = '最新留言';
     $lang->newest_no_guestbooks = '暂无留言。';
     $lang->reserve = '定时';
-    $lang->publish = '发布';
-    $lang->publish_update = '재발행';
+	$lang->publish = '발행';
+    $lang->publish_go = '发布...';
+    $lang->publish_update_go = '재발행...';
     $lang->published = '发布';
     $lang->publish_option = '발행옵션';
     $lang->publish_confirm = '발행여부';

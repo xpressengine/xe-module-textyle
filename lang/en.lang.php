@@ -30,8 +30,9 @@
 	$lang->newest_guestbooks = 'Recent Guestbook';
 	$lang->newest_no_guestbooks = 'There is no article in guestbook.';
 	$lang->reserve = 'Reservation';
-    $lang->publish = 'Published';
-    $lang->publish_update = '재발행';
+	$lang->publish = 'Publish';
+    $lang->publish_go = 'Publish...';
+    $lang->publish_update_go = 'Re Publish...';
     $lang->published = 'Published';
     $lang->publish_option = '발행옵션';
     $lang->publish_confirm = '발행여부';
