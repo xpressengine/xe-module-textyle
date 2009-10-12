@@ -45,7 +45,7 @@ function publishPost(obj,filter){
 		var j = jQuery(this);
 		if(j.val() && j.val() == j.attr('title')) j.val('');
 	});
-    return procFilter(frm,filter);
+    return procFilter(obj,filter);
 }
 
 function deleteTrackbackItem(srl,page){
