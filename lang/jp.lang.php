@@ -337,7 +337,7 @@
             'dispTextyleToolConfigInfo'=>'ブログの基本設定',
             'dispTextyleToolConfigPostwrite'=>'記事の設定',
             'dispTextyleToolConfigCommunication'=>'コミュニケーションの設定',
-            'dispTextyleToolConfigBlogApi'=>'BlogAPI発行',
+            'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'アドオン管理',
             'dispTextyleToolConfigData'=>'データ管理',
             'dispTextyleToolConfigChangePassword'=>'パスワード変更',

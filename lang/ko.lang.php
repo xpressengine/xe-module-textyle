@@ -337,7 +337,7 @@
             'dispTextyleToolConfigInfo'=>'블로그 설정',
             'dispTextyleToolConfigPostwrite'=>'쓰기환경 설정',
             'dispTextyleToolConfigCommunication'=>'발행&middot;대화 설정',
-            'dispTextyleToolConfigBlogApi'=>'BlogAPI 발행',
+            'dispTextyleToolConfigBlogApi'=>'원격발행 설정',
             'dispTextyleToolConfigAddon'=>'애드온 관리',
             'dispTextyleToolConfigData'=>'데이터 관리',
             'dispTextyleToolConfigChangePassword'=>'비밀번호 변경',

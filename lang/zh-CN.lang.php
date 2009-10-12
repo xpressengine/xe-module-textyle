@@ -337,7 +337,7 @@
             'dispTextyleToolConfigInfo'=>'博客设置',
             'dispTextyleToolConfigPostwrite'=>'编辑环境',
             'dispTextyleToolConfigCommunication'=>'发布&middot;交流',
-            'dispTextyleToolConfigBlogApi'=>'BlogAPI发布',
+            'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'插件管理',
             'dispTextyleToolConfigData'=>'备份&middot;导入',
             'dispTextyleToolConfigChangePassword'=>'修改密码',

@@ -337,7 +337,7 @@
             'dispTextyleToolConfigInfo'=>'Blog Configuration',
             'dispTextyleToolConfigPostwrite'=>'Writing Env.',
             'dispTextyleToolConfigCommunication'=>'Publish&middot;Comm.',
-            'dispTextyleToolConfigBlogApi'=>'BlogAPI',
+            'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'Addons',
             'dispTextyleToolConfigData'=>'Data',
             'dispTextyleToolConfigChangePassword'=>'Change Password',

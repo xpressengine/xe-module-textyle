@@ -74,12 +74,14 @@
 
             // 미투발행/트위터 설정
             $config = $oModuleModel->getModulePartConfig('textyle', $this->module_srl);
-            $config->enable_me2day = $args->enable_me2day=='Y'?'Y':'N';
             $config->me2day_userid = $args->me2day_userid;
             $config->me2day_userkey = $args->me2day_userkey;
+            $config->enable_me2day = ($args->me2day_userid && $args->me2day_userkey) ? 'Y' :'N';
+            
             $config->enable_twitter = $args->enable_twitter=='Y'?'Y':'N';
             $config->twitter_userid = $args->twitter_userid;
             $config->twitter_password = $args->twitter_password;
+            $config->enable_twitter = ($args->twitter_userid && $args->twitter_password) ? 'Y' :'N';
 
             // 댓글/방명록 권한
             $config->comment_grant = (int)$args->comment_grant;

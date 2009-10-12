@@ -337,7 +337,7 @@
             'dispTextyleToolConfigInfo'=>'部落格設定',
             'dispTextyleToolConfigPostwrite'=>'發表設定',
             'dispTextyleToolConfigCommunication'=>'公開&middot設定',
-            'dispTextyleToolConfigBlogApi'=>'BlogAPI 發行',
+            'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'附加元件管理',
             'dispTextyleToolConfigData'=>'資料管理',
             'dispTextyleToolConfigChangePassword'=>'變更密碼',
