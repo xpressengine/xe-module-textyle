@@ -618,10 +618,13 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .wOption .trackbackURL,
 .wOption #postURL{ width:60%;}
 .wOption .tableData{ margin-bottom:30px;}
-.wOption .tableData caption.check{ text-align:left; font-weight:bold; padding:10px 0 10px 32px; font-size:12px; color:#333; background:url(../img/iconCheck.gif) no-repeat left center;}
+.wOption .tableData caption.check{ text-align:left; font-weight:bold; padding:10px 0 10px 15px; font-size:12px; color:#333; background:url(../img/iconAttention.gif) no-repeat left center;}
+.wOption .tableData caption.check .domain{ font-weight:normal; color:#767676;}
 .wOption .tableData th{ color:#767676;}
 .wOption .optionMicroBlog p{ margin-bottom:5px;}
 .wOption em{ font-weight:bold;}
+.wOption .visualFieldset{ border:1px dotted #ccc !important; padding:20px; margin:0 0 30px 0; *zoom:1;}
+.wOption .visualLabel{ position:static !important; left:auto; height:auto !important; width:auto !important; padding:0 10px; visibility:visible; z-index:1; font-size:32px; font-weight:bold; line-height:1; color:#ccc; background:#fff;}
 
 /* Category */
 .category{ *zoom:1;}
