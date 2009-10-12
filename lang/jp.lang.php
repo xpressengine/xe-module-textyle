@@ -365,6 +365,7 @@
     $lang->cmd_write_relation = '関連記事を書く';
     $lang->cmd_delete_materials = 'ネタ削除';
     $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
+    $lang->cmd_delete_all_materials = '모든 글감 삭제';
     $lang->cmd_restore = '元に戻す';
     $lang->cmd_empty = '空にする';
     $lang->cmd_empty_basket = 'ごみ箱を空にする';

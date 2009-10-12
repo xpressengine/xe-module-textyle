@@ -365,6 +365,7 @@
     $lang->cmd_write_relation = 'Write a related post';
     $lang->cmd_delete_materials = 'Delete an ingredient';
     $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
+    $lang->cmd_delete_all_materials = '모든 글감 삭제';
     $lang->cmd_restore = 'Restore';
     $lang->cmd_empty = 'Empty';
     $lang->cmd_empty_basket = 'Clear Recycle Bin';

@@ -365,6 +365,7 @@
     $lang->cmd_write_relation = '撰写相关日志';
     $lang->cmd_delete_materials = '删除素材';
     $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
+    $lang->cmd_delete_all_materials = '모든 글감 삭제';
     $lang->cmd_restore = '复原';
     $lang->cmd_empty = '清空';
     $lang->cmd_empty_basket = '清空回收箱';

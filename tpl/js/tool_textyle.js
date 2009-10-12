@@ -559,7 +559,13 @@ function deleteMaterialItem(material_srl){
 
 	var response_tags = new Array('error','message','page','mid');
 	exec_xml('material', 'procMaterialDelete', params, completeReload, response_tags);
+}
 
+function deleteAllMaterials(module_srl) {
+    var params = {};
+    params.module_srl = module_srl;
+
+    jQuery.exec_json('material.procMaterialsDelete', params, completeReload);
 }
 
 function getEditorSkinColorList(skin_name,selected_colorset,type){
