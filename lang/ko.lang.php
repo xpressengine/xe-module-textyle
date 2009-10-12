@@ -101,6 +101,7 @@
     $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
     $lang->blogapi_example = '예) Window Live Writer, Google Docs, MS Word 2007 등';
     $lang->blogapi_url = 'API 주소';
+    $lang->target_site_url = '사이트 주소';
     $lang->blog_first_page = '첫 페이지';
     $lang->blog_display_target = '출력 대상';
     $lang->content_body = '글 본문';
@@ -198,7 +199,7 @@
     $lang->about_blog_api = '텍스타일로 작성한 글을 BlogAPI를 이용하여 다른 블로그 또는 게시판등에 동시 발행/ 수정/ 삭제할 수 있습니다<br/>지원하는 BlogAPI는 MetaWebLog 뿐이며 다른 API는 곧 지원할 수 있도록 하겠습니다';
     $lang->cmd_registration_blogapi = 'BlogAPI 사이트 등록';
     $lang->cmd_modification_blogapi = 'BlogAPI 사이트 정보 수정';
-    $lang->blogapi_site_url = 'API 대상 사이트';
+    $lang->blogapi_site_url = '발행 대상 사이트';
     $lang->about_blogapi_site_url = 'BlogAPI로 발행할 대상 사이트의 주소를 입력해주세요';
     $lang->blogapi_site_title = 'BlogAPI 사이트 제목';
     $lang->about_blogapi_site_title = 'BlogAPI로 발행할 사이트의 제목을 정할 수 있습니다';

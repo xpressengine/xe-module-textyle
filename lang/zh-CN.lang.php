@@ -198,11 +198,12 @@
     $lang->blogapi_support = '可以利用Blog API(Meta Weblog API)远程发布。';
     $lang->blogapi_example = '例) Window Live Writer, Google Docs, MS Word 2007 等';
     $lang->blogapi_url = 'API地址';
-    $lang->blogapi_site_url = 'API对象站点';
+    $lang->blogapi_site_url = '발행 대상 사이트';
     $lang->about_blogapi_site_url = '请输入对象站点地址。';
     $lang->blogapi_site_title = 'API 网站标题';
     $lang->about_blogapi_site_title = '利用BlogAPI发布日志时，在此可指定网站标题。';
     $lang->blogapi_api_url = 'API URL';
+    $lang->target_site_url = '사이트 주소';
     $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
     $lang->blogapi_published = '已发布';
     $lang->blogapi_user_id = '用户名';

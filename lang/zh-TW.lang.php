@@ -198,11 +198,12 @@
     $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
     $lang->blogapi_example = '例) Window Live Writer, Google Docs, MS Word 2007 等';
     $lang->blogapi_url = 'API URL';
-    $lang->blogapi_site_url = 'API 대상 사이트';
+    $lang->blogapi_site_url = '발행 대상 사이트';
     $lang->about_blogapi_site_url = 'BlogAPI로 발행할 대상 사이트의 주소를 입력해주세요';
     $lang->blogapi_site_title = 'blogAPI 사이트 제목';
     $lang->about_blogapi_site_title = 'BlogAPI로 발행할 사이트의 제목을 정할 수 있습니다';
     $lang->blogapi_api_url = 'API URL';
+    $lang->target_site_url = '사이트 주소';
     $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
     $lang->blogapi_published = '발행 수';
     $lang->blogapi_user_id = '사용자 아이디';

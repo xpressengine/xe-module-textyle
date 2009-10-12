@@ -203,6 +203,7 @@
     $lang->blogapi_site_title = 'BlogAPI サイトタイトル';
     $lang->about_blogapi_site_title = 'BlogAPI経由で投稿するサイトタイトルを決めます。';
     $lang->blogapi_api_url = 'API URL';
+    $lang->target_site_url = '사이트 주소';
     $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
     $lang->blogapi_published = '投稿数';
     $lang->blogapi_user_id = 'ユーザーID';

@@ -198,7 +198,8 @@
     $lang->blogapi_support = 'Remote publishing via Blog API(Meta Weblog API) is available.';
     $lang->blogapi_example = 'ex) Window Live Writer, Google Docs, MS Word 2007, etc.';
     $lang->blogapi_url = 'API URL';
-    $lang->blogapi_site_url = 'API Site URL';
+    $lang->target_site_url = 'Site URL';
+    $lang->blogapi_site_url = '발행 대상 사이트';
     $lang->about_blogapi_site_url = 'Input URL for BlogAPI';
     $lang->blogapi_site_title = 'API Site\'s Title';
     $lang->about_blogapi_site_title = 'You may set the title for BlogAPI';
