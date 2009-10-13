@@ -450,6 +450,7 @@
                             <!--@end-->
                         </div>
                         <!--@end-->
+                        <!--@if($document->allowComment())-->
                         <a name="comment"></a>
                         <div class="feedback reply">
                             <h3 class="feedbackTitle"><em>{$document->getCommentCount()}</em> Comments</h3>
@@ -582,6 +583,7 @@
                                 <p>{$lang->disable_comment}</p>
                             <!--@end-->
                         </div>
+                    <!--@end-->
                     <!--@end-->
 		<!--@end-->
 

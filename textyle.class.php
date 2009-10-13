@@ -106,5 +106,14 @@
          **/
         function recompileCache() {
         }
+
+
+        function checkXECoreVersion($requried_version){
+            $this_version = explode('.',__ZBXE_VERSION__);
+            $this_version = $this_version[0]*10000 + $this_version[1]*100 + $this_version[2];
+            $requried_version = explode('.',$requried_version);
+            $requried_version = $requried_version[0]*10000 + $requried_version[1]*100 + $requried_version[2];
+            return $this_version >= $requried_version;
+        }
     }
 ?>

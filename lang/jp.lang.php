@@ -7,6 +7,7 @@
 
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'TextyleはXpressEngineのブログ専用モジュールです。';
+    $lang->msg_requried_version = "Textyle은 XE코어 %s 버전 이상에서 동작합니다.";
 
 	$lang->cmd_open_id = '오픈 아이디 로그인';
 	$lang->cmd_common_id = '일반 아이디 로그인';
