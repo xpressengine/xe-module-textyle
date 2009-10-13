@@ -10,8 +10,8 @@
     <description xml:lang="zh-CN">基于XpressEngine的博客模块。</description>
     <description xml:lang="jp">XpressEngine基盤のブログ専用モジュールです。</description>
     <description xml:lang="zh-TW">是種基於XpressEngine的部落格模組。</description>
-    <version>0.9.5</version>
-    <date>2009-09-03</date>
+    <version>1.0</version>
+    <date>2009-10-13</date>
     <category>package</category>
     <author email_address="" link="http://textyle.xpressengine.net">
         <name xml:lang="ko">NHN</name>
