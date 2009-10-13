@@ -137,7 +137,7 @@
 						<thead>
 							<tr>
 								<th scope="col">{$lang->blogapi_site_url}</th>
-								<th scope="col">{$lang->blogapi_url}</th>
+								<th scope="col">{$lang->target_site_url}</th>
 								<th scope="col">{$lang->blogapi_type}</th>
 								<th scope="col">{$lang->regdate}</th>
 								<th scope="col">{$lang->cmd_setup}</th>
@@ -147,7 +147,7 @@
                             <!--@foreach($textyle->getApis() as $key => $val)-->
 							<tr>
 								<th scope="row"><a href="{$val->blogapi_site_url}" onclick="window.open(this.href);return false;">{$val->blogapi_site_title}</a></th>
-								<td><a href="{$val->blogapi_url}" onclick="window.open(this.href); return false;">{$val->blogapi_url}</a></td>
+								<td><a href="{$val->blogapi_site_url}" onclick="window.open(this.href); return false;">{$val->blogapi_site_url}</a></td>
 								<td>{$val->blogapi_type}</td>
 								<td>{zdate($val->regdate, 'Y-m-d')}</td>
 								<td>
