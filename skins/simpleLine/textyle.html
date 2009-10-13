@@ -272,7 +272,7 @@
                     <!--@end-->
                     <div class="replyForm">
                         <h3>Leave Comments</h3>
-                        <!--@if($textyle->isEnableComment() && $document->allowComment())-->
+                        <!--@if($textyle->isEnableComment())-->
                         <fieldset>
                             <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
 								<input name="mid" type="hidden" value="{$mid}" />
@@ -513,7 +513,7 @@
 
                         <div class="replyForm">
                             <h3>Leave Comments</h3>
-                            <!--@if($textyle->isEnableComment() && $document->allowComment())-->
+                            <!--@if($textyle->isEnableComment())-->
                             <fieldset>
                                 <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
 									<input name="mid" type="hidden" value="{$mid}" />
