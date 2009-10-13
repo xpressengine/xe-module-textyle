@@ -107,46 +107,4 @@
         function recompileCache() {
         }
     }
-
-
-	// TODO : remove function
-	if(!function_exists('getFullUrl')){
-		function getFullUrl() {
-			$num_args = func_num_args();
-			$args_list = func_get_args();
-			$request_uri = Context::getRequestUri();
-			if(!$num_args) return $request_uri;
-
-			$url = Context::getUrl($num_args, $args_list);
-			if(!preg_match('/^http/i',$url)){
-				preg_match('/^(http|https):\/\/([^\/]+)\//',$request_uri,$match);
-				$url = Context::getUrl($num_args, $args_list);
-				return substr($match[0],0,-1).$url;
-			}
-			return $url;
-		}
-
-	}
-
-	if(!function_exists('getFullSiteUrl')){
-        function getFullSiteUrl() {
-            $num_args = func_num_args();
-            $args_list = func_get_args();
-
-            $request_uri = Context::getRequestUri();
-            if(!$num_args) return $request_uri;
-
-            $domain = array_shift($args_list);
-            $num_args = count($args_list);
-
-            $url = Context::getUrl($num_args, $args_list, $domain);
-            if(!preg_match('/^http/i',$url)){
-                preg_match('/^(http|https):\/\/([^\/]+)\//',$request_uri,$match);
-                return substr($match[0],0,-1).$url;
-            }
-            return $url;
-        }
-
-	}
-
 ?>
