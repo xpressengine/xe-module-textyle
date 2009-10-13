@@ -60,7 +60,6 @@ function deleteTrackbackItems(page){
 		val = jQuery(this).val();
 		if(val) srls.push(val);
 	});
-	alert(srls.length);
 	if(srls.length<1) return;
 	var params = new Array();
 	params['trackback_srl'] = srls.join(',');
