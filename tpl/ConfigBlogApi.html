@@ -102,7 +102,7 @@
                                     <span class="buttonAction actionWhite"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>
                             </div>
 
-							<table border="0" cellspacing="0" class="setupData" style="display:none" id="response_info">
+							<table border="0" cellspacing="0" class="setupData" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end--> id="response_info">
 								<tr>
 									<th scope="row" rowspan="2"><label for="site_title">{$lang->blogapi_site_title}</label></th>
 									<td>
