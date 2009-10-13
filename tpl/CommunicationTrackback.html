@@ -79,7 +79,7 @@
 								<p class="p1">{$lang->selected_articles}</p>
 								
 								<span class="buttonGray large"><button type="button" onclick="openLayerAddDeny('_addDenyTrackbackList')">{$lang->cmd_deny}</button></span>
-								<span class="buttonGray large"><button type="button"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
+								<span class="buttonGray large"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteTrackbackItems({$page_navigation->cur_page});return false;"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
 								
 							</div>
 							<!-- /Change -->
