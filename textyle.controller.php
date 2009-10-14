@@ -340,8 +340,7 @@
 
             $password = Context::get('password');
 			if($password){
-				$oBoardController = &getController('board');
-				$output = $oBoardController->procBoardVerificationPassword();
+				$output = $this->checkCommentVerificationPassword();
 				if($output) return $output;
 			}
             // 댓글 번호 확인
@@ -355,6 +354,31 @@
             $this->add('page', Context::get('page'));
             $this->add('document_srl', $output->get('document_srl'));
             $this->setMessage('success_deleted');
+        }
+
+        /**
+         * @brief 댓글의 비밀번호를 확인
+         **/
+        function checkCommentVerificationPassword() {
+            // 비밀번호와 문서 번호를 받음
+            $password = Context::get('password');
+            $document_srl = Context::get('document_srl');
+            $comment_srl = Context::get('comment_srl');
+
+            $oMemberModel = &getModel('member');
+
+            // comment_srl이 있을 경우 댓글이 대상
+            if($comment_srl) {
+                // 문서번호에 해당하는 글이 있는지 확인
+                $oCommentModel = &getModel('comment');
+                $oComment = $oCommentModel->getComment($comment_srl);
+                if(!$oComment->isExists()) return new Object(-1, 'msg_invalid_request');
+
+                // 문서의 비밀번호와 입력한 비밀번호의 비교
+                if(!$oMemberModel->isValidPassword($oComment->get('password'),$password)) return new Object(-1, 'msg_invalid_password');
+
+                $oComment->setGrant();
+            } 
         }
 
 
@@ -1440,25 +1464,35 @@
         }
 
         function _checkDisabledFunction($str){
+            if(preg_match('!<\?.*\?>!is',$str,$match)) return true;
+
             $disabled = array(
                     // file
                     'fopen','link','unlink','popen','symlink','touch','readfile','rmdir','mkdir','rename','copy','delete','file_get_contents','file_put_contents','tmpname','parse_ini_file'
                     // dir
                     ,'dir'
                    // database
-                   ,'mysql.*','sqlite.*','PDO.*','cubird.*','ibase.*','pg_.*','_pconnect','_connect','oci.*'
+                   ,'mysql','sqlite','PDO','cubird','ibase','pg_','_pconnect','_connect','oci'
                    // network /etc
-                   ,'fsockopen','pfsockopen','shmop_.*','shm_.*','sem_.*','dl','ini_.*','php.*','zend.*','header','create_function','call_*','imap','openlog','socket.*','ob_.*','*.cookie'
+                   ,'fsockopen','pfsockopen','shmop_','shm_','sem_','dl','ini_','php','zend','header','create_function','call_*','imap','openlog','socket','ob_','cookie'
                    // XE
-                   ,'db.*','filehandler.*','displayhandler.*','xehttprequest.*','context.*','getmodel','getcontroller','getview','getadminmodel','getadmincontroller','getadminview'
+                   ,'filehandler','displayhandler','xehttprequest','context','getmodel','getcontroller','getview','getadminmodel','getadmincontroller','getadminview'
             );
+            unset($match);
 
-            preg_match_all('!<\!--@(.*?)-->!is',$str,$match1);
-            preg_match_all('/{([^{]*)}/i',$str,$match2);
-            $pattern = sprintf('/([^(]*)(%s)\(/i', join('|',$disabled));
-            $output =  preg_match_all($pattern, join(' ',$match1[1]) . join(' ',$match2[1]),$m);
-
-            return $output;
+            preg_match_all('!<\!--@(.*?)-->!is',$str,$match);
+            preg_match_all('/{([^{]*)}/i',$str,$match);
+            preg_match_all('/ ([^(^ ]*) ?\(/i', ' '.join(' ',$match[1]),$match_func);
+            $match_func = array_unique($match_func[1]);
+            for($i=0,$c=count($match_func);$i<$c;$i++){
+                $match_func[$i] = strtolower($match_func[$i]);
+                for($j=0,$cj=count($disabled);$j<$cj;$j++){
+                    if(strpos($match_func[$i],$disabled[$j])!==false){
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         /**

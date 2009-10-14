@@ -485,10 +485,16 @@
                                                     <!--@if($comment->isGranted() || $comment->member_srl==$logged_info->member_srl)-->
                                                     <li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}</a></li>
                                                     <li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
+                                                    <!--@elseif($logged_info->is_site_admin)-->
+                                                    <li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
                                                     <!--@end-->
                                                 <!--@else-->
+                                                    <!--@if($logged_info->is_site_admin)-->
+                                                    <li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
+                                                    <!--@else-->
                                                     <li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.modifyPw.comment{$key}').addClass('active')">{$lang->cmd_modify}</button></li>
                                                     <li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.deletePw.comment{$key}').addClass('active')">{$lang->cmd_delete}</button></li>
+                                                    <!--@end-->
                                                 <!--@end-->
                                             <!--@end-->
                                             </ul>

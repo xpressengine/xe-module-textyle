@@ -202,11 +202,13 @@
                 }
             }
 
+            $original_content = $this->oDocument->get('content');
             if(count($this->blogapis)) {
                 $apis = $this->getApis();
                 foreach($this->blogapis as $api_srl => $val) {
                     if(!$apis[$api_srl] || !$val->reserve) continue;
 
+                    $this->oDocument->add('content',$original_content);
                     if($val->postid) $output = $this->modifyBlogApi($apis[$api_srl], $val->postid, $val->category);
                     else $output = $this->sendBlogApi($apis[$api_srl], $val->category);
 
@@ -230,7 +232,6 @@
 
         function sendBlogApi($api, $category) {
             if(!$this->oDocument->isExists()) return;
-
             switch($api->blogapi_type) {
                 case 'blogger' :
                         require_once(_XE_PATH_.'modules/textyle/libs/blogger.class.php');

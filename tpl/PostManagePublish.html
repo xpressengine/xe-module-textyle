@@ -146,7 +146,7 @@
 							<caption class="check">{$val->blogapi_site_title} <span class="domain">(<a href="{$val->blogapi_site_url}" onclick="window.open(this.href);return false;">{$val->blogapi_site_url}</a>)</span> - {$lang->publish_option}</caption>
 							<tr class="first">
 								<th scope="row">{$lang->publish}</th>
-								<td class="title"><input name="blogapi_{$val->api_srl}" type="checkbox" value="Y" class="inputCheck" id="blog_{$val->api_srl}" /><label for="blog_{$val->api_srl}">{$lang->publish_this_blog}</label> {$val->log}</td>
+								<td class="title"><input name="blogapi_{$val->api_srl}" type="checkbox" value="Y" <!--@if($val->log)-->checked="checked"<!--@end--> class="inputCheck" id="blog_{$val->api_srl}" /><label for="blog_{$val->api_srl}">{$lang->publish_this_blog}</label> {$val->log}</td>
 							</tr>
 							<tr>
 								<th scope="row">

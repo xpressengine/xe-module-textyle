@@ -145,16 +145,16 @@
 
             // 기본 에디터 컴포넌트 On
             $oEditorController = &getAdminController('editor');
-            $oEditorController->insertComponent('colorpicker_text',true, $info->site_srl);
-            $oEditorController->insertComponent('colorpicker_bg',true, $info->site_srl);
-            $oEditorController->insertComponent('emoticon',true, $info->site_srl);
-            $oEditorController->insertComponent('url_link',true, $info->site_srl);
-            $oEditorController->insertComponent('image_link',true, $info->site_srl);
-            $oEditorController->insertComponent('multimedia_link',true, $info->site_srl);
-            $oEditorController->insertComponent('quotation',true, $info->site_srl);
-            $oEditorController->insertComponent('table_maker',true, $info->site_srl);
-            $oEditorController->insertComponent('poll_maker',true, $info->site_srl);
-            $oEditorController->insertComponent('image_gallery',true, $info->site_srl);
+            $oEditorController->insertComponent('colorpicker_text',true, $site_srl);
+            $oEditorController->insertComponent('colorpicker_bg',true, $site_srl);
+            $oEditorController->insertComponent('emoticon',true, $site_srl);
+            $oEditorController->insertComponent('url_link',true, $site_srl);
+            $oEditorController->insertComponent('image_link',true, $site_srl);
+            $oEditorController->insertComponent('multimedia_link',true, $site_srl);
+            $oEditorController->insertComponent('quotation',true, $site_srl);
+            $oEditorController->insertComponent('table_maker',true, $site_srl);
+            $oEditorController->insertComponent('poll_maker',true, $site_srl);
+            $oEditorController->insertComponent('image_gallery',true, $site_srl);
 
 
             // set category
