@@ -184,7 +184,7 @@
     $lang->about_twitter_password = 'Twitterのパスワードを入力してください。';
 
     $lang->blogapi_publish = 'BlogAPI発行';
-    $lang->about_blog_api = 'Textyleで作成した記事を、Blog APIで外部ブログや掲示板などに同時に投稿/修正/削除をすることができます。<br/> 現在サポートしているBlog APIはMetaWebLogのみです。他サービスについては随時追加予定です。';
+    $lang->about_blog_api = 'Textyleで作成した記事を、Blog APIで外部ブログや掲示板などに同時に投稿/修正/削除をすることができます。<br/> 現在サポートしているBlog APIはMetaWebLogのみです。他サービスについては随時追加予定です。<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
     $lang->cmd_registration_blogapi = 'BlogAPIサイト登録';
     $lang->cmd_modification_blogapi = 'BlogAPIサイト情報修正';
     $lang->blogapi = '遠隔投稿';

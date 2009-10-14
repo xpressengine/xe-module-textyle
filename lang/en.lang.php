@@ -184,7 +184,7 @@
     $lang->about_twitter_password = 'Input Twitter Password';
 
     $lang->blogapi_publish = 'BlogAPI';
-    $lang->about_blog_api = 'Using BlogAPI, you can publish/ modify/ delete posts to other blogs or bulletin boards <BR /> Currently, Textyle only supports MetaWebLog API, but other APIs will be supported soon.';
+    $lang->about_blog_api = 'Using BlogAPI, you can publish/ modify/ delete posts to other blogs or bulletin boards <BR /> Currently, Textyle only supports MetaWebLog API, but other APIs will be supported soon.<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
     $lang->cmd_registration_blogapi = 'Register BlogAPI Site';
     $lang->cmd_modification_blogapi = 'Modify BlogAPI Site Information';
     $lang->blogapi = 'Blog API';

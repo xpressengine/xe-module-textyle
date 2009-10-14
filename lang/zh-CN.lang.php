@@ -184,7 +184,7 @@
     $lang->about_twitter_password = '请输入Twitter密码。';
 
     $lang->blogapi_publish = 'BlogAPI发布';
-    $lang->about_blog_api = '利用BlogAPI把日志同时发布到其他博客或论坛，并同步进行修改及删除操作。<br/>目前只支持MetaWebLog，其他API正在开发当中。';
+    $lang->about_blog_api = '利用BlogAPI把日志同时发布到其他博客或论坛，并同步进行修改及删除操作。<br/>目前只支持MetaWebLog，其他API正在开发当中。<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
     $lang->cmd_registration_blogapi = '添加BlogAPI站点';
     $lang->cmd_modification_blogapi = '修改BlogAPI站点信息';
     $lang->blogapi = '远程发布';
