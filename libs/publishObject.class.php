@@ -67,7 +67,18 @@
         }
 
         function getHostedApis() {
-            return $this->hosted_apis;
+            $support_ssl = defined('OPENSSL_VERSION_TEXT');
+
+            if(!$support_ssl){
+                $return = array();
+
+                foreach($this->hosted_apis as $k => $api){
+                    if(strpos($api['blogapi_url'],'https')!==0) $return[] = $api;        
+                }
+                return $return;
+            }else{
+                return $this->hosted_apis;
+            }
         }
 
         function getBlogAPIInfo($service, $provider, $type, $url, $user_id, $password) {
