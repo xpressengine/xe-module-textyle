@@ -22,7 +22,7 @@
                             <!--@if(count($_sub) || count($_attached))-->
                             <ul>
                                 <!--@foreach($_sub as $k => $v)-->
-                                <!--@if(!in_array(strtolower($k), $custom_menu->hidden_menu))-->
+                                <!--@if(!in_array(strtolower($k), $custom_menu->hidden_menu) && $k != 'dispTextyleToolConfigEditorComponents')-->
 								<li<!--@if($k==$act)--> class="active"<!--@end-->><a href="{getSiteUrl($textyle->domain,'','mid',$mid,'act',$k)}">{$v}</a></li>
                                 <!--@end-->
                                 <!--@end-->

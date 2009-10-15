@@ -48,6 +48,7 @@
 		<permission action="dispTextyleToolConfigProfile" target="manager" />
 		<permission action="dispTextyleToolConfigInfo" target="manager" />
 		<permission action="dispTextyleToolConfigPostwrite" target="manager" />
+		<permission action="dispTextyleToolConfigEditorComponents" target="manager" />
 		<permission action="dispTextyleToolConfigCommunication" target="manager" />
 		<permission action="dispTextyleToolConfigBlogApi" target="manager" />
 		<permission action="dispTextyleToolConfigAddon" target="manager" />
@@ -105,6 +106,7 @@
 		<action name="dispTextyleToolConfigProfile" type="view" />
 		<action name="dispTextyleToolConfigInfo" type="view" />
 		<action name="dispTextyleToolConfigPostwrite" type="view" />
+		<action name="dispTextyleToolConfigEditorComponents" type="view" />
 		<action name="dispTextyleToolConfigCommunication" type="view" />
 		<action name="dispTextyleToolConfigBlogApi" type="view" />
 		<action name="dispTextyleToolConfigAddon" type="view" />

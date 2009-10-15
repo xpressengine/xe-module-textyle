@@ -818,8 +818,7 @@ function completeTextyleLogin(ret_obj, response_tags, params, fo_obj) {
     var stat = ret_obj['stat'];
     var msg = ret_obj['message'];
     if(stat == -1) {
-        jQuery('.attention').html(msg);
-        jQuery('.attention').addClass('open');
+        alert(msg);
         return;
     }
     if(fo_obj.remember_user_id && fo_obj.remember_user_id.checked) {
@@ -1064,3 +1063,35 @@ function appendTrackbackForm() {
     o.html(o.html().replace(/trackback_(url|charset)/g, 'trackback_$1'+l));
     o.appendTo(jQuery('.trackbackOption'));
 }
+
+
+
+function doSetupComponent(component_name) {
+    popopen(request_uri.setQuery('module','editor').setQuery('act','dispEditorAdminSetupComponent').setQuery('component_name',component_name), 'SetupComponent');
+}
+
+function doEnableComponent(component_name) {
+    var params = new Array();
+    params['component_name'] = component_name;
+
+    exec_xml('editor', 'procEditorAdminEnableComponent', params, completeUpdate);
+}
+function doDisableComponent(component_name) {
+    var params = new Array();
+    params['component_name'] = component_name;
+
+    exec_xml('editor', 'procEditorAdminDisableComponent', params, completeUpdate);
+}
+
+function doMoveListOrder(component_name, mode) {
+    var params = new Array();
+    params['component_name'] = component_name;
+    params['mode'] = mode;
+
+    exec_xml('editor', 'procEditorAdminMoveListOrder', params, completeUpdate);
+}
+
+function completeUpdate(ret_obj) {
+    location.reload();
+}
+

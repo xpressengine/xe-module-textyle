@@ -1474,7 +1474,7 @@
                    // database
                    ,'mysql','sqlite','PDO','cubird','ibase','pg_','_pconnect','_connect','oci'
                    // network /etc
-                   ,'fsockopen','pfsockopen','shmop_','shm_','sem_','dl','ini_','php','zend','header','create_function','call_*','imap','openlog','socket','ob_','cookie'
+                   ,'fsockopen','pfsockopen','shmop_','shm_','sem_','dl','ini_','php','zend','header','create_function','call_*','imap','openlog','socket','ob_','cookie','eval'
                    // XE
                    ,'filehandler','displayhandler','xehttprequest','context','getmodel','getcontroller','getview','getadminmodel','getadmincontroller','getadminview'
             );

@@ -86,6 +86,7 @@
     $lang->about_textyle_editor = 'Textyle专用编辑器。';
     $lang->etc_editor = '其他编辑器';
     $lang->about_etc_editor = '其他类型编辑器。';
+    $lang->set_editor_components = '에디터 콤포넌트 설정';
     $lang->set_prefix = '日志前缀';
     $lang->about_prefix = '自动添加到文章头部(可以使用HTML)。';
     $lang->set_suffix = '日志后缀';
@@ -341,6 +342,7 @@
             'dispTextyleToolConfigProfile'=>'关于',
             'dispTextyleToolConfigInfo'=>'博客设置',
             'dispTextyleToolConfigPostwrite'=>'编辑环境',
+            'dispTextyleToolConfigEditorComponents'=>'에디터콤포넌트 설정',
             'dispTextyleToolConfigCommunication'=>'发布&middot;交流',
             'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'插件管理',

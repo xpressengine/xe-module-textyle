@@ -86,6 +86,7 @@
     $lang->about_textyle_editor = '단락별 편집 방식의 글쓰기 도구 입니다.';
     $lang->etc_editor = '其他編輯器';
     $lang->about_etc_editor = '일반적인 리치 텍스트 편집기 입니다.';
+    $lang->set_editor_components = '에디터 콤포넌트 설정';
     $lang->set_prefix = '頁首設定';
     $lang->about_prefix = 'Each post contains following content. (You can use HTML)';
     $lang->set_suffix = '頁尾設定';
@@ -341,6 +342,7 @@
             'dispTextyleToolConfigProfile'=>'個人檔案',
             'dispTextyleToolConfigInfo'=>'部落格設定',
             'dispTextyleToolConfigPostwrite'=>'發表設定',
+            'dispTextyleToolConfigEditorComponents'=>'에디터콤포넌트 설정',
             'dispTextyleToolConfigCommunication'=>'公開&middot設定',
             'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'附加元件管理',

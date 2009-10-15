@@ -86,6 +86,7 @@
     $lang->about_textyle_editor = 'Textyle\'s default editor: You can edit each paragraph separately in your posts';
     $lang->etc_editor = 'Other Editors';
     $lang->about_etc_editor = 'Rich text editors.';
+    $lang->set_editor_components = '에디터 콤포넌트 설정';
     $lang->set_prefix = 'Prefix';
     $lang->about_prefix = 'Each post contains following content. (You can use HTML)';
     $lang->set_suffix = 'Suffix';
@@ -341,6 +342,7 @@
             'dispTextyleToolConfigProfile'=>'My Profile',
             'dispTextyleToolConfigInfo'=>'Blog Configuration',
             'dispTextyleToolConfigPostwrite'=>'Writing Env.',
+            'dispTextyleToolConfigEditorComponents'=>'에디터콤포넌트 설정',
             'dispTextyleToolConfigCommunication'=>'Publish&middot;Comm.',
             'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'Addons',

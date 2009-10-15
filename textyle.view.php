@@ -1086,6 +1086,17 @@
             $post_suffix_editor = $oEditorModel->getEditor(0, $option);
             Context::set('post_suffix_editor', $post_suffix_editor);
         }
+    
+        function dispTextyleToolConfigEditorComponents(){
+            $site_module_info = Context::get('site_module_info');
+            $site_srl = (int)$site_module_info->site_srl;
+
+            // 컴포넌트의 종류를 구해옴
+            $oEditorModel = &getModel('editor');
+            $component_list = $oEditorModel->getComponentList(false, $site_srl);
+
+            Context::set('component_list', $component_list);
+        }
 
         function dispTextyleToolConfigCommunication(){
             // 에디터 스킨 가져오기
@@ -1310,9 +1321,6 @@
 
             // 댓글이 없다면 오류
             if(!$oComment->isExists()) return $this->dispBoardMessage('msg_invalid_request');
-
-            // 글을 수정하려고 할 경우 권한이 없는 경우 비밀번호 입력화면으로
-           // if(!$oComment->isGranted()) return $this->setTemplateFile('input_password_form');
 
             // 필요한 정보들 세팅
             Context::set('oSourceComment', $oCommentModel->getComment());

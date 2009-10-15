@@ -86,6 +86,7 @@
     $lang->about_textyle_editor = '단락별 편집 방식의 글쓰기 도구 입니다.';
     $lang->etc_editor = '기타 편집기';
     $lang->about_etc_editor = '일반적인 리치 텍스트 편집기 입니다.';
+    $lang->set_editor_components = '에디터 콤포넌트 설정';
     $lang->set_prefix = '머리말 설정';
     $lang->about_prefix = '글마다 아래 내용을 자동으로 삽입 합니다. (HTML 사용가능)';
     $lang->set_suffix = '꼬리말 설정';
@@ -341,6 +342,7 @@
             'dispTextyleToolConfigProfile'=>'내 프로필',
             'dispTextyleToolConfigInfo'=>'블로그 설정',
             'dispTextyleToolConfigPostwrite'=>'쓰기환경 설정',
+            'dispTextyleToolConfigEditorComponents'=>'에디터콤포넌트 설정',
             'dispTextyleToolConfigCommunication'=>'발행&middot;대화 설정',
             'dispTextyleToolConfigBlogApi'=>'원격발행 설정',
             'dispTextyleToolConfigAddon'=>'애드온 관리',

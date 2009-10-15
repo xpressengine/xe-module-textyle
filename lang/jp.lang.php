@@ -86,6 +86,7 @@
     $lang->about_textyle_editor = '段落別に編集するエディターです。';
     $lang->etc_editor = 'その他のエディター';
     $lang->about_etc_editor = '一般的なリッチテキストエディターです。';
+    $lang->set_editor_components = '에디터 콤포넌트 설정';
     $lang->set_prefix = 'ヘッダー設定';
     $lang->about_prefix = '記事の冒頭に下の内容を自動的に挿入します。HTMLタグ可能）';
     $lang->set_suffix = 'フッター設定';
@@ -341,6 +342,7 @@
             'dispTextyleToolConfigProfile'=>'マイプロフィール',
             'dispTextyleToolConfigInfo'=>'ブログの基本設定',
             'dispTextyleToolConfigPostwrite'=>'記事の設定',
+            'dispTextyleToolConfigEditorComponents'=>'에디터콤포넌트 설정',
             'dispTextyleToolConfigCommunication'=>'コミュニケーションの設定',
             'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'アドオン管理',
