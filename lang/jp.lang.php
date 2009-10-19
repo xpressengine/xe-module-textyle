@@ -7,10 +7,10 @@
 
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'TextyleはXpressEngineのブログ専用モジュールです。';
-    $lang->msg_requried_version = "Textyle은 XE코어 %s 버전 이상에서 동작합니다.";
+    $lang->msg_requried_version = "TextyleはXE Core %s バージョン以上から正常に動作します。";
 
-	$lang->cmd_open_id = '오픈 아이디 로그인';
-	$lang->cmd_common_id = '일반 아이디 로그인';
+	$lang->cmd_open_id = 'OpenIDログイン';
+	$lang->cmd_common_id = '会員IDログイン';
 	$lang->msg_create_textyle = 'Textyleが生成されました。';
 	$lang->init_category_title = '基本カテゴリー';
 	$lang->add_category = 'カテゴリー追加';
@@ -31,18 +31,18 @@
 	$lang->newest_guestbooks = '最新ゲストブック';
 	$lang->newest_no_guestbooks = '登録された書き込みがありません。';
 	$lang->reserve = '予約';
-	$lang->publish = '발행';
+	$lang->publish = '発行';
     $lang->publish_go = '発行...';
-    $lang->publish_update_go = '재발행...';
+    $lang->publish_update_go = '再発行...';
     $lang->published = '発行済み';
-    $lang->publish_option = '발행옵션';
+    $lang->publish_option = '発行オプション';
     $lang->publish_confirm = '발행여부';
 	$lang->publish_this_blog = '이 블로그로 발행합니다.';
     $lang->ask_time_publish = '이 포스트를 지금 발행(또는 업데이트) 하시겠습니까?';
     $lang->ask_micro_publish = '마이크로 블로그에 발행 하시겠습니까?';
-    $lang->noti_publish = '발행알림';
-    $lang->send_trackback = '엮인글 발송';
-    $lang->add_input_trackback = '엮인글 발송 주소 추가';
+    $lang->noti_publish = '発行お知らせ';
+    $lang->send_trackback = 'トラックバック送信';
+    $lang->add_input_trackback = 'トラックバック追加';
     $lang->saved = '下書き';
     $lang->temp = '下書き';
     $lang->more = 'もっと見る';
@@ -91,6 +91,20 @@
     $lang->about_prefix = '記事の冒頭に下の内容を自動的に挿入します。HTMLタグ可能）';
     $lang->set_suffix = 'フッター設定';
     $lang->about_suffix = '記事の末尾に下の内容を自動的に挿入します。HTMLタグ可能）';
+    $lang->blogapi = '遠隔投稿';
+    $lang->blogapi_service = 'APIサービス';
+    $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
+    $lang->blogapi_hosted = '서비스 블로그';
+    $lang->blogapi_custom = '手動入力';
+    $lang->blogapi_host_provider = '서비스 제공자';
+    $lang->about_blogapi_host_provider = '등록을 원하는 서비스 제공자를 선택하세요';
+    $lang->blogapi_type = 'APIタイプ';
+    $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
+    $lang->blogapi_support = 'Blog API(Meta Weblog API)を利用して、遠隔投稿が出来ます。';
+    $lang->blogapi_example = '例) Window Live Writer、 Google Docs、 MS Word 2007 など';
+    $lang->not_permit_blogapi = 'APIのアクセス確認が出来ません。';
+    $lang->blogapi_url = 'APIのURL';
+    $lang->target_site_url = 'サイトのURL';
     $lang->blog_first_page = '最初のページ';
     $lang->blog_display_target = '表示形式';
     $lang->content_body = 'コンテンツ本文';
@@ -188,26 +202,12 @@
     $lang->about_blog_api = 'Textyleで作成した記事を、Blog APIで外部ブログや掲示板などに同時に投稿/修正/削除をすることができます。<br/> 現在サポートしているBlog APIはMetaWebLogのみです。他サービスについては随時追加予定です。<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
     $lang->cmd_registration_blogapi = 'BlogAPIサイト登録';
     $lang->cmd_modification_blogapi = 'BlogAPIサイト情報修正';
-    $lang->blogapi = '遠隔投稿';
-    $lang->blogapi_service = 'API 서비스';
-    $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
-    $lang->blogapi_hosted = '서비스 블로그';
-    $lang->blogapi_custom = '직접 입력';
-    $lang->blogapi_host_provider = '서비스 블로그 제공자';
-    $lang->about_blogapi_host_provider = '등록을 원하는 서비스 제공자를 선택하세요';
-    $lang->blogapi_type = 'API 형식';
-    $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
-    $lang->blogapi_support = 'Blog API(Meta Weblog API)を利用して、遠隔投稿が出来ます。';
-    $lang->blogapi_example = '例) Window Live Writer、 Google Docs、 MS Word 2007 など';
-    $lang->not_permit_blogapi = 'API 연결확인이 되지 않았습니다.';
-    $lang->blogapi_url = 'APIのURL';
-    $lang->blogapi_site_url = 'API対象サイト';
+    $lang->blogapi_site_url = '발행 대상 사이트';
     $lang->about_blogapi_site_url = 'BlogAPI経由で投稿する対象サイトのアドレスを入力して下さい。';
     $lang->blogapi_site_title = 'BlogAPI サイトタイトル';
     $lang->about_blogapi_site_title = 'BlogAPI経由で投稿するサイトタイトルを決めます。';
     $lang->blogapi_api_url = 'API URL';
-    $lang->target_site_url = '사이트 주소';
-    $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
+    $lang->about_blogapi_url = 'BlogAPI URLを入力して下さい。 (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
     $lang->blogapi_published = '投稿数';
     $lang->blogapi_user_id = 'ユーザーID';
     $lang->about_blogapi_user_id = 'API対象サイトで使われるユーザーIDを入力して下さい。';
@@ -274,7 +274,7 @@
     $lang->today = '今日';
     $lang->day_current = '当日';
     $lang->day_before = '前日';
-    $lang->none_visitor = '해당기간에 방문자가 없습니다.';
+    $lang->none_visitor = '該当期間中のアクセスがありません。';
     $lang->about_status = array(
         'day'=>'時間帯別のアクセス数を確認できます。',
         'week'=>'一週間の日付別訪問数',
@@ -356,7 +356,7 @@
     $lang->cmd_textyle_list = 'Textyleリスト';
     $lang->cmd_textyle_creation = 'Textyles生成';
     $lang->cmd_textyle_update = 'Textyle修正';
-    $lang->cmd_textyle_custom_menu = 'Textyle 메뉴 편집';
+    $lang->cmd_textyle_custom_menu = 'Textyleメニュー修正';
     $lang->cmd_new_post = '新規作成';
     $lang->cmd_go_blog = 'ブログを確認する';
     $lang->cmd_send_suggestion = 'ご意見を送る';
@@ -371,14 +371,15 @@
     $lang->cmd_change_secret = '非公開にする';
     $lang->cmd_write_relation = '関連記事を書く';
     $lang->cmd_delete_materials = 'ネタ削除';
-    $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
-    $lang->cmd_delete_all_materials = '모든 글감 삭제';
+    $lang->cmd_delete_selected_materials = '選択したネタ削除';
+    $lang->cmd_delete_all_materials = '全てのネタ削除';
     $lang->cmd_restore = '元に戻す';
     $lang->cmd_empty = '空にする';
     $lang->cmd_empty_basket = 'ごみ箱を空にする';
     $lang->cmd_change_category = 'カテゴリー変更';
+    $lang->cmd_save = '保存';
     $lang->cmd_publish = '発行する';
-    $lang->cmd_save_temp = '下書き保存';
+    $lang->cmd_save_publish = '保存してから発行';
     $lang->cmd_edit_htmlcss = 'HTML・CSS編集';
     $lang->cmd_edit_html = 'HTML編集';
     $lang->cmd_edit_css = 'CSS編集';
@@ -388,10 +389,9 @@
     $lang->msg_select_skin = '選択したスキンにTextyleスキンを変更します。\n\n現在使っているスキン情報が無くなります。\n\n変更して宜しいですか？ ';
     $lang->cmd_preview_skin = 'プレビュー';
     $lang->cmd_generate_widget_code = 'ウィジェットコード生成';
-
     $lang->msg_already_used_url = '既に利用されているURLです。';
     $lang->alert_reset_skin = '初期化すると入力したHTML・CSSの内容全てが無くなります。\n\n初期化して宜しいですか？';
-    $lang->msg_used_disabled_function = '스킨에서 사용할 수 없는 구문이 있습니다.';
+    $lang->msg_used_disabled_function = 'スキンで利用できない構文が有ります。';
 
 	$lang->msg_close_before_write = "変更した内容が保存されてません。";
 
@@ -415,7 +415,7 @@
     $lang->mail = 'メール';
     $lang->ip = 'IPアドレス';
 
-    $lang->cmd_hide = '숨김';
+    $lang->cmd_hide = '非表示';
 
 	$lang->secret_comment = '非公開コメント';
 	$lang->insert_comment = 'コメントを書く';
@@ -427,5 +427,5 @@
     $lang->sample_title = 'テキスタイルへようこそ！';
     $lang->sample_tags = 'textyle ,  テキスタイル ,  テキスタイルエディター ,  ネタ収集機';
     $lang->msg_preparation = '準備中です。';
-    $lang->msg_not_user = '해당 사용자가 없습니다.';
+    $lang->msg_not_user = '該当するユーザーはいません。';
 ?>
