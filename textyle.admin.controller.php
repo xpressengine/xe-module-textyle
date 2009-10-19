@@ -281,7 +281,7 @@
             executeQuery('module.deleteSiteAdmin', $args);
             executeQuery('member.deleteMemberGroup', $args);
             executeQuery('member.deleteSiteGroup', $args);
-            executeQuery('module.deleteLangs', $lang_args);
+            executeQuery('module.deleteLangs', $args);
             $lang_supported = Context::get('lang_supported');
             foreach($lang_supported as $key => $val) {
                 $lang_cache_file = _XE_PATH_.'files/cache/lang_defined/'.$args->site_srl.'.'.$key.'.php';
