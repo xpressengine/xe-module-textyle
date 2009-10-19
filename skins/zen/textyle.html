@@ -19,7 +19,7 @@
 			<hr />
 			<form action="{$root_url}" method="get" class="search">
 				<input name="vid" type="hidden" value="{$vid}" />
-				<input name="mid" type="hidden" value="textyle" />
+				<input name="mid" type="hidden" value="{$mid}" />
 				<input name="act" type="hidden" value="dispTextyle" />
 				<input name="search_target" type="hidden" value="title_content" />
 				<fieldset>
@@ -47,7 +47,7 @@
                     <div class="replyForm">
                         <!--@if($textyle->isEnableGuestbook())-->
                         <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                            <input name="mid" type="hidden" value="textyle" />
+                            <input name="mid" type="hidden" value="{$mid}" />
                             <input type="hidden" name="content" value="" />
                             <fieldset>
                                 {$editor}
@@ -87,7 +87,7 @@
                             <!--@if($modify == $val->textyle_guestbook_srl)-->
                             <li class="item replyForm">
                                 <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                                    <input name="mid" type="hidden" value="textyle" />
+                                    <input name="mid" type="hidden" value="{$mid}" />
                                     <input type="hidden" name="content" value="{htmlspecialchars($val->content)}" />
                                     <input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
                                     <fieldset>
@@ -187,7 +187,7 @@
                             <li class="item replyForm">
                                 <!--@if($textyle->isEnableGuestbook())-->
                                 <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                                    <input name="mid" type="hidden" value="textyle" />
+                                    <input name="mid" type="hidden" value="{$mid}" />
                                     <input type="hidden" name="content" value="" />
                                     <input type="hidden" name="parent_srl" value="{$val->textyle_guestbook_srl}" />
                                     <fieldset>
@@ -283,7 +283,7 @@
                         <!--@if($textyle->isEnableComment())-->
                         <fieldset>
                             <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
-                                <input name="mid" type="hidden" value="textyle" />
+                                <input name="mid" type="hidden" value="{$mid}" />
                                 <input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
                                 <input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
                                 <input type="hidden" name="content" value="{htmlspecialchars($oComment->get('content'))}" />
@@ -527,7 +527,7 @@
                             <!--@if($textyle->isEnableComment())-->
                             <fieldset>
                                 <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
-                                    <input name="mid" type="hidden" value="textyle" />
+                                    <input name="mid" type="hidden" value="{$mid}" />
                                     <input type="hidden" name="document_srl" value="{$document->document_srl}" />
                                     <input type="hidden" name="comment_srl" value="" />
                                     <input type="hidden" name="content" value="" />
