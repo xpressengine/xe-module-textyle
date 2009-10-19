@@ -7,7 +7,7 @@
 
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'TextyleはXpressEngineのブログ専用モジュールです。';
-    $lang->msg_requried_version = "TextyleはXE Core %s バージョン以上から正常に動作します。";
+    $lang->msg_requried_version = "Textyleは「XE Core バージョン.%s」以上から正常に動作します。";
 
 	$lang->cmd_open_id = 'OpenIDログイン';
 	$lang->cmd_common_id = '会員IDログイン';
@@ -36,10 +36,10 @@
     $lang->publish_update_go = '再発行...';
     $lang->published = '発行済み';
     $lang->publish_option = '発行オプション';
-    $lang->publish_confirm = '발행여부';
-	$lang->publish_this_blog = '이 블로그로 발행합니다.';
-    $lang->ask_time_publish = '이 포스트를 지금 발행(또는 업데이트) 하시겠습니까?';
-    $lang->ask_micro_publish = '마이크로 블로그에 발행 하시겠습니까?';
+    $lang->publish_confirm = '発行確認';
+	$lang->publish_this_blog = 'このブログに発行します。';
+    $lang->ask_time_publish = 'この記事を今すぐ発行（または更新）しますか？';
+    $lang->ask_micro_publish = 'マイクロブログに発行しますか？';
     $lang->noti_publish = '発行お知らせ';
     $lang->send_trackback = 'トラックバック送信';
     $lang->add_input_trackback = 'トラックバック追加';
@@ -86,20 +86,20 @@
     $lang->about_textyle_editor = '段落別に編集するエディターです。';
     $lang->etc_editor = 'その他のエディター';
     $lang->about_etc_editor = '一般的なリッチテキストエディターです。';
-    $lang->set_editor_components = '에디터 콤포넌트 설정';
+    $lang->set_editor_components = 'エディターコンポーネント設定';
     $lang->set_prefix = 'ヘッダー設定';
     $lang->about_prefix = '記事の冒頭に下の内容を自動的に挿入します。HTMLタグ可能）';
     $lang->set_suffix = 'フッター設定';
     $lang->about_suffix = '記事の末尾に下の内容を自動的に挿入します。HTMLタグ可能）';
     $lang->blogapi = '遠隔投稿';
     $lang->blogapi_service = 'APIサービス';
-    $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
-    $lang->blogapi_hosted = '서비스 블로그';
+    $lang->about_blogapi_service = 'Blog APIを経由した遠隔発行をサポートするサービスを選択して下さい。<br/>リストにない場合は、手動で直接入力出来ます。';
+    $lang->blogapi_hosted = 'サービスブログ';
     $lang->blogapi_custom = '手動入力';
-    $lang->blogapi_host_provider = '서비스 제공자';
-    $lang->about_blogapi_host_provider = '등록을 원하는 서비스 제공자를 선택하세요';
+    $lang->blogapi_host_provider = 'サービス提供者';
+    $lang->about_blogapi_host_provider = '登録したいサービス提供者を選択して下さい。';
     $lang->blogapi_type = 'APIタイプ';
-    $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
+    $lang->about_blogapi_type = '登録したいBlogAPIのタイプを選択して下さい。';
     $lang->blogapi_support = 'Blog API(Meta Weblog API)を利用して、遠隔投稿が出来ます。';
     $lang->blogapi_example = '例) Window Live Writer、 Google Docs、 MS Word 2007 など';
     $lang->not_permit_blogapi = 'APIのアクセス確認が出来ません。';
@@ -202,12 +202,12 @@
     $lang->about_blog_api = 'Textyleで作成した記事を、Blog APIで外部ブログや掲示板などに同時に投稿/修正/削除をすることができます。<br/> 現在サポートしているBlog APIはMetaWebLogのみです。他サービスについては随時追加予定です。<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
     $lang->cmd_registration_blogapi = 'BlogAPIサイト登録';
     $lang->cmd_modification_blogapi = 'BlogAPIサイト情報修正';
-    $lang->blogapi_site_url = '발행 대상 사이트';
+    $lang->blogapi_site_url = '発行対象サイト';
     $lang->about_blogapi_site_url = 'BlogAPI経由で投稿する対象サイトのアドレスを入力して下さい。';
     $lang->blogapi_site_title = 'BlogAPI サイトタイトル';
     $lang->about_blogapi_site_title = 'BlogAPI経由で投稿するサイトタイトルを決めます。';
     $lang->blogapi_api_url = 'API URL';
-    $lang->about_blogapi_url = 'BlogAPI URLを入力して下さい。 (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
+    $lang->about_blogapi_url = 'BlogAPI URLを入力して下さい。 (サービスブログの場合、[id]値、またはドメインを変更して下さい。)';
     $lang->blogapi_published = '投稿数';
     $lang->blogapi_user_id = 'ユーザーID';
     $lang->about_blogapi_user_id = 'API対象サイトで使われるユーザーIDを入力して下さい。';
@@ -342,9 +342,9 @@
             'dispTextyleToolConfigProfile'=>'マイプロフィール',
             'dispTextyleToolConfigInfo'=>'ブログの基本設定',
             'dispTextyleToolConfigPostwrite'=>'記事の設定',
-            'dispTextyleToolConfigEditorComponents'=>'에디터콤포넌트 설정',
+            'dispTextyleToolConfigEditorComponents'=>'エディターコンポーネント設定',
             'dispTextyleToolConfigCommunication'=>'コミュニケーションの設定',
-            'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
+            'dispTextyleToolConfigBlogApi'=>'遠隔発行設定',
             'dispTextyleToolConfigAddon'=>'アドオン管理',
             'dispTextyleToolConfigData'=>'データ管理',
             'dispTextyleToolConfigChangePassword'=>'パスワード変更',
@@ -354,7 +354,7 @@
     $lang->cmd_go_help = 'ヘルプ';
     $lang->cmd_textyle_setup = '基本設定';
     $lang->cmd_textyle_list = 'Textyleリスト';
-    $lang->cmd_textyle_creation = 'Textyles生成';
+    $lang->cmd_textyle_creation = 'Textyle生成';
     $lang->cmd_textyle_update = 'Textyle修正';
     $lang->cmd_textyle_custom_menu = 'Textyleメニュー修正';
     $lang->cmd_new_post = '新規作成';
