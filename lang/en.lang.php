@@ -378,6 +378,7 @@
     $lang->cmd_empty_basket = 'Clear Recycle Bin';
     $lang->cmd_change_category = 'Change Category';
     $lang->cmd_publish = 'Publish';
+	$lang->cmd_save_publish = 'Save before Publish';
     $lang->cmd_save_temp = 'Temporarily save';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS Edit';
     $lang->cmd_edit_html = 'HTML Edit';
