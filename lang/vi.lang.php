@@ -264,7 +264,7 @@
     $lang->modify_post = 'Sửa bài viết';
     $lang->posting_option = 'Tùy chọn bài viết';
     $lang->post_url = 'URL cho bài viết';
-    $lang->about_tag = 'Để thêm nhiều Tag, hã đặt dấu (,) giữa các Tag';
+    $lang->about_tag = 'Để thêm nhiều Tag, hãy đặt dấu (,) giữa các Tag';
 	$lang->success_temp_saved = 'Đã lưu thành công.';
 
     $lang->daily = 'Theo ngày';
