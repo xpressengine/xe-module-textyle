@@ -206,7 +206,7 @@
                         if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
 
-			$uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
+						$uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
                         $encoded_filename = preg_replace('/^\.\//','',$path.str_replace('+','%20',urlencode($file->source_filename)));
 
                         if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
