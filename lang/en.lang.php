@@ -7,10 +7,10 @@
 
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'Textyle is a blog module running on XpressEngine.';
-    $lang->msg_requried_version = "Textyle은 XE코어 %s 버전 이상에서 동작합니다.";
+    $lang->msg_requried_version = "Textyle requires XE core version equal to or greater than %s.";
 
-	$lang->cmd_open_id = '오픈 아이디 로그인';
-	$lang->cmd_common_id = '일반 아이디 로그인';
+	$lang->cmd_open_id = 'Open ID Login';
+	$lang->cmd_common_id = 'Default Login';
 	$lang->msg_create_textyle = 'Textyle is created';
 	$lang->init_category_title = 'Default Category';
 	$lang->add_category = 'Add a category';
@@ -35,14 +35,13 @@
     $lang->publish_go = 'Publish...';
     $lang->publish_update_go = 'Re Publish...';
     $lang->published = 'Published';
-    $lang->publish_option = '발행옵션';
-    $lang->publish_confirm = '발행여부';
+    $lang->publish_option = 'Publish Options';
 	$lang->publish_this_blog = '이 블로그로 발행합니다.';
-    $lang->ask_time_publish = '이 포스트를 지금 발행(또는 업데이트) 하시겠습니까?';
-    $lang->ask_micro_publish = '마이크로 블로그에 발행 하시겠습니까?';
-    $lang->noti_publish = '발행알림';
-    $lang->send_trackback = '엮인글 발송';
-    $lang->add_input_trackback = '엮인글 발송 주소 추가';
+    $lang->ask_time_publish = 'Would you like to publish (or update) this posting right now?';
+    $lang->ask_micro_publish = 'Do you want to publish on micro blogs?';
+    $lang->noti_publish = 'Notify publish';
+    $lang->send_trackback = 'Send Trackbacks';
+    $lang->add_input_trackback = 'Add trackback address';
     $lang->saved = 'Saved';
     $lang->temp = 'Temporary';
     $lang->more = 'More';
@@ -86,7 +85,7 @@
     $lang->about_textyle_editor = 'Textyle\'s default editor: You can edit each paragraph separately in your posts';
     $lang->etc_editor = 'Other Editors';
     $lang->about_etc_editor = 'Rich text editors.';
-    $lang->set_editor_components = '에디터 콤포넌트 설정';
+    $lang->set_editor_components = 'Configure Editor Components';
     $lang->set_prefix = 'Prefix';
     $lang->about_prefix = 'Each post contains following content. (You can use HTML)';
     $lang->set_suffix = 'Suffix';
@@ -185,11 +184,11 @@
     $lang->about_twitter_password = 'Input Twitter Password';
 
     $lang->blogapi_publish = 'BlogAPI';
-    $lang->about_blog_api = 'Using BlogAPI, you can publish/ modify/ delete posts to other blogs or bulletin boards <BR /> Currently, Textyle only supports MetaWebLog API, but other APIs will be supported soon.<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
+    $lang->about_blog_api = 'Using BlogAPI, you can publish/ modify/ delete posts to other blogs or bulletin boards <BR /> Currently, Textyle only supports MetaWebLog API, but other APIs will be supported soon.<br/>Using BlogAPI might be restricted accoring to the configuration of the server Textyle installed in.';
     $lang->cmd_registration_blogapi = 'Register BlogAPI Site';
     $lang->cmd_modification_blogapi = 'Modify BlogAPI Site Information';
     $lang->blogapi = 'Blog API';
-    $lang->blogapi_service = 'API 서비스';
+    $lang->blogapi_service = 'API Service';
     $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
     $lang->blogapi_hosted = '서비스 블로그';
     $lang->blogapi_custom = '직접 입력';
@@ -274,7 +273,7 @@
     $lang->today = 'Today';
     $lang->day_current = 'Today';
     $lang->day_before = 'Yesterday';
-    $lang->none_visitor = '해당기간에 방문자가 없습니다.';
+    $lang->none_visitor = 'There is no visitor for the duration.';
     $lang->about_status = array(
         'day'=>'You can see the number of visitors by hours.',
         'week'=>'You can see the number of visitors by day over a week.',
@@ -342,7 +341,7 @@
             'dispTextyleToolConfigProfile'=>'My Profile',
             'dispTextyleToolConfigInfo'=>'Blog Configuration',
             'dispTextyleToolConfigPostwrite'=>'Writing Env.',
-            'dispTextyleToolConfigEditorComponents'=>'에디터콤포넌트 설정',
+            'dispTextyleToolConfigEditorComponents'=>'Editor Components',
             'dispTextyleToolConfigCommunication'=>'Publish&middot;Comm.',
             'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'Addons',
@@ -356,7 +355,7 @@
     $lang->cmd_textyle_list = 'Textyle List';
     $lang->cmd_textyle_creation = 'New Textyle';
     $lang->cmd_textyle_update = 'Modify Textyle';
-    $lang->cmd_textyle_custom_menu = 'Textyle 메뉴 편집';
+    $lang->cmd_textyle_custom_menu = 'Textyle Menu Customize';
     $lang->cmd_new_post = 'Write New Post';
     $lang->cmd_go_blog = 'Go to My Blog';
     $lang->cmd_send_suggestion = 'Send a suggestion';
@@ -371,14 +370,14 @@
     $lang->cmd_change_secret = 'Make it secret';
     $lang->cmd_write_relation = 'Write a related post';
     $lang->cmd_delete_materials = 'Delete an ingredient';
-    $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
-    $lang->cmd_delete_all_materials = '모든 글감 삭제';
+    $lang->cmd_delete_selected_materials = 'Deleted the selected ingredient';
+    $lang->cmd_delete_all_materials = 'Delete all ingredients';
     $lang->cmd_restore = 'Restore';
     $lang->cmd_empty = 'Empty';
     $lang->cmd_empty_basket = 'Clear Recycle Bin';
     $lang->cmd_change_category = 'Change Category';
     $lang->cmd_publish = 'Publish';
-	$lang->cmd_save_publish = 'Save before Publish';
+    $lang->cmd_save_publish = 'Save and Publish';
     $lang->cmd_save_temp = 'Temporarily save';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS Edit';
     $lang->cmd_edit_html = 'HTML Edit';
@@ -393,7 +392,7 @@
 
     $lang->msg_already_used_url = 'The URL is already being used.';
     $lang->alert_reset_skin = 'If you reset skin, all the HTML&middot;CSS you inputted will be removed.\n\nAre you sure to reset it?';
-    $lang->msg_used_disabled_function = '스킨에서 사용할 수 없는 구문이 있습니다.';
+    $lang->msg_used_disabled_function = 'It contains forbidden functions.';
 
 	$lang->msg_close_before_write = "Changed contents are not saved.";
 
@@ -417,7 +416,7 @@
     $lang->mail = 'Mail';
     $lang->ip = 'IP';
 
-    $lang->cmd_hide = '숨김';
+    $lang->cmd_hide = 'Hide';
 
 	$lang->secret_comment = 'Secret Comment';
 	$lang->insert_comment = 'Insert a comment';

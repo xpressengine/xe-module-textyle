@@ -36,7 +36,6 @@
     $lang->publish_update_go = '재발행...';
     $lang->published = '발행됨';
     $lang->publish_option = '발행옵션';
-    $lang->publish_confirm = '발행여부';
 	$lang->publish_this_blog = '이 블로그로 발행합니다.';
     $lang->ask_time_publish = '이 포스트를 지금 발행(또는 업데이트) 하시겠습니까?';
     $lang->ask_micro_publish = '마이크로 블로그에 발행 하시겠습니까?';
