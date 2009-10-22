@@ -730,6 +730,7 @@
             $oTextyleModel = &getModel('textyle');
             $oDocumentModel = &getModel('document');
 			$oDocumentController = &getController('document');
+            $subscripted = false;
 
             $var = Context::getRequestVars();
 
@@ -740,6 +741,7 @@
             $vars->category_srl = $var->category_srl;
             $vars->allow_comment = $var->allow_comment;
             $vars->allow_trackback = $var->allow_trackback;
+
             $output = $this->updatePost($vars);
             if(!$output->toBool()) return $output;
 
@@ -761,13 +763,13 @@
                 else if($key == 'send_me2day' && $val == 'Y') $publish_option->send_me2day = true;
                 else if($key == 'send_twitter' && $val == 'Y') $publish_option->send_twitter = true;
             }
+
             if(count($publish_option->trackbacks)) foreach($publish_option->trackbacks as $key => $val) $oPublish->addTrackback($val['url'], $val['charset']);
             if(count($publish_option->blogapis)) foreach($publish_option->blogapis as $key => $val) if($val->send_api) $oPublish->addBlogApi($key, $val->category);
             $oPublish->setMe2day($publish_option->send_me2day);
             $oPublish->setTwitter($publish_option->send_twitter);
             $oPublish->save();
 
-            $subscripted = false;
 			$var->publish_date_yyyymmdd = ereg_replace("[^0-9]",'',str_replace("-",'',$var->publish_date_yyyymmdd));
 			if($var->subscription=='Y' && $var->publish_date_yyyymmdd) {
 				$var->publish_date_hh = ereg_replace("[^0-9]",'',str_replace('-','',$var->publish_date_hh));
@@ -779,17 +781,17 @@
 				if($var->publish_date > date('YmdHis')){
                     $args->document_srl = $var->document_srl;
                     $args->module_srl = $this->module_srl;
-                    $args->publish_date = $args->publish_date;
+                    $args->publish_date = $var->publish_date;
 
                     $output = executeQuery('textyle.insertTextyleSubscription', $args);
                     if(!$output->toBool()) return $output;
 
                     // update module_srl for subscription
                     $args->module_srl = abs($this->module_srl) * -1;
-                    $output = executeQuery('document.updateDocumentModule', $var);
+                    $output = executeQuery('document.updateDocumentModule', $args);
                     if(!$output->toBool()) return $output;
 
-                    $this->syncTextyleSubscriptionDate($args->module_srl);
+                    $this->syncTextyleSubscriptionDate($this->module_srl);
                     $subscripted = true;
 				}
 			}
