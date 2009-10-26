@@ -331,6 +331,12 @@
             $this->add('document_srl', $obj->document_srl);
             $this->add('comment_srl', $obj->comment_srl);
         }
+        
+        function procTextyleCommentVerificationPassword(){
+            $output = $this->checkCommentVerificationPassword();
+            if($output) return $output;
+        }
+
 
         /**
          * @brief 코멘트 삭제

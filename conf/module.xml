@@ -128,6 +128,7 @@
 		<action name="procTextyleTagDelete" type="controller" />
 		<action name="procTextyleTagUpdate" type="controller" />
 		<action name="procTextyleCommentItemDelete" type="controller" />
+		<action name="procTextyleCommentVerificationPassword" type="controller" />
 		<action name="procTextyleNotifyItemDelete" type="controller" />
 		<action name="procTextyleCommentItemSetSecret" type="controller" />
 		<action name="procTextyleTrackbackItemDelete" type="controller" />

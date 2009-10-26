@@ -260,6 +260,15 @@
                     break;
 
             }
+
+            $args->textyle_blogapi_logs_srl = getNextSequence();
+            $args->document_srl = $this->oDocument->document_srl; 
+            $args->module_srl = $this->oDocument->get('module_srl');
+            $args->blogapi_url = $api->blogapi_url;
+            $args->blogapi_id = $api->blogapi_id;
+            $args->sended = $output->toBool() ? 'Y' : 'N';
+            $args->regdate = 'curdate()';
+			executeQuery('textyle.insertBlogApiLog',$args);
             return $output;
         }
 
