@@ -73,7 +73,7 @@
                 $return = array();
 
                 foreach($this->hosted_apis as $k => $api){
-                    if(strpos($api['blogapi_url'],'https')!==0) $return[] = $api;        
+                    if(strpos($api['blogapi_url'],'https')!==0) $return[$k] = $api;        
                 }
                 return $return;
             }else{
