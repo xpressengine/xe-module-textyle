@@ -67,7 +67,7 @@
         }
 
         function getHostedApis() {
-            $support_ssl = defined('OPENSSL_VERSION_TEXT');
+            $support_ssl = defined('OPENSSL_KEYTYPE_RSA');
 
             if(!$support_ssl){
                 $return = array();
