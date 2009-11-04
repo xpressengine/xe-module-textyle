@@ -134,6 +134,7 @@
                 if(count($file_list)) {
                     $content = $oDocument->get('content');
                     foreach($file_list as $file) {
+
                         $output = $this->newMediaObject($file->source_filename, $file->uploaded_filename);
                         $target_file = $output->get('target_file');
 
@@ -143,6 +144,15 @@
                         $path = $m[1].'/';
                         $uploaded_filename = $file->uploaded_filename;
                         $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
+                        
+                        // 이미지 리사이즈시 content내의 파일명에서 '.resized.xxx' 제거
+                        $extension = strrchr($uploaded_filename, '.');
+                        $extension = '.resized'.$extension;
+                        
+                        if(strpos($content, $uploaded_filename.$extension)!==false) 
+                            $content = str_replace($uploaded_filename.$extension, $uploaded_filename, $content);
+                        if(strpos($content, $encoded_filename.$extension)!==false) 
+                            $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
                         if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
@@ -150,13 +160,24 @@
                         $uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
                         $encoded_filename = preg_replace('/^\.\//','',$path.str_replace('+','%20',urlencode($file->source_filename)));
 
+                        if(strpos($content, $uploaded_filename.$extension)!==false) 
+                            $content = str_replace($uploaded_filename.$extension, $uploaded_filename, $content);
+                        if(strpos($content, $encoded_filename.$extension)!==false) 
+                            $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
+
                         if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
-
+                        
                     }
+
                     $oDocument->add('content', $content);
                 }
             }
+            
+            // Content에서 상대경로로 되어 있는 파일의 url을 절대로 변환(글감사용시)
+            $content = $oDocument->get('content');
+            $content = str_replace('./files', getSiteUrl('').'files', $content);
+            $oDocument->add('content', $content);
 
             $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.newPost</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>title</name><value><string>%s</string></value></member><member><name>description</name><value><string>%s</string></value></member><member><name>categories</name><value><array><data><value><string>%s</string></value></data></array></value></member><member><name>tagwords</name><value><array><data><value><string>%s</string></value></data></array></value></member></struct></value></param><param><value><boolean>1</boolean></value></param></params></methodCall>',
                     $this->blogid,
@@ -203,11 +224,26 @@
                         $path = $m[1].'/';
                         $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
 
+                        // 이미지 리사이즈시 content내의 파일명에서 '.resized.xxx' 제거
+                        $uploaded_filename = $file->uploaded_filename;
+                        $extension = strrchr($uploaded_filename, '.');
+                        $extension = '.resized'.$extension;
+
+                        if(strpos($content, $uploaded_filename.$extension)!==false) 
+                            $content = str_replace($uploaded_filename.$extension, $uploaded_filename, $content);
+                        if(strpos($content, $encoded_filename.$extension)!==false) 
+                            $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
+
                         if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
 
 						$uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
                         $encoded_filename = preg_replace('/^\.\//','',$path.str_replace('+','%20',urlencode($file->source_filename)));
+
+                        if(strpos($content, $uploaded_filename.$extension)!==false) 
+                            $content = str_replace($uploaded_filename.$extension, $uploaded_filename, $content);
+                        if(strpos($content, $encoded_filename.$extension)!==false) 
+                            $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
                         if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
