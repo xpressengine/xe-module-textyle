@@ -1110,6 +1110,8 @@
 
         function dispTextyleToolConfigBlogApi() {
             $oTextyleModel = &getModel('textyle');
+			$output = $oTextyleModel->getBlogApiService();
+			Context::set('api_services',$output->data);
 
             Context::set('oPublish', $oTextyleModel->getPublishObject($this->module_srl));
 

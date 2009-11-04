@@ -21,6 +21,19 @@ function completeDeleteTextyle(ret_obj) {
 	location.href=current_url.setQuery('act','dispTextyleAdminList').setQuery('module_srl','');
 }
 
+function completeInsertBlogApiService(ret_obj, response_tags) {
+	alert(ret_obj['message']);
+	location.href=current_url.setQuery('act','dispTextyleAdminBlogApiConfig').setQuery('textyle_blogapi_services_srl','');
+}
+
+function deleteBlogApiService(srl) {
+    var params = new Array();
+    params['textyle_blogapi_services_srl'] = srl;
+    exec_xml('textyle', 'procTextyleAdminDeleteBlogApiServices', params, completeReload);
+}
+
+
+
 function toggleAccessType(target) {
 	switch(target) {
 		case 'domain' :

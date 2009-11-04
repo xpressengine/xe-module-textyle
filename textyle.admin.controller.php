@@ -369,5 +369,23 @@
             }
             $oModuleController->insertModuleConfig('textyle', $config);
         }
+
+		function procTextyleAdminInsertBlogApiServices(){
+			$args = Context::getRequestVars();
+
+			if($args->textyle_blogapi_services_srl){
+				$output = executeQuery('textyle.updateBlogApiService',$args);
+			}else{
+				$args->textyle_blogapi_services_srl = getNextSequence();
+				$args->list_order = $args->textyle_blogapi_services_srl * -1;
+				$output = executeQuery('textyle.insertBlogApiService',$args);
+			}
+		}
+
+		function procTextyleAdminDeleteBlogApiServices(){
+			$args->textyle_blogapi_services_srl = Context::get('textyle_blogapi_services_srl');
+			$output = executeQuery('textyle.deleteBlogApiService',$args);
+			return $output;
+		}
     }
 ?>

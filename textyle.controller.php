@@ -1701,33 +1701,40 @@
 
             $msg = Context::getLang('msg_blogapi_registration');
             $vars = Context::getRequestVars();
+
+            $vars->module_srl = $this->module_srl;
             $check_vars = array('blogapi_site_url', 'blogapi_site_title', 'blogapi_url', 'blogapi_user_id', 'blogapi_password');
             foreach($check_vars as $key => $val) {
                 if(!$vars->{$val}) return new Object(-1,$msg[$key]);
             }
+			$output = $this->insertBlogApiService($var);
+			return $output;
+        }
 
+		function insertBlogApiService($var){
             if(!preg_match('/^(http|https)/',$vars->blogapi_url)) $vars->blogapi_url = 'http://'.$vars->blogapi_url;
 
-            $vars->module_srl = $this->module_srl;
             if($vars->api_srl) {
                 $output = executeQuery('textyle.getApiInfo',$vars);
                 if($output->data->api_srl) return executeQuery('textyle.updateBlogAPI', $vars);
             }
             $vars->api_srl = getNextSequence();
             return executeQuery('textyle.insertBlogAPI', $vars);
-        }
+		}
 
         function procTextyleToggleEnableAPI() {
             $vars->api_srl = Context::get('api_srl');
             $vars->module_srl = $this->module_srl;
             $output = executeQuery('textyle.getApiInfo',$vars);
             if(!$output->data) return new Object(-1,'msg_invalid_request');
+
             if($output->data->enable == 'Y') $vars->enable = 'N';
             else $vars->enable = 'Y';
+
             $output = executeQuery('textyle.updateEnableBlogAPI', $vars);
             if(!$output->toBool()) return $output;
-            $this->add('enable', $vars->enable);
 
+            $this->add('enable', $vars->enable);
         }
 
         function procTextyleDeleteBlogApi() {

@@ -419,13 +419,12 @@
             $oPublish = $oTextyleModel->getPublishObject($this->module_srl);
 
             $var = Context::getRequestVars();
-
-            $output = $oPublish->getBlogAPIInfo($var->blogapi_service, $var->blogapi_host_provider, $var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password);
+            $output = $oPublish->getBlogAPIInfo($var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password);
             if(!$output->toBool()) return $output;
+			$url = $output->get('url');
+            if(!$url) $this->setMessage('not_permit_blogapi');
 
-            if(!$output->get('url')) $this->setMessage('not_permit_blogapi');
-
-            $this->add('site_url', $output->get('url'));
+            $this->add('site_url', $url);
             $this->add('title', $output->get('name'));
         }
 
@@ -434,6 +433,14 @@
 			$key = $oTrackbackModel->getTrackbackKey($document_srl);
 
 			return getFullSiteUrl($domain,'','document_srl',$document_srl,'key',$key,'act','trackback');
+		}
+	
+		function getBlogApiService($args=null){	
+			$srl = Context::get('textyle_blogapi_services_srl');
+			if($srl) $args->textyle_blogapi_services_srl = $srl;
+			$output = executeQueryArray('textyle.getBlogApiServices',$args);
+			if($srl) $this->add('services',$output->data);
+			return $output;
 		}
 
    }

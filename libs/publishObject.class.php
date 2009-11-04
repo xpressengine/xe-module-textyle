@@ -11,39 +11,6 @@
         var $publish_twitter = false; // true/false
         var $published_twitter = false; // true/false
 
-        var $hosted_apis = array(
-                'naver_blog' => array(
-                    'title' => 'Naver Blog',
-                    'blogapi_type' => 'metaweblog',
-                    'blogapi_site_url' => '',
-                    'blogapi_url' => 'https://api.blog.naver.com/xmlrpc',
-                ),
-                'tistory.com' => array(
-                    'title' => 'Tistory.com',
-                    'blogapi_type' => 'metaweblog',
-                    'blogapi_site_url' => '',
-                    'blogapi_url' => 'http://[id].tistory.com/api',
-                ),
-                'textcube.com' => array(
-                    'title' => 'Textcube.com',
-                    'blogapi_type' => 'metaweblog',
-                    'blogapi_site_url' => '',
-                    'blogapi_url' => 'http://[id].textcube.com/api/blogapi',
-                ),
-                'egloos' => array(
-                    'title' => 'Egloos',
-                    'blogapi_type' => 'metaweblog',
-                    'blogapi_site_url' => '',
-                    'blogapi_url' => 'https://rpc.egloos.com/rpc1',
-                ),
-                'cyworld' => array(
-                    'title' => 'Cyworld Blog',
-                    'blogapi_type' => 'metaweblog',
-                    'blogapi_site_url' => '',
-                    'blogapi_url' => 'http://cyhome.cyworld.com/[BlogAPI ID]/api',
-                ),
-            );
-
         function publishObject($module_srl, $document_srl = 0) {
             $this->module_srl = $module_srl;
             $this->document_srl = $document_srl;
@@ -64,39 +31,15 @@
             $this->published_me2day = $data->publish_me2day==true?true:false;
             $this->publish_twitter = $data->published_twitter==true?true:false;
             $this->published_twitter = $data->published_twitter==true?true:false;
-        }
+		}
 
-        function getHostedApis() {
-            $support_ssl = defined('OPENSSL_KEYTYPE_RSA');
-
-            if(!$support_ssl){
-                $return = array();
-
-                foreach($this->hosted_apis as $k => $api){
-                    if(strpos($api['blogapi_url'],'https')!==0) $return[$k] = $api;        
-                }
-                return $return;
-            }else{
-                return $this->hosted_apis;
-            }
-        }
-
-        function getBlogAPIInfo($service, $provider, $type, $url, $user_id, $password) {
+		function getBlogAPIInfo($type, $url, $user_id, $password) {
             if(!preg_match('/^(http|https)/',$url)) $url = 'http://'.$url;
 
             $msg_lang = Context::getLang('msg_blogapi_registration');
 
             if(!$user_id) return new Object(-1,$msg_lang[3]);
             if(!$password ) return new Object(-1,$msg_lang[4]);
-
-            if($service == 'hosted') {
-                $host = $this->hosted_apis[$provider];
-
-                if(!$host) return new Object(-1,'msg_invalid_request');
-
-                $type = $host['blogapi_type'];
-            }
-
             if(!$url) return new Object(-1,$msg_lang[2]);
 
             switch($type) {
@@ -260,6 +203,14 @@
                     break;
 
             }
+
+            $args->textyle_blogapi_logs_srl = getNextSequence();
+            $args->document_srl = $this->oDocument->document_srl; 
+            $args->module_srl = $this->oDocument->get('module_srl');
+            $args->blogapi_url = $api->blogapi_url;
+            $args->blogapi_id = $api->blogapi_user_id;
+            $args->sended = $output->toBool() ? 'Y' : 'N';
+			executeQuery('textyle.insertBlogApiLog',$args);
             return $output;
         }
 

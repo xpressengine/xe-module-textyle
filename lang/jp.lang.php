@@ -104,6 +104,12 @@
     $lang->blogapi_example = '例) Window Live Writer、 Google Docs、 MS Word 2007 など';
     $lang->not_permit_blogapi = 'APIのアクセス確認が出来ません。';
     $lang->blogapi_url = 'APIのURL';
+	$lang->cmd_textyle_blogapi_service = 'Blog API 서비스 편집';
+	$lang->api_type = 'API 타입';
+	$lang->service_name = 'API 서비스 이름';
+	$lang->url_description = 'API 주소 입력 방법';
+	$lang->id_description = 'API 아이디 입력 방법';
+	$lang->password_description = 'API 비밀번호 입력 방법';
     $lang->target_site_url = 'サイトのURL';
     $lang->blog_first_page = '最初のページ';
     $lang->blog_display_target = '表示形式';

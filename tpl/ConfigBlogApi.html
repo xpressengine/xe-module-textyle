@@ -44,13 +44,14 @@
                                 <tr>
                                     <th scope="row" rowspan="2">{$lang->blogapi_host_provider}</th>
                                     <td>
-                                        <select name="blogapi_host_provider" onchange="jQuery('input[name=blogapi_url]').val(apis_url[jQuery(this).val()]);">
+									<input type="hidden" name="blogapi_host_provider_type" />
+										<select name="blogapi_host_provider" onchange="getBlogApiServiceInfo(this.value)">
                                             <option value="">{$lang->blogapi_host_provider}</option>
-                                            <!--@foreach($oPublish->getHostedApis() as $key => $val)-->
-                                            <option value="{$key}" <!--@if($api_info->blogapi_host_provider==$key)-->selected="selected"<!--@end-->>{$val['title']}</option>
+                                            <!--@foreach($api_services as $key => $val)-->
+                                            <option value="{$val->textyle_blogapi_services_srl}">{$val->service_name}</option>
                                             <!--@end-->
-                                        </select>
-                                    </td>
+										</select>
+                                   </td>
                                 </tr>
 								<tr>
 									<td>{$lang->about_blogapi_host_provider}</td>
@@ -79,14 +80,14 @@
                                     </td>
 								</tr>
 								<tr>
-									<td>{$lang->about_blogapi_url}</td>
+									<td id="api_url_label" class="hosted"></td>
 								</tr>
 								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_userid">{$lang->user_id}</label></th>
 									<td><input name="blogapi_user_id" type="text" class="inputText" id="blogapi_userid" value="{htmlspecialchars($api_info->blogapi_user_id)}" style="width:200px" /></td>
 								</tr>
 								<tr>
-									<td>{$lang->about_blogapi_user_id}</td>
+									<td id="blogapi_userid_label" class="hosted"></td>
 								</tr>
 								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_password">{$lang->password}</label></th>
@@ -95,7 +96,7 @@
                                     </td>
 								</tr>
 								<tr>
-									<td>{$lang->about_blogapi_password}</td>
+									<td id="blogapi_password_label" class="hosted"></td>
 								</tr>
                             </table>
                             <div class="buttonArea">
@@ -178,5 +179,4 @@
 			<!-- Extension -->
 				<!--#include("_tool_menu.html")-->
 			<!-- Extension -->
-
 <!--#include("_tool_footer.html")-->

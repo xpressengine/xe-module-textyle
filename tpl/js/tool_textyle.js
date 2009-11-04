@@ -1090,6 +1090,25 @@ function doMoveListOrder(component_name, mode) {
 
     exec_xml('editor', 'procEditorAdminMoveListOrder', params, completeUpdate);
 }
+function getBlogApiServiceInfo(srl) {
+	if(!srl){
+		jQuery('#api_url_label').html('');
+		jQuery('#blogapi_userid_label').html('');
+		jQuery('#blogapi_password_label').html('');
+	
+		return;
+	}
+    var params = new Array();
+    params['textyle_blogapi_services_srl'] = srl;
+    exec_xml('textyle', 'getBlogApiService', params, function(data){
+		var s = data['services'].item;
+		jQuery('#api_url_label').html(s.url_description);
+		jQuery('#blogapi_userid_label').html(s.id_description);
+		jQuery('#blogapi_password_label').html(s.password_description);
+		jQuery(':input[name=blogapi_host_provider_type]').val(s.api_type);
+	},new Array('error','message','services'));
+}
+
 
 function completeUpdate(ret_obj) {
     location.reload();

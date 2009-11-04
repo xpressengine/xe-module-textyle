@@ -205,6 +205,12 @@
     $lang->blogapi_example = 'Ví dụ: Window Live Writer, Google Docs, MS Word 2007, ...';
     $lang->not_permit_blogapi = 'Không thể xác nhận kết nối qua API.';
     $lang->blogapi_url = 'API URL';
+	$lang->cmd_textyle_blogapi_service = 'Blog API 서비스 편집';
+	$lang->api_type = 'API 타입';
+	$lang->service_name = 'API 서비스 이름';
+	$lang->url_description = 'API 주소 입력 방법';
+	$lang->id_description = 'API 아이디 입력 방법';
+	$lang->password_description = 'API 비밀번호 입력 방법';
     $lang->target_site_url = 'Site URL';
     $lang->blogapi_site_url = 'Địa chỉ Website được đăng';
     $lang->about_blogapi_site_url = 'Hãy nhập URL cho BlogAPI';

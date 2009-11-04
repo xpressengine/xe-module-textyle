@@ -82,5 +82,24 @@
 
             $this->setTemplateFile('textyle_custom_menu');
         }
+
+		function dispTextyleAdminBlogApiConfig(){
+			$textyle_blogapi_services_srl = Context::get('textyle_blogapi_services_srl');
+
+			$oTextyleModel = &getModel('textyle');
+			$output = $oTextyleModel->getBlogApiService();
+			if($output->toBool() && $output->data){
+				if($textyle_blogapi_services_srl){
+					foreach($output->data as $k => $v){
+						if($v->textyle_blogapi_services_srl == $textyle_blogapi_services_srl){
+							Context::set('service',$v);
+						}
+					}
+				}else{
+					Context::set('blogapi_services_list',$output->data);
+				}
+			}
+            $this->setTemplateFile('textyle_blogapi_config');
+		}
     }
 ?>
