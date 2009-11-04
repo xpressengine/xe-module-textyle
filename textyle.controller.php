@@ -863,12 +863,16 @@
 			}
 
 			$updated_category_srls = array();
-
+			$logged_info = Context::get('logged_info');
 			foreach($trash as $k => $v){
 				$output = $oDocumentAdminController->restoreTrash($v->trash_srl);
 				if(!$output->toBool()){
 					 return new Object(-1, 'fail_to_trash');
 				}else{
+                    $args->module_srl = $logged_info->member_srl;
+					$args->document_srl = $v->document_srl;
+                    $output = executeQuery('document.updateDocumentModule', $args);
+
 					$oDocument = $oDocumentModel->getDocument($v->document_srl);
 					$obj = $oDocument->getObjectVars();
 					$updated_category_srls[] = $obj->category_srl;
@@ -922,14 +926,24 @@
             $oDB->begin();
 
 			for($i=0,$c=count($document_srls);$i<$c;$i++) {
+				unset($args);
 				$args->document_srl = $document_srls[$i];
+				$oDocument = $oDocumentModel->getDocument($args->document_srl);
+
+				// if subscription
+				if($oDocument->get('module_srl')<0){
+                    $args->module_srl = abs($this->module_srl);
+					$oDocument->add('module_srl',$args->module_srl);
+                    $output = executeQuery('document.updateDocumentModule', $args);
+					$output = $this->deletePostSubscription($args->document_srl);
+					unset($args->module_srl);
+				}
+
 				$output = $oDocumentController->moveDocumentToTrash($args);
 				if(!$output->toBool()){
 					 return new Object(-1, 'fail_to_trash');
 				}else{
-					$oDocument = $oDocumentModel->getDocument($args->document_srl);
 					$obj = $oDocument->getObjectVars();
-
 					$trigger_output = ModuleHandler::triggerCall('document.updateDocument', 'after', $obj);
 					if(!$trigger_output->toBool()) {
 						$oDB->rollback();
