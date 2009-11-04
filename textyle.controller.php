@@ -77,7 +77,7 @@
             $config->me2day_userid = $args->me2day_userid;
             $config->me2day_userkey = $args->me2day_userkey;
             $config->enable_me2day = ($args->me2day_userid && $args->me2day_userkey) ? 'Y' :'N';
-            
+
             $config->enable_twitter = $args->enable_twitter=='Y'?'Y':'N';
             $config->twitter_userid = $args->twitter_userid;
             $config->twitter_password = $args->twitter_password;
@@ -331,7 +331,7 @@
             $this->add('document_srl', $obj->document_srl);
             $this->add('comment_srl', $obj->comment_srl);
         }
-        
+
         function procTextyleCommentVerificationPassword(){
             $output = $this->checkCommentVerificationPassword();
             if($output) return $output;
@@ -384,7 +384,7 @@
                 if(!$oMemberModel->isValidPassword($oComment->get('password'),$password)) return new Object(-1, 'msg_invalid_password');
 
                 $oComment->setGrant();
-            } 
+            }
         }
 
 
@@ -720,6 +720,11 @@
             $site_module_info = Context::get('site_module_info');
 
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
+
+            // 기존 설정 가져오기
+            $var->allow_comment = ($oDocument->allowComment()) ? 'Y' : 'N';
+            $var->allow_trackback = ($oDocument->allowTrackback()) ? 'Y' : 'N';
+
             if($oDocument->isExists()) $output = $this->updatePost($var);
             else $output = $this->savePost($var);
             if(!$output->toBool()) return $output;
