@@ -571,7 +571,10 @@ function deleteAllMaterials(module_srl) {
     var params = {};
     params.module_srl = module_srl;
 
-    jQuery.exec_json('material.procMaterialsDelete', params, completeReload);
+    jQuery.exec_json('material.procMaterialsDelete', params, function(ret) {
+        alert(ret.message);
+        reloadDocument();
+    });
 }
 
 function getEditorSkinColorList(skin_name,selected_colorset,type){
