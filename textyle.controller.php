@@ -1721,11 +1721,11 @@
             foreach($check_vars as $key => $val) {
                 if(!$vars->{$val}) return new Object(-1,$msg[$key]);
             }
-			$output = $this->insertBlogApiService($var);
+			$output = $this->insertBlogApiService($vars);
 			return $output;
         }
 
-		function insertBlogApiService($var){
+		function insertBlogApiService($vars){
             if(!preg_match('/^(http|https)/',$vars->blogapi_url)) $vars->blogapi_url = 'http://'.$vars->blogapi_url;
 
             if($vars->api_srl) {
