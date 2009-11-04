@@ -173,10 +173,10 @@
                     $oDocument->add('content', $content);
                 }
             }
-            
+
             // Content에서 상대경로로 되어 있는 파일의 url을 절대로 변환(글감사용시)
             $content = $oDocument->get('content');
-            $content = str_replace('./files', getSiteUrl('').'files', $content);
+            $content = preg_replace('/src="(\.\/)([^"]*)"/i','src="'.getFullUrl().'$2"',$content);
             $oDocument->add('content', $content);
 
             $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.newPost</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>title</name><value><string>%s</string></value></member><member><name>description</name><value><string>%s</string></value></member><member><name>categories</name><value><array><data><value><string>%s</string></value></data></array></value></member><member><name>tagwords</name><value><array><data><value><string>%s</string></value></data></array></value></member></struct></value></param><param><value><boolean>1</boolean></value></param></params></methodCall>',
@@ -251,6 +251,11 @@
                     $oDocument->add('content', $content);
                 }
             }
+
+            // Content에서 상대경로로 되어 있는 파일의 url을 절대로 변환(글감사용시)
+            $content = $oDocument->get('content');
+            $content = preg_replace('/src="(\.\/)([^"]*)"/i','src="'.getFullUrl().'$2"',$content);
+            $oDocument->add('content', $content);
 
             $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.editPost</methodName><params><param><value><i4>%s</i4></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>title</name><value><string>%s</string></value></member><member><name>description</name><value><string>%s</string></value></member><member><name>categories</name><value><array><data><value><string>%s</string></value></data></array></value></member><member><name>tagwords</name><value><array><data><value><string>%s</string></value></data></array></value></member></struct></value></param><param><value><boolean>1</boolean></value></param></params></methodCall>',
                     $postid,
