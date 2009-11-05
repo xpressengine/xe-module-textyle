@@ -1113,7 +1113,8 @@
 			$output = $oTextyleModel->getBlogApiService();
 			Context::set('api_services',$output->data);
 
-            Context::set('oPublish', $oTextyleModel->getPublishObject($this->module_srl));
+            $oPublish = $oTextyleModel->getPublishObject($this->module_srl);
+            Context::set('oPublish', $oPublish);
 
             $api_srl = Context::get('api_srl');
             if($api_srl) {

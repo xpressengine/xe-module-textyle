@@ -196,8 +196,17 @@
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
             } 
-            $postid = $xmlDoc->methodresponse->params->param->value->string->body;
-            if(!$postid) $postid = $xmlDoc->methodresponse->params->param->value->i4->body;
+
+			$postid = '';
+           	$postid_node = $xmlDoc->methodresponse->params->param->value;
+			if($postid_node->body){
+				$postid = $postid_node->body;
+			}else if($postid_node->string){
+				$postid = sprintf('<string>%s</string>',$postid_node->string->body);
+			}else if($postid_node->i4){
+				$postid = sprintf('<i4>%s</i4>',$postid_node->i4->body);
+			}
+
             $output = new Object();
             $output->add('postid', $postid);
             return $output;
@@ -257,11 +266,8 @@
             $content = preg_replace('/src="(\.\/)([^"]*)"/i','src="'.getFullUrl().'$2"',$content);
             $oDocument->add('content', $content);
 
-			$postid_type = $postid === intval($postid).'' ? 'i4' : 'string'; 
-            $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.editPost</methodName><params><param><value><%s>%s</%s></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>title</name><value><string>%s</string></value></member><member><name>description</name><value><string>%s</string></value></member><member><name>categories</name><value><array><data><value><string>%s</string></value></data></array></value></member><member><name>tagwords</name><value><array><data><value><string>%s</string></value></data></array></value></member></struct></value></param><param><value><boolean>1</boolean></value></param></params></methodCall>',
-                    $postid_type,
+            $input = sprintf('<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>metaWeblog.editPost</methodName><params><param><value>%s</value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><struct><member><name>title</name><value><string>%s</string></value></member><member><name>description</name><value><string>%s</string></value></member><member><name>categories</name><value><array><data><value><string>%s</string></value></data></array></value></member><member><name>tagwords</name><value><array><data><value><string>%s</string></value></data></array></value></member></struct></value></param><param><value><boolean>1</boolean></value></param></params></methodCall>',
                     $postid,
-                    $postid_type,
                     $this->user_id,
                     $this->password,
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('title')),

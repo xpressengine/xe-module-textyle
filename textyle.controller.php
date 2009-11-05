@@ -777,6 +777,7 @@
 
             if(count($publish_option->trackbacks)) foreach($publish_option->trackbacks as $key => $val) $oPublish->addTrackback($val['url'], $val['charset']);
             if(count($publish_option->blogapis)) foreach($publish_option->blogapis as $key => $val) if($val->send_api) $oPublish->addBlogApi($key, $val->category);
+
             $oPublish->setMe2day($publish_option->send_me2day);
             $oPublish->setTwitter($publish_option->send_twitter);
             $oPublish->save();

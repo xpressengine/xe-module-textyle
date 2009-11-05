@@ -14,34 +14,6 @@
         }
 
         /**
-         * @brief Textyle 기본 설정 return
-         **/
-        function getTextyleConfig() {
-            static $module_info = null;
-
-            if(is_null($module_info)) {
-                // module module_info의 값을 구함
-                $oModuleModel = &getModel('module');
-                $module_info = $oModuleModel->getModuleConfig('textyle');
-
-                $skin_info->module_srl = $module_info->module_srl;
-                $oModuleModel->syncSkinInfoToModuleInfo($skin_info);
-
-                // textyle dummy module의 is_default 값을 구함
-                $dummy = $oModuleModel->getModuleInfoByMid($module_info->mid);
-                $module_info->is_default = $dummy->is_default;
-                $module_info->module_srl = $dummy->module_srl;
-                $module_info->browser_title = $dummy->browser_title;
-                $module_info->layout_srl = $dummy->layout_srl;
-
-                if(count($skin_info)) foreach($skin_info as $key => $val) $module_info->{$key} = $val;
-
-                unset($module_info->grants);
-            }
-            return $module_info;
-        }
-
-        /**
          * @brief 개별 블로그 관리 메뉴에 대해 최고관리자가 설정한 내용을 구함
          **/
         function getTextyleCustomMenu() {
