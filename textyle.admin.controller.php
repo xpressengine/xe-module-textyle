@@ -193,7 +193,7 @@
         }
 
         function procTextyleAdminUpdate(){
-            $vars = Context::gets('site_srl','user_id','domain','access_type','vid','module_srl');
+            $vars = Context::gets('site_srl','user_id','domain','access_type','vid','module_srl','member_srl');
             if(!$vars->site_srl) return new Object(-1,'msg_invalid_request');
 
             if($vars->access_type == 'domain') $args->domain = strtolower($vars->domain);
@@ -205,12 +205,14 @@
 
             $tmp_member_list = explode(',',$vars->user_id);
             $admin_list = array();
+			$admin_member_srl = array();
             foreach($tmp_member_list as $k => $v){
                 $v = trim($v);
                 if($v){
                     $member_srl = $oMemberModel->getMemberSrlByUserID($v);
                     if($member_srl){
                         $admin_list[] = $v;
+						$admin_member_srl = $member_srl;
                     }else{
                         return new Object(-1,'msg_not_user');
                     }
@@ -239,6 +241,12 @@
             $args->site_srl = $vars->site_srl;
             $output = $oModuleController->updateSite($args);
             if(!$output->toBool()) return $output;
+
+			unset($args);
+			$args->module_srl = $vars->module_srl;
+			$args->member_srl = $admin_member_srl[0];
+            $output = executeQuery('textyle.updateTextyle', $args);
+			if(!$output->toBool()) return $output;
 
             $this->setMessage('success_updated');
 
