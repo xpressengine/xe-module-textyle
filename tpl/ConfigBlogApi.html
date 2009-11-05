@@ -16,12 +16,6 @@
 
 				<div class="setUp">
                     <!--@if($type == 'registration')-->
-                    <script type="text/javascript">
-                        var _msg = new Array('{implode('\',\'',$lang->msg_blogapi_registration)}');
-                        var apis_url = new Array();
-                        <!--@foreach($oPublish->getHostedApis() as $key => $val)-->apis_url["{$key}"] = "{$val['blogapi_url']}";<!--@end-->
-
-                    </script>
 					<form action="./" method="post" onsubmit="return procFilter(this,insert_blogapi);" id="foBlogApi">
 					<input type="hidden" name="vid" value="{$vid}" />
 					<input type="hidden" name="mid" value="{$mid}" />
