@@ -724,7 +724,7 @@
             // 기존 설정 가져오기
             $var->allow_comment = ($oDocument->allowComment()) ? 'Y' : 'N';
             $var->allow_trackback = ($oDocument->allowTrackback()) ? 'Y' : 'N';
-
+			$var->tags = $oDocument->get('tags');
             if($oDocument->isExists()) $output = $this->updatePost($var);
             else $output = $this->savePost($var);
             if(!$output->toBool()) return $output;
