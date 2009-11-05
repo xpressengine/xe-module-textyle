@@ -116,12 +116,6 @@
             $output = $oRssAdminController->setRssModuleConfig($module_srl, 'Y', 'Y');
             if(!$output->toBool()) return $output;
 
-            // file upload limit
-            // TODO : just site total check
-            $file_config->allowed_attach_size = 1024*1024*1024*5;
-            $output = $oModuleController->insertModuleConfig('file',$file_config);
-            if(!$output->toBool()) return $output;
-
             //addon 설정
             $oAddonAdminController->doInsert('autolink', $site_srl);
             $oAddonAdminController->doInsert('counter', $site_srl);
