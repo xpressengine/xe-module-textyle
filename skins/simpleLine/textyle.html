@@ -103,7 +103,7 @@
 											<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 										<!--@end-->
 										<!--@end-->
-                                        <input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
+                                        <input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($val->is_secret==1)-->checked <!--@end-->/>
                                         <label for="secret1">{$lang->secret}</label>
                                         <input name="submit" type="submit" value="SUBMIT" class="inputSubmit" />
                                     </fieldset>
@@ -299,7 +299,7 @@
 								<!--@if($oSourceComment->isExists() && $oSourceComment->isSecret())-->
 									<input name="is_secret" id="secret1" type="hidden" value="Y"  />
 								<!--@else-->
-									<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
+									<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($oComment->isSecret())-->checked <!--@end-->/>
 								<!--@end-->
  
                                 <label for="secret1">{$lang->secret}</label>
@@ -481,7 +481,7 @@
 										<!--@if($comment->isAccessible())-->
 
                                             <!--@if($textyle->isEnableComment())--><li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentReply')}">{$lang->cmd_reply}</a></li><!--@end-->
-											<!--@if($comment->member_srl)-->
+											<!--@if($comment->member_srl)-->
 												<!--@if($comment->isGranted() || $comment->member_srl==$logged_info->member_srl)-->
 												<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}</a></li>
 												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>

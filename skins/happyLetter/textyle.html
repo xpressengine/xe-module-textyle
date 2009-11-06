@@ -119,7 +119,7 @@
 													<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 												<!--@end-->
 												<!--@end-->
-												<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
+												<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($val->is_secret==1)-->checked <!--@end-->/>
 												<label for="secret1">{$lang->secret}</label>
 											</div>
                                         	<span class="inputSubmit"><input name="submit" type="submit" value="SUBMIT" /></span>
@@ -315,7 +315,7 @@
 											<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 										<!--@end-->
 										<!--@end-->
-										<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
+										<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($oComment->isSecret())-->checked <!--@end-->/>
 										<label for="secret1">{$lang->secret}</label>
 									</div>
 									<span class="inputSubmit"><input name="" type="submit" value="SUBMIT" /></span>
@@ -675,7 +675,7 @@
         <hr />
 
 		<div id="footer">
-			<a href="{getSiteUrl($textyle->domain,'','mid',$mid,'act','rss')}" class="rss"><img src="img/iconRss.gif" width="16" height="16" alt="RSS" /></a>
+			<a href="{$home_url}rss" class="rss"><img src="img/iconRss.gif" width="16" height="16" alt="RSS" /></a>
 			<div class="language">
 				<button type="button" onclick="jQuery('#selectLang').toggleClass('hide'); return false;" class="selected" title="{$lang_type}">{$lang_supported[$lang_type]}</button>
             	<ul class="hide" id="selectLang">

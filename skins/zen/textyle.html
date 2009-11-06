@@ -108,7 +108,7 @@
 													<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 												<!--@end-->
 												<!--@end-->
-												<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
+												<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($val->is_secret==1)-->checked <!--@end-->/>
 												<label for="secret1">{$lang->secret}</label>
 											</div>
 											<span class="inputSubmit"><input type="submit" value="SUBMIT" /></span>
@@ -305,7 +305,7 @@
 											<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 										<!--@end-->
 										<!--@end-->
-										<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
+										<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($oComment->isSecret())-->checked <!--@end-->/>
 										<label for="secret1">{$lang->secret}</label>
 									</div>
 									<span class="inputSubmit"><input type="submit" value="SUBMIT" /></span>
@@ -618,7 +618,7 @@
 		<div id="footer">
 			<address>
 			Powered by <a href="http://textyle.kr/">Textyle</a> / Designed by <a href="http://blog.naver.com/mada79" title="Kim Ji Eun">Mada</a> / UI Dev. <a href="http://naradesign.net/" title="Jeong Chan Myeong">Naradesign</a>
-				<a href="{getSiteUrl($textyle->domain,'','mid',$mid,'act','rss')}" class="rss">RSS</a>
+				<a href="{$home_url}rss" class="rss">RSS</a>
 			</address>
 			<div class="language">
 				<button type="button" onclick="jQuery('#selectLang').toggleClass('hide'); return false;" class="selected" title="{$lang_type}">{$lang_supported[$lang_type]}</button>
