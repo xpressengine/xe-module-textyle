@@ -212,7 +212,7 @@
                     $member_srl = $oMemberModel->getMemberSrlByUserID($v);
                     if($member_srl){
                         $admin_list[] = $v;
-						$admin_member_srl = $member_srl;
+						$admin_member_srl[] = $member_srl;
                     }else{
                         return new Object(-1,'msg_not_user');
                     }
