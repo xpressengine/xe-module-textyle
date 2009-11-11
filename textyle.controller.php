@@ -1502,9 +1502,9 @@
                    // database
                    ,'mysql','sqlite','PDO','cubird','ibase','pg_','_pconnect','_connect','oci'
                    // network /etc
-                   ,'fsockopen','pfsockopen','shmop_','shm_','sem_','dl','ini_','php','zend','header','create_function','call_*','imap','openlog','socket','ob_','cookie','eval'
+                   ,'fsockopen','pfsockopen','shmop_','shm_','sem_','dl','ini_','php','zend','pear','header','create_function','call_*','imap','openlog','socket','ob_','cookie','eval','exec','shell_exec','passthru'
                    // XE
-                   ,'filehandler','displayhandler','xehttprequest','context','getmodel','getcontroller','getview','getadminmodel','getadmincontroller','getadminview'
+                   ,'filehandler','displayhandler','xehttprequest','context','getmodel','getcontroller','getview','getadminmodel','getadmincontroller','getadminview','executequery','executequeryarray'
             );
             unset($match);
 
