@@ -31,7 +31,7 @@
 				<fieldset>
 					<legend>{$lang->title}</legend>
 					<div class="title">
-						<input name="title" type="text" class="inputTitle" value="<!--@if($oDocument->getTitleText())-->{$oDocument->getTitleText()}<!--@else-->{$lang->insert_title}<!--@end-->" title="{$lang->insert_title}"/>
+						<input name="title" type="text" class="inputTitle" value="<!--@if($oDocument->getTitleText())-->{htmlspecialchars($oDocument->getTitleText())}<!--@else-->{$lang->insert_title}<!--@end-->" title="{$lang->insert_title}"/>
 						<!-- wPublish -->
 						<div class="wPublish">
 							<span class="buttonAction actionWhite normal"><button type="button" onclick="savePost(this)">{$lang->cmd_save}</button></span>
