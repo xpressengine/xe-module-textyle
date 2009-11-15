@@ -40,8 +40,8 @@
     $lang->publish_confirm = 'Xác nhận hiển thị';
 	$lang->publish_this_blog = 'Bài này đã được hiển thị.';
     $lang->ask_time_publish = 'Bạn có muốn cập nhật và hiển thị bài viết này không?';
-    $lang->ask_micro_publish = 'Bạn có muốn hiển thị một hình nhỏ trên Blog không?';
-    $lang->noti_publish = 'Hiển thị lên';
+    $lang->ask_micro_publish = 'Gửi thêm lên các dịch vụ khác';
+    $lang->noti_publish = 'Gửi lên';
     $lang->send_trackback = 'Gửi liên kết';
     $lang->add_input_trackback = 'Thêm địa chỉ gửi liên kết';
     $lang->saved = 'Đã lưu';
@@ -171,7 +171,7 @@
     $lang->migration_file_path = 'Vị trí File XML (URL hay đường dẫn)';
     $lang->msg_migration_file_is_null = 'Hãy nhập vị trí của File XML để chuyển dữ liệu.';
     $lang->cmd_import = 'Nhập vào';
-    $lang->send_me2 = 'Hiển thị lên Me2Day';
+    $lang->send_me2 = 'Gửi lên Me2Day';
     $lang->about_send_me2 = 'Hiển thị tiêu đề bài viết lên Me2Day.';
     $lang->me2day_userid = 'Me2Day ID';
     $lang->about_me2day_userid = 'Nhập ID của Me2Day có dạng "http://me2day.net/ID".';
@@ -181,7 +181,7 @@
     $lang->msg_success_to_me2day = 'Đã kết nối thành công tới Me2Day.';
     $lang->msg_fail_to_me2day = 'Không thể kết nối tới Me2Day. Hãy kiểm tra lại ID và sử dụng Key';
 
-    $lang->send_twitter = 'Hiển thị lên Twitter';
+    $lang->send_twitter = 'Gửi lên Twitter';
     $lang->about_send_twitter = 'Hiển thị tiêu đề bài viết lên Twitter';
     $lang->twitter_userid = 'Twitter ID';
     $lang->about_twitter_userid = 'Hãy nhập Twitter ID.';
@@ -199,18 +199,18 @@
     $lang->blogapi_custom = 'Đầu vào trực tiếp';
     $lang->blogapi_host_provider = 'Nhà cung cấp dịch vụ Blog';
     $lang->about_blogapi_host_provider = 'Bạn có thể chọn nhà cung cấp dịch vụ ưa thích của mình.';
-    $lang->blogapi_type = 'Loại API';
-    $lang->about_blogapi_type = 'Để đang kí, phải chọn loại BlogAPI.';
+    $lang->blogapi_type = 'Định dạng API';
+    $lang->about_blogapi_type = 'Để đăng kí, bạn phải chọn định dạng API.';
     $lang->blogapi_support = 'Để hiển thị từ xa qua dịch vụ Blog API thì Meta Weblog API phải có sẵn.';
     $lang->blogapi_example = 'Ví dụ: Window Live Writer, Google Docs, MS Word 2007, ...';
     $lang->not_permit_blogapi = 'Không thể xác nhận kết nối qua API.';
     $lang->blogapi_url = 'API URL';
-	$lang->cmd_textyle_blogapi_service = 'Blog API 서비스 편집';
-	$lang->api_type = 'API 타입';
-	$lang->service_name = 'API 서비스 이름';
-	$lang->url_description = 'API 주소 입력 방법';
-	$lang->id_description = 'API 아이디 입력 방법';
-	$lang->password_description = 'API 비밀번호 입력 방법';
+	$lang->cmd_textyle_blogapi_service = 'Dịch vị BlogAPI';
+	$lang->api_type = 'Định dạng API';
+	$lang->service_name = 'Tên dịch vụ API';
+	$lang->url_description = 'Địa chỉ API mẫu';
+	$lang->id_description = 'ID API mẫu';
+	$lang->password_description = 'Mật mã hoặc APIKey mẫu';
     $lang->target_site_url = 'Site URL';
     $lang->blogapi_site_url = 'Địa chỉ Website được đăng';
     $lang->about_blogapi_site_url = 'Hãy nhập URL cho BlogAPI';
@@ -353,7 +353,7 @@
             'dispTextyleToolConfigInfo'=>'Cấu hình Blog',
             'dispTextyleToolConfigPostwrite'=>'Thiết lập biên tập',
             'dispTextyleToolConfigEditorComponents'=>'Thiết lập Component',
-            'dispTextyleToolConfigCommunication'=>'Hiển thị-Truyền thông',
+            'dispTextyleToolConfigCommunication'=>'Hiển thị qua API',
             'dispTextyleToolConfigBlogApi'=>'BlogAPI',
             'dispTextyleToolConfigAddon'=>'Addon',
             'dispTextyleToolConfigData'=>'Dữ liệu',

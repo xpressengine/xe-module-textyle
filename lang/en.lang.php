@@ -201,7 +201,7 @@
     $lang->not_permit_blogapi = 'API connection has failed.';
     $lang->blogapi_url = 'API URL';
 	$lang->cmd_textyle_blogapi_service = 'Blog API Service';
-	$lang->api_type = 'API Tyoe';
+	$lang->api_type = 'API Type';
 	$lang->service_name = 'API Service Name';
 	$lang->url_description = 'API Address Type';
 	$lang->id_description = 'API Id Type';
