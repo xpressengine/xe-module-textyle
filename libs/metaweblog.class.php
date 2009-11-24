@@ -154,7 +154,7 @@
                         if(strpos($content, $encoded_filename.$extension)!==false) 
                             $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
-                        if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                        if(strpos($content, $uploaded_filename)!==false) $content = str_replace($uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
 
                         $uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
@@ -165,7 +165,7 @@
                         if(strpos($content, $encoded_filename.$extension)!==false) 
                             $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
-                        if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                        if(strpos($content, $uploaded_filename)!==false) $content = str_replace($uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
                         
                     }
@@ -243,7 +243,7 @@
                         if(strpos($content, $encoded_filename.$extension)!==false) 
                             $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
-                        if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                        if(strpos($content, $uploaded_filename)!==false) $content = str_replace($uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
 
 						$uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
@@ -254,7 +254,7 @@
                         if(strpos($content, $encoded_filename.$extension)!==false) 
                             $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
-                        if(strpos($content, $file->uploaded_filename)!==false) $content = str_replace($file->uploaded_filename, $target_file, $content);
+                        if(strpos($content, $uploaded_filename)!==false) $content = str_replace($uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
                     }
                     $oDocument->add('content', $content);
