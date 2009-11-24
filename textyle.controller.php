@@ -747,6 +747,7 @@
 
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
             $vars = $oDocument->getObjectVars();
+			$isPublished = ($vars->module_srl == $this->module_srl);
             $vars->tags = $var->tags;
             $vars->module_srl = $this->module_srl;
             $vars->category_srl = $var->category_srl;
@@ -755,6 +756,12 @@
 
             $output = $this->updatePost($vars);
             if(!$output->toBool()) return $output;
+
+			if(!$isPublished){
+				$args->list_order = getNextSequence()*-1;
+				$args->document_srl = $var->document_srl;
+				$output = executeQuery('document.updateDocumentOrder',$args);	
+			}
 
 			$var->alias = trim($var->alias);
 			if($var->use_alias=='Y' && $var->alias){
