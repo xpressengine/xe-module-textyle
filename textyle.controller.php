@@ -1233,7 +1233,7 @@
 			$args->document_srl = $document_srl;
 			$args->list_order =  getNextSequence() * -1;
 			$args->update_order = $args->list_order;
-			$args->reg_date = $publish_date;
+			$args->regdate = $publish_date;
 
 			$output = executeQuery('document.updateDocumentOrder',$args);
             if(!$output->toBool()) return $output;
