@@ -206,7 +206,7 @@
 										<!--@else-->
 										<img height="39" width="39" alt="" src="img/iconEmoticonDefault.gif" class="author"/>
 										<!--@end-->
-										<p class="content"><strong>{$v->user_name}</strong> <a href="{getUrl('','mid',$mid,'act','dispTextyleToolCommunicationGuestbookReply','textyle_guestbook_srl',$v->textyle_guestbook_srl)}">{strip_tags($v->content)}</a> <button type="button" class="delete" onclick="deleteGuestbookItem({$v->textyle_guestbook_srl},1)"><span>{$lang->cmd_delete}</span></button></p>
+										<p class="content"><strong>{$v->nick_name}</strong> <a href="{getUrl('','mid',$mid,'act','dispTextyleToolCommunicationGuestbookReply','textyle_guestbook_srl',$v->textyle_guestbook_srl)}">{strip_tags($v->content)}</a> <button type="button" class="delete" onclick="deleteGuestbookItem({$v->textyle_guestbook_srl},1)"><span>{$lang->cmd_delete}</span></button></p>
 									</li>
                                     <!--@end-->
 								</ul>
