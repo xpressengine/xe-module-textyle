@@ -141,6 +141,7 @@
 		function getTextyleGuestbookList($vars){
             $oMemberModel = &getModel('member');
             $oTextyleController = &getController('textyle');
+			$logged_info = Context::get('logged_info');
 
 			$args->module_srl = $vars->module_srl;
 			$args->page = $vars->page;
