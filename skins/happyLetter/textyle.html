@@ -150,7 +150,7 @@
                                     <!--@end-->
                                 </div>
                                 <div class="data textyleContent">
-									<!--@if($val->is_secret==-1 || $val->view_grant)-->
+									<!--@if($val->is_secret==1 || $val->view_grant)-->
                                     {$val->content}
 									<!--@else-->
 									<form action="" method="post" class="pwForm active guestbook{$key}" onsubmit="return checkPasswordGuestbook(this)">
