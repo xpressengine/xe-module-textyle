@@ -9,16 +9,16 @@
     $lang->about_textyle = 'Textyle是運作於 XpressEngine的部落格模組。';
     $lang->msg_requried_version = "Textyle需要 XE Core %s 以上的版本。";
 
-	$lang->cmd_open_id = '오픈 아이디 로그인';
-	$lang->cmd_common_id = '일반 아이디 로그인';
+	$lang->cmd_open_id = 'OpenID 登入';
+	$lang->cmd_common_id = '一般登入';
 	$lang->msg_create_textyle = '已建立Textyle';
 	$lang->init_category_title = '預設分類';
 	$lang->add_category = '新增分類';
     $lang->textyle_admin = 'Textyle 管理員(ID)';
     $lang->textyle_title = 'Textyle 標題';
-    $lang->today_visitor = '今日 <strong>訪問者數量</strong>';
-    $lang->today_comments = '今日 <strong>評論數量</strong>';
-    $lang->today_trackbacks = '今日 <strong>trackbacks/pingbacks</strong>';
+    $lang->today_visitor = '今日 <strong>訪問者數</strong>';
+    $lang->today_comments = '今日 <strong>評論數</strong>';
+    $lang->today_trackbacks = '今日 <strong>引用/通告數</strong>';
     $lang->textyle_summary = '部落格概要';
     $lang->item_unit = '篇';
     $lang->newest_documents ='最新文章';
@@ -31,17 +31,17 @@
 	$lang->newest_guestbooks = '最新留言';
 	$lang->newest_no_guestbooks = '目前沒有留言。';
 	$lang->reserve = '預訂';
-	$lang->publish = '발행';
+	$lang->publish = '發佈';
     $lang->publish_go = '發佈...';
-    $lang->publish_update_go = '재발행...';
-    $lang->published = '발행됨';
-    $lang->publish_option = '발행옵션';
-	$lang->publish_this_blog = '이 블로그로 발행합니다.';
-    $lang->ask_time_publish = '이 포스트를 지금 발행(또는 업데이트) 하시겠습니까?';
-    $lang->ask_micro_publish = '마이크로 블로그에 발행 하시겠습니까?';
-    $lang->noti_publish = '발행알림';
-    $lang->send_trackback = '엮인글 발송';
-    $lang->add_input_trackback = '엮인글 발송 주소 추가';
+    $lang->publish_update_go = '再發佈...';
+    $lang->published = '已發佈';
+    $lang->publish_option = '發佈選項';
+	$lang->publish_this_blog = 'Publish this blog.';
+    $lang->ask_time_publish = 'Would you like to publish (or update) this posting right now?';
+    $lang->ask_micro_publish = '是否要發佈到微型部落格?';
+    $lang->noti_publish = '發佈通知';
+    $lang->send_trackback = '發送引用';
+    $lang->add_input_trackback = '新增引用位址';
     $lang->saved = '儲存';
     $lang->temp = '臨時';
     $lang->more = '更多';
@@ -72,7 +72,7 @@
     $lang->font_style = '字型設定';
     $lang->font_family = '字型種類';
     $lang->font_size = '字型大小';
-    $lang->about_font_family = 'You can choose default fonts for contents. (例:%s)';
+    $lang->about_font_family = 'You can choose default fonts for contents.(例:%s)';
     $lang->font_family_list = array(
 		'돋움, Dotum'=> 'Dotum',
 		'굴림, Gulim'=> 'Gulim',
@@ -81,11 +81,11 @@
 		'나눔고딕, NanumGothic'=> 'Nanum Gothic',
 		'나눔명조, NanumMyeongjo'=> 'Nanum Myeongjo'
 	);
-    $lang->about_font_size = '편집과 발행시 내용의 기본 글꼴 크기를 정할 수 있습니다. (예: 12px 또는 1em 등 단위 포함) ';
-    $lang->about_textyle_editor = '단락별 편집 방식의 글쓰기 도구 입니다.';
+    $lang->about_font_size = 'You can choose default font size (ex: 12px or 1em - unit should be included)';
+    $lang->about_textyle_editor = 'Textyle\'s default editor: You can edit each paragraph separately in your posts';
     $lang->etc_editor = '其他編輯器';
-    $lang->about_etc_editor = '일반적인 리치 텍스트 편집기 입니다.';
-    $lang->set_editor_components = '에디터 콤포넌트 설정';
+    $lang->about_etc_editor = 'Rich text editors.';
+    $lang->set_editor_components = 'Configure Editor Components';
     $lang->set_prefix = '頁首設定';
     $lang->about_prefix = 'Each post contains following content. (You can use HTML)';
     $lang->set_suffix = '頁尾設定';
@@ -99,14 +99,14 @@
     $lang->feed_format = 'Feed type';
     $lang->rss_type = 'RSS type';
     $lang->rss_total = '主題 + 所有內容';
-    $lang->rss_summary = '主題 + Summary';
+    $lang->rss_summary = '主題 + 摘要';
     $lang->visitor_editor_style = 'Input form for Comments and Guestbook';
     $lang->host = '主機';
     $lang->referer = 'Referer';
     $lang->link_word = 'Linked word';
     $lang->link_document = 'Linked document';
     $lang->visitor = '訪客';
-    $lang->about_referer = '방문자의 방문경로를 확인할 수 있습니다.';
+    $lang->about_referer = 'You can see visitors\' referer (the route they come through).';
     $lang->website_address = '網址';
     $lang->required = '必填';
     $lang->selected = '選填';
@@ -121,7 +121,7 @@
     $lang->grant_to_all = '全部';
     $lang->grant_to_member = '會員';
     $lang->guestbook_grant = '留言權限';
-    $lang->about_guestbook_grant = '可設定只限會員或是所有人在流言板留言';
+    $lang->about_guestbook_grant = '可設定只限會員或是所有人在留言板留言';
     $lang->disable_guestbook = 'You are not allowed to write posts to guestbook. Please sign in.';
     $lang->current_password = '目前密碼';
     $lang->textyle_password1 = '新密碼';
@@ -143,38 +143,38 @@
     $lang->pingback = '通告';
     $lang->recent_tags = '最近使用的標籤';
     $lang->total_tag_result = '總共使用 <strong>%d</strong> 個標籤。';
-    $lang->align_by_char = '가나다순 정렬';
+    $lang->align_by_char = 'Alphabetical order가나다순 정렬';
     $lang->used_documents = 'Number of Occurrences';
     $lang->order_desc = '내림차순 정렬';
     $lang->update_tag = '修改/刪除標籤';
     $lang->tag_name = '標籤';
     $lang->tag_with_tags = '同組標籤';
-    $lang->total_materials = '모두 <strong>%d</strong>개의 글감이 보관되어 있습니다';
-    $lang->none_materials = '글감이 없습니다.';
-    $lang->install_bookmarklet = '글감 수집기를 설치하세요.';
-    $lang->none_tags = '태그가 없습니다';
+    $lang->total_materials = 'Total <strong>%d</strong> ingredients are stored.';
+    $lang->none_materials = 'There is no ingredient.';
+    $lang->install_bookmarklet = 'Install Ingredient Collector!.';
+    $lang->none_tags = 'There is no tag.';
     $lang->bookmarklet_install = 'Install Bookmarklet';
-	$lang->about_bookmarklet = '언제 어디서나<br />블로깅할 글감을 수집하세요.';
-    $lang->about_set_bookmarklet = '글감 수집기';
+	$lang->about_bookmarklet = 'Collect ingredients to blog always.';
+    $lang->about_set_bookmarklet = 'Ingredients Collector';
     $lang->data_export = '資料備份';
-    $lang->data_import = 'Data Migration (Import)';
+    $lang->data_import = '資料匯入';
     $lang->migration_prepare = '檔案分析中';
-    $lang->data_import_progress = '백업 진행률';
-    $lang->data_export_progress = '복원 진행률';
+    $lang->data_import_progress = '匯入進度';
+    $lang->data_export_progress = '匯出進度';
     $lang->about_export_xexml = '可使用XpressEngine專用的XML(XE XML)檔案格式匯入資料。';
     $lang->about_export_ttxml = '可使用Textcube專用的XML(TTXML)檔案格式匯入資料。';
     $lang->migration_file_path = 'XML檔案(URL或路徑)';
     $lang->msg_migration_file_is_null = '請輸入XML檔案URL或路徑。';
     $lang->cmd_import = '匯入';
     $lang->send_me2 = '發佈到 Me2Day';
-    $lang->about_send_me2 = '글작성시 제목을 지정된 미투데이로 발행하도록 설정합니다';
-    $lang->me2day_userid = '미투 아이디';
-    $lang->about_me2day_userid = '"http://me2day.net/아이디"의 아이디값을 입력해주세요.';
-    $lang->me2day_userkey = '미투 사용자키';
-    $lang->about_me2day_userkey = '미투데이의 환경설정에 표시된 사용자키값을 입력해주세요.';
-    $lang->check_me2day_info = '연결 확인';
-    $lang->msg_success_to_me2day = '입력하신 미투데이 정보로 연결확인이 정상적으로 이루어졌습니다';
-    $lang->msg_fail_to_me2day = '미투데이 연결 실패하였습니다. 아이디와 사용자키를 확인해주세요';
+    $lang->about_send_me2 = 'Writing a post, publish the title to Me2Day.';
+    $lang->me2day_userid = 'Me2Day ID';
+    $lang->about_me2day_userid = 'Input ID for you Me2Day "http://me2day.net/ID".';
+    $lang->me2day_userkey = 'Me2Day UserKey';
+    $lang->about_me2day_userkey = 'Input user key appeared in the configuration page of Me2Day.';
+    $lang->check_me2day_info = '檢查連線';
+    $lang->msg_success_to_me2day = '連線成功，所輸入的資料正確。';
+    $lang->msg_fail_to_me2day = '連線失敗，請檢查 ID 和 User Key';
 
     $lang->send_twitter = '發佈到 Twitter';
     $lang->about_send_twitter = '將發表的文章標題發佈到 Twitter';
@@ -279,7 +279,7 @@
     $lang->today = '今天';
     $lang->day_current = '當天';
     $lang->day_before = '前天';
-    $lang->none_visitor = '해당기간에 방문자가 없습니다.';
+    $lang->none_visitor = 'There is no visitor for the duration.';
     $lang->about_status = array(
         'day'=>'You can see the number of visitors by hours.',
         'week'=>'You can see the number of visitors by day over a week.',
@@ -292,9 +292,9 @@
     );
     $lang->visit_count = '訪問次數';
     $lang->visit_per = '比率';
-    $lang->trackback_division = '트랙백 주소를 여러 개 넣을 때는 줄바꿈(Enter)으로 구분하세요';
+    $lang->trackback_division = 'Multiple trackback urls are separated by newline(Enter)';
 
-    $lang->about_supporter = '지지자란 댓글, 방명록, 엮인글 등을 달아준 사용자 입니다.';
+    $lang->about_supporter = 'Supporters mean users who wrote comments, trackbacks, and guestbooks.';
     $lang->supporter_rank = 'Supporter Rank';
     $lang->rank = '排行';
     $lang->user = '用戶';
@@ -309,7 +309,7 @@
     $lang->resize_vertical = 'Resize input form';
 
     $lang->textyle_first_menus = array(
-        array('dispTextyleToolDashboard','控制主頁'),
+        array('dispTextyleToolDashboard','管理首頁'),
         array('','文章管理'),
         array('','交流管理'),
         array('','統計管理'),
@@ -347,7 +347,7 @@
             'dispTextyleToolConfigProfile'=>'個人檔案',
             'dispTextyleToolConfigInfo'=>'部落格設定',
             'dispTextyleToolConfigPostwrite'=>'發表設定',
-            'dispTextyleToolConfigEditorComponents'=>'에디터콤포넌트 설정',
+            'dispTextyleToolConfigEditorComponents'=>'編輯器元件',
             'dispTextyleToolConfigCommunication'=>'公開&middot設定',
             'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
             'dispTextyleToolConfigAddon'=>'附加元件管理',
@@ -361,11 +361,11 @@
     $lang->cmd_textyle_list = 'Textyle 列表';
     $lang->cmd_textyle_creation = '建立 Textyle';
     $lang->cmd_textyle_update = '編輯 Textyle';
-    $lang->cmd_textyle_custom_menu = 'Textyle 메뉴 편집';
+    $lang->cmd_textyle_custom_menu = '自訂Textyle選單';
     $lang->cmd_new_post = '發表文章';
     $lang->cmd_go_blog = '前往部落格';
-    $lang->cmd_send_suggestion = '사용의견 보내기';
-    $lang->cmd_view_help = '도움말 보기';
+    $lang->cmd_send_suggestion = 'Send a suggestion';
+    $lang->cmd_view_help = 'View Help';
     $lang->cmd_folding_menu = '展開/收合選單';
     $lang->cmd_folding_xe_news = '展開/收合';
     $lang->cmd_apply = '應用';
@@ -373,18 +373,18 @@
     $lang->cmd_change_password = '變更密碼';
     $lang->cmd_deny = '過濾';
     $lang->cmd_reply_comment = '回覆評論';
-    $lang->cmd_change_secret = '비밀전환';
-    $lang->cmd_write_relation = '관련 글 쓰기';
-    $lang->cmd_delete_materials = '글감 삭제';
-    $lang->cmd_delete_selected_materials = '선택된 글감 삭제';
-    $lang->cmd_delete_all_materials = '모든 글감 삭제';
+    $lang->cmd_change_secret = 'Make it secret';
+    $lang->cmd_write_relation = 'Write a related post';
+    $lang->cmd_delete_materials = 'Delete an ingredient';
+    $lang->cmd_delete_selected_materials = 'Deleted the selected ingredient';
+    $lang->cmd_delete_all_materials = 'Delete all ingredients';
     $lang->cmd_restore = '復原';
     $lang->cmd_empty = '清空';
     $lang->cmd_empty_basket = '清空垃圾桶';
     $lang->cmd_change_category = '修改分類';
-    $lang->cmd_save = '저장';
-    $lang->cmd_publish = '발행하기';
-    $lang->cmd_save_publish = '저장 후 발행';
+    $lang->cmd_publish = 'Publish';
+    $lang->cmd_save_publish = '儲存並發佈';
+    $lang->cmd_save_temp = 'Temporarily save';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS 編輯';
     $lang->cmd_edit_html = '編輯 HTML';
     $lang->cmd_edit_css = '編輯 CSS';
@@ -395,9 +395,9 @@
     $lang->cmd_preview_skin = '預覽';
     $lang->cmd_generate_widget_code = '建立Widget原始碼';
 
-    $lang->msg_already_used_url = '이미 사용중인 주소입니다.';
-    $lang->alert_reset_skin = '초기화를 하시면 입력하신 HTML&middot;CSS 내용이 모두 사라집니다.\n\n초기화를 하시겠습니까?';
-    $lang->msg_used_disabled_function = '스킨에서 사용할 수 없는 구문이 있습니다.';
+    $lang->msg_already_used_url = 'The URL is already being used.';
+    $lang->alert_reset_skin = 'If you reset skin, all the HTML&middot;CSS you inputted will be removed.\n\nAre you sure to reset it?';
+    $lang->msg_used_disabled_function = 'It contains forbidden functions.';
 
 	$lang->msg_close_before_write = "Changed contents are not saved.";
 
@@ -421,7 +421,7 @@
     $lang->mail = '郵件';
     $lang->ip = 'IP';
 
-    $lang->cmd_hide = '숨김';
+    $lang->cmd_hide = '隱藏';
 
 	$lang->secret_comment = '秘密評論';
 	$lang->insert_comment = '發表評論';
