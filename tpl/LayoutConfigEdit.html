@@ -9,26 +9,23 @@
 					<h3 class="h3">{$lang->textyle_second_menus[4]['dispTextyleToolLayoutConfigEdit']}</h3>
 				</div>
 				<!-- /contentHeader -->
-				
-				<form action="./" method="post" class="codeEdit" onsubmit="return procFilter(this,insert_layout_edit);">
-				
-					<fieldset>
-						<legend class="visible">{$lang->cmd_edit_html}</legend>
-						<textarea name="html" cols="50" rows="10">{htmlspecialchars($html)}</textarea>
-						<div class="resizeVertical">
-							<button type="button"><span>{$lang->resize_vertical}</span></button>
-						</div>
-					</fieldset>
+			
+
 					<span class="buttonGray medium widgetCreator"><a href="{getUrl('','module','widget','act','dispWidgetGenerateCode')}" onclick="popopen(this.href); return false">{$lang->cmd_generate_widget_code}</a></span>
 
-					<fieldset>
-						<legend class="visible">{$lang->cmd_edit_css}</legend>
-						<textarea name="css" cols="50" rows="10">{htmlspecialchars($css)}</textarea>
-						<div class="resizeVertical">
-							<button type="button"><span>{$lang->resize_vertical}</span></button>
-						</div>
-					</fieldset>
-					
+
+				<form action="./" method="post" class="codeEdit" onsubmit="return procFilter(this,insert_layout_edit);">
+				<input type="hidden" name="mid" value="{$mid}" />
+				<input type="hidden" name="vid" value="{$vid}" />
+				
+
+				<ul>
+				<!--@foreach($skin_file_content as $file => $content)-->
+					<li>{$file}</li>
+					<li><textarea name="{$file}" cols="50" rows="10">{htmlspecialchars($content)}</textarea></li>
+				<!--@end-->
+				</ul>
+
 				<!-- Button Area -->
 				<div class="buttonArea aCenter">
 					<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_save}" /></span>
@@ -36,6 +33,76 @@
 				</div>
 				<!-- /Button Area -->
 				</form>
+
+
+
+<h4>{$lang->textyle_skin_userimage}</h4>
+
+<form action="{Context::getRequestUri()}" target="hidden_iframe" method="post" onsubmit="return checkUserImage(this,'{$lang->msg_check_userimage}')" enctype="multipart/form-data">
+    <input type="hidden" name="mid" value="{$mid}" />
+    <input type="hidden" name="vid" value="{$vid}" />
+    <input type="hidden" name="act" value="procTextyleToolUserImageUpload" />
+    <table cellspacing="0" class="crossTable">
+	<!--@if($user_image_list)-->
+    <tbody>
+        <tr>
+            <td>
+                <!--@foreach($user_image_list as $no => $file)-->
+                {@$ext=substr(strrchr($file,'.'),1)}
+                <div class="preview_image" style="width:100px;height:100px;float:left; position:relative;margin-right:10px; ">
+                    <!--@if($ext=='swf'||$ext=='flv')-->
+                    <script type="text/javascript">//<![CDATA[
+                    displayMultimedia('{getUrl('')}{$user_image_path}{$file}', '100%', '100%');
+                    //]]></script>
+                    <!--@elseif(in_array($ext,array('gif','png','jpg','jpeg')))-->
+                        <img src="{getUrl('')}{$user_image_path}{$file}" width="100%" height="100%" />
+                    <!--@end-->
+                    <a href="#" onclick="deleteUserImage('{$file}');return false" onmouseover="jQuery('div.imagePath').html('{$user_image_path}{$file}')" style="position:absolute; left:3px; top:3px;" class="small button red"><span>{$lang->cmd_delete}</span></a>
+                </div>
+                <!--@end-->
+                &nbsp;
+            </td>
+        </tr>
+    </tbody>
+	<!--@end-->
+    <tfoot>
+        <tr>
+            <td>
+                <div class="imagePath"></div>
+                <input name="user_image" type="file" />
+                <span class="button black strong"><button type="submit">{$lang->cmd_save}</button></span>
+                {$lang->msg_check_userimage}
+            </td>
+        </tr>
+    </tfoot>
+    </table>
+</form>
+
+<h4>{$lang->textyle_skin_migration}</h4>
+<table cellspacing="0" class="rowTable">
+<tr>
+    <th scope="row"><div>{$lang->textyle_skin_export}</div></th>
+    <td>
+        <a href="{getUrl('','act','procTextyleToolUserSkinExport','mid',$mid,'vid',$vid)}" class="button black strong"><span>{$lang->cmd_textyle_skin_export}</span></a>
+        <p>{$lang->about_textyle_skin_export}</p>
+    </td>
+</tr>
+<tr>
+    <th scope="row"><div>{$lang->textyle_skin_import}</div></th>
+    <td>
+        <form action="{getUrl('')}" method="post" enctype="multipart/form-data" target="hidden_iframe">
+            <input type="hidden" name="module" value="layout" />
+            <input type="hidden" name="act" value="procTextyleToolUserSkinImport" />
+            <input type="hidden" name="mid" value="{$mid}" />
+            <input type="hidden" name="vid" value="{$vid}" />
+            <input type="file" name="file" />
+            <span class="button black strong"><button type="submit">{$lang->cmd_submit}</button></span>
+        </form>
+        <p>{$lang->about_textyle_skin_import}</p>
+    </td>
+</tr>
+</table>
+
 
 			</div>
 			<hr />
@@ -46,3 +113,4 @@
 			<!-- Extension -->
 
 <!--#include("_tool_footer.html")-->
+<iframe name="hidden_iframe" style="width:0;height:0;border:0" ></iframe>

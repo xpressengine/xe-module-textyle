@@ -13,17 +13,15 @@
             $oTextyleModel = &getModel('textyle');
             $oModuleModel = &getModel('module');
 
-            if(!$this->module_srl) {
-                $site_module_info = Context::get('site_module_info');
-                $site_srl = $site_module_info->site_srl;
-                if($site_srl) {
-                    $this->module_srl = $site_module_info->index_module_srl;
-                    $this->module_info = $oModuleModel->getModuleInfoByModuleSrl($this->module_srl);
-                    Context::set('module_info',$this->module_info);
-                    Context::set('mid',$this->module_info->mid);
-                    Context::set('current_module_info',$this->module_info);
-                }
-            }
+			$site_module_info = Context::get('site_module_info');
+			$site_srl = $site_module_info->site_srl;
+			if($site_srl) {
+				$this->module_srl = $site_module_info->index_module_srl;
+				$this->module_info = $oModuleModel->getModuleInfoByModuleSrl($this->module_srl);
+				Context::set('module_info',$this->module_info);
+				Context::set('mid',$this->module_info->mid);
+				Context::set('current_module_info',$this->module_info);
+			}
 
             $this->custom_menu = $oTextyleModel->getTextyleCustomMenu();
 			$this->textyle = $oTextyleModel->getTextyle($this->module_srl);
@@ -1486,17 +1484,129 @@
         function procTextyleToolLayoutConfigEdit() {
             if(in_array(strtolower('dispTextyleToolLayoutConfigEdit'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
-            $html = trim(Context::get('html'));
-            if($this->_checkDisabledFunction($html)) return new Object(-1,'msg_used_disabled_function');
-
             $oTextyleModel = &getModel('textyle');
-            $html_file = $oTextyleModel->getTextyleUserHTMLFile($this->module_srl);
-            FileHandler::writeFile($html_file, $html);
+            $skin_path = $oTextyleModel->getTextylePath($this->module_srl);
 
-            $css = trim(Context::get('css'));
-            $css_file = $oTextyleModel->getTextyleUserCSSFile($this->module_srl);
-            FileHandler::writeFile($css_file, $css);
+			$skin_file_list = $oTextyleModel->getTextyleUserSkinFileList($this->module_srl);
+			foreach($skin_file_list as $file){
+				$content = Context::get($file);
+				if($this->_checkDisabledFunction($content)) return new Object(-1,'msg_used_disabled_function');
+				FileHandler::writeFile($skin_path.$file, $content);
+			}
         }
+
+		function procTextyleToolUserImageUpload(){
+            if(!Context::isUploaded()) exit();
+			if(!$this->module_srl) exit();
+
+            $image = Context::get('user_image');
+            if(!is_uploaded_file($image['tmp_name'])) exit();
+            if(!preg_match('/\.(gif|jpg|jpeg|gif|png|swf|flv)$/i', $image['name'])) return false;
+
+			$oTextyleModel = &getModel('textyle');
+			$user_image_path = sprintf('%suser_images/',$oTextyleModel->getTextylePath($this->module_srl));
+            if(!is_dir($user_image_path)) FileHandler::makeDir($user_image_path);
+
+            $filename = strtolower($image['name']);
+            if($filename != urlencode($filename)){
+                $ext = substr(strrchr($filename,'.'),1);
+                $filename = sprintf('%s.%s', md5($filename), $ext);
+            }
+
+            if(file_exists($user_image_path . $filename)) @unlink($user_image_path . $filename);
+            if(!move_uploaded_file($image['tmp_name'], $user_image_path . $filename )) return false;
+
+			Context::set('msg','success_upload');
+            $this->setTemplatePath($this->module_path.'tpl');
+            $this->setTemplateFile("top_refresh.html");
+		}
+
+        function procTextyleToolUserImageDelete(){
+			if(!$this->module_srl) exit();
+            $filename = Context::get('filename');
+
+			$oTextyleModel = &getModel('textyle');
+			$user_image_path = sprintf('%suser_images/',$oTextyleModel->getTextylePath($this->module_srl));
+
+            if(file_exists($user_image_path . $filename)) @unlink($user_image_path . $filename);
+            $this->setMessage('success_deleted');
+        }
+
+         function procTextyleToolUserSkinExport(){
+            if(!$this->module_srl) return new Object('-1','msg_invalid_request');
+
+			$oTextyleModel = &getModel('textyle');
+			$skin_path = FileHandler::getRealPath($oTextyleModel->getTextylePath($this->module_srl));
+		
+            $tar_list = FileHandler::readDir($skin_path,'/(\.css|\.html|\.htm|\.js)$/');
+
+            $img_list = FileHandler::readDir($skin_path."img",'/(\.png|\.jpeg|\.jpg|\.gif|\.swf)$/');
+            for($i=0,$c=count($img_list);$i<$c;$i++) $tar_list[] = 'img/' . $img_list[$i];
+
+            $userimages_list = FileHandler::readDir($skin_path."user_images",'/(\.png|\.jpeg|\.jpg|\.gif|\.swf)$/');
+            for($i=0,$c=count($userimages_list);$i<$c;$i++) $tar_list[] = 'user_images/' . $userimages_list[$i];
+
+            // 압축을 한다.
+            require_once(_XE_PATH_.'libs/tar.class.php');
+            chdir($skin_path);
+            $tar = new tar();
+
+            $replace_path = getNumberingPath($this->module_srl,3);
+            foreach($tar_list as $key => $file) $tar->addFile($file,$replace_path,'__TEXTYLE_SKIN_PATH__');
+
+            $stream = $tar->toTarStream();
+            $filename = 'TextyleUserSkin_' . date('YmdHis') . '.tar';
+            header("Cache-Control: ");
+            header("Pragma: ");
+            header("Content-Type: application/x-compressed");
+            header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+            header('Content-Disposition: attachment; filename="'. $filename .'"');
+            header("Content-Transfer-Encoding: binary\n");
+            echo $stream;
+
+            // Context를 강제로 닫고 종료한다.
+            Context::close();
+            exit();
+         }
+
+         function procTextyleToolUserSkinImport(){
+            if(!$this->module_srl) exit();
+
+            // check upload
+            if(!Context::isUploaded()) exit();
+            $file = Context::get('file');
+            if(!is_uploaded_file($file['tmp_name'])) exit();
+            if(!preg_match('/\.(tar)$/i', $file['name'])) exit();
+
+			$oTextyleModel = &getModel('textyle');
+			$skin_path = FileHandler::getRealPath($oTextyleModel->getTextylePath($this->module_srl));
+			
+			$tar_file = $skin_path . 'textyle_skin.tar';
+
+            FileHandler::removeDir($skin_path);
+            FileHandler::makeDir($skin_path);
+
+            if(!move_uploaded_file($file['tmp_name'], $tar_file)) exit();
+			
+            require_once(_XE_PATH_.'libs/tar.class.php');
+
+            $tar = new tar();
+            $tar->openTAR($tar_file);
+
+            // layout.ini 파일이 없으면 
+            if(!$tar->getFile('textyle.html')) return;
+
+            $replace_path = getNumberingPath($this->module_srl,3);
+            foreach($tar->files as $key => $info) {
+                FileHandler::writeFile($skin_path . $info['name'],str_replace('__TEXTYLE_SKIN_PATH__',$replace_path,$info['file']));
+            }
+
+            // 업로드한 파일을 삭제
+            FileHandler::removeFile($tar_file);
+        }
+
+
+
 
         function _checkDisabledFunction($str){
             if(preg_match('!<\?.*\?>!is',$str,$match)) return true;
@@ -1780,6 +1890,15 @@
 
             $output = executeQuery('textyle.deleteTextyleApi',$args);
             return $output;
+		}
+
+
+		function procTextyleToolInit(){
+			if(!$this->site_srl) return new Object(-1,'msg_invalid_request');
+
+			$oTextyleAdminController = &getAdminController('textyle');
+			$output = $oTextyleAdminController->initTextyle($this->site_srl);
+			return $output;
 		}
     }
 ?>

@@ -150,7 +150,6 @@
             $oEditorController->insertComponent('poll_maker',true, $site_srl);
             $oEditorController->insertComponent('image_gallery',true, $site_srl);
 
-
             // set category
             $obj->module_srl = $module_srl;
             $obj->title = Context::getLang('init_category_title');
@@ -302,6 +301,11 @@
             executeQuery('textyle.deleteTextyleMemos', $args);
             executeQuery('textyle.deleteTextyleReferer', $args);
             executeQuery('textyle.deleteTextyleApis', $args);
+            executeQuery('textyle.deleteTextyleGuestbook', $args);
+            executeQuery('textyle.deleteTextyleSupporters', $args);
+            executeQuery('textyle.deleteTextyleDenies', $args);
+            executeQuery('textyle.deleteTextyleSubscriptions', $args);
+            executeQuery('textyle.deletePublishLogs', $args);
 
             // 파일들 삭제
             @FileHandler::removeFile(sprintf("files/cache/textyle/textyle_deny/%d.php",$module_srl));
@@ -388,6 +392,78 @@
 			$args->textyle_blogapi_services_srl = Context::get('textyle_blogapi_services_srl');
 			$output = executeQuery('textyle.deleteBlogApiService',$args);
 			return $output;
+		}
+
+		function initTextyle($site_srl){
+            $oCounterController = &getController('counter');
+            $oDocumentController = &getController('document');
+            $oAddonController = &getController('addon');
+            $oEditorController = &getController('editor');
+            $oModuleModel = &getModel('module');
+            $oTextyleModel = &getModel('textyle');
+            $oMemberModel = &getModel('member');
+
+            $site_info = $oModuleModel->getSiteInfo($site_srl);
+            $module_srl = $site_info->index_module_srl;
+
+            // 원본을 구해온다
+            $oTextyle = new TextyleInfo($module_srl);
+            if($oTextyle->module_srl != $module_srl) return new Object(-1,'msg_invalid_request');
+
+            $oCounterController->deleteSiteCounterLogs($args->site_srl);
+            $oAddonController->removeAddonConfig($args->site_srl);
+
+            // 관련 DB 삭제
+            $args->module_srl = $module_srl;
+            $output = executeQuery('textyle.deleteTextyleFavorites', $args);
+            $output = executeQuery('textyle.deleteTextyleTags', $args);
+            $output = executeQuery('textyle.deleteTextyleVoteLogs', $args);
+            $output = executeQuery('textyle.deleteTextyleMemos', $args);
+            $output = executeQuery('textyle.deleteTextyleReferer', $args);
+            $output = executeQuery('textyle.deleteTextyleApis', $args);
+            $output = executeQuery('textyle.deleteTextyleGuestbook', $args);
+            $output = executeQuery('textyle.deleteTextyleSupporters', $args);
+            $output = executeQuery('textyle.deletePublishLogs', $args);
+
+            // 파일들 삭제
+            FileHandler::removeFile(sprintf("./files/cache/textyle/textyle_deny/%d.php",$module_srl));
+            FileHandler::removeDir($oTextyleModel->getTextylePath($module_srl));
+
+			// delete document
+			$output = $oDocumentController->triggerDeleteModuleDocuments($args);
+
+
+            // set category
+            $obj->module_srl = $module_srl;
+            $obj->title = Context::getLang('init_category_title');
+            $oDocumentController->insertCategory($obj);
+
+            // 기본 스킨 디자인 복사
+            FileHandler::copyDir($this->module_path.'skins/'.$this->skin, $oTextyleModel->getTextylePath($module_srl));
+
+            // 첫 글 등록
+            $langType = Context::getLangType();
+            $file = sprintf('%ssample/%s.html',$this->module_path,$langType);
+            if(!file_exists(FileHandler::getRealPath($file))){
+                $file = sprintf('%ssample/ko.html',$this->module_path);
+            }
+
+            // 소유자 회원정보
+            $member_info = $oMemberModel->getMemberInfoByUserID($oTextyle->getUserId());
+
+            $doc->module_srl = $module_srl;
+            $doc->title = Context::getLang('sample_title');
+            $doc->tags = Context::getLang('sample_tags');
+            $doc->content = FileHandler::readFile($file);
+            $doc->member_srl = $member_info->member_srl;
+            $doc->user_id = $member_info->user_id;
+            $doc->user_name = $member_info->user_name;
+            $doc->nick_name = $member_info->nick_name;
+            $doc->email_address = $member_info->email_address;
+            $doc->homepage = $member_info->homepage;
+            $output = $oDocumentController->insertDocument($doc, true);
+
+			return new Object(1,'success_textyle_init');
 		}
     }
 ?>

@@ -135,9 +135,10 @@
             $logs->published_twitter = $this->published_twitter;
 
             $args->document_srl = $this->document_srl;
+            $args->module_srl = $this->module_srl;
             $args->logs = serialize($logs);
-            $output = executeQuery('textyle.deletePublishLogs', $args);
-            $output = executeQuery('textyle.insertPublishLogs', $args);
+            $output = executeQuery('textyle.deletePublishLog', $args);
+            $output = executeQuery('textyle.insertPublishLog', $args);
         }
 
         function publish() {

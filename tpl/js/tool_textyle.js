@@ -632,6 +632,7 @@ function doResetLayoutConfig() {
 	var params = new Array();
 	var response_tags = new Array('error','message');
 	params['mid'] = current_mid;
+	params['vid'] = xeVid;
 	exec_xml('textyle', 'procTextyleToolLayoutResetConfigSkin', params, completeReload, response_tags);
 }
 
@@ -905,6 +906,7 @@ function doImport() {
     params['cur'] = fo_obj.cur.value;
     params['key'] = fo_obj.key.value;
     params['target_module'] = fo_obj.target_module.value;
+    params['guestbook_target_module'] = fo_obj.target_module.value;
     params['unit_count'] = fo_obj.unit_count.value;
     params['user_id'] = fo_obj.user_id.value;
 
@@ -1117,3 +1119,33 @@ function completeUpdate(ret_obj) {
     location.reload();
 }
 
+function initTextyle() {
+	var params = new Array();
+	params['mid'] = current_mid;
+	params['vid'] = xeVid;
+
+    exec_xml('textyle','procTextyleToolInit', params, 
+		function(ret_obj){
+			alert(ret_obj['message']);
+			location.href = current_url.setQuery('act','dispTextyleToolDashboard');
+		}, new Array('error','message'));
+}
+function checkUserImage(f,msg){
+    var filename = jQuery('[name=user_image]',f).val();
+    if(/\.(gif|jpg|jpeg|gif|png|swf|flv)$/i.test(filename)){
+        return true;
+    }else{
+        alert(msg);
+        return false;
+    }
+}
+function deleteUserImage(filename){
+    var params ={
+            "mid":current_mid
+			,"vid":xeVid
+            ,"filename":filename
+            };
+    jQuery.exec_json('textyle.procTextyleToolUserImageDelete', params, function(data){
+        document.location.reload();
+    });
+}

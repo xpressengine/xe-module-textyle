@@ -435,4 +435,18 @@
     $lang->sample_tags = 'Textyle ,  Textyle Editor,  Writing Ingredients Collector';
     $lang->msg_preparation = 'In preparation';
     $lang->msg_not_user = 'No one matches.';
+    $lang->success_textyle_init = '텍스타일을 초기화 하였습니다.';
+	$lang->textyle_init = '초기화';
+    $lang->cmd_textyle_init = '텍스타일을 초기화 합니다.';
+    $lang->msg_textyle_init_about = '포스트/댓글/트랙백, 방명록, 레이아웃 정보를 모두 삭제 및 초기화를 합니다. 초기화 후 복구는 불가능 합니다.';
+    $lang->msg_confirm_textyle_init = '초기화를 하시겠습니까?';
+
+	$lang->textyle_skin_userimage = '사용자 이미지';
+	$lang->msg_check_userimage = 'gif, png, jpg, swf 파일만 가능합니다.';
+	$lang->textyle_skin_migration = '텍스타일 스킨 내보내기/들이기';
+    $lang->textyle_skin_export = '스킨 내보내기';
+    $lang->cmd_textyle_skin_export = '스킨 내보내기';
+    $lang->about_textyle_skin_export = '현재 수정된 텍스타일 스킨을 내보내기 합니다.';
+    $lang->textyle_skin_import = '스킨 들이기';
+    $lang->about_textyle_skin_import = '스킨 들이기를 할 경우 기존 수정된 레이아웃은 삭제됩니다.';
 ?>

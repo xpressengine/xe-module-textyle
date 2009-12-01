@@ -65,6 +65,11 @@
 		<permission action="procTextyleToolLayoutResetConfigSkin" target="manager" />
 		<permission action="procTextyleToolImportPrepare" target="manager" />
 		<permission action="procTextyleToolImport" target="manager" />
+		<permission action="procTextyleToolInit" target="manager" />
+		<permission action="procTextyleToolUserImageUpload" target="manager" />
+		<permission action="procTextyleToolUserImageDelete" target="manager" />
+		<permission action="procTextyleToolUserSkinExport" target="manager" />
+		<permission action="procTextyleToolUserSkinImport" target="manager" />
 		<permission action="procTextyleInsertBlogApi" target="manager" />
 		<permission action="procTextyleDeleteBlogApi" target="manager" />
 		<permission action="procTextyleToggleEnableAPI" target="manager" />
@@ -160,6 +165,11 @@
 		<action name="procTextyleGuestbookVerificationPassword" type="controller" />
 		<action name="procTextyleToolImportPrepare" type="controller" />
 		<action name="procTextyleToolImport" type="controller" />
+		<action name="procTextyleToolInit" type="controller" />
+		<action name="procTextyleToolUserImageUpload" type="controller" />
+		<action name="procTextyleToolUserImageDelete" type="controller" />
+		<action name="procTextyleToolUserSkinExport" type="controller" />
+		<action name="procTextyleToolUserSkinImport" type="controller" />
 		<action name="procTextyleInsertBlogApi" type="controller" />
 		<action name="procTextyleDeleteBlogApi" type="controller" />
 

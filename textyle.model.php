@@ -354,7 +354,7 @@
 			return $output;
 		}
         function getTextylePath($module_srl) {
-            return sprintf("files/attach/textyle/%s",getNumberingPath($module_srl));
+            return sprintf("./files/attach/textyle/%s",getNumberingPath($module_srl));
 		}
 
         function checkTextylePath($module_srl, $skin = null) {
@@ -366,23 +366,11 @@
 			return true;
         }
 
-        function getTextyleUserHTMLFile($module_srl) {
-            return sprintf("%stextyle.html", $this->getTextylePath($module_srl));
-        }
-
-        function getTextyleUserCSSFile($module_srl) {
-            return sprintf("%stextyle.css", $this->getTextylePath($module_srl));
-        }
-
-        function getTextyleUserHTML($module_srl) {
-            $filename = $this->getTextyleUserHTMLFile($module_srl);
-            return FileHandler::readFile($filename);
-        }
-
-        function getTextyleUserCSS($module_srl) {
-            $filename = $this->getTextyleUserCSSFile($module_srl);
-            return FileHandler::readFile($filename);
-        }
+		function getTextyleUserSkinFileList($module_srl){
+            $skin_path = $this->getTextylePath($module_srl);
+            $skin_file_list = FileHandler::readDir($skin_path,'/(\.html|\.htm|\.css)$/');
+			return $skin_file_list;
+		}
 
         function getTextyleAPITest() {
             $oTextyleModel = &getModel('textyle');

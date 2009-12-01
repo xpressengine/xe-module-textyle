@@ -70,6 +70,7 @@
             if(!$oDB->isColumnExists("textyle_api","blogapi_type")) return true;
             if(!$oDB->isColumnExists("textyle_api","blogapi_service")) return true;
             if(!$oDB->isColumnExists("textyle_api","blogapi_host_provider")) return true;
+            if(!$oDB->isColumnExists("textyle_publish_logs","module_srl")) return true;
             return false;
         }
 
@@ -97,6 +98,11 @@
             if(!$oDB->isColumnExists("textyle_api","blogapi_type")) $oDB->addColumn('textyle_api',"blogapi_type","varchar",50);
             if(!$oDB->isColumnExists("textyle_api","blogapi_service")) $oDB->addColumn('textyle_api','blogapi_service','varchar',250);
             if(!$oDB->isColumnExists("textyle_api","blogapi_host_provider")) $oDB->addColumn('textyle_api','blogapi_host_provider','varchar',250);
+
+            if(!$oDB->isColumnExists("textyle_publish_logs","module_srl")){
+                $oDB->addColumn('textyle_publish_logs',"module_srl","number",11);
+                $oDB->addIndex("textyle_publish_logs","idx_module_srl", array("module_srl"));
+            }
 
             return new Object(0, 'success_updated');
         }
