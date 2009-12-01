@@ -1,6 +1,22 @@
 <!--%import("filter/insert_textyle.xml")-->
 <!--#include("./header.html")-->
 
+<form action="./" method="get">
+    <input type="hidden" value="{$module}" name="module"/>
+    <input type="hidden" value="{$act}" name="act"/>
+    <fieldset>
+        <select name="search_target">
+            <option value="user_id" <!--@if($search_target == 'user_id')-->selected="selected"<!--@end-->>{$lang->user_id}</option>
+            <option value="nick_name" <!--@if($search_target == 'nick_name')-->selected="selected"<!--@end-->>{$lang->nick_name}</option>
+            <option value="user_name" <!--@if($search_target == 'user_name')-->selected="selected"<!--@end-->>{$lang->user_name}</option>
+            <option value="domain" <!--@if($search_target == 'domain')-->selected="selected"<!--@end-->>{$lang->domain}</option>
+            <option value="regdate" <!--@if($search_target == 'regdate')-->selected="selected"<!--@end-->>{$lang->regdate}</option>
+        </select>
+        <input type="text" name="search_keyword" value="{$search_keyword}" />
+        <span class="button"><input type="submit" value="{$lang->cmd_search}" /></span>
+    </fieldset>
+</form>
+
 <table cellspacing="0" class="rowTable">
 <caption>Total {number_format($page_navigation->total_count)}, Page {number_format($page_navigation->cur_page)}/{number_format($page_navigation->total_page)}</caption>
 <thead>

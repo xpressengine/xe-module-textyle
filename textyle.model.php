@@ -82,9 +82,7 @@
         /**
          * @brief Textyle 목록 return
          **/
-        function getTextyleList($list_count=20, $page=1) {
-            $args->list_count = $list_count;
-            $args->page = $page;
+        function getTextyleList($args) {
             $output = executeQueryArray('textyle.getTextyleList', $args);
             if(!$output->toBool()) return $output;
 
@@ -407,8 +405,8 @@
 
 			return getFullSiteUrl($domain,'','document_srl',$document_srl,'key',$key,'act','trackback');
 		}
-	
-		function getBlogApiService($args=null){	
+
+		function getBlogApiService($args=null){
 			$srl = Context::get('textyle_blogapi_services_srl');
 			if($srl) $args->textyle_blogapi_services_srl = $srl;
 			$output = executeQueryArray('textyle.getBlogApiServices',$args);

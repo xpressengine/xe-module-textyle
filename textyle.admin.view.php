@@ -19,11 +19,20 @@
         }
 
         function dispTextyleAdminList() {
+            $vars = Context::getRequestVars();
+            $oTextyleModel = &getModel('textyle');
+
             $page = Context::get('page');
             if(!$page) $page = 1;
 
-            $oTextyleModel = &getModel('textyle');
-            $output = $oTextyleModel->getTextyleList(20, $page, 'regdate');
+            if($vars->search_target && $vars->search_keyword) {
+                $args->{'s_'.$vars->search_target} = strtolower($vars->search_keyword);
+            }
+
+            $args->list_count = 20;
+            $args->page = $page;
+            $args->list_order = 'regdate';
+            $output = $oTextyleModel->getTextyleList($args);
             if(!$output->toBool()) return $output;
 
             Context::set('textyle_list', $output->data);
