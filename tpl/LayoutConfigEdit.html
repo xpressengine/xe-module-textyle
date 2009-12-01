@@ -9,100 +9,84 @@
 					<h3 class="h3">{$lang->textyle_second_menus[4]['dispTextyleToolLayoutConfigEdit']}</h3>
 				</div>
 				<!-- /contentHeader -->
-			
 
-					<span class="buttonGray medium widgetCreator"><a href="{getUrl('','module','widget','act','dispWidgetGenerateCode')}" onclick="popopen(this.href); return false">{$lang->cmd_generate_widget_code}</a></span>
-
-
-				<form action="./" method="post" class="codeEdit" onsubmit="return procFilter(this,insert_layout_edit);">
-				<input type="hidden" name="mid" value="{$mid}" />
-				<input type="hidden" name="vid" value="{$vid}" />
+				<script type="text/javascript">
+				function tab(i){
+					var tab = i.parentNode.parentNode.className;
+					document.getElementById('codeEdit').className='codeEdit'+' '+tab;
+				} 
+				</script>
 				
-
-				<ul>
-				<!--@foreach($skin_file_content as $file => $content)-->
-					<li>{$file}</li>
-					<li><textarea name="{$file}" cols="50" rows="10">{htmlspecialchars($content)}</textarea></li>
-				<!--@end-->
-				</ul>
-
-				<!-- Button Area -->
-				<div class="buttonArea aCenter">
-					<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_save}" /></span>
-					<span class="buttonAction actionWhite"><input type="button" value="{$lang->cmd_reset}" onclick="if(confirm('{$lang->alert_reset_skin}')) doResetLayoutConfig(); return false;"/></span>
-				</div>
-				<!-- /Button Area -->
+				<form action="./" method="post" id="codeEdit" class="codeEdit" onsubmit="return procFilter(this,insert_layout_edit);">
+					<span class="buttonGray medium widgetCreator"><a href="{getUrl('','module','widget','act','dispWidgetGenerateCode')}" onclick="popopen(this.href); return false">{$lang->cmd_generate_widget_code}</a></span>
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="vid" value="{$vid}" />
+					
+					{@$i=0;}
+					<!--@foreach($skin_file_content as $file => $content)-->
+					<div class="s{$i}">
+						<h4><a href="#" onclick="tab(this)">{$file}</a></h4>
+						<textarea name="{$file}" cols="50" rows="10">{htmlspecialchars($content)}</textarea>
+		</div>
+						{@$i++;}						
+					<!--@end-->
+	
+					<!-- Button Area -->
+					<div class="buttonArea aCenter">
+						<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_save}" /></span>
+					</div>
+					<!-- /Button Area -->
 				</form>
 
 
 
-<h4>{$lang->textyle_skin_userimage}</h4>
 
-<form action="{Context::getRequestUri()}" target="hidden_iframe" method="post" onsubmit="return checkUserImage(this,'{$lang->msg_check_userimage}')" enctype="multipart/form-data">
+<form action="{Context::getRequestUri()}" class="userImage" target="hidden_iframe" method="post" onsubmit="return checkUserImage(this,'{$lang->msg_check_userimage}')" enctype="multipart/form-data">
+	<h4>{$lang->textyle_skin_userimage}</h4>
     <input type="hidden" name="mid" value="{$mid}" />
     <input type="hidden" name="vid" value="{$vid}" />
     <input type="hidden" name="act" value="procTextyleToolUserImageUpload" />
-    <table cellspacing="0" class="crossTable">
+	<p class="upload"><input name="user_image" type="file" /> <em>{$lang->msg_check_userimage}</em> <span class="buttonGray medium"><button type="submit">{$lang->cmd_save}</button></span></p>
 	<!--@if($user_image_list)-->
-    <tbody>
-        <tr>
-            <td>
-                <!--@foreach($user_image_list as $no => $file)-->
-                {@$ext=substr(strrchr($file,'.'),1)}
-                <div class="preview_image" style="width:100px;height:100px;float:left; position:relative;margin-right:10px; ">
-                    <!--@if($ext=='swf'||$ext=='flv')-->
-                    <script type="text/javascript">//<![CDATA[
-                    displayMultimedia('{getUrl('')}{$user_image_path}{$file}', '100%', '100%');
-                    //]]></script>
-                    <!--@elseif(in_array($ext,array('gif','png','jpg','jpeg')))-->
-                        <img src="{getUrl('')}{$user_image_path}{$file}" width="100%" height="100%" />
-                    <!--@end-->
-                    <a href="#" onclick="deleteUserImage('{$file}');return false" onmouseover="jQuery('div.imagePath').html('{$user_image_path}{$file}')" style="position:absolute; left:3px; top:3px;" class="small button red"><span>{$lang->cmd_delete}</span></a>
-                </div>
-                <!--@end-->
-                &nbsp;
-            </td>
-        </tr>
-    </tbody>
+	<ul>
+		<!--@foreach($user_image_list as $no => $file)-->
+		<li>
+			{@$ext=substr(strrchr($file,'.'),1)}
+			<div class="thumb">
+				<!--@if($ext=='swf'||$ext=='flv')-->
+				<script type="text/javascript">//<![CDATA[
+				displayMultimedia('{getUrl('')}{$user_image_path}{$file}', '100%', '100%');
+				//]]></script>
+				<!--@elseif(in_array($ext,array('gif','png','jpg','jpeg')))-->
+					<img src="{getUrl('')}{$user_image_path}{$file}" alt="User Upload Image" />
+				<!--@end-->
+			</div>
+			<p class="path">{$user_image_path}{$file}</p>
+			<button type="button" onclick="deleteUserImage('{$file}')" class="delete"><span>{$lang->cmd_delete}</span></button>
+		</li>
+		<!--@end-->
+	</ul>
 	<!--@end-->
-    <tfoot>
-        <tr>
-            <td>
-                <div class="imagePath"></div>
-                <input name="user_image" type="file" />
-                <span class="button black strong"><button type="submit">{$lang->cmd_save}</button></span>
-                {$lang->msg_check_userimage}
-            </td>
-        </tr>
-    </tfoot>
-    </table>
 </form>
 
-<h4>{$lang->textyle_skin_migration}</h4>
-<table cellspacing="0" class="rowTable">
-<tr>
-    <th scope="row"><div>{$lang->textyle_skin_export}</div></th>
-    <td>
-        <a href="{getUrl('','act','procTextyleToolUserSkinExport','mid',$mid,'vid',$vid)}" class="button black strong"><span>{$lang->cmd_textyle_skin_export}</span></a>
-        <p>{$lang->about_textyle_skin_export}</p>
-    </td>
-</tr>
-<tr>
-    <th scope="row"><div>{$lang->textyle_skin_import}</div></th>
-    <td>
-        <form action="{getUrl('')}" method="post" enctype="multipart/form-data" target="hidden_iframe">
-            <input type="hidden" name="module" value="layout" />
-            <input type="hidden" name="act" value="procTextyleToolUserSkinImport" />
-            <input type="hidden" name="mid" value="{$mid}" />
-            <input type="hidden" name="vid" value="{$vid}" />
-            <input type="file" name="file" />
-            <span class="button black strong"><button type="submit">{$lang->cmd_submit}</button></span>
-        </form>
-        <p>{$lang->about_textyle_skin_import}</p>
-    </td>
-</tr>
-</table>
-
+<div class="userDefineSkin">
+	<div class="buttonArea aCenter">
+		<span class="buttonAction actionWhite"><a href="{getUrl('','act','procTextyleToolUserSkinExport','mid',$mid,'vid',$vid)}">{$lang->cmd_textyle_skin_export}</a></span>
+		<span class="buttonAction actionWhite"><button type="button" onclick="jQuery('#rediscover').toggleClass('open')">{$lang->textyle_skin_import}</button></span>
+		<span class="buttonAction actionWhite"><input type="button" value="{$lang->cmd_reset}" onclick="if(confirm('{$lang->alert_reset_skin}')) doResetLayoutConfig(); return false;"/></span>
+	</div>
+	<div id="rediscover" class="">
+		<h4>{$lang->textyle_skin_import}</h4>
+		<form action="{getUrl('')}" method="post" enctype="multipart/form-data" target="hidden_iframe" class="upload">
+			<input type="hidden" name="module" value="layout" />
+			<input type="hidden" name="act" value="procTextyleToolUserSkinImport" />
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="vid" value="{$vid}" />
+			<input type="file" name="file" /> <em>{$lang->about_textyle_skin_import}</em>
+			<span class="buttonGray medium"><button type="submit">{$lang->cmd_submit}</button></span>
+		</form>	
+	</div>
+</div>
 
 			</div>
 			<hr />

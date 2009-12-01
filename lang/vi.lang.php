@@ -448,10 +448,7 @@
 
 	$lang->textyle_skin_userimage = '사용자 이미지';
 	$lang->msg_check_userimage = 'gif, png, jpg, swf 파일만 가능합니다.';
-	$lang->textyle_skin_migration = '텍스타일 스킨 내보내기/들이기';
-    $lang->textyle_skin_export = '스킨 내보내기';
-    $lang->cmd_textyle_skin_export = '스킨 내보내기';
-    $lang->about_textyle_skin_export = '현재 수정된 텍스타일 스킨을 내보내기 합니다.';
-    $lang->textyle_skin_import = '스킨 들이기';
-    $lang->about_textyle_skin_import = '스킨 들이기를 할 경우 기존 수정된 레이아웃은 삭제됩니다.';
+    $lang->cmd_textyle_skin_export = '스킨 백업';
+    $lang->textyle_skin_import = '스킨 복원';
+    $lang->about_textyle_skin_import = '로컬 폴더에 있는 사용자 정의 스킨을 원격으로 업로드 합니다. 현재 스킨은 삭제됩니다.';
 ?>
