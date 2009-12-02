@@ -397,6 +397,8 @@
 		function initTextyle($site_srl){
             $oCounterController = &getController('counter');
             $oDocumentController = &getController('document');
+            $oCommentController = &getController('comment');
+            $oTagController = &getController('tag');
             $oAddonController = &getController('addon');
             $oEditorController = &getController('editor');
             $oModuleModel = &getModel('module');
@@ -431,6 +433,12 @@
 
 			// delete document
 			$output = $oDocumentController->triggerDeleteModuleDocuments($args);
+
+			// delete comment
+			$output = $oCommentController->triggerDeleteModuleComments($args);
+
+			// delete tag
+			$output = $oTagController->triggerDeleteModuleTags($args);
 
 
             // set category
