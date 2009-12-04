@@ -11,7 +11,7 @@
         Textyle内置皮肤(侧边栏左右互换class="ce"修改为 class="ec")。
     </description>
     <description xml:lang="zh-TW">
-        텍스타일의 기본 스킨입니다. Simple Line 스킨에 어두운 바탕과 회색 라인을 물들인 초절정 심플 스킨. 사진을 주로 다루는 포토그래퍼에게 잘 어울리는 스킨 입니다. 콘텐츠 영역의 좌우 배치를 변경하려면 HTML 편집창에서 class="ce"를 class="ec"로 변경하세요!
+        Textyle的預設面板。使用黑色背景搭配灰色線條的簡單面板。很適合攝影工作者使用。將class="ce"修改成class="ec"即可左右互換側邊欄。
     </description>
     <description xml:lang="jp">
         テキスタイルの基本スキンの一つです。 Simple Lineスキンに어두운背景とグレーラインを加味したシンプルなスキンです。 写真を主に携わるフォトグラファーにぴったりのスキンです。 コンテンツ部分の左右配置を変更したい場合はHTML編集エディターにて「class="ce"」を「class="ec"」差し替えてください。
