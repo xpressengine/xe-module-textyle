@@ -1626,7 +1626,7 @@
             unset($match);
 
             preg_match_all('!<\!--@(.*?)-->!is',$str,$match);
-            preg_match_all('/{([^{]*)}/i',$str,$match);
+            preg_match_all('/{([^$][^{]*)}/i', $str, $match2);
             preg_match_all('/ ([^(^ ]*) ?\(/i', ' '.join(' ',$match[1]),$match_func);
             $match_func = array_unique($match_func[1]);
             for($i=0,$c=count($match_func);$i<$c;$i++){
