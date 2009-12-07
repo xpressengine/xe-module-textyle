@@ -407,6 +407,7 @@
 
             $site_info = $oModuleModel->getSiteInfo($site_srl);
             $module_srl = $site_info->index_module_srl;
+            $args->site_srl = $site_srl;
 
             // 원본을 구해온다
             $oTextyle = new TextyleInfo($module_srl);
