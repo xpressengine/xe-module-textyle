@@ -43,7 +43,7 @@
             array('comment.insertComment', 'textyle', 'controller', 'triggerInsertComment', 'after'),
             array('comment.deleteComment', 'textyle', 'controller', 'triggerDeleteComment', 'after'),
             array('trackback.insertTrackback', 'textyle', 'controller', 'triggerInsertTrackback', 'after'),
-            array('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after')
+            array('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after'),
             array('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after')
         );
 
