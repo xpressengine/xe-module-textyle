@@ -204,14 +204,14 @@
 
             $tmp_member_list = explode(',',$vars->user_id);
             $admin_list = array();
-			$admin_member_srl = array();
+            $admin_member_srl = array();
             foreach($tmp_member_list as $k => $v){
                 $v = trim($v);
                 if($v){
                     $member_srl = $oMemberModel->getMemberSrlByUserID($v);
                     if($member_srl){
                         $admin_list[] = $v;
-						$admin_member_srl[] = $member_srl;
+                        $admin_member_srl[] = $member_srl;
                     }else{
                         return new Object(-1,'msg_not_user');
                     }
@@ -241,11 +241,11 @@
             $output = $oModuleController->updateSite($args);
             if(!$output->toBool()) return $output;
 
-			unset($args);
-			$args->module_srl = $vars->module_srl;
-			$args->member_srl = $admin_member_srl[0];
+            unset($args);
+            $args->module_srl = $vars->module_srl;
+            $args->member_srl = $admin_member_srl[0];
             $output = executeQuery('textyle.updateTextyle', $args);
-			if(!$output->toBool()) return $output;
+            if(!$output->toBool()) return $output;
 
             $this->setMessage('success_updated');
 
@@ -376,25 +376,25 @@
             $oModuleController->insertModuleConfig('textyle', $config);
         }
 
-		function procTextyleAdminInsertBlogApiServices(){
-			$args = Context::getRequestVars();
+        function procTextyleAdminInsertBlogApiServices(){
+            $args = Context::getRequestVars();
 
-			if($args->textyle_blogapi_services_srl){
-				$output = executeQuery('textyle.updateBlogApiService',$args);
-			}else{
-				$args->textyle_blogapi_services_srl = getNextSequence();
-				$args->list_order = $args->textyle_blogapi_services_srl * -1;
-				$output = executeQuery('textyle.insertBlogApiService',$args);
-			}
-		}
+            if($args->textyle_blogapi_services_srl){
+                $output = executeQuery('textyle.updateBlogApiService',$args);
+            }else{
+                $args->textyle_blogapi_services_srl = getNextSequence();
+                $args->list_order = $args->textyle_blogapi_services_srl * -1;
+                $output = executeQuery('textyle.insertBlogApiService',$args);
+            }
+        }
 
-		function procTextyleAdminDeleteBlogApiServices(){
-			$args->textyle_blogapi_services_srl = Context::get('textyle_blogapi_services_srl');
-			$output = executeQuery('textyle.deleteBlogApiService',$args);
-			return $output;
-		}
+        function procTextyleAdminDeleteBlogApiServices(){
+            $args->textyle_blogapi_services_srl = Context::get('textyle_blogapi_services_srl');
+            $output = executeQuery('textyle.deleteBlogApiService',$args);
+            return $output;
+        }
 
-		function initTextyle($site_srl){
+        function initTextyle($site_srl){
             $oCounterController = &getController('counter');
             $oDocumentController = &getController('document');
             $oCommentController = &getController('comment');
@@ -432,14 +432,14 @@
             FileHandler::removeFile(sprintf("./files/cache/textyle/textyle_deny/%d.php",$module_srl));
             FileHandler::removeDir($oTextyleModel->getTextylePath($module_srl));
 
-			// delete document
-			$output = $oDocumentController->triggerDeleteModuleDocuments($args);
+            // delete document
+            $output = $oDocumentController->triggerDeleteModuleDocuments($args);
 
-			// delete comment
-			$output = $oCommentController->triggerDeleteModuleComments($args);
+            // delete comment
+            $output = $oCommentController->triggerDeleteModuleComments($args);
 
-			// delete tag
-			$output = $oTagController->triggerDeleteModuleTags($args);
+            // delete tag
+            $output = $oTagController->triggerDeleteModuleTags($args);
 
 
             // set category
@@ -472,7 +472,7 @@
             $doc->homepage = $member_info->homepage;
             $output = $oDocumentController->insertDocument($doc, true);
 
-			return new Object(1,'success_textyle_init');
-		}
+            return new Object(1,'success_textyle_init');
+        }
     }
 ?>

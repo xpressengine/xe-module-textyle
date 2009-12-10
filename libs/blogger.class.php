@@ -14,7 +14,7 @@
 
         function getUsersBlogs() {
             $oXmlParser = new XmlParser();
-            
+
             $input = sprintf(
                 '<?xml version="1.0" encoding="utf-8" ?><methodCall><methodName>blogger.getUsersBlogs</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param></params></methodCall>',
                 '0123456789ABCDEF',
@@ -29,7 +29,7 @@
                 $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
-            } 
+            }
 
             $val = $xmlDoc->methodresponse->params->param->value->array->data->value->struct->member;
             $output = new Object();
@@ -81,7 +81,7 @@
                 $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
-            } 
+            }
             $postid = $xmlDoc->methodresponse->params->param->value->string->body;
             if(!$postid) $postid = $xmlDoc->methodresponse->params->param->value->i4->body;
             $output = new Object();
@@ -123,7 +123,7 @@
                 $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
-            } 
+            }
             $output = new Object();
             $output->add('postid', $postid);
             return $output;

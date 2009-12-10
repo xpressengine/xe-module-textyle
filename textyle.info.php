@@ -16,12 +16,12 @@
         var $colorset = null;
         var $timezone = null;
 
-        function TextyleInfo($textyle_srl = 0) { 
+        function TextyleInfo($textyle_srl = 0) {
             if(!$textyle_srl) return;
             $this->setTextyle($textyle_srl);
         }
 
-        function setTextyle($textyle_srl) { 
+        function setTextyle($textyle_srl) {
             $this->module_srl = $this->textyle_srl = $textyle_srl;
             $this->_loadFromDB();
         }
@@ -101,63 +101,63 @@
         }
 
         function getNickName() {
-			if(!$this->isExists()) return;
-			$nick_name = $this->get('nick_name'); 
-			if(!$nick_name) $nick_name = $this->getUserId();
-			return $nick_name;
+            if(!$this->isExists()) return;
+            $nick_name = $this->get('nick_name');
+            if(!$nick_name) $nick_name = $this->getUserId();
+            return $nick_name;
         }
 
         function getUserName() {
             if(!$this->isExists()) return;
-            return $this->get('user_name'); 
+            return $this->get('user_name');
         }
         function getProfileContent() {
             if(!$this->isExists()) return;
-            return $this->get('profile_content'); 
+            return $this->get('profile_content');
         }
         function getTextyleContent() {
             if(!$this->isExists()) return;
-            return $this->get('textyle_content'); 
-		}
-		function getEmail() {
-            if(!$this->isExists()) return;
-            return $this->get('email_address'); 
-		}
-
-		function getPostStyle() {
-            if(!$this->isExists()) return;
-            return $this->get('post_style'); 
+            return $this->get('textyle_content');
         }
-		function getPostEditorSkin() {
+        function getEmail() {
             if(!$this->isExists()) return;
-            return $this->get('post_editor_skin'); 
+            return $this->get('email_address');
         }
 
-
-		function getPostListCount() {
+        function getPostStyle() {
             if(!$this->isExists()) return;
-            return $this->get('post_list_count'); 
+            return $this->get('post_style');
         }
- 
-		function getCommentListCount() {
+        function getPostEditorSkin() {
             if(!$this->isExists()) return;
-            return $this->get('comment_list_count'); 
+            return $this->get('post_editor_skin');
         }
 
-		function getGuestbookListCount() {
-            if(!$this->isExists()) return;
-            return $this->get('guestbook_list_count'); 
-		}
 
-		function getInputEmail(){
+        function getPostListCount() {
             if(!$this->isExists()) return;
-            return $this->get('input_email'); 
-		}
+            return $this->get('post_list_count');
+        }
 
-		function getInputWebsite(){
+        function getCommentListCount() {
             if(!$this->isExists()) return;
-            return $this->get('input_website'); 
-		}
+            return $this->get('comment_list_count');
+        }
+
+        function getGuestbookListCount() {
+            if(!$this->isExists()) return;
+            return $this->get('guestbook_list_count');
+        }
+
+        function getInputEmail(){
+            if(!$this->isExists()) return;
+            return $this->get('input_email');
+        }
+
+        function getInputWebsite(){
+            if(!$this->isExists()) return;
+            return $this->get('input_website');
+        }
 
         function getEnableMe2day() {
             return $this->get('enable_me2day')=='Y'?true:false;
@@ -183,62 +183,62 @@
             return $this->get('twitter_password');
         }
 
-		function getPostUsePrefix(){
+        function getPostUsePrefix(){
             if(!$this->isExists()) return;
-            return $this->get('post_use_prefix'); 
-		}
-
-		function getPostUseSuffix(){
-            if(!$this->isExists()) return;
-            return $this->get('post_use_suffix'); 
-		}
-
- 		function getPostPrefix($force=false) {
-			if(!$this->isExists()) return;
-			if($force || $this->getPostUsePrefix()=='Y') return $this->get('post_prefix'); 
-			else return;
+            return $this->get('post_use_prefix');
         }
 
- 		function getPostSuffix($force=false) {
-			if(!$this->isExists()) return;
-			if($force || $this->getPostUsesuffix()=='Y') return $this->get('post_suffix'); 
-			else return;
+        function getPostUseSuffix(){
+            if(!$this->isExists()) return;
+            return $this->get('post_use_suffix');
         }
-        
+
+        function getPostPrefix($force=false) {
+            if(!$this->isExists()) return;
+            if($force || $this->getPostUsePrefix()=='Y') return $this->get('post_prefix');
+            else return;
+        }
+
+        function getPostSuffix($force=false) {
+            if(!$this->isExists()) return;
+            if($force || $this->getPostUsesuffix()=='Y') return $this->get('post_suffix');
+            else return;
+        }
+
         function getUserID() {
             if(!$this->isExists()) return;
-            return $this->get('user_id'); 
+            return $this->get('user_id');
         }
 
         function getSubscriptionDate() {
             if(!$this->isExists()) return;
-            return $this->get('subscription_date'); 
+            return $this->get('subscription_date');
         }
 
-		function getProfilePhotoSrc(){
-			if(!$this->isExists()) return;
-			$oTextyleModel = &getModel('textyle');
-			$src = $oTextyleModel->getTextylePhotoSrc($this->member_srl);
-			return $src; 
-		}
+        function getProfilePhotoSrc(){
+            if(!$this->isExists()) return;
+            $oTextyleModel = &getModel('textyle');
+            $src = $oTextyleModel->getTextylePhotoSrc($this->member_srl);
+            return $src;
+        }
 
-		function getProfileDefaultPhotoSrc(){
-			$oTextyleModel = &getModel('textyle');
-			$src = $oTextyleModel->getTextyleDefaultPhotoSrc();
-			return $src; 
-		}
+        function getProfileDefaultPhotoSrc(){
+            $oTextyleModel = &getModel('textyle');
+            $src = $oTextyleModel->getTextyleDefaultPhotoSrc();
+            return $src;
+        }
 
-		function getFaviconSrc(){
-			if(!$this->isExists()) return;
-			$oTextyleModel = &getModel('textyle');
-			return $oTextyleModel->getTextyleFaviconSrc($this->module_srl);
-		}
+        function getFaviconSrc(){
+            if(!$this->isExists()) return;
+            $oTextyleModel = &getModel('textyle');
+            return $oTextyleModel->getTextyleFaviconSrc($this->module_srl);
+        }
 
-		function getDefaultFaviconSrc(){
-			$oTextyleModel = &getModel('textyle');
-			$src = $oTextyleModel->getTextyleDefaultFaviconSrc();
-			return $src; 
-		}
+        function getDefaultFaviconSrc(){
+            $oTextyleModel = &getModel('textyle');
+            $src = $oTextyleModel->getTextyleDefaultFaviconSrc();
+            return $src;
+        }
 
         function isExists() {
             return $this->textyle_srl?true:false;
@@ -249,34 +249,34 @@
             return getUrl('','mid',$this->getMid());
         }
 
-		function getPostCount(){
+        function getPostCount(){
             if(!$this->isExists()) return;
-			$oDocumentModel = &getModel('document');
-			$count = 0;
-			$count += $oDocumentModel->getDocumentCount($this->module_srl);
-			$count += $oDocumentModel->getDocumentCount($this->module_srl * -1);
-			return $count;
-		}
+            $oDocumentModel = &getModel('document');
+            $count = 0;
+            $count += $oDocumentModel->getDocumentCount($this->module_srl);
+            $count += $oDocumentModel->getDocumentCount($this->module_srl * -1);
+            return $count;
+        }
 
-		function getPostTempCount(){
+        function getPostTempCount(){
             if(!$this->isExists()) return;
-			$oDocumentModel = &getModel('document');
-			$count = 0;
-			$count += $oDocumentModel->getDocumentCount($this->member_srl);
-			return $count;
-		}
+            $oDocumentModel = &getModel('document');
+            $count = 0;
+            $count += $oDocumentModel->getDocumentCount($this->member_srl);
+            return $count;
+        }
 
-		function getCommentAllCount($flag=1){
+        function getCommentAllCount($flag=1){
             if(!$this->isExists()) return;
-			$oCommentModel = &getModel('comment');
-			return $oCommentModel->getCommentAllCount($this->module_srl*$flag);
-		}
-	
-		function getTrackbackAllCount($flag=1){
+            $oCommentModel = &getModel('comment');
+            return $oCommentModel->getCommentAllCount($this->module_srl*$flag);
+        }
+
+        function getTrackbackAllCount($flag=1){
             if(!$this->isExists()) return;
-			$oTrackbackModel = &getModel('trackback');
-			return $oTrackbackModel->getTrackbackAllCount($this->module_srl*$flag);
-		}	
+            $oTrackbackModel = &getModel('trackback');
+            return $oTrackbackModel->getTrackbackAllCount($this->module_srl*$flag);
+        }
 
         function isRssEnabled() {
             static $open_rss = null;

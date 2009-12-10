@@ -42,27 +42,27 @@
         }
 
         function dispTextyleAdminInsert() {
-			$oModuleModel = &getModel('module');
+            $oModuleModel = &getModel('module');
 
             $module_srl = Context::get('module_srl');
             if($module_srl) {
                 $oTextyleModel = &getModel('textyle');
-				$textyle = $oTextyleModel->getTextyle($module_srl);
+                $textyle = $oTextyleModel->getTextyle($module_srl);
                 Context::set('textyle', $textyle);
 
-				$admin_list = $oModuleModel->getSiteAdmin($textyle->site_srl);
-				$site_admin = array();	
-				if(is_array($admin_list)){
-					foreach($admin_list as $k => $v){
-						$site_admin[] = $v->user_id;
-					}
+                $admin_list = $oModuleModel->getSiteAdmin($textyle->site_srl);
+                $site_admin = array();
+                if(is_array($admin_list)){
+                    foreach($admin_list as $k => $v){
+                        $site_admin[] = $v->user_id;
+                    }
 
-					Context::set('site_admin', join(',',$site_admin));
-				}
-			}
+                    Context::set('site_admin', join(',',$site_admin));
+                }
+            }
 
-			$skin_list = $oModuleModel->getSkins($this->module_path);
-			Context::set('skin_list',$skin_list);
+            $skin_list = $oModuleModel->getSkins($this->module_path);
+            Context::set('skin_list',$skin_list);
 
             $this->setTemplateFile('insert');
         }
@@ -92,23 +92,23 @@
             $this->setTemplateFile('textyle_custom_menu');
         }
 
-		function dispTextyleAdminBlogApiConfig(){
-			$textyle_blogapi_services_srl = Context::get('textyle_blogapi_services_srl');
+        function dispTextyleAdminBlogApiConfig(){
+            $textyle_blogapi_services_srl = Context::get('textyle_blogapi_services_srl');
 
-			$oTextyleModel = &getModel('textyle');
-			$output = $oTextyleModel->getBlogApiService();
-			if($output->toBool() && $output->data){
-				if($textyle_blogapi_services_srl){
-					foreach($output->data as $k => $v){
-						if($v->textyle_blogapi_services_srl == $textyle_blogapi_services_srl){
-							Context::set('service',$v);
-						}
-					}
-				}else{
-					Context::set('blogapi_services_list',$output->data);
-				}
-			}
+            $oTextyleModel = &getModel('textyle');
+            $output = $oTextyleModel->getBlogApiService();
+            if($output->toBool() && $output->data){
+                if($textyle_blogapi_services_srl){
+                    foreach($output->data as $k => $v){
+                        if($v->textyle_blogapi_services_srl == $textyle_blogapi_services_srl){
+                            Context::set('service',$v);
+                        }
+                    }
+                }else{
+                    Context::set('blogapi_services_list',$output->data);
+                }
+            }
             $this->setTemplateFile('textyle_blogapi_config');
-		}
+        }
     }
 ?>

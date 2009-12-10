@@ -14,29 +14,38 @@
          **/
         var $textyle_mid = 'textyle';
 
-		/**
+        /**
          * @berif default skin
          **/
-		var $skin = 'happyLetter';
+        var $skin = 'happyLetter';
 
-		// post list 
-		var $post_style = 'content';//,'summary','list'
-		var $post_list_count = 1;
+        // post list
+        var $post_style = 'content';//,'summary','list'
+        var $post_list_count = 1;
 
-		// list count
-		var $comment_list_count = 30;
-		var $guestbook_list_count = 30;
+        // list count
+        var $comment_list_count = 30;
+        var $guestbook_list_count = 30;
 
-		// guestbook and comment input require
-		var $input_email = 'R';//,'Y','N;
-		var $input_website = 'R';//'Y','N';
-		var $post_editor_skin = "dreditor";
+        // guestbook and comment input require
+        var $input_email = 'R';//,'Y','N;
+        var $input_website = 'R';//'Y','N';
+        var $post_editor_skin = "dreditor";
 
-		var $post_use_prefix = 'Y';//'Y','N';
-		var $post_use_suffix = 'Y';//'Y','N';
+        var $post_use_prefix = 'Y';//'Y','N';
+        var $post_use_suffix = 'Y';//'Y','N';
 
-		var $search_option = array('title','content','title_content','comment','user_name','nick_name','user_id','tag'); ///< 검색 옵션
-		var $order_target = array('list_order', 'update_order', 'regdate', 'voted_count', 'readed_count', 'comment_count', 'title'); // 정렬 옵션
+        var $search_option = array('title','content','title_content','comment','user_name','nick_name','user_id','tag'); ///< 검색 옵션
+        var $order_target = array('list_order', 'update_order', 'regdate', 'voted_count', 'readed_count', 'comment_count', 'title'); // 정렬 옵션
+
+        var $add_triggers = array(
+            array('display', 'textyle', 'controller', 'triggerMemberMenu', 'before'),
+            array('comment.insertComment', 'textyle', 'controller', 'triggerInsertComment', 'after'),
+            array('comment.deleteComment', 'textyle', 'controller', 'triggerDeleteComment', 'after'),
+            array('trackback.insertTrackback', 'textyle', 'controller', 'triggerInsertTrackback', 'after'),
+            array('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after')
+            array('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after')
+        );
 
         /**
          * @brief 설치시 추가 작업이 필요할시 구현
@@ -44,12 +53,10 @@
         function moduleInstall() {
             $oModuleController = &getController('module');
 
-			$oModuleController->insertTrigger('display', 'textyle', 'controller', 'triggerMemberMenu', 'before');
-			$oModuleController->insertTrigger('comment.insertComment', 'textyle', 'controller', 'triggerInsertComment', 'after');
-			$oModuleController->insertTrigger('comment.deleteComment', 'textyle', 'controller', 'triggerDeleteComment', 'after');
-			$oModuleController->insertTrigger('trackback.insertTrackback', 'textyle', 'controller', 'triggerInsertTrackback', 'after');
-			$oModuleController->insertTrigger('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after');
-			$oModuleController->insertTrigger('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after');
+            // $this->add_triggers 트리거 일괄 추가
+            foreach($this->add_triggers as $trigger) {
+                $oModuleController->insertTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]);
+            }
 
         }
 
@@ -60,12 +67,10 @@
             $oDB = &DB::getInstance();
             $oModuleModel = &getModel('module');
 
-            if(!$oModuleModel->getTrigger('display', 'textyle', 'controller', 'triggerMemberMenu', 'before')) return true;
-			if(!$oModuleModel->getTrigger('comment.insertComment', 'textyle', 'controller', 'triggerInsertComment', 'after')) return true;
-            if(!$oModuleModel->getTrigger('comment.deleteComment', 'textyle', 'controller', 'triggerDeleteComment', 'after')) return true;
-            if(!$oModuleModel->getTrigger('trackback.insertTrackback', 'textyle', 'controller', 'triggerInsertTrackback', 'after')) return true;
-            if(!$oModuleModel->getTrigger('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after')) return true;
-            if(!$oModuleModel->getTrigger('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after')) return true;
+            // $this->add_triggers 트리거 일괄 검사
+            foreach($this->triggers as $add_triggers) {
+                if(!$oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4])) return true;
+            }
 
             if(!$oDB->isColumnExists("textyle_api","blogapi_type")) return true;
             if(!$oDB->isColumnExists("textyle_api","blogapi_service")) return true;
@@ -82,18 +87,12 @@
             $oModuleModel = &getModel('module');
             $oModuleController = &getController('module');
 
-            if(!$oModuleModel->getTrigger('display', 'textyle', 'controller', 'triggerMemberMenu', 'before') )
-                $oModuleController->insertTrigger('display', 'textyle', 'controller', 'triggerMemberMenu', 'before');
-			if(!$oModuleModel->getTrigger('comment.insertComment', 'textyle', 'controller', 'triggerInsertComment', 'after') )
-                $oModuleController->insertTrigger('comment.insertComment', 'textyle', 'controller', 'triggerInsertComment', 'after');
-            if(!$oModuleModel->getTrigger('comment.deleteComment', 'textyle', 'controller', 'triggerDeleteComment', 'after') )
-                $oModuleController->insertTrigger('comment.deleteComment', 'textyle', 'controller', 'triggerDeleteComment', 'after');
-            if(!$oModuleModel->getTrigger('trackback.insertTrackback', 'textyle', 'controller', 'triggerInsertTrackback', 'after') )
-                $oModuleController->insertTrigger('trackback.insertTrackback', 'textyle', 'controller', 'triggerInsertTrackback', 'after');
-            if(!$oModuleModel->getTrigger('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after') )
-                $oModuleController->insertTrigger('trackback.deleteTrackback', 'textyle', 'controller', 'triggerDeleteTrackback', 'after');
-            if(!$oModuleModel->getTrigger('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after') )
-                $oModuleController->insertTrigger('moduleHandler.proc', 'textyle', 'controller', 'triggerApplyLayout', 'after');
+            // $this->add_triggers 트리거 일괄 업데이트
+            foreach($this->add_triggers as $trigger) {
+                if(!$oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4])) {
+                    $oModuleController->insertTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]);
+                }
+            }
 
             if(!$oDB->isColumnExists("textyle_api","blogapi_type")) $oDB->addColumn('textyle_api',"blogapi_type","varchar",50);
             if(!$oDB->isColumnExists("textyle_api","blogapi_service")) $oDB->addColumn('textyle_api','blogapi_service','varchar',250);

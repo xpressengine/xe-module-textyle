@@ -31,9 +31,9 @@
             $this->published_me2day = $data->publish_me2day==true?true:false;
             $this->publish_twitter = $data->published_twitter==true?true:false;
             $this->published_twitter = $data->published_twitter==true?true:false;
-		}
+        }
 
-		function getBlogAPIInfo($type, $url, $user_id, $password) {
+        function getBlogAPIInfo($type, $url, $user_id, $password) {
             if(!preg_match('/^(http|https)/',$url)) $url = 'http://'.$url;
 
             $msg_lang = Context::getLang('msg_blogapi_registration');
@@ -157,9 +157,9 @@
                 }
             }
 
-			// fixed link
+            // fixed link
             $original_content = $this->oDocument->get('content');
-			$original_content = preg_replace('/href="(\.\/)([^"]*)"/i','href="'.getFullUrl().'$2"',$original_content);
+            $original_content = preg_replace('/href="(\.\/)([^"]*)"/i','href="'.getFullUrl().'$2"',$original_content);
             if(count($this->blogapis)) {
                 $apis = $this->getApis();
                 foreach($this->blogapis as $api_srl => $val) {
@@ -206,12 +206,12 @@
             }
 
             $args->textyle_blogapi_logs_srl = getNextSequence();
-            $args->document_srl = $this->oDocument->document_srl; 
+            $args->document_srl = $this->oDocument->document_srl;
             $args->module_srl = $this->oDocument->get('module_srl');
             $args->blogapi_url = $api->blogapi_url;
             $args->blogapi_id = $api->blogapi_user_id;
             $args->sended = $output->toBool() ? 'Y' : 'N';
-			executeQuery('textyle.insertBlogApiLog',$args);
+            executeQuery('textyle.insertBlogApiLog',$args);
             return $output;
         }
 
@@ -250,7 +250,7 @@
             if(!$user_id || !$password) return;
 
             $url = 'http://twitter.com/statuses/update.xml';
-            $buff = FileHandler::getRemoteResource($url, 'status='.urlencode(sprintf('%s %s', $this->oDocument->getTitleText(), $this->oDocument->getPermanentUrl())), 3, 'POST', 'application/x-www-form-urlencoded', 
+            $buff = FileHandler::getRemoteResource($url, 'status='.urlencode(sprintf('%s %s', $this->oDocument->getTitleText(), $this->oDocument->getPermanentUrl())), 3, 'POST', 'application/x-www-form-urlencoded',
                         array(
                             'Authorization'=>'Basic '.base64_encode($user_id.':'.$password),
                         )

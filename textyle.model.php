@@ -136,158 +136,158 @@
             return $output->data->count;
         }
 
-		function getTextyleGuestbookList($vars){
+        function getTextyleGuestbookList($vars){
             $oMemberModel = &getModel('member');
             $oTextyleController = &getController('textyle');
-			$logged_info = Context::get('logged_info');
+            $logged_info = Context::get('logged_info');
 
-			$args->module_srl = $vars->module_srl;
-			$args->page = $vars->page;
-			$args->list_count = $vars->list_count;
-			if($vars->search_text) $args->content_search = $vars->search_text;
-			$output = executeQueryArray('textyle.getTextyleGuestbookList',$args);
+            $args->module_srl = $vars->module_srl;
+            $args->page = $vars->page;
+            $args->list_count = $vars->list_count;
+            if($vars->search_text) $args->content_search = $vars->search_text;
+            $output = executeQueryArray('textyle.getTextyleGuestbookList',$args);
             if(!$output->toBool() || !$output->data) return array();
 
             foreach($output->data as $key => $val) {
-				if($logged_info->is_site_admin || $val->is_secret!=1 || $val->member_srl == $logged_info->member_srl || $val->view_grant || $_SESSION['own_textyle_guestbook'][$val->textyle_guestbook_srl]){
-					$val->view_grant = true;
-					$oTextyleController->addGuestbookGrant($val->textyle_guestbook_srl);
+                if($logged_info->is_site_admin || $val->is_secret!=1 || $val->member_srl == $logged_info->member_srl || $val->view_grant || $_SESSION['own_textyle_guestbook'][$val->textyle_guestbook_srl]){
+                    $val->view_grant = true;
+                    $oTextyleController->addGuestbookGrant($val->textyle_guestbook_srl);
 
-					foreach($output->data as $k => $v) {
-						if($v->parent_srl == $val->textyle_guestbook_srl){
-							$v->view_grant=true;
-						}
-					}
-				}else{
-					$val->view_grant = false;
-				}
+                    foreach($output->data as $k => $v) {
+                        if($v->parent_srl == $val->textyle_guestbook_srl){
+                            $v->view_grant=true;
+                        }
+                    }
+                }else{
+                    $val->view_grant = false;
+                }
 
                 $profile_info = $oMemberModel->getProfileImage($val->member_srl);
                 if($profile_info) $output->data[$key]->profile_image = $profile_info->src;
             }
 
-			return $output;
-		}
+            return $output;
+        }
 
-		function getTextyleGuestbook($textyle_guestbook_srl){
+        function getTextyleGuestbook($textyle_guestbook_srl){
             $oMemberModel = &getModel('member');
 
-			$args->textyle_guestbook_srl = $textyle_guestbook_srl;
-			$output = executeQueryArray('textyle.getTextyleGuestbook',$args);
-			if($output->data){
-				foreach($output->data as $key => $val) {
-					if(!$val->member_srl) continue;
-					$profile_info = $oMemberModel->getProfileImage($val->member_srl);
-					if($profile_info) $output->data[$key]->profile_image = $profile_info->src;
-				}
-			}
+            $args->textyle_guestbook_srl = $textyle_guestbook_srl;
+            $output = executeQueryArray('textyle.getTextyleGuestbook',$args);
+            if($output->data){
+                foreach($output->data as $key => $val) {
+                    if(!$val->member_srl) continue;
+                    $profile_info = $oMemberModel->getProfileImage($val->member_srl);
+                    if($profile_info) $output->data[$key]->profile_image = $profile_info->src;
+                }
+            }
 
-			return $output;
-		}
+            return $output;
+        }
 
-		function getDenyCacheFile($module_srl){
+        function getDenyCacheFile($module_srl){
             return sprintf("files/cache/textyle/textyle_deny/%d.php",$module_srl);
-		}
+        }
 
-		function getTextyleDenyList($module_srl){
-			$args->module_srl = $this->module_srl;
-			$cache_file = $this->getDenyCacheFile($module_srl);
+        function getTextyleDenyList($module_srl){
+            $args->module_srl = $this->module_srl;
+            $cache_file = $this->getDenyCacheFile($module_srl);
 
-			if($GlOBALS['XE_TEXTYLE_DENY_LIST'] && is_array($GLOBALS['XE_TEXTYLE_DENY_LIST'])){
-				return $GLOBALS['XE_TEXTYLE_DENY_LIST'];
-			}
+            if($GlOBALS['XE_TEXTYLE_DENY_LIST'] && is_array($GLOBALS['XE_TEXTYLE_DENY_LIST'])){
+                return $GLOBALS['XE_TEXTYLE_DENY_LIST'];
+            }
 
-			if(!file_exists($cache_file)) {
-				$_textyle_deny = array();
-				$buff = '<?php if(!defined("__ZBXE__")) exit(); $_textyle_deny=array();';
+            if(!file_exists($cache_file)) {
+                $_textyle_deny = array();
+                $buff = '<?php if(!defined("__ZBXE__")) exit(); $_textyle_deny=array();';
 
-				$output = executeQueryArray('textyle.getTextyleDeny',$args);
-				if(count($output->data) > 0){
-					foreach($output->data as $k => $v){
-						$_textyle_deny[$v->deny_type][$v->textyle_deny_srl] = $v->deny_content;
-						$buff .= sprintf('$_textyle_deny[\'%s\'][%d]="%s";',$v->deny_type,$v->textyle_deny_srl,$v->deny_content);
-					}
-				}
-				$buff .= '?>';
+                $output = executeQueryArray('textyle.getTextyleDeny',$args);
+                if(count($output->data) > 0){
+                    foreach($output->data as $k => $v){
+                        $_textyle_deny[$v->deny_type][$v->textyle_deny_srl] = $v->deny_content;
+                        $buff .= sprintf('$_textyle_deny[\'%s\'][%d]="%s";',$v->deny_type,$v->textyle_deny_srl,$v->deny_content);
+                    }
+                }
+                $buff .= '?>';
 
-				if(!is_dir(dirname($cache_file))) FileHandler::makeDir(dirname($cache_file));
-				FileHandler::writeFile($cache_file, $buff);
-			}else{
-				@include($cache_file);
-			}
-			$GLOBALS['XE_TEXTYLE_DENY_LIST'] = $_textyle_deny;
+                if(!is_dir(dirname($cache_file))) FileHandler::makeDir(dirname($cache_file));
+                FileHandler::writeFile($cache_file, $buff);
+            }else{
+                @include($cache_file);
+            }
+            $GLOBALS['XE_TEXTYLE_DENY_LIST'] = $_textyle_deny;
 
-			return $GLOBALS['XE_TEXTYLE_DENY_LIST'];
-		}
+            return $GLOBALS['XE_TEXTYLE_DENY_LIST'];
+        }
 
-		function _checkDeny($module_srl,$type,$deny_content){
-			$deny_content = trim($deny_content);
-			if(strlen($deny_content) == 0) return false;
+        function _checkDeny($module_srl,$type,$deny_content){
+            $deny_content = trim($deny_content);
+            if(strlen($deny_content) == 0) return false;
 
-			$deny_list = $this->getTextyleDenyList($module_srl);
+            $deny_list = $this->getTextyleDenyList($module_srl);
 
-			if(!is_array($deny_list)) return false;
-			if(!is_array($deny_list[$type])) return false;
-			if(count($deny_list[$type])==0) return false;
-			if(!in_array($deny_content,$deny_list[$type])) return false;
+            if(!is_array($deny_list)) return false;
+            if(!is_array($deny_list[$type])) return false;
+            if(count($deny_list[$type])==0) return false;
+            if(!in_array($deny_content,$deny_list[$type])) return false;
 
-			return true;
-		}
+            return true;
+        }
 
-		function checkDenyIP($module_srl,$ip){
-			$ip = trim($ip);
-			if(!$ip) return false;
+        function checkDenyIP($module_srl,$ip){
+            $ip = trim($ip);
+            if(!$ip) return false;
 
-			return $this->_checkDeny($module_srl,'I',$ip);
-		}
+            return $this->_checkDeny($module_srl,'I',$ip);
+        }
 
-		function checkDenyEmail($module_srl,$email){
-			$email = trim($email);
-			if(!$email) return false;
+        function checkDenyEmail($module_srl,$email){
+            $email = trim($email);
+            if(!$email) return false;
 
-			return $this->_checkDeny($module_srl,'M',$email);
-		}
+            return $this->_checkDeny($module_srl,'M',$email);
+        }
 
-		function checkDenyUserName($module_srl,$user_name){
-			$user_name = trim($user_name);
-			if(!$user_name) return false;
-			if(is_array($user_name)){
-				foreach($user_name as $k => $v){
-					if(!$this->_checkDeny($module_srl,'N',$v)) return false;
-				}
-				return true;
-			}else{
-				return $this->_checkDeny($module_srl,'N',$user_name);
-			}
-		}
+        function checkDenyUserName($module_srl,$user_name){
+            $user_name = trim($user_name);
+            if(!$user_name) return false;
+            if(is_array($user_name)){
+                foreach($user_name as $k => $v){
+                    if(!$this->_checkDeny($module_srl,'N',$v)) return false;
+                }
+                return true;
+            }else{
+                return $this->_checkDeny($module_srl,'N',$user_name);
+            }
+        }
 
-		function checkDenySite($module_srl,$site){
-			$site = trim($site);
-			if(!$site) return false;
+        function checkDenySite($module_srl,$site){
+            $site = trim($site);
+            if(!$site) return false;
 
-			return $this->_checkDeny($module_srl,'S',$site);
-		}
+            return $this->_checkDeny($module_srl,'S',$site);
+        }
 
-		function getSubscription($args){
+        function getSubscription($args){
             $output = executeQueryArray('textyle.getTextyleSubscription', $args);
-			//$output->add('date',$publish_date);
+            //$output->add('date',$publish_date);
 
-			return $output;
-		}
+            return $output;
+        }
 
-		function getSubscriptionMinPublishDate($module_srl){
-			$args->module_srl = $module_srl;
+        function getSubscriptionMinPublishDate($module_srl){
+            $args->module_srl = $module_srl;
             $output = executeQuery('textyle.getTextyleSubscriptionMinPublishDate', $args);
 
-			return $output;
-		}
+            return $output;
+        }
 
-		function getSubscriptionByDocumentSrl($document_srl){
-			$args->document_srl = $document_srl;
-			$output = executeQueryArray('textyle.getTextyleSubscriptionByDocumentSrl',$args);
+        function getSubscriptionByDocumentSrl($document_srl){
+            $args->document_srl = $document_srl;
+            $output = executeQueryArray('textyle.getTextyleSubscriptionByDocumentSrl',$args);
 
-			return $output;
-		}
+            return $output;
+        }
 
         /**
          * @brief Textyle 이미지 유무 체크후 경로 return
@@ -299,29 +299,29 @@
 
             if(!file_exists($filename)) return $this->getTextyleDefaultPhotoSrc();
             return $info->src;
-		}
+        }
 
-		function getTextyleDefaultPhotoSrc(){
-			return sprintf("%s%s%s", Context::getRequestUri(), $this->module_path, 'tpl/img/iconNoProfile.gif');
-		}
+        function getTextyleDefaultPhotoSrc(){
+            return sprintf("%s%s%s", Context::getRequestUri(), $this->module_path, 'tpl/img/iconNoProfile.gif');
+        }
 
         function getTextyleFaviconPath($module_srl) {
             return sprintf('files/attach/textyle/favicon/%s', getNumberingPath($module_srl,3));
         }
 
         function getTextyleFaviconSrc($module_srl) {
-			$path = $this->getTextyleFaviconPath($module_srl);
+            $path = $this->getTextyleFaviconPath($module_srl);
             $filename = sprintf('%sfavicon.ico', $path);
             if(!is_dir($path) || !file_exists($filename)) return $this->getTextyleDefaultFaviconSrc();
 
             return Context::getRequestUri().$filename."?rnd=".filemtime($filename);
-		}
+        }
 
-		function getTextyleDefaultFaviconSrc(){
-			return sprintf("%s%s", Context::getRequestUri(), 'modules/textyle/tpl/img/favicon.ico');
-		}
+        function getTextyleDefaultFaviconSrc(){
+            return sprintf("%s%s", Context::getRequestUri(), 'modules/textyle/tpl/img/favicon.ico');
+        }
 
-		function getTextyleSupporterList($module_srl,$YYYYMM="",$sort_index="total_count"){
+        function getTextyleSupporterList($module_srl,$YYYYMM="",$sort_index="total_count"){
             $oMemberModel = &getModel('member');
             $oModuleModel = &getModel('module');
 
@@ -332,11 +332,11 @@
                 $site_admin_srls[] = $v->member_srl;
             }
 
-			$args->module_srl = $module_srl;
-			$args->sort_index = $sort_index;
+            $args->module_srl = $module_srl;
+            $args->sort_index = $sort_index;
             $args->list_count = $list_count;
             $args->page = $page;
-			$args->regdate = $YYYYMM ? $YYYYMM : date('Ym');
+            $args->regdate = $YYYYMM ? $YYYYMM : date('Ym');
             $output = executeQueryArray('textyle.getTextyleSupporterList', $args);
 
             $_data = array();
@@ -351,26 +351,26 @@
                  }
             }
             $output->data = $_data;
-			return $output;
-		}
+            return $output;
+        }
         function getTextylePath($module_srl) {
             return sprintf("./files/attach/textyle/%s",getNumberingPath($module_srl));
-		}
+        }
 
         function checkTextylePath($module_srl, $skin = null) {
             $path = $this->getTextylePath($module_srl);
-			if(!file_exists($path)){
-				$oTextyleController = &getController('textyle');
-				$oTextyleController->resetSkin($module_srl, $skin);
-			}
-			return true;
+            if(!file_exists($path)){
+                $oTextyleController = &getController('textyle');
+                $oTextyleController->resetSkin($module_srl, $skin);
+            }
+            return true;
         }
 
-		function getTextyleUserSkinFileList($module_srl){
+        function getTextyleUserSkinFileList($module_srl){
             $skin_path = $this->getTextylePath($module_srl);
             $skin_file_list = FileHandler::readDir($skin_path,'/(\.html|\.htm|\.css)$/');
-			return $skin_file_list;
-		}
+            return $skin_file_list;
+        }
 
         function getTextyleAPITest() {
             $oTextyleModel = &getModel('textyle');
@@ -380,27 +380,27 @@
             $var = Context::getRequestVars();
             $output = $oPublish->getBlogAPIInfo($var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password);
             if(!$output->toBool()) return $output;
-			$url = $output->get('url');
+            $url = $output->get('url');
             if(!$url) $this->setMessage('not_permit_blogapi');
 
             $this->add('site_url', $url);
             $this->add('title', $output->get('name'));
         }
 
-		function getTrackbackUrl($domain,$document_srl){
-			$oTrackbackModel = &getModel('trackback');
-			$key = $oTrackbackModel->getTrackbackKey($document_srl);
+        function getTrackbackUrl($domain,$document_srl){
+            $oTrackbackModel = &getModel('trackback');
+            $key = $oTrackbackModel->getTrackbackKey($document_srl);
 
-			return getFullSiteUrl($domain,'','document_srl',$document_srl,'key',$key,'act','trackback');
-		}
+            return getFullSiteUrl($domain,'','document_srl',$document_srl,'key',$key,'act','trackback');
+        }
 
-		function getBlogApiService($args=null){
-			$srl = Context::get('textyle_blogapi_services_srl');
-			if($srl) $args->textyle_blogapi_services_srl = $srl;
-			$output = executeQueryArray('textyle.getBlogApiServices',$args);
-			if($srl) $this->add('services',$output->data);
-			return $output;
-		}
+        function getBlogApiService($args=null){
+            $srl = Context::get('textyle_blogapi_services_srl');
+            if($srl) $args->textyle_blogapi_services_srl = $srl;
+            $output = executeQueryArray('textyle.getBlogApiServices',$args);
+            if($srl) $this->add('services',$output->data);
+            return $output;
+        }
 
    }
 ?>

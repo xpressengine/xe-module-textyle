@@ -14,7 +14,7 @@
 
         function getUsersBlogs() {
             $oXmlParser = new XmlParser();
-            
+
             $input = sprintf(
                 '<?xml version="1.0" encoding="utf-8" ?><methodCall><methodName>blogger.getUsersBlogs</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param></params></methodCall>',
                 'textyle',
@@ -29,7 +29,7 @@
                 $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
-            } 
+            }
 
             $val = $xmlDoc->methodresponse->params->param->value->array->data->value->struct->member;
             $output = new Object();
@@ -45,7 +45,7 @@
             $output = $this->getUsersBlogs();
             if(!$output->toBool()) return array();
             $this->blogid = $output->get('blogid');
-            
+
             $input = sprintf(
                 '<?xml version="1.0" encoding="utf-8" ?><methodCall><methodName>metaWeblog.getCategories</methodName><params><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param><param><value><string>%s</string></value></param></params></methodCall>',
                 $this->blogid,
@@ -59,7 +59,7 @@
             if(isset($xmlDoc->methodresponse->fault)) {
                 $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
-            } 
+            }
 
             $val = $xmlDoc->methodresponse->params->param->value->array->data->value;
             if(!is_array($val)) $list[] = $val;
@@ -67,9 +67,9 @@
 
             $categories = array();
             for($i=0,$c=count($list);$i<$c;$i++) {
-		$category = trim($list[$i]->struct->member[1]->value->string->body);
-		if(!$category) $category = trim($list[$i]->struct->member[2]->value->string->body);
-		if(!$category) $category = trim($list[$i]->struct->member[1]->value->body);
+        $category = trim($list[$i]->struct->member[1]->value->string->body);
+        if(!$category) $category = trim($list[$i]->struct->member[2]->value->string->body);
+        if(!$category) $category = trim($list[$i]->struct->member[1]->value->body);
                 if(!$category) continue;
                 $categories[] = $category;
             }
@@ -111,7 +111,7 @@
                 $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
-            } 
+            }
 
             $t = $xmlDoc->methodresponse->params->param->value->struct->member;
             if(is_array($t)) $target_file = $t[0]->value->string->body;
@@ -144,14 +144,14 @@
                         $path = $m[1].'/';
                         $uploaded_filename = $file->uploaded_filename;
                         $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
-                        
+
                         // 이미지 리사이즈시 content내의 파일명에서 '.resized.xxx' 제거
                         $extension = strrchr($uploaded_filename, '.');
                         $extension = '.resized'.$extension;
-                        
-                        if(strpos($content, $uploaded_filename.$extension)!==false) 
+
+                        if(strpos($content, $uploaded_filename.$extension)!==false)
                             $content = str_replace($uploaded_filename.$extension, $uploaded_filename, $content);
-                        if(strpos($content, $encoded_filename.$extension)!==false) 
+                        if(strpos($content, $encoded_filename.$extension)!==false)
                             $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
                         if(strpos($content, $uploaded_filename)!==false) $content = str_replace($uploaded_filename, $target_file, $content);
@@ -160,14 +160,14 @@
                         $uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
                         $encoded_filename = preg_replace('/^\.\//','',$path.str_replace('+','%20',urlencode($file->source_filename)));
 
-                        if(strpos($content, $uploaded_filename.$extension)!==false) 
+                        if(strpos($content, $uploaded_filename.$extension)!==false)
                             $content = str_replace($uploaded_filename.$extension, $uploaded_filename, $content);
-                        if(strpos($content, $encoded_filename.$extension)!==false) 
+                        if(strpos($content, $encoded_filename.$extension)!==false)
                             $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
                         if(strpos($content, $uploaded_filename)!==false) $content = str_replace($uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
-                        
+
                     }
 
                     $oDocument->add('content', $content);
@@ -195,17 +195,17 @@
                 $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
-            } 
+            }
 
-			$postid = '';
-           	$postid_node = $xmlDoc->methodresponse->params->param->value;
-			if($postid_node->body){
-				$postid = $postid_node->body;
-			}else if($postid_node->string){
-				$postid = sprintf('<string>%s</string>',$postid_node->string->body);
-			}else if($postid_node->i4){
-				$postid = sprintf('<i4>%s</i4>',$postid_node->i4->body);
-			}
+            $postid = '';
+            $postid_node = $xmlDoc->methodresponse->params->param->value;
+            if($postid_node->body){
+                $postid = $postid_node->body;
+            }else if($postid_node->string){
+                $postid = sprintf('<string>%s</string>',$postid_node->string->body);
+            }else if($postid_node->i4){
+                $postid = sprintf('<i4>%s</i4>',$postid_node->i4->body);
+            }
 
             $output = new Object();
             $output->add('postid', $postid);
@@ -238,20 +238,20 @@
                         $extension = strrchr($uploaded_filename, '.');
                         $extension = '.resized'.$extension;
 
-                        if(strpos($content, $uploaded_filename.$extension)!==false) 
+                        if(strpos($content, $uploaded_filename.$extension)!==false)
                             $content = str_replace($uploaded_filename.$extension, $uploaded_filename, $content);
-                        if(strpos($content, $encoded_filename.$extension)!==false) 
+                        if(strpos($content, $encoded_filename.$extension)!==false)
                             $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
                         if(strpos($content, $uploaded_filename)!==false) $content = str_replace($uploaded_filename, $target_file, $content);
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
 
-						$uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
+                        $uploaded_filename = preg_replace('/^\.\//','',$file->uploaded_filename);
                         $encoded_filename = preg_replace('/^\.\//','',$path.str_replace('+','%20',urlencode($file->source_filename)));
 
-                        if(strpos($content, $uploaded_filename.$extension)!==false) 
+                        if(strpos($content, $uploaded_filename.$extension)!==false)
                             $content = str_replace($uploaded_filename.$extension, $uploaded_filename, $content);
-                        if(strpos($content, $encoded_filename.$extension)!==false) 
+                        if(strpos($content, $encoded_filename.$extension)!==false)
                             $content = str_replace($encoded_filename.$extension, $encoded_filename, $content);
 
                         if(strpos($content, $uploaded_filename)!==false) $content = str_replace($uploaded_filename, $target_file, $content);
@@ -282,7 +282,7 @@
                 $code = $xmlDoc->methodresponse->fault->value->struct->member[0]->value->int->body;
                 $message = $xmlDoc->methodresponse->fault->value->struct->member[1]->value->string->body;
                 return new Object($code, $message);
-            } 
+            }
             $output = new Object();
             $output->add('postid', $postid);
             return $output;
