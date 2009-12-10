@@ -68,10 +68,10 @@
                 $args->member_srl = $member_srl;
             }
 
-            $output = executeQuery('textyle.getMemberTextyle', $args);
+            $output = executeQueryArray('textyle.getMemberTextyle', $args);
             if(!$output->toBool() || !$output->data) return new TextyleInfo();
 
-            $textyle = $output->data;
+            $textyle = $output->data[0];
 
             $oTextyle = new TextyleInfo();
             $oTextyle->setAttribute($textyle);
