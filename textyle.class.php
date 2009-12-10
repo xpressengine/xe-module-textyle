@@ -68,7 +68,7 @@
             $oModuleModel = &getModel('module');
 
             // $this->add_triggers 트리거 일괄 검사
-            foreach($this->triggers as $add_triggers) {
+            foreach($this->add_triggers as $add_triggers) {
                 if(!$oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4])) return true;
             }
 
