@@ -771,6 +771,7 @@
             $this->add('document_srl', $output->get('document_srl'));
 
             $oPublish = $oTextyleModel->getPublishObject($this->module_srl, $var->document_srl);
+            $oPublish->trackbacks = array();
 
             foreach($var as $key => $val) {
                 if(preg_match('/^trackback_(url|charset)([0-9]*)$/i', $key, $match)&&$val) $publish_option->trackbacks[(int)$match[2]][$match[1]] = $val;
