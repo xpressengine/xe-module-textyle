@@ -13,9 +13,9 @@
 				<!-- contentNavigation -->
 				<div class="contentNavigation">
 					<ul class="sortDefault">
-						<li<!--@if($type=='day')--> class="active"<!--@end-->><a href="{getUrl('type','day')}">{$lang->daily}</a></li>
-						<li<!--@if($type=='week')--> class="active"<!--@end-->><a href="{getUrl('type','week')}">{$lang->weekly}</a></li>
-						<li<!--@if($type=='month')--> class="active"<!--@end-->><a href="{getUrl('type','month')}">{$lang->monthly}</a></li>
+						<li<!--@if($type=='day')--> class="active"<!--@end-->><a href="{getUrl('type','day', 'host_srl','')}">{$lang->daily}</a></li>
+						<li<!--@if($type=='week')--> class="active"<!--@end-->><a href="{getUrl('type','week', 'host_srl','')}">{$lang->weekly}</a></li>
+						<li<!--@if($type=='month')--> class="active"<!--@end-->><a href="{getUrl('type','month', 'host_srl','')}">{$lang->monthly}</a></li>
 					</ul>
 					<div class="cNavigation">
 						<div class="calendar">
