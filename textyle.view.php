@@ -535,7 +535,7 @@
          **/
         function dispTextyleToolPostManageTag(){
             $args->module_srl = $this->module_srl;
-            $args->list_count = 100;
+            $args->list_count = 100000;
             $args->sort_index = Context::get('sort_index');
 
             $oTagModel = &getModel('tag');
