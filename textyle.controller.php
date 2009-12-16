@@ -1626,18 +1626,18 @@
             );
             unset($match);
 
-            preg_match_all('!<\!--@(.*?)-->!is',$str,$match);
-            preg_match_all('/{([^$][^{]*)}/i', $str, $match2);
-            preg_match_all('/ ([^(^ ]*) ?\(/i', ' '.join(' ',$match[1]),$match_func);
-            $match_func = array_unique($match_func[1]);
-            for($i=0,$c=count($match_func);$i<$c;$i++){
-                $match_func[$i] = strtolower($match_func[$i]);
-                for($j=0,$cj=count($disabled);$j<$cj;$j++){
-                    if(strpos($match_func[$i],$disabled[$j])!==false){
-                        return true;
-                    }
-                }
-            }
+            $disabled = '/('.implode($disabled, '|').')/i';
+            preg_match_all('!<\!--@(.*?)-->!is', $str, $match1);
+            preg_match_all('/ ([^(^ ]*) ?\(/i', ' '.join(' ',$match1[1]),$match_func1);
+            preg_match_all('/{([^{]*)}/i',$str,$match2);
+            preg_match_all('/ ([^(^ ]*) ?\(/i', ' '.join(' ',$match2[1]),$match_func2);
+            $match1 = array_unique($match_func1[1]);
+            $match2 = array_unique($match_func2[1]);
+            preg_match($disabled, implode('|', $match1), $matches1);
+            preg_match($disabled, implode('|', $match2), $matches2);
+
+            if(count($matches1) || count($matches2)) return true;
+
             return false;
         }
 
