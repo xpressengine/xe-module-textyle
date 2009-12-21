@@ -747,10 +747,10 @@
             $vars = $oDocument->getObjectVars();
             $isPublished = ($vars->module_srl == $this->module_srl);
             $vars->tags = $var->tags;
-            $vars->module_srl = $this->module_srl;
             $vars->category_srl = $var->category_srl;
             $vars->allow_comment = $var->allow_comment;
             $vars->allow_trackback = $var->allow_trackback;
+            unset($vars->module_srl);
 
             $output = $this->updatePost($vars);
             if(!$output->toBool()) return $output;
@@ -801,6 +801,7 @@
                     $args->module_srl = $this->module_srl;
                     $args->publish_date = $var->publish_date;
 
+                    $output = executeQuery('textyle.deleteTextyleSubscriptionByDocumentSrl', $args);
                     $output = executeQuery('textyle.insertTextyleSubscription', $args);
                     if(!$output->toBool()) return $output;
 
