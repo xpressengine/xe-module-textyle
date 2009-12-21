@@ -815,7 +815,10 @@
                 }
             }
 
-            if(!$subscripted) $oPublish->publish();
+            if(!$subscripted) {
+                executeQuery('textyle.deleteTextyleSubscriptionByDocumentSrl', $args);
+                $oPublish->publish();
+            }
         }
 
         function savePost($args) {
