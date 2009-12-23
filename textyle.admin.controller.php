@@ -78,12 +78,15 @@
             $textyle->skin = $this->skin;
             $textyle->browser_title = sprintf("%s's Textyle",$member_info->nick_name);
             $output = $oModuleController->insertModule($textyle);
+
             if(!$output->toBool()) return $output;
-            $module_srl = $output->get('module_srl');
+            //$module_srl = $output->get('module_srl');
+            $module_srl = $textyle->module_srl;
 
             // 가상사이트에 index_module_srl 업데이트
             $site->site_srl = $site_srl;
             $site->index_module_srl = $module_srl;
+			$site->domain = $domain;
             $output = $oModuleController->updateSite($site);
 
             // 가상 사이트의 관리자 지정
