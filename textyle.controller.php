@@ -85,6 +85,9 @@
             $config->comment_grant = (int)$args->comment_grant;
             $config->guestbook_grant = (int)$args->guestbook_grant;
             $oModuleController->insertModulePartConfig('textyle',$this->module_srl, $config);
+
+			$comment_config->comment_count = $args->comment_list_count;
+            $oModuleController->insertModulePartConfig('comment',$this->module_srl, $comment_config);
         }
 
         function procTextyleLogin() {

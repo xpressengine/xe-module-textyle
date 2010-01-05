@@ -1358,6 +1358,7 @@
             $args->module_srl = $this->module_srl;
             $args->search_text = Context::get('search_text');
             $args->page = $page;
+			$args->list_count = $this->textyle->getGuestbookListCount();
 
             $oTextyleModel = &getModel('textyle');
             $output = $oTextyleModel->getTextyleGuestbookList($args);
