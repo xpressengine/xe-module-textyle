@@ -20,6 +20,12 @@ function insertGuestbookItem(obj,filter){
 		email.eq(0).focus();
 		return false;
 	}
+	var homepage = jQuery('[name=homepage].request',obj);
+	if(homepage.length>0 && !jQuery.trim(homepage.val())){
+		alert(jQuery('[name=msg_input_homepage]',obj).val());
+		homepage.eq(0).focus();
+		return false;
+	}
 
 	return procFilter(obj,filter);
 }
@@ -75,6 +81,12 @@ function insertCommentItem(obj,filter){
 	if(email.length>0 && !jQuery.trim(email.val())){
 		alert(jQuery('[name=msg_input_email_address]',obj).val());
 		email.eq(0).focus();
+		return false;
+	}
+	var homepage = jQuery('[name=homepage].request',obj);
+	if(homepage.length>0 && !jQuery.trim(homepage.val())){
+		alert(jQuery('[name=msg_input_homepage]',obj).val());
+		homepage.eq(0).focus();
 		return false;
 	}
 
