@@ -260,7 +260,7 @@
             $doc_args->sort_index = 'list_order';
             $doc_args->order_type = 'asc';
             $doc_args->list_count = 3;
-            $output = $oDocumentModel->getDocumentList($doc_args);
+            $output = $oDocumentModel->getDocumentList($doc_args, false, false);
             Context::set('newest_documents', $output->data);
 
             // 최근 댓글 추출
@@ -322,7 +322,7 @@
             $material_srl = Context::get('material_srl');
 
             if($document_srl){
-                $oDocument = $oDocumentModel->getDocument($document_srl);
+                $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
                 $alias = $oDocumentModel->getAlias($document_srl);
                 Context::set('alias',$alias);
 
@@ -407,7 +407,7 @@
             $document_srl = Context::get('document_srl');
             if(!$document_srl) return new Object(-1,'msg_invalid_request');
 
-            $oDocument = $oDocumentModel->getDocument($document_srl);
+            $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
             if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
 
             $alias = $oDocumentModel->getAlias($document_srl);
@@ -478,7 +478,7 @@
             }
 
             $oDocumentModel = &getModel('document');
-            $output = $oDocumentModel->getDocumentList($args);
+            $output = $oDocumentModel->getDocumentList($args, false, false);
             Context::set('post_list',$output->data);
             Context::set('page_navigation', $output->page_navigation);
 
@@ -685,7 +685,7 @@
                 foreach($output->data as $k => $v) $document_srl[] = $v->document_srl;
 
                 $oDocumentModel = &getModel('document');
-                $document_items = $oDocumentModel->getDocuments($document_srl,$is_admin=false);
+                $document_items = $oDocumentModel->getDocuments($document_srl,false,false);
             }
 
             Context::set('trackback_list',$output->data);
@@ -929,7 +929,7 @@
             if($output->data) {
                 foreach($output->data as $key => $val) {
                     unset($obj);
-                    $obj = new documentItem(0);
+                    $obj = new documentItem(0,false);
                     $obj->setAttribute($val, false);
                     $document_list[] = $obj;
                 }
@@ -982,7 +982,7 @@
             $args->search_keyword = substr($selected_date,0,6);
             $args->list_count = 10;
             $oDocumentModel = &getModel('document');
-            $output = $oDocumentModel->getDocumentList($args);
+            $output = $oDocumentModel->getDocumentList($args, false, false);
             Context::set('post_list',$output->data);
 
             Context::set('disp_selected_date',date("Y.m",strtotime($selected_date)));
@@ -1194,7 +1194,7 @@
 
             // 글 고유 링크가 있으면 처리
             if($document_srl) {
-                $oDocument = $oDocumentModel->getDocument($document_srl);
+                $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
                 // 문서가 있으면 처리
                 if($oDocument->isExists()) {
                     // 글과 요청된 모듈이 다르다면 오류 표시
@@ -1223,7 +1223,7 @@
                     //$this->alertMessage('msg_not_founded');
                 }
             } else {
-                $oDocument = $oDocumentModel->getDocument(0);
+                $oDocument = $oDocumentModel->getDocument(0,false,false);
             }
             Context::set('oDocument', $oDocument);
 
@@ -1246,7 +1246,7 @@
             } else {
                 $args->list_count = $this->textyle->getPostListCount();
                 if($args->search_target && $args->search_keyword || $args->category_srl) $args->list_count=50;
-                $output = $oDocumentModel->getDocumentList($args, false);
+                $output = $oDocumentModel->getDocumentList($args, false, false);
                 $document_list = $output->data;
                 Context::set('page_navigation', $output->page_navigation);
             }
@@ -1260,9 +1260,9 @@
                     // 이전 다음글 구함
                     $args->document_srl = $doc->document_srl;
                     $output = executeQuery('textyle.getNextDocument', $args);
-                    if($output->data->document_srl) Context::set('prev_document', new documentItem($output->data->document_srl));
+                    if($output->data->document_srl) Context::set('prev_document', new documentItem($output->data->document_srl,false));
                     $output = executeQuery('textyle.getPrevDocument', $args);
-                    if($output->data->document_srl) Context::set('next_document', new documentItem($output->data->document_srl));
+                    if($output->data->document_srl) Context::set('next_document', new documentItem($output->data->document_srl,false));
 
                     // 조회수 증가
                     if(!$doc->isSecret() || $doc->isGranted()) $doc->updateReadedCount();
