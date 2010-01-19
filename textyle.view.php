@@ -36,8 +36,8 @@
             if(!$this->module_info->skin) $this->module_info->skin = $this->skin;
 
             // 만약 skin 미리보기일 경우 관리자라면 스킨을 변경해 보여줌
-            if($oModuleModel->isSiteAdmin(Context::get('logged_info'))&&Context::get('skin')) {
-                $preview_skin = Context::get('skin');
+			$preview_skin = Context::get('preview_skin');
+            if($oModuleModel->isSiteAdmin(Context::get('logged_info'))&&$preview_skin) {
                 if(is_dir($this->module_path.'skins/'.$preview_skin)) {
                     $textyle_config->skin = $this->module_info->skin = $preview_skin;
                 }

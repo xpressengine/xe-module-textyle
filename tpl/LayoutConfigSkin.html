@@ -44,10 +44,10 @@
                         <!--@foreach($skins as $key => $val)-->
 						<li>
 							<dl>
-								<dt><a href="{getSiteUrl($textyle->domain, '', 'skin', $key)}" onclick="window.open(this.href);return false;">{$val->title}</a></dt>
+								<dt><a href="{getSiteUrl($textyle->domain, '', 'skin_preview', $key)}" onclick="window.open(this.href);return false;">{$val->title}</a></dt>
 								<dd class="thumb"><img src="{$val->small_screenshot}" width="138" height="87" alt="{htmlspecialchars($val->title)}" /></dd>
 								<dd class="download">
-									<span class="buttonGray small"><a href="{getSiteUrl($textyle->domain, '', 'skin', $key)}" target="_blank" title="{$lang->cmd_new_window}">{$lang->cmd_preview_skin}</a></span>
+									<span class="buttonGray small"><a href="{getSiteUrl($textyle->domain, '', 'preview_skin', $key)}" target="_blank" title="{$lang->cmd_new_window}">{$lang->cmd_preview_skin}</a></span>
 									<span class="buttonGray small"><button type="button" onclick="if(confirm('{$lang->msg_select_skin}')) doSelectSkin('{$key}'); return false;">{$lang->cmd_select_skin}</button></span>
 								</dd>
 							</dl>
