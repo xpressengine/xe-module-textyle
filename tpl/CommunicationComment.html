@@ -66,7 +66,7 @@
 									<td class="replyArea">
 										<dl>
 											<dt>
-                                                <strong>{$val->getNickName()}</strong>
+                                                <span class="member_{$val->get('member_srl')}"><strong>{$val->getNickName()}</strong></span>
                                                 <span class="yymmdd">{$val->getRegdate("Y.m.d")}</span> <span class="hhmm">{$val->getRegdate("H:i")}</span>
                                             </dt>
 											<dd>{$val->getContent(false,false)}</dd>

@@ -206,7 +206,7 @@
 										<!--@else-->
 										<img height="39" width="39" alt="" src="img/iconEmoticonDefault.gif" class="author"/>
 										<!--@end-->
-										<p class="content"><strong>{$v->nick_name}</strong> <a href="{getUrl('','mid',$mid,'act','dispTextyleToolCommunicationGuestbookReply','textyle_guestbook_srl',$v->textyle_guestbook_srl)}">{strip_tags($v->content)}</a> <button type="button" class="delete" onclick="deleteGuestbookItem({$v->textyle_guestbook_srl},1)"><span>{$lang->cmd_delete}</span></button></p>
+										<p class="member_{$v->member_srl} content"><strong>{$v->nick_name}</strong> <a href="{getUrl('','mid',$mid,'act','dispTextyleToolCommunicationGuestbookReply','textyle_guestbook_srl',$v->textyle_guestbook_srl)}">{strip_tags($v->content)}</a> <button type="button" class="delete" onclick="deleteGuestbookItem({$v->textyle_guestbook_srl},1)"><span>{$lang->cmd_delete}</span></button></p>
 									</li>
                                     <!--@end-->
 								</ul>
@@ -236,7 +236,7 @@
                                         <!--@else-->
 										<img height="39" width="39" alt="" src="img/iconEmoticonDefault.gif" class="author"/>
                                         <!--@end-->
-										<p class="content"><strong>{$val->getNickName()}</strong> <a href="{$val->getPermanentUrl()}">{$val->getSummary(200)}</a> <button type="button" class="delete" onclick="deleteCommentItem({$val->comment_srl},1)"><span>{$lang->cmd_delete}</span></button></p>
+										<p class="content"><span class="member_{$val->get('member_srl')}"><strong>{$val->getNickName()}</strong></span> <a href="{$val->getPermanentUrl()}">{$val->getSummary(200)}</a> <button type="button" class="delete" onclick="deleteCommentItem({$val->comment_srl},1)"><span>{$lang->cmd_delete}</span></button></p>
 									</li>
                                     <!--@end-->
 								</ul>
