@@ -52,7 +52,7 @@
                             <fieldset>
                                 {$editor}
                                 <!--@if($is_logged)-->
-                                <strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
+								<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                 <!--@else-->
                                 <input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
                                 <input name="password" type="password" class="inputText pw" value="Password" title="Password" />
@@ -90,7 +90,7 @@
                                     <fieldset>
                                         {$editor}
                                         <!--@if($is_logged)-->
-                                        <strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
+										<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                         <!--@else-->
 										<input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
 										<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
@@ -122,9 +122,9 @@
                                     </div>
                                     <h4 class="author">
 										<!--@if($val->homepage)-->
-										<a href="{$val->homepage}" onclick="window.open(this.href);return false;">{$val->nick_name}</a>
+										<a href="{$val->homepage}" onclick="window.open(this.href);return false;" class="member_{$val->member_srl}">{$val->nick_name}</a>
 										<!--@else-->
-										{$val->nick_name}
+										<span class="member_{$val->member_srl}">{$val->nick_name}</span>
 										<!--@end-->
 									</h4>
                                     <p class="date">{zdate($val->regdate,'Y.m.d')} <span class="hhmm">{zdate($val->regdate,'H:i')}</span></p>
@@ -187,7 +187,7 @@
                                     <fieldset>
                                         {$editor}
                                         <!--@if($is_logged)-->
-                                        <strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
+                                        <strong class="name member_{$logged_info->member_srl}">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                         <!--@else-->
                                         <input name="nick_name" type="text" class="inputText name" value="Name" />
                                         <input name="password" type="password" class="inputText pw" value="Password" title="Password" />
@@ -256,9 +256,9 @@
                                     </div>
                                     <h4 class="author">
 										<!--@if($oSourceComment->homepage)-->
-										<a href="{$oSourceComment->homepage}" onclick="window.open(this.href);return false;">{$oSourceComment->getNickName()}</a>
+										<a href="{$oSourceComment->homepage}" onclick="window.open(this.href);return false;" class="member_{$oSourceComment->get('member_srl')}">>{$oSourceComment->getNickName()}</a>
 										<!--@else-->
-										{$oSourceComment->getNickName()}
+										<span class="member_{$oSourceComment->get('member_srl')}">{$oSourceComment->getNickName()}</span>
 										<!--@end-->
                                     </h4>
                                     <p class="date">{$oSourceComment->getRegdate('Y.m.d')} <span class="hhmm">{$oSourceComment->getRegdate('H:i')}</span></p>
@@ -282,7 +282,7 @@
                                     <input type="hidden" name="parent_srl" value="{$oComment->get('parent_srl')}" />
                                     {$oComment->getEditor()}
                                     <!--@if($is_logged)-->
-                                    <strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
+                                    <strong class="name member_{$logged_info->member_srl}">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                     <!--@else-->
                                     <input name="nick_name" type="text" class="inputText name" value="Name" title="Name" />
                                     <input name="password" type="password" class="inputText pw" value="Password" title="Password" />
@@ -355,7 +355,7 @@
                     <!--@else-->
                         <!--@foreach($document_list as $document)-->
                             <h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a> <span class="category">{$category_list[$document->get('category_srl')]->title}</span></h2>
-                            <p class="postMeta"><span class="yymmdd">{$document->getRegdate('Y.m.d')}</span> <span class="hhmm">{$document->getRegdate('H:i')}</span> <span class="author">{$document->getNickName()}</span> <a href="{getSiteUrl($textyle->domain,'document_srl',$document->document_srl,'act','dispTextyleToolPostManageWrite')}" class="editPost">Edit</a></p>
+                            <p class="postMeta"><span class="yymmdd">{$document->getRegdate('Y.m.d')}</span> <span class="hhmm">{$document->getRegdate('H:i')}</span> <span class="author member_{$document->get('member_srl')}">{$document->getNickName()}</span> <a href="{getSiteUrl($textyle->domain,'document_srl',$document->document_srl,'act','dispTextyleToolPostManageWrite')}" class="editPost">Edit</a></p>
                             <div class="textyleContent xe_content">
                                 {$post_prefix}
                                 {$document->getContent(false)}
@@ -435,9 +435,9 @@
                                             </div>
                                             <h4 class="author">
                                                 <!--@if($comment->homepage)-->
-                                                <a href="{$comment->homepage}" onclick="window.open(this.href);return false;">{$comment->getNickName()}</a>
+												<a href="{$comment->homepage}" onclick="window.open(this.href);return false;" class="member_{$comment->get('member_srl')}">{$comment->getNickName()}</a>
                                                 <!--@else-->
-                                                {$comment->getNickName()}
+												<span class="member_{$comment->get('member_srl')}">{$comment->getNickName()}</span>
                                                 <!--@end-->
                                             </h4>
                                             <p class="date">{$comment->getRegdate('Y.m.d')} <span class="hhmm">{$comment->getRegdate('H:i')}</span></p>
@@ -529,7 +529,7 @@
                                     <input type="hidden" name="content" value="" />
                                     {$document->getCommentEditor()}
                                     <!--@if($is_logged)-->
-                                    <strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
+                                    <span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                     <!--@else-->
                                     <input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
                                     <input name="password" type="password" class="inputText pw" value="Password" title="Password" />
