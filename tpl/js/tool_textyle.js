@@ -305,7 +305,7 @@ function completeAddCategory(ret_obj, response_tags, args, fo_obj) {
 
 function savePost(obj){
 	jQuery('input[name=publish]',obj.form).val('N');
-	if(editorRelKeys[1]) editorRelKeys[1]["editor"].hidden_content = editorRelKeys[1]["editor"].getContent();
+	if(editorRelKeys[1]) editorRelKeys[1].content.value = editorRelKeys[1].func();
 	jQuery('input,textarea',obj.form).each(function(){
 		var j = jQuery(this);
 		if(j.val() && j.val() == j.attr('title')) j.val('');
