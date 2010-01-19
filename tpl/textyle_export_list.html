@@ -1,0 +1,45 @@
+<!--%import("js/textle.js")-->
+<!--#include("header.html")-->
+
+<table cellspacing="0" class="rowTable">
+<thead>
+    <tr>
+        <th scope="col"><div>{$lang->textyle}</div></th>
+        <th scope="col"><div>{$lang->nick_name}</div></th>
+        <th scope="col"><div>{$lang->textyle_export_type}</div></th>
+        <th scope="col"><div>{$lang->regdate}</div></th>
+        <th scope="col"><div>{$lang->textyle_export_date}</div></th>
+        <th scope="col"><div>{$lang->textyle_export_file}</div></th>
+        <th scope="col"><div>&nbsp;</div></th>
+    </tr>
+</thead>
+<tbody>
+<!--@if($export_list)-->
+    <!--@foreach($export_list as $no => $val)-->
+    <tr>
+        <td><a href="{getSiteUrl($val->domain)}" onclick="window.open(this.href); return false;" title="{htmlspecialchars($lang->cmd_view)}">{$val->domain}</a></td>
+        <td><span class="member_{$val->member_srl}">{$val->nick_name}</span></td>
+        <td>{$val->export_type}</td>
+        <td>{zdate($val->regdate,'Y.m.d')}</td>
+        <td>{zdate($val->export_date,'Y.m.d H:i')}</td>
+        <td>{$val->export_file}</td>
+        <td class="nowrap">
+			<span class="button green small"><button onclick="exportTextyle({$val->site_srl},'ttxml')">{$lang->cmd_textyle_export_file}</button></span>
+			<span class="button red small"><button onclick="deleteExportTextyle({$val->site_srl})">{$lang->cmd_delete}</button></span>
+		</td>
+    </tr>
+    <!--@end-->
+<!--@end-->
+</tbody>
+</table>
+<div class="pagination a1">
+    <a href="{getUrl('page','','module_srl','')}" class="prevEnd">{$lang->first_page}</a> 
+    <!--@while($page_no = $page_navigation->getNextPage())-->
+        <!--@if($page == $page_no)-->
+            <strong>{$page_no}</strong> 
+        <!--@else-->
+            <a href="{getUrl('page',$page_no,'module_srl','')}">{$page_no}</a> 
+        <!--@end-->
+    <!--@end-->
+    <a href="{getUrl('page',$page_navigation->last_page,'module_srl','')}" class="nextEnd">{$lang->last_page}</a>
+</div>

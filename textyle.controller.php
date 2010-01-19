@@ -1524,7 +1524,7 @@
             if(file_exists($user_image_path . $filename)) @unlink($user_image_path . $filename);
             if(!move_uploaded_file($image['tmp_name'], $user_image_path . $filename )) return false;
 
-            Context::set('msg','success_upload');
+            Context::set('msg',Context::getLang('success_upload'));
             $this->setTemplatePath($this->module_path.'tpl');
             $this->setTemplateFile("top_refresh.html");
         }
@@ -1908,5 +1908,23 @@
             $output = $oTextyleAdminController->initTextyle($this->site_srl);
             return $output;
         }
+	
+		function procTextyleRequestExport(){
+            if(!$this->site_srl) return new Object(-1,'msg_invalid_request');
+
+			$oTextyleAdminController = &getAdminController('textyle'); 
+			$oTextyleAdminController->deleteExport($this->site_srl);
+
+			$args->export_type = Context::get('export_type');
+			if(!$args->export_type || $args->export_type!='xexml') $args->export_type='ttxml';
+		
+			$logged_info = Context::get('logged_info');
+			$args->module_srl = $this->module_srl;
+			$args->site_srl = $this->site_srl;
+			$args->member_srl = $logged_info->member_srl;
+
+			$output = executeQuery('textyle.insertExport',$args);
+			return $output;
+		}
     }
 ?>

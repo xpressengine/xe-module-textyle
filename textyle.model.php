@@ -328,9 +328,11 @@
             $module_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl);
             $site_admin_list = $oModuleModel->getSiteAdmin($module_info->site_srl);
             $site_admin_srls = array();
-            foreach($site_admin_list as $k => $v){
-                $site_admin_srls[] = $v->member_srl;
-            }
+			if($site_admin_list){
+				foreach($site_admin_list as $k => $v){
+					$site_admin_srls[] = $v->member_srl;
+				}
+			}
 
             $args->module_srl = $module_srl;
             $args->sort_index = $sort_index;
@@ -401,6 +403,5 @@
             if($srl) $this->add('services',$output->data);
             return $output;
         }
-
    }
 ?>

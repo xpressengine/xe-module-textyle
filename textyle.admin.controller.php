@@ -477,5 +477,69 @@
 
             return new Object(1,'success_textyle_init');
         }
+
+		function exportTextyle($site_srl,$export_type='ttxml'){
+            require_once($this->module_path.'libs/exportTextyle.php');
+			//$this->deleteExport($site_srl);
+
+			$path = './files/cache/textyle/export/' . getNumberingPath($site_srl);
+			FileHandler::makeDir($path);
+			$file = $path.sprintf('tt-%s.xml',date('YmdHis'));
+
+			// $textyle_srl 
+			$oModuleModel = &getModel('module');
+			$site_info = $oModuleModel->getSiteInfo($site_srl);
+			$textyle_srl = $site_info->index_module_srl;
+
+			$oExport = new TTXMLExport($file);
+			$oExport->setTextyle($textyle_srl);
+			$oExport->exportFile();
+
+			$args->site_srl = $site_srl;
+			$args->export_file = $file;
+			$output = executeQuery('textyle.updateExport',$args);
+			if(!$output->toBool()) return $output;
+
+			return new Object(1,'success');
+		}
+
+		function procTextyleAdminExport(){
+			$site_srl = Context::get('site_srl');
+			if(!$site_srl) $site_srl = $this->module_info->site_srl;
+			if(!$site_srl) return new Object(-1,'msg_invalid_request');
+			$export_type = Context::get('export_type');
+			if(!$export_type) $export_type = 'ttxml';
+			
+			$args->site_srl = $site_srl;
+			$output = executeQuery('textyle.getExport',$args);
+			if(!$output->data){
+				if(!$args->export_type || $args->export_type!='xexml') $args->export_type='ttxml';
+				$logged_info = Context::get('logged_info');
+				$args->module_srl = $this->module_srl;
+				$args->member_srl = $logged_info->member_srl;
+				$output = executeQuery('textyle.insertExport',$args);
+			}
+
+			$this->exportTextyle($site_srl,$export_type);
+		}
+
+		function procTextyleAdminDeleteExportTextyle(){
+			$site_srl = Context::get('site_srl');
+			if(!$site_srl) return new Object(-1,'msg_invalid_request');
+
+			$this->deleteExport($site_srl);
+		}
+
+		function deleteExport($site_srl){
+			$args->site_srl = $site_srl;
+			$output = executeQuery('textyle.getExport',$args);
+
+			if($output->data){
+				FileHandler::removeFile($output->data->export_file);
+				$args->site_srl = $site_srl;
+				$output = executeQuery('textyle.deleteExport',$args);
+				if(!$output->toBool()) return false;
+			}
+		}
     }
 ?>

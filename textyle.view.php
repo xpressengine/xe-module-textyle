@@ -1169,6 +1169,16 @@
         }
 
         function dispTextyleToolConfigData() {
+			$logged_info = Context::get('logged_info');
+			if($logged_info && $logged_info->is_admin=='Y'){
+				Context::addJsFilter($this->module_path.'tpl/filter', 'export_textyle.xml');
+			}else{
+				Context::addJsFilter($this->module_path.'tpl/filter', 'request_export_textyle.xml');
+			}
+
+			$args->site_srl = $this->site_srl;
+			$output = executeQuery('textyle.getExport',$args);
+			Context::set('export',$output->data);
         }
 
         function dispTextyleToolConfigChangePassword(){

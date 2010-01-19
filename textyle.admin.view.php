@@ -110,5 +110,15 @@
             }
             $this->setTemplateFile('textyle_blogapi_config');
         }
+
+        function dispTextyleAdminExportList(){
+			$args->page = Context::get('page');
+//			$args->export_status = 'R';
+			$output = executeQueryArray('textyle.getExportList',$args);			
+			Context::set('export_list',$output->data);
+			Context::set('page_navigation',$output->page_navigation);
+            $this->setTemplateFile('textyle_export_list');
+        }
+ 
     }
 ?>

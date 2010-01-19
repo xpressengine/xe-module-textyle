@@ -57,3 +57,17 @@ function doApplySubChecked(obj, id) {
     jQuery('div.menu_box_'+id).find('input[type=checkbox]').each(function() { this.checked = obj.checked; });
 
 }
+
+
+function exportTextyle(site_srl,export_type){
+    var params = new Array();
+    params['site_srl'] = site_srl;
+    params['export_type'] = export_type;
+    exec_xml('textyle', 'procTextyleAdminExport', params, completeReload);
+}
+
+function deleteExportTextyle(site_srl){
+    var params = new Array();
+    params['site_srl'] = site_srl;
+    exec_xml('textyle', 'procTextyleAdminDeleteExportTextyle', params, completeReload);
+}

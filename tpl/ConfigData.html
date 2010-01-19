@@ -10,18 +10,27 @@
 				<!-- /contentHeader -->
 				
 				<div class="setUp">
-				
-					<form action="./" method="post" onsubmit="return false;">
+					<form action="./" method="post" onsubmit="return procFilter(this,<!--@if($logged_info->is_admin=='Y')-->export_textyle<!--@else-->request_export_textyle<!--@end-->);">
+					<input type="hidden" name="export_type" value="ttxml" />
+					<input type="hidden" name="vid" value="{$vid}" />
+					<input type="hidden" name="mid" value="{$mid}" />
 						<fieldset>
 							<h4>{$lang->data_export}</h4>
-							<table class="setupData" cellspacing="0" border="1">
-								<tbody>
-									<tr>
-										<th scope="row">{$lang->msg_preparation}</th>
-										<td>&nbsp;</td>
-									</tr>
-								</tbody>
-							</table>
+							<!--@if($export)-->
+								<dl>
+									<dt style="font-weight:bold">{$lang->textyle_export_recode}</dt>
+									<dd style="margin:0">
+										<!--@if($export->export_status=='C')-->
+											<a href="{$export->export_file}">{getUrl()}{$export->export_file}</a>
+										<!--@else-->
+											{$lang->textyle_export_waiting}
+										<!--@end-->
+									</dd>
+								</dl>
+							<!--@end-->
+
+							<span class="button black strong"><button type="submit">{$lang->textyle_export_request}</button></span>
+
 							<dl class="progress">
 							<!-- class="progress" | class="progress open" -->
 								<dt>{$lang->data_import_progress} : </dt>

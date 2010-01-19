@@ -1149,3 +1149,19 @@ function deleteUserImage(filename){
         document.location.reload();
     });
 }
+
+
+function completeRequestExportTextyle(ret_obj){
+	var error = ret_obj['error'];
+	var message = ret_obj['message'];
+
+	location.reload();
+}
+function completeExportTextyle(ret_obj){
+	var error = ret_obj['error'];
+	var message = ret_obj['message'];
+
+	location.reload();
+}
+
+

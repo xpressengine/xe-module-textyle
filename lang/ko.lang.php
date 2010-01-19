@@ -444,4 +444,14 @@
     $lang->cmd_textyle_skin_export = '스킨 백업';
     $lang->textyle_skin_import = '스킨 복원';
     $lang->about_textyle_skin_import = '로컬 폴더에 있는 사용자 정의 스킨을 원격으로 업로드 합니다. 현재 스킨은 삭제됩니다.';
+
+	$lang->success_upload = '업로드 되었습니다.';
+	$lang->cmd_textyle_export_request ='백업신청내역';
+	$lang->textyle_export_recode = '백업신청내역';
+	$lang->textyle_export_waiting = '신청중';
+	$lang->textyle_export_request = '백업신청하기';
+	$lang->textyle_export_type = '데이타 타입';
+	$lang->textyle_export_date = '데이타 생성시간';
+	$lang->textyle_export_file = '데이타 파일';
+	$lang->cmd_textyle_export_file = '내보내기';
 ?>
