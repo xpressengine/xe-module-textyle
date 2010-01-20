@@ -761,6 +761,7 @@
             if(!$isPublished){
                 $args->list_order = getNextSequence()*-1;
                 $args->document_srl = $var->document_srl;
+                $args->module_srl = $this->module_srl;
                 $output = executeQuery('document.updateDocumentOrder',$args);
             }
 
