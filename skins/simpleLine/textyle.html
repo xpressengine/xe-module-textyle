@@ -437,7 +437,7 @@
                                             <!--@if($comment->homepage)-->
                                             <a href="{$comment->homepage}" onclick="window.open(this.href);return false;" class="member_{$comment->member_srl}">{$comment->getNickName()}</a>
                                             <!--@else-->
-                                            <span class="member_{$comment->member_srl)}">{$comment->getNickName()}</span>
+                                            <span class="member_{$comment->member_srl}">{$comment->getNickName()}</span>
                                             <!--@end-->
                                         </h4>
                                         <p class="date">{$comment->getRegdate('Y.m.d')} <span class="hhmm">{$comment->getRegdate('H:i')}</span></p>
