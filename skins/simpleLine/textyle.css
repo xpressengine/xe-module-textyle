@@ -574,7 +574,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 .textyleContent p{ margin:1em 0 !important;}
 
 /* More | Less */
-.fold_button{ text-align:left;}
+.fold_button{ text-align:left; margin:1em 0;}
 .fold_button button{ font-size:12px; border:0; background:none; cursor:pointer; color:#2200cc; overflow:visible; padding:0;}
 .fold_button button:before{ content:"» ";}
 
