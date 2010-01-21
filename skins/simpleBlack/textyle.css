@@ -580,6 +580,11 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 /* P */
 .textyleContent p{ margin:1em 0 !important;}
 
+/* More | Less */
+.fold_button{ text-align:right;}
+.fold_button button{ font-size:12px; border:0; background:none; cursor:pointer; color:#33baff; overflow:visible;}
+.fold_button button:before{ content:"» ";}
+
 /* Me2day Widget */
 .me2day_daily_digest{ line-height:1.5;}
 .me2day_daily_digest ul{ margin-left:0; padding-left:0; list-style:none;}

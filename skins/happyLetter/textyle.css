@@ -654,6 +654,11 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .textyleContent .xe_dr_mov object,
 .textyleContent .xe_dr_mov embed{ display:block; margin:0 auto;}
 
+/* More | Less */
+.fold_button{ text-align:right;}
+.fold_button button{ font-size:12px; border:0; background:none; cursor:pointer; color:#2200cc; overflow:visible; padding:0;}
+.fold_button button:before{ content:"» ";}
+
 /* Me2day Widget */
 .me2day_daily_digest{ line-height:1.5;}
 .me2day_daily_digest ul{ margin-left:0; padding-left:0; list-style:none;}
