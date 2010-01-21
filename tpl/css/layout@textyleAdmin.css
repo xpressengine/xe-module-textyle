@@ -538,10 +538,10 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .bookmarkletHelp li.item4{ background:url(../img/bgBookmarkletOrder4.gif) no-repeat 0 4px;}
 
 /* Writing Title */
-.wTitle{ position:relative; height:88px; padding:15px 20px 0 20px; margin-bottom:3em; background:#eee; border-top:1px solid #e9e9e9; border-bottom:1px solid #e9e9e9;}
+.wTitle{ position:relative; height:58px; padding:15px 20px 0 20px; margin-bottom:15px; background:#eee; border-top:1px solid #e9e9e9; border-bottom:1px solid #e9e9e9;}
 .wTitle .title{ position:relative; border:1px solid #ddd; background:#fff url(../img/bgInputText.gif) no-repeat;}
 .wTitle .elementContainer{ margin:0 20px;}
-.wTitle .cap{ position:absolute; width:10px; height:105px; top:-1px; background:url(../img/bgWritingTitle.gif) no-repeat 0 0;}
+.wTitle .cap{ position:absolute; width:10px; height:105px; top:-1px; background:url(../img/bgPublishTitle.gif) no-repeat 0 0;}
 .wTitle .capLeft{ left:0; background-position:left top;}
 .wTitle .capRight{ right:0; background-position:right top}
 .wTitle .inputTitle{ border:0; background:transparent; width:64%; height:35px; padding:8px 0 0 10px; color:#6e6e6e; font-size:24px; font-weight:bold;}
