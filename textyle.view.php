@@ -133,7 +133,6 @@
             $oCounterModel = &getModel('counter');
             $oDocumentModel = &getModel('document');
             $oCommentModel = &getModel('comment');
-            $oMaterialModel = &getModel('material');
             $oTextyleModel = &getModel('textyle');
 
             /**
@@ -270,25 +269,6 @@
             $com_args->list_count = 5;
             $output = $oCommentModel->getTotalCommentList($com_args);
             Context::set('newest_comments', $output->data);
-
-            // 글감 목록
-            unset($args);
-            $args->page = 1;
-            $args->list_count = 3;
-            $logged_info = Context::get('logged_info');
-            $args->member_srl = $logged_info->member_srl;
-            if($oMaterialModel) {
-                $output = $oMaterialModel->getMaterialList($args);
-                if(count($output->data)){
-                    foreach($output->data as $k => $v){
-                        if($v->type=='mov'){
-                            $v->content = preg_replace('/width=\"[^\"]*\"/','width="100%"',$v->content);
-                            $v->content = preg_replace('/width=\'[^\']*\'/','width="100%"',$v->content);
-                        }
-                    }
-                }
-                Context::set('material_list',$output->data);
-            }
 
             unset($args);
             $args->module_srl = $this->module_srl;

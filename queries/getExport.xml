@@ -18,7 +18,7 @@
         <column name="export.export_date" alias="export_date" />
     </columns>
     <conditions>
-		<condition operation="equal" column="export.site_srl" val="site_srl" pipe="and" />
+		<condition operation="equal" column="export.site_srl" var="site_srl" filter="number" pipe="and" />
         <condition operation="equal" column="sites.site_srl" default="modules.site_srl" pipe="and" />
         <condition operation="equal" column="export.member_srl" default="member.member_srl" filter="number" pipe="and" />
         <condition operation="equal" column="modules.module_srl" default="export.module_srl" filter="number" pipe="and" />

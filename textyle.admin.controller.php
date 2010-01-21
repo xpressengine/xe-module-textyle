@@ -435,15 +435,16 @@
             FileHandler::removeFile(sprintf("./files/cache/textyle/textyle_deny/%d.php",$module_srl));
             FileHandler::removeDir($oTextyleModel->getTextylePath($module_srl));
 
-            // delete document
+            // delete document comment tag
             $output = $oDocumentController->triggerDeleteModuleDocuments($args);
-
-            // delete comment
             $output = $oCommentController->triggerDeleteModuleComments($args);
-
-            // delete tag
             $output = $oTagController->triggerDeleteModuleTags($args);
+			$args->module_srl = $args->module_srl *-1;
 
+            $output = $oDocumentController->triggerDeleteModuleDocuments($args);
+            $output = $oCommentController->triggerDeleteModuleComments($args);
+            $output = $oTagController->triggerDeleteModuleTags($args);
+			$args->module_srl = $args->module_srl *-1;
 
             // set category
             $obj->module_srl = $module_srl;
