@@ -20,8 +20,8 @@
     <description xml:lang="jp">
         テキスタイルの基本スキンの一つです。 黒色のヘッダー/フッターに白い色の本文とした白黒２色のシンプルな組み合わせが特徴です。 コンテンツ部分の左右配置を変更したい場合はHTML編集エディターにて「class="ce"」を「class="ec"」差し替えてください。
     </description>
-    <version>0.1</version>
-    <date>2009-05-23</date>
+    <version>1.2</version>
+    <date>2010-01-22</date>
 
     <author email_address="dece24@gmail.com" link="http://naradesign.net/">
         <name xml:lang="ko">정찬명</name>
