@@ -37,7 +37,7 @@
     $lang->published = '已發佈';
     $lang->publish_option = '發佈選項';
 	$lang->publish_this_blog = 'Publish this blog.';
-    $lang->ask_time_publish = 'Would you like to publish (or update) this posting right now?';
+    $lang->ask_time_publish = '是否要立刻發佈或更新這篇文章?';
     $lang->ask_micro_publish = '是否要發佈到微型部落格?';
     $lang->noti_publish = '發佈通知';
     $lang->send_trackback = '發送引用';
@@ -87,9 +87,9 @@
     $lang->about_etc_editor = 'Rich text editors.';
     $lang->set_editor_components = 'Configure Editor Components';
     $lang->set_prefix = '頁首設定';
-    $lang->about_prefix = 'Each post contains following content. (You can use HTML)';
+    $lang->about_prefix = 'Each post contains following content. (可使用 HTML)';
     $lang->set_suffix = '頁尾設定';
-    $lang->about_suffix = 'Each post contains following content. (You can use HTML)';
+    $lang->about_suffix = 'Each post contains following content. (可使用 HTML)';
     $lang->blog_first_page = 'First Page';
     $lang->blog_display_target = '顯示目標';
     $lang->content_body = '本文';
@@ -117,12 +117,12 @@
     $lang->guestbook_list_count = '每頁留言數量';
     $lang->comment_grant = '回覆權限';
     $lang->about_comment_grant = '可設定只限會員或是所有人回覆';
-    $lang->disable_comment= 'You are not allowed to write comments. Please sign in.';
+    $lang->disable_comment= '無法回覆。請先登入。';
     $lang->grant_to_all = '全部';
     $lang->grant_to_member = '會員';
     $lang->guestbook_grant = '留言權限';
     $lang->about_guestbook_grant = '可設定只限會員或是所有人在留言板留言';
-    $lang->disable_guestbook = 'You are not allowed to write posts to guestbook. Please sign in.';
+    $lang->disable_guestbook = '無法留言。請先登入。';
     $lang->current_password = '目前密碼';
     $lang->textyle_password1 = '新密碼';
     $lang->textyle_password2 = '確認新密碼';
@@ -152,8 +152,8 @@
     $lang->total_materials = 'Total <strong>%d</strong> ingredients are stored.';
     $lang->none_materials = 'There is no ingredient.';
     $lang->install_bookmarklet = 'Install Ingredient Collector!.';
-    $lang->none_tags = 'There is no tag.';
-    $lang->bookmarklet_install = 'Install Bookmarklet';
+    $lang->none_tags = '沒有標籤';
+    $lang->bookmarklet_install = '安裝 Bookmarklet';
 	$lang->about_bookmarklet = 'Collect ingredients to blog always.';
     $lang->about_set_bookmarklet = 'Ingredients Collector';
     $lang->data_export = '資料備份';
@@ -433,17 +433,17 @@
     $lang->sample_title = '歡迎來到Textyle的世界!';
     $lang->sample_tags = 'textyle,  Textyle editor,  a writing ingredients collector';
     $lang->msg_preparation = '準備中';
-    $lang->msg_not_user = '해당 사용자가 없습니다.';
-    $lang->success_textyle_init = '텍스타일을 초기화 하였습니다.';
-	$lang->textyle_init = '초기화';
-    $lang->cmd_textyle_init = '텍스타일을 초기화 합니다.';
-    $lang->msg_textyle_init_about = '포스트/댓글/트랙백, 방명록, 레이아웃 정보를 모두 삭제 및 초기화를 합니다. 초기화 후 복구는 불가능 합니다.';
-    $lang->msg_confirm_textyle_init = '초기화를 하시겠습니까?';
+    $lang->msg_not_user = '用戶不存在';
+    $lang->success_textyle_init = '重置成功';
+	$lang->textyle_init = '重置';
+    $lang->cmd_textyle_init = '開始重置';
+    $lang->msg_textyle_init_about = '所有文章/評論/引用，留言板，版面將會被刪除與重置。重置後將無法復原。';
+    $lang->msg_confirm_textyle_init = '確定要重置嗎?';
 
-	$lang->textyle_skin_userimage = '사용자 이미지';
-	$lang->msg_check_userimage = 'gif, png, jpg, swf 파일만 가능합니다.';
-    $lang->cmd_textyle_skin_export = '스킨 백업';
-    $lang->textyle_skin_import = '스킨 복원';
+	$lang->textyle_skin_userimage = '用戶相片';
+	$lang->msg_check_userimage = '允許上傳gif, png, jpg, swf等檔案。';
+    $lang->cmd_textyle_skin_export = '匯出';
+    $lang->textyle_skin_import = '匯入面板';
     $lang->about_textyle_skin_import = '로컬 폴더에 있는 사용자 정의 스킨을 원격으로 업로드 합니다. 현재 스킨은 삭제됩니다.';
 
 	$lang->success_upload = '업로드 되었습니다.';
