@@ -180,8 +180,9 @@
             if(!$output->toBool()) return $output;
 
             // 자기 소개글
-            $tex->module_srl = $this->module_srl;
             $tex->profile_content = Context::get('profile_content');
+			if(!$tex->profile_content) $tex->profile_content = ' ';
+            $tex->module_srl = $this->module_srl;
             $output = $this->updateTextyleInfo($this->module_srl,$tex);
             if(!$output->toBool()) return $output;
 
@@ -840,8 +841,10 @@
             $oDocumentController = &getController('document');
 
             $oDocument = $oDocumentModel->getDocument($args->document_srl);
+			if(!$args->module_srl) $args->module_srl = $oDocument->get('module_srl');
             if(!$args->category_srl) $args->category_srl = $oDocument->get('category_srl');
             if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
+
 
             $output = $oDocumentController->updateDocument($oDocument, $args);
             return $output;
