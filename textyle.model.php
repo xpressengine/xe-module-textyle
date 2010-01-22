@@ -186,21 +186,20 @@
         }
 
         function getDenyCacheFile($module_srl){
-            return sprintf("files/cache/textyle/textyle_deny/%d.php",$module_srl);
+            return sprintf("./files/cache/textyle/textyle_deny/%d.php",$module_srl);
         }
 
         function getTextyleDenyList($module_srl){
-            $args->module_srl = $this->module_srl;
+            $args->module_srl = $module_srl;
             $cache_file = $this->getDenyCacheFile($module_srl);
 
             if($GlOBALS['XE_TEXTYLE_DENY_LIST'] && is_array($GLOBALS['XE_TEXTYLE_DENY_LIST'])){
                 return $GLOBALS['XE_TEXTYLE_DENY_LIST'];
             }
 
-            if(!file_exists($cache_file)) {
+            if(!file_exists(FileHandler::getRealPath($cache_file))) {
                 $_textyle_deny = array();
                 $buff = '<?php if(!defined("__ZBXE__")) exit(); $_textyle_deny=array();';
-
                 $output = executeQueryArray('textyle.getTextyleDeny',$args);
                 if(count($output->data) > 0){
                     foreach($output->data as $k => $v){

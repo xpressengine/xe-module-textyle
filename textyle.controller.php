@@ -181,9 +181,8 @@
 
             // 자기 소개글
             $tex->profile_content = Context::get('profile_content');
-			if(!$tex->profile_content) $tex->profile_content = ' ';
             $tex->module_srl = $this->module_srl;
-            $output = $this->updateTextyleInfo($this->module_srl,$tex);
+			$output = executeQuery('textyle.updateProfileContent',$tex);
             if(!$output->toBool()) return $output;
 
             // 사진 삭제
@@ -694,6 +693,7 @@
             $args->deny_type = $obj->deny_type;
             $args->deny_content = $obj->deny_content;
             $output = executeQuery('textyle.insertTextyleDeny', $args);
+
             return $output;
         }
 
