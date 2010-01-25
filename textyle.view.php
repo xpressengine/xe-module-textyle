@@ -855,8 +855,10 @@
                 Context::set('type',$type);
             }
 
+            $page = Context::get('page');
             $site_module_info = Context::get('site_module_info');
             $args->module_srl = $this->module_srl;
+            $args->page = ($page) ? $page : 1;
 
             switch($type) {
                 case 'month' :
