@@ -370,7 +370,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .feedback .item.indent.indent29{ padding-left:580px; background-position:560px 20px;}
 .feedback .item.indent.indent30{ padding-left:600px; background-position:580px 20px;}
 
-.feedback .date{ margin:0; font-size:9px; color:#666;}
+.feedback .date{ margin:0; font-size:9px; color:#666; *zoom:1;}
 .feedback .date .hhmm{ color:#8b8b8b;}
 
 .feedback .meta{ display:table-cell; width:140px; padding:0 20px 0 0; margin:0; *zoom:1; float:left;}

@@ -141,7 +141,7 @@
 										<!--@if($val->homepage)-->
 										<a href="{$val->homepage}" onclick="window.open(this.href);return false;" class="member_{$val->member_srl}">{$val->nick_name}</a>
 										<!--@else-->
-										<span class="member_{$val->member_srl}">{$val->nick_name}</a>
+										<span class="member_{$val->member_srl}">{$val->nick_name}</span>
 										<!--@end-->
 									</h4>
                                     <p class="date">{zdate($val->regdate,'Y.m.d')} <span class="hhmm">{zdate($val->regdate,'H:i')}</span></p>
@@ -274,7 +274,7 @@
                                     </div>
                                     <h4 class="author">
 										<!--@if($oSourceComment->homepage)-->
-										<a href="{$oSourceComment->homepage}" onclick="window.open(this.href);return false;" class="member_{$oSourceComment->member_srl}">>{$oSourceComment->getNickName()}</a>
+										<a href="{$oSourceComment->homepage}" onclick="window.open(this.href);return false;" class="member_{$oSourceComment->member_srl}">{$oSourceComment->getNickName()}</a>
 										<!--@else-->
 										<span class="member_{$oSourceComment->member_srl}">{$oSourceComment->getNickName()}</span>
 										<!--@end-->
