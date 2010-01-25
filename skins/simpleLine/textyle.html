@@ -256,7 +256,7 @@
                                     </div>
                                     <h4 class="author">
 										<!--@if($oSourceComment->homepage)-->
-										<a href="{$oSourceComment->homepage}" onclick="window.open(this.href);return false;" class="member_{$oSourceComment->get('member_srl')}">>{$oSourceComment->getNickName()}</a>
+										<a href="{$oSourceComment->homepage}" onclick="window.open(this.href);return false;" class="member_{$oSourceComment->get('member_srl')}">{$oSourceComment->getNickName()}</a>
 										<!--@else-->
 										<span class="member_{$oSourceComment->get('member_srl')}">{$oSourceComment->getNickName()}</span>
 										<!--@end-->
@@ -481,7 +481,8 @@
 										<!--@if($comment->isAccessible())-->
 
                                             <!--@if($textyle->isEnableComment())--><li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentReply')}">{$lang->cmd_reply}</a></li><!--@end-->
-											<!--@if($comment->member_srl)-->
+											<!--@if($comment->member_srl)-->
+
 												<!--@if($comment->isGranted() || $comment->member_srl==$logged_info->member_srl)-->
 												<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}</a></li>
 												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
