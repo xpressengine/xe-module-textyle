@@ -485,7 +485,7 @@
 
             if($oMaterialModel) {
                 $output = $oMaterialModel->getMaterialList($args);
-                $bookmark_url = $oMaterialModel->getBookmarkUrl($this->textyle->domain, $logged_info->member_srl);
+                $bookmark_url = $oMaterialModel->getBookmarkUrl($logged_info->member_srl);
 
                 Context::set('page',$output->page_navigation->cur_page);
                 Context::set('bookmark_url',$bookmark_url);
