@@ -15,8 +15,9 @@
 		</h3>
 	</div>
 	<!-- /writingHeader -->
-	<form action="./" method="post" onsubmit="return savePost(this)" class="{$editor_skin}">
+	<form action="./" method="post" class="{$editor_skin}">
 		<input type="hidden" name="publish" value="" />
+		<input type="hidden" name="_filter" value="save_post" />
 		<input type="hidden" name="mid" value="{$mid}" />
 		<fieldset>
 			<legend>
@@ -33,9 +34,9 @@
 					<div class="title">
 						<input name="title" type="text" class="inputTitle" value="<!--@if($oDocument->getTitleText())-->{htmlspecialchars($oDocument->getTitleText())}<!--@else-->{$lang->insert_title}<!--@end-->" title="{$lang->insert_title}"/>
 						<!-- wPublish -->
-						<div class="wPublish">
+						<div class="wPublish" id="wPublishButtonContainer">
 							<span class="buttonAction actionWhite normal"><button type="submit">{$lang->cmd_save}</button></span>
-							<span class="buttonAction actionWhite"><button type="button" onclick="savePostPublish(this.form)">{$lang->cmd_save_publish}</button></span>
+							<span class="buttonAction actionWhite _publish"><button type="submit">{$lang->cmd_save_publish}</button></span>
 						</div>
 						<!-- /wPublish -->
 					</div>

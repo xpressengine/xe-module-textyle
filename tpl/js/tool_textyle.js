@@ -1165,3 +1165,39 @@ function completeExportTextyle(ret_obj){
 }
 
 
+(function($){
+
+var inputPublish, submitButtons;
+var validator = xe.getApp('Validator')[0];
+
+validator.cast('ADD_CALLBACK', ['save_post', function callback(form) {
+	var params={}, responses=[], elms=form.elements, data=jQuery(form).serializeArray();
+	$.each(data, function(i, field) {
+		var val = $.trim(field.value);
+		if(!val) return true;
+		if(/\[\]$/.test(field.name)) field.name = field.name.replace(/\[\]$/, '');
+		if(params[field.name]) params[field.name] += '|@|'+val;
+		else params[field.name] = field.value;
+	});
+	responses = ['error','message','mid','document_srl','category_srl'];
+	exec_xml('textyle','procTextylePostsave', params, completePostsave, responses, params, form);
+
+	inputPublish.val('N');
+}]);
+
+$(function(){
+	inputPublish  = $('input[name=publish]');
+	submitButtons = $('#wPublishButtonContainer button');
+
+	submitButtons.click(function(){
+		inputPublish.val( $(this).parent().hasClass('_publish')?'Y':'N' );
+
+		$('input:text,textarea', this.form).each(function(){
+			var t = $(this);
+			var v = $.trim(t.val());
+			if (v && v == t.attr('title')) t.val('');
+		});
+	});
+});
+
+})(jQuery);
