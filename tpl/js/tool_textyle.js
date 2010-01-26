@@ -304,17 +304,17 @@ function completeAddCategory(ret_obj, response_tags, args, fo_obj) {
 
 
 function savePost(obj){
-	jQuery('input[name=publish]',obj.form).val('N');
+	jQuery('input[name=publish]',obj).val('N');
 	if(editorRelKeys[1]) editorRelKeys[1].content.value = editorRelKeys[1].func();
-	jQuery('input,textarea',obj.form).each(function(){
+	jQuery('input,textarea',obj).each(function(){
 		var j = jQuery(this);
 		if(j.val() && j.val() == j.attr('title')) j.val('');
 	});
-	return procFilter(obj.form,save_post);
+	return procFilter(obj,save_post);
 
 }
 
-function savePostPublish(obj,filter){
+function savePostPublish(obj){
 	jQuery('input[name=publish]',obj.form).val('Y');
 	jQuery('input,textarea',obj).each(function(){
 		var j = jQuery(this);
