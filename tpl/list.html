@@ -35,7 +35,13 @@
         <td>{$no}</td>
         <td class="wide"><a href="{getSiteUrl($val->domain)}" onclick="window.open(this.href); return false;" title="{htmlspecialchars($lang->cmd_view)}">{$val->getBrowserTitle()}</a></td>
         <td><a href="{getSiteUrl($val->domain)}" onclick="window.open(this.href);return false;">{$val->domain}</a></td>
-        <td class="nowrap"><span class="member_{$val->getMemberSrl()}">{$val->getUserId()}({$val->getNickName()})</span></td>
+        <td class="nowrap">
+			<!--@if($val->getUserId())-->
+			<span class="member_{$val->getMemberSrl()}">{$val->getUserId()}({$val->getNickName()})</span>
+			<!--@else-->
+			-
+			<!--@end-->
+		</td>
         <td class="nowrap">{zdate($val->get('regdate'),"Y-m-d")}</td>
         <td class="nowrap">
             <a href="{getUrl('act','dispTextyleAdminInsert','module_srl',$val->getModuleSrl())}" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a> 

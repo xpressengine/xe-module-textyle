@@ -1,9 +1,13 @@
 <query id="getTextyleList" action="select">
     <tables>
         <table name="modules" alias="modules" />
-        <table name="textyle" alias="textyle" />
-        <table name="member" alias="member" />
         <table name="sites" alias="sites" />
+        <table name="textyle" alias="textyle" />
+        <table name="member" alias="member" type="left join" >
+			<conditions>
+				<condition operation="equal" column="textyle.member_srl" default="member.member_srl" filter="number" pipe="and" />
+			</conditions>
+		</table>
     </tables>
     <columns>
         <column name="sites.domain" alias="domain" />
@@ -25,7 +29,6 @@
             <condition operation="like" column="sites.domain" var="s_domain" pipe="or" />
             <condition operation="like" column="textyle.regdate" var="s_regdate" pipe="or" />
         </group>
-        <condition operation="equal" column="textyle.member_srl" default="member.member_srl" filter="number" pipe="and" />
     </conditions>
     <navigation>
         <index var="sort_index" default="modules.module_srl" order="desc" />

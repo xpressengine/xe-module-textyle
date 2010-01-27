@@ -250,9 +250,7 @@
             $output = executeQuery('textyle.updateTextyle', $args);
             if(!$output->toBool()) return $output;
 
-            $this->setMessage('success_updated');
-
-            $output = new Object();
+            $output = new Object(1,'success_updated');
             $output->add('module_srl',$vars->module_srl);
             return $output;
         }
@@ -500,8 +498,6 @@
 			$args->export_file = $file;
 			$output = executeQuery('textyle.updateExport',$args);
 			if(!$output->toBool()) return $output;
-
-			return new Object(1,'success');
 		}
 
 		function procTextyleAdminExport(){
