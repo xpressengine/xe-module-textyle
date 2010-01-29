@@ -538,5 +538,31 @@
 				if(!$output->toBool()) return false;
 			}
 		}
+
+		function procTextyleAdminInsertExtraMenuConfig(){
+			$module_srl = Context::get('module_srl');
+
+            $oModuleController = &getController('module');
+            $oTextyleModel = &getModel('textyle');
+
+			$vars = Context::getRequestVars();
+			$allow_service = array();
+            foreach($vars as $key => $val) {
+                if(strpos($key,'allow_service_')===false) continue;
+                $allow_service[substr($key, strlen('allow_service_'))] = $val;
+            }
+
+			$config = $oTextyleModel->getModulePartConfig($module_srl);
+			$config->allow_service = $allow_service;
+
+			// 개별 설정
+			if($module_srl){
+                $oModuleController->insertModulePartConfig('textyle', $module_srl, $config);
+
+			// 기본 설정
+			}else{
+                $oModuleController->insertModuleConfig('textyle', $config);
+			}
+		}
     }
 ?>

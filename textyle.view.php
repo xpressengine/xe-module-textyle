@@ -20,6 +20,7 @@
 
             Context::set('custom_menu', $this->custom_menu = $oTextyleModel->getTextyleCustomMenu());
 
+			$site_module_info = Context::get('site_module_info');
             if(!$this->module_srl) {
                 $site_module_info = Context::get('site_module_info');
                 $site_srl = $site_module_info->site_srl;
@@ -105,6 +106,16 @@
                 Context::set('textyle_title', $this->textyle->get('textyle_title'));
                 if($this->textyle->get('post_use_prefix')=='Y' && $this->textyle->get('post_prefix')) Context::set('post_prefix', $this->textyle->get('post_prefix'));
                 if($this->textyle->get('post_use_suffix')=='Y' && $this->textyle->get('post_suffix')) Context::set('post_suffix', $this->textyle->get('post_suffix'));
+
+				$extra_menus = array();
+				if($_extra_menus=$this->textyle->get('extra_menus')){
+					foreach($_extra_menus as $mid => $menu){
+						$extra_menus[$menu->name] = getUrl('','mid',$mid);
+					}
+				}
+
+                // 추가 메뉴
+                Context::set('extra_menus', $extra_menus);
 
                 // browser title 지정
                 Context::setBrowserTitle($this->textyle->get('browser_title'));
@@ -1499,5 +1510,38 @@
             Context::set('message', $msg);
             $this->setTemplateFile('message');
         }
+
+		function dispTextyleToolExtraMenuList(){
+			$oTextyleModel = &getModel('textyle');
+			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
+			Context::set('config',$config);
+		}
+
+		function dispTextyleToolExtraMenuInsert(){
+			$menu_mid = Context::get('menu_mid');
+
+			$oTextyleModel = &getModel('textyle');
+			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
+			Context::set('config',$config);
+
+			$used_extra_module = array();
+			if($config->extra_menus){
+				foreach($config->extra_menus as $k => $menu){
+					if($used_extra_module[$menu->module_type]){
+						$used_extra_module[$menu->module_type] += 1;
+					}else{
+						$used_extra_module[$menu->module_type] = 1;
+					}
+				}
+			}
+
+			Context::set('used_extra_module',$used_extra_module);
+			if($menu_mid && $config && $config->extra_menus && $config->extra_menus[$menu_mid]){
+				Context::set('selected_extra_menu',$config->extra_menus[$menu_mid]);
+				Context::addJsFilter($this->module_path.'tpl/filter', 'modify_extra_menu.xml');
+			}else{
+				Context::addJsFilter($this->module_path.'tpl/filter', 'insert_extra_menu.xml');
+			}
+		}
     }
 ?>

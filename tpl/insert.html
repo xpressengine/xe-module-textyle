@@ -36,7 +36,11 @@
 			</td>
 		</tr>
         <tr class="row2">
-            <th colspan="2" class="button"><span class="button black strong"><input type="submit" value="<!--@if($textyle)-->{$lang->cmd_textyle_update}<!--@else-->{$lang->cmd_textyle_creation}<!--@end-->" accesskey="s" /></span></div></th>
+            <th colspan="2" class="button">
+			<!--@if($module_srl)-->
+			<a href="{getUrl('act','dispTextyleAdminExtraModule')}" class="button "><span>추가모듈 설정</span></a>
+			<!--@end-->
+			<span class="button black strong"><input type="submit" value="<!--@if($textyle)-->{$lang->cmd_textyle_update}<!--@else-->{$lang->cmd_textyle_creation}<!--@end-->" accesskey="s" /></span></div></th>
         </tr>
 	</tbody>
 	</table>

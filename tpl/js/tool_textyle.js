@@ -1201,3 +1201,43 @@ $(function(){
 });
 
 })(jQuery);
+
+
+
+function changeMenuType(obj) {
+    var sel = obj.options[obj.selectedIndex].value;
+    if(sel == 'url') {
+        jQuery('#urlForm').css("display","block");
+    } else {
+        jQuery('#urlForm').css("display","none");
+    }
+}
+
+function deleteExtraMenu(menu_mid,confirm_msg){
+	if(confirm(confirm_msg)){
+	var response_tags = new Array('error','message');
+	var params = {'menu_mid':menu_mid}
+	exec_xml('textyle', 'procTextyleToolExtraMenuDelete', params, completeReload, response_tags);
+	}
+}
+
+
+function completeDeleteExtraMenu(ret_obj, response_tags, params, fo_obj) {
+    var error = ret_obj['error'];
+    var msg = ret_obj['message'];
+
+    location.href = current_url.setQuery('act','dispTextyleToolExtraMenuList');
+}
+
+function completeModifyExtraMenu(ret_obj, response_tags, params, fo_obj) {
+    var error = ret_obj['error'];
+    var msg = ret_obj['message'];
+
+    location.href = current_url.setQuery('act','dispTextyleToolExtraMenuList');
+}
+
+function sortExtraMenu(menu_mids){
+	var response_tags = new Array('error','message');
+	var params = {'menu_mids':menu_mids.join(',')};
+	exec_xml('textyle', 'procTextyleToolExtraMenuSort', params, function(){}, response_tags);
+}

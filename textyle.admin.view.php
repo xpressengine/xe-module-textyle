@@ -113,12 +113,28 @@
 
         function dispTextyleAdminExportList(){
 			$args->page = Context::get('page');
-//			$args->export_status = 'R';
 			$output = executeQueryArray('textyle.getExportList',$args);			
 			Context::set('export_list',$output->data);
 			Context::set('page_navigation',$output->page_navigation);
             $this->setTemplateFile('textyle_export_list');
         }
- 
+
+		function dispTextyleAdminExtraMenu(){
+            $module_srl = Context::get('module_srl');
+
+			$oTextyleModel = &getModel('textyle');
+			$config = $oTextyleModel->getModulePartConfig($module_srl);
+			Context::set('config',$config);
+
+            // 서비스 모듈을 구함
+            $oModuleModel = &getModel('module');
+            $installed_module_list = $oModuleModel->getModulesXmlInfo();
+            foreach($installed_module_list as $key => $val) {
+                if($val->category != 'service') continue;
+                $service_modules[] = $val;
+            }
+            Context::set('service_modules', $service_modules);
+            $this->setTemplateFile('textyle_extra_menu_config');
+		}
     }
 ?>

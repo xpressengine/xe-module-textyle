@@ -119,6 +119,9 @@
 		<action name="dispTextyleToolConfigAddon" type="view" />
 		<action name="dispTextyleToolConfigData" type="view" />
 		<action name="dispTextyleToolConfigChangePassword" type="view" />
+		<action name="dispTextyleToolExtraMenuList" type="view" />
+		<action name="dispTextyleToolExtraMenuInsert" type="view" />
+
 		<action name="dispTextyleGuestbook" type="view" />
 		<action name="dispTextyleGuestbookReply" type="view" />
 		<action name="dispTextyleToolDashboard" type="view" />
@@ -172,6 +175,10 @@
 		<action name="procTextyleToolUserImageDelete" type="controller" />
 		<action name="procTextyleToolUserSkinExport" type="controller" />
 		<action name="procTextyleToolUserSkinImport" type="controller" />
+		<action name="procTextyleToolExtraMenuInsert" type="controller" />
+		<action name="procTextyleToolExtraMenuDelete" type="controller" />
+		<action name="procTextyleToolExtraMenuUpdate" type="controller" />
+		<action name="procTextyleToolExtraMenuSort" type="controller" />
 		<action name="procTextyleInsertBlogApi" type="controller" />
 		<action name="procTextyleDeleteBlogApi" type="controller" />
 		<action name="procTextyleRequestExport" type="controller" />
@@ -183,6 +190,7 @@
         <action name="dispTextyleAdminBlogApiConfig" type="view" standalone="true" />
         <action name="dispTextyleAdminDelete" type="view" standalone="true" />
         <action name="dispTextyleAdminExportList" type="view" standalone="true" />
+        <action name="dispTextyleAdminExtraMenu" type="view" standalone="true" />
 
 		<action name="procTextyleAdminCreate" type="controller" standalone="true" />
 		<action name="procTextyleAdminUpdate" type="controller" standalone="true" />
@@ -193,6 +201,7 @@
         <action name="procTextyleAdminInsertBlogApiServices" type="controller" standalone="true" />
 		<action name="procTextyleAdminDeleteExportTextyle" type="controller" standalone="true" />
         <action name="procTextyleToggleEnableAPI" type="controller" standalone="true" />
+        <action name="procTextyleAdminInsertExtraMenuConfig" type="controller" standalone="true" />
         <action name="getBlogApiService" type="model" />
     </actions>
 </module>

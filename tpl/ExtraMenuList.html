@@ -1,0 +1,60 @@
+<!--#include("_tool_header.html")-->
+<!--%import("css/pagination.css",optimized=false)-->
+<!--%load_js_plugin("ui")-->
+
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- contentHeader -->
+				<div class="contentHeader setupHeader lineBottom">
+					<h3 class="h3">{$lang->textyle_second_menus[5]['dispTextyleToolExtraMenuList']}</h3>
+				</div>
+				<!-- /contentHeader -->
+
+				<div class="listHeader">
+					<p class="info">{$lang->about_textyle_extra_menu}</p>
+				</div>
+			
+				<div class="setUp">
+				<table border="1" cellspacing="0" summary="{$lang->content_list}" class="tableData">
+				<thead>
+					<tr>
+						<th scope="col">{$lang->menu_name}</th> 
+						<th scope="col">{$lang->module}</th>
+						<th scope="col">-</th>
+					</tr>
+				</thead>
+					
+				<!--@if($config && $config->extra_menus)-->
+				<tbody class="sort">
+				<!--@foreach($config->extra_menus as $k => $menu)-->
+					<tr>
+						<td><a href="{getUrl('','mid',$k)}">{$menu->name}</a></td>
+						<td>{$menu->module_type}</td>
+						<td><input type="hidden" class="menu_mid" value="{$k}" />
+						<a href="{getUrl('','act','dispTextyleToolExtraMenuInsert','menu_mid',$k)}" class="button small"><span>{$lang->cmd_modify}</span></a>
+						<span class="button small"><button type="button" onclick="deleteExtraMenu('{$k}','{$lang->confirm_delete}')">{$lang->cmd_delete}</button></span>
+						</td>
+					</tr>
+				<!--@end-->
+				</tbody>
+				<!--@end-->
+				</table>
+				<div class="buttonArea"><a href="{getUrl('act','dispTextyleToolExtraMenuInsert')}" class="button black large"><span>{$lang->cmd_insert}</span></a></div>
+				</div>
+			</div>
+			<hr />
+			<!-- /Content -->
+
+			<!-- Extension -->
+			<!--#include("_tool_menu.html")-->
+			<!-- Extension -->
+			<script type="text/javascript">//<![CDATA[
+				jQuery('tbody.sort').sortable().bind('sortstop',function(e,ui){
+					var menu_mids = [];
+					jQuery('tbody.sort .menu_mid').each(function(){
+						menu_mids.push(jQuery(this).val());	
+					});
+					sortExtraMenu(menu_mids);
+				});
+			//]]></script>

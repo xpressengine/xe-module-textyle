@@ -402,5 +402,33 @@
             if($srl) $this->add('services',$output->data);
             return $output;
         }
-   }
+
+		function getModulePartConfig($module_srl=0){
+			static $configs = array();
+
+            $oModuleModel = &getModel('module');
+			$config = $oModuleModel->getModuleConfig('textyle');
+			if(!$config || !$config->allow_service) {
+				$config->allow_service = array('board'=>0,'page'=>0);
+			} 
+
+			if($module_srl){
+				$part_config = $oModuleModel->getModulePartConfig('textyle', $module_srl);
+				if(!$part_config){
+					$part_config = $config;
+				}else{
+					$vars = get_object_vars($part_config);
+					if($vars){
+						foreach($vars as $k => $v){
+							$config->{$k} = $v;
+						}
+					}
+				}
+			}
+
+			$configs[$module_srl] = $config;
+
+			return $configs[$module_srl];
+		}
+	}
 ?>

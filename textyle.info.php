@@ -27,7 +27,7 @@
         }
 
         function _loadFromDB() {
-            $oModuleModel = &getModel('module');
+            $oTextyleModel = &getModel('textyle');
 
             if(!$this->textyle_srl) return;
             $args->module_srl = $this->textyle_srl;
@@ -35,7 +35,7 @@
             if(!$output->toBool()||!$output->data) return;
             $this->setAttribute($output->data);
 
-            $config = $oModuleModel->getModulePartConfig('textyle', $this->module_srl);
+            $config = $oTextyleModel->getModulePartConfig($this->module_srl);
             if($config && count($config)) {
                 foreach($config as $key => $val) {
                     $this->add($key, $val);
