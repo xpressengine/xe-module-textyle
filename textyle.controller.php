@@ -1277,11 +1277,12 @@
 
             // 텍스타일 쓰기 옵션 저장
             $args->post_editor_skin = $vars->post_editor_skin ? $vars->post_editor_skin : $vars->etc_post_editor_skin;
-            $args->post_use_prefix = $vars->post_use_prefix;
-            $args->post_use_suffix = $vars->post_use_suffix;
+            $args->post_use_prefix = $vars->post_use_prefix =='Y' ? 'Y' : 'N';
+            $args->post_use_suffix = $vars->post_use_suffix =='Y' ? 'Y' : 'N';
             $args->post_prefix = $vars->post_prefix;
             $args->post_suffix = $vars->post_suffix;
-            $output = $this->updateTextyleInfo($this->module_srl,$args);
+			$args->module_srl = $this->module_srl;
+            $output = executeQuery('textyle.updateTextyleWriteConfig',$args);
             if(!$output->toBool()) return $output;
 
             // 폰트종류/ 크기 저장 (editor 모듈 이용)
