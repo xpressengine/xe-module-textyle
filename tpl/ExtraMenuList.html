@@ -25,22 +25,22 @@
 					</tr>
 				</thead>
 					
-				<!--@if($config && $config->extra_menus)-->
+				<!--@if($extra_menu_list)-->
 				<tbody class="sort">
-				<!--@foreach($config->extra_menus as $k => $menu)-->
+				<!--@foreach($extra_menu_list->data as $k => $menu)-->
 					<tr>
-						<td><a href="{getUrl('','mid',$k)}">{$menu->name}</a></td>
-						<td>{$menu->module_type}</td>
-						<td><input type="hidden" class="menu_mid" value="{$k}" />
-						<a href="{getUrl('','act','dispTextyleToolExtraMenuInsert','menu_mid',$k)}" class="button small"><span>{$lang->cmd_modify}</span></a>
-						<span class="button small"><button type="button" onclick="deleteExtraMenu('{$k}','{$lang->confirm_delete}')">{$lang->cmd_delete}</button></span>
+						<td><a href="{getUrl('','mid',$menu->mid)}">{$menu->name}</a></td>
+						<td>{$menu->module}</td>
+						<td><input type="hidden" name="" class="menu_mid" value="{$menu->mid}" />
+						<a href="{getUrl('','act','dispTextyleToolExtraMenuInsert','menu_mid',$menu->mid)}" class="button small"><span>{$lang->cmd_modify}</span></a>
+						<span class="button small"><button type="button" onclick="deleteExtraMenu('{$menu->mid}','{$lang->confirm_delete}')">{$lang->cmd_delete}</button></span>
 						</td>
 					</tr>
 				<!--@end-->
 				</tbody>
 				<!--@end-->
 				</table>
-				<div class="buttonArea"><a href="{getUrl('act','dispTextyleToolExtraMenuInsert')}" class="button black large"><span>{$lang->cmd_insert}</span></a></div>
+				<div class="buttonArea"><a href="{getUrl('','act','dispTextyleToolExtraMenuInsert')}" class="button black large"><span>{$lang->cmd_insert}</span></a></div>
 				</div>
 			</div>
 			<hr />

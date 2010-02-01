@@ -32,14 +32,24 @@
 						<th scope="row">{$lang->module}</th>
 						<td>
 							<!--@if($selected_extra_menu)-->
-								{$selected_extra_menu->module_type}
+								{$selected_extra_menu->module}
 							<!--@else-->
 							<select name="module_type">
 								<option>{$lang->cmd_select}</option> 
 								<!--@foreach($config->allow_service as $k => $v)-->
-								<option value="{$k}" <!--@if($v<1)-->disabled="disabled"<!--@end-->>{$k} [{sprintf($lang->msg_limit_module,$v-$used_extra_module[$k])}]</option>
+								<option value="{$k}" <!--@if($v<1)-->disabled="disabled"<!--@end-->>{$k} [{sprintf($lang->msg_limit_module,$v-$used_extra_menu_count[$k])}]</option>
 								<!--@end-->
 							</select>
+							<!--@end-->
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">{$lang->mid}</th>
+						<td>
+							<!--@if($selected_extra_menu)-->
+								{$selected_extra_menu->mid}
+							<!--@else-->
+							<input type="text" name="menu_mid" value="" />
 							<!--@end-->
 						</td>
 					</tr>

@@ -107,10 +107,12 @@
                 if($this->textyle->get('post_use_prefix')=='Y' && $this->textyle->get('post_prefix')) Context::set('post_prefix', $this->textyle->get('post_prefix'));
                 if($this->textyle->get('post_use_suffix')=='Y' && $this->textyle->get('post_suffix')) Context::set('post_suffix', $this->textyle->get('post_suffix'));
 
-				$extra_menus = array();
-				if($_extra_menus=$this->textyle->get('extra_menus')){
-					foreach($_extra_menus as $mid => $menu){
-						$extra_menus[$menu->name] = getUrl('','mid',$mid);
+				$extra_menus = array();				
+				$args->site_srl = $this->site_srl;
+				$output = executeQueryArray('textyle.getExtraMenus',$args);
+				if($output->toBool() && $output->data){
+					foreach($output->data as $i => $menu){
+						$extra_menus[$menu->name] = getUrl('','mid',$menu->mid);
 					}
 				}
 
@@ -1515,33 +1517,48 @@
 			$oTextyleModel = &getModel('textyle');
 			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
 			Context::set('config',$config);
+
+			$args->site_srl = $this->site_srl;
+			$output = executeQueryArray('textyle.getExtraMenus',$args);
+			if(!$output->toBool()) return $output;
+			Context::set('extra_menu_list',$output);
+
 		}
 
 		function dispTextyleToolExtraMenuInsert(){
 			$menu_mid = Context::get('menu_mid');
-
-			$oTextyleModel = &getModel('textyle');
-			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
-			Context::set('config',$config);
-
-			$used_extra_module = array();
-			if($config->extra_menus){
-				foreach($config->extra_menus as $k => $menu){
-					if($used_extra_module[$menu->module_type]){
-						$used_extra_module[$menu->module_type] += 1;
-					}else{
-						$used_extra_module[$menu->module_type] = 1;
-					}
+			if($menu_mid){
+				$oModuleModel = &getModel('module');
+				$module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
+				if(!$module_info) return new Object(-1,'msg_invalid_request');
+				
+				$args->module_srl = $module_info->module_srl;
+				$output = executeQuery('textyle.getExtraMenu',$args);
+				if($output->data){
+					$selected_extra_menu = $output->data;
 				}
 			}
-
-			Context::set('used_extra_module',$used_extra_module);
-			if($menu_mid && $config && $config->extra_menus && $config->extra_menus[$menu_mid]){
-				Context::set('selected_extra_menu',$config->extra_menus[$menu_mid]);
+			if($selected_extra_menu){
+				Context::set('selected_extra_menu',$selected_extra_menu);
 				Context::addJsFilter($this->module_path.'tpl/filter', 'modify_extra_menu.xml');
 			}else{
 				Context::addJsFilter($this->module_path.'tpl/filter', 'insert_extra_menu.xml');
 			}
+			$oTextyleModel = &getModel('textyle');
+			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
+			Context::set('config',$config);
+
+			$used_extra_menu_count = array();
+			$args->site_srl = $this->site_srl;
+			$output = executeQuery('textyle.getExtraMenus',$args);
+			if($output->data){
+				foreach($output->data as $k => $menu){
+					if($config->allow_service[$menu->module]){
+						$used_extra_menu_count[$menu->module] += 1;
+					}
+				}
+			}
+			Context::set('used_extra_menu_count',$used_extra_menu_count);
 		}
     }
 ?>

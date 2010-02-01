@@ -1770,17 +1770,15 @@
                 Context::set('textyle_mode', 'module');
 
 				$extra_menus = array();				
-				if($_extra_menus=$textyle->get('extra_menus')){
-					foreach($_extra_menus as $mid => $menu){
-						$extra_menus[$menu->name] = getUrl('','mid',$mid);
+				$args->site_srl = $textyle->site_srl;
+				$output = executeQueryArray('textyle.getExtraMenus',$args);
+				if($output->toBool() && $output->data){
+					foreach($output->data as $i => $menu){
+						$extra_menus[$menu->name] = getUrl('','mid',$menu->mid);
 					}
 				}
-
                 // 추가 메뉴
                 Context::set('extra_menus', $extra_menus);
-
-                // browser title 지정
-                Context::setBrowserTitle($textyle->get('browser_title'));
             }
             return new Object();
         }
@@ -1943,8 +1941,9 @@
 
 		function procTextyleToolExtraMenuInsert(){
             $menu_name = trim(Context::get('menu_name'));
+			$menu_mid = Context::get('menu_mid');
 			$module_type = Context::get('module_type');
-			if(!$menu_name || !$module_type) return new Object(-1,'msg_invalid_request');
+			if(!$menu_name || !$module_type || !$menu_mid) return new Object(-1,'msg_invalid_request');
 
             $oModuleModel = &getModel('module');
 			$oTextyleModel = &getModel('textyle');
@@ -1956,46 +1955,32 @@
 			$module_count = $oModuleModel->getModuleCount($this->site_srl, $module_type);
 			if($module_count >= $config->allow_service[$module_type]) return new Object(-1,'msg_module_count_exceed');
 			// 모듈 등록
-			$idx = $module_count+1;
 			$args->site_srl = $this->site_srl;
-			$args->mid = $module_type.'_'.$idx;
+			$args->mid = $menu_mid;
 			$args->browser_title = $menu_name;
 			$args->module = $module_type;
 			$output = $oModuleController->insertModule($args);
-			while(!$output->toBool()) {
-				$idx++;
-				$args->mid = $module_type.'_'.$idx;
-				$output = $oModuleController->insertModule($args);
-			}
 			if(!$output->toBool()) return $output;
 
-			$menu->mid = $args->mid;
 			$menu->name = $menu_name;
-			$menu->module_type = $module_type;
-
-			$config->extra_menus[$args->mid] = $menu;
-			$oModuleController->insertModulePartConfig('textyle',$this->module_srl,$config);
+			$menu->site_srl = $this->site_srl;
+			$menu->module_srl = $output->get('module_srl');
+			$menu->list_order = $menu->module_srl;
+			$output = executeQuery('textyle.insertExtraMenu',$menu);
 		}
 
 		function procTextyleToolExtraMenuUpdate(){
             $menu_name = trim(Context::get('menu_name'));
-            $menu_mid = Context::get('menu_mid');
+            $menu_mid= Context::get('menu_mid');
 			if(!$menu_name || !$menu_mid) return new Object(-1,'msg_invalid_request');
 
-			$oTextyleModel = &getModel('textyle');
-			$oModuleController = &getController('module');
+			$oModuleModel = &getModel('module');
+			$module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
+			if(!$module_info) return new Object(-1,'msg_invalid_request');
 
-			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
-
-			if($config->extra_menus){
-				$extra_menus = array();
-				foreach($config->extra_menus as $k => $m){
-					if($k == $menu_mid) $m->name = $menu_name;
-					$extra_menus[$k] = $m;
-				}
-				$config->extra_menus = $extra_menus;
-				$oModuleController->insertModulePartConfig('textyle',$this->module_srl,$config);
-			}
+			$args->name = $menu_name;
+			$args->module_srl = $module_info->module_srl;
+			$output = executeQuery('textyle.updateExtraMenuName',$args);
 		}
 
 		function procTextyleToolExtraMenuDelete(){
@@ -2003,45 +1988,42 @@
 			if(!$menu_mid) return new Object(-1,'msg_invalid_request');
 
             $oModuleModel = &getModel('module');
-			$oTextyleModel = &getModel('textyle');
 			$oModuleController = &getController('module');
-
-			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
 
 			$module_info = $oModuleModel->getModuleInfoByMid($menu_mid, $this->site_srl);
 			if($module_info && $module_info->module_srl) $output = $oModuleController->deleteModule($module_info->module_srl);
 
-			if($config->extra_menus){
-				$extra_menus = array();
-				foreach($config->extra_menus as $k => $m){
-					if($k!=$menu_mid){
-						$extra_menus[$k] = $m;
-					}
-				}
-				$config->extra_menus = $extra_menus;
-				$oModuleController->insertModulePartConfig('textyle',$this->module_srl,$config);
-			}
+			$args->module_srl = $module_info->module_srl;
+			$output = executeQuery('textyle.deleteExtraMenu',$args);
 		}
 
 		function procTextyleToolExtraMenuSort(){
 			$menu_mids = Context::get('menu_mids');
 			if(!$menu_mids) return new Object(-1,'msg_invalid_request');
+
+			$order = array();
 			$menu_mids = explode(',',$menu_mids);
+			foreach($menu_mids as $k => $mid){
+				$order[$mid] = $k;
+			}
 
-			$oTextyleModel = &getModel('textyle');
-			$oModuleController = &getController('module');
+			$args->site_srl = $this->site_srl;
+			$output = executeQueryArray('textyle.getExtraMenus',$args);
+			if(!$output->toBool() || !$output->data) return $output;
+	
+			foreach($output->data as $k => $menu){
+				$order[$menu->mid] = $menu;
+			}
 
-			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
-			if($config->extra_menus){
-				$extra_menus = array();
-
-				foreach($menu_mids as $menu_mid){
-					$extra_menus[$menu_mid] = $config->extra_menus[$menu_mid];
+			$list_order = 0;
+			foreach($order as $menu){
+				if($list_order != $menu->list_order){
+					$args->module_srl = $menu->module_srl;
+					$args->list_order = $list_order;
+					$output = executeQuery('textyle.updateExtraMenuListOrder',$args);
 				}
-				$config->extra_menus = $extra_menus;
-				$oModuleController->insertModulePartConfig('textyle',$this->module_srl,$config);
+				$list_order++;
 			}
 		}
-
     }
 ?>
