@@ -6,7 +6,7 @@
      **/
 
     $lang->textyle = 'Textyle';
-    $lang->about_textyle = 'Textyle是運作於 XpressEngine的部落格模組。';
+    $lang->about_textyle = 'Textyle是運作於 XpressEngine 的部落格模組。';
     $lang->msg_requried_version = "Textyle需要 XE Core %s 以上的版本。";
 
 	$lang->cmd_open_id = 'OpenID 登入';
@@ -84,29 +84,29 @@
     $lang->about_font_size = 'You can choose default font size (ex: 12px or 1em - unit should be included)';
     $lang->about_textyle_editor = 'Textyle\'s default editor: You can edit each paragraph separately in your posts';
     $lang->etc_editor = '其他編輯器';
-    $lang->about_etc_editor = 'Rich text editors.';
-    $lang->set_editor_components = 'Configure Editor Components';
+    $lang->about_etc_editor = '所見即得編輯器';
+    $lang->set_editor_components = '編輯器元件設定';
     $lang->set_prefix = '頁首設定';
-    $lang->about_prefix = 'Each post contains following content. (可使用 HTML)';
+    $lang->about_prefix = '每篇主題都會包含以下內容。(可使用 HTML)';
     $lang->set_suffix = '頁尾設定';
-    $lang->about_suffix = 'Each post contains following content. (可使用 HTML)';
-    $lang->blog_first_page = 'First Page';
+    $lang->about_suffix = '每篇主題都會包含以下內容。(可使用 HTML)';
+    $lang->blog_first_page = '部落格首頁';
     $lang->blog_display_target = '顯示目標';
     $lang->content_body = '本文';
     $lang->content_summary = '摘要';
     $lang->content_list = '列表';
     $lang->blog_display_count = '文章數量';
-    $lang->feed_format = 'Feed type';
-    $lang->rss_type = 'RSS type';
+    $lang->feed_format = 'Feed 類型';
+    $lang->rss_type = 'RSS 類型';
     $lang->rss_total = '主題 + 所有內容';
     $lang->rss_summary = '主題 + 摘要';
-    $lang->visitor_editor_style = 'Input form for Comments and Guestbook';
+    $lang->visitor_editor_style = '輸入評論與留言板樣式';
     $lang->host = '主機';
-    $lang->referer = 'Referer';
-    $lang->link_word = 'Linked word';
-    $lang->link_document = 'Linked document';
+    $lang->referer = '訪問路徑';
+    $lang->link_word = '關鍵字連結';
+    $lang->link_document = '文章連結';
     $lang->visitor = '訪客';
-    $lang->about_referer = 'You can see visitors\' referer (the route they come through).';
+    $lang->about_referer = '可檢視訪客的訪問路徑';
     $lang->website_address = '網址';
     $lang->required = '必填';
     $lang->selected = '選填';
@@ -131,7 +131,7 @@
     $lang->manage_trackback ='引用管理';
     $lang->manage_guestbook ='留言板管理';
     $lang->manage_comment ='回覆管理';
-    $lang->document_list ='Document List';
+    $lang->document_list ='文章列表';
     $lang->type = '類型';
     $lang->trackback_site = '引用/ 網站';
     $lang->total_result_count = '全部 <strong>%d</strong>';
@@ -183,12 +183,12 @@
     $lang->twitter_password = 'Twitter 密碼';
     $lang->about_twitter_password = '輸入 Twitter 密碼';
 
-    $lang->blogapi_publish = 'BlogAPI 발행';
+    $lang->blogapi_publish = 'BlogAPI 發佈';
     $lang->about_blog_api = '텍스타일로 작성한 글을 BlogAPI를 이용하여 다른 블로그 또는 게시판등에 동시 발행/ 수정/ 삭제할 수 있습니다<br/>지원하는 BlogAPI는 MetaWebLog 뿐이며 다른 API는 곧 지원할 수 있도록 하겠습니다<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
     $lang->cmd_registration_blogapi = 'BlogAPI 사이트 등록';
     $lang->cmd_modification_blogapi = 'BlogAPI 사이트 정보 수정';
     $lang->blogapi = 'Blog API';
-    $lang->blogapi_service = 'Blog API 서비스';
+    $lang->blogapi_service = 'Blog API 功能';
     $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
     $lang->blogapi_hosted = '서비스 블로그';
     $lang->blogapi_custom = '직접 입력';
@@ -213,7 +213,7 @@
     $lang->blogapi_api_url = 'API URL';
     $lang->target_site_url = '사이트 주소';
     $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
-    $lang->blogapi_published = '발행 수';
+    $lang->blogapi_published = '已發佈';
     $lang->blogapi_user_id = '사용자 아이디';
     $lang->about_blogapi_user_id = 'API 대상 사이트에서 사용하는 사용자 아이디를 입력해주세요';
     $lang->blogapi_password = '사용자 비밀번호';
@@ -237,9 +237,9 @@
         'Choose proper type (e.g., text, image, movie), edit it and save',
         'Then, those ingredients will be stored in this page'
     );
-    $lang->basket_management = '휴지통 관리';
-    $lang->basket_list = '휴지통 보관 목록';
-    $lang->basket_empty = '휴지통이 깨끗 하네요. ^^;';
+    $lang->basket_management = '垃圾桶管理';
+    $lang->basket_list = '垃圾桶列表';
+    $lang->basket_empty = '垃圾桶已清空。 ^^;';
 
     $lang->document_all = '全部檢視';
     $lang->document_published = '檢視已發佈';
@@ -279,11 +279,11 @@
     $lang->today = '今天';
     $lang->day_current = '當天';
     $lang->day_before = '前天';
-    $lang->none_visitor = 'There is no visitor for the duration.';
+    $lang->none_visitor = '期間內沒有訪客。';
     $lang->about_status = array(
-        'day'=>'You can see the number of visitors by hours.',
-        'week'=>'You can see the number of visitors by day over a week.',
-        'month'=>'You can see the number of visitors by month over a year.',
+        'day'=>'可觀看每小時的訪客數量。',
+        'week'=>'可觀看每週的訪客數量。',
+        'month'=>'可觀看每月的訪客數量。',
     );
     $lang->about_unit = array(
         'day'=>'時間',
@@ -299,12 +299,12 @@
     $lang->rank = '排行';
     $lang->user = '用戶';
     $lang->guestbook = '留言';
-	$lang->add_denylist = 'Add it to denied list';
+	$lang->add_denylist = '新增至過濾列表';
     $lang->summary = 'Summary';
     $lang->no_supporter = '目前沒有 supporter.';
     $lang->about_popular = 'Popular contents mean posts which have many views, comments, pingbacks and trackbacks.';
-    $lang->popular_rank = 'Popular Contents Rank';
-    $lang->read = 'View';
+    $lang->popular_rank = '熱門內容排行';
+    $lang->read = '檢視';
     $lang->no_popular = '目前沒有熱門內容';
     $lang->resize_vertical = 'Resize input form';
 
@@ -396,10 +396,10 @@
     $lang->cmd_generate_widget_code = '建立Widget原始碼';
 
     $lang->msg_already_used_url = 'The URL is already being used.';
-    $lang->alert_reset_skin = 'If you reset skin, all the HTML&middot;CSS you inputted will be removed.\n\nAre you sure to reset it?';
+    $lang->alert_reset_skin = '重置面板將會刪除所有修改過的 HTML&middot;CSS 原始碼。\n\n確定要重置嗎?';
     $lang->msg_used_disabled_function = 'It contains forbidden functions.';
 
-	$lang->msg_close_before_write = "Changed contents are not saved.";
+	$lang->msg_close_before_write = "變更的內容尚未被儲存。";
 
     $lang->no_post = '目前沒有文章， <a href="%s">寫篇文章吧!</a>';
     $lang->no_trash = '垃圾筒已清空!';
@@ -430,7 +430,7 @@
 	$lang->msg_input_homepage = '請輸入網址';
 	$lang->msg_confirm_delete_post = '臨時儲存的文章無法復原。確定要刪除嗎?';
 
-    $lang->sample_title = '歡迎來到Textyle的世界!';
+    $lang->sample_title = '歡迎來到 Textyle 的世界!';
     $lang->sample_tags = 'textyle,  Textyle editor,  a writing ingredients collector';
     $lang->msg_preparation = '準備中';
     $lang->msg_not_user = '用戶不存在';
@@ -441,20 +441,20 @@
     $lang->msg_confirm_textyle_init = '確定要重置嗎?';
 
 	$lang->textyle_skin_userimage = '用戶相片';
-	$lang->msg_check_userimage = '允許上傳gif, png, jpg, swf等檔案。';
+	$lang->msg_check_userimage = '允許上傳 gif, png, jpg, swf 等檔案。';
     $lang->cmd_textyle_skin_export = '匯出';
     $lang->textyle_skin_import = '匯入面板';
     $lang->about_textyle_skin_import = '로컬 폴더에 있는 사용자 정의 스킨을 원격으로 업로드 합니다. 현재 스킨은 삭제됩니다.';
 
-	$lang->success_upload = '업로드 되었습니다.';
-	$lang->cmd_textyle_export_request ='백업신청내역';
-	$lang->textyle_export_recode = '백업신청내역';
-	$lang->textyle_export_waiting = '신청중';
-	$lang->textyle_export_request = '백업신청하기';
-	$lang->textyle_export_type = '데이타 타입';
-	$lang->textyle_export_date = '데이타 생성시간';
-	$lang->textyle_export_file = '데이타 파일';
-	$lang->cmd_textyle_export_file = '내보내기';
+	$lang->success_upload = '上傳成功';
+	$lang->cmd_textyle_export_request ='備份記錄';
+	$lang->textyle_export_recode = '備份記錄';
+	$lang->textyle_export_waiting = '審查中';
+	$lang->textyle_export_request = '備份記錄';
+	$lang->textyle_export_type = '匯出類型';
+	$lang->textyle_export_date = '檔案建立時間';
+	$lang->textyle_export_file = '資料檔案';
+	$lang->cmd_textyle_export_file = '匯出檔案';
 
 	$lang->menu_name = '메뉴명';
 	$lang->msg_module_count_exceed = '추가 가능한 해당 모듈 수를 초과 하였습니다.';
