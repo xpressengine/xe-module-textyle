@@ -463,4 +463,5 @@
     $lang->about_textyle_extra_menu = 'XpressEngine에 설치된 모듈을 텍스타일 메뉴로 추가할 수 있습니다.';
     $lang->cmd_textyle_extra_menu_config = '추가메뉴 설정';
     $lang->textyle_extra_menu_limit_count = '최대 생성 수';
+	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
 ?>

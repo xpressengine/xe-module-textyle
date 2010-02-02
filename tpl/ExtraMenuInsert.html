@@ -37,19 +37,21 @@
 							<select name="module_type">
 								<option>{$lang->cmd_select}</option> 
 								<!--@foreach($config->allow_service as $k => $v)-->
-								<option value="{$k}" <!--@if($v<1)-->disabled="disabled"<!--@end-->>{$k} [{sprintf($lang->msg_limit_module,$v-$used_extra_menu_count[$k])}]</option>
+								{@$_left=$v-$used_extra_menu_count[$k]}
+								<option value="{$k}" <!--@if($v<1 || $_left<1)-->disabled="disabled"<!--@end-->>{$k} [{sprintf($lang->msg_limit_module,$_left)}]</option>
 								<!--@end-->
 							</select>
 							<!--@end-->
 						</td>
 					</tr>
 					<tr>
-						<th scope="row">{$lang->mid}</th>
+						<th scope="row">{$lang->url}</th>
 						<td>
 							<!--@if($selected_extra_menu)-->
-								{$selected_extra_menu->mid}
+								{getFullUrl('',$selected_extra_menu->mid)}
 							<!--@else-->
-							<input type="text" name="menu_mid" value="" />
+								{str_replace('__mid__','<input type="text" name="menu_mid" value="" class="inputTypeText" />',getFullUrl('','mid','__mid__'))}
+								<p>{$lang->msg_limit_textyle_extra_mid}</p>
 							<!--@end-->
 						</td>
 					</tr>

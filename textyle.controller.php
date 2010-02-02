@@ -2025,5 +2025,8 @@
 				$list_order++;
 			}
 		}
+
+		function procTextyleToolLive(){
+		}
     }
 ?>

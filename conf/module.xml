@@ -54,6 +54,8 @@
 		<permission action="dispTextyleToolConfigAddon" target="manager" />
 		<permission action="dispTextyleToolConfigData" target="manager" />
 		<permission action="dispTextyleToolConfigChangePassword" target="manager" />
+		<permission action="dispTextyleToolExtraMenuList" target="manager" />
+		<permission action="dispTextyleToolExtraMenuInsert" target="manager" />
 
 		<permission action="getTextyleAPITest" target="manager" />
 
@@ -70,6 +72,11 @@
 		<permission action="procTextyleToolUserImageDelete" target="manager" />
 		<permission action="procTextyleToolUserSkinExport" target="manager" />
 		<permission action="procTextyleToolUserSkinImport" target="manager" />
+		<permission action="procTextyleToolExtraMenuInsert" target="manager" />
+		<permission action="procTextyleToolExtraMenuDelete" target="manager" />
+		<permission action="procTextyleToolExtraMenuUpdate" target="manager" />
+		<permission action="procTextyleToolExtraMenuSort" target="manager" />
+		<permission action="procTextyleToolLive" target="manager" />
 		<permission action="procTextyleInsertBlogApi" target="manager" />
 		<permission action="procTextyleDeleteBlogApi" target="manager" />
 		<permission action="procTextyleToggleEnableAPI" target="manager" />
@@ -179,6 +186,7 @@
 		<action name="procTextyleToolExtraMenuDelete" type="controller" />
 		<action name="procTextyleToolExtraMenuUpdate" type="controller" />
 		<action name="procTextyleToolExtraMenuSort" type="controller" />
+		<action name="procTextyleToolLive" type="controller" />
 		<action name="procTextyleInsertBlogApi" type="controller" />
 		<action name="procTextyleDeleteBlogApi" type="controller" />
 		<action name="procTextyleRequestExport" type="controller" />

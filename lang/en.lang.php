@@ -464,4 +464,5 @@
     $lang->about_textyle_extra_menu = 'You may add modules installed on XpressEngine as a menuitem for your Textyle.';
     $lang->cmd_textyle_extra_menu_config = 'Additional Menu';
     $lang->textyle_extra_menu_limit_count = 'Maximum Number';
+	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
 ?>

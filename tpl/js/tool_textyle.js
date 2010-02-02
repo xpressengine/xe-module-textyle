@@ -1241,3 +1241,7 @@ function sortExtraMenu(menu_mids){
 	var params = {'menu_mids':menu_mids.join(',')};
 	exec_xml('textyle', 'procTextyleToolExtraMenuSort', params, function(){}, response_tags);
 }
+
+function isLive(){
+	exec_xml('textyle', 'procTextyleToolLive');
+}

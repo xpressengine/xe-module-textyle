@@ -462,4 +462,5 @@
     $lang->cmd_textyle_extra_menu_config = '추가메뉴 설정';
     $lang->textyle_extra_menu_limit_count = '최대 생성 수';
 	$lang->cmd_textyle_export_file = '내보내기';
+	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
 ?>
