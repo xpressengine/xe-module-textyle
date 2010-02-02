@@ -353,6 +353,7 @@
             'dispTextyleToolConfigAddon'=>'Addons',
             'dispTextyleToolConfigData'=>'Data',
             'dispTextyleToolConfigChangePassword'=>'Change Password',
+            'dispTextyleToolExtraMenuList'=>'Additional Menu',
         ),
     );
 
@@ -432,35 +433,35 @@
 	$lang->msg_confirm_delete_post = 'Temporary saved posts cannot be recovered. Are you sure to delete it?';
 
     $lang->sample_title = 'Welcome to Textyle world!';
-    $lang->sample_tags = 'Textyle ,  Textyle Editor,  Writing Ingredients Collector';
+    $lang->sample_tags = 'Textyle, Textyle Editor, Writing Ingredients Collector';
     $lang->msg_preparation = 'In preparation';
     $lang->msg_not_user = 'No one matches.';
-    $lang->success_textyle_init = '텍스타일을 초기화 하였습니다.';
-	$lang->textyle_init = '초기화';
-    $lang->cmd_textyle_init = '텍스타일을 초기화 합니다.';
-    $lang->msg_textyle_init_about = '포스트/댓글/트랙백, 방명록, 레이아웃 정보를 모두 삭제 및 초기화를 합니다. 초기화 후 복구는 불가능 합니다.';
-    $lang->msg_confirm_textyle_init = '초기화를 하시겠습니까?';
+    $lang->success_textyle_init = 'Resetting textyle is completed';
+	$lang->textyle_init = 'Reset';
+    $lang->cmd_textyle_init = 'Reset Textyle';
+    $lang->msg_textyle_init_about = 'Reset all information including postings, comments, trackbacks, guestbook and layout information. It is impossible to recover the data after resetting your Textyle.';
+    $lang->msg_confirm_textyle_init = 'Are you sure to reset?';
 
-	$lang->textyle_skin_userimage = '사용자 이미지';
-	$lang->msg_check_userimage = 'gif, png, jpg, swf 파일만 가능합니다.';
-    $lang->cmd_textyle_skin_export = '스킨 백업';
-    $lang->textyle_skin_import = '스킨 복원';
-    $lang->about_textyle_skin_import = '로컬 폴더에 있는 사용자 정의 스킨을 원격으로 업로드 합니다. 현재 스킨은 삭제됩니다.';
+	$lang->textyle_skin_userimage = 'User Image';
+	$lang->msg_check_userimage = 'You may upload gif, png, jpg, swf file.';
+    $lang->cmd_textyle_skin_export = 'Backup skin';
+    $lang->textyle_skin_import = 'Restore skin';
+    $lang->about_textyle_skin_import = 'It uploads customized skin from local folder, and current skin will be removed.';
 
-	$lang->success_upload = '업로드 되었습니다.';
-	$lang->cmd_textyle_export_request ='백업신청내역';
-	$lang->textyle_export_recode = '백업신청내역';
-	$lang->textyle_export_waiting = '신청중';
-	$lang->textyle_export_request = '백업신청하기';
-	$lang->textyle_export_type = '데이타 타입';
-	$lang->textyle_export_date = '데이타 생성시간';
-	$lang->textyle_export_file = '데이타 파일';
-	$lang->cmd_textyle_export_file = '내보내기';
+	$lang->success_upload = 'It is successfully uploaded.';
+	$lang->cmd_textyle_export_request ='Backup Request';
+	$lang->textyle_export_recode = 'Backup Requests';
+	$lang->textyle_export_waiting = 'Waiting';
+	$lang->textyle_export_request = 'Request backup';
+	$lang->textyle_export_type = 'Backup Data type';
+	$lang->textyle_export_date = 'Backup Date';
+	$lang->textyle_export_file = 'Data File';
+	$lang->cmd_textyle_export_file = 'Backup';
 
-	$lang->menu_name = '메뉴명';
-	$lang->msg_module_count_exceed = '추가 가능한 해당 모듈 수를 초과 하였습니다.';
-	$lang->msg_limit_module = '%s개 남음';
-    $lang->about_textyle_extra_menu = 'XpressEngine에 설치된 모듈을 텍스타일 메뉴로 추가할 수 있습니다.';
-    $lang->cmd_textyle_extra_menu_config = '추가메뉴 설정';
-    $lang->textyle_extra_menu_limit_count = '최대 생성 수';
+	$lang->menu_name = 'Menu Name';
+	$lang->msg_module_count_exceed = 'You cannot add this type of module anymore.';
+	$lang->msg_limit_module = '%s module(s) available';
+    $lang->about_textyle_extra_menu = 'You may add modules installed on XpressEngine as a menuitem for your Textyle.';
+    $lang->cmd_textyle_extra_menu_config = 'Additional Menu';
+    $lang->textyle_extra_menu_limit_count = 'Maximum Number';
 ?>

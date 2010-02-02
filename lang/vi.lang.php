@@ -358,6 +358,7 @@
             'dispTextyleToolConfigAddon'=>'Addon',
             'dispTextyleToolConfigData'=>'Dữ liệu',
             'dispTextyleToolConfigChangePassword'=>'Thay đổi mật khẩu',
+            'dispTextyleToolExtraMenuList'=>'Additional Menu',
         ),
     );
 

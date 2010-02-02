@@ -353,6 +353,7 @@
             'dispTextyleToolConfigAddon'=>'插件管理',
             'dispTextyleToolConfigData'=>'备份&middot;导入',
             'dispTextyleToolConfigChangePassword'=>'修改密码',
+            'dispTextyleToolExtraMenuList'=>'Additional Menu',
         ),
     );
 

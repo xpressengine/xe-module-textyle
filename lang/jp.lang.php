@@ -354,6 +354,7 @@
             'dispTextyleToolConfigAddon'=>'アドオン管理',
             'dispTextyleToolConfigData'=>'データ管理',
             'dispTextyleToolConfigChangePassword'=>'パスワード変更',
+            'dispTextyleToolExtraMenuList'=>'Additional Menu',
         ),
     );
 
