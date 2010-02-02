@@ -223,8 +223,9 @@
             if(in_array(strtolower('dispTextyleToolConfigInfo'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
             // 텍스타일 정보 수정
-            $val = Context::gets('textyle_title','textyle_content','timezone');
-            $output = $this->updateTextyleInfo($this->module_srl,$val);
+            $args = Context::gets('textyle_title','textyle_content','timezone');
+			$args->module_srl = $this->module_srl;
+            $output = executeQuery('textyle.updateTextyleInfo',$args);
             if(!$output->toBool()) return $output;
 
             // 모듈정보의 browser_title 수정
@@ -234,6 +235,7 @@
             if(!$output->toBool()) return $output;
 
             // 언어 변경
+			unset($args);
             $args->index_module_srl = $this->module_srl;
             $args->default_language = Context::get('language');
             $args->site_srl = $this->site_srl;
