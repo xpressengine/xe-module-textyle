@@ -441,7 +441,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .replyForm span.url{ color:#8b8b8b; font-size:11px; margin:0 10px 0 0;}
 
 /* Pagination Reset */
-.pagination{ padding:15px 0; text-align:center; *zoom:1;}
+.pagination{ padding:15px 0; margin:15px 0 !important; text-align:center; *zoom:1; position:static !important;}
 .pagination:after{ content:""; display:block; clear:both;}
 .pagination *{ margin:0; padding:0;}
 .pagination img{ border:0;}
