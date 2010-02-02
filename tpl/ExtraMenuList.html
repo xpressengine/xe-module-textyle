@@ -28,7 +28,7 @@
 				<!--@if($extra_menu_list)-->
 				<tbody class="sort">
 				<!--@foreach($extra_menu_list->data as $k => $menu)-->
-					<tr>
+					<tr style="cursor:n-resize">
 						<td><a href="{getUrl('','mid',$menu->mid)}">{$menu->name}</a></td>
 						<td>{$menu->module}</td>
 						<td><input type="hidden" name="" class="menu_mid" value="{$menu->mid}" />

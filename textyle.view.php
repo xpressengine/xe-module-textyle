@@ -1550,7 +1550,8 @@
 
 			$used_extra_menu_count = array();
 			$args->site_srl = $this->site_srl;
-			$output = executeQuery('textyle.getExtraMenus',$args);
+			$output = executeQueryArray('textyle.getExtraMenus',$args);
+
 			if($output->data){
 				foreach($output->data as $k => $menu){
 					if($config->allow_service[$menu->module]){
@@ -1558,6 +1559,7 @@
 					}
 				}
 			}
+
 			Context::set('used_extra_menu_count',$used_extra_menu_count);
 		}
     }
