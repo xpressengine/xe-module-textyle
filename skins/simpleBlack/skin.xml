@@ -16,8 +16,8 @@
     <description xml:lang="jp">
         テキスタイルの基本スキンの一つです。 Simple Lineスキンに어두운背景とグレーラインを加味したシンプルなスキンです。 写真を主に携わるフォトグラファーにぴったりのスキンです。 コンテンツ部分の左右配置を変更したい場合はHTML編集エディターにて「class="ce"」を「class="ec"」差し替えてください。
     </description>
-    <version>1.2</version>
-    <date>2010-01-22</date>
+    <version>1.2.3</version>
+    <date>2010-02-03</date>
 
     <author email_address="dece24@gmail.com" link="http://naradesign.net/">
         <name xml:lang="ko">정찬명</name>

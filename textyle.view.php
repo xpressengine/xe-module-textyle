@@ -12,7 +12,7 @@
          * @brief 초기화
          **/
         function init() {
-            if(!$this->checkXECoreVersion('1.4.0.2')) return $this->stop(sprintf(Context::getLang('msg_requried_version'),'1.4.0.2'));
+            if(!$this->checkXECoreVersion('1.4.0.3')) return $this->stop(sprintf(Context::getLang('msg_requried_version'),'1.4.0.3'));
 
             $oTextyleModel = &getModel('textyle');
             $oTextyleController = &getController('textyle');
