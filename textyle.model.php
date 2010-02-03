@@ -409,7 +409,7 @@
             $oModuleModel = &getModel('module');
 			$config = $oModuleModel->getModuleConfig('textyle');
 			if(!$config || !$config->allow_service) {
-				$config->allow_service = array('board'=>0,'page'=>0);
+				$config->allow_service = array('board'=>1,'page'=>1);
 			} 
 
 			if($module_srl){
