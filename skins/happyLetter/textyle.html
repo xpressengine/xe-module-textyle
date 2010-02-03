@@ -96,7 +96,7 @@
                         <ol class="feedbackOrder">
                             <!--@foreach($guestbook_list as $key => $val)-->
                             <!--@if($modify == $val->textyle_guestbook_srl && $textyle->isEnableGuestbook())-->
-                            <li class="item">
+                            <li class="item replyForm">
                                 <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
                                     <input name="mid" type="hidden" value="{$mid}" />
                                     <input type="hidden" name="content" value="{htmlspecialchars($val->content)}" />
