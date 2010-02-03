@@ -2029,6 +2029,7 @@
 		}
 
 		function procTextyleToolLive(){
+			$_SESSION['live'] = time();
 		}
     }
 ?>
