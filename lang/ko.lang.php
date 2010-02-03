@@ -463,4 +463,6 @@
     $lang->cmd_textyle_extra_menu_config = '추가메뉴 설정';
     $lang->textyle_extra_menu_limit_count = '최대 생성 수';
     $lang->msg_limit_textyle_extra_mid ='영문+[영문+숫자+_] 만 가능합니다.';
+
+	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
 ?>

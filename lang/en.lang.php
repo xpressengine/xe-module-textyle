@@ -465,4 +465,6 @@
     $lang->cmd_textyle_extra_menu_config = 'Additional Menu';
     $lang->textyle_extra_menu_limit_count = 'Maximum Number';
 	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
+
+	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
 ?>

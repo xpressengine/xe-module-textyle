@@ -127,7 +127,8 @@
 								<th scope="row">
 									<label for="postURL">{$lang->post_url}</label>
 								</th>
-								<td class="title">{$permalink}<input name="alias" type="text" class="inputText" id="postURL" value="{$alias}" onblur="checkAlias(this.value,'{$alias}')"/>
+								<td class="title">
+								{str_replace('__entry__',"<input name=\"alias\" type=\"text\" class=\"inputText\" style=\"width:200px\" id=\"postURL\" value=\"$alias\" onblur=\"checkAlias(this.value,'$alias')\"/>",getFullUrl('','mid',$mid,'entry','__entry__'))}
 									<input type="hidden" name="use_alias" value="N"/>
 									<em class="msg_used_alias" style="display:none">{$lang->msg_already_used_url}</em></td>
 							</tr>
@@ -171,9 +172,10 @@
 					<!--@end-->
 					<!--@end-->
 					<fieldset class="optionMicroBlog">
+<!--@if($oTextyle->getEnableMe2day()||$oTextyle->getEnableTwitter())--> 
 						<legend>{$lang->posting_option} - Micro Blog</legend>
 						<table border="1" cellspacing="0" summary="{$lang->posting_option}" class="tableData">
-							<caption class="check">{$lang->ask_micro_publish}</caption>
+							<caption class="check">{$lang->ask_micro_publish} </caption>
 							<tr class="first">
 								<th scope="row">{$lang->noti_publish}</th>
 								<td class="title">
@@ -182,6 +184,10 @@
 								</td>
 							</tr>
 						</table>
+<!--@else-->
+
+						<p>&middot; {sprintf($lang->msg_microblog_setup,"<a href=\"" . getUrl('','mid',$mid,'act','dispTextyleToolConfigCommunication') . "\">" . $lang->textyle_second_menus[5]['dispTextyleToolConfigCommunication'] . "</a>")}
+<!--@end-->
 					</fieldset>
 				</fieldset>
 				<fieldset class="visualFieldset">
