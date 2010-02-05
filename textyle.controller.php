@@ -230,7 +230,7 @@
 
             // 모듈정보의 browser_title 수정
             $module_info = $oModuleModel->getModuleInfoByModuleSrl($this->module_srl);
-            $module_info->browser_title = $val->textyle_title;
+            $module_info->browser_title = $args->textyle_title;
             $output = $oModuleController->updateModule($module_info);
             if(!$output->toBool()) return $output;
 
