@@ -351,7 +351,7 @@ class TTXMLExport extends ExportTextyle{
 					);
 
 		if($guestbook->children){
-			foreach($guestbook->childen as $child_guestbook){
+			foreach($guestbook->children as $child_guestbook){
 				$this->_writeGuestbook($child_guestbook);
 			}
 		}

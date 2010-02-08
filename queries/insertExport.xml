@@ -9,5 +9,6 @@
         <column name="export_status" var="export_status" default="R" />
         <column name="export_type" var="export_type" default="ttxml" />
         <column name="regdate" var="regdate" default="curdate()" />
+        <column name="export_date" var="regdate" default="" />
     </columns>
 </query>
