@@ -362,7 +362,7 @@
     $lang->cmd_textyle_list = 'Textyle 列表';
     $lang->cmd_textyle_creation = '建立 Textyle';
     $lang->cmd_textyle_update = '編輯 Textyle';
-    $lang->cmd_textyle_custom_menu = '自訂Textyle選單';
+    $lang->cmd_textyle_custom_menu = '自訂 Textyle 選單';
     $lang->cmd_new_post = '發表文章';
     $lang->cmd_go_blog = '前往部落格';
     $lang->cmd_send_suggestion = 'Send a suggestion';
@@ -385,16 +385,16 @@
     $lang->cmd_change_category = '修改分類';
     $lang->cmd_publish = 'Publish';
     $lang->cmd_save_publish = '儲存並發佈';
-    $lang->cmd_save_temp = 'Temporarily save';
+    $lang->cmd_save_temp = '臨時儲存';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS 編輯';
     $lang->cmd_edit_html = '編輯 HTML';
     $lang->cmd_edit_css = '編輯 CSS';
     $lang->cmd_use_ing = '使用中';
     $lang->cmd_new_window = '新視窗';
     $lang->cmd_select_skin = '套用';
-    $lang->msg_select_skin = '所選擇面板將套用到Textyle部落格。\n\n此操作將刪除正在使用的面板資料。\n\n確定要變換面板嗎?';
+    $lang->msg_select_skin = '所選擇面板將套用到 Textyle 部落格。\n\n此操作將刪除正在使用的面板資料。\n\n確定要變換面板嗎?';
     $lang->cmd_preview_skin = '預覽';
-    $lang->cmd_generate_widget_code = '建立Widget原始碼';
+    $lang->cmd_generate_widget_code = '建立 Widget 原始碼';
 
     $lang->msg_already_used_url = 'The URL is already being used.';
     $lang->alert_reset_skin = '重置面板將會刪除所有修改過的 HTML&middot;CSS 原始碼。\n\n確定要重置嗎?';
@@ -457,12 +457,12 @@
 	$lang->textyle_export_file = '資料檔案';
 	$lang->cmd_textyle_export_file = '匯出檔案';
 
-	$lang->menu_name = '메뉴명';
-	$lang->msg_module_count_exceed = '추가 가능한 해당 모듈 수를 초과 하였습니다.';
+	$lang->menu_name = '選單名稱';
+	$lang->msg_module_count_exceed = '已超過可新增的模組數量';
 	$lang->msg_limit_module = '%s개 남음';
     $lang->about_textyle_extra_menu = 'XpressEngine에 설치된 모듈을 텍스타일 메뉴로 추가할 수 있습니다.';
-    $lang->cmd_textyle_extra_menu_config = '추가메뉴 설정';
-    $lang->textyle_extra_menu_limit_count = '최대 생성 수';
+    $lang->cmd_textyle_extra_menu_config = '設定';
+    $lang->textyle_extra_menu_limit_count = '數量限制';
 	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
 
 	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
