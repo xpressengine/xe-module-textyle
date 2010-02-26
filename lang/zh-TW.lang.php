@@ -72,7 +72,7 @@
     $lang->font_style = '字型設定';
     $lang->font_family = '字型種類';
     $lang->font_size = '字型大小';
-    $lang->about_font_family = 'You can choose default fonts for contents.(例:%s)';
+    $lang->about_font_family = '可選擇內容預設字型。(例:%s)';
     $lang->font_family_list = array(
 		'돋움, Dotum'=> 'Dotum',
 		'굴림, Gulim'=> 'Gulim',
@@ -81,8 +81,8 @@
 		'나눔고딕, NanumGothic'=> 'Nanum Gothic',
 		'나눔명조, NanumMyeongjo'=> 'Nanum Myeongjo'
 	);
-    $lang->about_font_size = 'You can choose default font size (ex: 12px or 1em - unit should be included)';
-    $lang->about_textyle_editor = 'Textyle\'s default editor: You can edit each paragraph separately in your posts';
+    $lang->about_font_size = '可選擇預設字型大小(例: 12px 或 1em - 必須要有單位)';
+    $lang->about_textyle_editor = 'Textyle 預設編輯器：可分別編輯文章段落';
     $lang->etc_editor = '其他編輯器';
     $lang->about_etc_editor = '所見即得編輯器';
     $lang->set_editor_components = '編輯器元件設定';
@@ -117,12 +117,12 @@
     $lang->guestbook_list_count = '每頁留言數量';
     $lang->comment_grant = '回覆權限';
     $lang->about_comment_grant = '可設定只限會員或是所有人回覆';
-    $lang->disable_comment= '無法回覆。請先登入。';
+    $lang->disable_comment= '無法回覆，請先登入。';
     $lang->grant_to_all = '全部';
     $lang->grant_to_member = '會員';
     $lang->guestbook_grant = '留言權限';
     $lang->about_guestbook_grant = '可設定只限會員或是所有人在留言板留言';
-    $lang->disable_guestbook = '無法留言。請先登入。';
+    $lang->disable_guestbook = '無法留言，請先登入。';
     $lang->current_password = '目前密碼';
     $lang->textyle_password1 = '新密碼';
     $lang->textyle_password2 = '確認新密碼';
@@ -161,10 +161,10 @@
     $lang->migration_prepare = '檔案分析中';
     $lang->data_import_progress = '匯入進度';
     $lang->data_export_progress = '匯出進度';
-    $lang->about_export_xexml = '可使用XpressEngine專用的XML(XE XML)檔案格式匯入資料。';
-    $lang->about_export_ttxml = '可使用Textcube專用的XML(TTXML)檔案格式匯入資料。';
-    $lang->migration_file_path = 'XML檔案(URL或路徑)';
-    $lang->msg_migration_file_is_null = '請輸入XML檔案URL或路徑。';
+    $lang->about_export_xexml = '可使用 XpressEngine 專用的 XML(XE XML) 檔案格式匯入資料。';
+    $lang->about_export_ttxml = '可使用 Textcube 專用的 XML(TTXML) 檔案格式匯入資料。';
+    $lang->migration_file_path = 'XML 檔案 (URL或路徑)';
+    $lang->msg_migration_file_is_null = '請輸入 XML 檔案 URL 或路徑。';
     $lang->cmd_import = '匯入';
     $lang->send_me2 = '發佈到 Me2Day';
     $lang->about_send_me2 = 'Writing a post, publish the title to Me2Day.';
@@ -185,8 +185,8 @@
 
     $lang->blogapi_publish = 'BlogAPI 發佈';
     $lang->about_blog_api = '텍스타일로 작성한 글을 BlogAPI를 이용하여 다른 블로그 또는 게시판등에 동시 발행/ 수정/ 삭제할 수 있습니다<br/>지원하는 BlogAPI는 MetaWebLog 뿐이며 다른 API는 곧 지원할 수 있도록 하겠습니다<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
-    $lang->cmd_registration_blogapi = 'BlogAPI 사이트 등록';
-    $lang->cmd_modification_blogapi = 'BlogAPI 사이트 정보 수정';
+    $lang->cmd_registration_blogapi = 'BlogAPI 網站登錄';
+    $lang->cmd_modification_blogapi = 'BlogAPI 網站資料編輯';
     $lang->blogapi = 'Blog API';
     $lang->blogapi_service = 'Blog API 功能';
     $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
@@ -194,14 +194,14 @@
     $lang->blogapi_custom = '직접 입력';
     $lang->blogapi_host_provider = '서비스 블로그 제공자';
     $lang->about_blogapi_host_provider = '등록을 원하는 서비스 제공자를 선택하세요';
-    $lang->blogapi_type = 'API 형식';
+    $lang->blogapi_type = 'API 類型';
     $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
     $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
     $lang->blogapi_example = '例) Window Live Writer, Google Docs, MS Word 2007 等';
     $lang->not_permit_blogapi = 'API 연결확인이 되지 않았습니다.';
     $lang->blogapi_url = 'API URL';
 	$lang->cmd_textyle_blogapi_service = 'Blog API 서비스 편집';
-	$lang->api_type = 'API 타입';
+	$lang->api_type = 'API 類型';
 	$lang->service_name = 'API 서비스 이름';
 	$lang->url_description = 'API 주소 입력 방법';
 	$lang->id_description = 'API 아이디 입력 방법';
@@ -211,17 +211,17 @@
     $lang->blogapi_site_title = 'blogAPI 사이트 제목';
     $lang->about_blogapi_site_title = 'BlogAPI로 발행할 사이트의 제목을 정할 수 있습니다';
     $lang->blogapi_api_url = 'API URL';
-    $lang->target_site_url = '사이트 주소';
+    $lang->target_site_url = '網站位址';
     $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
     $lang->blogapi_published = '已發佈';
-    $lang->blogapi_user_id = '사용자 아이디';
+    $lang->blogapi_user_id = '用戶 ID';
     $lang->about_blogapi_user_id = 'API 대상 사이트에서 사용하는 사용자 아이디를 입력해주세요';
-    $lang->blogapi_password = '사용자 비밀번호';
+    $lang->blogapi_password = '用戶密碼';
     $lang->about_blogapi_password = 'API 대상 사이트에서 사용하는 사용자 비밀번호를 입력해주세요';
     $lang->cmd_get_site_info = '사이트 정보 구하기';
-    $lang->cmd_check_api_connect = 'API 연결 확인';
+    $lang->cmd_check_api_connect = 'API 連結測試';
     $lang->msg_url_is_invalid = "입력하신 URL 접근을 할 수 없습니다\n\nURL을 다시 확인해주세요";
-    $lang->msg_remove_api = 'API 정보를 삭제하시겠습니까?';
+    $lang->msg_remove_api = '是否刪除 API 資料?';
     $lang->msg_blogapi_registration = array(
         'API대상 사이트 주소를 입력해주세요',
         '사이트 제목을 입력해주세요',
@@ -230,7 +230,7 @@
         '비밀번호를 입력해주세요',
     );
 
-    $lang->about_use_bookmarklet = '如何使用Bookmarklet';
+    $lang->about_use_bookmarklet = '如何使用 Bookmarklet';
     $lang->about_use_bookmarklet_item = array(
         'Add "Ingredients Collector" bookmarklet to your browser',
         'When you find resource to use for your writing, click the installed bookmarklet',
@@ -383,7 +383,7 @@
     $lang->cmd_empty = '清空';
     $lang->cmd_empty_basket = '清空垃圾桶';
     $lang->cmd_change_category = '修改分類';
-    $lang->cmd_publish = 'Publish';
+    $lang->cmd_publish = '發佈';
     $lang->cmd_save_publish = '儲存並發佈';
     $lang->cmd_save_temp = '臨時儲存';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS 編輯';
