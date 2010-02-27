@@ -38,7 +38,7 @@
     $lang->publish_option = '發佈選項';
 	$lang->publish_this_blog = 'Publish this blog.';
     $lang->ask_time_publish = '是否要立刻發佈或更新這篇文章?';
-    $lang->ask_micro_publish = '是否要發佈到微型部落格?';
+    $lang->ask_micro_publish = '是否要發佈到微網誌?';
     $lang->noti_publish = '發佈通知';
     $lang->send_trackback = '發送引用';
     $lang->add_input_trackback = '新增引用位址';
@@ -58,10 +58,10 @@
     $lang->blog_title = '部落格標題';
     $lang->about_blog_title = '為自己的部落格取個名字吧';
     $lang->blog_description = '部落格簡介';
-    $lang->about_blog_description = 'Whether to be displayed depends on skins, or you can show it by HTML&middot;CSS editor.';
+    $lang->about_blog_description = '是否顯示簡介取決於面板，或者可藉由 HTML&middot;CSS 編輯顯示。';
     $lang->favicon = '網站圖示';
     $lang->registed_favicon = '上傳網站圖示';
-    $lang->about_favicon = '可上傳的檔案大小 <strong>16x16px</strong> <strong>ico</strong>格式。 ';
+    $lang->about_favicon = '可上傳的檔案大小 <strong>16x16px</strong> <strong>ico</strong> 格式。 ';
     $lang->about_addon = '애드온은 html결과물을 출력하기 보다 동작을 제어하는 역할을 합니다. 원하시는 애드온을 on/ off하시는 것만으로 사이트 운영에 유용한 기능을 연동할 수 있습니다.';
     $lang->addon_using = '使用';
     $lang->lang_time_zone = '語言/時區';
@@ -100,7 +100,7 @@
     $lang->rss_type = 'RSS 類型';
     $lang->rss_total = '主題 + 所有內容';
     $lang->rss_summary = '主題 + 摘要';
-    $lang->visitor_editor_style = '輸入評論與留言板樣式';
+    $lang->visitor_editor_style = '評論與留言板樣式';
     $lang->host = '主機';
     $lang->referer = '訪問路徑';
     $lang->link_word = '關鍵字連結';
@@ -116,12 +116,12 @@
     $lang->comment_list_count = '每頁回覆數量';
     $lang->guestbook_list_count = '每頁留言數量';
     $lang->comment_grant = '回覆權限';
-    $lang->about_comment_grant = '可設定只限會員或是所有人回覆';
+    $lang->about_comment_grant = '可設定只限會員或不限制';
     $lang->disable_comment= '無法回覆，請先登入。';
-    $lang->grant_to_all = '全部';
+    $lang->grant_to_all = '不限制';
     $lang->grant_to_member = '會員';
     $lang->guestbook_grant = '留言權限';
-    $lang->about_guestbook_grant = '可設定只限會員或是所有人在留言板留言';
+    $lang->about_guestbook_grant = '可設定只限會員或不限制';
     $lang->disable_guestbook = '無法留言，請先登入。';
     $lang->current_password = '目前密碼';
     $lang->textyle_password1 = '新密碼';
@@ -167,17 +167,17 @@
     $lang->msg_migration_file_is_null = '請輸入 XML 檔案 URL 或路徑。';
     $lang->cmd_import = '匯入';
     $lang->send_me2 = '發佈到 Me2Day';
-    $lang->about_send_me2 = 'Writing a post, publish the title to Me2Day.';
+    $lang->about_send_me2 = '寫篇文章，將標題發佈到 Me2Day 吧。';
     $lang->me2day_userid = 'Me2Day ID';
-    $lang->about_me2day_userid = 'Input ID for you Me2Day "http://me2day.net/ID".';
+    $lang->about_me2day_userid = '輸入 Me2Day ID "http://me2day.net/ID"';
     $lang->me2day_userkey = 'Me2Day UserKey';
-    $lang->about_me2day_userkey = 'Input user key appeared in the configuration page of Me2Day.';
+    $lang->about_me2day_userkey = '輸入 Me2Day User key';
     $lang->check_me2day_info = '檢查連線';
     $lang->msg_success_to_me2day = '連線成功，所輸入的資料正確。';
     $lang->msg_fail_to_me2day = '連線失敗，請檢查 ID 和 User Key';
 
     $lang->send_twitter = '發佈到 Twitter';
-    $lang->about_send_twitter = '將發表的文章標題發佈到 Twitter';
+    $lang->about_send_twitter = '將標題發佈到 Twitter 吧。';
     $lang->twitter_userid = 'Twitter ID';
     $lang->about_twitter_userid = '輸入 Twitter ID';
     $lang->twitter_password = 'Twitter 密碼';
@@ -294,18 +294,18 @@
     $lang->visit_per = '比率';
     $lang->trackback_division = 'Multiple trackback urls are separated by newline(Enter)';
 
-    $lang->about_supporter = 'Supporters mean users who wrote comments, trackbacks, and guestbooks.';
-    $lang->supporter_rank = 'Supporter Rank';
+    $lang->about_supporter = '粉絲是指會發表評論、留言與發送引用的用戶。';
+    $lang->supporter_rank = '粉絲排行';
     $lang->rank = '排行';
     $lang->user = '用戶';
     $lang->guestbook = '留言';
 	$lang->add_denylist = '新增至過濾列表';
     $lang->summary = 'Summary';
-    $lang->no_supporter = '目前沒有 supporter.';
-    $lang->about_popular = 'Popular contents mean posts which have many views, comments, pingbacks and trackbacks.';
-    $lang->popular_rank = '熱門內容排行';
+    $lang->no_supporter = '目前沒有粉絲';
+    $lang->about_popular = '熱門主題是指擁有很多點閱、評論、通告與引用數量的文章。';
+    $lang->popular_rank = '熱門主題排行';
     $lang->read = '檢視';
-    $lang->no_popular = '目前沒有熱門內容';
+    $lang->no_popular = '目前沒有熱門主題';
     $lang->resize_vertical = 'Resize input form';
 
     $lang->textyle_first_menus = array(
@@ -336,7 +336,7 @@
         array(
             'dispTextyleToolStatisticsVisitor'=>'訪問統計',
             'dispTextyleToolStatisticsVisitRoute'=>'訪問路徑',
-            'dispTextyleToolStatisticsSupporter'=>'Supporter',
+            'dispTextyleToolStatisticsSupporter'=>'粉絲',
             'dispTextyleToolStatisticsPopular'=>'熱門主題',
         ),
         array(
@@ -349,11 +349,11 @@
             'dispTextyleToolConfigPostwrite'=>'發表設定',
             'dispTextyleToolConfigEditorComponents'=>'編輯器元件',
             'dispTextyleToolConfigCommunication'=>'公開&middot設定',
-            'dispTextyleToolConfigBlogApi'=>'Remote Blogging',
+            'dispTextyleToolConfigBlogApi'=>'遠端發佈',
             'dispTextyleToolConfigAddon'=>'附加元件管理',
             'dispTextyleToolConfigData'=>'資料管理',
             'dispTextyleToolConfigChangePassword'=>'變更密碼',
-            'dispTextyleToolExtraMenuList'=>'Additional Menu',
+            'dispTextyleToolExtraMenuList'=>'附加選單',
         ),
     );
 
@@ -376,9 +376,9 @@
     $lang->cmd_reply_comment = '回覆評論';
     $lang->cmd_change_secret = 'Make it secret';
     $lang->cmd_write_relation = 'Write a related post';
-    $lang->cmd_delete_materials = 'Delete an ingredient';
-    $lang->cmd_delete_selected_materials = 'Deleted the selected ingredient';
-    $lang->cmd_delete_all_materials = 'Delete all ingredients';
+    $lang->cmd_delete_materials = '刪除 ingredient';
+    $lang->cmd_delete_selected_materials = '刪除所選 ingredient';
+    $lang->cmd_delete_all_materials = '刪除所有 ingredients';
     $lang->cmd_restore = '復原';
     $lang->cmd_empty = '清空';
     $lang->cmd_empty_basket = '清空垃圾桶';
@@ -426,7 +426,7 @@
 
 	$lang->secret_comment = '秘密評論';
 	$lang->insert_comment = '發表評論';
-	$lang->content_list = 'Content List';
+	$lang->content_list = '內容列表';
 	$lang->msg_input_email_address = '請輸入電子郵件地址';
 	$lang->msg_input_homepage = '請輸入網址';
 	$lang->msg_confirm_delete_post = '臨時儲存的文章無法復原。確定要刪除嗎?';
@@ -438,7 +438,7 @@
     $lang->success_textyle_init = '重置成功';
 	$lang->textyle_init = '重置';
     $lang->cmd_textyle_init = '開始重置';
-    $lang->msg_textyle_init_about = '所有文章/評論/引用，留言板，版面將會被刪除與重置。重置後將無法復原。';
+    $lang->msg_textyle_init_about = '所有文章/評論/引用/留言板/版面將會被刪除與重置。重置後將無法復原。';
     $lang->msg_confirm_textyle_init = '確定要重置嗎?';
 
 	$lang->textyle_skin_userimage = '用戶相片';
