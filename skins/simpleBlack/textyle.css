@@ -519,7 +519,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 
 /* Search Result */
 .searchResult{ position:relative; overflow:hidden; margin:1em 0; padding:0; list-style:none;}
-.searchResult li{ position:relative; top:-1px; padding:7px 0; border-top:1px solid #777;}
+.searchResult li{ position:relative; top:-1px; padding:7px 100px 7px 0; border-top:1px solid #777; *zoom:1;}
 .searchResult li a{ text-decoration:none; color:#f8f8f8;}
 .searchResult li a:hover,
 .searchResult li a:active,
