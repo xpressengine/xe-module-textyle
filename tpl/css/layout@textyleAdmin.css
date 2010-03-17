@@ -359,6 +359,9 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .listHeader .notUsed{ float:right; margin:4px 0; white-space:nowrap; color:#555;}
 .listHeader .notUsed img{ vertical-align:middle;}
 
+/* Content */
+#content fieldset{ position:relative; z-index:200;}
+
 /* Table Data */
 .tableData{ width:100%; border:0; border-top:2px solid #cbd4df; border-bottom:2px solid #cbd4df; font-size:12px; margin-bottom:20px;}
 .tableData .inputCheck{ width:13px; height:13px; vertical-align:middle;}
@@ -490,6 +493,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .listFooter .change .p1{ display:inline; color:#8b8b8b; margin-right:5px; line-height:1; *float:left; *padding-top:8px;}
 .listFooter .change .buttonGray.large{ _vertical-align:top !important;}
 .listFooter .change .buttonGray.large button{ _font-size:12px; _height:27px; _line-height:28px;}
+.listFooter .change .category_list{ height:300px; overflow:scroll; overflow-x:hidden;}
 .listFooter .pagination{ float:right;}
 
 /* Bookmarklet Install */
