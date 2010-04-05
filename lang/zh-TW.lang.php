@@ -2,7 +2,7 @@
     /**
      * @file   zh-TW.lang.php
      * @author sol (sol@ngleader.com) 翻譯：royallin
-     * @brief  Textyle(textyle) 模組正體中文語言
+     * @brief  部落格 (Textyle) 模組正體中文語言
      **/
 
     $lang->textyle = 'Textyle';
@@ -11,7 +11,7 @@
 
 	$lang->cmd_open_id = 'OpenID 登入';
 	$lang->cmd_common_id = '一般登入';
-	$lang->msg_create_textyle = '已建立Textyle';
+	$lang->msg_create_textyle = '已建立 Textyle';
 	$lang->init_category_title = '預設分類';
 	$lang->add_category = '新增分類';
     $lang->textyle_admin = 'Textyle 管理員(ID)';
@@ -24,8 +24,8 @@
     $lang->newest_documents ='最新文章';
     $lang->newest_no_documents ='尚未寫任何文章。寫些文章吧!';
     $lang->posts = '文章數量';
-    $lang->newest_materials = 'Newest Ingredients';
-	$lang->newest_no_materials = 'There is no ingredient for writing. <a href="%s">Install a writing ingredients collector.</a>';
+    $lang->newest_materials = '最新素材';
+	$lang->newest_no_materials = '目前沒有素材，<a href="%s">安裝素材蒐集器</a>';
 	$lang->newest_comments = '最新評論';
 	$lang->newest_no_comments = '目前沒有評論。';
 	$lang->newest_guestbooks = '最新留言';
@@ -36,7 +36,7 @@
     $lang->publish_update_go = '再發佈...';
     $lang->published = '已發佈';
     $lang->publish_option = '發佈選項';
-	$lang->publish_this_blog = 'Publish this blog.';
+	$lang->publish_this_blog = '發佈此部落格';
     $lang->ask_time_publish = '是否要立刻發佈或更新這篇文章?';
     $lang->ask_micro_publish = '是否要發佈到微網誌?';
     $lang->noti_publish = '發佈通知';
@@ -151,11 +151,11 @@
     $lang->tag_with_tags = '同組標籤';
     $lang->total_materials = 'Total <strong>%d</strong> ingredients are stored.';
     $lang->none_materials = 'There is no ingredient.';
-    $lang->install_bookmarklet = 'Install Ingredient Collector!.';
+    $lang->install_bookmarklet = '安裝素材蒐集器！';
     $lang->none_tags = '沒有標籤';
-    $lang->bookmarklet_install = '安裝 Bookmarklet';
+    $lang->bookmarklet_install = '安裝書籤';
 	$lang->about_bookmarklet = 'Collect ingredients to blog always.';
-    $lang->about_set_bookmarklet = 'Ingredients Collector';
+    $lang->about_set_bookmarklet = '素材蒐集器';
     $lang->data_export = '資料備份';
     $lang->data_import = '資料匯入';
     $lang->migration_prepare = '檔案分析中';
@@ -223,19 +223,19 @@
     $lang->msg_url_is_invalid = "입력하신 URL 접근을 할 수 없습니다\n\nURL을 다시 확인해주세요";
     $lang->msg_remove_api = '是否刪除 API 資料?';
     $lang->msg_blogapi_registration = array(
-        'API대상 사이트 주소를 입력해주세요',
-        '사이트 제목을 입력해주세요',
-        'API주소를 입력해주세요',
-        '아이디를 입력해주세요',
-        '비밀번호를 입력해주세요',
+        '請輸入 API 目標網站位址',
+        '請輸入網站標題',
+        '請輸入 API 位址',
+        '請輸入帳號',
+        '請輸入密碼',
     );
 
-    $lang->about_use_bookmarklet = '如何使用 Bookmarklet';
+    $lang->about_use_bookmarklet = '如何使用書籤';
     $lang->about_use_bookmarklet_item = array(
-        'Add "Ingredients Collector" bookmarklet to your browser',
-        'When you find resource to use for your writing, click the installed bookmarklet',
-        'Choose proper type (e.g., text, image, movie), edit it and save',
-        'Then, those ingredients will be stored in this page'
+        '新增 "素材蒐集器" 書籤到瀏覽器',
+        '當你發現適合寫文章的素材後，再點擊書籤',
+        '選擇正確的類型 (例︰文字、圖片、影片)，編輯後儲存',
+        '然後那些素材將儲存到此頁面'
     );
     $lang->basket_management = '垃圾桶管理';
     $lang->basket_list = '垃圾桶列表';
@@ -292,7 +292,7 @@
     );
     $lang->visit_count = '訪問次數';
     $lang->visit_per = '比率';
-    $lang->trackback_division = 'Multiple trackback urls are separated by newline(Enter)';
+    $lang->trackback_division = '多個引用連結時利用 Enter 鍵換行';
 
     $lang->about_supporter = '粉絲是指會發表評論、留言與發送引用的用戶。';
     $lang->supporter_rank = '粉絲排行';
@@ -300,13 +300,13 @@
     $lang->user = '用戶';
     $lang->guestbook = '留言';
 	$lang->add_denylist = '新增至過濾列表';
-    $lang->summary = 'Summary';
+    $lang->summary = '總共';
     $lang->no_supporter = '目前沒有粉絲';
     $lang->about_popular = '熱門主題是指擁有很多點閱、評論、通告與引用數量的文章。';
     $lang->popular_rank = '熱門主題排行';
     $lang->read = '檢視';
     $lang->no_popular = '目前沒有熱門主題';
-    $lang->resize_vertical = 'Resize input form';
+    $lang->resize_vertical = '調整輸入框大小';
 
     $lang->textyle_first_menus = array(
         array('dispTextyleToolDashboard','管理首頁'),
@@ -322,7 +322,7 @@
         array(
             'dispTextyleToolPostManageWrite'=>'發表文章',
             'dispTextyleToolPostManageList'=>'文章列表',
-            'dispTextyleToolPostManageDeposit'=>'Writing Ingredients',
+            'dispTextyleToolPostManageDeposit'=>'素材管理',
             'dispTextyleToolPostManageCategory'=>'分類管理',
             'dispTextyleToolPostManageTag'=>'標籤管理',
             'dispTextyleToolPostManageBasket'=>'垃圾桶',
@@ -376,9 +376,9 @@
     $lang->cmd_reply_comment = '回覆評論';
     $lang->cmd_change_secret = 'Make it secret';
     $lang->cmd_write_relation = 'Write a related post';
-    $lang->cmd_delete_materials = '刪除 ingredient';
-    $lang->cmd_delete_selected_materials = '刪除所選 ingredient';
-    $lang->cmd_delete_all_materials = '刪除所有 ingredients';
+    $lang->cmd_delete_materials = '刪除素材';
+    $lang->cmd_delete_selected_materials = '刪除所選素材';
+    $lang->cmd_delete_all_materials = '刪除所有素材';
     $lang->cmd_restore = '復原';
     $lang->cmd_empty = '清空';
     $lang->cmd_empty_basket = '清空垃圾桶';
@@ -405,7 +405,7 @@
     $lang->no_post = '目前沒有文章， <a href="%s">寫篇文章吧!</a>';
     $lang->no_trash = '垃圾筒已清空!';
     $lang->no_comment = '目前沒有評論';
-    $lang->no_guestbook = '在您的留言板上沒有任何留言';
+    $lang->no_guestbook = '目前沒有留言';
     $lang->no_trackback = '目前沒有引用';
 
     // service
@@ -432,7 +432,7 @@
 	$lang->msg_confirm_delete_post = '臨時儲存的文章無法復原。確定要刪除嗎?';
 
     $lang->sample_title = '歡迎來到 Textyle 的世界!';
-    $lang->sample_tags = 'textyle,  Textyle editor,  a writing ingredients collector';
+    $lang->sample_tags = 'textyle,  Textyle 編輯器,  素材蒐集器';
     $lang->msg_preparation = '準備中';
     $lang->msg_not_user = '用戶不存在';
     $lang->success_textyle_init = '重置成功';
@@ -459,11 +459,11 @@
 
 	$lang->menu_name = '選單名稱';
 	$lang->msg_module_count_exceed = '已超過可新增的模組數量';
-	$lang->msg_limit_module = '%s개 남음';
+	$lang->msg_limit_module = '剩下 %s 個';
     $lang->about_textyle_extra_menu = 'XpressEngine에 설치된 모듈을 텍스타일 메뉴로 추가할 수 있습니다.';
     $lang->cmd_textyle_extra_menu_config = '設定';
     $lang->textyle_extra_menu_limit_count = '數量限制';
-	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
+	$lang->msg_limit_textyle_extra_mid = '只允許使用英文 + [ 英文，數字及底線 ]';
 
 	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
 ?>

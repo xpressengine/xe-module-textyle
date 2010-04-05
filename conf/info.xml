@@ -5,13 +5,13 @@
 	<title xml:lang="vi">Textyle</title>
     <title xml:lang="zh-CN">Textyle</title>
     <title xml:lang="jp">Textyle</title>
-    <title xml:lang="zh-TW">Textyle</title>
+    <title xml:lang="zh-TW">部落格</title>
     <description xml:lang="ko">XpressEngine 기반의 블로그 전용 모듈 입니다.</description>
     <description xml:lang="en">Textyle is an exclusive blog module based on the XpressEngine.</description>
 	<description xml:lang="vi">Textyle là một Module ngoài hoạt động dựa và XpressEngine.</description>
     <description xml:lang="zh-CN">基于XpressEngine的博客模块。</description>
     <description xml:lang="jp">XpressEngine基盤のブログ専用モジュールです。</description>
-    <description xml:lang="zh-TW">是種基於XpressEngine的部落格模組。</description>
+    <description xml:lang="zh-TW">Textyle 是 XpressEngine 的部落格模組。</description>
     <version>1.2.3</version>
     <date>2010-02-03</date>
     <category>package</category>
