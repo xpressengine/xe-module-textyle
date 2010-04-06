@@ -360,7 +360,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .listHeader .notUsed img{ vertical-align:middle;}
 
 /* Content */
-#content fieldset{ position:relative; z-index:200;}
+#content .listHeader fieldset{ position:relative; z-index:200;}
 
 /* Table Data */
 .tableData{ width:100%; border:0; border-top:2px solid #cbd4df; border-bottom:2px solid #cbd4df; font-size:12px; margin-bottom:20px;}
