@@ -1243,5 +1243,5 @@ function sortExtraMenu(menu_mids){
 }
 
 function isLive(){
-	exec_xml('textyle', 'procTextyleToolLive');
+	exec_xml('textyle', 'procTextyleToolLive', []);
 }
