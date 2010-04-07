@@ -1179,7 +1179,7 @@ validator.cast('ADD_CALLBACK', ['save_post', function callback(form) {
 		if(params[field.name]) params[field.name] += '|@|'+val;
 		else params[field.name] = field.value;
 	});
-	responses = ['error','message','mid','document_srl','category_srl'];
+	responses = ['error','message','mid','document_srl','category_srl', 'redirect_url'];
 	exec_xml('textyle','procTextylePostsave', params, completePostsave, responses, params, form);
 
 	inputPublish.val('N');
