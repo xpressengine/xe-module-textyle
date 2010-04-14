@@ -1197,6 +1197,8 @@ $(function(){
 			var v = $.trim(t.val());
 			if (v && v == t.attr('title')) t.val('');
 		});
+
+		if(editorRelKeys[1]) editorRelKeys[1].content.value = editorRelKeys[1].func();
 	});
 });
 
