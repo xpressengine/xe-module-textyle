@@ -56,8 +56,8 @@
         function doPost($body, $tags, $content_type = 'document') {
             $params = array('post[body]'=>$body, 'post[tags]'=>str_replace(',',' ',$tags), 'content_type'=>$content_type);
             $buff = $this->_getContent('create_post',$this->user_id,$params);
-            if(strpos($buff, '<code>0</code>')!==false) return new Object();
-            return new Object(-1,$buff);
+			if(preg_match('/<code>[0-9]+</',$buff)) return new Object(-1,$buff);
+            return new Object();
         }
     }
 ?>
