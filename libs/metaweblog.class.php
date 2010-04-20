@@ -79,10 +79,10 @@
 
             $categories = array();
             for($i=0,$c=count($list);$i<$c;$i++) {
-        $category = trim($list[$i]->struct->member[1]->value->string->body);
-        if(!$category) $category = trim($list[$i]->struct->member[2]->value->string->body);
-        if(!$category) $category = trim($list[$i]->struct->member[1]->value->body);
-                if(!$category) continue;
+				$category = trim($list[$i]->struct->member[1]->value->string->body);
+				if(!$category) $category = trim($list[$i]->struct->member[2]->value->string->body);
+				if(!$category) $category = trim($list[$i]->struct->member[1]->value->body);
+				if(!$category) continue;
                 $categories[] = $category;
             }
             return $categories;
@@ -125,9 +125,16 @@
                 return new Object($code, $message);
             }
 
-            $t = $xmlDoc->methodresponse->params->param->value->struct->member;
-            if(is_array($t)) $target_file = $t[0]->value->string->body;
-            else $target_file = $xmlDoc->methodresponse->params->param->value->struct->member->value->string->body;
+            $nodes = $xmlDoc->methodresponse->params->param->value->struct->member;
+			if(!is_array($nodes)) $nodes = array($nodes);
+	
+			$target_file = null;
+			foreach($nodes as $node){
+				if($node->name->body == 'url') $target_file = $node->value->string->body?$node->value->string->body:$node->value->body;
+			}
+
+			if(!$target_file) return new Object(-1,'msg_not_uploaded');
+
             $output = new Object();
             $output->add('target_file',$target_file);
             return $output;
@@ -145,6 +152,7 @@
                 $file_list = $oDocument->getUploadedFiles();
                 if(count($file_list)) {
                     $content = $oDocument->get('content');
+					$content = preg_replace('/src="(files\/)([^"]*)"/i','src="./files/$2"',$content);
                     foreach($file_list as $file) {
 
                         $output = $this->newMediaObject($file->source_filename, $file->uploaded_filename);
@@ -181,7 +189,6 @@
                         if(strpos($content, $encoded_filename)!==false) $content = str_replace($encoded_filename, $target_file, $content);
 
                     }
-
                     $oDocument->add('content', $content);
                 }
             }
@@ -211,8 +218,8 @@
 
             $postid = '';
             $postid_node = $xmlDoc->methodresponse->params->param->value;
-            if($postid_node->body){
-                $postid = $postid_node->body;
+            if(trim($postid_node->body)){
+                $postid = trim($postid_node->body);
             }else if($postid_node->string){
                 $postid = sprintf('<string>%s</string>',$postid_node->string->body);
             }else if($postid_node->i4){
@@ -226,7 +233,6 @@
 
         function editPost($postid, $oDocument, $category = null) {
             $oXmlParser = new XmlParser();
-
             $output = $this->getUsersBlogs();
             if(!$output->toBool()) return $output;
             $this->blogid = $output->get('blogid');
@@ -235,6 +241,7 @@
                 $file_list = $oDocument->getUploadedFiles();
                 if(count($file_list)) {
                     $content = $oDocument->get('content');
+					$content = preg_replace('/src="(files\/)([^"]*)"/i','src="./files/$2"',$content);
                     foreach($file_list as $file) {
                         $output = $this->newMediaObject($file->source_filename, $file->uploaded_filename);
                         $target_file = $output->get('target_file');
@@ -288,6 +295,7 @@
                     str_replace(array('&','<','>'),array('&amp;','&lt;','&gt;'),$oDocument->get('tags'))
             );
             $output = $this->_request($this->url, $input,  'application/octet-stream','POST');
+
             $xmlDoc = $oXmlParser->parse($output);
 
             if(isset($xmlDoc->methodresponse->fault)) {
