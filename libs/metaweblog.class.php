@@ -32,10 +32,22 @@
             }
 
             $val = $xmlDoc->methodresponse->params->param->value->array->data->value->struct->member;
+			if(!is_array($val)) return new Object(-1,'msg_invalid_request');
+
+			foreach($val as $node){
+				if($node->name->body == 'url'){
+					$url = $node->value->string->body?$node->value->string->body:$node->value->body;
+				} else if($node->name->body == 'blogid') {
+					$blogid = $node->value->string->body?$node->value->string->body:$node->value->body;
+				} else if($node->name->body == 'name' || $node->name->body == 'blogName') {
+					$name = $node->value->string->body?$node->value->string->body:$node->value->body;
+				}
+			}
+
             $output = new Object();
-            $output->add('url', $val[0]->value->string->body?$val[0]->value->string->body:$val[0]->value->body);
-            $output->add('blogid', $blogid = $val[1]->value->string->body?$val[1]->value->string->body:$val[1]->value->body);
-            $output->add('name', $val[2]->value->string->body?$val[2]->value->string->body:$val[2]->value->body);
+            $output->add('url', $url);
+            $output->add('blogid', $blogid);
+            $output->add('name', $name);
             return $output;
         }
 
