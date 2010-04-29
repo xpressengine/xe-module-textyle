@@ -467,4 +467,5 @@
 
 	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
 	$lang->config_edit_components = '에디터 콤포넌트 설정';
+	$lang->textyle_bug_report = '오류신고';
 ?>
