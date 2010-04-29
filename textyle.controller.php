@@ -1813,9 +1813,7 @@
             if(!$output->toBool()) return;
 
             if(preg_match('/(query|q|search_keyword)=([^&]+)/i',$referer, $matches)) $args->link_word = trim($matches[2]);
-            if(preg_match('/(naver\.com|daum\.net)\//i',$referer)) $args->link_word = iconv('euc-kr','utf-8',$args->link_word);
-
-            $args->link_word = urldecode($args->link_word);
+            $args->link_word = detectUTF8($args->link_word, true);
             $args->referer_url = $referer;
 
             $output = executeQuery('textyle.getReferer', $args);
