@@ -68,7 +68,7 @@
     $lang->language = '語言';
     $lang->timezone = '時區';
     $lang->edit_style = '選擇編輯器';
-    $lang->textyle_editor = '단락별 편집기';
+    $lang->textyle_editor = '段落編輯器';
     $lang->font_style = '字型設定';
     $lang->font_family = '字型種類';
     $lang->font_size = '字型大小';
@@ -154,7 +154,7 @@
     $lang->install_bookmarklet = '安裝素材蒐集器！';
     $lang->none_tags = '沒有標籤';
     $lang->bookmarklet_install = '安裝書籤';
-	$lang->about_bookmarklet = 'Collect ingredients to blog always.';
+	$lang->about_bookmarklet = '隨時隨地蒐集';
     $lang->about_set_bookmarklet = '素材蒐集器';
     $lang->data_export = '資料備份';
     $lang->data_import = '資料匯入';
