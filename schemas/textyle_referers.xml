@@ -5,6 +5,6 @@
     <column name="document_srl" type="number" size="11" notnull="notnull" index="referer_srl" />
     <column name="regdate" type="date" notnull="notnull" index="referer_srl" />
     <column name="visitor" type="number" size="11" notnull="notnull" />
-    <column name="referer_url" type="text" notnull="notnull" index="referer_url" />
+    <column name="referer_url" type="text" notnull="notnull" />
     <column name="link_word" type="varchar" size="250" notnull="notnull" index="link_word" />
 </table>
