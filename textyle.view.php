@@ -1025,15 +1025,22 @@
             $skin_file_list = $oTextyleModel->getTextyleUserSkinFileList($this->module_srl);
             $skin_file_content = array();
             foreach($skin_file_list as $file){
-                $skin_file_content[$file] = FileHandler::readFile($skin_path . $file);
+				if(preg_match('/^textyle/',$file)){
+					$skin_file_content[$file] = FileHandler::readFile($skin_path . $file);
+				}
             }
+            foreach($skin_file_list as $file){
+				if(!in_array($file,$skin_file_content)){
+					$skin_file_content[$file] = FileHandler::readFile($skin_path . $file);
+				}
+            }
+
             Context::set('skin_file_content',$skin_file_content);
 
             $user_image_path = sprintf("%suser_images/", $oTextyleModel->getTextylePath($this->module_srl));
             $user_image_list = FileHandler::readDir($user_image_path);
             Context::set('user_image_path',$user_image_path);
             Context::set('user_image_list',$user_image_list);
-
         }
 
         function dispTextyleToolConfigProfile(){
