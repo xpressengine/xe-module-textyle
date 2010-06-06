@@ -8,7 +8,7 @@
     </columns>
     <conditions>
         <condition operation="equal" column="modules.module" default="planet" />
-        <condition operation="equal" column="modules.module_srl" var="module_srl" pipe="and"/>
+        <condition operation="equal" column="modules.module_srl" var="module_srl" pipe="and" />
         <condition operation="equal" column="modules.module_srl" default="documents.module_srl" pipe="and" />
         <condition operation="like_prefix" column="documents.regdate" var="date" pipe="and" />
         <condition operation="excess" column="documents.voted_count" var="voted_count" pipe="and" />

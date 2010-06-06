@@ -8,6 +8,6 @@
 		<column name="timezone" var="timezone" />
     </columns>
     <conditions>
-        <condition operation="equal" column="module_srl" var="module_srl" filter="number" notnull="notnull"/>
+        <condition operation="equal" column="module_srl" var="module_srl" filter="number" notnull="notnull" />
     </conditions>
 </query>
