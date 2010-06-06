@@ -45,7 +45,7 @@
             $this->setMessage('msg_create_textyle');
         }
 
-        function insertTextyle($domain, $user_id_list) {
+        function insertTextyle($domain, $user_id_list, $settings = null) {
             if(!is_array($user_id_list)) $user_id_list = array($user_id_list);
 
             $oAddonAdminController = &getAdminController('addon');
@@ -75,8 +75,8 @@
             $textyle->mid = $this->textyle_mid;
             $textyle->module = 'textyle';
             $textyle->module_srl = getNextSequence();
-            $textyle->skin = $this->skin;
-            $textyle->browser_title = sprintf("%s's Textyle",$member_info->nick_name);
+            $textyle->skin = ($settings->skin) ? $settings->skin : $this->skin;
+            $textyle->browser_title = ($settings->title) ? $settings->title : sprintf("%s's Textyle", $member_info->nick_name);
             $output = $oModuleController->insertModule($textyle);
 
             if(!$output->toBool()) return $output;
