@@ -725,12 +725,17 @@
 
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
 
-            // 기존 설정 가져오기
+            // 기존 설정 유지
             $var->allow_comment = ($oDocument->allowComment()) ? 'Y' : 'N';
             $var->allow_trackback = ($oDocument->allowTrackback()) ? 'Y' : 'N';
+            $var->is_secret = ($oDocument->isSecret()) ? 'Y' : 'N';
             $var->tags = $oDocument->get('tags');
-            if($oDocument->isExists()) $output = $this->updatePost($var);
-            else $output = $this->savePost($var);
+
+            if($oDocument->isExists()) {
+                $output = $this->updatePost($var);
+            } else {
+                $output = $this->savePost($var);
+            }
             if(!$output->toBool()) return $output;
 
             $this->add('mid', Context::get('mid'));
