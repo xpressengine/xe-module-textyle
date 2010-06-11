@@ -210,7 +210,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 #body{ margin-bottom:-60px;}
 #content{ position:static; *zoom:0; width:700px; padding:1px 212px 50px 171px; background:url(img/bgContent.png) repeat-y;}
 #content{ _background:none; _filter:expression("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+request_uri+"modules/textyle/skins/happyLetter/img/bgContentIE6.png', sizingMethod='scale')");}
-#content *{ position:relative;}
+.content *{ position:relative;}
 #footer{ padding-bottom:100px; width:870px; margin:0 auto; left:-20px;}
 .pencilDecoration{ position:absolute; bottom:850px; right:40px; width:144px; height:449px; background:url(img/bgPencil.png) no-repeat;}
 .pencilDecoration{ _background:none; _filter:expression("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+request_uri+"modules/textyle/skins/happyLetter/img/bgPencil.png', sizingMethod='crop')");}
