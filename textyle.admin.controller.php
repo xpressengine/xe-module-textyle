@@ -402,6 +402,7 @@
             $oTagController = &getController('tag');
             $oAddonController = &getController('addon');
             $oEditorController = &getController('editor');
+            $oTrackbackController = &getController('trackback');
             $oModuleModel = &getModel('module');
             $oTextyleModel = &getModel('textyle');
             $oMemberModel = &getModel('member');
@@ -437,12 +438,13 @@
             $output = $oDocumentController->triggerDeleteModuleDocuments($args);
             $output = $oCommentController->triggerDeleteModuleComments($args);
             $output = $oTagController->triggerDeleteModuleTags($args);
-			$args->module_srl = $args->module_srl *-1;
+            $output = $oTrackbackController->triggerDeleteModuleTrackbacks($args);
+            $args->module_srl = $args->module_srl *-1;
 
             $output = $oDocumentController->triggerDeleteModuleDocuments($args);
             $output = $oCommentController->triggerDeleteModuleComments($args);
             $output = $oTagController->triggerDeleteModuleTags($args);
-			$args->module_srl = $args->module_srl *-1;
+            $args->module_srl = $args->module_srl *-1;
 
             // set category
             $obj->module_srl = $module_srl;
