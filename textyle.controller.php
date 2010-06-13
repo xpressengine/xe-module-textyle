@@ -756,7 +756,6 @@
 
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
             $vars = $oDocument->getObjectVars();
-            $isPublished = ($vars->module_srl == $this->module_srl);
             $vars->tags = $var->tags;
             $vars->module_srl = $this->module_srl;
             $vars->category_srl = $var->category_srl;
@@ -765,6 +764,11 @@
 
             $output = $this->updatePost($vars);
             if(!$output->toBool()) return $output;
+
+            // 기발행 여부 체크
+            $args->document_srl = $var->document_srl;
+            $output = executeQuery('textyle.getPublishLogs', $args);
+            $isPublished = (!$output->data) ? false : true;
 
             if(!$isPublished){
                 $args->update_order = $args->list_order = getNextSequence()*-1;
