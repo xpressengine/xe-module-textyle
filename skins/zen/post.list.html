@@ -155,10 +155,10 @@
                             <!--@if($cpage == $page_no)-->
                             <strong>{$page_no}</strong>
                             <!--@else-->
-                            <a href="{getUrl('','cpage',$page_no)}#comment">{$page_no}</a>
+                            <a href="{getUrl('cpage',$page_no)}#comment">{$page_no}</a>
                             <!--@end-->
                             <!--@end-->
-                            <a href="{getUrl('','cpage',$document->comment_page_navigation->last_page)}#comment" class="next"><span>{$lang->last_page}</span></a>
+                            <a href="{getUrl('cpage',$document->comment_page_navigation->last_page)}#comment" class="next"><span>{$lang->last_page}</span></a>
                         </div>
                         <!--@end-->
 
