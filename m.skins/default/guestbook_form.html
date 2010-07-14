@@ -9,26 +9,19 @@
 <div class="bd rd">
 
 	<!--@if($textyle_guestbook_srl && $guestbook)-->
-		<div class="hx">
-			<h2>&rsaquo; Reply Guestbook</h2>
-		</div>
 		<!--@if($guestbook->is_secret==-1)-->
-				<div>{$guestbook->content}</div>
+				<div class="origin">{$guestbook->content}</div>
 		<!--@else-->
 			<!--@if($logged_info)-->
 				<!--@if($guestbook->member_srl == $logged_info->member_srl||$logged_info->is_site_admin)-->
-					<div>{$guestbook->content}</div>
+					<div class="origin">{$guestbook->content}</div>
 				<!--@else-->
-					<div>비밀글입니다.</div>
+					<div class="origin">{$lang->msg_is_secret}</div>
 				<!--@end-->
 			<!--@else-->
-		<div>비밀글입니다.</div>
+					<div class="origin">{$lang->msg_is_secret}</div>
 			<!--@end-->
 		<!--@end-->
-	<!--@else-->
-		<div class="hx">
-			<h2>&rsaquo; Write Guestbook</h2>
-		</div>
 	<!--@end-->
 
 		<!--@if($textyle->isEnableGuestbook() )-->

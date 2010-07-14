@@ -35,7 +35,7 @@
 		<!--@if($oDocument->hasUploadedFiles())-->
 		{@ $uploaded_list = $oDocument->getUploadedFiles() }
 		<div class="hx">
-			<h3>{$lang->uploaded_file} <em>[{count($uploaded_list)}]</em> <button type="button" class="tg" title="열기/닫기"></button></h3>
+			<h3>{$lang->uploaded_file} <em>[{count($uploaded_list)}]</em> <button type="button" class="tg" title="{$lang->cmd_open_close}"></button></h3>
 		</div>
 		<ul class="sn tgo open">
 			<!--@foreach($uploaded_list as $key => $file)-->
@@ -45,7 +45,7 @@
 		<!--@endif-->
 		<!--@if($oDocument->allowTrackback() && $oDocument->getTrackbackCount())-->
 		<div class="hx">
-			<h3>{$lang->trackback} <em>[{$oDocument->getTrackbackCount()}]</em> <button type="button" class="tg" title="열기/닫기"></button></h3>
+			<h3>{$lang->trackback} <em>[{$oDocument->getTrackbackCount()}]</em> <button type="button" class="tg" title="{$lang->cmd_open_close}"></button></h3>
 		</div>
 		<ul class="rp tgo open">
 			{@ $_trackback_list = $oDocument->getTrackbacks() }
@@ -55,21 +55,17 @@
 				<em>{htmlspecialchars($val->title)} - {htmlspecialchars($val->blog_name)}</em>
 				<span>zdate($val->regdate, "Y.m.d")</span>
 				<!--@if($grant->manager)-->
-				<a href="07_password.html" class="md">삭제</a>
+				<a href="07_password.html" class="md">{$lang->cmd_delete}</a>
 				<!--@endif-->
 			</li>
 			<!--@end-->
 		</ul>
 		<!--@endif-->
 		<!--@if($oDocument->allowComment() && $oDocument->getCommentCount())-->
-		<div class="hx">
-			<h3 id="clb">{$lang->comment} <em>[{$oDocument->getCommentCount()}]</em> <button type="button" class="tg tgr" title="열기/닫기"></button></h3>
-		</div>
+		<h3 id="clb" class="hx h3">{$lang->comment} <em>[{$oDocument->getCommentCount()}]</em> <button type="button" class="tg tgr" title="{$lang->cmd_open_close}"></button></h3>
 		<!--@endif-->
 		<!--@if($textyle->isEnableComment() )-->
-		<div class="hx">
-			<h3>댓글쓰기 <button type="button" class="tg" title="열기/닫기"></button></h3>
-		</div>
+		<h3 class="hx h3">{$lang->msg_write_comment}<button type="button" class="tg" title="{$lang->cmd_open_close}"></button></h3>
 		<form action="./" method="post" class="sn tgo open" onsubmit="return insertCommentItem(this, insert_comment);">
 		<input type="hidden" name="mid" value="{$mid}" />
 		<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
@@ -129,13 +125,12 @@
 
 <script type="text/javascript">
 //<![CDATA[
-(function($){
-	$(function(){
+	jQuery(function($){
 		$('.co .mm').next().hide();
 		$('.mm').click(function(){ $(this).hide().next().show();});
 		$('.tgo').removeClass('open');
 		$('.tg').click(function(){
-			$(this).parent('.h3').next('.tgo').toggleClass('open');
+			$(this).parents('.h3').eq(0).next('.tgo').toggleClass('open');
 		});
 		var loaded = false;
 		$('.tgr').click(function(){
@@ -150,7 +145,6 @@
 			}
 		});
 	});
-})(jQuery);
 //]]>
 </script>
 <!--@end-->
