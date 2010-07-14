@@ -625,7 +625,14 @@ function doSelectSkin(skin) {
 	params['skin'] = skin;
 	params['mid'] = current_mid;
 	exec_xml('textyle', 'procTextyleToolLayoutConfigSkin', params, completeReload, response_tags);
+}
 
+function doSelectMobileSkin(mskin) {
+	var params = new Array();
+	var response_tags = new Array('error','message');
+	params['mskin'] = mskin;
+	params['mid'] = current_mid;
+	exec_xml('textyle', 'procTextyleToolLayoutConfigMobileSkin', params, completeReload, response_tags);
 }
 
 function doResetLayoutConfig() {

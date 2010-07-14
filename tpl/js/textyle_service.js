@@ -62,7 +62,6 @@ function deleteGuestbookItem(textyle_guestbook_srl,page){
 	
 	var response_tags = new Array('error','message','page','mid');
     exec_xml('textyle', 'procTextyleGuestbookItemDelete', params, completeReload, response_tags);
-
 }
 
 function completeInsertGuestbook(ret_obj){

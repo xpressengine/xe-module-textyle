@@ -18,8 +18,6 @@
             $oTextyleController = &getController('textyle');
             $oModuleModel = &getModel('module');
 
-            Context::set('custom_menu', $this->custom_menu = $oTextyleModel->getTextyleCustomMenu());
-
 			$site_module_info = Context::get('site_module_info');
             if(!$this->module_srl) {
                 $site_module_info = Context::get('site_module_info');
@@ -65,6 +63,17 @@
 
             // textyle 관리
             if(preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act) ) {
+
+				$this->custom_menu = $oTextyleModel->getTextyleCustomMenu();
+
+				// 모바일 뷰를 사용안한다면 보여줄 필요는 없다.
+				$info = Context::getDBInfo();
+				if($info->use_mobile_vie=='Y'){
+					$this->custom_menu->hidden_menu[] = strtolower('dispTextyleToolLayoutConfigMobileSkin');
+				}
+
+				Context::set('custom_menu', $this->custom_menu);
+
 
                 // 숨김 메뉴를 요청할 경우 대시보드로 변경
                 if($oTextyleModel->ishiddenMenu($this->act) || ($this->act == 'dispTextyleToolDashboard' && $oTextyleModel->isHiddenMenu(0)) ) {
@@ -1018,6 +1027,40 @@
             Context::set('cur_skin', $output[$this->module_info->skin]);
         }
 
+        function dispTextyleToolLayoutConfigMobileSkin() {
+            $oModuleModel = &getModel('module');
+
+            // 스킨 목록 구함
+            $skins = $oModuleModel->getSkins($this->module_path, 'm.skins');
+            if(count($skins)) {
+                foreach($skins as $skin_name => $info) {
+                    $large_screenshot = $this->module_path.'m.skins/'.$skin_name.'/screenshots/large.jpg';
+                    if(!file_exists($large_screenshot)) $large_screenshot = $this->module_path.'tpl/img/@large.jpg';
+                    $small_screenshot = $this->module_path.'m.skins/'.$skin_name.'/screenshots/small.jpg';
+                    if(!file_exists($small_screenshot)) $small_screenshot = $this->module_path.'tpl/img/@small.jpg';
+
+                    unset($obj);
+                    $obj->title = $info->title;
+                    $obj->description = $info->description;
+                    $_arr_author = array();
+                    for($i=0,$c=count($info->author);$i<$c;$i++) {
+                        $name =  $info->author[$i]->name;
+                        $homepage = $info->author[$i]->homepage;
+                        if($homepage) $_arr_author[] = '<a href="'.$homepage.'" onclick="window.open(this.href); return false;">'.$name.'</a>';
+                        else $_arr_author[] = $name;
+                    }
+                    $obj->author = implode(',',$_arr_author);
+                    $obj->large_screenshot = $large_screenshot;
+                    $obj->small_screenshot = $small_screenshot;
+                    $obj->date = $info->date;
+                    $output[$skin_name] = $obj;
+                }
+            }
+            Context::set('skins', $output);
+            Context::set('cur_skin', $output[$this->module_info->mskin]);
+        }
+
+
         function dispTextyleToolLayoutConfigEdit() {
             $oTextyleModel = &getModel('textyle');
             $skin_path = $oTextyleModel->getTextylePath($this->module_srl);
@@ -1569,5 +1612,6 @@
 
 			Context::set('used_extra_menu_count',$used_extra_menu_count);
 		}
+
     }
 ?>

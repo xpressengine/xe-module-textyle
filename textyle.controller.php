@@ -340,31 +340,6 @@
             if($output) return $output;
         }
 
-
-        /**
-         * @brief 코멘트 삭제
-         **/
-        function procTextyleDeleteComment() {
-            $oCommentController = &getController('comment');
-
-            $password = Context::get('password');
-            if($password){
-                $output = $this->checkCommentVerificationPassword();
-                if($output) return $output;
-            }
-            // 댓글 번호 확인
-            $comment_srl = Context::get('comment_srl');
-            if(!$comment_srl) return $this->doError('msg_invalid_request');
-
-            $output = $oCommentController->deleteComment($comment_srl, $this->grant->manager);
-            if(!$output->toBool()) return $output;
-
-            $this->add('mid', Context::get('mid'));
-            $this->add('page', Context::get('page'));
-            $this->add('document_srl', $output->get('document_srl'));
-            $this->setMessage('success_deleted');
-        }
-
         /**
          * @brief 댓글의 비밀번호를 확인
          **/
@@ -1486,6 +1461,47 @@
 
             FileHandler::removeDir($oTextyleModel->getTextylePath($this->module_srl));
             FileHandler::copyDir($this->module_path.'skins/'.$skin, $oTextyleModel->getTextylePath($this->module_srl));
+        }
+
+        function procTextyleToolLayoutConfigMobileSkin() {
+            $oModuleModel = &getModel('module');
+            $oModuleController = &getController('module');
+            $oTextyleModel = &getModel('textyle');
+
+            if(in_array(strtolower('dispTextyleToolLayoutConfigMobileSkin'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
+            $mskin = Context::get('mskin');
+
+			$module_srls = array($this->module_srl);
+			/*
+			// 추가메뉴
+			$args->site_srl = $this->site_srl;
+			$output = executeQueryArray('textyle.getExtraMenuModuleSrls',$args);
+			if($output->toBool() && $output->data){
+				foreach($output->data as $data){
+					$module_srls[] = $data->module_srl;
+				}
+			}
+			*/
+
+			// 사용안함
+			if(!$mskin){
+				$use_mobile = 'N';
+			}else{
+				$use_mobile = 'Y';
+				if($mskin && !is_dir($this->module_path.'m.skins/'.$mskin)) return new Object();
+			}
+			
+			foreach($module_srls as $module_srl){
+				unset($module_info);
+				$module_info  = $oModuleModel->getModuleInfoByModuleSrl($this->module_srl);
+				$module_info->mskin = $mskin;
+
+				$module_info->module_srl = $module_srl;
+				$module_info->site_srl = $this->site_srl;
+				$module_info->use_mobile = $use_mobile;
+				$module_info->mskin = $mskin;
+				$output = $oModuleController->updateModule($module_info);
+			}
         }
 
         function procTextyleToolLayoutResetConfigSkin() {

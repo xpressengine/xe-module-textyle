@@ -18,6 +18,7 @@
          * @berif default skin
          **/
         var $skin = 'happyLetter';
+        var $mskin = 'default';
 
         // post list
         var $post_style = 'content';//,'summary','list'
