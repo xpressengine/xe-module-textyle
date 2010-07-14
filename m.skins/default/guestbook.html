@@ -7,9 +7,11 @@
 
 <!--#include("_header.html")-->
 <div class="bd">
-	<h2 class="h2">&rsaquo; Guestbook <em>{number_format($page_navigation->total_count)}</em>
-		<a href="{getUrl('act','dispTextyleGuestbookWrite')}" class="bn">글쓰기</a>
-	</h2>
+	<div class="hx">
+		<h2>&rsaquo; Guestbook <em>{number_format($page_navigation->total_count)}</em>
+			<a href="{getUrl('act','dispTextyleGuestbookWrite')}" class="bn">글쓰기</a>
+		</h2>
+	</div>
 
 <!--@if($guestbook_list)-->
 	<ul id="cl" class="rp tgo open">

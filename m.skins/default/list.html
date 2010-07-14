@@ -1,9 +1,11 @@
 <!--#include("_header.html")-->
 <div class="bd">
-	<h2 class="h2"> 
-		<!--@if($category_srl)-->{$category_list[$category_srl]->title}<!--@end-->
-		<a class="bn" href="{getURL('act','dispTextyleCategory')}">{$lang->category}</a>
-	</h2>
+	<div class="hx">
+		<h2> 
+			<!--@if($category_srl)-->{$category_list[$category_srl]->title}<!--@end-->
+			<a class="bn" href="{getURL('act','dispTextyleCategory')}">{$lang->category}</a>
+		</h2>
+	</div>
 
 <!--@if($document_list)-->
 	<ul class="lt">

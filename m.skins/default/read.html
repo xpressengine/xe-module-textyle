@@ -34,7 +34,9 @@
 		</div>
 		<!--@if($oDocument->hasUploadedFiles())-->
 		{@ $uploaded_list = $oDocument->getUploadedFiles() }
-		<h3 class="h3">{$lang->uploaded_file} <em>[{count($uploaded_list)}]</em> <button type="button" class="tg">열기</button></h3>
+		<div class="hx">
+			<h3>{$lang->uploaded_file} <em>[{count($uploaded_list)}]</em> <button type="button" class="tg" title="열기/닫기"></button></h3>
+		</div>
 		<ul class="sn tgo open">
 			<!--@foreach($uploaded_list as $key => $file)-->
 			<li><a href="{getUrl('')}{$file->download_url}">{$file->source_filename}</a></li>
@@ -42,7 +44,9 @@
 		</ul>
 		<!--@endif-->
 		<!--@if($oDocument->allowTrackback() && $oDocument->getTrackbackCount())-->
-		<h3 class="h3">{$lang->trackback} <em>[{$oDocument->getTrackbackCount()}]</em> <button type="button" class="tg">열기</button></h3>
+		<div class="hx">
+			<h3>{$lang->trackback} <em>[{$oDocument->getTrackbackCount()}]</em> <button type="button" class="tg" title="열기/닫기"></button></h3>
+		</div>
 		<ul class="rp tgo open">
 			{@ $_trackback_list = $oDocument->getTrackbacks() }
 			<!--@foreach($_trackback_list as $key => $val)-->
@@ -58,11 +62,15 @@
 		</ul>
 		<!--@endif-->
 		<!--@if($oDocument->allowComment() && $oDocument->getCommentCount())-->
-		<h3 class="h3" id="clb">{$lang->comment} <em>[{$oDocument->getCommentCount()}]</em> <button type="button" class="tg tgr">열기</button></h3>
+		<div class="hx">
+			<h3 id="clb">{$lang->comment} <em>[{$oDocument->getCommentCount()}]</em> <button type="button" class="tg tgr" title="열기/닫기"></button></h3>
+		</div>
 		<!--@endif-->
 		<!--@if($textyle->isEnableComment() )-->
-		<h3 class="h3">댓글쓰기 <button type="button" class="tg">열기</button></h3>
-		<form action="./" method="POST" class="sn tgo open" onsubmit="return insertCommentItem(this, insert_comment);">
+		<div class="hx">
+			<h3>댓글쓰기 <button type="button" class="tg" title="열기/닫기"></button></h3>
+		</div>
+		<form action="./" method="post" class="sn tgo open" onsubmit="return insertCommentItem(this, insert_comment);">
 		<input type="hidden" name="mid" value="{$mid}" />
 		<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
 		<input type="hidden" name="comment_srl" value="" />

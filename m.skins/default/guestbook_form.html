@@ -9,7 +9,9 @@
 <div class="bd rd">
 
 	<!--@if($textyle_guestbook_srl && $guestbook)-->
-		<h2 class="h2">&rsaquo; Reply Guestbook</h2>
+		<div class="hx">
+			<h2>&rsaquo; Reply Guestbook</h2>
+		</div>
 		<!--@if($guestbook->is_secret==-1)-->
 				<div>{$guestbook->content}</div>
 		<!--@else-->
@@ -20,15 +22,17 @@
 					<div>비밀글입니다.</div>
 				<!--@end-->
 			<!--@else-->
-				<div>비밀글입니다.</div>
+		<div>비밀글입니다.</div>
 			<!--@end-->
 		<!--@end-->
 	<!--@else-->
-		<h2 class="h2">&rsaquo; Write Guestbook</h2>
+		<div class="hx">
+			<h2>&rsaquo; Write Guestbook</h2>
+		</div>
 	<!--@end-->
 
 		<!--@if($textyle->isEnableGuestbook() )-->
-		<form action="./" method="POST" onsubmit="return insertGuestbookItem(this, insert_guestbook)">
+		<form action="./" method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)">
 		<input type="hidden" name="mid" value="{$mid}" />
 
 		<!--@if($textyle_guestbook_srl && $guestbook)-->
@@ -77,7 +81,7 @@
 		<div class="cm">
 			<input name="" type="submit" value="{$lang->cmd_registration}" />
 		</div>
-		</form>
+	</form>
 		<!--@end-->
 </div>
 <!--#include("_footer.html")-->

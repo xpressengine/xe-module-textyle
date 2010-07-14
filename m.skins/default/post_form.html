@@ -7,10 +7,12 @@
 <!--%import("js/mtextyle.js")-->
 <!--#include("_header.html")-->
 <div class="bd">
-<h2 class="h2">&rsaquo; Write Post</h2>
-<form action="./" method="POST" onsubmit="return procFilter(this, insert_mpost)">
-<input type="hidden" name="mid" value="{$mid}" />
-<input type="hidden" name="document_srl" value="{$document_srl}" />
+	<div class="hx">
+		<h2>&rsaquo; Write Post</h2>
+	</div>
+	<form action="./" method="post" onsubmit="return procFilter(this, insert_mpost)">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="document_srl" value="{$document_srl}" />
 		<ul class="sn">
 			<li>
 				<label for="nCategory" class="db fb">{$lang->category}</label>
@@ -28,18 +30,20 @@
 			</li>
 			<li>
 				<label for="nText" class="db fb">{$lang->content}</label>
-				<textarea name="content" cols="20" rows="8" id="nText" class="itxx" value="{$oDocument->getContentText()}"></textarea>
+				<textarea name="content" cols="20" rows="8" id="nText" class="itxx">{$oDocument->getContentText()}</textarea>
 			</li>
 			<li>
 				<input type="checkbox" name="allow_comment" value="Y" <!--@if($oDocument->allowComment())-->checked="checked"<!--@end--> id="reAllow" />
 				<label for="reAllow">{$lang->allow_comment}</label>
 				<input type="checkbox" name="allow_trackback" value="Y" <!--@if($oDocument->allowTrackback())-->checked="checked"<!--@end--> id="trAllow" />
 				<label for="trAllow">{$lang->allow_trackback}</label>
+				<input type="checkbox" name="" id="secret" />
 				<label for="secret">{$lang->secret}</label>
 			</li>
 		</ul>
 		<div class="cm">
 			<button type="submit" class="bn">{$lang->cmd_registration}</button>
 		</div>
+	</form>
 </div>
 <!--#include("_footer.html")-->

@@ -53,12 +53,15 @@ select{width:90%}
 .cr{margin:0;padding:5px 15px;text-align:center;background:#444;color:#ccc;text-shadow:0 0 2px #000;font-size:12px;font-weight:bold}
 /* Body */
 .bd{position:relative;overflow:hidden;clear:both}
-.bd .h2{font-size:20px;background:#ccc;border:1px solid #aaa}
-.bd .h3{font-size:16px;background:#eee;border:1px solid #ccc}
-.bd .h2,.bd .h3{position:relative;margin:-1px 0;padding:10px;border:1px solid #aaa;border-left:0;border-right:0;text-shadow:1px 1px #fff}
-.bd .h2 em,.bd .h3 em{font-weight:normal;color:#f60;font-size:12px}
-.bd .h2 a,.bd .h3 a{color:#000}
-.bd .h2 .bn{position:absolute;top:8px;right:10px;font-size:12px;margin:0}
+/* Hx */
+.hx{position:relative;margin:-1px 0; padding:10px;background:#ddd;border:1px solid #999;border-left:0;border-right:0;text-shadow:1px 1px #fff}
+.hx h2,.hx h3{display:inline}
+.hx h2{font-size:20px}
+.hx h3{font-size:16px}
+.hx em{font-weight:normal;color:#f60;font-size:12px;margin:0 0 0 5px}
+.hx span{font-weight:normal;color:#666;font-size:12px;padding:0 0 0 10px;margin:0 0 0 5px;border-left:1px solid #999}
+.hx a{color:#000}
+.hx .bn{position:absolute;top:8px;right:10px;font-size:12px;margin:0}
 /* GNB */
 .gn,.gn ul{margin:0;padding:0;list-style:none}
 .gn li{margin:-1px 0;border:1px solid #999;border-left:0;border-right:0;vertical-align:top}
@@ -104,11 +107,6 @@ select{width:90%}
 .pn a:visited{color:#666}
 .pn strong{border:0;background:none}
 /* Read */
-.rd .hx{padding:10px;background:#ddd;border:1px solid #ccc;border-left:0;border-right:0;text-shadow:1px 1px #fff}
-.rd .hx h2{display:inline;font-size:20px}
-.rd .hx em,.rd .hx span{font-size:12px;color:#666}
-.rd .hx span{padding:0 0 0 10px;border-left:1px solid #ccc}
-.rd .hx a{color:#000}
 .rd .co{margin:10px;word-break:break-word;overflow:hidden}
 .rd .tg{position:absolute;width:100%;height:100%;background:transparent;border:0;text-align:right;top:0px;left:0;font-size:12px;margin:0;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;border-radius:0;-moz-border-radius:0;-webkit-border-radius:0}
 .rd .tgo{display:none}

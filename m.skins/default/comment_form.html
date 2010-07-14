@@ -13,7 +13,7 @@
 <div class="origin">{$oSourceComment->getContent(false)}</div>
 <!--@end-->
 
-		<form action="./" method="POST" class="" onsubmit="return insertCommentItem(this, insert_comment);">
+		<form action="./" method="post" class="" onsubmit="return insertCommentItem(this, insert_comment);">
 		<input type="hidden" name="mid" value="{$mid}" />
 		<input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
 		<input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
