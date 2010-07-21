@@ -28,7 +28,10 @@
 						<a href="{getUrl('','act','dispTextylePasswordForm','mid',$this->mid,'type','delete_comment','comment_srl',$comment->comment_srl,'document_srl',$comment->document_srl)}" class="md">{$lang->cmd_delete}</a>
 					<!--@end-->
 				<!--@end-->
+
+				<!--@if($textyle->isEnableComment() )-->
 				<a href="{getUrl('','act','dispTextyleCommentReply','mid',$this->mid,'comment_srl',$comment->comment_srl,'document_srl',$comment->document_srl)}" class="md">{$lang->cmd_reply}</a>
+				<!--@end-->
 				{@ $start = false }
 				{@ $depth = $comment->get('depth') }
 			<!--@endforeach-->

@@ -34,7 +34,7 @@
 		</div>
 		<!--@if($oDocument->hasUploadedFiles())-->
 		{@ $uploaded_list = $oDocument->getUploadedFiles() }
-		<div class="hx">
+		<div class="hx h3">
 			<h3>{$lang->uploaded_file} <em>[{count($uploaded_list)}]</em> <button type="button" class="tg" title="{$lang->cmd_open_close}"></button></h3>
 		</div>
 		<ul class="sn tgo open">
@@ -44,7 +44,7 @@
 		</ul>
 		<!--@endif-->
 		<!--@if($oDocument->allowTrackback() && $oDocument->getTrackbackCount())-->
-		<div class="hx">
+		<div class="hx h3">
 			<h3>{$lang->trackback} <em>[{$oDocument->getTrackbackCount()}]</em> <button type="button" class="tg" title="{$lang->cmd_open_close}"></button></h3>
 		</div>
 		<ul class="rp tgo open">
