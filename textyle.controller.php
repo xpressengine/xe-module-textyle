@@ -798,6 +798,7 @@
 
                     // update module_srl for subscription
                     $args->module_srl = abs($this->module_srl) * -1;
+					$args->category_srl = $var->category_srl;
                     $output = executeQuery('document.updateDocumentModule', $args);
                     if(!$output->toBool()) return $output;
 
@@ -830,7 +831,6 @@
 			if(!$args->module_srl) $args->module_srl = $oDocument->get('module_srl');
             if(!$args->category_srl) $args->category_srl = $oDocument->get('category_srl');
             if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
-
 
             $output = $oDocumentController->updateDocument($oDocument, $args);
             return $output;
