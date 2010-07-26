@@ -416,7 +416,7 @@ function _deletePostItem(params){
 
 }
 
-function trashPostItem(srl,page){
+function trashPostItem(srl, page){
 	var params = new Array();
 	params['document_srl'] = srl;
 	params['page'] = page;
@@ -424,7 +424,9 @@ function trashPostItem(srl,page){
 }
 
 function trashPostItems(page){
-	var val,srls = [];
+	if(!confirm(xe.lang.msg_confirm_delete_post)) return false;
+
+	var val, srls = [];
 	jQuery("input[name=document_srl]:checked").each(function(){
 		val = jQuery(this).val();
 		if(val) srls.push(val);

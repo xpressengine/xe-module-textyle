@@ -172,7 +172,7 @@
 								<!-- /opening -->
 								
 								<span class="buttonGray large"><button type="button" onclick="openLayerCommuicationConfig()">{$lang->comm_management}</button></span>
-								<!--span class="buttonGray large"><button type="button" onclick="trashPostItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span-->
+								<span class="buttonGray large"><button type="button" onclick="trashPostItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
 								
 							</div>
 							<!-- /Change -->
@@ -210,3 +210,9 @@
 
 				<!--#include("_layerPostManageList.html")-->
 <!--#include("_tool_footer.html")-->
+
+
+<script type="text/javascript">
+if(!xe.lang) xe.lang = {};
+xe.lang.msg_confirm_delete_post = '{$lang->msg_confirm_delete_post}';
+</script>
