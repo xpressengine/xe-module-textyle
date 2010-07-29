@@ -75,7 +75,7 @@ class ExportTextyle{
 		$oDocumentList = array();
 
 		$args->module_srl = join(',',array($this->module_srl,$this->module_srl*-1));
-		$output = executeQuery('textyle.getExportDocumentList',$args);
+		$output = executeQueryArray('textyle.getExportDocumentList',$args);
 		if($output->data){
 			foreach($output->data as $attribute){
 				$oDocument = new documentItem();
@@ -93,7 +93,7 @@ class ExportTextyle{
 		$oCommentList = array();
 
 		$args->document_srl = $document_srl;
-		$output = executeQuery('textyle.getExportCommentList',$args);
+		$output = executeQueryArray('textyle.getExportCommentList',$args);
 		if($output->data){
 			foreach($output->data as $attribute){
 				$oComment = new commentItem();
@@ -123,7 +123,7 @@ class ExportTextyle{
 
 	function getGuestbookList(){
 		$args->module_srl = $this->module_srl;
-		$output = executeQuery('textyle.getExportGuestbookList',$args);
+		$output = executeQueryArray('textyle.getExportGuestbookList',$args);
 		$guestbook_list = array();
 		if($output->data){
 			foreach($output->data as $k => $guestbook){
