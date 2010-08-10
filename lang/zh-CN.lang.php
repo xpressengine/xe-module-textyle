@@ -469,5 +469,5 @@
 	$lang->textyle_bug_report = '오류신고';
 	$lang->cmd_open_close = '열기/닫기';
 	$lang->msg_write_comment = '댓글쓰기';
-
+	$lang->msg_mobile_skin_use_not = '현재 모바일 스킨을 사용하지 않고 있습니다. 사용하려면 스킨적용 버튼을 누르세요.';
 ?>
