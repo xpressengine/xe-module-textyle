@@ -342,6 +342,7 @@
         array(
             'dispTextyleToolLayoutConfigSkin'=>'Skins',
             'dispTextyleToolLayoutConfigEdit'=>'HTML&middot;CSS Edit',
+            'dispTextyleToolLayoutConfigMobileSkin'=>'모바일스킨선택',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'My Profile',

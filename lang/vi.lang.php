@@ -347,6 +347,7 @@
         array(
             'dispTextyleToolLayoutConfigSkin'=>'Giao diện',
             'dispTextyleToolLayoutConfigEdit'=>'Sửa HTML - CSS',
+            'dispTextyleToolLayoutConfigMobileSkin'=>'모바일스킨선택',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'Lý lịch của tôi',

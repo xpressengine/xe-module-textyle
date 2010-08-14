@@ -343,6 +343,7 @@
         array(
             'dispTextyleToolLayoutConfigSkin'=>'スキン変更',
             'dispTextyleToolLayoutConfigEdit'=>'HTML・CSS編集',
+            'dispTextyleToolLayoutConfigMobileSkin'=>'모바일스킨선택',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'マイプロフィール',

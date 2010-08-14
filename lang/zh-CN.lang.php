@@ -342,6 +342,7 @@
         array(
             'dispTextyleToolLayoutConfigSkin'=>'皮肤管理',
             'dispTextyleToolLayoutConfigEdit'=>'HTML&middot;CSS编辑',
+            'dispTextyleToolLayoutConfigMobileSkin'=>'모바일스킨선택',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'关于',
