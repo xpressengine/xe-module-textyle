@@ -26,8 +26,8 @@
     $lang->posts = '文章數量';
     $lang->newest_materials = '最新素材';
 	$lang->newest_no_materials = '目前沒有素材，<a href="%s">安裝素材蒐集器</a>';
-	$lang->newest_comments = '最新評論';
-	$lang->newest_no_comments = '目前沒有評論。';
+	$lang->newest_comments = '最新迴響';
+	$lang->newest_no_comments = '目前沒有迴響。';
 	$lang->newest_guestbooks = '最新留言';
 	$lang->newest_no_guestbooks = '目前沒有留言。';
 	$lang->reserve = '預訂';
@@ -90,6 +90,26 @@
     $lang->about_prefix = '每篇主題都會包含以下內容。(可使用 HTML)';
     $lang->set_suffix = '頁尾設定';
     $lang->about_suffix = '每篇主題都會包含以下內容。(可使用 HTML)';
+    $lang->blogapi = 'Blog API';
+    $lang->blogapi_service = 'Blog API 功能';
+    $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
+    $lang->blogapi_hosted = '서비스 블로그';
+    $lang->blogapi_custom = '직접 입력';
+    $lang->blogapi_host_provider = '서비스 블로그 제공자';
+    $lang->about_blogapi_host_provider = '등록을 원하는 서비스 제공자를 선택하세요';
+    $lang->blogapi_type = 'API 類型';
+    $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
+    $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
+    $lang->blogapi_example = '例) Window Live Writer, Google Docs, MS Word 2007 等';
+    $lang->not_permit_blogapi = 'API 연결확인이 되지 않았습니다.';
+    $lang->blogapi_url = 'API URL';
+	$lang->cmd_textyle_blogapi_service = 'Blog API 服務設定';
+	$lang->api_type = 'API 類型';
+	$lang->service_name = 'API 服務名稱';
+	$lang->url_description = 'API 位址輸入方式';
+	$lang->id_description = 'API 名稱輸入方式';
+	$lang->password_description = 'API 密碼輸入方式';
+    $lang->target_site_url = '網站位址';
     $lang->blog_first_page = '部落格首頁';
     $lang->blog_display_target = '顯示目標';
     $lang->content_body = '本文';
@@ -100,7 +120,7 @@
     $lang->rss_type = 'RSS 類型';
     $lang->rss_total = '主題 + 所有內容';
     $lang->rss_summary = '主題 + 摘要';
-    $lang->visitor_editor_style = '評論與留言板樣式';
+    $lang->visitor_editor_style = '迴響與留言板樣式';
     $lang->host = '主機';
     $lang->referer = '訪問路徑';
     $lang->link_word = '關鍵字連結';
@@ -187,32 +207,12 @@
     $lang->about_blog_api = '텍스타일로 작성한 글을 BlogAPI를 이용하여 다른 블로그 또는 게시판등에 동시 발행/ 수정/ 삭제할 수 있습니다<br/>지원하는 BlogAPI는 MetaWebLog 뿐이며 다른 API는 곧 지원할 수 있도록 하겠습니다<br/>텍스타일이 설치된 서버설정에 따라 BlogAPI 이용이 제한될 수 있습니다';
     $lang->cmd_registration_blogapi = 'BlogAPI 網站登錄';
     $lang->cmd_modification_blogapi = 'BlogAPI 網站資料編輯';
-    $lang->blogapi = 'Blog API';
-    $lang->blogapi_service = 'Blog API 功能';
-    $lang->about_blogapi_service = 'Blog API를 이용한 원격 발행을 지원하는 서비스를 선택하세요.<br/>서비스에 없을 경우 직접 입력을 선택하시면 됩니다';
-    $lang->blogapi_hosted = '서비스 블로그';
-    $lang->blogapi_custom = '직접 입력';
-    $lang->blogapi_host_provider = '서비스 블로그 제공자';
-    $lang->about_blogapi_host_provider = '등록을 원하는 서비스 제공자를 선택하세요';
-    $lang->blogapi_type = 'API 類型';
-    $lang->about_blogapi_type = '등록하고자 하는 BlogAPI 의 형식을 선택하셔야 합니다';
-    $lang->blogapi_support = 'Blog API(Meta Weblog API)를 이용한 원격 발행이 가능합니다.';
-    $lang->blogapi_example = '例) Window Live Writer, Google Docs, MS Word 2007 等';
-    $lang->not_permit_blogapi = 'API 연결확인이 되지 않았습니다.';
-    $lang->blogapi_url = 'API URL';
-	$lang->cmd_textyle_blogapi_service = 'Blog API 서비스 편집';
-	$lang->api_type = 'API 類型';
-	$lang->service_name = 'API 서비스 이름';
-	$lang->url_description = 'API 주소 입력 방법';
-	$lang->id_description = 'API 아이디 입력 방법';
-	$lang->password_description = 'API 비밀번호 입력 방법';
-    $lang->blogapi_site_url = '발행 대상 사이트';
-    $lang->about_blogapi_site_url = 'BlogAPI로 발행할 대상 사이트의 주소를 입력해주세요';
-    $lang->blogapi_site_title = 'blogAPI 사이트 제목';
-    $lang->about_blogapi_site_title = 'BlogAPI로 발행할 사이트의 제목을 정할 수 있습니다';
+    $lang->blogapi_site_url = '目標網站';
+    $lang->about_blogapi_site_url = '請輸入 BlogAPI 網站位址。';
+    $lang->blogapi_site_title = 'blogAPI 網站標題';
+    $lang->about_blogapi_site_title = '請輸入 BlogAPI 網站的標題。';
     $lang->blogapi_api_url = 'API URL';
-    $lang->target_site_url = '網站位址';
-    $lang->about_blogapi_url = 'BlogAPI URL을 입력해주세요. (서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
+    $lang->about_blogapi_url = '請輸入 BlogAPI URL 網址。(서비스 블로그의 경우 [id]값이나 도메인을 변경해주세요)';
     $lang->blogapi_published = '已發佈';
     $lang->blogapi_user_id = '用戶 ID';
     $lang->about_blogapi_user_id = 'API 대상 사이트에서 사용하는 사용자 아이디를 입력해주세요';
@@ -263,7 +263,7 @@
     $lang->insert_title = '請輸入標題';
     $lang->new_post = '發表文章';
     $lang->modify_post = '修改文章';
-    $lang->posting_option = '評論選項';
+    $lang->posting_option = '迴響選項';
     $lang->post_url = '文章網址';
     $lang->about_tag = '多個標籤時，請用逗號(,)區隔';
 	$lang->success_temp_saved = '臨時儲存成功';
@@ -294,7 +294,7 @@
     $lang->visit_per = '比率';
     $lang->trackback_division = '多個引用連結時利用 Enter 鍵換行';
 
-    $lang->about_supporter = '粉絲是指會發表評論、留言與發送引用的用戶。';
+    $lang->about_supporter = '粉絲是指會發表迴響、留言與發送引用的用戶。';
     $lang->supporter_rank = '粉絲排行';
     $lang->rank = '排行';
     $lang->user = '用戶';
@@ -302,7 +302,7 @@
 	$lang->add_denylist = '新增至過濾列表';
     $lang->summary = '總共';
     $lang->no_supporter = '目前沒有粉絲';
-    $lang->about_popular = '熱門主題是指擁有很多點閱、評論、通告與引用數量的文章。';
+    $lang->about_popular = '熱門主題是指擁有很多點閱、迴響、通告與引用數量的文章。';
     $lang->popular_rank = '熱門主題排行';
     $lang->read = '檢視';
     $lang->no_popular = '目前沒有熱門主題';
@@ -328,7 +328,7 @@
             'dispTextyleToolPostManageBasket'=>'垃圾桶',
         ),
         array(
-            'dispTextyleToolCommunicationComment'=>'評論管理',
+            'dispTextyleToolCommunicationComment'=>'迴響管理',
             'dispTextyleToolCommunicationGuestbook'=>'留言管理',
             'dispTextyleToolCommunicationTrackback'=>'引用管理',
             'dispTextyleToolCommunicationSpam'=>'過濾管理',
@@ -342,6 +342,7 @@
         array(
             'dispTextyleToolLayoutConfigSkin'=>'面板選擇',
             'dispTextyleToolLayoutConfigEdit'=>'HTML&middot;CSS 編輯',
+            'dispTextyleToolLayoutConfigMobileSkin'=>'모바일스킨선택',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'個人檔案',
@@ -373,7 +374,7 @@
     $lang->cmd_delete_favicon = '刪除圖示';
     $lang->cmd_change_password = '變更密碼';
     $lang->cmd_deny = '過濾';
-    $lang->cmd_reply_comment = '回覆評論';
+    $lang->cmd_reply_comment = '回覆';
     $lang->cmd_change_secret = 'Make it secret';
     $lang->cmd_write_relation = 'Write a related post';
     $lang->cmd_delete_materials = '刪除素材';
@@ -383,9 +384,9 @@
     $lang->cmd_empty = '清空';
     $lang->cmd_empty_basket = '清空垃圾桶';
     $lang->cmd_change_category = '修改分類';
+    $lang->cmd_save = '儲存';
     $lang->cmd_publish = '發佈';
-    $lang->cmd_save_publish = '儲存並發佈';
-    $lang->cmd_save_temp = '臨時儲存';
+    $lang->cmd_save_publish = '儲存後發佈';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS 編輯';
     $lang->cmd_edit_html = '編輯 HTML';
     $lang->cmd_edit_css = '編輯 CSS';
@@ -395,7 +396,6 @@
     $lang->msg_select_skin = '所選擇面板將套用到 Textyle 部落格。\n\n此操作將刪除正在使用的面板資料。\n\n確定要變換面板嗎?';
     $lang->cmd_preview_skin = '預覽';
     $lang->cmd_generate_widget_code = '建立 Widget 原始碼';
-
     $lang->msg_already_used_url = 'The URL is already being used.';
     $lang->alert_reset_skin = '重置面板將會刪除所有修改過的 HTML&middot;CSS 原始碼。\n\n確定要重置嗎?';
     $lang->msg_used_disabled_function = 'It contains forbidden functions.';
@@ -404,7 +404,7 @@
 
     $lang->no_post = '目前沒有文章， <a href="%s">寫篇文章吧!</a>';
     $lang->no_trash = '垃圾筒已清空!';
-    $lang->no_comment = '目前沒有評論';
+    $lang->no_comment = '目前沒有迴響';
     $lang->no_guestbook = '目前沒有留言';
     $lang->no_trackback = '目前沒有引用';
 
@@ -413,7 +413,7 @@
     $lang->search_result = '搜尋結果';
     $lang->category_result = '分類';
     $lang->newest_document = '最近文章';
-    $lang->newest_comment = '最近評論';
+    $lang->newest_comment = '最近迴響';
     $lang->newest_trackback = '最近引用';
     $lang->archive = '封存';
     $lang->link = '連結';
@@ -424,8 +424,8 @@
 
     $lang->cmd_hide = '隱藏';
 
-	$lang->secret_comment = '秘密評論';
-	$lang->insert_comment = '發表評論';
+	$lang->secret_comment = '秘密迴響';
+	$lang->insert_comment = '發表迴響';
 	$lang->content_list = '內容列表';
 	$lang->msg_input_email_address = '請輸入電子郵件地址';
 	$lang->msg_input_homepage = '請輸入網址';
@@ -438,14 +438,14 @@
     $lang->success_textyle_init = '重置成功';
 	$lang->textyle_init = '重置';
     $lang->cmd_textyle_init = '開始重置';
-    $lang->msg_textyle_init_about = '所有文章/評論/引用/留言板/版面將會被刪除與重置。重置後將無法復原。';
+    $lang->msg_textyle_init_about = '所有文章/迴響/引用/留言板/版面將會被刪除與重置。重置後將無法復原。';
     $lang->msg_confirm_textyle_init = '確定要重置嗎?';
 
 	$lang->textyle_skin_userimage = '用戶相片';
 	$lang->msg_check_userimage = '允許上傳 gif, png, jpg, swf 等檔案。';
     $lang->cmd_textyle_skin_export = '匯出';
     $lang->textyle_skin_import = '匯入面板';
-    $lang->about_textyle_skin_import = '로컬 폴더에 있는 사용자 정의 스킨을 원격으로 업로드 합니다. 현재 스킨은 삭제됩니다.';
+    $lang->about_textyle_skin_import = '上傳客製化面板。 目前的面板會被刪除。';
 
 	$lang->success_upload = '上傳成功';
 	$lang->cmd_textyle_export_request ='備份記錄';
@@ -466,8 +466,8 @@
 	$lang->msg_limit_textyle_extra_mid = '只允許使用英文 + [ 英文，數字及底線 ]';
 
 	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
-	$lang->config_edit_components = '에디터 콤포넌트 설정';
-	$lang->textyle_bug_report = '오류신고';
+	$lang->config_edit_components = '編輯器設定';
+	$lang->textyle_bug_report = '錯誤回報';
 	$lang->cmd_open_close = '열기/닫기';
 	$lang->msg_write_comment = '댓글쓰기';
 	$lang->msg_mobile_skin_use_not = '현재 모바일 스킨을 사용하지 않고 있습니다. 사용하려면 스킨적용 버튼을 누르세요.';
