@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skin version="0.2">
-    <title xml:lang="ko">Textyle 기본 스킨</title>
-    <title xml:lang="en">Textyle Basic Skin</title>
+    <title xml:lang="ko">Textyle 심플 회색 스킨</title>
+    <title xml:lang="en">Textyle Simple Grey Skin</title>
     <description xml:lang="ko">
         XE Textyle의 기본 스킨입니다.
         디자인, HTML/CSS : 정찬명 (http://naradesign.net)
     </description>
     <description xml:lang="en">
-        This is the basic Textyle skin of XE.
-        Design, HTML/CSS : Chan-Myung Jeong (http://naradesign.net)
+        This is the simple grey Textyle skin of XE.
+        Design, HTML/CSS : Chan-Myung Jeong
     </description>
     <version>0.1</version>
     <date>2010-06-10</date>
