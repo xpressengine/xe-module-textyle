@@ -39,9 +39,9 @@
 			<h3>{$lang->uploaded_file} <em>[{count($uploaded_list)}]</em></h3>
 			<button type="button" class="tg">{$lang->cmd_open_close}</button>
 		</div>
-		<ul class="tgo open">
+		<ul class="file tgo open">
 			<!--@foreach($uploaded_list as $key => $file)-->
-			<li><a href="{getUrl('')}{$file->download_url}">{$file->source_filename}</a></li>
+			<li><a href="{getUrl('')}{$file->download_url}">{$file->source_filename} <span class="size">{FileHandler::filesize($file->file_size)}</span></a></li>
 			<!--@end-->
 		</ul>
 		<!--@endif-->
