@@ -342,7 +342,7 @@
         array(
             'dispTextyleToolLayoutConfigSkin'=>'Skins',
             'dispTextyleToolLayoutConfigEdit'=>'HTML&middot;CSS Edit',
-            'dispTextyleToolLayoutConfigMobileSkin'=>'모바일스킨선택',
+            'dispTextyleToolLayoutConfigMobileSkin'=>'Mobile Skins',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'My Profile',
@@ -391,8 +391,8 @@
     $lang->cmd_edit_html = 'HTML Edit';
     $lang->cmd_edit_css = 'CSS Edit';
     $lang->cmd_use_ing = 'Using';
-    $lang->cmd_new_window = 'New window';
-    $lang->cmd_select_skin = 'Apply it';
+    $lang->cmd_new_window = 'New Window';
+    $lang->cmd_select_skin = 'Apply This';
     $lang->msg_select_skin = 'Change Textyle skin into what you choose.\n\nCurrent configuration of skin will be removed.\n\nAre you sure to change it?';
 
     $lang->cmd_preview_skin = 'Preview';
@@ -462,15 +462,15 @@
 	$lang->menu_name = 'Menu Name';
 	$lang->msg_module_count_exceed = 'You cannot add this type of module anymore.';
 	$lang->msg_limit_module = '%s module(s) available';
-    $lang->about_textyle_extra_menu = 'You may add modules installed on XpressEngine as a menuitem for your Textyle.';
+    $lang->about_textyle_extra_menu = 'You may add modules from XpressEngine as menuitems to your Textyle.';
     $lang->cmd_textyle_extra_menu_config = 'Additional Menu';
     $lang->textyle_extra_menu_limit_count = 'Maximum Number';
-	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
+	$lang->msg_limit_textyle_extra_mid = 'Only format of alphabets + [alphabets, numbers, and underscore(_)] is allowed.';
 
-	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
-	$lang->config_edit_components = 'configure edit components';
-	$lang->textyle_bug_report = '오류신고';
-	$lang->cmd_open_close = '열기/닫기';
-	$lang->msg_write_comment = '댓글쓰기';
-	$lang->msg_mobile_skin_use_not = '현재 모바일 스킨을 사용하지 않고 있습니다. 사용하려면 스킨적용 버튼을 누르세요.';
+	$lang->msg_microblog_setup = 'To publish on microblog simultaneously, you have to %s first.';
+	$lang->config_edit_components = 'configure editor components';
+	$lang->textyle_bug_report = 'report for bugs';
+	$lang->cmd_open_close = 'open / close';
+	$lang->msg_write_comment = 'write comments';
+	$lang->msg_mobile_skin_use_not = 'You are not using any mobile skins. Please click on Apply This to use one.';
 ?>
