@@ -473,4 +473,5 @@
 	$lang->cmd_open_close = 'open / close';
 	$lang->msg_write_comment = 'write comments';
 	$lang->msg_mobile_skin_use_not = 'You are not using any mobile skins. Please click on Apply This to use one.';
+	$lang->skip_content = '본문 건너뛰기';
 ?>
