@@ -1,7 +1,7 @@
 <?php
     /**
      * @file   jp.lang.php
-     * @author sol (sol@ngleader.com) 翻訳：ミニミ
+     * @author NHN (developers@xpressengine.com) 翻訳：ミニミ
      * @brief  Textyle(textyle) モジュールの日本語言語パッケージ
      **/
 

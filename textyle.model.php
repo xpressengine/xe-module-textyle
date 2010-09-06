@@ -1,7 +1,7 @@
 <?php
     /**
      * @class  textyleModel
-     * @author sol (sol@ngleader.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  textyle 모듈의 Model class
      **/
 

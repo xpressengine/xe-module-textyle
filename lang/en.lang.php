@@ -1,7 +1,7 @@
 <?php
     /**
      * @file   en.lang.php
-     * @author haneul (haneul0318@gmail.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  Textyle(textyle) module's English language pack.
      **/
 

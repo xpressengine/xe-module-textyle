@@ -1,7 +1,7 @@
 <?php
     /**
      * @file   vi.lang.php
-     * @author haneul (haneul0318@gmail.com)
+     * @author NHN (developers@xpressengine.com)
 	 * @Trans: DucDuy Dao (webmaster@xpressengine.vn)
      * @brief  Textyle(textyle) module's Vietnamese language pack.
      **/

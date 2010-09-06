@@ -2,7 +2,7 @@
 
     /**
      * @class  textyleView
-     * @author sol (sol@ngleader.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  textyle 모듈의 View class
      **/
 

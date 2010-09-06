@@ -4,16 +4,14 @@
     <title xml:lang="en">Textyle Basic Skin</title>
     <description xml:lang="ko">
         XE Textyle의 기본 스킨입니다.
-        디자인, HTML/CSS : 전영선, 정찬명
     </description>
     <description xml:lang="en">
         This is the basic Textyle skin of XE.
-        Design, HTML/CSS : Jeon Yung Seon, Jeong Chan-Myung
     </description>
     <version>0.1</version>
     <date>2010-08-16</date>
-    <author email_address="developers@xpressengine.com" link="http://xpressengine.com">
-        <name xml:lang="ko">sol</name>
-        <name xml:lang="en">sol</name>
+    <author email_address="developers@xpressengine.com" link="http://xpressengine.com/">
+        <name xml:lang="ko">NHN</name>
+        <name xml:lang="en">NHN</name>
     </author>
 </skin>
