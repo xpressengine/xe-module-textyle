@@ -12,7 +12,7 @@
 
 				<script type="text/javascript">
 				function tab(i){
-					var tab = i.parentNode.parentNode.className;
+					var tab = i.parentNode.className;
 					document.getElementById('codeEdit').className='codeEdit'+' '+tab;
 				} 
 				</script>
@@ -22,14 +22,16 @@
 					<input type="hidden" name="mid" value="{$mid}" />
 					<input type="hidden" name="vid" value="{$vid}" />
 					
-					{@$i=0;}
-					<!--@foreach($skin_file_content as $file => $content)-->
-					<div class="s{$i}">
-						<h4><a href="#" onclick="tab(this)">{$file}</a></h4>
-						<textarea name="{$file}" cols="50" rows="10">{htmlspecialchars($content)}</textarea>
-		</div>
+					<ul>
+						{@$i=0;}
+						<!--@foreach($skin_file_content as $file => $content)-->
+						<li class="s{$i}">
+							<a href="#" onclick="tab(this)">{$file}</a>
+							<textarea name="{$file}" cols="50" rows="10">{htmlspecialchars($content)}</textarea>
+						</li>
 						{@$i++;}						
-					<!--@end-->
+						<!--@end-->
+					</ul>
 	
 					<!-- Button Area -->
 					<div class="buttonArea aCenter">

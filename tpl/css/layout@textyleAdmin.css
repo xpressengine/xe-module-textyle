@@ -789,12 +789,13 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .skinList dd.download .buttonGray button{ _top:-1px !important;}
 
 /* Code Edit */
-.codeEdit{ position:relative; height:500px;}
+.codeEdit{ position:relative;}
 .codeEdit fieldset{ position:relative; margin-bottom:50px;}
 .codeEdit legend{ display:block; font-size:14px; font-weight:bold; color:#555; margin:0; padding:0 0 10px 0; white-space:nowrap; display:block;}
-.codeEdit h4{ position:relative; z-index:2; float:left; border:1px solid #ddd; font-size:12px; margin:0 -1px 0 0; background:#fff;}
-.codeEdit h4 a{ color:#333; text-decoration:none; display:inline-block; padding:0 15px; height:29px; line-height:29px;}
-.codeEdit textarea{ display:none; position:absolute; z-index:1; left:0; top:30px; border:1px solid #ddd; width:98%; height:400px; margin:0 0 15px 0; font:14px/24px Monospace, Sans-serif; background:#fdfef7;}
+.codeEdit ul{ margin:0; padding:0; list-style:none;}
+.codeEdit li{ margin:0 0 15px 0; padding:0;}
+.codeEdit li a{ position:relative; z-index:2; display:inline-block;border:1px solid #ddd; border-bottom-color:#fff; padding:0 15px; margin:0 0 -1px 0; height:29px; line-height:29px; font-size:12px; background:#fff; color:#333; font-weight:bold; text-decoration:none;}
+.codeEdit textarea{ position:relative; z-index:1; overflow:auto; border:1px solid #ddd; width:98%; height:300px; margin:0; font:13px/1.5 Monospace, Sans-serif; background:#fdfef7;}
 .codeEdit .s0 textarea,
 .codeEdit.s0 .s0 textarea,
 .codeEdit.s1 .s1 textarea,
@@ -861,7 +862,7 @@ a.skipToContent{ text-align:center; color:#fff; position:absolute; width:100%; f
 .codeEdit .resizeVertical button{ width:100%; height:10px; border:0; margin:0; padding:0; background:transparent; cursor:n-resize; vertical-align:middle;}
 .codeEdit .resizeVertical button span{ position:absolute; width:0; height:0; font-size:0; line-height:0; overflow:hidden; visibility:hidden; z-index:-1;}
 .codeEdit .widgetCreator{ position:absolute; top:0; right:2%;}
-.codeEdit .buttonArea{ position:absolute; top:450px; width:100%;}
+.codeEdit .buttonArea{ width:100%;}
 .codeEdit .buttonArea .actionWhite{ position:absolute; top:0; right:2%;}
 
 /* User Image */
