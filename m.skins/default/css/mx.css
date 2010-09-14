@@ -70,7 +70,7 @@ input[type=radio]{width:13px;height:13px;margin:0;padding:0}
 .gn li li li li li a{padding-left:60px}
 .gn em{color:#6352d2;font-size:12px}
 /* List */
-.lt{margin:0;padding:0;list-style:none;background:#f2f0ec}
+.lt{margin:0;padding:0;list-style:none;background:#f8f8f8;font-size:14px}
 .lt li{border-bottom:1px solid #ccc8be}
 .lt a{display:block;text-decoration:none;color:#000;padding:10px}
 .lt .title{display:block;margin:0 0 5px 0}
