@@ -49,12 +49,14 @@
 			<!-- Extension -->
 			<!--#include("_tool_menu.html")-->
 			<!-- Extension -->
-			<script type="text/javascript">//<![CDATA[
-				jQuery('tbody.sort').sortable().bind('sortstop',function(e,ui){
-					var menu_mids = [];
-					jQuery('tbody.sort .menu_mid').each(function(){
-						menu_mids.push(jQuery(this).val());	
+			<script	type="text/javascript">//<![CDATA[
+				jQuery(function() {
+					jQuery('tbody.sort').sortable().bind('sortstop',function(e,ui){
+						var menu_mids = [];
+						jQuery('tbody.sort .menu_mid').each(function(){
+							menu_mids.push(jQuery(this).val());	
+						});
+						sortExtraMenu(menu_mids);
 					});
-					sortExtraMenu(menu_mids);
 				});
 			//]]></script>
