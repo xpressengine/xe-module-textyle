@@ -778,11 +778,12 @@
             $oPublish->setMe2day($publish_option->send_me2day);
             $oPublish->setTwitter($publish_option->send_twitter);
             $oPublish->save();
-
-            $var->publish_date_yyyymmdd = ereg_replace("[^0-9]",'',str_replace("-",'',$var->publish_date_yyyymmdd));
+			debugPrint($var);
+            $var->publish_date_yyyymmdd = preg_replace("/[^0-9]/",'',$var->publish_date_yyyymmdd);
+			debugPrint($var);
             if($var->subscription=='Y' && $var->publish_date_yyyymmdd) {
-                $var->publish_date_hh = ereg_replace("[^0-9]",'',str_replace('-','',$var->publish_date_hh));
-                $var->publish_date_ii = ereg_replace("[^0-9]",'',str_replace('-','',$var->publish_date_ii));
+                $var->publish_date_hh = preg_replace("/[^0-9]/",'',$var->publish_date_hh);
+                $var->publish_date_ii = preg_replace("/[^0-9]/",'',$var->publish_date_ii);
                 $var->publish_date_hh = $var->publish_date_hh ? $var->publish_date_hh : 0;
                 $var->publish_date_ii = $var->publish_date_ii ? $var->publish_date_ii : 0;
                 $var->publish_date = sprintf("%s%02d%02d00",$var->publish_date_yyyymmdd, $var->publish_date_hh , $var->publish_date_ii);
