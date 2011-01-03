@@ -778,9 +778,7 @@
             $oPublish->setMe2day($publish_option->send_me2day);
             $oPublish->setTwitter($publish_option->send_twitter);
             $oPublish->save();
-			debugPrint($var);
             $var->publish_date_yyyymmdd = preg_replace("/[^0-9]/",'',$var->publish_date_yyyymmdd);
-			debugPrint($var);
             if($var->subscription=='Y' && $var->publish_date_yyyymmdd) {
                 $var->publish_date_hh = preg_replace("/[^0-9]/",'',$var->publish_date_hh);
                 $var->publish_date_ii = preg_replace("/[^0-9]/",'',$var->publish_date_ii);
