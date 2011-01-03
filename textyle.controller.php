@@ -1290,6 +1290,13 @@
             $oModuleController->insertModulePartConfig('editor',$this->module_srl,$editor_config);
         }
 
+	    /**
+		 * @brief Delete Comments: for backward-compatibility
+		 */
+		function procTextyleDeleteComment() {
+			$this->procTextyleCommentDelete();
+		}
+
         /**
          * @brief 코멘트 삭제
          **/
