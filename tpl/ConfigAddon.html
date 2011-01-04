@@ -8,13 +8,13 @@
 
 			<!-- Content -->
 			<div id="content">
-				
+
 				<!-- contentHeader -->
 				<div class="contentHeader addonHeader">
 					<h3 class="h3">{$lang->textyle_second_menus[5]['dispTextyleToolConfigAddon']}</h3>
 				</div>
 				<!-- /contentHeader -->
-				
+
 				<div class="setUp">
 					<p style="margin:0 0 1em 0">{$lang->about_addon}</p>
 					<table class="tableData" cellspacing="0" border="1" summary="Addon List">
@@ -26,7 +26,8 @@
 								<th scope="col">{$lang->date}</th>
 								<th scope="col">{$lang->installed_path}</th>
 								<th scope="col">{$lang->cmd_setup}</th>
-								<th scope="col">{$lang->status}</th>
+								<th scope="col">PC</th>
+                                <th scope="col">Mobile</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -51,9 +52,16 @@
 									<span class="activeState turnOff"><button type="button" onclick="doToggleAddon('{$val->addon}');return false;" title="{htmlspecialchars($lang->notuse)}">{$lang->notuse}</button></span>
                                     <!--@end-->
                                 </td>
+                                <td>
+                                    <!--@if($val->mactivated)-->
+                                    <span class="activeState turnOn"><button type="button" onclick="doToggleAddon('{$val->addon}','mobile');return false;" title="{htmlspecialchars($lang->use)}">{$lang->addon_using}</button></span>
+                                    <!--@else-->
+                                    <span class="activeState turnOff"><button type="button" onclick="doToggleAddon('{$val->addon}','mobile');return false;" title="{htmlspecialchars($lang->notuse)}">{$lang->notuse}</button></span>
+                                    <!--@end-->
+                                </td>
 							</tr>
 							<tr>
-								<td colspan="6" class="wrap">{nl2br($val->description)}&nbsp;</td>
+								<td colspan="7" class="wrap">{nl2br($val->description)}&nbsp;</td>
 							</tr>
                         <!--@end-->
 						</tbody>
@@ -63,7 +71,7 @@
 			</div>
 			<hr />
 			<!-- /Content -->
-	
+
 			<!-- Extension -->
 				<!--#include("_tool_menu.html")-->
 			<!-- Extension -->
