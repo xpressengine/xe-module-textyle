@@ -1765,7 +1765,9 @@
             if(!$site_module_info || !$site_module_info->site_srl || $site_module_info->mid != $this->textyle_mid) return new Object();
 
             // 현재 요청된 사이트가 textyle이고 textyle의 action이면 pass~
-            if($oModule->mid == $this->textyle_mid && isset($oModule->xml_info->action->{$oModule->act})) return new Object();
+            $oModuleModel = &getModel('module');
+            $xml_info = $oModuleModel->getModuleActionXml('textyle');
+            if($oModule->mid == $this->textyle_mid && isset($xml_info->action->{$oModule->act})) return new Object();
 
             $oTextyleModel = &getModel('textyle');
             $oTextyleView = &getView('textyle');
@@ -1774,44 +1776,9 @@
             Context::set('layout',null);
 
             if($oTextyleModel->isAttachedMenu($oModule->act)) {
-                $oModule->setLayoutPath($this->module_path.'tpl');
-                $oModule->setLayoutFile('_tool_layout');
+                $oTextyleView->initTool($oModule, true);
             } else {
-                // 요청된 텍스타일의 정보를 구해서 레이아웃과 관련 정보를 설정
-                $textyle = $oTextyleModel->getTextyle($site_module_info->index_module_srl);
-
-                $oModule->module_info->layout_srl = null;
-                $oModule->setLayoutPath($oTextyleModel->getTextylePath($site_module_info->index_module_srl));
-                $oModule->setLayoutFile('textyle');
-
-                $module_path = './modules/textyle/';
-                Context::addHtmlHeader('<link rel="shortcut icon" href="'.$textyle->getFaviconSrc().'" />');
-                Context::addJsFile($module_path.'tpl/js/textyle_service.js');
-                Context::addCssFile($oModule->getLayoutPath().'textyle.css');
-
-                // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
-                Context::set('root_url', Context::getRequestUri());
-                Context::set('home_url', getFullSiteUrl($textyle->domain));
-                Context::set('profile_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleProfile'));
-                Context::set('guestbook_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleGuestbook'));
-                Context::set('tag_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleTag'));
-                if(Context::get('is_logged')) Context::set('admin_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleToolDashboard'));
-                else Context::set('admin_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleToolLogin'));
-                Context::set('textyle_title', $textyle->get('textyle_title'));
-                Context::set('textyle', $textyle);
-	
-                Context::set('textyle_mode', 'module');
-
-				$extra_menus = array();				
-				$args->site_srl = $textyle->site_srl;
-				$output = executeQueryArray('textyle.getExtraMenus',$args);
-				if($output->toBool() && $output->data){
-					foreach($output->data as $i => $menu){
-						$extra_menus[$menu->name] = getUrl('','mid',$menu->mid);
-					}
-				}
-                // 추가 메뉴
-                Context::set('extra_menus', $extra_menus);
+                $oTextyleView->initService($oModule, true);
             }
             return new Object();
         }
