@@ -1496,7 +1496,7 @@
 				$use_mobile = 'Y';
 				if($mskin && !is_dir($this->module_path.'m.skins/'.$mskin)) return new Object();
 			}
-			
+
 			foreach($module_srls as $module_srl){
 				unset($module_info);
 				$module_info  = $oModuleModel->getModuleInfoByModuleSrl($this->module_srl);
@@ -1760,6 +1760,9 @@
             // XMLRPC, JSON 형식이어도 pass~
             if(in_array(Context::getRequestMethod(),array('XMLRPC','JSON'))) return new Object();
 
+			// 로그아웃 액션이면 pass~
+			if($oModule->act == 'dispMemberLogout') return new Object();
+
             // 현재 가상사이트가 textyle이 아닐 경우 pass~
             $site_module_info = Context::get('site_module_info');
             if(!$site_module_info || !$site_module_info->site_srl || $site_module_info->mid != $this->textyle_mid) return new Object();
@@ -1918,16 +1921,16 @@
             $output = $oTextyleAdminController->initTextyle($this->site_srl);
             return $output;
         }
-	
+
 		function procTextyleRequestExport(){
             if(!$this->site_srl) return new Object(-1,'msg_invalid_request');
 
-			$oTextyleAdminController = &getAdminController('textyle'); 
+			$oTextyleAdminController = &getAdminController('textyle');
 			$oTextyleAdminController->deleteExport($this->site_srl);
 
 			$args->export_type = Context::get('export_type');
 			if(!$args->export_type || $args->export_type!='xexml') $args->export_type='ttxml';
-		
+
 			$logged_info = Context::get('logged_info');
 			$args->module_srl = $this->module_srl;
 			$args->site_srl = $this->site_srl;
@@ -2008,7 +2011,7 @@
 			$args->site_srl = $this->site_srl;
 			$output = executeQueryArray('textyle.getExtraMenus',$args);
 			if(!$output->toBool() || !$output->data) return $output;
-	
+
 			foreach($output->data as $k => $menu){
 				$order[$menu->mid] = $menu;
 			}
