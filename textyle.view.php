@@ -1314,7 +1314,7 @@
                     if($oDocument->get('module_srl')!=$this->module_info->module_srl ) return $this->stop('msg_invalid_request');
 
                     // html title에 글제목 추가
-                    Context::setBrowserTitle($this->textyle->get('browser_title') . ' »  ' . $oDocument->getTitle());
+                    Context::setBrowserTitle($this->textyle->get('browser_title') . ' »  ' . $oDocument->getTitleText());
 
                     // meta keywords category + tag
                     $tag_array = $oDocument->get('tag_list');
