@@ -247,7 +247,10 @@
         }
 
         function sendTwitter($user_id, $password) {
-            if(!$user_id || !$password) return;
+			//2011.03.04 twitter발행기능 제거 - cherryfilter
+			return;
+
+            /*if(!$user_id || !$password) return;
 
             $url = 'http://twitter.com/statuses/update.xml';
             $buff = FileHandler::getRemoteResource($url, 'status='.urlencode(sprintf('%s %s', $this->oDocument->getTitleText(), $this->oDocument->getPermanentUrl())), 3, 'POST', 'application/x-www-form-urlencoded',
@@ -255,7 +258,7 @@
                             'Authorization'=>'Basic '.base64_encode($user_id.':'.$password),
                         )
                     );
-            $this->published_twitter = true;
+            $this->published_twitter = true;*/
         }
 
     }
