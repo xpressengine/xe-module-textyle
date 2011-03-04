@@ -76,6 +76,7 @@
             if(!$oDB->isColumnExists("textyle_api","blogapi_type")) return true;
             if(!$oDB->isColumnExists("textyle_api","blogapi_service")) return true;
             if(!$oDB->isColumnExists("textyle_api","blogapi_host_provider")) return true;
+            if(!$oDB->isColumnExists("textyle_api","blogapi_blogid")) return true;
             if(!$oDB->isColumnExists("textyle_publish_logs","module_srl")) return true;
             return false;
         }
@@ -103,6 +104,9 @@
                 $oDB->addColumn('textyle_publish_logs',"module_srl","number",11);
                 $oDB->addIndex("textyle_publish_logs","idx_module_srl", array("module_srl"));
             }
+
+			//2011.03.04 : blogapi의 blogid 변수 추가
+            if(!$oDB->isColumnExists("textyle_api","blogapi_blogid")) $oDB->addColumn('textyle_api','blogapi_blogid','varchar',250);
 
             return new Object(0, 'success_updated');
         }

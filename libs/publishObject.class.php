@@ -33,7 +33,7 @@
             $this->published_twitter = $data->published_twitter==true?true:false;
         }
 
-        function getBlogAPIInfo($type, $url, $user_id, $password) {
+        function getBlogAPIInfo($type, $url, $user_id, $password, $blogid) {
             if(!preg_match('/^(http|https)/',$url)) $url = 'http://'.$url;
 
             $msg_lang = Context::getLang('msg_blogapi_registration');
@@ -53,7 +53,7 @@
                     break;
                 default :
                         require_once(_XE_PATH_.'modules/textyle/libs/metaweblog.class.php');
-                        $oMeta = new metaWebLog($url, $user_id, $password);
+                        $oMeta = new metaWebLog($url, $user_id, $password, $blogid);
                         $output = $oMeta->getUsersBlogs();
                         if(!$output->toBool()) return $output;
                     break;

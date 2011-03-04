@@ -103,6 +103,7 @@
     $lang->blogapi_example = '예) Window Live Writer, Google Docs, MS Word 2007 등';
     $lang->not_permit_blogapi = 'API 연결확인이 되지 않았습니다.';
     $lang->blogapi_url = 'API 주소';
+    $lang->blogapi_blogid = 'Blog id';
 	$lang->cmd_textyle_blogapi_service = 'Blog API 서비스 편집';
 	$lang->api_type = 'API 타입';
 	$lang->service_name = 'API 서비스 이름';

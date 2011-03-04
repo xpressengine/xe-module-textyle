@@ -379,7 +379,7 @@
             $oPublish = $oTextyleModel->getPublishObject($this->module_srl);
 
             $var = Context::getRequestVars();
-            $output = $oPublish->getBlogAPIInfo($var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password);
+            $output = $oPublish->getBlogAPIInfo($var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password, $var->blogapi_blogid);
             if(!$output->toBool()) return $output;
             $url = $output->get('url');
             if(!$url) $this->setMessage('not_permit_blogapi');

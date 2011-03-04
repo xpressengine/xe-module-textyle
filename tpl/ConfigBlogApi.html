@@ -92,6 +92,15 @@
 								<tr>
 									<td id="blogapi_password_label" class="hosted"></td>
 								</tr>
+								<tr>
+									<th scope="row" rowspan="2"><label for="blogapi_blogid">{$lang->blogapi_blogid}</label></th>
+									<td>
+                                        <input name="blogapi_blogid" type="text" class="inputText" id="blogapi_blogid" value="{htmlspecialchars($api_info->blogapi_blogid)}" style="width:200px" />
+                                    </td>
+								</tr>
+								<tr>
+									<td id="blogapi_blogid_label" class="hosted">blog id는 여러개의 Blog를 운영할 경우 선택적으로 입력하는 값입니다.</td>
+								</tr>
                             </table>
                             <div class="buttonArea">
                                     <span class="buttonAction actionWhite"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>

@@ -5,11 +5,12 @@
         var $password = null;
         var $blogid = null;
 
-        function metaWebLog($url, $user_id = null, $password = null) {
+        function metaWebLog($url, $user_id = null, $password = null, $blogid = null) {
             if(!preg_match('/^(http|https)/i',$url)) $url = 'http://'.$url;
             $this->url = $url;
             $this->user_id = $user_id;
             $this->password = $password;
+            $this->blogid = $blogid;
         }
 
         function getUsersBlogs() {
@@ -31,7 +32,40 @@
                 return new Object($code, $message);
             }
 
-            $val = $xmlDoc->methodresponse->params->param->value->array->data->value->struct->member;
+			$blogList = $xmlDoc->methodresponse->params->param->value->array->data->value;
+			$blogCount = count($blogList);
+
+			//return 되는 blog 개수에 따라 복수개가 넘어올 경우 blogid로 특정 blog만 뽑아오기 위해 선별
+			if($blogCount == 1) $val = $blogList->struct->member;
+			else if($blogCount > 1)
+			{
+				foreach($blogList AS $key=>$value)
+				{
+					$nodeList = $value->struct->member;
+					foreach($nodeList AS $key2=>$value2)
+					{
+						if($value2->name->body == 'blogid')
+						{
+							$blogid = $value2->value->string->body?$value2->value->string->body:$value2->value->body;
+							if(empty($this->blogid))
+							{
+								$val = $nodeList;
+								break;
+							}
+							else
+							{
+								if($this->blogid == $blogid)
+								{
+									$val = $nodeList;
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+			else return new Object(-1, 'msg_invalid_request');
+
 			if(!is_array($val)) return new Object(-1,'msg_invalid_request');
 
 			foreach($val as $node){
