@@ -142,15 +142,15 @@ function _deleteNotifyItem(params){
 	exec_xml('textyle', 'procTextyleNotifyItemDelete', params, completeReload, response_tags);
 }
 
-function updateCommentItemSetSecret(srl,is_secret,page){
+function updateCommentItemSetSecret(srl,is_secret,page,module_srl){
 	var params = new Array();
 	params['comment_srl'] = srl;
 	params['page'] = page;
 	params['is_secret'] = is_secret;
+	params['module_srl'] = module_srl;
 
 	var response_tags = new Array('error','message','page','mid');
 	exec_xml('textyle', 'procTextyleCommentItemSetSecret', params, completeReload, response_tags);
-
 }
 
 function updateGuestbookItemChangeSecret(srl,page){

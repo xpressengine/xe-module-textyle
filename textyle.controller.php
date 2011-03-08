@@ -583,6 +583,7 @@
             $args->is_secret = $is_secret =='Y' ? 'Y' : 'N';
 
             $args->comment_srl = Context::get('comment_srl');
+            $args->module_srl = Context::get('module_srl');
             $oCommentController = &getController('comment');
             $output = $oCommentController->updateComment($args, $this->grant->manager);
             $this->add('mid', Context::get('mid'));
