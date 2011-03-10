@@ -1782,6 +1782,10 @@
             if($oTextyleModel->isAttachedMenu($oModule->act)) {
                 $oTextyleView->initTool($oModule, true);
             } else {
+				if(Mobile::isFromMobilePhone())
+				{
+					$oTextyleView = &getMobile('textyle');
+				}
                 $oTextyleView->initService($oModule, true);
             }
             return new Object();

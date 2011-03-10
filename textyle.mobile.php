@@ -28,6 +28,26 @@
 			}
 		}
 
+        function initService(&$oModule = null, $is_other_module = false)
+		{
+			//모바일일 경우에는 다른모듈이라 하더라도 Texylye Layout이 필요 없슴.
+			parent::initService($oModule, true, true);
+
+			$template_path = sprintf("%sm.skins/%s/",$this->module_path, $this->module_info->mskin);
+			if(!is_dir($template_path)||!$this->module_info->mskin) {
+				$this->module_info->mskin = 'default';
+				$template_path = sprintf("%sm.skins/%s/",$this->module_path, $this->module_info->mskin);
+			}
+
+			//다른 모듈에서 사용하는 html을 가져와서 Textyle 내부에서 사용하는 content html로 만들어 둔 후 다시 template 재정의
+			$oTemplateHandler = &TemplateHandler::getInstance();
+			$html = $oTemplateHandler->compile($oModule->getTemplatePath(), $oModule->getTemplateFile());
+			Context::set('content', $html);
+
+			$oModule->setTemplatePath($template_path);
+			$oModule->setTemplateFile('textyle');
+		}
+
 		function dispTextyle(){
             $oTextyleModel = &getModel('textyle');
             $oTextyleController = &getController('textyle');

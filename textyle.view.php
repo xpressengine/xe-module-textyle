@@ -130,7 +130,7 @@
         /**
          * @brief textyle 서비스 초기화
          **/
-        function initService(&$oModule = null, $is_other_module = false){
+        function initService(&$oModule = null, $is_other_module = false, $isMobile = false){
             if (!$oModule) $oModule = $this;
 
             $oTextyleModel = &getModel('textyle');
@@ -141,27 +141,29 @@
             Context::addJsFile($this->module_path.'tpl/js/textyle_service.js');
 
             $preview_skin = Context::get('preview_skin');
-            if($is_other_module){
-                $path_method = 'setLayoutPath';
-                $file_method = 'setLayoutFile';
-                $css_path_method = 'getLayoutPath';
-                Context::set('textyle_mode', 'module');
-            }else{
-                $path_method = 'setTemplatePath';
-                $file_method = 'setTemplateFile';
-                $css_path_method = 'getTemplatePath';
-            }
+			if(!$isMobile)
+			{
+				if($is_other_module){
+					$path_method = 'setLayoutPath';
+					$file_method = 'setLayoutFile';
+					$css_path_method = 'getLayoutPath';
+					Context::set('textyle_mode', 'module');
+				}else{
+					$path_method = 'setTemplatePath';
+					$file_method = 'setTemplateFile';
+					$css_path_method = 'getTemplatePath';
+				}
 
-            if(!$preview_skin){
-                $oTextyleModel->checkTextylePath($this->module_srl, $this->module_info->skin);
-                $oModule->{$path_method}($oTextyleModel->getTextylePath($this->module_srl));
-            }else{
-                $oModule->{$path_method}($this->module_path.'skins/'.$preview_skin);
-            }
+				if(!$preview_skin){
+					$oTextyleModel->checkTextylePath($this->module_srl, $this->module_info->skin);
+					$oModule->{$path_method}($oTextyleModel->getTextylePath($this->module_srl));
+				}else{
+					$oModule->{$path_method}($this->module_path.'skins/'.$preview_skin);
+				}
 
-
-            $oModule->{$file_method}('textyle');
-            Context::addCssFile($oModule->{$css_path_method}().'textyle.css',true,'all','',100);
+				$oModule->{$file_method}('textyle');
+				Context::addCssFile($oModule->{$css_path_method}().'textyle.css',true,'all','',100);
+			}
 
             // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
             Context::set('root_url', Context::getRequestUri());
