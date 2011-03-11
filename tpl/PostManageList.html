@@ -12,9 +12,9 @@
 				<!-- contentNavigation -->
 				<div class="contentNavigation">
 					<ul class="sortDefault">
-						<li<!--@if(!$published)--> class="active"<!--@end-->><a href="{getUrl('sort_index','','published','')}">{$lang->document_all}</a></li>
-						<li<!--@if($published==1)--> class="active"<!--@end-->><a href="{getUrl('sort_index','','published','1')}">{$lang->document_published}</a></li>
-						<li<!--@if($published==-1)--> class="active"<!--@end-->><a href="{getUrl('sort_index','','published','-1')}">{$lang->document_reserved}</a></li>
+						<li<!--@if(!$published)--> class="active"<!--@end-->><a href="{getUrl('', 'mid', $mid, 'vid', $vid, 'act', $act, 'sort_index','','published','')}">{$lang->document_all}</a></li>
+						<li<!--@if($published==1)--> class="active"<!--@end-->><a href="{getUrl('', 'mid', $mid, 'vid', $vid, 'act', $act, 'sort_index','','published','1')}">{$lang->document_published}</a></li>
+						<li<!--@if($published==-1)--> class="active"<!--@end-->><a href="{getUrl('', 'mid', $mid, 'vid', $vid, 'act', $act, 'sort_index','','published','-1')}">{$lang->document_reserved}</a></li>
 					</ul>
 				</div>
 				<!-- /contentNavigation -->
