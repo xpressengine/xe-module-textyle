@@ -27,7 +27,7 @@
 										<select name="etc_post_editor_skin">
 											<!--@foreach($editor_skin_list as $k => $v)-->
 											<!--@if($v!='dreditor')-->
-											<option value="{$v}" <!--@if($textyle->getPostEditorSkin()==$v)-->checked="checked"<!--@end--> >{$v}</option>
+											<option value="{$v}" <!--@if($textyle->getPostEditorSkin()==$v)-->selected<!--@end--> >{$v}</option>
 											<!--@end-->
 											<!--@end-->
 										</select>
