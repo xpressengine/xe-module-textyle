@@ -9,8 +9,6 @@ jQuery(function(){
 	});
 });
 
-
-
 function unique(t) {
 	var a = [];
 	var l = t.length;

@@ -1,14 +1,3 @@
-jQuery(function(){
-	jQuery(':text,:password')
-	.focus(function(e){
-		var jthis = jQuery(this);
-		if(jthis.attr('title') && jthis.val()== jthis.attr('title')) jthis.val('');
-	}).blur(function(e){
-		var jthis = jQuery(this);
-		if(jthis.attr('title') && !jthis.val()) jthis.val(jthis.attr('title'));	
-	});
-});
-
 function insertGuestbookItem(obj,filter){
 	jQuery(':text,:password',obj).each(function(){
 		var jthis = jQuery(this);
