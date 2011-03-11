@@ -144,7 +144,7 @@
             $args->module_srl = $vars->module_srl;
             $args->page = $vars->page;
             $args->list_count = $vars->list_count;
-            if($vars->search_text) $args->content_search = $vars->search_text;
+            if($vars->search_keyword) $args->content_search = $vars->search_keyword;
             $output = executeQueryArray('textyle.getTextyleGuestbookList',$args);
             if(!$output->toBool() || !$output->data) return array();
 
