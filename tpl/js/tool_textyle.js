@@ -1,14 +1,3 @@
-jQuery(function(){
-	jQuery(':text,:password,textarea')
-	.focus(function(e){
-		var jthis = jQuery(this);
-		if(jthis.parents('.textyleEditor').size() ==0 && jthis.attr('title') && jthis.val()== jthis.attr('title')) jthis.val('');
-	}).blur(function(e){
-		var jthis = jQuery(this);
-		if(jthis.parents('.textyleEditor').size() ==0 && jthis.attr('title') && !jthis.val()) jthis.val(jthis.attr('title'));	
-	});
-});
-
 function unique(t) {
 	var a = [];
 	var l = t.length;
