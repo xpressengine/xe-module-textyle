@@ -85,7 +85,7 @@
 											<span class="buttonGray small"><a href="{$val->getPermanentUrl()}">{$lang->cmd_move}</a></span> 
 										</div>
 										<div class="control">
-											<span class="buttonGray small"><button type="button" onclick="updateCommentItemSetSecret({$val->comment_srl},'<!--@if($val->is_secret=='Y')-->N<!--@else-->Y<!--@end-->',{$page},{$val->module_srl})">{$lang->cmd_change_secret}</button></span> 
+											<span class="buttonGray small"><button type="button" onclick="updateCommentItemSetSecret({$val->comment_srl},'<!--@if($val->is_secret=='Y')-->N<!--@else-->Y<!--@end-->',{$page},{$val->module_srl})"><!--@if($val->is_secret=='Y')-->{$lang->public}<!--@else-->{$lang->private}<!--@end--></button></span> 
 											<span class="buttonGray small"><button type="button" onclick="openLayerAddDenyItem('{$val->comment_srl}','_addDenyCommentList')">{$lang->cmd_deny}</button></span> 
 											<span class="buttonGray small"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$val->comment_srl},{$page}); return false;">{$lang->cmd_delete}</button></span>
 										</div>
