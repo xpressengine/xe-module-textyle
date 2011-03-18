@@ -71,7 +71,10 @@
 									<label for="tag">{$lang->tag}</label>
 								</th>
 								<td class="title">
-									<input type="text" name="tags" class="inputText" id="tag" title="{$lang->about_tag}" value="<!--@if(htmlspecialchars($oDocument->get('tags')))-->{htmlspecialchars($oDocument->get('tags'))}<!--@else-->{$lang->about_tag}<!--@end-->" />
+									<div class="fItem">
+										<label class="iLabel" for="tags">{$lang->about_tag}</label>
+										<input type="text" id="tags" name="tags" class="inputText iText" title="{$lang->about_tag}" value="<!--@if(htmlspecialchars($oDocument->get('tags')))-->{htmlspecialchars($oDocument->get('tags'))}<!--@end-->" />
+									</div>
 									<!--@if($tag_list)-->
 									{@$_i=0;}
 									<div class="usedTag">
