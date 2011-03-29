@@ -33,7 +33,7 @@
             $this->published_twitter = $data->published_twitter==true?true:false;
         }
 
-        function getBlogAPIInfo($type, $url, $user_id, $password) {
+        function getBlogAPIInfo($type, $url, $user_id, $password, $blogid) {
             if(!preg_match('/^(http|https)/',$url)) $url = 'http://'.$url;
 
             $msg_lang = Context::getLang('msg_blogapi_registration');
@@ -53,7 +53,7 @@
                     break;
                 default :
                         require_once(_XE_PATH_.'modules/textyle/libs/metaweblog.class.php');
-                        $oMeta = new metaWebLog($url, $user_id, $password);
+                        $oMeta = new metaWebLog($url, $user_id, $password, $blogid);
                         $output = $oMeta->getUsersBlogs();
                         if(!$output->toBool()) return $output;
                     break;
@@ -247,7 +247,10 @@
         }
 
         function sendTwitter($user_id, $password) {
-            if(!$user_id || !$password) return;
+			//2011.03.04 twitter발행기능 제거 - cherryfilter
+			return;
+
+            /*if(!$user_id || !$password) return;
 
             $url = 'http://twitter.com/statuses/update.xml';
             $buff = FileHandler::getRemoteResource($url, 'status='.urlencode(sprintf('%s %s', $this->oDocument->getTitleText(), $this->oDocument->getPermanentUrl())), 3, 'POST', 'application/x-www-form-urlencoded',
@@ -255,7 +258,7 @@
                             'Authorization'=>'Basic '.base64_encode($user_id.':'.$password),
                         )
                     );
-            $this->published_twitter = true;
+            $this->published_twitter = true;*/
         }
 
     }

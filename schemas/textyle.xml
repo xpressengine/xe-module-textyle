@@ -1,6 +1,6 @@
 <table name="textyle">
   <column name="module_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" />
-  <column name="member_srl" type="number" size="11" notnull="notnull" index="idx_member_srl"/>
+  <column name="member_srl" type="number" size="11" notnull="notnull" index="idx_member_srl" />
   <column name="textyle_title" type="varchar" size="250" notnull="notnull" />
   <column name="textyle_content" type="varchar" size="250" notnull="notnull" />
   <column name="profile_content" type="text" default=""  notnull="notnull" />

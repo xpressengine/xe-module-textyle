@@ -1,7 +1,7 @@
 <?php
     /**
      * @class  textyleAdminController
-     * @author sol (sol@ngleader.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  textyle 모듈의 admin controller class
      **/
 
@@ -45,7 +45,7 @@
             $this->setMessage('msg_create_textyle');
         }
 
-        function insertTextyle($domain, $user_id_list) {
+        function insertTextyle($domain, $user_id_list, $settings = null) {
             if(!is_array($user_id_list)) $user_id_list = array($user_id_list);
 
             $oAddonAdminController = &getAdminController('addon');
@@ -75,8 +75,8 @@
             $textyle->mid = $this->textyle_mid;
             $textyle->module = 'textyle';
             $textyle->module_srl = getNextSequence();
-            $textyle->skin = $this->skin;
-            $textyle->browser_title = sprintf("%s's Textyle",$member_info->nick_name);
+            $textyle->skin = ($settings->skin) ? $settings->skin : $this->skin;
+            $textyle->browser_title = ($settings->title) ? $settings->title : sprintf("%s's Textyle", $member_info->nick_name);
             $output = $oModuleController->insertModule($textyle);
 
             if(!$output->toBool()) return $output;
@@ -402,6 +402,7 @@
             $oTagController = &getController('tag');
             $oAddonController = &getController('addon');
             $oEditorController = &getController('editor');
+            $oTrackbackController = &getController('trackback');
             $oModuleModel = &getModel('module');
             $oTextyleModel = &getModel('textyle');
             $oMemberModel = &getModel('member');
@@ -437,12 +438,13 @@
             $output = $oDocumentController->triggerDeleteModuleDocuments($args);
             $output = $oCommentController->triggerDeleteModuleComments($args);
             $output = $oTagController->triggerDeleteModuleTags($args);
-			$args->module_srl = $args->module_srl *-1;
+            $output = $oTrackbackController->triggerDeleteModuleTrackbacks($args);
+            $args->module_srl = $args->module_srl *-1;
 
             $output = $oDocumentController->triggerDeleteModuleDocuments($args);
             $output = $oCommentController->triggerDeleteModuleComments($args);
             $output = $oTagController->triggerDeleteModuleTags($args);
-			$args->module_srl = $args->module_srl *-1;
+            $args->module_srl = $args->module_srl *-1;
 
             // set category
             $obj->module_srl = $module_srl;

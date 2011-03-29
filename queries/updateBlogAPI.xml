@@ -11,6 +11,7 @@
       <column name="blogapi_url" var="blogapi_url" notnull="notnull" />
       <column name="blogapi_user_id" var="blogapi_user_id" notnull="notnull" />
       <column name="blogapi_password" var="blogapi_password" notnull="notnull" />
+      <column name="blogapi_blogid" var="blogapi_blogid" notnull="notnull" />
     </columns>
     <conditions>
         <condition operation="equal" column="module_srl" var="module_srl" filter="number" notnull="notnull" />

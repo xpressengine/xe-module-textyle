@@ -2,7 +2,7 @@
 
     /**
      * @class  textyleView
-     * @author sol (sol@ngleader.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  textyle 모듈의 View class
      **/
 
@@ -12,24 +12,39 @@
          * @brief 초기화
          **/
         function init() {
-            if(!$this->checkXECoreVersion('1.4.0.3')) return $this->stop(sprintf(Context::getLang('msg_requried_version'),'1.4.0.3'));
+            // textyle 관리
+            $oTextyleModel = &getModel('textyle');
+            if(preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act) ) {
+                $this->initTool($this);
+
+            // textyle 서비스
+            } else {
+                $this->initService($this);
+            }
+        }
+
+        /**
+         * @brief Textyle 공동 초기화
+         **/
+        function initCommon($is_other_module = false){
+            if(!$this->checkXECoreVersion('1.4.3')) return $this->stop(sprintf(Context::getLang('msg_requried_version'),'1.4.3'));
 
             $oTextyleModel = &getModel('textyle');
             $oTextyleController = &getController('textyle');
             $oModuleModel = &getModel('module');
 
-            Context::set('custom_menu', $this->custom_menu = $oTextyleModel->getTextyleCustomMenu());
-
-			$site_module_info = Context::get('site_module_info');
+            $site_module_info = Context::get('site_module_info');
             if(!$this->module_srl) {
                 $site_module_info = Context::get('site_module_info');
                 $site_srl = $site_module_info->site_srl;
                 if($site_srl) {
                     $this->module_srl = $site_module_info->index_module_srl;
                     $this->module_info = $oModuleModel->getModuleInfoByModuleSrl($this->module_srl);
-                    Context::set('module_info',$this->module_info);
-                    Context::set('mid',$this->module_info->mid);
-                    Context::set('current_module_info',$this->module_info);
+                    if (!$is_other_module){
+                        Context::set('module_info',$this->module_info);
+                        Context::set('mid',$this->module_info->mid);
+                        Context::set('current_module_info',$this->module_info);
+                    }
                 }
             }
 
@@ -37,7 +52,7 @@
             if(!$this->module_info->skin) $this->module_info->skin = $this->skin;
 
             // 만약 skin 미리보기일 경우 관리자라면 스킨을 변경해 보여줌
-			$preview_skin = Context::get('preview_skin');
+            $preview_skin = Context::get('preview_skin');
             if($oModuleModel->isSiteAdmin(Context::get('logged_info'))&&$preview_skin) {
                 if(is_dir($this->module_path.'skins/'.$preview_skin)) {
                     $textyle_config->skin = $this->module_info->skin = $preview_skin;
@@ -45,8 +60,10 @@
             }
 
             // 모듈 정보에 textyle 정보를 합쳐서 저장
-            Context::set('module_info',$this->module_info);
-            Context::set('current_module_info', $this->module_info);
+            if (!$is_other_module){
+                Context::set('module_info',$this->module_info);
+                Context::set('current_module_info', $this->module_info);
+            }
 
             $this->textyle = $oTextyleModel->getTextyle($this->module_info->module_srl);
             $this->site_srl = $this->textyle->site_srl;
@@ -62,66 +79,118 @@
             if($this->textyle->getSubscriptionDate() <= date('YmdHis')){
                 $output = $oTextyleController->publishSubscriptedPost($this->module_info->module_srl);
             }
+        }
 
-            // textyle 관리
-            if(preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act) ) {
+        /**
+         * @brief Textyle 관리 초기화
+         **/
+        function initTool(&$oModule, $is_other_module = false){
+            if (!$oModule) $oModule = $this;
 
-                // 숨김 메뉴를 요청할 경우 대시보드로 변경
-                if($oTextyleModel->ishiddenMenu($this->act) || ($this->act == 'dispTextyleToolDashboard' && $oTextyleModel->isHiddenMenu(0)) ) {
-                    if($oTextyleModel->isHiddenMenu(0)) Context::set('act', $this->act = 'dispTextyleToolPostManageList', true);
-                    else Context::set('act', $this->act= 'dispTextyleToolDashboard', true);
-                }
+            // 공동 초기화
+            $this->initCommon($is_other_module);
 
+            $oTextyleModel = &getModel('textyle');
+
+            $site_module_info = Context::get('site_module_info');
+            $textyle = $oTextyleModel->getTextyle($site_module_info->index_module_srl);
+            $custom_menu = $oTextyleModel->getTextyleCustomMenu();
+
+            // 모바일 뷰를 사용안한다면 보여줄 필요는 없다.
+            $info = Context::getDBInfo();
+            if($info->use_mobile_vie=='Y'){
+                $custom_menu->hidden_menu[] = strtolower('dispTextyleToolLayoutConfigMobileSkin');
+            }
+
+            Context::set('custom_menu', $custom_menu);
+
+
+            // 숨김 메뉴를 요청할 경우 대시보드로 변경
+            if($oTextyleModel->ishiddenMenu($oModule->act) || ($oModule->act == 'dispTextyleToolDashboard' && $oTextyleModel->isHiddenMenu(0)) ) {
+                if($oTextyleModel->isHiddenMenu(0)) Context::set('act', $oModule->act = 'dispTextyleToolPostManageList', true);
+                else Context::set('act', $oModule->act= 'dispTextyleToolDashboard', true);
+            }
+
+            if ($is_other_module){
+                $oModule->setLayoutPath($this->module_path.'tpl');
+                $oModule->setLayoutFile('_tool_layout');
+            }else{
                 $template_path = sprintf("%stpl",$this->module_path);
                 $this->setTemplatePath($template_path);
                 $this->setTemplateFile(str_replace('dispTextyleTool','',$this->act));
+            }
 
-                if($_COOKIE['tclnb']) Context::addBodyClass('lnbClose');
-                else Context::addBodyClass('lnbToggleOpen');
+            if($_COOKIE['tclnb']) Context::addBodyClass('lnbClose');
+            else Context::addBodyClass('lnbToggleOpen');
 
-                // browser title 지정
-                Context::setBrowserTitle($this->textyle->get('browser_title') . ' - admin');
+            // browser title 지정
+            Context::setBrowserTitle($textyle->get('browser_title') . ' - admin');
+        }
 
-            // textyle 서비스
-            } else {
-                Context::addJsFile($this->module_path.'tpl/js/textyle_service.js');
+        /**
+         * @brief textyle 서비스 초기화
+         **/
+        function initService(&$oModule, $is_other_module = false, $isMobile = false){
+            if (!$oModule) $oModule = $this;
 
-                if(!$preview_skin){
-                    $oTextyleModel->checkTextylePath($this->module_srl, $this->module_info->skin);
-                    $this->setTemplatePath($oTextyleModel->getTextylePath($this->module_srl));
-                }
-                else $this->setTemplatePath($this->module_path.'skins/'.$preview_skin);
+            $oTextyleModel = &getModel('textyle');
 
-                $this->setTemplateFile('textyle');
-                Context::addCssFile($this->getTemplatePath().'textyle.css',true,'all','',100);
+            // 공동 초기화
+            $this->initCommon($is_other_module);
 
-                // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
-                Context::set('root_url', Context::getRequestUri());
-                Context::set('home_url', getFullSiteUrl($this->textyle->domain));
-                Context::set('profile_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleProfile'));
-                Context::set('guestbook_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleGuestbook'));
-                Context::set('tag_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleTag'));
-                if(Context::get('is_logged')) Context::set('admin_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleToolDashboard'));
-                else Context::set('admin_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleToolLogin'));
-                Context::set('textyle_title', $this->textyle->get('textyle_title'));
-                if($this->textyle->get('post_use_prefix')=='Y' && $this->textyle->get('post_prefix')) Context::set('post_prefix', $this->textyle->get('post_prefix'));
-                if($this->textyle->get('post_use_suffix')=='Y' && $this->textyle->get('post_suffix')) Context::set('post_suffix', $this->textyle->get('post_suffix'));
+            Context::addJsFile($this->module_path.'tpl/js/textyle_service.js');
 
-				$extra_menus = array();				
-				$args->site_srl = $this->site_srl;
-				$output = executeQueryArray('textyle.getExtraMenus',$args);
-				if($output->toBool() && $output->data){
-					foreach($output->data as $i => $menu){
-						$extra_menus[$menu->name] = getUrl('','mid',$menu->mid);
-					}
+            $preview_skin = Context::get('preview_skin');
+			if(!$isMobile)
+			{
+				if($is_other_module){
+					$path_method = 'setLayoutPath';
+					$file_method = 'setLayoutFile';
+					$css_path_method = 'getLayoutPath';
+					Context::set('textyle_mode', 'module');
+				}else{
+					$path_method = 'setTemplatePath';
+					$file_method = 'setTemplateFile';
+					$css_path_method = 'getTemplatePath';
 				}
 
-                // 추가 메뉴
-                Context::set('extra_menus', $extra_menus);
+				if(!$preview_skin){
+					$oTextyleModel->checkTextylePath($this->module_srl, $this->module_info->skin);
+					$oModule->{$path_method}($oTextyleModel->getTextylePath($this->module_srl));
+				}else{
+					$oModule->{$path_method}($this->module_path.'skins/'.$preview_skin);
+				}
 
-                // browser title 지정
-                Context::setBrowserTitle($this->textyle->get('browser_title'));
+				$oModule->{$file_method}('textyle');
+				Context::addCssFile($oModule->{$css_path_method}().'textyle.css',true,'all','',100);
+			}
+
+            // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
+            Context::set('root_url', Context::getRequestUri());
+            Context::set('home_url', getFullSiteUrl($this->textyle->domain));
+            Context::set('profile_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleProfile'));
+            Context::set('guestbook_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleGuestbook'));
+            Context::set('tag_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleTag'));
+            if(Context::get('is_logged')) Context::set('admin_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleToolDashboard'));
+            else Context::set('admin_url', getSiteUrl($textyle->domain,'','mid','textyle','act','dispTextyleToolLogin'));
+            Context::set('textyle_title', $this->textyle->get('textyle_title'));
+            if($this->textyle->get('post_use_prefix')=='Y' && $this->textyle->get('post_prefix')) Context::set('post_prefix', $this->textyle->get('post_prefix'));
+            if($this->textyle->get('post_use_suffix')=='Y' && $this->textyle->get('post_suffix')) Context::set('post_suffix', $this->textyle->get('post_suffix'));
+
+            $extra_menus = array();
+            $args->site_srl = $this->site_srl;
+            $output = executeQueryArray('textyle.getExtraMenus',$args);
+            if($output->toBool() && $output->data){
+                foreach($output->data as $i => $menu){
+                    $extra_menus[$menu->name] = getUrl('','mid',$menu->mid);
+                }
             }
+
+            // 추가 메뉴
+            Context::set('extra_menus', $extra_menus);
+
+            // browser title 지정
+            Context::setBrowserTitle($this->textyle->get('browser_title'));
         }
 
         /**
@@ -1018,6 +1087,40 @@
             Context::set('cur_skin', $output[$this->module_info->skin]);
         }
 
+        function dispTextyleToolLayoutConfigMobileSkin() {
+            $oModuleModel = &getModel('module');
+
+            // 스킨 목록 구함
+            $skins = $oModuleModel->getSkins($this->module_path, 'm.skins');
+            if(count($skins)) {
+                foreach($skins as $skin_name => $info) {
+                    $large_screenshot = $this->module_path.'m.skins/'.$skin_name.'/screenshots/large.jpg';
+                    if(!file_exists($large_screenshot)) $large_screenshot = $this->module_path.'tpl/img/@large.jpg';
+                    $small_screenshot = $this->module_path.'m.skins/'.$skin_name.'/screenshots/small.jpg';
+                    if(!file_exists($small_screenshot)) $small_screenshot = $this->module_path.'tpl/img/@small.jpg';
+
+                    unset($obj);
+                    $obj->title = $info->title;
+                    $obj->description = $info->description;
+                    $_arr_author = array();
+                    for($i=0,$c=count($info->author);$i<$c;$i++) {
+                        $name =  $info->author[$i]->name;
+                        $homepage = $info->author[$i]->homepage;
+                        if($homepage) $_arr_author[] = '<a href="'.$homepage.'" onclick="window.open(this.href); return false;">'.$name.'</a>';
+                        else $_arr_author[] = $name;
+                    }
+                    $obj->author = implode(',',$_arr_author);
+                    $obj->large_screenshot = $large_screenshot;
+                    $obj->small_screenshot = $small_screenshot;
+                    $obj->date = $info->date;
+                    $output[$skin_name] = $obj;
+                }
+            }
+            Context::set('skins', $output);
+            Context::set('cur_skin', $output[$this->module_info->mskin]);
+        }
+
+
         function dispTextyleToolLayoutConfigEdit() {
             $oTextyleModel = &getModel('textyle');
             $skin_path = $oTextyleModel->getTextylePath($this->module_srl);
@@ -1025,15 +1128,22 @@
             $skin_file_list = $oTextyleModel->getTextyleUserSkinFileList($this->module_srl);
             $skin_file_content = array();
             foreach($skin_file_list as $file){
-                $skin_file_content[$file] = FileHandler::readFile($skin_path . $file);
+				if(preg_match('/^textyle/',$file)){
+					$skin_file_content[$file] = FileHandler::readFile($skin_path . $file);
+				}
             }
+            foreach($skin_file_list as $file){
+				if(!in_array($file,$skin_file_content)){
+					$skin_file_content[$file] = FileHandler::readFile($skin_path . $file);
+				}
+            }
+
             Context::set('skin_file_content',$skin_file_content);
 
             $user_image_path = sprintf("%suser_images/", $oTextyleModel->getTextylePath($this->module_srl));
             $user_image_list = FileHandler::readDir($user_image_path);
             Context::set('user_image_path',$user_image_path);
             Context::set('user_image_list',$user_image_list);
-
         }
 
         function dispTextyleToolConfigProfile(){
@@ -1206,7 +1316,7 @@
                     if($oDocument->get('module_srl')!=$this->module_info->module_srl ) return $this->stop('msg_invalid_request');
 
                     // html title에 글제목 추가
-                    Context::setBrowserTitle($this->textyle->get('browser_title') . ' »  ' . $oDocument->getTitle());
+                    Context::setBrowserTitle($this->textyle->get('browser_title') . ' »  ' . $oDocument->getTitleText());
 
                     // meta keywords category + tag
                     $tag_array = $oDocument->get('tag_list');
@@ -1531,7 +1641,7 @@
 				$oModuleModel = &getModel('module');
 				$module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
 				if(!$module_info) return new Object(-1,'msg_invalid_request');
-				
+
 				$args->module_srl = $module_info->module_srl;
 				$output = executeQuery('textyle.getExtraMenu',$args);
 				if($output->data){
@@ -1562,5 +1672,6 @@
 
 			Context::set('used_extra_menu_count',$used_extra_menu_count);
 		}
+
     }
 ?>

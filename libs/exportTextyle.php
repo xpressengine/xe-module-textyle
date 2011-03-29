@@ -75,7 +75,7 @@ class ExportTextyle{
 		$oDocumentList = array();
 
 		$args->module_srl = join(',',array($this->module_srl,$this->module_srl*-1));
-		$output = executeQuery('textyle.getExportDocumentList',$args);
+		$output = executeQueryArray('textyle.getExportDocumentList',$args);
 		if($output->data){
 			foreach($output->data as $attribute){
 				$oDocument = new documentItem();
@@ -93,7 +93,7 @@ class ExportTextyle{
 		$oCommentList = array();
 
 		$args->document_srl = $document_srl;
-		$output = executeQuery('textyle.getExportCommentList',$args);
+		$output = executeQueryArray('textyle.getExportCommentList',$args);
 		if($output->data){
 			foreach($output->data as $attribute){
 				$oComment = new commentItem();
@@ -123,7 +123,7 @@ class ExportTextyle{
 
 	function getGuestbookList(){
 		$args->module_srl = $this->module_srl;
-		$output = executeQuery('textyle.getExportGuestbookList',$args);
+		$output = executeQueryArray('textyle.getExportGuestbookList',$args);
 		$guestbook_list = array();
 		if($output->data){
 			foreach($output->data as $k => $guestbook){
@@ -259,7 +259,8 @@ class TTXMLExport extends ExportTextyle{
 	}
 	
 	function _replacePostContent($oDocument){
-		$content = $oDocument->getContent(false,false);
+		//2011.03.04 cherryfilter : 관리자가 export 시 embed 태그가 있는 내용이 변환되어 나오기 때문에 parameter 추가
+		$content = $oDocument->getContent(false,false, false, true, true);
 		$content = preg_replace_callback('/<(a|img) +([^>]+)>/i',array(&$this,'_replaceFilePath'),$content);
 
 		return $this->_replaceHtml($content);

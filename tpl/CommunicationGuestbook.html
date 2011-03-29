@@ -82,7 +82,7 @@
 												<!--@end-->
 											</div>
 											<div class="control">
-												<span class="buttonGray small"><button type="button" onclick="updateGuestbookItemChangeSecret({$v->textyle_guestbook_srl},{$page})">{$lang->cmd_change_secret}</button></span> 
+												<span class="buttonGray small"><button type="button" onclick="updateGuestbookItemChangeSecret({$v->textyle_guestbook_srl},{$page})"><!--@if($v->is_secret<0)-->{$lang->private}<!--@else-->{$lang->public}<!--@end--></button></span> 
 												<span class="buttonGray small"><button type="button" onclick="openLayerAddDenyItem('{$v->textyle_guestbook_srl}','_addDenyGuestbookList')">{$lang->cmd_deny}</button></span> 
 												<span class="buttonGray small"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteGuestbookItem({$v->textyle_guestbook_srl},{$page});return false;">{$lang->cmd_delete}</button></span>
 											</div>

@@ -1,22 +1,22 @@
 <?php
     /**
      * @file   vi.lang.php
-     * @author haneul (haneul0318@gmail.com)
+     * @author NHN (developers@xpressengine.com)
 	 * @Trans: DucDuy Dao (webmaster@xpressengine.vn)
      * @brief  Textyle(textyle) module's Vietnamese language pack.
      **/
 
-    $lang->textyle = 'Textyle';
-    $lang->about_textyle = 'Textyle là một Module hoạt động trên XpressEngine.';
+    $lang->textyle = 'Textyle/Blog';
+    $lang->about_textyle = 'Textyle là một Module hoạt động dựa trên XpressEngine.';
     $lang->msg_requried_version = "Textyle chỉ hoạt động trên phiên bản XE %s.";
 
 	$lang->cmd_open_id = 'Đăng nhập với OpenID';
 	$lang->cmd_common_id = 'Đăng nhập với ID đã đăng kí';
-	$lang->msg_create_textyle = 'Textyle đã được tạo';
+	$lang->msg_create_textyle = 'Blog đã được tạo';
 	$lang->init_category_title = 'Chủ đề mặc định';
 	$lang->add_category = 'Thêm chủ đề';
-    $lang->textyle_admin = 'Textyle administrator(ID)';
-    $lang->textyle_title = 'Tiêu đề của Textyle';
+    $lang->textyle_admin = 'ID người quản lý';
+    $lang->textyle_title = 'Tiêu đề Blog';
     $lang->today_visitor = '<strong>Truy cập</strong> của hôm nay';
     $lang->today_comments = '<strong>Bình luận</strong> của hôm nay';
     $lang->today_trackbacks = '<strong>Liên kết</strong> của hôm nay';
@@ -57,9 +57,9 @@
     $lang->allow_profile_image_size = 'Kích thước hình sẽ tự động thu nhỏ thành <strong>%dx%d</strong>px.';
     $lang->signature = 'Giới thiệu về bản thân';
     $lang->default_config = 'Cấu hình mặc định';
-    $lang->blog_title = 'Tiêu đề của Blog';
+    $lang->blog_title = 'Tiêu đề';
     $lang->about_blog_title = '';
-    $lang->blog_description = 'Một dòng mô tả';
+    $lang->blog_description = 'Giới thiệu';
     $lang->about_blog_description = 'Hiển thị phụ thuộc vào giao diện, hay bạn có thể sử dụng HTML&middot;CSS.';
     $lang->favicon = 'Favicon';
     $lang->registed_favicon = 'Favicon đã được đăng kí.';
@@ -91,9 +91,9 @@
     $lang->etc_editor = 'Kiểu biên tập khác';
     $lang->about_etc_editor = 'Những kiểu biên tập trù phú.';
     $lang->set_editor_components = 'Thiết lập Component';
-    $lang->set_prefix = 'Tiền tố';
+    $lang->set_prefix = 'Thêm vào trước nội dung';
     $lang->about_prefix = 'Nội dung sẽ đi kèm trong các bài viết. (Có thể sử dụng HTML)';
-    $lang->set_suffix = 'Hậu tố';
+    $lang->set_suffix = 'Thêm vào sau nội dung';
     $lang->about_suffix = 'Nội dung sẽ đi kèm trong các bài viết. (Có thể sử dụng HTML)';
     $lang->blog_first_page = 'Trang truớc';
     $lang->blog_display_target = 'Hiển thị';
@@ -295,13 +295,13 @@
         'week'=>'Năm.Tháng.Ngày',
         'month'=>'Năm.Tháng'
     );
-    $lang->visit_count = 'Truy cập';
+    $lang->visit_count = 'Lượt truy cập';
     $lang->visit_per = 'Tỷ lệ';
     $lang->trackback_division = 'Nếu nhiều địa chỉ liên kết Web, nó sẽ được tách ra thành từng dòng (Enter).';
 
-    $lang->about_supporter = 'Người yêu thích là những người đã bình luận, liên kết và gửi lưu niệm nhiều.';
-    $lang->supporter_rank = 'Thứ hạng người yêu thích';
-    $lang->rank = 'Thứ hạng';
+    $lang->about_supporter = 'Yêu thích là những người đã xác nhận và danh sách yêu thích của họ và gửi nhiều bài viết lên Blog của bạn.';
+    $lang->supporter_rank = 'Thứ hạng';
+    $lang->rank = 'Thống kê';
     $lang->user = 'Thành viên';
     $lang->guestbook = 'Sổ lưu niệm';
 	$lang->add_denylist = 'Thêm vào danh sách từ chối';
@@ -341,33 +341,34 @@
         array(
             'dispTextyleToolStatisticsVisitor'=>'Truy cập',
             'dispTextyleToolStatisticsVisitRoute'=>'Kiểu truy cập',
-            'dispTextyleToolStatisticsSupporter'=>'Người yêu thích',
+            'dispTextyleToolStatisticsSupporter'=>'Yêu thích',
             'dispTextyleToolStatisticsPopular'=>'Thứ hạng',
         ),
         array(
             'dispTextyleToolLayoutConfigSkin'=>'Giao diện',
             'dispTextyleToolLayoutConfigEdit'=>'Sửa HTML - CSS',
+            'dispTextyleToolLayoutConfigMobileSkin'=>'Chọn giao diện cho di động',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'Lý lịch của tôi',
             'dispTextyleToolConfigInfo'=>'Cấu hình Blog',
-            'dispTextyleToolConfigPostwrite'=>'Thiết lập biên tập',
+            'dispTextyleToolConfigPostwrite'=>'Kiểu gửi bài',
             'dispTextyleToolConfigEditorComponents'=>'Thiết lập Component',
-            'dispTextyleToolConfigCommunication'=>'Hiển thị qua API',
+            'dispTextyleToolConfigCommunication'=>'Gửi qua API',
             'dispTextyleToolConfigBlogApi'=>'BlogAPI',
             'dispTextyleToolConfigAddon'=>'Addon',
             'dispTextyleToolConfigData'=>'Dữ liệu',
             'dispTextyleToolConfigChangePassword'=>'Thay đổi mật khẩu',
-            'dispTextyleToolExtraMenuList'=>'Additional Menu',
+            'dispTextyleToolExtraMenuList'=>'Thêm Menu',
         ),
     );
 
     $lang->cmd_go_help = 'Trợ giúp';
     $lang->cmd_textyle_setup = 'Thiết lập mặc định';
-    $lang->cmd_textyle_list = 'Danh sách Textyle';
-    $lang->cmd_textyle_creation = 'Tạo Textyle mới';
-    $lang->cmd_textyle_update = 'Sửa Textyle';
-    $lang->cmd_textyle_custom_menu = 'Sửa Menu Textyle';
+    $lang->cmd_textyle_list = 'Danh sách Blog';
+    $lang->cmd_textyle_creation = 'Tạo Blog mới';
+    $lang->cmd_textyle_update = 'Sửa Blog';
+    $lang->cmd_textyle_custom_menu = 'Sửa Menu Blog';
     $lang->cmd_new_post = 'Gửi bài mới';
     $lang->cmd_go_blog = 'Xem Blog của tôi';
     $lang->cmd_send_suggestion = 'Gửi một gợi ý';
@@ -441,37 +442,41 @@
     $lang->sample_tags = 'Textyle ,  Textyle Editor, Textyle Vietnam, XpressEngine Vietnam, VXE';
     $lang->msg_preparation = 'Trong sự chuẩn bị';
     $lang->msg_not_user = 'Không có ai.';
-    $lang->success_textyle_init = '텍스타일을 초기화 하였습니다.';
-	$lang->textyle_init = '초기화';
-    $lang->cmd_textyle_init = '텍스타일을 초기화 합니다.';
-    $lang->msg_textyle_init_about = '포스트/댓글/트랙백, 방명록, 레이아웃 정보를 모두 삭제 및 초기화를 합니다. 초기화 후 복구는 불가능 합니다.';
-    $lang->msg_confirm_textyle_init = '초기화를 하시겠습니까?';
+    $lang->success_textyle_init = 'Blog đã được thiết lập lại thành công.';
+	$lang->textyle_init = 'Thiết lập lại';
+    $lang->cmd_textyle_init = 'Thiết lập lại Blog.';
+    $lang->msg_textyle_init_about = 'Tất cả các Bài viết/Bình luận/Liên kết, Sổ lưu niệm, Giao diện sẽ bị xóa và trở về mặc định. Sau khi thiết lập lại sẽ không thể phục hồi.';
+    $lang->msg_confirm_textyle_init = 'Bạn chắc chắn muốn thiết lập lại không?';
 
-	$lang->textyle_skin_userimage = '사용자 이미지';
-	$lang->msg_check_userimage = 'gif, png, jpg, swf 파일만 가능합니다.';
-    $lang->cmd_textyle_skin_export = '스킨 백업';
-    $lang->textyle_skin_import = '스킨 복원';
-    $lang->about_textyle_skin_import = '로컬 폴더에 있는 사용자 정의 스킨을 원격으로 업로드 합니다. 현재 스킨은 삭제됩니다.';
+	$lang->textyle_skin_userimage = 'Hình đại diện';
+	$lang->msg_check_userimage = 'Hỗ trợ các định dạng .gif, .png, .jpg, .swf.';
+    $lang->cmd_textyle_skin_export = 'Sao lưu giao diện';
+    $lang->textyle_skin_import = 'Phục hồi giao diện';
+    $lang->about_textyle_skin_import = 'Tải giao diện từ máy tính của bạn lên thư mục hiện hành. Giao diện đang sử dụng sẽ bị xóa bỏ.';
 
-	$lang->success_upload = '업로드 되었습니다.';
-	$lang->cmd_textyle_export_request ='백업신청내역';
-	$lang->textyle_export_recode = '백업신청내역';
-	$lang->textyle_export_waiting = '신청중';
-	$lang->textyle_export_request = '백업신청하기';
-	$lang->textyle_export_type = '데이타 타입';
-	$lang->textyle_export_date = '데이타 생성시간';
-	$lang->textyle_export_file = '데이타 파일';
-	$lang->cmd_textyle_export_file = '내보내기';
+	$lang->success_upload = 'Đã Upload xong.';
+	$lang->cmd_textyle_export_request ='Danh sách đăng kí sao lưu';
+	$lang->textyle_export_recode = 'Danh sách đăng kí sao lưu';
+	$lang->textyle_export_waiting = 'Đang đăng kí sao lưu';
+	$lang->textyle_export_request = 'Đăng kí sao lưu';
+	$lang->textyle_export_type = 'Định dạng';
+	$lang->textyle_export_date = 'Thời gian tạo';
+	$lang->textyle_export_file = 'Vị trí File';
+	$lang->cmd_textyle_export_file = 'Xuất File';
 
-	$lang->menu_name = '메뉴명';
-	$lang->msg_module_count_exceed = '추가 가능한 해당 모듈 수를 초과 하였습니다.';
-	$lang->msg_limit_module = '%s개 남음';
-    $lang->about_textyle_extra_menu = 'XpressEngine에 설치된 모듈을 텍스타일 메뉴로 추가할 수 있습니다.';
-    $lang->cmd_textyle_extra_menu_config = '추가메뉴 설정';
-    $lang->textyle_extra_menu_limit_count = '최대 생성 수';
-	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
+	$lang->menu_name = 'Tên Menu';
+	$lang->msg_module_count_exceed = 'Đã vượt quá số lượng Module cho phép.';
+	$lang->msg_limit_module = 'Còn lại %s';
+    $lang->about_textyle_extra_menu = 'Bạn có thể thêm Menu của XE vào Blog của mình.';
+    $lang->cmd_textyle_extra_menu_config = 'Thêm Menu';
+    $lang->textyle_extra_menu_limit_count = 'Số Menu được tạo';
+	$lang->msg_limit_textyle_extra_mid = 'Chỉ cho phép sử dụng chữ cái tiếng Anh + [chữ cái tiếng Ang, số, và dấu gạch dưới(_)].';
 
-	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
-	$lang->config_edit_components = '에디터 콤포넌트 설정';
-	$lang->textyle_bug_report = '오류신고';
+	$lang->msg_microblog_setup = 'Nếu bạn gửi đồng thời lên MicroBlog thì  %s phải được thực hiện trước.';
+	$lang->config_edit_components = 'Thiết lập soạn thảo thành phần';
+	$lang->textyle_bug_report = 'Thông báo lỗi';
+	$lang->cmd_open_close = 'Mở/Đóng';
+	$lang->msg_write_comment = 'Gửi bình luận';
+	$lang->msg_mobile_skin_use_not = 'Hiện tại giao diện cho Mobile chưa được sử dụng. Để sử dụng giao diện cho Mobile, hãy bấm "Áp dụng".';
+	$lang->skip_content = 'Bỏ qua nội dung';
 ?>

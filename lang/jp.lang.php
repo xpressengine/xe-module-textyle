@@ -354,7 +354,7 @@
             'dispTextyleToolConfigAddon'=>'アドオン管理',
             'dispTextyleToolConfigData'=>'データ管理',
             'dispTextyleToolConfigChangePassword'=>'パスワード変更',
-            'dispTextyleToolExtraMenuList'=>'Additional Menu',
+            'dispTextyleToolExtraMenuList'=>'追加メニュー',
         ),
     );
 
@@ -435,37 +435,40 @@
     $lang->sample_tags = 'textyle ,  テキスタイル ,  テキスタイルエディター ,  ネタ収集機';
     $lang->msg_preparation = '準備中です。';
     $lang->msg_not_user = '該当するユーザーはいません。';
-    $lang->success_textyle_init = '텍스타일을 초기화 하였습니다.';
-	$lang->textyle_init = '초기화';
-    $lang->cmd_textyle_init = '텍스타일을 초기화 합니다.';
-    $lang->msg_textyle_init_about = '포스트/댓글/트랙백, 방명록, 레이아웃 정보를 모두 삭제 및 초기화를 합니다. 초기화 후 복구는 불가능 합니다.';
-    $lang->msg_confirm_textyle_init = '초기화를 하시겠습니까?';
+    $lang->success_textyle_init = 'テキスタイルを初期化しました。';
+	$lang->textyle_init = '初期化';
+    $lang->cmd_textyle_init = 'テキスタイルを初期化します。';
+    $lang->msg_textyle_init_about = '記事・コメント・トラックバック、ゲストブック、レイアウトの情報を全て削除して初期化します。初期化後、修復はできません。';
+    $lang->msg_confirm_textyle_init = '初期化しますか？';
 
-	$lang->textyle_skin_userimage = '사용자 이미지';
-	$lang->msg_check_userimage = 'gif, png, jpg, swf 파일만 가능합니다.';
-    $lang->cmd_textyle_skin_export = '스킨 백업';
-    $lang->textyle_skin_import = '스킨 복원';
-	$lang->about_textyle_skin_import = '로컬 폴더에 있는 사용자 정의 스킨을 원격으로 업로드 합니다. 현재 스킨은 삭제됩니다.';
+	$lang->textyle_skin_userimage = 'プロフィールイメージ';
+	$lang->msg_check_userimage = 'gif, png, jpg, swf ファイルのみ使用できます。';
+    $lang->cmd_textyle_skin_export = 'スキンバックアップ';
+    $lang->textyle_skin_import = 'スキンリストア';
+	$lang->about_textyle_skin_import = 'ロカルフォルダーにあるユーザースキンを遠隔でアップロードします。アップロードすると今のスキン設定を失います。';
 
-	$lang->success_upload = '업로드 되었습니다.';
-	$lang->cmd_textyle_export_request ='백업신청내역';
-	$lang->textyle_export_recode = '백업신청내역';
-	$lang->textyle_export_waiting = '신청중';
-	$lang->textyle_export_request = '백업신청하기';
-	$lang->textyle_export_type = '데이타 타입';
-	$lang->textyle_export_date = '데이타 생성시간';
-	$lang->textyle_export_file = '데이타 파일';
-	$lang->cmd_textyle_export_file = '내보내기';
+	$lang->success_upload = 'アップロードに成功しました。';
+	$lang->cmd_textyle_export_request ='バックアップ要請';
+	$lang->textyle_export_recode = 'バックアップ要請履歴';
+	$lang->textyle_export_waiting = '要請中';
+	$lang->textyle_export_request = 'バックアップ要請';
+	$lang->textyle_export_type = 'データタイプ';
+	$lang->textyle_export_date = 'データ作成日時';
+	$lang->textyle_export_file = 'データファイル';
+	$lang->cmd_textyle_export_file = 'エックスポート';
 
-	$lang->menu_name = '메뉴명';
-	$lang->msg_module_count_exceed = '추가 가능한 해당 모듈 수를 초과 하였습니다.';
-	$lang->msg_limit_module = '%s개 남음';
-    $lang->about_textyle_extra_menu = 'XpressEngine에 설치된 모듈을 텍스타일 메뉴로 추가할 수 있습니다.';
-    $lang->cmd_textyle_extra_menu_config = '추가메뉴 설정';
-    $lang->textyle_extra_menu_limit_count = '최대 생성 수';
-	$lang->msg_limit_textyle_extra_mid = 'Only english alphabet + [english alphabet, numbers, and underscore(_)] are allowed.';
+	$lang->menu_name = 'メニュー名';
+	$lang->msg_module_count_exceed = '追加できるモジュール数の制限を超えています。';
+	$lang->msg_limit_module = '残り %s個';
+    $lang->about_textyle_extra_menu = 'XpressEngineに設置されたモジュールをテキスタイルメニューに追加できます。';
+    $lang->cmd_textyle_extra_menu_config = '追加メニュー設定';
+    $lang->textyle_extra_menu_limit_count = '最大追加可能数';
+	$lang->msg_limit_textyle_extra_mid = 'ローマ字、数字、アンダスコアー(_)のみ入力できます。（初文字はローマ字のみ）';
 
-	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
-	$lang->config_edit_components = 'configure edit components';
-	$lang->textyle_bug_report = '오류신고';
+	$lang->msg_microblog_setup = '%sを先にしないと、マイクロブログに同時投稿できません。';
+	$lang->config_edit_components = '編集コンポネントを設定';
+	$lang->textyle_bug_report = 'エラー報告';
+	$lang->cmd_open_close = '開く・閉じる';
+	$lang->msg_write_comment = 'コメント登録';
+
 ?>

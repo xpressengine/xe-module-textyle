@@ -1,7 +1,7 @@
 <?php
     /**
      * @class  textyleAdminView
-     * @author sol (sol@ngleader.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  textyle 모듈의 admin view class
      **/
 

@@ -7,23 +7,11 @@
 <!--@if($enable_openid=='Y')-->
     <!--%import("filter/openid_login.xml")-->
 <!--@end-->
-<script type="text/javascript">
-    var keep_signed_msg = "{$lang->about_keep_signed}";
-    jQuery(window).load( function() { jQuery('#uid').focus(); } );
-</script>
-
 <div id="textyleAdmin" class="textyleAdmin hybrid">
 	<div id="container" class="c">
 		<!-- Header -->
 		<div id="header">
-			<a href="#content" class="skipToContent">Skip to content</a>
-			<h1><a href="http://www.textyle.co.kr" onclick="window.open(this.href);return false;"><img src="img/hTextyle.gif" width="106" height="30" alt="textyle" /></a></h1>
-			<hr />
-			<div class="navigation">
-				<div class="section">
-					<h2>Navigation</h2>
-				</div>
-			</div>
+			<h1><img src="img/hTextyle.gif" width="106" height="30" alt="textyle" /></h1>
         </div>
         <hr />
 		<!-- /Header -->
@@ -46,60 +34,46 @@
 								<dt><label for="upw">{$lang->password}</label></dt>
 								<dd><input id="upw" name="password" type="password" /></dd>
 							</dl>
-							<p>
-								<input type="checkbox" name="keep_signed" class="inputCheck" value="Y" onclick="if(this.checked) return confirm(keep_signed_msg);" id="keepUid" /> <label for="keepUid">{$lang->keep_signed}</label> 
+							<div class="btnArea">
+								<p class="keep"><input type="checkbox" name="keep_signed" class="iCheck" value="Y" id="keepUid" /> <label for="keepUid">{$lang->keep_signed}</label></p> 
+								<p class="keepDesc">{$lang->about_keep_warning}</p>
 								<span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
-
-<!--@if($enable_openid=='Y')-->
-								<a href="#openidLogOn" class="toggleID" onclick="jQuery('#logOnInterface').attr('class','logOnInterface openid');">{$lang->cmd_open_id}</a>
-<!--@end-->
-							</p>
+								<a href="#openidLogOn" cond="$enable_openid=='Y'" class="toggleID" onclick="jQuery('#logOnInterface').attr('class','logOnInterface openid');">{$lang->cmd_open_id}</a>
+							</div>
 						</fieldset>
 					</form>
-                    
-<!--@if($enable_openid=='Y')-->
-                    <form action="" method="post" onsubmit="return procFilter(this, openid_login)" id="openidLogOn">
+                    <form action="" method="post" cond="$enable_openid=='Y'" onsubmit="return procFilter(this, openid_login)" id="openidLogOn">
 						<fieldset>
 							<legend>Open ID {$lang->cmd_login}</legend>
 							<dl>
 								<dt><label for="oid">Open ID</label></dt>
 								<dd><input id="oid" name="openid" type="text" /></dd>
 							</dl>
-							<p>
+							<p class="btnArea">
 								<span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
 								<a href="#defaultLogOn" class="toggleID" onclick="jQuery('#logOnInterface').attr('class','logOnInterface default')">{$lang->cmd_common_id}</a>
 							</p>
 						</fieldset>
 					</form>
-<!--@end-->                    
 				</div>
 				<!-- /Log On -->
 				
 			</div>
-			<hr />
 			<!-- /Content -->
 			
 		</div>
-		<hr />
 		<!-- /Body -->
-
-		<!-- Footer -->
-		<div id="footer">
-			<div class="navigation">
-				<div class="section">
-					<h3>Navigation</h3>
-					<ul>
-						<li><a href="#">{$lang->cmd_send_suggestion}</a></li>
-						<li><a href="#">{$lang->cmd_view_help}</a></li>
-					</ul>
-				</div>
-			</div>
-			<hr />
-			<address>
-				<a href="http://www.xpressengine.com" title="XpressEngine"><img src="img/xeFooter.gif" width="103" height="18" alt="powered by XE&#8482;" /></a>
-			</address>
-		</div>
-		<!-- /Footer -->
-
 	</div>
 </div>
+<script type="text/javascript">
+// <![CDATA[
+jQuery(function($){
+	$('#uid').focus();
+	var keepDesc = $('.keepDesc');
+	keepDesc.hide();
+	$('.keep').change(function(){
+		keepDesc.toggle();
+	});
+});
+// ]]>
+</script>

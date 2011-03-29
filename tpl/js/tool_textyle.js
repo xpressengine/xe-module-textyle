@@ -1,16 +1,3 @@
-jQuery(function(){
-	jQuery(':text,:password,textarea')
-	.focus(function(e){
-		var jthis = jQuery(this);
-		if(jthis.parents('.textyleEditor').size() ==0 && jthis.attr('title') && jthis.val()== jthis.attr('title')) jthis.val('');
-	}).blur(function(e){
-		var jthis = jQuery(this);
-		if(jthis.parents('.textyleEditor').size() ==0 && jthis.attr('title') && !jthis.val()) jthis.val(jthis.attr('title'));	
-	});
-});
-
-
-
 function unique(t) {
 	var a = [];
 	var l = t.length;
@@ -142,15 +129,15 @@ function _deleteNotifyItem(params){
 	exec_xml('textyle', 'procTextyleNotifyItemDelete', params, completeReload, response_tags);
 }
 
-function updateCommentItemSetSecret(srl,is_secret,page){
+function updateCommentItemSetSecret(srl,is_secret,page,module_srl){
 	var params = new Array();
 	params['comment_srl'] = srl;
 	params['page'] = page;
 	params['is_secret'] = is_secret;
+	params['module_srl'] = module_srl;
 
 	var response_tags = new Array('error','message','page','mid');
 	exec_xml('textyle', 'procTextyleCommentItemSetSecret', params, completeReload, response_tags);
-
 }
 
 function updateGuestbookItemChangeSecret(srl,page){
@@ -416,7 +403,7 @@ function _deletePostItem(params){
 
 }
 
-function trashPostItem(srl,page){
+function trashPostItem(srl, page){
 	var params = new Array();
 	params['document_srl'] = srl;
 	params['page'] = page;
@@ -424,7 +411,9 @@ function trashPostItem(srl,page){
 }
 
 function trashPostItems(page){
-	var val,srls = [];
+	if(!confirm(xe.lang.msg_confirm_delete_post)) return false;
+
+	var val, srls = [];
 	jQuery("input[name=document_srl]:checked").each(function(){
 		val = jQuery(this).val();
 		if(val) srls.push(val);
@@ -625,7 +614,14 @@ function doSelectSkin(skin) {
 	params['skin'] = skin;
 	params['mid'] = current_mid;
 	exec_xml('textyle', 'procTextyleToolLayoutConfigSkin', params, completeReload, response_tags);
+}
 
+function doSelectMobileSkin(mskin) {
+	var params = new Array();
+	var response_tags = new Array('error','message');
+	params['mskin'] = mskin;
+	params['mid'] = current_mid;
+	exec_xml('textyle', 'procTextyleToolLayoutConfigMobileSkin', params, completeReload, response_tags);
 }
 
 function doResetLayoutConfig() {
@@ -1247,3 +1243,28 @@ function sortExtraMenu(menu_mids){
 function isLive(){
 	exec_xml('textyle', 'procTextyleToolLive', []);
 }
+
+jQuery(function($){
+	// Label Text Clear
+	var iText = $('.fItem>.iLabel').next('.iText');
+	$('.fItem>.iLabel').css('position','absolute');
+	iText
+		.focus(function(){
+			$(this).prev('.iLabel').css('visibility','hidden');
+		})
+		.blur(function(){
+			if($(this).val() == ''){
+				$(this).prev('.iLabel').css('visibility','visible');
+			} else {
+				$(this).prev('.iLabel').css('visibility','hidden');
+			}
+		})
+		.change(function(){
+			if($(this).val() == ''){
+				$(this).prev('.iLabel').css('visibility','visible');
+			} else {
+				$(this).prev('.iLabel').css('visibility','hidden');
+			}
+		})
+		.blur();
+});

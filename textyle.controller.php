@@ -1,7 +1,7 @@
 <?php
     /**
      * @class  textyleController
-     * @author sol (sol@ngleader.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  textyle 모듈의 Controller class
      **/
 
@@ -340,31 +340,6 @@
             if($output) return $output;
         }
 
-
-        /**
-         * @brief 코멘트 삭제
-         **/
-        function procTextyleDeleteComment() {
-            $oCommentController = &getController('comment');
-
-            $password = Context::get('password');
-            if($password){
-                $output = $this->checkCommentVerificationPassword();
-                if($output) return $output;
-            }
-            // 댓글 번호 확인
-            $comment_srl = Context::get('comment_srl');
-            if(!$comment_srl) return $this->doError('msg_invalid_request');
-
-            $output = $oCommentController->deleteComment($comment_srl, $this->grant->manager);
-            if(!$output->toBool()) return $output;
-
-            $this->add('mid', Context::get('mid'));
-            $this->add('page', Context::get('page'));
-            $this->add('document_srl', $output->get('document_srl'));
-            $this->setMessage('success_deleted');
-        }
-
         /**
          * @brief 댓글의 비밀번호를 확인
          **/
@@ -608,6 +583,7 @@
             $args->is_secret = $is_secret =='Y' ? 'Y' : 'N';
 
             $args->comment_srl = Context::get('comment_srl');
+            $args->module_srl = Context::get('module_srl');
             $oCommentController = &getController('comment');
             $output = $oCommentController->updateComment($args, $this->grant->manager);
             $this->add('mid', Context::get('mid'));
@@ -725,12 +701,17 @@
 
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
 
-            // 기존 설정 가져오기
+            // 기존 설정 유지
             $var->allow_comment = ($oDocument->allowComment()) ? 'Y' : 'N';
             $var->allow_trackback = ($oDocument->allowTrackback()) ? 'Y' : 'N';
+            $var->is_secret = ($oDocument->isSecret()) ? 'Y' : 'N';
             $var->tags = $oDocument->get('tags');
-            if($oDocument->isExists()) $output = $this->updatePost($var);
-            else $output = $this->savePost($var);
+
+            if($oDocument->isExists()) {
+                $output = $this->updatePost($var);
+            } else {
+                $output = $this->savePost($var);
+            }
             if(!$output->toBool()) return $output;
 
             $this->add('mid', Context::get('mid'));
@@ -751,7 +732,6 @@
 
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
             $vars = $oDocument->getObjectVars();
-            $isPublished = ($vars->module_srl == $this->module_srl);
             $vars->tags = $var->tags;
             $vars->module_srl = $this->module_srl;
             $vars->category_srl = $var->category_srl;
@@ -760,6 +740,11 @@
 
             $output = $this->updatePost($vars);
             if(!$output->toBool()) return $output;
+
+            // 기발행 여부 체크
+            $args->document_srl = $var->document_srl;
+            $output = executeQuery('textyle.getPublishLogs', $args);
+            $isPublished = (!$output->data) ? false : true;
 
             if(!$isPublished){
                 $args->update_order = $args->list_order = getNextSequence()*-1;
@@ -794,11 +779,10 @@
             $oPublish->setMe2day($publish_option->send_me2day);
             $oPublish->setTwitter($publish_option->send_twitter);
             $oPublish->save();
-
-            $var->publish_date_yyyymmdd = ereg_replace("[^0-9]",'',str_replace("-",'',$var->publish_date_yyyymmdd));
+            $var->publish_date_yyyymmdd = preg_replace("/[^0-9]/",'',$var->publish_date_yyyymmdd);
             if($var->subscription=='Y' && $var->publish_date_yyyymmdd) {
-                $var->publish_date_hh = ereg_replace("[^0-9]",'',str_replace('-','',$var->publish_date_hh));
-                $var->publish_date_ii = ereg_replace("[^0-9]",'',str_replace('-','',$var->publish_date_ii));
+                $var->publish_date_hh = preg_replace("/[^0-9]/",'',$var->publish_date_hh);
+                $var->publish_date_ii = preg_replace("/[^0-9]/",'',$var->publish_date_ii);
                 $var->publish_date_hh = $var->publish_date_hh ? $var->publish_date_hh : 0;
                 $var->publish_date_ii = $var->publish_date_ii ? $var->publish_date_ii : 0;
                 $var->publish_date = sprintf("%s%02d%02d00",$var->publish_date_yyyymmdd, $var->publish_date_hh , $var->publish_date_ii);
@@ -814,6 +798,7 @@
 
                     // update module_srl for subscription
                     $args->module_srl = abs($this->module_srl) * -1;
+					$args->category_srl = $var->category_srl;
                     $output = executeQuery('document.updateDocumentModule', $args);
                     if(!$output->toBool()) return $output;
 
@@ -846,7 +831,6 @@
 			if(!$args->module_srl) $args->module_srl = $oDocument->get('module_srl');
             if(!$args->category_srl) $args->category_srl = $oDocument->get('category_srl');
             if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
-
 
             $output = $oDocumentController->updateDocument($oDocument, $args);
             return $output;
@@ -1307,6 +1291,13 @@
             $oModuleController->insertModulePartConfig('editor',$this->module_srl,$editor_config);
         }
 
+	    /**
+		 * @brief Delete Comments: for backward-compatibility
+		 */
+		function procTextyleDeleteComment() {
+			$this->procTextyleCommentDelete();
+		}
+
         /**
          * @brief 코멘트 삭제
          **/
@@ -1477,6 +1468,47 @@
 
             FileHandler::removeDir($oTextyleModel->getTextylePath($this->module_srl));
             FileHandler::copyDir($this->module_path.'skins/'.$skin, $oTextyleModel->getTextylePath($this->module_srl));
+        }
+
+        function procTextyleToolLayoutConfigMobileSkin() {
+            $oModuleModel = &getModel('module');
+            $oModuleController = &getController('module');
+            $oTextyleModel = &getModel('textyle');
+
+            if(in_array(strtolower('dispTextyleToolLayoutConfigMobileSkin'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
+            $mskin = Context::get('mskin');
+
+			$module_srls = array($this->module_srl);
+			/*
+			// 추가메뉴
+			$args->site_srl = $this->site_srl;
+			$output = executeQueryArray('textyle.getExtraMenuModuleSrls',$args);
+			if($output->toBool() && $output->data){
+				foreach($output->data as $data){
+					$module_srls[] = $data->module_srl;
+				}
+			}
+			*/
+
+			// 사용안함
+			if(!$mskin){
+				$use_mobile = 'N';
+			}else{
+				$use_mobile = 'Y';
+				if($mskin && !is_dir($this->module_path.'m.skins/'.$mskin)) return new Object();
+			}
+
+			foreach($module_srls as $module_srl){
+				unset($module_info);
+				$module_info  = $oModuleModel->getModuleInfoByModuleSrl($this->module_srl);
+				$module_info->mskin = $mskin;
+
+				$module_info->module_srl = $module_srl;
+				$module_info->site_srl = $this->site_srl;
+				$module_info->use_mobile = $use_mobile;
+				$module_info->mskin = $mskin;
+				$output = $oModuleController->updateModule($module_info);
+			}
         }
 
         function procTextyleToolLayoutResetConfigSkin() {
@@ -1729,12 +1761,17 @@
             // XMLRPC, JSON 형식이어도 pass~
             if(in_array(Context::getRequestMethod(),array('XMLRPC','JSON'))) return new Object();
 
+			// 로그아웃 액션이면 pass~
+			if($oModule->act == 'dispMemberLogout') return new Object();
+
             // 현재 가상사이트가 textyle이 아닐 경우 pass~
             $site_module_info = Context::get('site_module_info');
             if(!$site_module_info || !$site_module_info->site_srl || $site_module_info->mid != $this->textyle_mid) return new Object();
 
             // 현재 요청된 사이트가 textyle이고 textyle의 action이면 pass~
-            if($oModule->mid == $this->textyle_mid && isset($oModule->xml_info->action->{$oModule->act})) return new Object();
+            $oModuleModel = &getModel('module');
+            $xml_info = $oModuleModel->getModuleActionXml('textyle');
+            if($oModule->mid == $this->textyle_mid && isset($xml_info->action->{$oModule->act})) return new Object();
 
             $oTextyleModel = &getModel('textyle');
             $oTextyleView = &getView('textyle');
@@ -1743,44 +1780,13 @@
             Context::set('layout',null);
 
             if($oTextyleModel->isAttachedMenu($oModule->act)) {
-                $oModule->setLayoutPath($this->module_path.'tpl');
-                $oModule->setLayoutFile('_tool_layout');
+                $oTextyleView->initTool($oModule, true);
             } else {
-                // 요청된 텍스타일의 정보를 구해서 레이아웃과 관련 정보를 설정
-                $textyle = $oTextyleModel->getTextyle($site_module_info->index_module_srl);
-
-                $oModule->module_info->layout_srl = null;
-                $oModule->setLayoutPath($oTextyleModel->getTextylePath($site_module_info->index_module_srl));
-                $oModule->setLayoutFile('textyle');
-
-                $module_path = './modules/textyle/';
-                Context::addHtmlHeader('<link rel="shortcut icon" href="'.$textyle->getFaviconSrc().'" />');
-                Context::addJsFile($module_path.'tpl/js/textyle_service.js');
-                Context::addCssFile($oModule->getLayoutPath().'textyle.css');
-
-                // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
-                Context::set('root_url', Context::getRequestUri());
-                Context::set('home_url', getFullSiteUrl($textyle->domain));
-                Context::set('profile_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleProfile'));
-                Context::set('guestbook_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleGuestbook'));
-                Context::set('tag_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleTag'));
-                if(Context::get('is_logged')) Context::set('admin_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleToolDashboard'));
-                else Context::set('admin_url', getSiteUrl($textyle->domain,'','mid',$this->textyle_mid,'act','dispTextyleToolLogin'));
-                Context::set('textyle_title', $textyle->get('textyle_title'));
-                Context::set('textyle', $textyle);
-	
-                Context::set('textyle_mode', 'module');
-
-				$extra_menus = array();				
-				$args->site_srl = $textyle->site_srl;
-				$output = executeQueryArray('textyle.getExtraMenus',$args);
-				if($output->toBool() && $output->data){
-					foreach($output->data as $i => $menu){
-						$extra_menus[$menu->name] = getUrl('','mid',$menu->mid);
-					}
+				if(Mobile::isFromMobilePhone())
+				{
+					$oTextyleView = &getMobile('textyle');
 				}
-                // 추가 메뉴
-                Context::set('extra_menus', $extra_menus);
+                $oTextyleView->initService($oModule, true);
             }
             return new Object();
         }
@@ -1920,16 +1926,16 @@
             $output = $oTextyleAdminController->initTextyle($this->site_srl);
             return $output;
         }
-	
+
 		function procTextyleRequestExport(){
             if(!$this->site_srl) return new Object(-1,'msg_invalid_request');
 
-			$oTextyleAdminController = &getAdminController('textyle'); 
+			$oTextyleAdminController = &getAdminController('textyle');
 			$oTextyleAdminController->deleteExport($this->site_srl);
 
 			$args->export_type = Context::get('export_type');
 			if(!$args->export_type || $args->export_type!='xexml') $args->export_type='ttxml';
-		
+
 			$logged_info = Context::get('logged_info');
 			$args->module_srl = $this->module_srl;
 			$args->site_srl = $this->site_srl;
@@ -2010,7 +2016,7 @@
 			$args->site_srl = $this->site_srl;
 			$output = executeQueryArray('textyle.getExtraMenus',$args);
 			if(!$output->toBool() || !$output->data) return $output;
-	
+
 			foreach($output->data as $k => $menu){
 				$order[$menu->mid] = $menu;
 			}

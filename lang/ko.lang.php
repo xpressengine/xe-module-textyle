@@ -1,7 +1,7 @@
 <?php
     /**
      * @file   ko.lang.php
-     * @author sol (sol@ngleader.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  Textyle(textyle) 모듈의 기본 언어팩
      **/
 
@@ -103,6 +103,7 @@
     $lang->blogapi_example = '예) Window Live Writer, Google Docs, MS Word 2007 등';
     $lang->not_permit_blogapi = 'API 연결확인이 되지 않았습니다.';
     $lang->blogapi_url = 'API 주소';
+    $lang->blogapi_blogid = 'Blog id';
 	$lang->cmd_textyle_blogapi_service = 'Blog API 서비스 편집';
 	$lang->api_type = 'API 타입';
 	$lang->service_name = 'API 서비스 이름';
@@ -342,6 +343,7 @@
         array(
             'dispTextyleToolLayoutConfigSkin'=>'스킨선택',
             'dispTextyleToolLayoutConfigEdit'=>'HTML&middot;CSS 편집',
+            'dispTextyleToolLayoutConfigMobileSkin'=>'모바일스킨선택',
         ),
         array(
             'dispTextyleToolConfigProfile'=>'내 프로필',
@@ -467,4 +469,8 @@
 	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
 	$lang->config_edit_components = '에디터 콤포넌트 설정';
 	$lang->textyle_bug_report = '오류신고';
+	$lang->cmd_open_close = '열기/닫기';
+	$lang->msg_write_comment = '댓글쓰기';
+	$lang->msg_mobile_skin_use_not = '현재 모바일 스킨을 사용하지 않고 있습니다. 사용하려면 스킨적용 버튼을 누르세요.';
+	$lang->skip_content = '본문 건너뛰기';
 ?>

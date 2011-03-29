@@ -24,7 +24,7 @@
 					<li<!--@if($act=='dispTextyleGuestbook')--> class="active"<!--@end-->><a href="{$guestbook_url}">GuestBook</a></li>
 					<li<!--@if($act=='dispTextyleTag')--> class="active"<!--@end-->><a href="{$tag_url}">Tag</a></li>
                     <!--@foreach($extra_menus as $key => $val)-->
-					<li<!--@if($key==$mid)--> class="active"<!--@end-->><a href="{$val}">{$key}</a></li>
+					<li<!--@if($key==$mid || $val==getUrl('','mid',$mid))--> class="active"<!--@end-->><a href="{$val}">{$key}</a></li>
                     <!--@end-->
                     <li><a href="{$admin_url}" accesskey="A">Admin</a></li>
 				</ul>
@@ -33,567 +33,39 @@
 
         <hr />
         <div id="body">
-            <div id="content">
+            <div id="content" class="content">
 				<div class="ieMarginFixer"></div>
-                <!--// Profile -->
                 <!--@if($textyle_mode == 'module')-->
                     {$content}
                 <!--@elseif($textyle_mode == 'profile')-->
-                    <h2 class="postTitle">Profile</h2>
-                    <dl class="postMeta">
-                        <dt>on</dt>
-                        <dd>{zdate($textyle->get('regdate'),"Y.m.d")}</dd>
-                        <dt>at</dt>
-                        <dd>{zdate($textyle->get('regdate'),"H:i")}</dd>
-                        <dt>by</dt>
-                        <dd><span class="member_{$textyle->member_srl}">{$textyle->nick_name}</span></dd>
-                        <dd><a href="#" class="editPost">Edit</a></dd>
-                    </dl>
-                    <div class="textyleContent xe_content">{$profile_content}</div>
+					<!--#include('profile.html')-->
 
                 <!--// GuestBook -->
                 <!--@else if($textyle_mode == 'guestbook')-->
-                    <h2 class="postTitle">GuestBook <em>{$page_navigation->total_count}</em></h2>
-
-                    <!--@if(!$reply && !$modify)-->
-                    <div class="replyForm">
-                        <!--@if($textyle->isEnableGuestbook())-->
-                        <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                            <input name="mid" type="hidden" value="{$mid}" />
-                            <input type="hidden" name="content" value="" />
-                            <fieldset>
-                                {$editor}
-								<div class="replyFooter">
-									<div class="optional">
-										<!--@if($is_logged)-->
-										<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
-										<!--@else-->
-										<input name="nick_name" type="text" class="inputText name" value="Name" title="Name" />
-										<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
-										<!--@if($textyle->getInputEmail()!='N')-->
-											<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-											<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
-										<!--@end-->
-										<!--@if($textyle->getInputWebsite()!='N')-->
-											<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-											<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
-										<!--@end-->
-										<!--@end-->
-										<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" /><label for="secret1">{$lang->secret}</label>
-									</div>
-									<span class="inputSubmit"><input type="submit" value="SUBMIT" /></span>
-								</div>
-                            </fieldset>
-                        </form>
-                        <!--@else-->
-                        <p>{$lang->disable_guestbook}</p>
-                        <!--@end-->
-                    </div>
-                    <!--@end-->
-
-                    <div class="feedback reply">
-                        <!--@if($guestbook_list)-->
-                        <ol class="feedbackOrder">
-                            <!--@foreach($guestbook_list as $key => $val)-->
-                            <!--@if($modify == $val->textyle_guestbook_srl && $textyle->isEnableGuestbook())-->
-                            <li class="item replyForm">
-                                <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                                    <input name="mid" type="hidden" value="{$mid}" />
-                                    <input type="hidden" name="content" value="{htmlspecialchars($val->content)}" />
-                                    <input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
-                                    <fieldset>
-                                        {$editor}
-										<div class="replyFooter">
-											<div class="optional">
-												<!--@if($is_logged)-->
-												<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
-												<!--@else-->
-												<input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
-												<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
-												<!--@if($textyle->getInputEmail()!='N')-->
-													<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-													<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
-												<!--@end-->
-												<!--@if($textyle->getInputWebsite()!='N')-->
-													<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-													<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
-												<!--@end-->
-												<!--@end-->
-												<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($val->is_secret==1)-->checked <!--@end-->/>
-												<label for="secret1">{$lang->secret}</label>
-											</div>
-                                        	<span class="inputSubmit"><input name="submit" type="submit" value="SUBMIT" /></span>
-										</div>
-                                    </fieldset>
-                                </form>
-                            </li>
-                            <!--@else-->
-                            <li class="item<!--@if($val->parent_srl>0)--> indent indent1<!--@end-->">
-                                <div class="meta">
-                                    <div class="thumb">
-                                        <!--@if($val->profile_image)-->
-                                            <img src="{$val->profile_image}" alt="author" />
-                                        <!--@else-->
-                                            <img src="img/iconAuthorNoImage.gif" width="39" height="39" alt="Author" />
-                                        <!--@end-->
-                                    </div>
-                                    <h4 class="author">
-										<!--@if($val->homepage)-->
-										<a href="{$val->homepage}" onclick="window.open(this.href);return false;" class="member_{$val->member_srl}">{$val->nick_name}</a>
-										<!--@else-->
-										<span class="member_{$val->member_srl}">{$val->nick_name}</span>
-										<!--@end-->
-									</h4>
-                                    <p class="date">{zdate($val->regdate,'Y.m.d')} <span class="hhmm">{zdate($val->regdate,'H:i')}</span></p>
-                                    <!--@if($grant->is_admin)-->
-                                    <p class="ipAddress">{$val->ipaddress}</p>
-                                    <!--@end-->
-                                </div>
-                                <div class="data textyleContent">
-									<!--@if($val->is_secret==-1 || $val->view_grant)-->
-                                    {$val->content}
-									<!--@else-->
-									<form action="" method="post" class="pwForm active guestbook{$key}" onsubmit="return checkPasswordGuestbook(this)">
-										<input type="hidden" name="mid" value="{$mid}" />
-										<input type="hidden" name="page" value="{$page}" />
-										<input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
-
-										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
-									</form>
-									<!--@end-->
-									<form action="" method="post" class="modifyPw pwForm guestbook{$key}" onsubmit="return checkPasswordForModifyGuestbook(this)">
-										<input type="hidden" name="mid" value="{$mid}" />
-										<input type="hidden" name="page" value="{$page}" />
-										<input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
-
-										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
-									</form>
-									<form action="" method="post" class="deletePw pwForm guestbook{$key}" onsubmit="return checkPasswordForDeleteGuestbook(this)">
-										<input type="hidden" name="mid" value="{$mid}" />
-										<input type="hidden" name="page" value="{$page}" />
-										<input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
-
-										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
-									</form>
-									<ul class="reAction">
-										<!--@if($val->view_grant)-->
-										<!--@if($val->parent_srl==0 && $textyle->isEnableGuestbook())-->
-										<li><a href="{getUrl('modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
-										<!--@end-->
-										
-										<!--@if($val->member_srl || $logged_info->is_site_admin)-->
-											<!--@if($logged_info->member_srl == $val->member_srl)-->
-												<li><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
-
-											<!--@end-->
-											<!--@if($logged_info->is_site_admin || $logged_info->member_srl == $val->member_srl)-->
-												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteGuestbookItem({$val->textyle_guestbook_srl});">{$lang->cmd_delete}</button></li>
-											<!--@end-->
-										<!--@else-->
-												<li><button type="button" onclick="jQuery('.guestbook{$key}').removeClass('active');jQuery('.modifyPw.guestbook{$key}').addClass('active')">{$lang->cmd_modify}</button></li>
-												<li><button type="button" onclick="jQuery('.guestbook{$key}').removeClass('active');jQuery('.deletePw.guestbook{$key}').addClass('active')">{$lang->cmd_delete}</button></li>
-										<!--@end-->
-										<!--@end-->
-									</ul>
-                                </div>
-                            </li>
-                            <!--@if($reply == $val->textyle_guestbook_srl && $textyle->isEnableGuestbook())-->
-                            <li class="item replyForm">
-                                <form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="">
-                                    <input name="mid" type="hidden" value="{$mid}" />
-                                    <input type="hidden" name="content" value="" />
-                                    <input type="hidden" name="parent_srl" value="{$val->textyle_guestbook_srl}" />
-                                    <fieldset>
-                                        {$editor}
-										<div class="replyFooter">
-											<div class="optional">
-												<!--@if($is_logged)-->
-												<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
-												<!--@else-->
-												<input name="nick_name" type="text" class="inputText name" value="Name" title="Name" />
-												<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
-												<!--@if($textyle->getInputEmail()!='N')-->
-													<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-													<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
-												<!--@end-->
-												<!--@if($textyle->getInputWebsite()!='N')-->
-													<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-													<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
-												<!--@end-->
-												<!--@end-->
-												<input name="is_secret" id="secret2" type="checkbox" value="Y" class="inputCheck" />
-												<label for="secret2">{$lang->secret}</label>
-											</div>
-											<span class="inputSubmit"><input name="" type="submit" value="SUBMIT" /></span>
-										</div>
-                                    </fieldset>
-                                </form>
-                            </li>
-                            <!--@end-->
-                            <!--@end-->
-                            <!--@end-->
-                        </ol>
-                        <!--@end-->
-                    </div>
+					<!--#include('guestbook.html')-->
 
                 <!--// Tags -->
                 <!--@else if($textyle_mode=='tags')-->
-                    <h2 class="postTitle">Tag <!--@if(count($tag_list>0))--> <em>{count($tag_list)}</em> <!--@end--></h2>
-                    <!--@if($tag_list)-->
-                        <ul class="tagCloud">
-                            <!--@foreach($tag_list as $val)-->
-                                <!--@if($val->count>5)-->
-                                    {@ $_level = "4" }
-                                <!--@elseif($val->count>3)-->
-                                    {@ $_level = "3" }
-                                <!--@elseif($val->count>1)-->
-                                    {@ $_level = "2" }
-                                <!--@else-->
-                                    {@ $_level = "1" }
-                                <!--@end-->
-                                <li class="level{$_level}"><a href="{getUrl('search_keyword',$val->tag,'search_target','tag','act','dispTextyle')}">{$val->tag}</a></li>
-                            <!--@end-->
-                        </ul>
-                    <!--@end-->
+					<!--#include('tags.html')-->
 
                 <!--// Comment Reply, Modify -->
                 <!--@else if($textyle_mode=='comment_form')-->
-
-                    <!--// 만약 댓글의 답을 다는 것이라면 원문 보여줌 -->
-                    <!--@if($oSourceComment->isExists())-->
-                    <div class="feedback reply">
-                        <ol class="feedbackOrder">
-                            <li class="item">
-                                <div class="meta">
-                                    <div class="thumb">
-                                        <!--@if($oSourceComment->getProfileImage())-->
-                                            <img src="{$oSourceComment->getProfileImage()}" alt="author" />
-                                        <!--@else-->
-                                            <img src="img/iconAuthorNoImage.gif" width="39" height="39" alt="Author" />
-                                        <!--@end-->
-                                    </div>
-                                    <h4 class="author">
-										<!--@if($oSourceComment->homepage)-->
-										<a href="{$oSourceComment->homepage}" onclick="window.open(this.href);return false;" class="member_{$oSourceComment->member_srl}">{$oSourceComment->getNickName()}</a>
-										<!--@else-->
-										<span class="member_{$oSourceComment->member_srl}">{$oSourceComment->getNickName()}</span>
-										<!--@end-->
-                                    </h4>
-                                    <p class="date">{$oSourceComment->getRegdate('Y.m.d')} <span class="hhmm">{$oSourceComment->getRegdate('H:i')}</span></p>
-                                </div>
-                                <div class="data textyleContent">
-                                    {$oSourceComment->getContent(false)}
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                    <!--@end-->
-                    <div class="replyForm">
-                        <h3>Leave Comments</h3>
-                        <!--@if($textyle->isEnableComment())-->
-                        <fieldset>
-                            <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
-                                <input name="mid" type="hidden" value="{$mid}" />
-                                <input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
-                                <input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
-                                <input type="hidden" name="content" value="{htmlspecialchars($oComment->get('content'))}" />
-                                <input type="hidden" name="parent_srl" value="{$oComment->get('parent_srl')}" />
-                                {$oComment->getEditor()}
-								<div class="replyFooter">
-									<div class="optional">
-										<!--@if($is_logged)-->
-										<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
-										<!--@else-->
-										<input name="nick_name" type="text" class="inputText name" value="Name" title="Name" />
-										<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
-										<!--@if($textyle->getInputEmail()!='N')-->
-											<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-											<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
-										<!--@end-->
-										<!--@if($textyle->getInputWebsite()!='N')-->
-											<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-											<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
-										<!--@end-->
-										<!--@end-->
-										<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($oComment->isSecret())-->checked <!--@end-->/>
-										<label for="secret1">{$lang->secret}</label>
-									</div>
-									<span class="inputSubmit"><input name="" type="submit" value="SUBMIT" /></span>
-								</div>
-                            </form>
-                        </fieldset>
-                        <!--@else-->
-                            {$lang->disable_comment}
-                        <!--@end-->
-                    </div>
+					<!--#include('comment_form.html')-->
 
                 <!--// display Post list --> 
                 <!--@elseif($textyle_mode=='list')-->
-                    <h2 class="postTitle">
-                        <!--@if($search_keyword)-->
-                            {$lang->search_result} <em>{$page_navigation->total_count}</em>{$lang->item_unit}
-                        <!--@elseif($category)-->
-                            {$selected_category} <em> {$page_navigation->total_count}</em>{$lang->item_unit}
-                        <!--@else-->
-                            {$lang->view_all} <em>{$page_navigation->total_count}</em>{$lang->item_unit}
-                        <!--@end-->
-                    </h2>
-                    <ul class="searchResult xe_content">
-                        <!--@foreach($document_list as $no => $document)-->
-                        <li>
-                            <!--@if($document->document_srl==$document_srl)-->
-                            <strong>
-                            <!--@end-->
-                            <a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}">{$document->getTitle()}</a>
-                            <!--@if($document->document_srl==$document_srl)-->
-                            </strong>
-                            <!--@end-->
-                            <span class="date">{zdate($document->get('last_update'),'Y.m.d')}</span>
-                        </li>
-                        <!--@end-->
-                    </ul>
-
+					<!--#include('post.title_list.html')-->
+					
                 <!--// display Post Summary -->
                 <!--@elseif($textyle_mode=='summary')-->
-                    <!--@foreach($document_list as $no => $document)-->
-					<div class="postSummary">
-						<h2 class="postTitle"><a href="{getUrl('','document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
-						<p class="postMeta">
-							{$document->getRegdate("Y.m.d")}
-							{$document->getRegdate("H:i")}
-							{$document->getNickName()}
-						</p>
-						<div class="textyleContent xe_content">
-							<!--@if($document->thumbnailExists())-->
-							<p class="summarySpot"><img src="{$document->getThumbnail(200,133)}" class="summaryThumb" alt="" /></p>
-							<!--@end-->
-							<p>{$document->getSummary(600)}</p>
-						</div>
-						<p class="summaryMore"><a href="{$document->getPermanentUrl()}">more</a></p>
-					</div>
-                    <!--@end-->
-					<div class="postSummaryFixer"></div>
+					<!--#include('post.summary.html')-->
+
                 <!--// display post body or body list -->
                 <!--@else-->
-                    <!--@foreach($document_list as $document)-->
-                        <h2 class="postTitle"><a href="{getUrl('','document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a></h2>
-                        <dl class="postMeta">
-                            <dt>in</dt>
-                            <dd><a href="{getUrl('document_srl','','entry','','category',$document->get('category_srl'))}">{$category_list[$document->get('category_srl')]->title}</a></dd>
-                            <dt>on</dt>
-                            <dd>{$document->getRegdate("Y.m.d")}</dd>
-                            <dt>at</dt>
-                            <dd>{$document->getRegdate("H:i")}</dd>
-                            <dt>by</dt>
-                            <dd><span class="member_{$document->get('member_srl')}">{$document->getNickName()}</span></dd>
-                            <dd><a href="{getSiteUrl($textyle->domain,'document_srl',$document->document_srl,'act','dispTextyleToolPostManageWrite')}" class="editPost">Edit</a></dd>
-                        </dl>
-                        <div class="textyleContent xe_content">
-                            {$post_prefix}
-                            {$document->getContent(false)}
-                            {$post_suffix}
-                        </div>
-                        {@$tag_list = $document->get('tag_list');}
-                        <!--@if(count($tag_list))-->
-                        <dl class="usedTag">
-                            <dt><img src="img/iconTag.gif" width="21" height="12" alt="Tag" /></dt>
-                            <dd>
-                                <!--@for($i=0,$c=count($tag_list);$i<$c;$i++)-->
-                                <a href="{getUrl('search_target','tag','search_keyword',$tag_list[$i],'document_srl','')}" rel="tag">{htmlspecialchars($tag_list[$i])}</a>
-                                    <!--@if($i<$c-1)-->
-                                    ,&nbsp;
-                                    <!--@end-->
-                                <!--@end-->
-                            </dd>
-                        </dl>
-                        <!--@end-->
+					<!--#include('post.list.html')-->
+				<!--@end-->
 
-                        <!--@if($prev_document || $next_document)-->
-                        <div class="pagination paginationPost">
-                            <!--@if($prev_document)-->
-                                <a href="{getUrl('','document_srl',$prev_document->document_srl)}" class="prev">{$prev_document->getTitle()}<span class="date">{$prev_document->getRegdate("Y.m.d")}</span></a>
-                            <!--@end-->
-                            <!--@if($next_document)-->
-                                <a href="{getUrl('','document_srl',$next_document->document_srl)}" class="next">{$next_document->getTitle()}<span class="date">{$next_document->getRegdate("Y.m.d")}</span></a>
-                            <!--@end-->
-                        </div>
-                        <!--@end-->
-                        
-                        <!--@if($document->allowTrackback() || $document->getTrackbackCount())-->
-                        <a name="trackback"></a>
-                        <div class="feedback trackback">
-                            <h3 class="feedbackTitle"><em>{$document->getTrackbackCount()}</em> Trackbacks</h3>
-                            <!--@if($document->allowTrackback())-->
-                            <dl class="trackbackURL">
-                                <dt>{$lang->trackback_url}</dt>
-                                <dd><a href="{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}" onclick="return false">{textyleModel::getTrackbackUrl($textyle->domain,$document->document_srl)}</a></dd>
-                            </dl>
-                            <!--@end-->
-                            <!--@if($document->getTrackbackCount())-->
-                            <ol class="feedbackOrder">
-                                <!--@foreach($document->getTrackbacks() as $key => $val)-->
-                                <li class="item">
-                                    <a name="trackback_{$val->trackback_srl}"></a>
-                                    <div class="meta">
-                                        <h4 class="author">
-											{$val->blog_name}
-										</h4>
-                                        <p class="date">{zdate($val->regdate, "Y.m.d")} <span class="hhmm">{zdate($val->regdate, "H:i")}</span></p>
-                                    </div>
-                                    <div class="data textyleContent">
-                                        <h4 class="trackbackTitle"><a href="{$val->url}">{htmlspecialchars($val->title)}</a></h4>
-                                        <p>{$val->excerpt}</p>
-                                    </div>
-                                </li>
-                                <!--@end-->
-                            </ol>
-                            <!--@end-->
-                        </div>
-                        <!--@end-->
-                        <!--@if($document->allowComment())-->
-                        <a name="comment"></a>
-                        <div class="feedback reply">
-                            <h3 class="feedbackTitle"><em>{$document->getCommentCount()}</em> Comments</h3>
-                            <!--@if($document->getCommentCount())-->
-                            <ol class="feedbackOrder">
-                                {@ $_comment_list = $document->getComments() }
-                                <!--@foreach($_comment_list as $key => $comment)-->
-                                <li class="item<!--@if($comment->get('depth'))--> indent indent{$comment->get('depth')}<!--@end-->">
-                                    <div class="meta">
-                                        <div class="thumb">
-                                            <!--@if($comment->getProfileImage())-->
-                                                <img src="{$comment->getProfileImage()}" alt="author" />
-                                            <!--@else-->
-                                                <img src="img/iconAuthorNoImage.gif" width="39" height="39" alt="Author" />
-                                            <!--@end-->
-                                        </div>
-                                        <h4 class="author">
-                                            <!--@if($comment->homepage)-->
-                                            <a href="{$comment->homepage}" onclick="window.open(this.href);return false;" class="member_{$comment->member_srl}">{$comment->getNickName()}</a>
-                                            <!--@else-->
-                                            <span class="member_{$comment->member_srl}">{$comment->getNickName()}</span>
-                                            <!--@end-->
-                                        </h4>
-                                        <p class="date">{$comment->getRegdate('Y.m.d')} <span class="hhmm">{$comment->getRegdate('H:i')}</span></p>
-                                        <p class="ipAddress">{$comment->getIpaddress()}</p>
-                                    </div>
-                                    <div class="data textyleContent">
-                                        <a name="comment_{$comment->comment_srl}"></a>
-										<!--@if($comment->isAccessible())-->
-										{$comment->getContent(false)}
-										<!--@else-->
-										<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="pwForm active">
-											<input type="hidden" name="mid" value="{$mid}" />
-											<input type="hidden" name="page" value="{$page}" />
-											<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
-											<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
-
-											<label for="readPw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="readPw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
-										</form>
-										<!--@end-->
-
-										<!--@if(!$comment->member_srl)-->
-										<form action="" method="post" class="modifyPw pwForm comment{$key}" onsubmit="return checkPasswordForModifyComment(this)">
-											<input type="hidden" name="mid" value="{$mid}" />
-											<input type="hidden" name="page" value="{$page}" />
-											<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
-											<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
-
-											<label for="modifyPw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="modifyPw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
-										</form>
-										<form action="" method="post" class="deletePw pwForm comment{$key}" onsubmit="return checkPasswordForDeleteComment(this)">
-											<input type="hidden" name="mid" value="{$mid}" />
-											<input type="hidden" name="page" value="{$page}" />
-											<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
-											<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
-
-											<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
-										</form>
-									<!--@end-->
-                                         <ul class="reAction">
-										<!--@if($comment->isAccessible())-->
-
-                                            <!--@if($textyle->isEnableComment())--><li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentReply')}">{$lang->cmd_reply}</a></li><!--@end-->
-											<!--@if($comment->member_srl)-->
-												<!--@if($comment->isGranted() || $comment->member_srl==$logged_info->member_srl)-->
-												<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}</a></li>
-												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
-                                                <!--@elseif($logged_info->is_site_admin)-->
-												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
-												<!--@end-->
-											<!--@else-->
-                                                <!--@if($logged_info->is_site_admin)-->
-												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
-                                                <!--@else-->
-												<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.modifyPw.comment{$key}').addClass('active')">{$lang->cmd_modify}</button></li>
-												<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.deletePw.comment{$key}').addClass('active')">{$lang->cmd_delete}</button></li>
-                                                <!--@end-->
-											<!--@end-->
-										<!--@end-->
-                                        </ul>
-                                    </div>
-                                </li>
-                                <!--@end-->
-                            </ol>
-                            <!--@end-->
-                        </div>
-                        <!--@if($document->comment_page_navigation)-->
-                        <div class="pagination paginationNum">
-                            <!--@if($document->comment_page_navigation->cur_page>1)--><a href="{getUrl('cpage',$document->comment_page_navigation->cur_page-1)}#comment" class="prev"><span>Prev</span></a><!--@end-->
-                            <!--@while($page_no = $document->comment_page_navigation->getNextPage())-->
-                                <!--@if($cpage == $page_no)-->
-                                <strong>{$page_no}</strong>
-                                <!--@else-->
-                                <a href="{getUrl('cpage',$page_no)}#comment">{$page_no}</a>
-                                <!--@end-->
-                            <!--@end-->
-                            <!--@if($document->comment_page_navigation->cur_page<$document->comment_page_navigation->total_page)--><a href="{getUrl('cpage',$document->comment_page_navigation->cur_page+1)}#comment" class="next"><span>Next</span></a><!--@end-->
-                        </div>
-                        <!--@end-->
-
-                        <div class="replyForm">
-                            <h3>Leave Comments</h3>
-                            <!--@if($textyle->isEnableComment())-->
-                            <fieldset>
-                                <form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
-                                    <input name="mid" type="hidden" value="{$mid}" />
-                                    <input type="hidden" name="document_srl" value="{$document->document_srl}" />
-                                    <input type="hidden" name="comment_srl" value="" />
-                                    <input type="hidden" name="content" value="" />
-                                    {$document->getCommentEditor()}
-									<div class="replyFooter">
-										<div class="optional">
-											<!--@if($is_logged)-->
-											<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
-											<!--@else-->
-											<input name="nick_name" type="text" class="inputText name" value="Name" title="Name" />
-											<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
-										
-											<!--@if($textyle->getInputEmail()!='N')-->
-												<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-												<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
-											<!--@end-->
-											<!--@if($textyle->getInputWebsite()!='N')-->
-												<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-												<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
-											<!--@end-->
-											<!--@end-->
-											<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
-											<label for="secret1">{$lang->secret}</label>
-										</div>
-										<span class="inputSubmit"><input name="" type="submit" value="SUBMIT" /></span>
-									</div>
-                                </form>
-                            </fieldset>
-                            <!--@else-->
-                                <p>{$lang->disable_comment}</p>
-                            <!--@end-->
-                        </div>
-                    <!--@end-->
-                    <!--@end-->
-		<!--@end-->
-
-                <!--@if($page_navigation)-->
+                <!--@if($page_navigation && $textyle_mode != 'module')-->
                 <div class="pagination paginationNum">
                     <!--@if($page_navigation->cur_page>1)--><a class="prev" href="{getUrl('page',$page_navigation->cur_page-1)}"><span>PREV</span></a><!--@end-->
                     <!--@while($page_no = $page_navigation->getNextPage())-->
@@ -675,7 +147,7 @@
         <hr />
 
 		<div id="footer">
-			<a href="{$home_url}rss" class="rss"><img src="img/iconRss.gif" width="16" height="16" alt="RSS" /></a>
+			<a href="{$home_url}/rss" class="rss"><img src="img/iconRss.gif" width="16" height="16" alt="RSS" /></a>
 			<div class="language">
 				<button type="button" onclick="jQuery('#selectLang').toggleClass('hide'); return false;" class="selected" title="{$lang_type}">{$lang_supported[$lang_type]}</button>
             	<ul class="hide" id="selectLang">
@@ -685,7 +157,7 @@
             	</ul>
 			</div>
 			<address>
-			Powered by <a href="http://textyle.kr/">Textyle</a> / Designed by <a href="http://blog.naver.com/mada79" title="Kim Ji Eun">Mada</a> / UI Dev. <a href="http://naradesign.net/" title="Jeong Chan Myeong">Naradesign</a>
+			Powered by <a href="http://textyle.kr/">Textyle</a>
 			</address>
 		</div>
 		<div class="pencilDecoration"></div>

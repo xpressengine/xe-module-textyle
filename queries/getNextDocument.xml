@@ -3,7 +3,7 @@
         <table name="documents" />
     </tables>
     <columns>
-        <column name="min(document_srl)" alias="document_srl"/>
+        <column name="min(document_srl)" alias="document_srl" />
     </columns>
     <conditions>
         <condition operation="in" column="module_srl" var="module_srl" filter="number" />

@@ -1,7 +1,7 @@
 <?php
     /**
      * @class  textyleModel
-     * @author sol (sol@ngleader.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  textyle 모듈의 Model class
      **/
 
@@ -144,7 +144,7 @@
             $args->module_srl = $vars->module_srl;
             $args->page = $vars->page;
             $args->list_count = $vars->list_count;
-            if($vars->search_text) $args->content_search = $vars->search_text;
+            if($vars->search_keyword) $args->content_search = $vars->search_keyword;
             $output = executeQueryArray('textyle.getTextyleGuestbookList',$args);
             if(!$output->toBool() || !$output->data) return array();
 
@@ -379,7 +379,7 @@
             $oPublish = $oTextyleModel->getPublishObject($this->module_srl);
 
             $var = Context::getRequestVars();
-            $output = $oPublish->getBlogAPIInfo($var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password);
+            $output = $oPublish->getBlogAPIInfo($var->blogapi_type, $var->blogapi_url, $var->blogapi_user_id, $var->blogapi_password, $var->blogapi_blogid);
             if(!$output->toBool()) return $output;
             $url = $output->get('url');
             if(!$url) $this->setMessage('not_permit_blogapi');

@@ -3,7 +3,7 @@
     <node target="nick_name" required="true" />
     <node target="password" required="true" />
     <node target="email_address" maxlength="250" />
-    <node target="homepage" maxlength="250"/>
+    <node target="homepage" maxlength="250" />
     <node target="title" required="true" minlength="1" maxlength="250" />
     <node target="category_srl" required="true" />
   </form>

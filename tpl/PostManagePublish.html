@@ -71,7 +71,10 @@
 									<label for="tag">{$lang->tag}</label>
 								</th>
 								<td class="title">
-									<input type="text" name="tags" class="inputText" id="tag" title="{$lang->about_tag}" value="<!--@if(htmlspecialchars($oDocument->get('tags')))-->{htmlspecialchars($oDocument->get('tags'))}<!--@else-->{$lang->about_tag}<!--@end-->" />
+									<div class="fItem">
+										<label class="iLabel" for="tags">{$lang->about_tag}</label>
+										<input type="text" id="tags" name="tags" class="inputText iText" title="{$lang->about_tag}" value="<!--@if(htmlspecialchars($oDocument->get('tags')))-->{htmlspecialchars($oDocument->get('tags'))}<!--@end-->" />
+									</div>
 									<!--@if($tag_list)-->
 									{@$_i=0;}
 									<div class="usedTag">
@@ -180,7 +183,6 @@
 								<th scope="row">{$lang->noti_publish}</th>
 								<td class="title">
 									<p><input name="send_me2day" type="checkbox" id="noti_me2day" class="inputCheck" value="Y" <!--@if(!$oTextyle->getEnableMe2day())-->disabled="disabled"<!--@end-->/><label for="noti_me2day">me2DAY <!--@if($oPublish->isMe2dayPublished())-->({$lang->published})<!--@end--></label></p>
-									<p><input name="send_twitter" type="checkbox" id="noti_twitter" class="inputCheck" value="Y" <!--@if(!$oTextyle->getEnableTwitter())-->disabled="disabled"<!--@end-->/><label for="noti_twitter">Twitter <!--@if($oPublish->isTwitterPublished())-->({$lang->published})<!--@end--></label></p>
 								</td>
 							</tr>
 						</table>

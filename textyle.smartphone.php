@@ -1,7 +1,7 @@
 <?php
     /**
      * @class  textyleSmartphone
-     * @author zero (skklove@gmail.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  textyle 모듈의 SmartPhone IPhone class
      **/
 
