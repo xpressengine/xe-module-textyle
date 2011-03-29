@@ -15,11 +15,11 @@
             // textyle 관리
             $oTextyleModel = &getModel('textyle');
             if(preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act) ) {
-                $this->initTool();
+                $this->initTool($this);
 
             // textyle 서비스
             } else {
-                $this->initService();
+                $this->initService($this);
             }
         }
 
@@ -84,7 +84,7 @@
         /**
          * @brief Textyle 관리 초기화
          **/
-        function initTool(&$oModule = null, $is_other_module = false){
+        function initTool(&$oModule, $is_other_module = false){
             if (!$oModule) $oModule = $this;
 
             // 공동 초기화
@@ -130,7 +130,7 @@
         /**
          * @brief textyle 서비스 초기화
          **/
-        function initService(&$oModule = null, $is_other_module = false, $isMobile = false){
+        function initService(&$oModule, $is_other_module = false, $isMobile = false){
             if (!$oModule) $oModule = $this;
 
             $oTextyleModel = &getModel('textyle');
