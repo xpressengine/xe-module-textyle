@@ -75,11 +75,18 @@
             $config->me2day_userid = $args->me2day_userid;
             $config->me2day_userkey = $args->me2day_userkey;
             $config->enable_me2day = ($args->me2day_userid && $args->me2day_userkey) ? 'Y' :'N';
-
-            $config->enable_twitter = $args->enable_twitter=='Y'?'Y':'N';
-            $config->twitter_userid = $args->twitter_userid;
-            $config->twitter_password = $args->twitter_password;
-            $config->enable_twitter = ($args->twitter_userid && $args->twitter_password) ? 'Y' :'N';
+			
+            //set twitter api parammeters
+            $config->twitter_consumer_key = $args->twitter_consumer_key;
+            $config->twitter_consumer_secret = $args->twitter_consumer_secret;
+            $config->twitter_oauth_token = $args->twitter_oauth_token;
+            $config->twitter_oauth_token_secret = $args->twitter_oauth_token_secret;
+            $config->enable_twitter = ($config->twitter_consumer_key && $config->twitter_consumer_secret && $config->twitter_oauth_token && $config->twitter_oauth_token_secret) ? 'Y' :'N';
+            
+            //$config->enable_twitter = $args->enable_twitter=='Y'?'Y':'N';
+            //$config->twitter_userid = $args->twitter_userid;
+            //$config->twitter_password = $args->twitter_password;
+            //$config->enable_twitter = ($args->twitter_userid && $args->twitter_password) ? 'Y' :'N';
 
             // 댓글/방명록 권한
             $config->comment_grant = (int)$args->comment_grant;
@@ -134,6 +141,17 @@
             $output = $oMe2->chkNoop($vars->me2day_userid, $vars->me2day_userkey);
             if($output->toBool()) return new Object(-1,'msg_success_to_me2day');
             return new Object(-1,'msg_fail_to_me2day');
+        }
+        
+    	function procTextyleCheckTwitter() {
+            require_once($this->module_path.'libs/twitteroauth.php');
+            $vars = Context::gets('twitter_consumer_key','twitter_consumer_secret','twitter_oauth_token','twitter_oauth_token_secret');
+			$twitteroauth = new TwitterOAuth($vars->twitter_consumer_key, $vars->twitter_consumer_secret , $vars->twitter_oauth_token , $vars->twitter_oauth_token_secret);
+			$credentials = $twitteroauth->get("account/verify_credentials");
+            $error = $credentials->error;
+            
+            if($error == '') return new Object(-1,'msg_success_to_twitter');
+            return new Object(-1,'msg_fail_to_twitter');
         }
 
         function updateTextyleCommentEditor($module_srl, $comment_editor_skin, $comment_editor_colorset) {
@@ -729,7 +747,8 @@
             $subscripted = false;
 
             $var = Context::getRequestVars();
-
+			$aux1=$var->send_me2day;
+			$aux2=$var->send_twitter;
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
             $vars = $oDocument->getObjectVars();
             $vars->tags = $var->tags;

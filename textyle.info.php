@@ -170,6 +170,22 @@
         function getMe2dayUserKey() {
             return $this->get('me2day_userkey');
         }
+        
+    	function getTwitterConsumerKey() {
+            return $this->get('twitter_consumer_key');
+        }
+        
+    	function getTwitterConsumerSecret() {
+            return $this->get('twitter_consumer_secret');
+        }
+        
+    	function getTwitterOauthToken() {
+            return $this->get('twitter_oauth_token');
+        }
+        
+    	function getTwitterOauthTokenSecret() {
+            return $this->get('twitter_oauth_token_secret');
+        }
 
         function getEnableTwitter() {
             return $this->get('enable_twitter')=='Y'?true:false;

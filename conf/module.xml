@@ -164,6 +164,7 @@
 		<action name="procTextyleInfoUpdate" type="controller" />
 		<action name="procTextyleConfigPostwriteInsert" type="controller" />
 		<action name="procTextyleCheckMe2day" type="controller" />
+		<action name="procTextyleCheckTwitter" type="controller" />
 		<action name="procTextylePostsave" type="controller" />
 		<action name="procTextylePostPublish" type="controller" />
 		<action name="procTextylePostDelete" type="controller" />

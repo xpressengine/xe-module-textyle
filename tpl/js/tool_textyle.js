@@ -963,6 +963,16 @@ function doCheckMe2day() {
 	exec_xml('textyle', 'procTextyleCheckMe2day', params, function() {});
 }
 
+/* check twitter account */
+function doCheckTwitter() {
+    var params = new Array();
+    params['twitter_consumer_key'] = jQuery('#twitterconsumerkey').val();
+    params['twitter_consumer_secret'] = jQuery('#twitterconsumersecret').val();
+    params['twitter_oauth_token'] = jQuery('#twitteroauthtoken').val();
+    params['twitter_oauth_token_secret'] = jQuery('#twitteroauthtokensecret').val();
+	exec_xml('textyle', 'procTextyleCheckTwitter', params, function() {});
+}
+
 /* category 에서 그룹제한 row를 제거*/
 addNode = function(node,e) {
     var params ={ "category_srl":0,"parent_srl":node,"module_srl":jQuery("#fo_category [name=module_srl]").val() };
