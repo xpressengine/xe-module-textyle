@@ -418,7 +418,7 @@
 	$lang->msg_close_before_write = "Changed contents are not saved.";
 
     $lang->no_post = 'You have not written a post, <a href="%s">Write a Post!</a>';
-    $lang->no_trash = 'Recycle Bin is clean!';
+    $lang->no_trash = 'Recycle Bin is empty!';
     $lang->no_comment = 'There is no comment';
     $lang->no_guestbook = 'No one left a message in your guestbook';
     $lang->no_trackback = 'There is no trackback';
