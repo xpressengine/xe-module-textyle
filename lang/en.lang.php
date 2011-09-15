@@ -324,6 +324,7 @@
     $lang->textyle_first_menus = array(
         array('dispTextyleToolDashboard','Dashboard'),
         array('','My Posts'),
+        array('','My Pages'),
         array('','Communication'),
         array('','Statistics'),
         array('','Design'),
@@ -339,6 +340,10 @@
             'dispTextyleToolPostManageCategory'=>'Category',
             'dispTextyleToolPostManageTag'=>'Tags',
             'dispTextyleToolPostManageBasket'=>'Recycle Bin',
+        ),
+        array(
+        	'dispTextyleToolExtraMenuInsert'=>'New Page',
+        	'dispTextyleToolExtraMenuList'=>'All Pages',
         ),
         array(
             'dispTextyleToolCommunicationComment'=>'Comments',
@@ -418,7 +423,7 @@
 	$lang->msg_close_before_write = "Changed contents are not saved.";
 
     $lang->no_post = 'You have not written a post, <a href="%s">Write a Post!</a>';
-    $lang->no_trash = 'Recycle Bin is empty!';
+    $lang->no_trash = 'Recycle Bin is clean!';
     $lang->no_comment = 'There is no comment';
     $lang->no_guestbook = 'No one left a message in your guestbook';
     $lang->no_trackback = 'There is no trackback';
@@ -477,6 +482,7 @@
 	$lang->msg_limit_module = '%s module(s) available';
     $lang->about_textyle_extra_menu = 'You may add modules from XpressEngine as menuitems to your Textyle.';
     $lang->cmd_textyle_extra_menu_config = 'Additional Menu';
+    $lang->cmd_textyle_new_page = 'New Page';
     $lang->textyle_extra_menu_limit_count = 'Maximum Number';
 	$lang->msg_limit_textyle_extra_mid = 'Only format of alphabets + [alphabets, numbers, and underscore(_)] is allowed.';
 
