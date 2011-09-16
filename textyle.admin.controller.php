@@ -284,6 +284,18 @@
             executeQuery('member.deleteMemberGroup', $args);
             executeQuery('member.deleteSiteGroup', $args);
             executeQuery('module.deleteLangs', $args);
+            
+        	//clear cache for default mid
+            $vid = $site_info->domain;
+            $mid = $site_info->mid;
+            $oCacheHandler = &CacheHandler::getInstance('object');
+            if($oCacheHandler->isSupport()){
+            	$cache_key = 'object_default_mid:'.$vid.'_'.$mid;
+            	$oCacheHandler->delete($cache_key);
+            	$cache_key = 'object_default_mid:'.$vid.'_';
+            	$oCacheHandler->delete($cache_key);
+            }
+            
             $lang_supported = Context::get('lang_supported');
             foreach($lang_supported as $key => $val) {
                 $lang_cache_file = _XE_PATH_.'files/cache/lang_defined/'.$args->site_srl.'.'.$key.'.php';
