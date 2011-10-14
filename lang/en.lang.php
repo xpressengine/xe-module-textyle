@@ -37,6 +37,7 @@
     $lang->published = 'Published';
     $lang->publish_option = 'Publish Options';
 	$lang->publish_this_blog = 'Publish this blog.';
+	$lang->cmd_preview ='Preview';
     $lang->ask_time_publish = 'Would you like to publish (or update) this posting right now?';
     $lang->ask_micro_publish = 'Do you want to publish on micro blogs?';
     $lang->noti_publish = 'Notify publish';
@@ -74,12 +75,12 @@
     $lang->font_size = 'Font Size';
     $lang->about_font_family = 'You can choose default fonts for contents (ex:%s)';
     $lang->font_family_list = array(
-		'돋움, Dotum'=> 'Dotum',
-		'굴림, Gulim'=> 'Gulim',
-		'바탕, Batang'=> 'Batang',
-		'맑은 고딕, Malgun Gothic'=> 'Malgun Gothic',
-		'나눔고딕, NanumGothic'=> 'Nanum Gothic',
-		'나눔명조, NanumMyeongjo'=> 'Nanum Myeongjo'
+		'??, Dotum'=> 'Dotum',
+		'??, Gulim'=> 'Gulim',
+		'??, Batang'=> 'Batang',
+		'?? ??, Malgun Gothic'=> 'Malgun Gothic',
+		'????, NanumGothic'=> 'Nanum Gothic',
+		'????, NanumMyeongjo'=> 'Nanum Myeongjo'
 	);
     $lang->about_font_size = 'You can choose default font size (ex: 12px or 1em - unit should be included)';
     $lang->about_textyle_editor = 'Textyle\'s default editor: You can edit each paragraph separately in your posts';
@@ -372,7 +373,6 @@
             'dispTextyleToolConfigAddon'=>'Addons',
             'dispTextyleToolConfigData'=>'Data',
             'dispTextyleToolConfigChangePassword'=>'Change Password',
-            'dispTextyleToolExtraMenuList'=>'Additional Menu',
         ),
     );
 
@@ -403,7 +403,7 @@
     $lang->cmd_empty_basket = 'Clear Recycle Bin';
     $lang->cmd_change_category = 'Change Category';
     $lang->cmd_publish = 'Publish';
-    $lang->cmd_save_publish = 'Save and Publish';
+    $lang->cmd_save_publish = 'Publish';
     $lang->cmd_save_temp = 'Temporarily save';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS Edit';
     $lang->cmd_edit_html = 'HTML Edit';

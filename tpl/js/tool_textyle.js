@@ -1193,11 +1193,12 @@ validator.cast('ADD_CALLBACK', ['save_post', function callback(form) {
 
 $(function(){
 	inputPublish  = $('input[name=publish]');
+	inputPreview  = $('input[name=preview]');
 	submitButtons = $('#wPublishButtonContainer button');
 
 	submitButtons.click(function(){
 		inputPublish.val( $(this).parent().hasClass('_publish')?'Y':'N' );
-
+		inputPreview.val( $(this).parent().hasClass('_preview')?'Y':'N' );
 		$('input:text,textarea', this.form).each(function(){
 			var t = $(this);
 			var v = $.trim(t.val());

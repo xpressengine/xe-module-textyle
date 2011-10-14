@@ -385,24 +385,9 @@
 
             if($document_srl){
                 $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
-                $alias = $oDocumentModel->getAlias($document_srl);
-                Context::set('alias',$alias);
-
-                $oTextyleModel = &getModel('textyle');
-                $output = $oTextyleModel->getSubscriptionByDocumentSrl($document_srl);
-                if($output->data){
-                    $publish_date = $output->data[0]->publish_date;
-                    $publish_date = sscanf($publish_date,'%04d%02d%02d%02d%02d');
-                    Context::set('publish_date_yyyymmdd',sprintf("%s-%02d-%02d",$publish_date[0],$publish_date[1],$publish_date[2]));
-                    Context::set('publish_date_hh',sprintf("%02d",$publish_date[3]));
-                    Context::set('publish_date_ii',sprintf("%02d",$publish_date[4]));
-                    Context::set('subscription','Y');
-                }
-
             }else{
                 $document_srl=0;
                 $oDocument = $oDocumentModel->getDocument(0);
-
                 if($material_srl){
                     $oMaterialModel = &getModel('material');
                     $output = $oMaterialModel->getMaterial($material_srl);
@@ -411,10 +396,7 @@
                         Context::set('material_content',$material_content);
                     }
                 }
-
             }
-            Context::set('oDocument',$oDocument);
-
             $category_list = $oDocumentModel->getCategoryList($this->module_srl);
             Context::set('category_list',$category_list);
 
@@ -440,7 +422,6 @@
             Context::set('editor', $editor);
             Context::set('editor_skin', $option->skin);
 
-
             // permalink
             $permalink = '';
             if(isSiteID($this->textyle->domain)){
@@ -457,6 +438,34 @@
                 }
             }
             Context::set('permalink',$permalink);
+            $oTextyleModel = &getModel('textyle');
+
+            $alias = $oDocumentModel->getAlias($document_srl);
+            Context::set('alias',$alias);
+
+            $output = $oTextyleModel->getSubscriptionByDocumentSrl($document_srl);
+            if($output->data){
+                $publish_date = $output->data[0]->publish_date;
+                $publish_date = sscanf($publish_date,'%04d%02d%02d%02d%02d');
+                Context::set('publish_date_yyyymmdd',sprintf("%s-%02d-%02d",$publish_date[0],$publish_date[1],$publish_date[2]));
+                Context::set('publish_date_hh',sprintf("%02d",$publish_date[3]));
+                Context::set('publish_date_ii',sprintf("%02d",$publish_date[4]));
+                Context::set('subscription','Y');
+            }
+
+            if($oDocument->get('module_srl') != $this->module_srl && !$document_srl){
+                Context::set('from_saved',true);
+            }
+            $oPublish = $oTextyleModel->getPublishObject($this->module_srl, $oDocument->document_srl);
+            if(count($oPublish->trackbacks)) $trackbacks = $oPublish->getTrackbacks();
+            if(count($oPublish->blogapis)) $_apis = $oPublish->getApis();
+			
+            Context::set('oDocument', $oDocument);
+            Context::set('oTextyle', $oTextyleModel->getTextyle($this->module_srl));
+            Context::set('oPublish', $oPublish);
+            Context::set('category_list', $oDocumentModel->getCategoryList($this->module_srl));
+            Context::set('trackbacks', $trackbacks);
+            Context::set('_apis', $_apis);
         }
 
         /**
@@ -1294,9 +1303,18 @@
          * @brief Textyle home
          **/
         function dispTextyle(){
-            $oTextyleModel = &getModel('textyle');
+        	$oDocumentModel = &getModel('document');
+            $var = Context::getRequestVars();
+            if($var->preview == 'Y'){
+            	  Context::set('textyle_mode', 'content');
+            	  $prev_document = $oDocumentModel->getDocument($var->document_srl);
+            	  $document_list[] = $prev_document;
+            	  Context::set('document_list', $document_list);
+            	  return;
+            }
+        	$oTextyleModel = &getModel('textyle');
             $oTextyleController = &getController('textyle');
-            $oDocumentModel = &getModel('document');
+            
 
             $document_srl = Context::get('document_srl');
             $page = Context::get('page');
@@ -1623,55 +1641,124 @@
             $this->setTemplateFile('message');
         }
 
-		function dispTextyleToolExtraMenuList(){
-			$oTextyleModel = &getModel('textyle');
-			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
-			Context::set('config',$config);
+        function dispTextyleToolExtraMenuList(){
+            $oTextyleModel = &getModel('textyle');
+            $config = $oTextyleModel->getModulePartConfig($this->module_srl);
+            Context::set('config',$config);
 
-			$args->site_srl = $this->site_srl;
-			$output = executeQueryArray('textyle.getExtraMenus',$args);
-			if(!$output->toBool()) return $output;
-			Context::set('extra_menu_list',$output);
+            $args->site_srl = $this->site_srl;
+            $output = executeQueryArray('textyle.getExtraMenus',$args);
+            if(!$output->toBool()) return $output;
+            Context::set('extra_menu_list',$output);
 
-		}
+        }
 
-		function dispTextyleToolExtraMenuInsert(){
-			$menu_mid = Context::get('menu_mid');
-			if($menu_mid){
-				$oModuleModel = &getModel('module');
-				$module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
-				if(!$module_info) return new Object(-1,'msg_invalid_request');
+        function dispTextyleToolExtraMenuInsert(){
+            /*
+            $menu_mid = Context::get('menu_mid');
+            if($menu_mid){
+                $oModuleModel = &getModel('module');
+                $module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
+                if(!$module_info) return new Object(-1,'msg_invalid_request');
 
-				$args->module_srl = $module_info->module_srl;
-				$output = executeQuery('textyle.getExtraMenu',$args);
-				if($output->data){
-					$selected_extra_menu = $output->data;
-				}
-			}
-			if($selected_extra_menu){
-				Context::set('selected_extra_menu',$selected_extra_menu);
-				Context::addJsFilter($this->module_path.'tpl/filter', 'modify_extra_menu.xml');
-			}else{
-				Context::addJsFilter($this->module_path.'tpl/filter', 'insert_extra_menu.xml');
-			}
-			$oTextyleModel = &getModel('textyle');
-			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
-			Context::set('config',$config);
+                $args->module_srl = $module_info->module_srl;
+                $output = executeQuery('textyle.getExtraMenu',$args);
+                if($output->data){
+                        $selected_extra_menu = $output->data;
+                }
+            }
+            if($selected_extra_menu){
+                Context::set('selected_extra_menu',$selected_extra_menu);
+                Context::addJsFilter($this->module_path.'tpl/filter', 'modify_extra_menu.xml');
+            }else{
+                Context::addJsFilter($this->module_path.'tpl/filter', 'insert_extra_menu.xml');
+            }
+            $oTextyleModel = &getModel('textyle');
+            $config = $oTextyleModel->getModulePartConfig($this->module_srl);
+            Context::set('config',$config);
 
-			$used_extra_menu_count = array();
-			$args->site_srl = $this->site_srl;
-			$output = executeQueryArray('textyle.getExtraMenus',$args);
+            $used_extra_menu_count = array();
+            $args->site_srl = $this->site_srl;
+            $output = executeQueryArray('textyle.getExtraMenus',$args);
 
-			if($output->data){
-				foreach($output->data as $k => $menu){
-					if($config->allow_service[$menu->module]){
-						$used_extra_menu_count[$menu->module] += 1;
-					}
-				}
-			}
+            if($output->data){
+                foreach($output->data as $k => $menu){
+                    if($config->allow_service[$menu->module]){
+                            $used_extra_menu_count[$menu->module] += 1;
+                    }
+                }
+            }
 
-			Context::set('used_extra_menu_count',$used_extra_menu_count);
-		}
+            Context::set('used_extra_menu_count',$used_extra_menu_count);
+            */
+            
+            // set filter
+            $menu_mid = Context::get('menu_mid');
+            if($menu_mid){
+                $oModuleModel = &getModel('module');
+                $module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
+                if(!$module_info) return new Object(-1,'msg_invalid_request');
+                
+                $oWidgetController = &getController('widget');
+                $buff = trim($module_info->content);
+                $oXmlParser = new XmlParser();
+                $xml_doc = $oXmlParser->parse(trim($buff));
+                $document_srl = $xml_doc->img->attrs->document_srl;
+                $args->module_srl = $module_info->module_srl;
+                $output = executeQuery('textyle.getExtraMenu',$args);
+                if($output->data){
+                        $selected_extra_menu = $output->data;
+                }
+            }
+            if($selected_extra_menu){
+                Context::set('selected_extra_menu',$selected_extra_menu);
+                Context::addJsFilter($this->module_path.'tpl/filter', 'modify_extra_menu.xml');
+            }else{
+                Context::addJsFilter($this->module_path.'tpl/filter', 'insert_extra_menu.xml');
+            }
+            
+
+            $oDocumentModel = &getModel('document');
+            $material_srl = Context::get('material_srl');
+
+            if($document_srl){
+                    $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
+            }else{
+                    $document_srl=0;
+                    $oDocument = $oDocumentModel->getDocument(0);
+                    if($material_srl){
+                            $oMaterialModel = &getModel('material');
+                            $output = $oMaterialModel->getMaterial($material_srl);
+                            if($output->data){
+                                    $material_content = $output->data[0]->content;
+                                    Context::set('material_content',$material_content);
+                            }
+                    }
+
+            }
+
+            $oEditorModel = &getModel('editor');
+            $option->skin = $this->textyle->getPostEditorSkin();
+            $option->primary_key_name = 'document_srl';
+            $option->content_key_name = 'content';
+            $option->allow_fileupload = true;
+            $option->enable_autosave = true;
+            $option->enable_default_component = true;
+            $option->enable_component = $option->skin =='dreditor' ? false : true;
+            $option->resizable = true;
+            $option->height = 500;
+            $option->content_font = $this->textyle->getFontFamily();
+            $option->content_font_size = $this->textyle->getFontSize();
+            $editor = $oEditorModel->getEditor($document_srl, $option);
+            Context::set('editor', $editor);
+            Context::set('editor_skin', $option->skin);
+
+            if($oDocument->get('module_srl') != $this->module_srl && !$document_srl){
+                    Context::set('from_saved',true);
+            }
+
+            Context::set('oDocument', $oDocument);
+        }
 
     }
 ?>

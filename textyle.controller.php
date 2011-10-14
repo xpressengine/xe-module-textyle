@@ -713,30 +713,114 @@
 
         function procTextylePostsave(){
             $oDocumentModel = &getModel('document');
-
+            $oDocumentController = &getController('document');
+            $oTextyleModel = &getModel('textyle');
+            
             $var = Context::getRequestVars();
             $site_module_info = Context::get('site_module_info');
 
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
 
             // 기존 설정 유지
-            $var->allow_comment = ($oDocument->allowComment()) ? 'Y' : 'N';
-            $var->allow_trackback = ($oDocument->allowTrackback()) ? 'Y' : 'N';
+            //$var->allow_comment = ($oDocument->allowComment()) ? 'Y' : 'N';
+            //$var->allow_trackback = ($oDocument->allowTrackback()) ? 'Y' : 'N';
             $var->is_secret = ($oDocument->isSecret()) ? 'Y' : 'N';
-            $var->tags = $oDocument->get('tags');
-
+            //$var->tags = $oDocument->get('tags');
+            
             if($oDocument->isExists()) {
                 $output = $this->updatePost($var);
+                $document_srl = $oDocument->document_srl;
+                $alias = $oDocumentModel->getAlias($output->get('document_srl'));
+	            if($var->alias != $alias){
+	                $output = $oDocumentController->insertAlias($this->module_srl,$output->get('document_srl'),$var->alias);
+	                if(!$output->toBool()) return $output;
+	            }
             } else {
                 $output = $this->savePost($var);
+                if(!$output->toBool()) return $output;
+				$oDocument = $oDocumentModel->getDocument($output->get('document_srl'));
+				$vars = $oDocument->getObjectVars();
+	            $vars->tags = $var->tags;
+	            $output = $this->updatePost($vars);
+                    $document_srl = $output->get('document_srl');
+	            if(!$output->toBool()) return $output;
+	            $alias = $oDocumentModel->getAlias($output->get('document_srl'));
+	            if($var->alias != $alias){
+	                $output = $oDocumentController->insertAlias($this->module_srl,$output->get('document_srl'),$var->alias);
+	                if(!$output->toBool()) return $output;
+	            }
             }
-            if(!$output->toBool()) return $output;
-
+            
             $this->add('mid', Context::get('mid'));
-            $this->add('document_srl', $output->get('document_srl'));
+            $this->add('document_srl', $document_srl);
 
-            if($var->publish == 'Y') $this->setRedirectUrl( getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManagePublish', 'document_srl', $this->get('document_srl')) );
+            if($var->publish == 'Y') 
+            {
+                 // 기발행 여부 체크
+                $args->document_srl = $document_srl;
+                $output = executeQuery('textyle.getPublishLogs', $args);
+                $isPublished = (!$output->data) ? false : true;
 
+                if(!$isPublished){
+                    $args->update_order = $args->list_order = getNextSequence()*-1;
+                    $args->document_srl = $document_srl;
+                    $args->module_srl = $this->module_srl;
+                    $output = executeQuery('document.updateDocumentOrder',$args);
+                }
+                $oPublish = $oTextyleModel->getPublishObject($this->module_srl, $document_srl);
+                $oPublish->trackbacks = array();
+                
+                foreach($var as $key => $val) {
+                    if(preg_match('/^trackback_(url|charset)([0-9]*)$/i', $key, $match)&&$val) $publish_option->trackbacks[(int)$match[2]][$match[1]] = $val;
+                    else if(preg_match('/^blogapi_([0-9]+)$/i', $key, $match) && $val=='Y') $publish_option->blogapis[$match[1]]->send_api = true;
+                    else if(preg_match('/^blogapi_category_([0-9]+)$/i', $key, $match)) $publish_option->blogapis[$match[1]]->category = $val;
+                    else if($key == 'send_me2day' && $val == 'Y') $publish_option->send_me2day = true;
+                    else if($key == 'send_twitter' && $val == 'Y') $publish_option->send_twitter = true;
+                }
+                
+                if(count($publish_option->trackbacks)) foreach($publish_option->trackbacks as $key => $val) $oPublish->addTrackback($val['url'], $val['charset']);
+                if(count($publish_option->blogapis)) foreach($publish_option->blogapis as $key => $val) if($val->send_api) $oPublish->addBlogApi($key, $val->category);
+                
+                $oPublish->setMe2day($publish_option->send_me2day);
+                $oPublish->setTwitter($publish_option->send_twitter);
+                $oPublish->save();
+                
+                $var->publish_date_yyyymmdd = preg_replace("/[^0-9]/",'',$var->publish_date_yyyymmdd);
+                if($var->subscription=='Y' && $var->publish_date_yyyymmdd) {
+                    $var->publish_date_hh = preg_replace("/[^0-9]/",'',$var->publish_date_hh);
+                    $var->publish_date_ii = preg_replace("/[^0-9]/",'',$var->publish_date_ii);
+                    $var->publish_date_hh = $var->publish_date_hh ? $var->publish_date_hh : 0;
+                    $var->publish_date_ii = $var->publish_date_ii ? $var->publish_date_ii : 0;
+                    $var->publish_date = sprintf("%s%02d%02d00",$var->publish_date_yyyymmdd, $var->publish_date_hh , $var->publish_date_ii);
+
+                    if($var->publish_date > date('YmdHis')){
+                        $args->document_srl = $document_srl;
+                        $args->module_srl = $this->module_srl;
+                        $args->publish_date = $var->publish_date;
+
+                        $output = executeQuery('textyle.deleteTextyleSubscriptionByDocumentSrl', $args);
+                        $output = executeQuery('textyle.insertTextyleSubscription', $args);
+                        if(!$output->toBool()) return $output;
+
+                        // update module_srl for subscription
+                        $args->module_srl = abs($this->module_srl) * -1;
+                        $args->category_srl = $var->category_srl;
+                        $output = executeQuery('document.updateDocumentModule', $args);
+                        if(!$output->toBool()) return $output;
+
+                        $this->syncTextyleSubscriptionDate($this->module_srl);
+                        $subscripted = true;
+                    }
+                }
+                if(!$subscripted) {
+                    executeQuery('textyle.deleteTextyleSubscriptionByDocumentSrl', $args);
+                    $oPublish->publish();
+                }
+                $this->setRedirectUrl( getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManageList') );
+            }  
+            else {
+                $this->setRedirectUrl( getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManageWrite', 'document_srl', $this->get('document_srl'),'preview',$var->preview) );
+             }
             $this->setMessage('success_saved');
         }
 
@@ -747,8 +831,6 @@
             $subscripted = false;
 
             $var = Context::getRequestVars();
-			$aux1=$var->send_me2day;
-			$aux2=$var->send_twitter;
             $oDocument = $oDocumentModel->getDocument($var->document_srl);
             $vars = $oDocument->getObjectVars();
             $vars->tags = $var->tags;
@@ -833,7 +915,7 @@
         }
 
         function savePost($args) {
-            $oDocumentController = &getController('document');
+        	$oDocumentController = &getController('document');
 
             $logged_info = Context::get('logged_info');
             $args->module_srl = $logged_info->member_srl;
@@ -1965,27 +2047,31 @@
 		}
 
 		function procTextyleToolExtraMenuInsert(){
-            $menu_name = trim(Context::get('menu_name'));
+                        $args = Context::getRequestVars();
+                        $menu_name = trim(Context::get('menu_name'));
 			$menu_mid = Context::get('menu_mid');
-			$module_type = Context::get('module_type');
-			if(!$menu_name || !$module_type || !$menu_mid) return new Object(-1,'msg_invalid_request');
+			if(!$menu_name || !$menu_mid) return new Object(-1,'msg_invalid_request');
 
-            $oModuleModel = &getModel('module');
+                        $oModuleModel = &getModel('module');
 			$oTextyleModel = &getModel('textyle');
 			$oModuleController = &getController('module');
-
+                        $oDocumentController = &getController('document');
 			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
+                        
+                         //$logged_info = Context::get('logged_info');
+                         //$args->module_srl = $logged_info->member_srl;
 
-			// 해당 모듈의 개수 검사
-			$module_count = $oModuleModel->getModuleCount($this->site_srl, $module_type);
-			if($module_count >= $config->allow_service[$module_type]) return new Object(-1,'msg_module_count_exceed');
+                        $output = $oDocumentController->insertDocument($args);
+			
 			// 모듈 등록
 			$args->site_srl = $this->site_srl;
 			$args->mid = $menu_mid;
 			$args->browser_title = $menu_name;
-			$args->module = $module_type;
+			$args->module = 'page';
+                        $args->content = '<img src="./common/tpl/images/widget_bg.jpg" class="zbxe_widget_output" widget="widgetContent" style="float: left; width: 100%;" body="" document_srl="'.$output->get('document_srl').'" widget_padding_left="0" widget_padding_right="0" widget_padding_top="0" widget_padding_bottom="0"  /> ';
 			$output = $oModuleController->insertModule($args);
 			if(!$output->toBool()) return $output;
+                        
 
 			$menu->name = $menu_name;
 			$menu->site_srl = $this->site_srl;
@@ -1995,17 +2081,30 @@
 		}
 
 		function procTextyleToolExtraMenuUpdate(){
-            $menu_name = trim(Context::get('menu_name'));
-            $menu_mid= Context::get('menu_mid');
-			if(!$menu_name || !$menu_mid) return new Object(-1,'msg_invalid_request');
+                    $args = Context::getRequestVars();
+                    $menu_name = trim(Context::get('menu_name'));
+                    $menu_mid= Context::get('menu_mid');
+                    if(!$menu_name || !$menu_mid) return new Object(-1,'msg_invalid_request');
 
-			$oModuleModel = &getModel('module');
-			$module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
-			if(!$module_info) return new Object(-1,'msg_invalid_request');
-
-			$args->name = $menu_name;
-			$args->module_srl = $module_info->module_srl;
-			$output = executeQuery('textyle.updateExtraMenuName',$args);
+                    $oModuleModel = &getModel('module');
+                    $oDocumentModel = &getModel('document');
+                    $oDocumentController = &getController('document');
+                    $module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
+                    if(!$module_info) return new Object(-1,'msg_invalid_request');
+                    
+                    $buff = trim($module_info->content);
+                    $oXmlParser = new XmlParser();
+                    $xml_doc = $oXmlParser->parse(trim($buff));
+                    $document_srl = $xml_doc->img->attrs->document_srl;
+                    $args->document_srl = $document_srl;
+                    $oDocument = $oDocumentModel->getDocument($document_srl);
+                    $args->module_srl = $oDocument->module_srl;
+                    $args->category_srl = $oDocument->category_srl;
+                    $output = $oDocumentController->updateDocument($oDocument, $args);
+                    
+                    $args->name = $menu_name;
+                    $args->module_srl = $module_info->module_srl;
+                    $output = executeQuery('textyle.updateExtraMenuName',$args);
 		}
 
 		function procTextyleToolExtraMenuDelete(){
