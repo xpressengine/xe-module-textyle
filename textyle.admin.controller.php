@@ -58,7 +58,7 @@
             $oDocumentController = &getController('document');
 
             // 관리자 아이디 검사
-            $member_srl = $oMemberModel->getMemberSrlByUserID($user_id_list[0]);
+            $member_srl = $oMemberModel->getMemberSrlByEmailAddress($user_id_list[0]);
             if(!$member_srl) return new Object(-1,'msg_not_user');
 
             // 관리자의 정보를 구함
@@ -211,7 +211,7 @@
             foreach($tmp_member_list as $k => $v){
                 $v = trim($v);
                 if($v){
-                    $member_srl = $oMemberModel->getMemberSrlByUserID($v);
+                    $member_srl = $oMemberModel->getMemberSrlByEmailAddress($v);
                     if($member_srl){
                         $admin_list[] = $v;
                         $admin_member_srl[] = $member_srl;
