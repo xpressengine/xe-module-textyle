@@ -68,7 +68,6 @@ function insertCommentItem(obj,filter){
 	return procFilter(obj,filter);
 }
 
-/* 댓글 글쓰기 작성후 */
 function completeInsertComment(ret_obj) {
 	var error = ret_obj['error'];
 	var message = ret_obj['message'];
@@ -813,7 +812,6 @@ jQuery("div#tool_navigation > ul > li").hover(
 	});
 });
 
-/* 로그인 후 */
 function completeTextyleLogin(ret_obj, response_tags, params, fo_obj) {
     var stat = ret_obj['stat'];
     var msg = ret_obj['message'];
@@ -830,7 +828,6 @@ function completeTextyleLogin(ret_obj, response_tags, params, fo_obj) {
     location.href = current_url.setQuery('act','dispTextyleToolDashboard');
 }
 
-/* brief 임포트 준비 */
 var prepared = false;
 function doPreProcessing(fo_obj) {
     var xml_file = fo_obj.xml_file.value;
@@ -853,7 +850,6 @@ function doPreProcessing(fo_obj) {
     return false;
 }
 
-/* 준비중일때 .(dot) 찍어주는.. */
 function doPrepareDot() {
     if(prepared) return;
 
@@ -864,7 +860,6 @@ function doPrepareDot() {
     setTimeout(doPrepareDot, 50);
 }
 
-/* 준비가 끝났을때 호출되는 함수 */
 function completePreProcessing(ret_obj, response_tags) {
     prepared = true;
     jQuery('dl.prepare').removeClass('open');
@@ -886,12 +881,10 @@ function completePreProcessing(ret_obj, response_tags) {
     fo_obj.cur.value = cur;
     fo_obj.key.value = key;
     
-    // extract된 파일을 이용해서 import
     doImport();
 }
 
 
-/* @brief 임포트 시작 */
 function doImport() {
     var fo_obj = jQuery('#fo_process').get(0);
 
@@ -918,7 +911,6 @@ function doImport() {
     return false;
 }
 
-/* import중 표시 */
 function completeImport(ret_obj, response_tags) {
     var message = ret_obj['message'];
     var type = ret_obj['type'];
@@ -934,7 +926,6 @@ function completeImport(ret_obj, response_tags) {
     fo_obj.cur.value = cur;
     fo_obj.key.value = key;
     
-    // extract된 파일을 이용해서 import
     if(total > cur) doImport();
     else {
         alert(message);
@@ -943,9 +934,7 @@ function completeImport(ret_obj, response_tags) {
     }
 }
 
-/* 상태 표시 함수 */
 function displayProgress(total, cur) {
-    // 진행률 구함
     var per = 0;
     if(total > 0) per = Math.round(cur / total * 100);
     else per = 100;
@@ -955,7 +944,6 @@ function displayProgress(total, cur) {
     jQuery('dl.progress').find('em').html(per+'%');
 }
 
-/* me2 연결 확인 */
 function doCheckMe2day() {
     var params = new Array();
     params['me2day_userid'] = jQuery('#me2userid').val();
@@ -973,7 +961,6 @@ function doCheckTwitter() {
 	exec_xml('textyle', 'procTextyleCheckTwitter', params, function() {});
 }
 
-/* category 에서 그룹제한 row를 제거*/
 addNode = function(node,e) {
     var params ={ "category_srl":0,"parent_srl":node,"module_srl":jQuery("#fo_category [name=module_srl]").val() };
     jQuery.exec_json('document.getDocumentCategoryTplInfo', params, function(data){

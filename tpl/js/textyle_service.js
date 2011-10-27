@@ -81,7 +81,6 @@ function insertCommentItem(obj,filter){
 	return procFilter(obj,filter);
 }
 
-/* 댓글 글쓰기 작성후 */
 function completeInsertComment(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -127,7 +126,6 @@ function deleteCommentItem(comment_srl) {
     exec_xml('textyle', 'procTextyleDeleteComment', params, completeReload, response_tags);
 }
 
-/* 트랙백 삭제 */
 function completeDeleteTrackback(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];

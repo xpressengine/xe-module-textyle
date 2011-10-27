@@ -38,7 +38,6 @@
 	
 	
     /**
-     *  이벤트 등록 함수
      *
      *  @param oElement 이벤트 등록 객체.
      *  @param sEvent	등록할 이벤트 Type
@@ -95,7 +94,7 @@
 	}
 
     /**
-     *  플래시 ExternalInterface 버그 패치
+     *  ExternalInterface 
      *  for 'Out of memory line at 56' error
      *
      *  @return void
@@ -117,11 +116,8 @@
 	};
 	
     /**
-     *  휠마우스 이벤트 처리 함수
-     *  이벤트가 발생한 객체가 플래시인 경우 
-     *  delta 값과 마우스 좌표를 플래시에 전달 
      *
-     *  @param e		이벤트 객체
+     *  @param e		
      *  @return void
      */
 	var wheelHandler = function(e) {
@@ -133,7 +129,6 @@
 		
 		var oEl = e.target || e.srcElement;
 		
-		// 휠 이벤트가 발생한 오브젝트가 FlashObject가 생산한 플래시가 아니면 중지
 		if (!(new RegExp('(^|\b)' + sClassPrefix + '_([a-z0-9_$]+)(\b|$)', 'i').test(oEl.className))) return;
 		
 		var sMethod = RegExp.$2;
@@ -151,13 +146,11 @@
 			}
 			
 		} catch(err) {
-			// 등록한 핸들러가 없는 경우 
 		}
 		
 	};	
 
 	/**
-	 * 넘겨받은 오브젝트의 절대 좌표를 구해주는 함수
 	 * 
 	 * @param {Object} oEl	오브젝트 참조
 	 */
@@ -232,7 +225,6 @@
 	}
 	
 	/**
-	 * 현재 스크롤 위치를 알려주는 함수
 	 * 
 	 */
 	var getScroll = function() {
@@ -249,7 +241,6 @@
 	}
 	
 	/**
-	 * 현재 스크린 사이즈를 알려주는 함수
 	 * 
 	 */
 	var getInnerWidthHeight = function() {
@@ -273,10 +264,9 @@
 	//-------------------------------------------------------------
 
     /**
-     *  플래시 오브젝트를 HTML에 임베드하는 함수 
      *
-     *  @param div			삽입할 DIV ID
-     *  @param sTag			플래시 임베드 태그
+     *  @param div			
+     *  @param sTag			
      *  		
      *  @return void
      */
@@ -286,15 +276,14 @@
 
 
     /**
-     *  플래시 오브젝트를 HTML에 임베드하는 함수 
-     *  generateTag 함수와 파라미터 동일
+     *  generateTag 
      *
-     *  @param sURL			플래시 무비 주소
-     *  @param nWidth		플래시 무비 가로크기 (default : 100%)
-     *  @param nHeight		플래시 무비 세로크기 (default : 100%)
-     *  @param oParam		플래시에 설정할 옵션 파라미터 (default : null)
-     *  @param sAlign		플래시 정렬 기준
-     *  @param sFPVersion	플레이어 다운로드 목표 버전
+     *  @param sURL			
+     *  @param nWidth		(default : 100%)
+     *  @param nHeight		(default : 100%)
+     *  @param oParam		(default : null)
+     *  @param sAlign		
+     *  @param sFPVersion	
      *  		
      *  @return void
      */
@@ -304,14 +293,13 @@
 
 
     /**
-     *  플래시 오브젝트를 HTML에 임베드할 때 사용할 태그 생성 함수 
      *
-     *  @param sURL			플래시 무비 주소
-     *  @param nWidth		플래시 무비 가로크기 (default : 100%)
-     *  @param nHeight		플래시 무비 세로크기 (default : 100%)
-     *  @param oParam		플래시에 설정할 옵션 파라미터 (default : null)
-     *  @param sAlign		플래시 정렬 기준
-     *  @param sFPVersion	플레이어 다운로드 목표 버전
+     *  @param sURL			
+     *  @param nWidth		(default : 100%)
+     *  @param nHeight		(default : 100%)
+     *  @param oParam		(default : null)
+     *  @param sAlign		
+     *  @param sFPVersion	
      *  		
      *  @return String
      */
@@ -372,7 +360,6 @@
 
 
     /**
-     *  플래시 옵션 기본 설정값 
      *
      *  @return object
      */
@@ -389,10 +376,9 @@
 	
 
     /**
-     *  플래시 오브젝트를 찾아 반환해주는 함수 
      *
-     *  @param objID		찾아야하는 플래시 오브젝트 ID
-     *  @param doc			플래시를 갖고 있는 document 객체 / default : null
+     *  @param objID		 ID
+     *  @param doc			default : null
      *  @return object
      */
 	FlashObject.find = function(sID, oDoc) {
@@ -401,10 +387,9 @@
 	};
 
     /**
-     *  매개변수로 넘겨 받은 아이디의 플래시 오브젝트를 찾아 가로 크기를 변경하는 함수 
      *
-     *  @param objID		찾아야하는 플래시 오브젝트 ID
-     *  @param value		가로크기로 설정할 값
+     *  @param objID		 ID
+     *  @param value		
      *  @return void
      */
 	FlashObject.setWidth = function(sID, value) {
@@ -412,10 +397,9 @@
 	};
 	
     /**
-     *  매개변수로 넘겨 받은 아이디의 플래시 오브젝트를 찾아 세로 크기를 변경하는 함수 
      *
-     *  @param objID		찾아야하는 플래시 오브젝트 ID
-     *  @param value		세로크기로 설정할 값
+     *  @param objID		ID
+     *  @param value		
      *  @return void
      */
 	FlashObject.setHeight = function(sID, value) {
@@ -423,11 +407,10 @@
 	};
 	
     /**
-     *  매개변수로 넘겨 받은 아이디의 플래시 오브젝트를 찾아 사이즈를 변경하는 함수 
      *
-     *  @param objID		찾아야하는 플래시 오브젝트 ID
-     *  @param nWidth		가로크기로 설정할 값
-     *  @param nHeight		세로크기로 설정할 값
+     *  @param objID		ID
+     *  @param nWidth		
+     *  @param nHeight		
      *  @return void
      */
 	FlashObject.setSize = function(sID, nWidth, nHeight) {
@@ -436,10 +419,8 @@
 	};
 	
 	/**
-	 *	오브젝트 아이디를 넘겨 받으면 해당 오브젝트의 절대 좌표 및 스크롤을 감안한 상대죄표를
-	 *	반환하는 함수
 	 * 
-	 * 	@param sID			플래시 오브젝트 ID
+	 * 	@param sID			ID
 	 */
 	FlashObject.getPositionObj = function(sID){
 		var targetObj = FlashObject.find(sID);

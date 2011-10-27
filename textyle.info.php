@@ -2,7 +2,7 @@
     /**
      * @class  TextyleInfo
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle 모듈의 Textyle class
+     * @brief  textyle module Textyle info class
      **/
 
     class TextyleInfo extends Object {

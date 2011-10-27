@@ -3,28 +3,26 @@
     /**
      * @class  textyleView
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle 모듈의 View class
+     * @brief  textyle module View class
      **/
 
     class textyleView extends textyle {
 
         /**
-         * @brief 초기화
+         * @brief Initialization
          **/
         function init() {
-            // textyle 관리
             $oTextyleModel = &getModel('textyle');
             if(preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act) ) {
                 $this->initTool($this);
 
-            // textyle 서비스
             } else {
                 $this->initService($this);
             }
         }
 
         /**
-         * @brief Textyle 공동 초기화
+         * @brief Textyle common init
          **/
         function initCommon($is_other_module = false){
             if(!$this->checkXECoreVersion('1.4.3')) return $this->stop(sprintf(Context::getLang('msg_requried_version'),'1.4.3'));
@@ -48,10 +46,8 @@
                 }
             }
 
-            // @brief Textyle 모듈의 기본 설정은 view에서는 언제든지 사용하도록 load하여 Context setting
             if(!$this->module_info->skin) $this->module_info->skin = $this->skin;
 
-            // 만약 skin 미리보기일 경우 관리자라면 스킨을 변경해 보여줌
             $preview_skin = Context::get('preview_skin');
             if($oModuleModel->isSiteAdmin(Context::get('logged_info'))&&$preview_skin) {
                 if(is_dir($this->module_path.'skins/'.$preview_skin)) {
@@ -59,7 +55,6 @@
                 }
             }
 
-            // 모듈 정보에 textyle 정보를 합쳐서 저장
             if (!$is_other_module){
                 Context::set('module_info',$this->module_info);
                 Context::set('current_module_info', $this->module_info);
@@ -69,10 +64,8 @@
             $this->site_srl = $this->textyle->site_srl;
             Context::set('textyle',$this->textyle);
 
-            // time zone 지정
             if($this->textyle->timezone) $GLOBALS['_time_zone'] = $this->textyle->timezone;
 
-            // favicon 지정
             Context::addHtmlHeader('<link rel="shortcut icon" href="'.$this->textyle->getFaviconSrc().'" />');
 
             // publish subscription
@@ -82,12 +75,11 @@
         }
 
         /**
-         * @brief Textyle 관리 초기화
+         * @brief Textyle init tool
          **/
         function initTool(&$oModule, $is_other_module = false){
             if (!$oModule) $oModule = $this;
 
-            // 공동 초기화
             $this->initCommon($is_other_module);
 
             $oTextyleModel = &getModel('textyle');
@@ -96,7 +88,6 @@
             $textyle = $oTextyleModel->getTextyle($site_module_info->index_module_srl);
             $custom_menu = $oTextyleModel->getTextyleCustomMenu();
 
-            // 모바일 뷰를 사용안한다면 보여줄 필요는 없다.
             $info = Context::getDBInfo();
             if($info->use_mobile_vie=='Y'){
                 $custom_menu->hidden_menu[] = strtolower('dispTextyleToolLayoutConfigMobileSkin');
@@ -105,7 +96,6 @@
             Context::set('custom_menu', $custom_menu);
 
 
-            // 숨김 메뉴를 요청할 경우 대시보드로 변경
             if($oTextyleModel->ishiddenMenu($oModule->act) || ($oModule->act == 'dispTextyleToolDashboard' && $oTextyleModel->isHiddenMenu(0)) ) {
                 if($oTextyleModel->isHiddenMenu(0)) Context::set('act', $oModule->act = 'dispTextyleToolPostManageList', true);
                 else Context::set('act', $oModule->act= 'dispTextyleToolDashboard', true);
@@ -123,19 +113,18 @@
             if($_COOKIE['tclnb']) Context::addBodyClass('lnbClose');
             else Context::addBodyClass('lnbToggleOpen');
 
-            // browser title 지정
+            // set browser title 
             Context::setBrowserTitle($textyle->get('browser_title') . ' - admin');
         }
 
         /**
-         * @brief textyle 서비스 초기화
+         * @brief textyle init service
          **/
         function initService(&$oModule, $is_other_module = false, $isMobile = false){
             if (!$oModule) $oModule = $this;
 
             $oTextyleModel = &getModel('textyle');
 
-            // 공동 초기화
             $this->initCommon($is_other_module);
 
             Context::addJsFile($this->module_path.'tpl/js/textyle_service.js');
@@ -165,7 +154,6 @@
 				Context::addCssFile($oModule->{$css_path_method}().'textyle.css',true,'all','',100);
 			}
 
-            // Textyle에서 쓰기 위해 변수를 미리 정하여 세팅
             Context::set('root_url', Context::getRequestUri());
             Context::set('home_url', getFullSiteUrl($this->textyle->domain));
             Context::set('profile_url', getSiteUrl($this->textyle->domain,'','mid',$this->module_info->mid,'act','dispTextyleProfile'));
@@ -186,10 +174,9 @@
                 }
             }
 
-            // 추가 메뉴
             Context::set('extra_menus', $extra_menus);
 
-            // browser title 지정
+            // set browser title 
             Context::setBrowserTitle($this->textyle->get('browser_title'));
         }
 
@@ -217,9 +204,6 @@
             $oCommentModel = &getModel('comment');
             $oTextyleModel = &getModel('textyle');
 
-            /**
-             * 최근 뉴스를 가져와서 세팅
-             **/
             $url = sprintf("http://news.textyle.kr/%s/news.php", Context::getLangType());
             $cache_file = sprintf("%sfiles/cache/textyle/news/%s%s.cache.xml", _XE_PATH_,getNumberingPath($this->module_srl),Context::getLangType());
             if(!file_exists($cache_file) || filemtime($cache_file)+ 60*60 < time()) {
@@ -267,7 +251,6 @@
                 }
             }
 
-            // 방문자수
             $time = time();
             $w = date("D");
             while(date("D",$time) != "Sun") {
@@ -317,18 +300,15 @@
             $buff .= '</subFact></gdata></Graph>';
             Context::set('xml', $buff);
 
-            // 각종 통계 정보를 구함
             $counter = $oCounterModel->getStatus(array(0,date("Ymd")),$this->site_srl);
             $status->total_visitor = $counter[0]->unique_visitor;
             $status->visitor = $counter[date("Ymd")]->unique_visitor;
 
-            // 오늘의 댓글 수
             $args->module_srl = $this->module_srl;
             $args->regdate = date("Ymd");
             $output = executeQuery('textyle.getTodayCommentCount', $args);
             $status->comment_count = $output->data->count;
 
-            // 오늘의 엮인글 수
             $args->module_srl = $this->module_srl;
             $args->regdate = date("Ymd");
             $output = executeQuery('textyle.getTodayTrackbackCount', $args);
@@ -336,7 +316,6 @@
 
             Context::set('status', $status);
 
-            // 최근글 추출
             $doc_args->module_srl = array($this->textyle->get('member_srl'), $this->module_srl);
             $doc_args->sort_index = 'list_order';
             $doc_args->order_type = 'asc';
@@ -344,7 +323,6 @@
             $output = $oDocumentModel->getDocumentList($doc_args, false, false);
             Context::set('newest_documents', $output->data);
 
-            // 최근 댓글 추출
             $com_args->module_srl = $this->textyle->get('module_srl');
             $com_args->sort_index = 'list_order';
             $com_args->order_type = 'asc';
@@ -373,7 +351,7 @@
         }
 
         /**
-         * @brief Tool 새글쓰기
+         * @brie display textule tool post manage write
          **/
         function dispTextyleToolPostManageWrite(){
             // set filter
@@ -469,7 +447,7 @@
         }
 
         /**
-         * @brief 발행/ 재발행
+         * @brief display textyle tool post manage publish
          **/
         function dispTextyleToolPostManagePublish() {
             $oDocumentModel = &getModel('document');
@@ -518,7 +496,7 @@
         }
 
         /**
-         * @brief Tool 내 글 관리
+         * @brief display textyle tool post manage list
          **/
         function dispTextyleToolPostManageList(){
 
@@ -526,24 +504,19 @@
             if(!$args->page) $args->page = 1;
             Context::set('page',$args->page);
 
-            // 검색과 정렬을 위한 변수 설정
             $args->search_target = Context::get('search_target');
             $args->search_keyword = Context::get('search_keyword');
             $args->category_srl = Context::get('search_category_srl');
             $args->sort_index = Context::get('sort_index');
             //$args->order_type = Context::get('order_type');
 
-            // module_srl이 음수면 예약 발행글
             $published = Context::get('published');
             $logged_info = Context::get('logged_info');
 
-            // 모든글
             if(!$published){
                 $args->module_srl = array($this->module_srl,$this->module_srl * -1,$logged_info->member_srl);
-            // 발행된 글
             }else if($published > 0){
                 $args->module_srl = array($this->module_srl,$this->module_srl * -1);
-            // 임시보관 글
             }else{
                 $args->module_srl = $logged_info->member_srl;
             }
@@ -564,7 +537,7 @@
         }
 
         /**
-         * @brief Tool 글감보관함
+         * @brief display textyle tool post manage deposit
          **/
         function dispTextyleToolPostManageDeposit(){
             $oMaterialModel = &getModel('material');
@@ -590,7 +563,7 @@
         }
 
         /**
-         * @brief Tool 카테고리 관리
+         * @brief display textyle tool post manage category
          **/
         function dispTextyleToolPostManageCategory(){
             $oDocumentModel = &getModel('document');
@@ -602,7 +575,7 @@
         }
 
         /**
-         * @brief tool 태그 관리
+         * @brief display textyle tool post manage tag
          **/
         function dispTextyleToolPostManageTag(){
             $args->module_srl = $this->module_srl;
@@ -629,20 +602,19 @@
         }
 
         /**
-         * @brief tool Comment 관리
+         * @brief display textyle tool communication comment
          **/
         function dispTextyleToolCommunicationComment(){
             Context::addJsFilter($this->module_path.'tpl/filter', 'insert_denylist.xml');
 
-            // 목록을 구하기 위한 옵션
-            $args->page = Context::get('page'); ///< 페이지
+            $args->page = Context::get('page'); 
             $args->search_keyword = Context::get('search_keyword');
             $args->search_target = Context::get('search_target');
 
-            $args->list_count = 30; ///< 한페이지에 보여줄 글 수
-            $args->page_count = 10; ///< 페이지 네비게이션에 나타날 페이지의 수
+            $args->list_count = 30; 
+            $args->page_count = 10; 
 
-            $args->sort_index = 'list_order'; ///< 소팅 값
+            $args->sort_index = 'list_order';
 
             $args->module_srl = $this->textyle->module_srl;
 
@@ -654,33 +626,27 @@
         }
 
         /**
-         * @brief tool Comment 댓글
+         * @brief display textyle tool communication comment reply
          **/
         function dispTextyleToolCommunicationCommentReply(){
             Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
 
-            // 목록 구현에 필요한 변수들을 가져온다
             $parent_srl = Context::get('comment_srl');
             $document_srl = Context::get('document_srl');
 
-            // 지정된 원 댓글이 없다면 오류
             if(!$parent_srl) return new Object(-1, 'msg_invalid_request');
 
-            // 해당 댓글를 찾아본다
             $oCommentModel = &getModel('comment');
             $oSourceComment = $oCommentModel->getComment($parent_srl);
 
-            // 댓글이 없다면 오류
             if(!$oSourceComment->isExists()) return $this->dispTextyleMessage('msg_invalid_request');
 
             if($document_srl && $oSourceComment->get('document_srl') != $document_srl) return $this->dispTextyleMessage('msg_invalid_request');
 
-            // 대상 댓글을 생성
             $oComment = $oCommentModel->getComment(0);
             $oComment->add('parent_srl', $parent_srl);
             $oComment->add('document_srl', $oSourceComment->get('document_srl'));
 
-            // 필요한 정보들 세팅
             Context::set('oSourceComment',$oSourceComment);
             Context::set('oComment',$oComment);
             Context::set('module_srl',$this->textyle->module_srl);
@@ -690,7 +656,7 @@
         }
 
         /**
-         * @brief tool Guestbook 관리
+         * @brief display textyle tool communication guestbook
          **/
         function dispTextyleToolCommunicationGuestbook(){
             $page = Context::get('page');
@@ -741,7 +707,7 @@
         }
 
         /**
-         * @brief tool Trackback 관리
+         * @brief display textyle tool communication trackback
          **/
         function dispTextyleToolCommunicationTrackback(){
             $args->module_srl = $this->module_srl;
@@ -767,7 +733,7 @@
         }
 
         /**
-         * @brief tool Spam 관리
+         * @brief display textyle tool communication spam
          **/
         function dispTextyleToolCommunicationSpam(){
             $oTextyleModel = &getModel('textyle');
@@ -778,20 +744,17 @@
         }
 
         /**
-         * @brief tool 방문자 접속 현황
+         * @brief display textyle tool statistics visitor
          **/
         function dispTextyleToolStatisticsVisitor() {
             global $lang;
 
-            // 정해진 일자가 없으면 오늘자로 설정
             $selected_date = Context::get('selected_date');
             if(!$selected_date) $selected_date = date("Ymd");
             Context::set('selected_date', $selected_date);
 
-            // counter model 객체 생성
             $oCounterModel = &getModel('counter');
 
-            // 시간, 일, 월, 년도별로 데이터 가져오기
             $type = Context::get('type');
             if(!$type) {
                 $type = 'day';
@@ -928,18 +891,16 @@
         }
 
         /**
-         * @brief tool 방문자 접속 경로
+         * @brief display textyle tool statistics visit route
          **/
         function dispTextyleToolStatisticsVisitRoute() {
             global $lang;
             $oDocumentModel = &getModel('document');
 
-            // 정해진 일자가 없으면 오늘자로 설정
             $selected_date = Context::get('selected_date');
             if(!$selected_date) $selected_date = date("Ymd");
             Context::set('selected_date', $selected_date);
 
-            // 시간, 일, 월, 년도별로 데이터 가져오기
             $type = Context::get('type');
             if(!$type) {
                 $type = 'day';
@@ -1016,7 +977,7 @@
         }
 
         /**
-         * @brief tool 지지자
+         * @brief display textyle tool statistics supporter
          **/
         function dispTextyleToolStatisticsSupporter(){
             $selected_date = Context::get('selected_date');
@@ -1038,7 +999,7 @@
         }
 
         /**
-         * @brief tool 인기 콘텐트
+         * @brief display textyle tool statistics popular
          **/
         function dispTextyleToolStatisticsPopular(){
             $selected_date = Context::get('selected_date');
@@ -1066,7 +1027,6 @@
         function dispTextyleToolLayoutConfigSkin() {
             $oModuleModel = &getModel('module');
 
-            // 스킨 목록 구함
             $skins = $oModuleModel->getSkins($this->module_path);
             if(count($skins)) {
                 foreach($skins as $skin_name => $info) {
@@ -1099,7 +1059,6 @@
         function dispTextyleToolLayoutConfigMobileSkin() {
             $oModuleModel = &getModel('module');
 
-            // 스킨 목록 구함
             $skins = $oModuleModel->getSkins($this->module_path, 'm.skins');
             if(count($skins)) {
                 foreach($skins as $skin_name => $info) {
@@ -1175,10 +1134,8 @@
         }
 
         function dispTextyleToolConfigInfo(){
-            // 지원 언어 세팅
             Context::set('langs', Context::loadLangSelected());
 
-            // time Zone 세팅
             Context::set('time_zone_list', $GLOBALS['time_zone']);
             Context::set('time_zone', $GLOBALS['_time_zone']);
         }
@@ -1217,7 +1174,6 @@
             $site_module_info = Context::get('site_module_info');
             $site_srl = (int)$site_module_info->site_srl;
 
-            // 컴포넌트의 종류를 구해옴
             $oEditorModel = &getModel('editor');
             $component_list = $oEditorModel->getComponentList(false, $site_srl);
 
@@ -1225,11 +1181,9 @@
         }
 
         function dispTextyleToolConfigCommunication(){
-            // 에디터 스킨 가져오기
             $editor_skin_list = FileHandler::readDir(_XE_PATH_.'modules/editor/skins');
             Context::set('editor_skin_list', $editor_skin_list);
 
-            // RSS 정보를 가져옴
             $oRssModel = &getModel('rss');
             Context::set('rss_config', $oRssModel->getRssModuleConfig($this->module_srl));
         }
@@ -1259,7 +1213,6 @@
             if(!$args->page) $args->page = 1;
             Context::set('page',$args->page);
 
-            // 검색과 정렬을 위한 변수 설정
             $args->search_target = Context::get('search_target');
             $args->search_keyword = Context::get('search_keyword');
             $args->module_srl = $this->module_srl;
@@ -1275,7 +1228,6 @@
         }
 
         function dispTextyleToolConfigAddon() {
-            // 애드온 목록을 가져옴
             $oAddonModel = &getAdminModel('addon');
             $oAdminView= &getAdminView('admin');
             $addon_list = $oAddonModel->getAddonList($this->site_srl);
@@ -1325,15 +1277,11 @@
             $category_list = $oDocumentModel->getCategoryList($this->module_srl);
             Context::set('category_list', $category_list);
 
-            // 글 고유 링크가 있으면 처리
             if($document_srl) {
                 $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
-                // 문서가 있으면 처리
                 if($oDocument->isExists()) {
-                    // 글과 요청된 모듈이 다르다면 오류 표시
                     if($oDocument->get('module_srl')!=$this->module_info->module_srl ) return $this->stop('msg_invalid_request');
 
-                    // html title에 글제목 추가
                     Context::setBrowserTitle($this->textyle->get('browser_title') . ' »  ' . $oDocument->getTitleText());
 
                     // meta keywords category + tag
@@ -1347,10 +1295,8 @@
                     if($tag && $category_srl >0) $tag = $category_list[$category_srl]->title .', ' . $tag;
                     Context::addHtmlHeader(sprintf('<meta name="keywords" content="%s" />',$tag));
 
-                    // 관리 권한이 있다면 권한을 부여
                     if($this->grant->manager) $oDocument->setGrant();
 
-                // 요청된 문서번호의 문서가 없으면 document_srl null 처리 및 경고 메세지 출력
                 } else {
                     Context::set('document_srl','',true);
                     //$this->alertMessage('msg_not_founded');
@@ -1360,7 +1306,6 @@
             }
             Context::set('oDocument', $oDocument);
 
-            // 글 목록을 구함
             $args->module_srl = $this->module_srl;
             $args->category_srl = Context::get('category');
             $args->page = $page;
@@ -1372,7 +1317,6 @@
             if(!in_array($args->sort_index, $this->order_target)) $args->sort_index = $this->module_info->order_target?$this->module_info->order_target:'list_order';
             if(!in_array($args->order_type, array('asc','desc'))) $args->order_type = $this->module_info->order_type?$this->module_info->order_type:'asc';
 
-            // 선택된 글이 하나라도 글 목록으로 형성
             if($oDocument->isExists()) {
                 $document_list[] = $oDocument;
                 Context::set('none_navigation', true);
@@ -1384,23 +1328,19 @@
                 Context::set('page_navigation', $output->page_navigation);
             }
 
-            // 선택된 글이 하나일 경우 이전/ 다음 페이지 구함 + 조회수 증가 + referer 기록
             if(is_array($document_list)) $_key = array_keys($document_list);
             if(count($_key)==1) {
                 $_srl = array_pop($_key);
                 $doc = $document_list[$_srl];
                 if($doc->document_srl) {
-                    // 이전 다음글 구함
                     $args->document_srl = $doc->document_srl;
                     $output = executeQuery('textyle.getNextDocument', $args);
                     if($output->data->document_srl) Context::set('prev_document', new documentItem($output->data->document_srl,false));
                     $output = executeQuery('textyle.getPrevDocument', $args);
                     if($output->data->document_srl) Context::set('next_document', new documentItem($output->data->document_srl,false));
 
-                    // 조회수 증가
                     if(!$doc->isSecret() || $doc->isGranted()) $doc->updateReadedCount();
 
-                    // referer 남김
                     $oTextyleController->insertReferer($doc);
                 }
             }
@@ -1425,28 +1365,22 @@
         }
 
         function dispTextyleCommentReply(){
-            // 목록 구현에 필요한 변수들을 가져온다
             $parent_srl = Context::get('comment_srl');
             $document_srl = Context::get('document_srl');
 
-            // 지정된 원 댓글이 없다면 오류
             if(!$parent_srl) return new Object(-1, 'msg_invalid_request');
 
-            // 해당 댓글를 찾아본다
             $oCommentModel = &getModel('comment');
             $oSourceComment = $oCommentModel->getComment($parent_srl);
 
-            // 댓글이 없다면 오류
             if(!$oSourceComment->isExists()) return $this->dispTextyleMessage('msg_invalid_request');
 
             if($document_srl && $oSourceComment->get('document_srl') != $document_srl) return $this->dispTextyleMessage('msg_invalid_request');
 
-            // 대상 댓글을 생성
             $oComment = $oCommentModel->getComment(0);
             $oComment->add('parent_srl', $parent_srl);
             $oComment->add('document_srl', $oSourceComment->get('document_srl'));
 
-            // 필요한 정보들 세팅
             Context::set('oSourceComment',$oSourceComment);
             Context::set('oComment',$oComment);
             Context::set('module_srl',$this->textyle->module_srl);
@@ -1456,21 +1390,16 @@
         }
 
         function dispTextyleCommentModify(){
-            // 목록 구현에 필요한 변수들을 가져온다
             $document_srl = Context::get('document_srl');
             $comment_srl = Context::get('comment_srl');
 
-            // 지정된 댓글이 없다면 오류
             if(!$comment_srl) return new Object(-1, 'msg_invalid_request');
 
-            // 해당 댓글를 찾아본다
             $oCommentModel = &getModel('comment');
             $oComment = $oCommentModel->getComment($comment_srl, $this->grant->manager);
 
-            // 댓글이 없다면 오류
             if(!$oComment->isExists()) return $this->dispBoardMessage('msg_invalid_request');
 
-            // 필요한 정보들 세팅
             Context::set('oSourceComment', $oCommentModel->getComment());
             Context::set('oComment', $oComment);
             Context::set('textyle_mode','comment_form');
@@ -1542,7 +1471,6 @@
             $obj->list_count = 10000;
             $output = $oTagModel->getTagList($obj);
 
-            // 내용을 랜덤으로 정렬
             if(count($output->data)) {
                 $numbers = array_keys($output->data);
                 shuffle($numbers);
@@ -1576,7 +1504,6 @@
                 Context::set('page_navigation', $output->page_navigation);
             }
 
-            // 템플릿 지정
             $this->setTemplateFile('search');
         }
 
@@ -1599,7 +1526,6 @@
                 Context::set('page_navigation', $output->page_navigation);
             }
 
-            // 템플릿 지정
             $this->setTemplateFile('search');
         }
 
@@ -1622,7 +1548,6 @@
                 Context::set('page_navigation', $output->page_navigation);
             }
 
-            // 템플릿 지정
             $this->setTemplateFile('search_textyle');
         }
 

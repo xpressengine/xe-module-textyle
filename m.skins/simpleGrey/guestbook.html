@@ -25,10 +25,10 @@
 					<!--@if($val->member_srl == $logged_info->member_srl||$logged_info->is_site_admin)-->
 						<div>{$val->content}</div>
 					<!--@else-->
-						<div>비밀글입니다.</div>
+						<div>{$lang->msg_is_secret}</div>
 					<!--@end-->
 				<!--@else-->
-					<div>비밀글입니다.</div>
+					<div>{$lang->msg_is_secret}</div>
 				<!--@end-->
 			<!--@end-->
 			<span class="auth"><em>{$val->nick_name}</em> <span>{zdate($val->regdate,'Y.m.d')}</span>

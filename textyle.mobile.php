@@ -8,7 +8,6 @@
 
 			$oTextyleModel = &getModel('textyle');
 			if((preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act))) {
-				// 관리 화면은 필요한 파일을 로드
 				Context::addJsFile("./common/js/jquery.js", true, '', -100000);
 				Context::addJsFile("./common/js/x.js", true, '', -100000);
 				Context::addJsFile("./common/js/common.js", true, '', -100000);
@@ -18,7 +17,6 @@
 				Context::addCSSFile("./common/css/default.css", true, 'all', '', -100000);
 				Context::addCSSFile("./common/css/button.css", true, 'all', '', -100000);
 			}else{
-				// 서비스 화면은 모바일 스킨으로 변경
 				$template_path = sprintf("%sm.skins/%s/",$this->module_path, $this->module_info->mskin);
 				if(!is_dir($template_path)||!$this->module_info->mskin) {
 					$this->module_info->mskin = 'default';
@@ -31,7 +29,6 @@
         function initService(&$oModule, $is_other_module = false)
 		{
 			debugPrint('mobile');
-			//모바일일 경우에는 다른모듈이라 하더라도 Texylye Layout이 필요 없슴.
 			parent::initService($oModule, true, true);
 
 			$template_path = sprintf("%sm.skins/%s/",$this->module_path, $this->module_info->mskin);
@@ -40,7 +37,6 @@
 				$template_path = sprintf("%sm.skins/%s/",$this->module_path, $this->module_info->mskin);
 			}
 
-			//다른 모듈에서 사용하는 html을 가져와서 Textyle 내부에서 사용하는 content html로 만들어 둔 후 다시 template 재정의
 			$oTemplateHandler = &TemplateHandler::getInstance();
 			$html = $oTemplateHandler->compile($oModule->getTemplatePath(), $oModule->getTemplateFile());
 			Context::set('content', $html);
@@ -70,16 +66,12 @@
 
 			$document_srl = Context::get('document_srl');
 
-			// 글 고유 링크가 있으면 처리
 			if($document_srl) {
 				$oDocument = $oDocumentModel->getDocument($document_srl,false,false);
 
-				// 문서가 있으면 처리
 				if($oDocument->isExists()) {
-					// 글과 요청된 모듈이 다르다면 오류 표시
 					if($oDocument->get('module_srl')!=$this->module_info->module_srl ) return $this->stop('msg_invalid_request');
 
-					// html title에 글제목 추가
 					Context::setBrowserTitle($this->textyle->get('browser_title') . ' »  ' . $oDocument->getTitle());
 
 					// meta keywords category + tag
@@ -93,10 +85,8 @@
 					if($tag && $category_srl >0) $tag = $category_list[$category_srl]->title .', ' . $tag;
 					Context::addHtmlHeader(sprintf('<meta name="keywords" content="%s" />',$tag));
 
-					// 관리 권한이 있다면 권한을 부여
 					if($this->grant->manager) $oDocument->setGrant();
 
-				// 요청된 문서번호의 문서가 없으면 document_srl null 처리 및 경고 메세지 출력
 				} else {
 					Context::set('document_srl','',true);
 					$oDocument = $oDocumentModel->getDocument(0,false,false);
