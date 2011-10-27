@@ -2013,6 +2013,7 @@
 			$args->mid = $menu_mid;
 			$args->browser_title = $menu_name;
 			$args->module = 'page';
+			$args->page_type = 'WIDGET';
                         $args->content = '<img src="./common/tpl/images/widget_bg.jpg" class="zbxe_widget_output" widget="widgetContent" style="float: left; width: 100%;" body="" document_srl="'.$output->get('document_srl').'" widget_padding_left="0" widget_padding_right="0" widget_padding_top="0" widget_padding_bottom="0"  /> ';
 			$output = $oModuleController->insertModule($args);
 			if(!$output->toBool()) return $output;

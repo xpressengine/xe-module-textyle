@@ -6,7 +6,7 @@
         <column name="module_srl" var="module_srl" filter="number" notnull="notnull" />
         <column name="member_srl" var="member_srl" filter="number" notnull="notnull" />
         <column name="textyle_content" var="textyle_content" />
-        <column name="profile_content" var="profile_content" />
+        <column name="profile_content" default="" var="profile_content" />
         <column name="textyle_title" var="textyle_title" />
 		<column name="post_style" var="post_style" />
 		<column name="post_editor_skin" var="post_editor_skin" />
@@ -21,8 +21,8 @@
 		<column name="input_website" var="input_website" />
 		<column name="post_use_prefix" var="post_use_prefix" />
 		<column name="post_use_suffix" var="post_use_suffix" />
-		<column name="post_prefix" var="post_prefix" />
-		<column name="post_suffix" var="post_suffix" />
+		<column name="post_prefix" default="" var="post_prefix" />
+		<column name="post_suffix" default="" var="post_suffix" />
 		<column name="timezone" var="timezone" />
 		<column name="subscription_date" var="subscription_date" />
         <column name="regdate" var="regdate" default="curdate()" />
