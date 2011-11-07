@@ -160,7 +160,7 @@
                 $file = sprintf('%ssample/ko.html',$this->module_path);
             }
             $oMemberModel = &getModel('member');
-            $member_info = $oMemberModel->getMemberInfoByUserID($user_id_list[0]);
+            $member_info = $oMemberModel->getMemberInfoByEmailAddress($user_id_list[0]);
 
             $doc->module_srl = $module_srl;
             $doc->title = Context::getLang('sample_title');
@@ -340,6 +340,7 @@
                 } elseif(strpos($key, 'custom_name_')!==false && $val) {
                     $idx = substr($key, 12);
                     $attached[$idx]->name = $val;
+
                 }
             }
 
@@ -445,7 +446,7 @@
                 $file = sprintf('%ssample/ko.html',$this->module_path);
             }
 
-            $member_info = $oMemberModel->getMemberInfoByUserID($oTextyle->getUserId());
+            $member_info = $oMemberModel->getMemberInfoByEmailAddress($oTextyle->getUserId());
 
             $doc->module_srl = $module_srl;
             $doc->title = Context::getLang('sample_title');
