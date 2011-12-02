@@ -1,0 +1,18 @@
+<!--%import("js/textyle.js")-->
+
+<h3 class="xeAdmin">{$lang->textyle} <span class="gray">{$lang->cmd_management}</span></h3>
+
+<div class="infoText">{nl2br($lang->about_textyle)}</div>
+
+<div class="header4">
+    <ul class="localNavigation">
+        <!--li <!--@if($act=='dispTextyleAdminSetup')-->class="on"<!--@end-->><a href="{getUrl('act','dispTextyleAdminSetup','module_srl','')}">{$lang->cmd_textyle_setup}</a></li-->
+        <li <!--@if($act=='dispTextyleAdminList')-->class="on"<!--@end-->><a href="{getUrl('act','dispTextyleAdminList','module_srl','')}">{$lang->cmd_textyle_list}</a></li>
+        <li <!--@if($act=='dispTextyleAdminInsert')-->class="on"<!--@end-->><a href="{getUrl('act','dispTextyleAdminInsert','module_srl')}">{$lang->cmd_textyle_creation}</a></li>
+        <li <!--@if($act=='dispTextyleAdminCustomMenu')-->class="on"<!--@end-->><a href="{getUrl('act','dispTextyleAdminCustomMenu','module_srl')}">{$lang->cmd_textyle_custom_menu}</a></li>
+        <li <!--@if($act=='dispTextyleAdminBlogApiConfig')-->class="on"<!--@end-->><a href="{getUrl('act','dispTextyleAdminBlogApiConfig','module_srl')}">{$lang->cmd_textyle_blogapi_service}</a></li>
+        <li <!--@if($act=='dispTextyleAdminExportList')-->class="on"<!--@end-->><a href="{getUrl('act','dispTextyleAdminExportList','module_srl')}">{$lang->cmd_textyle_export_request}</a></li>
+        <li <!--@if($act=='dispTextyleAdminExtraMenu')-->class="on"<!--@end-->><a href="{getUrl('act','dispTextyleAdminExtraMenu','module_srl')}">{$lang->cmd_textyle_extra_menu_config}</a></li>
+    </ul>
+</div>
+

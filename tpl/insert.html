@@ -1,0 +1,47 @@
+<!--#include("./header.html")-->
+
+	<!--@if($textyle)-->
+	<!--%import("filter/update_textyle.xml")-->
+	<form action="./" method="post" onsubmit="return procFilter(this, update_textyle)" id="textyleFo">
+	<input type="hidden" name="site_srl" value="{$textyle->site_srl}" />
+	<input type="hidden" name="module_srl" value="{$module_srl}" />
+	<!--@else-->
+
+	<!--%import("filter/insert_textyle.xml")-->
+	<form action="./" method="post" onsubmit="return procFilter(this, insert_textyle)" id="textyleFo">
+	<!--@end-->
+
+	<table cellspacing="0" class="rowTable">
+	<caption>&nbsp;</caption>
+	<tbody>
+        <tr>
+            <th scope="row"><div>{$lang->access_type}</div></th>
+            <td>
+                <label for="chkDomain"><input type="radio" id="chkDomain" name="access_type" value="domain" onclick="toggleAccessType('domain');" <!--@if(!isSiteID($textyle->domain))-->checked="checked"<!--@end--> /> {$lang->access_domain}</label>
+                <label for="chkVid"><input type="radio" id="chkVid" name="access_type" value="vid" onclick="toggleAccessType('vid');" <!--@if(isSiteID($textyle->domain))-->checked="checked"<!--@end--> /> {$lang->access_vid}</label>
+                <div id="accessDomain" style="display:<!--@if(!isSiteID($textyle->domain))-->block<!--@else-->none<!--@end-->; margin-top:10px;">
+                    http://<input type="text" name="domain" value="<!--@if(!isSiteID($textyle->domain))-->{$textyle->domain}<!--@end-->" class="inputTypeText w200" />
+                    <p>{$lang->about_domain}</p>
+                </div>
+                <div id="accessVid" style="display:<!--@if(isSiteID($textyle->domain))-->block<!--@else-->none<!--@end-->; margin-top:10px;">
+                    <input type="text" name="vid" value="<!--@if(isSiteID($textyle->domain))-->{$textyle->domain}<!--@end-->" class="inputTypeText w200" />
+                    <p>{$lang->about_vid}</p>
+                </div>
+            </td>
+        </tr>
+		<tr>
+			<th scope="row"><div>{$lang->textyle_admin}</div></th>
+			<td>
+				<input type="text" name="user_id" value="{$site_admin}" class="inputTypeText w200" />
+			</td>
+		</tr>
+        <tr class="row2">
+            <th colspan="2" class="button">
+			<!--@if($module_srl)-->
+			<a href="{getUrl('act','dispTextyleAdminExtraMenu')}" class="button "><span>{$lang->cmd_textyle_extra_menu_config}</span></a>
+			<!--@end-->
+			<span class="button black strong"><input type="submit" value="<!--@if($textyle)-->{$lang->cmd_textyle_update}<!--@else-->{$lang->cmd_textyle_creation}<!--@end-->" accesskey="s" /></span></div></th>
+        </tr>
+	</tbody>
+	</table>
+</form>
