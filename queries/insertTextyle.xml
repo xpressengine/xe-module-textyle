@@ -5,7 +5,7 @@
     <columns>
         <column name="module_srl" var="module_srl" filter="number" notnull="notnull" />
         <column name="member_srl" var="member_srl" filter="number" notnull="notnull" />
-        <column name="textyle_content" var="textyle_content" />
+        <column name="textyle_content" var="textyle_content" default="" />
         <column name="profile_content" default="" var="profile_content" />
         <column name="textyle_title" var="textyle_title" />
 		<column name="post_style" var="post_style" />
