@@ -55,8 +55,17 @@
             $oTextyleModel = &getModel('textyle');
             $oTextyleController = &getController('textyle');
             $oDocumentController = &getController('document');
-
-            $member_srl = $oMemberModel->getMemberSrlByEmailAddress($user_id_list[0]);
+			
+            $memberConfig = $oMemberModel->getMemberConfig();
+            foreach($memberConfig->signupForm as $item){
+            	if($item->isIdentifier) $identifierName = $item->name;
+            }
+            if($identifierName == "user_id") {
+            	$member_srl = $oMemberModel->getMemberSrlByUserID($user_id_list[0]);
+            	}
+            else {
+            	$member_srl = $oMemberModel->getMemberSrlByEmailAddress($user_id_list[0]);
+            }
             if(!$member_srl) return new Object(-1,'msg_not_user');
 
             $member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
