@@ -81,7 +81,7 @@
 .buttonAction a{height:39px;padding:0 25px 0 0;font:12px/39px Sans-serif;background-position:right top;overflow:visible}
 
 /* Blue */
-.buttonAction.actionBlue {background-position:left top}
+.buttonAction.actionBlue {background-position:left top;top: 40px;}
 .buttonAction.actionBlue button,
 .buttonAction.actionBlue input,
 .buttonAction.actionBlue a{left:7px;padding-left:40px;color:#fff;background-position:right top}

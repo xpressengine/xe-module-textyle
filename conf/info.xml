@@ -14,7 +14,7 @@
     <description xml:lang="jp">XpressEngine基盤のブログ専用モジュールです。</description>
     <description xml:lang="zh-TW">Textyle 是 XpressEngine 的部落格模組。</description>
     <description xml:lang="tr">Textyle, XpressEngine'de bulunan harici blog modülüdür.</description>
-    <version>1.4.0</version>
+    <version>1.3.4</version>
     <date>2011-10-27</date>
     <category>package</category>
     <author email_address="xe_dev@arnia.ro" link="http://www.xpressengine.org">
