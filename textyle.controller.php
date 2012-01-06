@@ -50,13 +50,15 @@
         }
 
         function procTextyleConfigCommunicationInsert(){
+        	$logged_info = Context::get('logged_info');
             $oModuleModel = &getModel('module');
             $oModuleController = &getController('module');
 
             if(in_array(strtolower('dispTextyleToolConfigCommunication'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
-
+			
             $args = Context::getRequestVars();
             $args->module_srl = $this->module_srl;
+            $args->member_srl = $logged_info->member_srl;
             $output = $this->updateTextyle($args);
             if(!$output->toBool()) return $output;
 
