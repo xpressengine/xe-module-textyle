@@ -710,6 +710,7 @@
             } else {
                 $output = $this->savePost($var);
                 if(!$output->toBool()) return $output;
+                if(preg_match('/<img/', $var->content)) unset($GLOBALS['XE_DOCUMENT_LIST'][$output->get('document_srl')]);
 				$oDocument = $oDocumentModel->getDocument($output->get('document_srl'));
 				$vars = $oDocument->getObjectVars();
 	            $vars->tags = $var->tags;
