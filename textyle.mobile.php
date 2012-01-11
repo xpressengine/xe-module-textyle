@@ -1,5 +1,5 @@
 <?php
-	require_once(_XE_PATH_.'modules/textyle/textyle.view.php');
+	require_once(_XE_PATH_ . 'modules/textyle/textyle.view.php');
 
 	class textyleMobile extends textyleView {
 
@@ -249,6 +249,7 @@
 			if(!$logged_info->is_site_admin) return new Object(-1,'msg_invalid_request');
 
 			$args = Context::getRequestVars();
+			$args->content = $args->content_text;
 			$args->module_srl = $this->module_srl;
 			$oTextyleController = &getController('textyle');
 			$output = $oTextyleController->insertPost($args);

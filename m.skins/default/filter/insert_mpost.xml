@@ -1,7 +1,7 @@
 <filter name="insert_mpost" module="textyle" act="procTextylePostWrite">
   <form>
     <node target="mid" required="true" />
-    <node target="content" required="true" minlength="1" />
+    <node target="content_text" required="true" minlength="1" />
     <node target="title" required="true" minlength="1" />
   </form>
   <parameter />
