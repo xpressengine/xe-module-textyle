@@ -277,7 +277,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 #content .usedTag dd a:active,
 #content .usedTag dd a:focus{ text-decoration:underline;}
 
-#content .postMeta{ float:right; clear:both; position:relative; top:-40px; margin:0; right:0; font-size:11px; text-align:right;}
+#content .postMeta{ float:right; margin:0 0 10px 0;font-size:11px;}
 #content .postMeta .yymmdd{ color:#666;}
 #content .postMeta .hhmm{ color:#8b8b8b;}
 #content .postMeta .author{ padding:0 0 0 6px; margin:0 0 0 4px; text-decoration:none; color:#000; background:url(img/lineVrText.gif) no-repeat left center;}
