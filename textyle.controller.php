@@ -1927,6 +1927,7 @@
                 if($output->data->api_srl) return executeQuery('textyle.updateBlogAPI', $vars);
             }
             $vars->api_srl = getNextSequence();
+            if(!isset($vars->blogapi_host_provider)) $vars->blogapi_host_provider = 0;
             return executeQuery('textyle.insertBlogAPI', $vars);
         }
 
