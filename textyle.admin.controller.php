@@ -197,14 +197,15 @@
             if(!$args->domain) return new Object(-1,'msg_invalid_request');
 
             $oMemberModel = &getModel('member');
-
+			$member_config = $oMemberModel->getMemberConfig();
+			
             $tmp_member_list = explode(',',$vars->user_id);
             $admin_list = array();
             $admin_member_srl = array();
             foreach($tmp_member_list as $k => $v){
                 $v = trim($v);
                 if($v){
-	                if($identifierName == "user_id") {
+	                if($member_config->identifier == "user_id") {
 		            	$member_srl = $oMemberModel->getMemberSrlByUserID($v);
 		            	}
 		            else {
