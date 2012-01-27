@@ -204,7 +204,12 @@
             foreach($tmp_member_list as $k => $v){
                 $v = trim($v);
                 if($v){
-                    $member_srl = $oMemberModel->getMemberSrlByEmailAddress($v);
+	                if($identifierName == "user_id") {
+		            	$member_srl = $oMemberModel->getMemberSrlByUserID($v);
+		            	}
+		            else {
+		            	$member_srl = $oMemberModel->getMemberSrlByEmailAddress($v);
+		            }
                     if($member_srl){
                         $admin_list[] = $v;
                         $admin_member_srl[] = $member_srl;
