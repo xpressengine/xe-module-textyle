@@ -28,7 +28,6 @@
 
         function initService(&$oModule, $is_other_module = false)
 		{
-			debugPrint('mobile');
 			parent::initService($oModule, true, true);
 
 			$template_path = sprintf("%sm.skins/%s/",$this->module_path, $this->module_info->mskin);
