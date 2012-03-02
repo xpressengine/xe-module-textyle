@@ -11,15 +11,15 @@
                                 <!--@if($is_logged)-->
 								<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                 <!--@else-->
-                                <input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
-                                <input name="password" type="password" class="inputText pw" value="Password" title="Password" />
+                                <input name="nick_name" type="text" class="iText name" value="Name" title="Name"/>
+                                <input name="password" type="password" class="iText pw" value="Password" title="Password" />
 								<!--@if($textyle->getInputEmail()!='N')-->
 									<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-									<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
+									<input name="email_address" type="text" class="iText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
 								<!--@end-->
 								<!--@if($textyle->getInputWebsite()!='N')-->
 									<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-									<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
+									<input name="homepage" type="text" class="iText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 								<!--@end-->
                                <!--@end-->
                                 <input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
@@ -49,15 +49,15 @@
                                         <!--@if($is_logged)-->
 										<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                         <!--@else-->
-										<input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
-										<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
+										<input name="nick_name" type="text" class="iText name" value="Name" title="Name"/>
+										<input name="password" type="password" class="iText pw" value="Password" title="Password" />
 										<!--@if($textyle->getInputEmail()!='N')-->
 											<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-											<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
+											<input name="email_address" type="text" class="iText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
 										<!--@end-->
 										<!--@if($textyle->getInputWebsite()!='N')-->
 											<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-											<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
+											<input name="homepage" type="text" class="iText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 										<!--@end-->
 										<!--@end-->
                                         <input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" <!--@if($val->is_secret==1)-->checked <!--@end-->/>
@@ -95,7 +95,7 @@
 										<input type="hidden" name="page" value="{$page}" />
 										<input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
 
-										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
+										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="iText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
 									</form>
 									<!--@end-->
 									<form action="" method="post" class="modifyPw pwForm guestbook{$key}" onsubmit="return checkPasswordForModifyGuestbook(this)">
@@ -103,14 +103,14 @@
 										<input type="hidden" name="page" value="{$page}" />
 										<input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
 
-										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
+										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="iText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
 									</form>
 									<form action="" method="post" class="deletePw pwForm guestbook{$key}"onsubmit="return checkPasswordForDeleteGuestbook(this)">
 										<input type="hidden" name="mid" value="{$mid}" />
 										<input type="hidden" name="page" value="{$page}" />
 										<input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
 
-										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
+										<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="iText" id="deletePw" value="" /><input name="" type="submit" value="{$lang->cmd_confirm}" class="submit" />
 									</form>
 									<ul class="reAction">
 										<!--@if($val->view_grant)-->
@@ -120,14 +120,14 @@
 										
 										<!--@if($val->member_srl || $logged_info->is_site_admin)-->
 											<!--@if($logged_info->member_srl == $val->member_srl)-->
-												<li><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
+												<li><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}...</a></li>
 
 											<!--@end-->
 											<!--@if($logged_info->is_site_admin || $logged_info->member_srl == $val->member_srl)-->
 												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteGuestbookItem({$val->textyle_guestbook_srl});">{$lang->cmd_delete}</button></li>
 											<!--@end-->
 										<!--@else-->
-												<li><button type="button" onclick="jQuery('.guestbook{$key}').removeClass('active');jQuery('.modifyPw.guestbook{$key}').addClass('active')">{$lang->cmd_modify}</button></li>
+												<li><button type="button" onclick="jQuery('.guestbook{$key}').removeClass('active');jQuery('.modifyPw.guestbook{$key}').addClass('active')">{$lang->cmd_modify}...</button></li>
 												<li><button type="button" onclick="jQuery('.guestbook{$key}').removeClass('active');jQuery('.deletePw.guestbook{$key}').addClass('active')">{$lang->cmd_delete}</button></li>
 										<!--@end-->
 										<!--@end-->
@@ -146,15 +146,15 @@
                                         <!--@if($is_logged)-->
                                         <strong class="name member_{$logged_info->member_srl}">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                         <!--@else-->
-                                        <input name="nick_name" type="text" class="inputText name" value="Name" />
-                                        <input name="password" type="password" class="inputText pw" value="Password" title="Password" />
+                                        <input name="nick_name" type="text" class="iText name" value="Name" />
+                                        <input name="password" type="password" class="iText pw" value="Password" title="Password" />
 										<!--@if($textyle->getInputEmail()!='N')-->
 											<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-											<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
+											<input name="email_address" type="text" class="iText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
 										<!--@end-->
 										<!--@if($textyle->getInputWebsite()!='N')-->
 											<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-											<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
+											<input name="homepage" type="text" class="iText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 										<!--@end-->
                                          <!--@end-->
                                         <input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />

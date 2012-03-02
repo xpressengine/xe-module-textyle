@@ -73,14 +73,14 @@
         <tr id="urlForm" style="display:none;">
             <th scope="row"><div>{$lang->url}</div></th>
             <td colspan="2">
-                http://<input type="text" name="url" value="" class="inputTypeText fullWidth" />
+                http://<input type="text" name="url" value="" />
                 <p>{$lang->about_menu_item_url}</p>
             </td>
         </tr>
         <tr>
             <th scope="row"><div>{$lang->menu_name}</div></th>
             <td colspan="2">
-                <input type="text" name="menu_name" id="menu_name" value="" class="inputTypeText"/>
+                <input type="text" name="menu_name" id="menu_name" value=""/>
                 <a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','menu_name')}" onclick="popopen(this.href);return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_find_langcode}</span></a>
                 <p>{$lang->about_langcode}</p>
             </td>
@@ -113,7 +113,7 @@
                     <img src="" alt="" id="menu_normal_btn_img" /><br />
                     <a href="#" onclick="doDeleteButton('menu_normal_btn');return false;" class="button"><span>{$lang->cmd_delete}</span></a>
                 </div>
-                <input type="file" name="menu_normal_btn" value="" class="inputTypeText" onchange="doHomepageMenuUploadButton(this); return false;"/>
+                <input type="file" name="menu_normal_btn" value="" onchange="doHomepageMenuUploadButton(this); return false;"/>
             </td>
         </tr>
         <tr>
@@ -123,7 +123,7 @@
                     <img src="" alt="" id="menu_hover_btn_img" /><br />
                     <a href="#" onclick="doDeleteButton('menu_hover_btn');return false;" class="button"><span>{$lang->cmd_delete}</span></a>
                 </div>
-                <input type="file" name="menu_hover_btn" value="" class="inputTypeText" onchange="doHomepageMenuUploadButton(this); return false;"/>
+                <input type="file" name="menu_hover_btn" value="" onchange="doHomepageMenuUploadButton(this); return false;"/>
             </td>
         </tr>
         <tr>
@@ -133,7 +133,7 @@
                     <img src="" alt="" id="menu_active_btn_img" /><br />
                     <a href="#" onclick="doDeleteButton('menu_active_btn');return false;" class="button"><span>{$lang->cmd_delete}</span></a>
                 </div>
-                <input type="file" name="menu_active_btn" value="" class="inputTypeText" onchange="doHomepageMenuUploadButton(this); return false;"/>
+                <input type="file" name="menu_active_btn" value="" onchange="doHomepageMenuUploadButton(this); return false;"/>
             </td>
         </tr>
         <tr>

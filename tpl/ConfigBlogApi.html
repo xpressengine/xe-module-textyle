@@ -70,7 +70,7 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="api_url">{$lang->blogapi_url}</label></th>
 									<td>
-                                        <input name="blogapi_url" type="text" class="inputText" id="api_url" value="{htmlspecialchars($api_info->blogapi_url)}" style="width:400px" />
+                                        <input name="blogapi_url" type="text" class="iText" id="api_url" value="{htmlspecialchars($api_info->blogapi_url)}" style="width:400px" />
                                     </td>
 								</tr>
 								<tr>
@@ -78,7 +78,7 @@
 								</tr>
 								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_userid">{$lang->user_id}</label></th>
-									<td><input name="blogapi_user_id" type="text" class="inputText" id="blogapi_userid" value="{htmlspecialchars($api_info->blogapi_user_id)}" style="width:200px" /></td>
+									<td><input name="blogapi_user_id" type="text" class="iText" id="blogapi_userid" value="{htmlspecialchars($api_info->blogapi_user_id)}" style="width:200px" /></td>
 								</tr>
 								<tr>
 									<td id="blogapi_userid_label" class="hosted"></td>
@@ -86,7 +86,7 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_password">{$lang->password}</label></th>
 									<td>
-                                        <input name="blogapi_password" type="password" class="inputText" id="blogapi_password" value="{htmlspecialchars($api_info->blogapi_password)}" style="width:200px" />
+                                        <input name="blogapi_password" type="password" class="iText" id="blogapi_password" value="{htmlspecialchars($api_info->blogapi_password)}" style="width:200px" />
                                     </td>
 								</tr>
 								<tr>
@@ -95,7 +95,7 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_blogid">{$lang->blogapi_blogid}</label></th>
 									<td>
-                                        <input name="blogapi_blogid" type="text" class="inputText" id="blogapi_blogid" value="{htmlspecialchars($api_info->blogapi_blogid)}" style="width:200px" />
+                                        <input name="blogapi_blogid" type="text" class="iText" id="blogapi_blogid" value="{htmlspecialchars($api_info->blogapi_blogid)}" style="width:200px" />
                                     </td>
 								</tr>
 								<tr>
@@ -110,7 +110,7 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="site_title">{$lang->blogapi_site_title}</label></th>
 									<td>
-                                        <input name="blogapi_site_title" type="text" class="inputText" id="site_title" value="{htmlspecialchars($api_info->blogapi_site_title)}" style="width:400px" />
+                                        <input name="blogapi_site_title" type="text" class="iText" id="site_title" value="{htmlspecialchars($api_info->blogapi_site_title)}" style="width:400px" />
                                     </td>
 								</tr>
 								<tr>
@@ -119,7 +119,7 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="site_url">{$lang->blogapi_site_url}</label></th>
 									<td>
-                                        <input name="blogapi_site_url" type="text" class="inputText" id="site_url" value="{htmlspecialchars($api_info->blogapi_site_url)}" style="width:400px" />
+                                        <input name="blogapi_site_url" type="text" class="iText" id="site_url" value="{htmlspecialchars($api_info->blogapi_site_url)}" style="width:400px" />
                                     </td>
 								</tr>
 								<tr>
@@ -128,7 +128,7 @@
                             </table>
                             <div class="buttonArea submitButton" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end-->>
                                     <!--@if($api_info->api_srl)-->
-                                    <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_modify}</button></span>
+                                    <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_modify}...</button></span>
                                     <!--@else-->
                                     <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_registration}</button></span>
                                     <!--@end-->
@@ -161,7 +161,7 @@
                                         {@$iconClass = 'buttonDisable'}
                                     <!--@end-->
                                     <a href="#" onclick="doToggleAPI(this,'{$val->api_srl}');return false;" class="buttonSet {$iconClass}"><span>{$lang->use}</span></a>
-                                    <a href="{getUrl('type','registration','api_srl',$val->api_srl)}" class="buttonSet buttonSetting"><span>{$lang->cmd_modify}</span></a>
+                                    <a href="{getUrl('type','registration','api_srl',$val->api_srl)}" class="buttonSet buttonSetting"><span>{$lang->cmd_modify}...</span></a>
                                     <a href="#" onclick="if(confirm('{$lang->msg_remove_api}')) doRemoveApi({$val->api_srl});return false;" class="buttonSet buttonDelete"><span>{$lang->cmd_delete}</span></a>
                                 </td>
 							</tr>

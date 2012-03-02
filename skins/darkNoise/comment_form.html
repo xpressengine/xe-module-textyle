@@ -24,7 +24,7 @@
 			<input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
 			<input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
 			<input type="hidden" name="parent_srl" value="{$oComment->get('parent_srl')}" />
-			<textarea class="inputTextarea" name="content" rows="5" cols="50">{htmlspecialchars($oComment->get('content'))}</textarea>
+			<textarea class="iTextArea" name="content" rows="8" cols="42">{htmlspecialchars($oComment->get('content'))}</textarea>
 			<block cond="$is_logged">
 				<strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
 			</block>

@@ -60,7 +60,7 @@
 									</select>
 									<span class="buttonGray medium addCategoryToggle"><button type="button" onclick="jQuery('#add_category').toggleClass('open')"><img src="img/iconAdd.gif" width="8" height="8" alt="{$lang->add_category}" /></button></span>
 									<span id="add_category" class="addCategory">
-										<input type="text" name="add_category" class="inputText" />
+										<input type="text" name="add_category" class="iText" />
 										<span class="buttonGray medium"><button type="button" onclick="addCategory()">{$lang->cmd_insert}</button></span>
 									</span>
 	
@@ -73,7 +73,7 @@
 								<td class="title">
 									<div class="fItem">
 										<label class="iLabel" for="tags">{$lang->about_tag}</label>
-										<input type="text" id="tags" name="tags" class="inputText iText" title="{$lang->about_tag}" value="<!--@if(htmlspecialchars($oDocument->get('tags')))-->{htmlspecialchars($oDocument->get('tags'))}<!--@end-->" />
+										<input type="text" id="tags" name="tags" class="iText iText" title="{$lang->about_tag}" value="<!--@if(htmlspecialchars($oDocument->get('tags')))-->{htmlspecialchars($oDocument->get('tags'))}<!--@end-->" />
 									</div>
 									<!--@if($tag_list)-->
 									{@$_i=0;}
@@ -102,7 +102,7 @@
 								<td class="title">
 									<div class="trackbackOption">
 										<div class="item">
-											<input type="text" name="trackback_url" class="inputText trackbackURL" />
+											<input type="text" name="trackback_url" class="iText trackbackURL" />
 											<select name="trackback_charset">
 												<option value='UTF-8'>UTF-8</option>
 												<option value='EUC-KR'>EUC-KR</option>
@@ -131,7 +131,7 @@
 									<label for="postURL">{$lang->post_url}</label>
 								</th>
 								<td class="title">
-								{str_replace('__entry__',"<input name=\"alias\" type=\"text\" class=\"inputText\" style=\"width:200px\" id=\"postURL\" value=\"$alias\" onblur=\"checkAlias(this.value,'$alias')\"/>",getFullUrl('','mid',$mid,'entry','__entry__'))}
+								{str_replace('__entry__',"<input name=\"alias\" type=\"text\" class=\"iText\" style=\"width:200px\" id=\"postURL\" value=\"$alias\" onblur=\"checkAlias(this.value,'$alias')\"/>",getFullUrl('','mid',$mid,'entry','__entry__'))}
 									<input type="hidden" name="use_alias" value="N"/>
 									<em class="msg_used_alias" style="display:none">{$lang->msg_already_used_url}</em></td>
 							</tr>
@@ -206,14 +206,14 @@
 									<input name="subscription" type="radio" value="Y" class="inputRadio subscription" id="publishBooking" <!--@if($subscription=='Y')-->checked="checked"<!--@end-->/>
 									<label for="publishBooking">{$lang->publish_reserve}</label>
 									<div class="bookingLayer<!--@if($subscription=='Y')--> open<!--@end-->">
-										<input name="publish_date_yyyymmdd" type="text" class="disabled_subscription_n inputText yymmdd inputDate" value="{$publish_date_yyyymmdd}" maxlength="10"  title="{$lang->ymd}" disabled="disabled" id="publishDate" />
+										<input name="publish_date_yyyymmdd" type="text" class="disabled_subscription_n iText yymmdd inputDate" value="{$publish_date_yyyymmdd}" maxlength="10"  title="{$lang->ymd}" disabled="disabled" id="publishDate" />
 										<div class="calendar">
 											<div id="calendar-holder"></div>
 											<button type="button" class="buttonCalendar"><span>{$lang->calendar}</span></button>
 										</div>
-										<input name="publish_date_hh" value="{$publish_date_hh}" type="text" class="disabled_subscription_n inputText hh" maxlength="2" title="{$lang->unit_hour}" disabled="disabled" />
+										<input name="publish_date_hh" value="{$publish_date_hh}" type="text" class="disabled_subscription_n iText hh" maxlength="2" title="{$lang->unit_hour}" disabled="disabled" />
 										:
-										<input name="publish_date_ii" value="{$publish_date_ii}" type="text" class="disabled_subscription_n inputText mm" maxlength="2" title="{$lang->unit_min}" disabled="disabled" />
+										<input name="publish_date_ii" value="{$publish_date_ii}" type="text" class="disabled_subscription_n iText mm" maxlength="2" title="{$lang->unit_min}" disabled="disabled" />
 									</div>
 								</td>
 							</tr>

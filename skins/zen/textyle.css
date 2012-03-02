@@ -187,8 +187,8 @@ legend{ position:absolute; width:0; height:0; font-size:0; line-height:0; visibi
 fieldset{ border:0; padding:0; margin:0;}
 
 /* Global Class */
-.inputText{ border:1px solid #9c9c9c; border-right-color:#c2c2c2; border-bottom-color:#c2c2c2; color:#666; font-family:Tahoma;}
-.inputTextarea{ border:1px solid #9c9c9c; border-right-color:#c2c2c2; border-bottom-color:#c2c2c2; color:#666; font-family:Tahoma; line-height:1.5;}
+.iText{ border:1px solid #9c9c9c; border-right-color:#c2c2c2; border-bottom-color:#c2c2c2; color:#666; font-family:Tahoma;}
+.iTextArea{ border:1px solid #9c9c9c; border-right-color:#c2c2c2; border-bottom-color:#c2c2c2; color:#666; font-family:Tahoma; line-height:1.5;}
 .inputCheck{ width:13px; height:13px;}
 .inputRadio{ width:13px; height:13px;}
 
@@ -233,8 +233,8 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 #header .search:after{ content:""; display:block; clear:both;}
 #header .search fieldset{ width:270px; float:right; text-align:left;}
 #header .search *{ vertical-align:middle;}
-#header .search .inputText{ width:172px; color:#fff; border:1px solid #333; border-right-color:#666; border-bottom-color:#666; background:#4d4d4d; padding:2px 24px 2px 2px; _margin:-1px 0 ; height:14px; font-size:12px;}
-#header .search .inputText:focus{ background:#555;}
+#header .search .iText{ width:172px; color:#fff; border:1px solid #333; border-right-color:#666; border-bottom-color:#666; background:#4d4d4d; padding:2px 24px 2px 2px; _margin:-1px 0 ; height:14px; font-size:12px;}
+#header .search .iText:focus{ background:#555;}
 #header .search .buttonSearch{ position:relative; left:-2px; width:16px; height:16px; border:0; padding:0; cursor:pointer; margin-left:-20px;}
 
 /* Footer */
@@ -414,7 +414,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 .feedback .pwForm.active{ display:block;}
 .feedback .pwForm *{ vertical-align:middle;}
 .feedback .pwForm{ margin:1em 0;}
-.feedback .pwForm .inputText{ font-size:11px; padding:2px 4px 4px 4px; height:12px; width:90px; margin:0 -1px 0 0;}
+.feedback .pwForm .iText{ font-size:11px; padding:2px 4px 4px 4px; height:12px; width:90px; margin:0 -1px 0 0;}
 .feedback .pwForm .submit{ border:1px solid #c2c2c2; border-top-color:#9c9c9c; border-left:0; background:#eee; padding:0 2px; height:20px; cursor:pointer; font-size:11px;}
 
 .replyForm{ margin-bottom:50px; border-top:1px solid #808080; padding-top:1em;}
@@ -422,18 +422,18 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 .feedback .replyForm{ top:0 !important; padding:10px !important; margin-bottom:0; background:#f9f9f9;}
 .replyForm *{ font-size:12px;}
 .replyForm h3{ font-size:18px; font-weight:normal; margin-top:0;}
-.replyForm .inputTextarea{ width:638px !important; padding:5px; display:block; margin:0 0 3px 0; overflow:auto;}
-.replyForm .inputTextarea:focus{ background-color:#fffce0;}
-.feedback .replyForm .inputTextarea{ width:618px !important;}
+.replyForm .iTextArea{ width:638px !important; padding:5px; display:block; margin:0 0 3px 0; overflow:auto;}
+.replyForm .iTextArea:focus{ background-color:#fffce0;}
+.feedback .replyForm .iTextArea{ width:618px !important;}
 .replyForm .replyFooter{ *zoom:1;}
 .replyForm .replyFooter:after{ content:""; display:block; clear:both;}
 .replyForm .replyFooter .optional{ float:left;}
-.replyForm .inputText{ padding:3px 4px; height:15px; vertical-align:middle;}
-.replyForm .inputText:focus{ background-color:#fffce0;}
-.replyForm .inputText.name,
-.replyForm .inputText.pw{ width:80px;}
-.replyForm .inputText.email,
-.replyForm .inputText.url{ width:135px;}
+.replyForm .iText{ padding:3px 4px; height:15px; vertical-align:middle;}
+.replyForm .iText:focus{ background-color:#fffce0;}
+.replyForm .iText.name,
+.replyForm .iText.pw{ width:80px;}
+.replyForm .iText.email,
+.replyForm .iText.url{ width:135px;}
 .replyForm .inputCheck{ vertical-align:middle;}
 .replyForm label{ vertical-align:middle; cursor:pointer;}
 .replyForm .inputSubmit,

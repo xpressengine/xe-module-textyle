@@ -187,8 +187,8 @@ legend{ position:absolute; width:0; height:0; font-size:0; line-height:0; visibi
 fieldset{ border:0; padding:0; margin:0;}
 
 /* Global Class */
-.inputText{ border:1px solid #9c9c9c; border-right-color:#c2c2c2; border-bottom-color:#c2c2c2; color:#ccc; font-family:Tahoma; color:#666;}
-.inputTextarea{ border:1px solid #9c9c9c; border-right-color:#c2c2c2; border-bottom-color:#c2c2c2; color:#ccc; font-family:Tahoma; line-height:1.5; color:#666;}
+.iText{ border:1px solid #9c9c9c; border-right-color:#c2c2c2; border-bottom-color:#c2c2c2; color:#ccc; font-family:Tahoma; color:#666;}
+.iTextArea{ border:1px solid #9c9c9c; border-right-color:#c2c2c2; border-bottom-color:#c2c2c2; color:#ccc; font-family:Tahoma; line-height:1.5; color:#666;}
 .inputCheck{ width:13px; height:13px;}
 .inputRadio{ width:13px; height:13px;}
 
@@ -219,8 +219,8 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 
 #header .search{ position:absolute; top:70px; right:0; text-align:right;}
 #header .search *{ vertical-align:middle;}
-#header .search .inputText{ width:154px; border:1px solid #333; padding:2px 24px 2px 2px; *margin:-1px 0; height:14px; font-size:12px; background:#444;}
-#header .search .inputText:focus{ background:#333;}
+#header .search .iText{ width:154px; border:1px solid #333; padding:2px 24px 2px 2px; *margin:-1px 0; height:14px; font-size:12px; background:#444;}
+#header .search .iText:focus{ background:#333;}
 #header .search .buttonSearch{ position:absolute; top:0; right:0; width:23px; height:20px; border:0; padding:0; cursor:pointer;}
 
 #header .extension{ float:none; clear:both; padding:7px 0; border-top:3px solid #999; *zoom:1;}
@@ -388,7 +388,7 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 .feedback .pwForm.active{ display:block;}
 .feedback .pwForm *{ vertical-align:middle;}
 .feedback .pwForm{ margin:1em 0;}
-.feedback .pwForm .inputText{ font-size:11px; padding:2px 4px 4px 4px; height:12px; width:90px; margin:0 -1px 0 0;}
+.feedback .pwForm .iText{ font-size:11px; padding:2px 4px 4px 4px; height:12px; width:90px; margin:0 -1px 0 0;}
 .feedback .pwForm .submit{ border:1px solid #c2c2c2; border-top-color:#9c9c9c; border-left:0; background:#eee; padding:0 2px; height:20px; cursor:pointer; font-size:11px;}
 
 .replyForm{ margin-bottom:50px;}
@@ -396,15 +396,15 @@ a.skipToContent:focus{ width:100%; height:auto; margin-bottom:-23px; padding:5px
 .feedback .replyForm{ top:0 !important; padding:10px !important; margin-bottom:0; background:#f9f9f9;}
 .replyForm *{ font-size:12px;}
 .replyForm h3{ font-size:14px;}
-.replyForm .inputTextarea{ width:668px !important; padding:5px; display:block; margin:0 0 3px 0; overflow:auto;}
-.replyForm .inputTextarea:focus{ background-color:#fffce0;}
-.feedback .replyForm .inputTextarea{ width:648px !important;}
-.replyForm .inputText{ width:135px; padding:3px 4px; height:15px; vertical-align:middle;}
-.replyForm .inputText:focus{ background-color:#fffce0;}
-.replyForm .inputText.name,
-.replyForm .inputText.pw{ width:100px;}
-.replyForm .inputText.email,
-.replyForm .inputText.url{ width:160px;}
+.replyForm .iTextArea{ width:668px !important; padding:5px; display:block; margin:0 0 3px 0; overflow:auto;}
+.replyForm .iTextArea:focus{ background-color:#fffce0;}
+.feedback .replyForm .iTextArea{ width:648px !important;}
+.replyForm .iText{ width:135px; padding:3px 4px; height:15px; vertical-align:middle;}
+.replyForm .iText:focus{ background-color:#fffce0;}
+.replyForm .iText.name,
+.replyForm .iText.pw{ width:100px;}
+.replyForm .iText.email,
+.replyForm .iText.url{ width:160px;}
 .replyForm .inputCheck{ vertical-align:middle;}
 .replyForm label{ vertical-align:middle; cursor:pointer;}
 .replyForm .inputSubmit{ border:1px solid #666; cursor:pointer; overflow:visible; padding:7px 20px; font-family:Tahoma; font-weight:bold; display:block; margin:3px 0 0 0; color:#ccc; background:#333;}

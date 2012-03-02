@@ -27,7 +27,7 @@
 					<h2><img src="img/hTextyleLogOn.gif" width="92" height="28" alt="textyle" /></h2>
                     <form action="./" method="post" onsubmit="return procFilter(this, textyle_login)" id="defaultLogOn">
 						<fieldset>
-							<legend>{$lang->cmd_login}</legend>
+							<legend>{$lang->cmd_login}...</legend>
 							<dl>
 								<dt><label for="uid">{$lang->user_id}</label></dt>
 								<dd><input id="uid" name="user_id" type="text" /></dd>
@@ -44,7 +44,7 @@
 					</form>
                     <form action="" method="post" cond="$enable_openid=='Y'" onsubmit="return procFilter(this, openid_login)" id="openidLogOn">
 						<fieldset>
-							<legend>Open ID {$lang->cmd_login}</legend>
+							<legend>Open ID {$lang->cmd_login}...</legend>
 							<dl>
 								<dt><label for="oid">Open ID</label></dt>
 								<dd><input id="oid" name="openid" type="text" /></dd>

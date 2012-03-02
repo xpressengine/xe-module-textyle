@@ -355,7 +355,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .listHeader .search{float:right}
 .listHeader .search *{vertical-align:middle}
 .listHeader .search select{font-size:12px}
-.listHeader .search .inputText{border:1px solid #c6c6c6;font-size:12px;padding:3px 4px;width:135px;height:15px;vertical-align:top}
+.listHeader .search .iText{border:1px solid #c6c6c6;font-size:12px;padding:3px 4px;width:135px;height:15px;vertical-align:top}
 .listHeader .search .buttonGray.medium input{_top:0}
 .listHeader .notUsed{float:right;margin:4px 0;white-space:nowrap;color:#555}
 .listHeader .notUsed img{vertical-align:middle}
@@ -418,7 +418,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .tableData .buttonArea .control{float:right}
 .tableData .replyAction{background:#f6f6f6}
 .tableData .replyAction .textarea{position:relative}
-.tableData .replyAction .textarea .inputTextarea{border:1px solid #c6c6c6;width:96% !important;padding:10px;margin-bottom:10px;font-size:12px;line-height:1.5}
+.tableData .replyAction .textarea .iTextArea{border:1px solid #c6c6c6;width:96% !important;padding:10px;margin-bottom:10px;font-size:12px;line-height:1.5}
 .tableData .replyAction .textarea .arrow{position:absolute;top:15px;left:-6px;width:7px;height:6px;background:url(../img/arrowReplyBubble.gif) no-repeat}
 .tableData .replyButtonArea{*zoom:1;width:96%;padding-bottom:10px}
 .tableData .replyButtonArea:after{content:"";display:block;clear:both}
@@ -557,7 +557,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .wTitle .category{padding:5px 0}
 .wTitle .category *{vertical-align:top}
 .wTitle .category select{font-size:12px;vertical-align:middle;height:23px}
-.wTitle .category .inputText{border:1px solid #ccc;padding:3px 4px;height:15px;font-size:12px;width:140px}
+.wTitle .category .iText{border:1px solid #ccc;padding:3px 4px;height:15px;font-size:12px;width:140px}
 .wTitle .category .addCategoryToggle button{padding:0 5px 0 3px}
 .wTitle .category .addCategory{display:none}
 .wTitle .category .addCategory.open{display:inline}
@@ -601,8 +601,8 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .wOption .buttonGray button img{vertical-align:middle !important}
 .wOption .addCategory{display:none}
 .wOption .addCategory.open{display:inline}
-.wOption .addCategory .inputText{width:140px;margin:-1px 0 0 0}
-.wOption .inputText{border:1px solid #c6c6c6;height:17px;width:96%;padding:3px 5px 0 5px;font-size:12px;vertical-align:middle;color:#767676}
+.wOption .addCategory .iText{width:140px;margin:-1px 0 0 0}
+.wOption .iText{border:1px solid #c6c6c6;height:17px;width:96%;padding:3px 5px 0 5px;font-size:12px;vertical-align:middle;color:#767676}
 .wOption .usedTag{display:none;width:96%;list-style:none;margin:0;padding:0;background:#f8f8f8;border:1px solid #e9e9e9;line-height:1.6;padding:5px 10px;margin:5px 0;text-align:justify}
 .wOption .usedTag.open{display:block}
 .wOption .usedTag li{display:inline;margin-right:5px}
@@ -612,9 +612,9 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .wOption .bookingLayer.open{display:inline}
 .wOption .calendar{left:-25px;margin-right:-10px}
 .wOption .calendar .layerCalendar{bottom:22px;left:-81px;*bottom:28px;*left:-82px}
-.wOption .inputText.yymmdd{width:95px;vertical-align:middle;padding-left:5px}
-.wOption .inputText.hh{width:25px;vertical-align:middle}
-.wOption .inputText.mm{width:25px;vertical-align:middle}
+.wOption .iText.yymmdd{width:95px;vertical-align:middle;padding-left:5px}
+.wOption .iText.hh{width:25px;vertical-align:middle}
+.wOption .iText.mm{width:25px;vertical-align:middle}
 .wOption em{font-style:normal;color:#ff6600}
 .wOption label{margin-right:10px}
 .wOption p{margin:0}
@@ -640,7 +640,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 
 .category .cStructure{float:left;width:38%;border-top:2px solid #cbd4df;margin-bottom:50px}
 .category .cStructure .cAdd{padding:10px 0 10px 20px;background:#fafafa;border:1px solid #e3e5e7;border-top:0}
-.category .cStructure .inputText{color:#8b8b8b;border:1px solid #c6c6c6;padding:3px 4px;height:15px;vertical-align:top;width:120px;font-size:12px}
+.category .cStructure .iText{color:#8b8b8b;border:1px solid #c6c6c6;padding:3px 4px;height:15px;vertical-align:top;width:120px;font-size:12px}
 .category .cStructure ul{margin:0;padding:0;list-style:none;font-size:12px;*zoom:1}
 .category .cStructure li{position:relative;border:1px solid #e3e5e7;padding-top:10px;text-indent:15px;cursor:move;margin:-1px 0;*zoom:1}
 .category .cStructure li.hover{background:#f5f5f5 url(../img/iconMovable.gif) no-repeat 96% center}
@@ -666,7 +666,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .category .cSetup td{color:#8b8b8b;font-size:11px;padding:0;width:100%}
 .category .cSetup td p{margin:0}
 .category .cSetup td label{font-size:12px;color:#555}
-.category .cSetup td .inputText{font-size:12px;color:#8b8b8b;border:1px solid #c6c6c6;padding:3px 4px;height:14px;width:250px}
+.category .cSetup td .iText{font-size:12px;color:#8b8b8b;border:1px solid #c6c6c6;padding:3px 4px;height:14px;width:250px}
 .category .cSetup td em{color:#;font-style:normal;color:#ea3f22}
 .category .submitArea{text-align:center;clear:both;border-top:2px solid #cbd4df;padding:50px 0}
 
@@ -697,7 +697,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .tagList .tSum .tHeader .aLeft{float:left}
 .tagList .tSum .tHeader .aRight{float:right}
 .tagList .tSum .tHeader button{border:0;padding:0;cursor:pointer;background:none;font-size:12px;font-weight:bold;color:#555}
-.tagList .tSum .inputText{color:#8b8b8b;border:1px solid #c6c6c6;padding:3px 4px;height:15px;vertical-align:top;width:200px;font-size:12px}
+.tagList .tSum .iText{color:#8b8b8b;border:1px solid #c6c6c6;padding:3px 4px;height:15px;vertical-align:top;width:200px;font-size:12px}
 .tagList .tSum ul{position:relative;margin:0;padding:0;list-style:none;font-size:12px;*zoom:1;height:360px;overflow:auto;border:1px solid #e3e5e7}
 .tagList .tSum li{position:relative;border-top:1px solid #e3e5e7;border-bottom:1px solid #e3e5e7;padding:8px 0;text-indent:15px;margin:-1px 0;*zoom:1}
 .tagList .tSum li.hover{background:#f5f5f5}
@@ -716,7 +716,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .tagList .tModify .tagName{padding:15px 0 15px 25px;margin:0 0 -1px 0;border-bottom:1px solid #edeff1}
 .tagList .tModify .tagName dt,
 .tagList .tModify .tagName dd{display:inline;margin:0}
-.tagList .tModify .tagName .inputText{padding:3px 4px;height:15px;border:1px solid #c6c6c6;font-size:12px;color:#555;width:160px;vertical-align:top}
+.tagList .tModify .tagName .iText{padding:3px 4px;height:15px;border:1px solid #c6c6c6;font-size:12px;color:#555;width:160px;vertical-align:top}
 .tagList .tModify .tagName span button{top:0}
 
 .tagList .tModify .tagFamily{margin:0;padding:15px 0 15px 25px}
@@ -732,7 +732,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .spam form{border:1px solid #e3e5e7;border-top:2px solid #cbd4df;*zoom:1}
 .spam legend{width:auto !important;height:auto !important;overflow:visible;position:relative !important;visibility:visible;font-size:14px;line-height:1.2;z-index:1;font-weight:bold;margin-bottom:10px;color:#000 !important}
 .spam .header{background:#fafafa;padding:10px;border-bottom:1px solid #e3e5e7;white-space:nowrap;margin-bottom:-1px}
-.spam .header .inputText{border:1px solid #c6c6c6;color:#8b8b8b;font-size:12px;padding:3px 4px;height:15px;vertical-align:top;width:56%}
+.spam .header .iText{border:1px solid #c6c6c6;color:#8b8b8b;font-size:12px;padding:3px 4px;height:15px;vertical-align:top;width:56%}
 .spam .header .buttonGray button{_top:0px}
 .spam ul{margin:0;padding:0;list-style:none;font-size:12px;overflow:auto;height:360px}
 .spam li{position:relative;border-bottom:1px solid #e3e5e7;color:#555;padding:6px 15px;font-size:11px}
@@ -908,14 +908,14 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .setUp .setupData.custom{display:none;}
 .setUp p{margin:5px 0;color:#555}
 .setUp p strong{color:#ea3f22}
-.setUp .inputText{border:1px solid #c6c6c6;padding:1px 4px;margin:-2px 0;height:16px}
+.setUp .iText{border:1px solid #c6c6c6;padding:1px 4px;margin:-2px 0;height:16px}
 .setUp .buttonArea{text-align:center;padding:40px 0}
 .setUp h4{margin:0 0 20px -40px;padding-left:15px;font-size:14px;background:url(../img/iconH4.gif) no-repeat left center}
 .setUp .thumb{position:relative;float:left;margin-right:20px}
 .setUp .thumb .profilePhoto{display:block;border:1px solid #b0bfde;clear:both;margin-bottom:5px}
 .setUp .thumb .deletePhoto{position:absolute;top:1px;right:1px;width:17px;height:17px;padding:0;border:0;background:transparent url(../img/buttonTableDataX.gif) no-repeat center center;cursor:pointer}
 .setUp .thumb .deletePhoto span{position:absolute;width:0;height:0;overflow:hidden;font-size:0;line-height:0;visibility:hidden;z-index:-1}
-.setUp .inputTextarea{border:1px solid #c6c6c6;font-size:12px;padding:10px;width:400px;height:100px}
+.setUp .iTextArea{border:1px solid #c6c6c6;font-size:12px;padding:10px;width:400px;height:100px}
 .setUp .favicon{position:relative;width:180px;height:140px;float:left;margin-right:20px;background:url(../img/bgFavicon.gif) no-repeat}
 .setUp .favicon .iconFavicon{position:absolute;left:89px}
 .setUp .favicon .iconFavicon.url{top:31px}
@@ -938,7 +938,6 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .setUp .progress dd em{font-style:normal;vertical-align:middle;font-size:11px}
 
 /* Category Manager Reset */
-.gap1{margin:0 !important}
 #menu{border:1px solid #e3e5e7;border-top:2px solid #cbd4df;border-bottom:2px solid #cbd4df;margin:0;width:350px}
 #menu .simpleTree{margin:0;padding:0;list-style:none}
 #menu .simpleTree li{margin:0;padding:0;position:relative}
@@ -990,7 +989,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 #category_info .layer .layerBody .rowTable th{color:#868d95;text-align:left;white-space:nowrap;padding:0 15px 0 0;vertical-align:top}
 #category_info .layer .layerBody .rowTable th input[type=checkbox]{width:13px;height:13px;margin:0;vertical-align:middle}
 #category_info .layer .layerBody .rowTable td{padding:0 0 20px 0;vertical-align:top}
-#category_info .layer .layerBody .rowTable td .inputTypeText{border:1px solid #c6c6c6;color:#767676;vertical-align:middle}
+#category_info .layer .layerBody .rowTable td .iText{border:1px solid #c6c6c6;color:#767676;vertical-align:middle}
 #category_info .layer .layerBody .rowTable td #category_name{width:260px}
 #category_info .layer .layerBody .rowTable td p{display:inline;font-size:11px;color:#767676}
 #category_info .layer .layerBody .rowTable td .checkbox{width:13px;height:13px;margin:0;vertical-align:middle}

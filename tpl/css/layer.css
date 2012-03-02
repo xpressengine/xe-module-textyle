@@ -38,7 +38,7 @@
 .layer .layerBody{margin:15px}
 
 .boxModelControler select {margin-bottom:3px;}
-.boxModelControler .inputText {border:1px solid #ccc;padding:2px 3px;margin-bottom:3px;vertical-align:top;*margin-top:-1px;}
+.boxModelControler .iText {border:1px solid #ccc;padding:2px 3px;margin-bottom:3px;vertical-align:top;*margin-top:-1px;}
 .boxModelControler .inputCheck {width:13px;height:13px;vertical-align:middle;}
 .boxModelControler .layerBody {margin:15px;}
 .boxModelControler .preview{overflow:hidden;margin-bottom:20px}

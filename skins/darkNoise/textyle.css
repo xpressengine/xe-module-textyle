@@ -9,7 +9,7 @@ legend{position:absolute;width:1px;height:1px;overflow:hidden;}
 fieldset{border:0;padding:0;margin:0;}
 /* Global Class */
 .iText{border:1px solid #4d4d4d;background:#222;color:#fff;font-family:Tahoma;opacity:.6;filter:alpha(opacity=60);}
-.inputTextarea{border:1px solid #4d4d4d;background:#222;color:#fff;font-family:Tahoma;line-height:1.5;opacity:.6;filter:alpha(opacity=60);}
+.iTextArea{border:1px solid #4d4d4d;background:#222;color:#fff;font-family:Tahoma;line-height:1.5;opacity:.6;filter:alpha(opacity=60);}
 .iCheck, .iRadio{width:13px;height:13px;margin:0;padding:0;vertical-align:middle;}
 /* Skip To Content */
 a.skip{display:block;position:relative;clear:both;overflow:hidden;width:1px;height:1px;text-decoration:none !important;margin:0 0 -1px 0;color:#fff;text-align:center;}
@@ -189,7 +189,7 @@ a.skip:focus{width:100%;height:auto;padding:5px 0;}
 .replyForm.pageForm{border:0;}
 .replyForm form, .replyForm fieldset{position:relative;}
 .replyForm h3{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;}
-.replyForm .inputTextarea{width:610px !important;height:37px !important;display:block;padding:5px;margin:0 0 3px 0;overflow:auto;overflow-x:hidden;resize:none;}
+.replyForm .iTextArea{width:610px !important;height:37px !important;display:block;padding:5px;margin:0 0 3px 0;overflow:auto;overflow-x:hidden;resize:none;}
 .replyForm .iText{width:135px;padding:3px 4px;height:15px;vertical-align:middle;}
 .replyForm .iText.name,
 .replyForm .iText.pw{width:100px;}

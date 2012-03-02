@@ -24,7 +24,7 @@
 					<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
 
 						<div class="title">{$lang->msg_is_secret}</div>
-						<div class="content"><input type="password" name="password" id="cpw" class="inputTypeText" /><span class="button {$btn_class}"><input type="submit" value="{$lang->cmd_input}" accesskey="s" /></span></div>
+						<div class="content"><input type="password" name="password" id="cpw" /><span class="button {$btn_class}"><input type="submit" value="{$lang->cmd_input}" /></span></div>
 
 					</form>
 				</div>
@@ -84,7 +84,7 @@
 		<ul>
 			<li>
 				<label for="rText">{$lang->comment}</label>
-				<textarea name="content" cols="20" rows="5" id="rText"></textarea>
+				<textarea name="content" rows="8" cols="42" id="rText"></textarea>
 			</li>
 			<!--@if(!$is_logged)-->
 			<li>
@@ -96,7 +96,7 @@
 			<li>
 				<label for="uMail">{$lang->email_address}</label>
 				<input name="email_address" type="text" id="uMail" />
-				<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
+				<input name="email_address" type="text" class="iText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
 			</li>
 			<!--@end-->
 			<li>

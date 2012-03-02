@@ -108,12 +108,12 @@
 				<li cond="$textyle->isEnableComment()"><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentReply')}">{$lang->cmd_reply}</a></li>
 				<block cond="$comment->member_srl">
 					<block cond="$comment->isGranted() || $comment->member_srl==$logged_info->member_srl">
-						<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}</a></li>
+						<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}...</a></li>
 						<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
 					</block>
 				</block>
 				<block cond="!$comment->member_srl">
-					<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.modifyPw.comment{$key}').addClass('active')">{$lang->cmd_modify}</button></li>
+					<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.modifyPw.comment{$key}').addClass('active')">{$lang->cmd_modify}...</button></li>
 					<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.deletePw.comment{$key}').addClass('active')">{$lang->cmd_delete}</button></li>
 				</block>
 			</ul>
@@ -140,7 +140,7 @@
 			<input name="mid" type="hidden" value="textyle" />
 			<input type="hidden" name="document_srl" value="{$document->document_srl}" />
 			<input type="hidden" name="comment_srl" value="" />
-			<textarea class="inputTextarea" name="content" rows="5" cols="50"></textarea>
+			<textarea class="iTextArea" name="content" rows="8" cols="42"></textarea>
 			<block cond="$is_logged">
 				<strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
 			</block>

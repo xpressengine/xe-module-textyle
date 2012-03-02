@@ -27,7 +27,7 @@
 						<!--@foreach($skin_file_content as $file => $content)-->
 						<li class="s{$i}">
 							<a href="#" onclick="tab(this)">{$file}</a>
-							<textarea name="{$file}" cols="50" rows="10">{htmlspecialchars($content)}</textarea>
+							<textarea name="{$file}" rows="8" cols="42">{htmlspecialchars($content)}</textarea>
 						</li>
 						{@$i++;}						
 						<!--@end-->

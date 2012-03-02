@@ -41,13 +41,13 @@
                                                 <!--@if($selected_extra_menu)-->
                                                         {getFullUrl('').'/'.$selected_extra_menu->mid}
                                                 <!--@else-->
-                                                        {str_replace('__mid__','<input type="text" name="menu_mid"  value="" class="inputTypeText" />',getFullUrl('','mid','__mid__'))}
+                                                        {str_replace('__mid__','<input type="text" name="menu_mid"  value="" />',getFullUrl('','mid','__mid__'))}
                                                         {$lang->msg_limit_textyle_extra_mid}
                                                 <!--@end-->
 					</div>
                                         <div>
                                             <b>{$lang->menu_name}</b>
-                                                <input type="text" name="menu_name" id="menu_name" value="<!--@if($selected_extra_menu->name)-->{$selected_extra_menu->name}<!--@end-->" class="inputTypeText"/>
+                                                <input type="text" name="menu_name" id="menu_name" value="<!--@if($selected_extra_menu->name)-->{$selected_extra_menu->name}<!--@end-->"/>
 							<a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','menu_name')}" onclick="popopen(this.href);return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_find_langcode}</span></a>
 							{$lang->about_langcode}
 					</div>
