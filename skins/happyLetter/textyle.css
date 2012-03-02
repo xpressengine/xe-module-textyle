@@ -490,8 +490,8 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .extensionHeader .section{ position:relative; margin-bottom:-100px;}
 .extensionHeader .section h2{ position:absolute; margin:0; font-size:24px; font-family:Georgia, Serif; color:#999; width:0; height:0; overflow:hidden;}
 .extensionHeader .section div{ overflow:visible !important;}
-.extensionHeader .section .widgetContainer{ position:relative; padding-top:50px !important; margin-top:-30px !important; *zoom:1;}
-.extensionHeader .section.sectionProfile .widgetContainer{ *margin-top:0; *top:-30px;}
+.extensionHeader .section .wgContainer{ position:relative; padding-top:50px !important; margin-top:-30px !important; *zoom:1;}
+.extensionHeader .section.sectionProfile .wgContainer{ *margin-top:0; *top:-30px;}
 
 /* sectionProfile */
 .extensionHeader .section.sectionProfile{ width:329px !important; left:180px;}
@@ -514,9 +514,9 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .extensionFooter .section{ width:270px !important; height:200px; margin-right:45px !important;}
 .extensionFooter .section div{ overflow:visible !important;}
 .extensionFooter .section h2{ margin:0; font-size:24px; font-family:Georgia, Serif; color:#6b625a; font-weight:normal;}
-.extensionFooter .section .widgetContainer{ position:relative; padding-top:43px !important; margin-top:-30px !important; background:url(img/maskExtensionFooter.png) no-repeat !important; *zoom:1;}
-.extensionFooter .section .widgetContainer { _background:none !important; _filter:expression("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+request_uri+"modules/textyle/skins/happyLetter/img/maskExtensionFooter.png', sizingMethod='crop')") !important;}
-.extensionFooter .section .widgetContainer:after{ content:""; display:block; clear:both;}
+.extensionFooter .section .wgContainer{ position:relative; padding-top:43px !important; margin-top:-30px !important; background:url(img/maskExtensionFooter.png) no-repeat !important; *zoom:1;}
+.extensionFooter .section .wgContainer { _background:none !important; _filter:expression("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+request_uri+"modules/textyle/skins/happyLetter/img/maskExtensionFooter.png', sizingMethod='crop')") !important;}
+.extensionFooter .section .wgContainer:after{ content:""; display:block; clear:both;}
 .extensionFooter .section a{ color:#59514b;}
 
 /* WidgetTree */
@@ -557,7 +557,7 @@ a.skipToContent:focus{ width:100%; height:auto; padding:5px 0; margin-bottom:-23
 .widgetA li .trackbackNum a{ color:#ff0 !important;}
 
 /* recentPost */
-.recentPost .widgetContainer div{ margin:0 !important; padding:0 !important;}
+.recentPost .wgContainer div{ margin:0 !important; padding:0 !important;}
 .recentPost .widgetThumb{ position:absolute; top:43px; left:9px; width:84px; height:93px; overflow:hidden; margin:0 !important;}
 .recentPost .widgetA{ padding:0 0 0 115px;}
 .recentPost .widgetA li{ padding:0; background:none;}
