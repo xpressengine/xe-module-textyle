@@ -11,12 +11,12 @@
 .pagination strong{position:relative;display:inline-block;text-decoration:none;line-height:normal;color:#333;font-family:Tahoma, Sans-serif;vertical-align:middle}
 .pagination a:hover,
 .pagination a:active,
-.pagination a:focus{background-color:#f4f4f4 !important;}
+.pagination a:focus{background-color:#f4f4f4 !important}
 .pagination strong{color:#ff6600 !important}
 .pagination a.prev,
 .pagination a.prevEnd,
 .pagination a.next,
-.pagination a.nextEnd{font-weight:normal !important;border:none !important;margin:0 !important;white-space:nowrap;}
+.pagination a.nextEnd{font-weight:normal !important;border:none !important;margin:0 !important;white-space:nowrap}
 
 /* Pagination Textyle */
 .pagination a,

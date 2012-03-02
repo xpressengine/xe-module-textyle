@@ -12,12 +12,12 @@ hr{display:none;position:absolute}
 
 /* Container + Header + Body + Footer */
 #container{position:relative;margin:0 20px}
-#header{position:relative;*zoom:1}
+#header{position:relative;zoom:1}
 #header:after{content:"";display:block;clear:both}
-#body{position:relative;*zoom:1}
+#body{position:relative;zoom:1}
 #body:after{content:"";display:block;clear:both}
-#content{position:relative;text-align:justify;*zoom:1}
-#footer{position:relative;*zoom:1;clear:both}
+#content{position:relative;text-align:justify;zoom:1}
+#footer{position:relative;zoom:1;clear:both}
 #footer:after{content:"";display:block;clear:both}
 #footer address{text-align:center}
 
@@ -31,7 +31,7 @@ hr{display:none;position:absolute}
 .aRight #container{margin-right:0}
 
 /* Top Navigation */
-#header .navigation{position:relative; margin:0;overflow:hidden;float:right;clear:both}
+#header .navigation{position:relative;margin:0;overflow:hidden;float:right;clear:both}
 #header .navigation:after{content:"";display:block;clear:both}
 #header .navigation *{margin:0;padding:0}
 #header .navigation h2{display:none}
@@ -48,16 +48,16 @@ hr{display:none;position:absolute}
 #footer .navigation li{display:inline;position:relative;list-style:none;padding:0 5px}
 
 /* Neck */
-#neck{position:relative;clear:both;*zoom:1}/* overflow:hidden}*/
-#neck .extension{margin-right:-30px;*zoom:1}
+#neck{position:relative;clear:both;zoom:1}/* overflow:hidden}*/
+#neck .extension{margin-right:-30px;zoom:1}
 #neck .extension:after{content:"";display:block;clear:both}
 #neck .extension .section{position:relative;float:left;width:300px;margin-right:30px}
 .liquid #neck .extension .section{width:30%;margin-right:3.3%}
 
 /* Knee */
-#knee{position:relative;clear:both;*zoom:1}/* overflow:hidden}*/
+#knee{position:relative;clear:both;zoom:1}/* overflow:hidden}*/
 #knee{padding-top:30px;border-top:1px solid}
-#knee .extension{margin-right:-30px;*zoom:1}
+#knee .extension{margin-right:-30px;zoom:1}
 #knee .extension:after{content:"";display:block;clear:both}
 #knee .extension .section{position:relative;float:left;width:300px;margin-right:30px}
 .liquid #knee .extension .section{width:30%;margin-right:3.3%}
@@ -65,7 +65,7 @@ hr{display:none;position:absolute}
 /* Extension */
 .extension, .section{position:relative}
 #body .extension{position:relative;display:none}
-.extension.close {display:none;}
+.extension.close{display:none}
 
 /* ----- Fixed 2 Column Layout ----- */
 .fixed .ce #body .e1,

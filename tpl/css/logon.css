@@ -48,7 +48,7 @@ input{font-family:Tahoma, Sans-serif}
 .logOn .logOnInterface .help li.openid{display:none}
 .logOn .logOnInterface.default .help li.openid,
 .logOn .logOnInterface.openid .help li.default{display:inline}
-.logOn .logOnInterface .help a{color:#555;text-decoration:none;*zoom:1}
+.logOn .logOnInterface .help a{color:#555;text-decoration:none;zoom:1}
 .logOn .logOnInterface .help a:hover,
 .logOn .logOnInterface .help a:active,
 .logOn .logOnInterface .help a:focus{text-decoration:underline}
