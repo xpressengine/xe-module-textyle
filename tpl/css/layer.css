@@ -15,9 +15,9 @@
 .layer .h4 .icon{margin-right:5px;vertical-align:middle}
 .layer form,
 .layer fieldset{_float:left;clear:both}
-.layer .buttonArea{_float:left;clear:both;text-align:center;padding:15px 0 0 0}
-.layer .buttonCloseLayer{padding:0;position:absolute;top:5px;right:5px;width:17px;height:17px;border:0;background:transparent url(../img/buttonCloseLayerX.gif) no-repeat center center;cursor:pointer}
-.layer .buttonCloseLayer span{position:absolute;width:0;height:0;font-size:0;line-height:0;overflow:hidden;visibility:hidden}
+.layer .btnArea{_float:left;clear:both;text-align:center;padding:15px 0 0 0}
+.layer .btnCloseLayer{padding:0;position:absolute;top:5px;right:5px;width:17px;height:17px;border:0;background:transparent url(../img/buttonCloseLayerX.gif) no-repeat center center;cursor:pointer}
+.layer .btnCloseLayer span{position:absolute;width:0;height:0;font-size:0;line-height:0;overflow:hidden;visibility:hidden}
 .layer em{font-style:normal;color:#ff6600}
 
 /* feedbackSetup */
@@ -72,5 +72,5 @@
 .boxModelControler .colorPicker .palette li button.transparent{background:url(../img/bgNone.gif) no-repeat right top;border:1px solid #ddd}
 .boxModelControler .borderDetach{display:none}
 .boxModelControler .borderDetach.open{display:block}
-.boxModelControler .buttonArea{padding:15px 0 0 0;text-align:center}
+.boxModelControler .btnArea{padding:15px 0 0 0;text-align:center}
 

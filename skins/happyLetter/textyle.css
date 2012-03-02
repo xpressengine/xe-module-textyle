@@ -228,7 +228,7 @@ a.skipToContent:focus{width:100%;height:auto;padding:5px 0;margin-bottom:-23px}
 #header .search{position:absolute;top:10px;right:107px;width:200px;height:20px}
 #header .search *{vertical-align:middle}
 #header .search .iText{border:0;width:167px;padding:2px 4px;height:14px;font-size:12px;margin:1px 0;background:transparent}
-#header .search .buttonSearch{position:absolute;top:0;right:0;width:24px;height:19px;border:0;padding:0;cursor:pointer;font-size:0;text-indent:30px;background:transparent;opacity:0;filter:alpha(opacity=0)}
+#header .search .btnSearch{position:absolute;top:0;right:0;width:24px;height:19px;border:0;padding:0;cursor:pointer;font-size:0;text-indent:30px;background:transparent;opacity:0;filter:alpha(opacity=0)}
 
 #header .extension{position:absolute;top:0;height:52px;right:308px;_right:307px;padding:12px 20px 0 30px;background:url(img/bgNavigation.png) no-repeat;_background:none;zoom:1;overflow:hidden}
 #header .extension .extexsionFixer{position:absolute;width:100%;height:52px;margin:-12px -20px 0 -30px;_filter:expression("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+request_uri+"modules/textyle/skins/happyLetter/img/bgNavigation.png', sizingMethod='crop')")}

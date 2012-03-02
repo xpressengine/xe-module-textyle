@@ -29,7 +29,7 @@
 								</dl>
 							<!--@end-->
 
-							<span class="button black strong"><button type="submit">{$lang->textyle_export_request}</button></span>
+							<span class="btn"><button type="submit">{$lang->textyle_export_request}</button></span>
 
 							<dl class="progress">
 							<!-- class="progress" | class="progress open" -->
@@ -60,7 +60,7 @@
 									</tr>
 									<tr>
 										<th scope="row"><label for="fileLocation">{$lang->migration_file_path}</label></th>
-										<td><input name="xml_file" type="text" class="iText" id="fileLocation" style="width:400px;" value="http://" /> <span class="buttonGray medium"><button type="submit">{$lang->cmd_import}</button></span></td>
+										<td><input name="xml_file" type="text" class="iText" id="fileLocation" style="width:400px;" value="http://" /> <span class="btnGray medium"><button type="submit">{$lang->cmd_import}</button></span></td>
 									</tr>
 								</tbody>
 							</table>
@@ -76,11 +76,11 @@
 							</dl>
 						</fieldset>
 					</form>
-						<fieldset>
-							<h4>{$lang->textyle_init}</h4>
-							<p><strong>{$lang->msg_textyle_init_about}</strong></p>
-							<span class="button red strong"><button type="button" onclick="if(confirm('{$lang->msg_confirm_textyle_init}')){initTextyle();}">{$lang->cmd_textyle_init} </button></span>
-						</fieldset>
+					<fieldset>
+						<h4>{$lang->textyle_init}</h4>
+						<p><strong>{$lang->msg_textyle_init_about}</strong></p>
+						<span class="btn"><button type="button" onclick="if(confirm('{$lang->msg_confirm_textyle_init}')){initTextyle();}">{$lang->cmd_textyle_init}</button></span>
+					</fieldset>
 				</div>
 
 			</div>

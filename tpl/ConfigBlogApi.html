@@ -102,8 +102,8 @@
 									<td id="blogapi_blogid_label" class="hosted">blog id는 여러개의 Blog를 운영할 경우 선택적으로 입력하는 값입니다.</td>
 								</tr>
                             </table>
-                            <div class="buttonArea">
-                                    <span class="buttonAction actionWhite"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>
+                            <div class="btnArea">
+                                <span class="btn"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>
                             </div>
 
 							<table border="0" cellspacing="0" class="setupData" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end--> id="response_info">
@@ -126,11 +126,11 @@
 									<td>{$lang->about_blogapi_site_url}</td>
 								</tr>
                             </table>
-                            <div class="buttonArea submitButton" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end-->>
+                            <div class="btnArea" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end-->>
                                     <!--@if($api_info->api_srl)-->
-                                    <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_modify}...</button></span>
+                                    <span class="btn"><button type="submit" >{$lang->cmd_modify}...</button></span>
                                     <!--@else-->
-                                    <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_registration}</button></span>
+                                    <span class="btn"><button type="submit" >{$lang->cmd_registration}</button></span>
                                     <!--@end-->
                             </div>
 						</fieldset>
@@ -160,16 +160,16 @@
                                     <!--@else-->
                                         {@$iconClass = 'buttonDisable'}
                                     <!--@end-->
-                                    <a href="#" onclick="doToggleAPI(this,'{$val->api_srl}');return false;" class="buttonSet {$iconClass}"><span>{$lang->use}</span></a>
-                                    <a href="{getUrl('type','registration','api_srl',$val->api_srl)}" class="buttonSet buttonSetting"><span>{$lang->cmd_modify}...</span></a>
-                                    <a href="#" onclick="if(confirm('{$lang->msg_remove_api}')) doRemoveApi({$val->api_srl});return false;" class="buttonSet buttonDelete"><span>{$lang->cmd_delete}</span></a>
+                                    <button type="button" onclick="doToggleAPI(this,'{$val->api_srl}')" class="text">{$lang->use}</button>
+                                    <a href="{getUrl('type','registration','api_srl',$val->api_srl)}">{$lang->cmd_modify}...</a>
+                                    <button type="button" onclick="if(confirm('{$lang->msg_remove_api}')) doRemoveApi({$val->api_srl})" class="text">{$lang->cmd_delete}</button>
                                 </td>
 							</tr>
                         <!--@end-->
 						</tbody>
 					</table>
-                    <div class="buttonArea">
-                        <span class="buttonAction actionBlue"><input type="button" onclick="location.href=current_url.setQuery('type','registration').setQuery('api_srl','');return false;" value="{$lang->cmd_registration}" /></span>
+                    <div class="btnArea">
+                        <span class="btn"><input type="button" onclick="location.href=current_url.setQuery('type','registration').setQuery('api_srl','');return false;" value="{$lang->cmd_registration}" /></span>
                     </div>
 
                     <!--@end-->

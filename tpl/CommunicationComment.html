@@ -21,7 +21,7 @@
 							<input type="hidden" name="vid" value="{$vid}" />
 							<input type="hidden" name="search_target" value="content" />
 							<input name="search_keyword" type="text" value="{$search_keyword}" title="{$lang->cmd_search}" class="iText" />
-							<span class="buttonGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
+							<span class="btn"><input type="submit" value="{$lang->cmd_search}" /></span>
 						</form>
 					</fieldset>
 				</div>
@@ -76,18 +76,18 @@
 									<td class="ipAddress">{$val->ipaddress}</td>
 									<td class="state"><!--@if($val->is_secret=='Y')--><em>{$lang->secret}</em><!--@else-->{$lang->public}<!--@end--></td>
 								</tr>
-								<tr class="buttonArea">
+								<tr class="trBtnArea">
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
 									<td colspan="4">
 										<div class="reAction">
-											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolCommunicationCommentReply','comment_srl',$val->comment_srl,'document_srl',$val->document_srl)}" >{$lang->cmd_reply_comment}</a></span>
-											<span class="buttonGray small"><a href="{$val->getPermanentUrl()}">{$lang->cmd_move}</a></span> 
+											<span class="btnGray small"><a href="{getUrl('act','dispTextyleToolCommunicationCommentReply','comment_srl',$val->comment_srl,'document_srl',$val->document_srl)}" >{$lang->cmd_reply_comment}</a></span>
+											<span class="btnGray small"><a href="{$val->getPermanentUrl()}">{$lang->cmd_move}</a></span> 
 										</div>
 										<div class="control">
-											<span class="buttonGray small"><button type="button" onclick="updateCommentItemSetSecret({$val->comment_srl},'<!--@if($val->is_secret=='Y')-->N<!--@else-->Y<!--@end-->',{$page},{$val->module_srl})"><!--@if($val->is_secret=='Y')-->{$lang->public}<!--@else-->{$lang->private}<!--@end--></button></span> 
-											<span class="buttonGray small"><button type="button" onclick="openLayerAddDenyItem('{$val->comment_srl}','_addDenyCommentList')">{$lang->cmd_deny}</button></span> 
-											<span class="buttonGray small"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$val->comment_srl},{$page}); return false;">{$lang->cmd_delete}</button></span>
+											<span class="btnGray small"><button type="button" onclick="updateCommentItemSetSecret({$val->comment_srl},'<!--@if($val->is_secret=='Y')-->N<!--@else-->Y<!--@end-->',{$page},{$val->module_srl})"><!--@if($val->is_secret=='Y')-->{$lang->public}<!--@else-->{$lang->private}<!--@end--></button></span> 
+											<span class="btnGray small"><button type="button" onclick="openLayerAddDenyItem('{$val->comment_srl}','_addDenyCommentList')">{$lang->cmd_deny}</button></span> 
+											<span class="btnGray small"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$val->comment_srl},{$page}); return false;">{$lang->cmd_delete}</button></span>
 										</div>
 									</td>
 								</tr>
@@ -102,8 +102,8 @@
 							<div class="change">
 								<p class="p1">{$lang->selected_articles}</p>
 								
-								<span class="buttonGray large"><button type="button" onclick="openLayerAddDeny('_addDenyCommentList')">{$lang->cmd_deny}</button></span>
-								<span class="buttonGray large"><button type="button" onclick="deleteCommentItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
+								<span class="btnGray large"><button type="button" onclick="openLayerAddDeny('_addDenyCommentList')">{$lang->cmd_deny}</button></span>
+								<span class="btnGray large"><button type="button" onclick="deleteCommentItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
 								
 							</div>
 							<!-- /Change -->

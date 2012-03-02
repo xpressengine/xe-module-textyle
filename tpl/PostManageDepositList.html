@@ -21,10 +21,10 @@
 							</dd>
 						</dl>
 						<p class="goPost">
-							<span class="buttonGray medium"><a href="{getUrl('act','dispTextyleToolPostManageWrite','document_srl','','material_srl',$v->material_srl)}">{$lang->cmd_write_relation}</a></span>
+							<span class="btnGray medium"><a href="{getUrl('act','dispTextyleToolPostManageWrite','document_srl','','material_srl',$v->material_srl)}">{$lang->cmd_write_relation}</a></span>
 						</p>
                         <input type="checkbox" name="cart" value="{$v->material_srl}" class="materialCart" />
-						<button type="button" class="buttonDeleteSubject" onclick="deleteMaterialItem({$v->material_srl})"><span>{$lang->cmd_delete_materials}</span></button>
+						<button type="button" class="btnDeleteSubject" onclick="deleteMaterialItem({$v->material_srl})"><span>{$lang->cmd_delete_materials}</span></button>
 					</div>
 
 					<!--@end-->
@@ -35,7 +35,7 @@
 				<!-- /Subject List -->
 
                 <div class="tRight">
-                    <span class="buttonGray medium"><button type="button" onclick="deleteMaterialItem();">{$lang->cmd_delete_selected_materials}</button></span>
+                    <span class="btnGray medium"><button type="button" onclick="deleteMaterialItem();">{$lang->cmd_delete_selected_materials}</button></span>
                 </div>
 
 				<!-- Pagination -->

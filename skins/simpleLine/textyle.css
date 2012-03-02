@@ -220,7 +220,7 @@ a.skipToContent:focus{width:100%;height:auto;margin-bottom:-23px;padding:5px 0}
 #header .search *{vertical-align:middle}
 #header .search .iText{width:154px;border:1px solid #7a7a7a;padding:2px 24px 2px 2px;*margin:-1px 0;height:14px;font-size:12px}
 #header .search .iText:focus{background:#fffce0}
-#header .search .buttonSearch{position:absolute;top:0;right:0;width:23px;height:20px;border:0;padding:0;cursor:pointer}
+#header .search .btnSearch{position:absolute;top:0;right:0;width:23px;height:20px;border:0;padding:0;cursor:pointer}
 
 #header .extension{float:none;clear:both;padding:7px 0;border-top:3px solid #000;zoom:1}
 #header .extension:after{content:"";display:block;clear:both}

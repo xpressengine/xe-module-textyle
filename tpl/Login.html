@@ -37,7 +37,7 @@
 							<div class="btnArea">
 								<p class="keep"><input type="checkbox" name="keep_signed" class="iCheck" value="Y" id="keepUid" /> <label for="keepUid">{$lang->keep_signed}</label></p> 
 								<p class="keepDesc">{$lang->about_keep_warning}</p>
-								<span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
+								<span class="btn"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
 								<a href="#openidLogOn" cond="$enable_openid=='Y'" class="toggleID" onclick="jQuery('#logOnInterface').attr('class','logOnInterface openid');">{$lang->cmd_open_id}</a>
 							</div>
 						</fieldset>
@@ -50,7 +50,7 @@
 								<dd><input id="oid" name="openid" type="text" /></dd>
 							</dl>
 							<p class="btnArea">
-								<span class="buttonAction actionBlue"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
+								<span class="btn"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
 								<a href="#defaultLogOn" class="toggleID" onclick="jQuery('#logOnInterface').attr('class','logOnInterface default')">{$lang->cmd_common_id}</a>
 							</p>
 						</fieldset>

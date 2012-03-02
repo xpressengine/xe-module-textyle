@@ -2,61 +2,62 @@
 <!--%import("css/pagination.css",optimized=false)-->
 <!--%load_js_plugin("ui")-->
 
-			<!-- Content -->
-			<div id="content">
-				
-				<!-- contentHeader -->
-				<div class="contentHeader setupHeader lineBottom">
-					<h3 class="h3">{$lang->textyle_second_menus[5]['dispTextyleToolExtraMenuList']}</h3>
-				</div>
-				<!-- /contentHeader -->
+<!-- Content -->
+<div id="content">
+	<!-- contentHeader -->
+	<div class="contentHeader setupHeader lineBottom">
+		<h3 class="h3">{$lang->textyle_second_menus[5]['dispTextyleToolExtraMenuList']}</h3>
+	</div>
+	<!-- /contentHeader -->
 
-				<div class="listHeader">
-					<p class="info">{$lang->about_textyle_extra_menu}</p>
-				</div>
+	<div class="listHeader">
+		<p class="info">{$lang->about_textyle_extra_menu}</p>
+	</div>
+
+	<div class="setUp">
+		<table border="1" cellspacing="0" summary="{$lang->content_list}" class="tableData">
+		<thead>
+			<tr>
+				<th scope="col">{$lang->menu_name}</th> 
+				<th scope="col">{$lang->module}</th>
+				<th scope="col">-</th>
+			</tr>
+		</thead>
 			
-				<div class="setUp">
-				<table border="1" cellspacing="0" summary="{$lang->content_list}" class="tableData">
-				<thead>
-					<tr>
-						<th scope="col">{$lang->menu_name}</th> 
-						<th scope="col">{$lang->module}</th>
-						<th scope="col">-</th>
-					</tr>
-				</thead>
-					
-				<!--@if($extra_menu_list)-->
-				<tbody class="sort">
-				<!--@foreach($extra_menu_list->data as $k => $menu)-->
-					<tr style="cursor:n-resize">
-						<td><a href="{getUrl('','mid',$menu->mid)}">{$menu->name}</a></td>
-						<td>{$menu->module}</td>
-						<td><input type="hidden" name="" class="menu_mid" value="{$menu->mid}" />
-						<a href="{getUrl('','act','dispTextyleToolExtraMenuInsert','menu_mid',$menu->mid)}" class="button small"><span>{$lang->cmd_modify}...</span></a>
-						<span class="button small"><button type="button" onclick="deleteExtraMenu('{$menu->mid}','{$lang->confirm_delete}')">{$lang->cmd_delete}</button></span>
-						</td>
-					</tr>
-				<!--@end-->
-				</tbody>
-				<!--@end-->
-				</table>
-				<div class="buttonArea"><a href="{getUrl('','act','dispTextyleToolExtraMenuInsert')}" class="button black large"><span>{$lang->cmd_insert}</span></a></div>
-				</div>
-			</div>
-			<hr />
-			<!-- /Content -->
+		<!--@if($extra_menu_list)-->
+		<tbody class="sort">
+		<!--@foreach($extra_menu_list->data as $k => $menu)-->
+			<tr style="cursor:n-resize">
+				<td><a href="{getUrl('','mid',$menu->mid)}">{$menu->name}</a></td>
+				<td>{$menu->module}</td>
+				<td><input type="hidden" name="" class="menu_mid" value="{$menu->mid}" />
+				<a href="{getUrl('','act','dispTextyleToolExtraMenuInsert','menu_mid',$menu->mid)}">{$lang->cmd_modify}...</a>
+				<button type="button" onclick="deleteExtraMenu('{$menu->mid}','{$lang->confirm_delete}')" class="text">{$lang->cmd_delete}</button>
+				</td>
+			</tr>
+		<!--@end-->
+		</tbody>
+		<!--@end-->
+		</table>
+		<div class="btnArea">
+			<span class="btn"><a href="{getUrl('','act','dispTextyleToolExtraMenuInsert')}">{$lang->cmd_insert}</a></span>
+		</div>
+	</div>
+</div>
+<hr />
+<!-- /Content -->
 
-			<!-- Extension -->
-			<!--#include("_tool_menu.html")-->
-			<!-- Extension -->
-			<script	type="text/javascript">//<![CDATA[
-				jQuery(function() {
-					jQuery('tbody.sort').sortable().bind('sortstop',function(e,ui){
-						var menu_mids = [];
-						jQuery('tbody.sort .menu_mid').each(function(){
-							menu_mids.push(jQuery(this).val());	
-						});
-						sortExtraMenu(menu_mids);
-					});
-				});
-			//]]></script>
+<!-- Extension -->
+<!--#include("_tool_menu.html")-->
+<!-- Extension -->
+<script	type="text/javascript">//<![CDATA[
+	jQuery(function() {
+		jQuery('tbody.sort').sortable().bind('sortstop',function(e,ui){
+			var menu_mids = [];
+			jQuery('tbody.sort .menu_mid').each(function(){
+				menu_mids.push(jQuery(this).val());	
+			});
+			sortExtraMenu(menu_mids);
+		});
+	});
+//]]></script>

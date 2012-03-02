@@ -17,7 +17,7 @@ legend.visible{position:static !important;width:auto !important;height:auto !imp
 label{cursor:pointer;vertical-align:middle}
 .inputCheck,
 .inputRadio{width:13px;height:13px;margin:0 3px 0 0;vertical-align:middle}
-.buttonArea.aCenter{text-align:center}
+.btnArea.aCenter{text-align:center}
 
 a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-size:12px}
 #textyleAdmin{position:relative}
@@ -74,12 +74,12 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 #textyleAdmin #header .title{position:relative;clear:both;padding:22px 30px 0 30px;zoom:1;height:48px}
 #textyleAdmin #header .title:after{content:"";display:block;clear:both}
 #textyleAdmin #header h2{float:left;clear:left;margin:0 15px 0 0;line-height:1;font-size:24px}
-#textyleAdmin #header .buttonGray,
-#textyleAdmin #header .buttonGray a{background-image:url(../img/buttonHeader.gif) !important}
-#textyleAdmin #header .buttonGray{background-position:left top !important;*top:-5px;float:left}
-#textyleAdmin #header .buttonGray a{background-position:right top;padding-left:23px}
+#textyleAdmin #header .btnGray,
+#textyleAdmin #header .btnGray a{background-image:url(../img/buttonHeader.gif) !important}
+#textyleAdmin #header .btnGray{background-position:left top !important;*top:-5px;float:left}
+#textyleAdmin #header .btnGray a{background-position:right top;padding-left:23px}
 #textyleAdmin #header .approach{float:right}
-#textyleAdmin #header .buttonNewPost{float:left}
+#textyleAdmin #header .btnNewPost{float:left}
 #textyleAdmin .headerShadow{display:block;width:100%;height:5px;position:absolute;top:100px;background:transparent url(../img/hrHeader.gif) repeat-x 0 0;opacity:.5;filter:alpha(opacity=50);-ms-filter:alpha(opacity=50)}
 
 /* Footer */
@@ -231,7 +231,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 
 .dashboardWire{position:relative;margin-bottom:40px;border-top:2px solid #cbd4df;border-left:1px solid #e3e5e7;border-right:1px solid #e3e5e7;border-bottom:1px solid #f1f1f1;background:#fff;*border-bottom:1px solid #d0d1d2;zoom:1;*filter:progid:DXImageTransform.Microsoft.dropshadow(OffX='0', OffY='1', Color='#f1f1f1', positive='true')}
 .dashboardWire:after{content:"";display:block;height:1px;background:#d0d1d2;overflow:hidden}
-.dashboardWire .buttonArea{padding:8px 14px;background:#fafafa;border-top:1px solid #e3e5e7;text-align:right;position:relative}
+.dashboardWire .btnArea{padding:8px 14px;background:#fafafa;border-top:1px solid #e3e5e7;text-align:right;position:relative}
 .dashboardWire ul{position:relative;list-style:none;margin:0;padding:0;font-size:12px;overflow:hidden}
 .dashboardWire li{position:relative;top:-1px;border-top:1px solid #e3e5e7}
 
@@ -267,7 +267,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .dashboardWire a:focus{text-decoration:underline}
 
 /* Dashboard Last Post */
-.dashboardWire .lastPost li{position:relative;padding:14px 0 12px 15px;*word-break:break-all}
+.dashboardWire .lastPost li{position:relative;padding:14px 0 12px 15px}
 .dashboardWire .lastPost li p{margin:0;clear:both}
 .dashboardWire .lastPost li p.title{margin:0 100px 6px 0}
 .dashboardWire .lastPost li p.state{font-size:11px}
@@ -281,7 +281,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .dashboardWire .lastPost li .trackback{padding-left:8px;background:url(../img/vrFooter.gif) no-repeat left center}
 
 /* Dashboard Last Subject */
-.dashboardWire .lastSubject li{position:relative;padding:14px 100px 12px 15px;font-size:12px;*word-break:break-all}
+.dashboardWire .lastSubject li{position:relative;padding:14px 100px 12px 15px;font-size:12px}
 .dashboardWire .lastSubject li *{font-size:12px;margin-top:0}
 .dashboardWire .lastSubject li .date{position:absolute;top:15px;right:20px;color:#8b8b8b;font-size:11px;float:right}
 .dashboardWire .lastSubject img,
@@ -289,7 +289,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .dashboardWire .lastSubject embed{max-width:100%;_width:100%}
 
 /* Dashboard Last Reply */
-.dashboardWire .lastReply li{position:relative;padding:14px 0 12px 15px;zoom:1;*word-break:break-all}
+.dashboardWire .lastReply li{position:relative;padding:14px 0 12px 15px;zoom:1}
 .dashboardWire .lastReply li:after{content:"";display:block;clear:both}
 .dashboardWire .lastReply li .author{float:left;border:1px solid #e1e1e1;margin-right:-41px;width:39px;height:39px}
 .dashboardWire .lastReply li p{margin-left:54px;margin-top:0;color:#555}
@@ -356,7 +356,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .listHeader .search *{vertical-align:middle}
 .listHeader .search select{font-size:12px}
 .listHeader .search .iText{border:1px solid #c6c6c6;font-size:12px;padding:3px 4px;width:135px;height:15px;vertical-align:top}
-.listHeader .search .buttonGray.medium input{_top:0}
+.listHeader .search .btnGray.medium input{_top:0}
 .listHeader .notUsed{float:right;margin:4px 0;white-space:nowrap;color:#555}
 .listHeader .notUsed img{vertical-align:middle}
 
@@ -377,8 +377,8 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .tableData tr.first th,
 .tableData tr.first td{border:0}
 .tableData tr.replies td{border-top:0}
-.tableData .buttonTableData{border:0;width:19px;height:19px;padding:0;background:transparent url(../img/buttonTableDataX.gif) no-repeat center center;cursor:pointer}
-.tableData .buttonTableData span{position:absolute;width:0;height:0;overflow:hidden;z-index:-1;font-size:0;line-height:0;visibility:hidden}
+.tableData .btnTableData{border:0;width:19px;height:19px;padding:0;background:transparent url(../img/buttonTableDataX.gif) no-repeat center center;cursor:pointer}
+.tableData .btnTableData span{position:absolute;width:0;height:0;overflow:hidden;z-index:-1;font-size:0;line-height:0;visibility:hidden}
 .tableData a{text-decoration:none;color:#648ab9}
 .tableData a:hover,
 .tableData a:active,
@@ -411,11 +411,11 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .tableData .ipAddress{font-size:11px;color:#8b8b8b}
 .tableData .state{font-size:11px;color:#ea3f22}
 .tableData .state em{font-style:normal;color:#8b8b8b}
-.tableData .buttonArea{white-space:normal}
-.tableData .buttonArea td{border:0}
-.tableData .buttonArea .reAction{float:left}
-.tableData .buttonArea .reAction .buttonGray a{_top:-1px}
-.tableData .buttonArea .control{float:right}
+.tableData .trBtnArea{white-space:normal}
+.tableData .trBtnArea td{border:0}
+.tableData .trBtnArea .reAction{float:left}
+.tableData .trBtnArea .reAction .btnGray a{_top:-1px}
+.tableData .trBtnArea .control{float:right}
 .tableData .replyAction{background:#f6f6f6}
 .tableData .replyAction .textarea{position:relative}
 .tableData .replyAction .textarea .iTextArea{border:1px solid #c6c6c6;width:96% !important;padding:10px;margin-bottom:10px;font-size:12px;line-height:1.5}
@@ -424,7 +424,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .tableData .replyButtonArea:after{content:"";display:block;clear:both}
 .tableData .replyButtonArea .secret{float:left;margin:0}
 .tableData .replyButtonArea .submit{float:right;margin-right:-22px}
-.tableData .replyButtonArea .submit .buttonGray button{top:0}
+.tableData .replyButtonArea .submit .btnGray button{top:0}
 .tableData .original{color:#648ab9}
 .tableData .trackbackIn{margin:0 0 5px 0;padding:0 0 0 16px;background:url(../img/iconTrackbackIn.gif) no-repeat left top}
 .tableData .trackbackIn a{color:#648ab9;font-weight:bold}
@@ -452,7 +452,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .tableData .user a{color:#648ab9}
 .tableData .top3 .user a{font-weight:bold}
 .tableData .user .thumb{border:1px solid #afb7cc;vertical-align:top;margin-right:10px;width:32px;height:32px}
-.tableData .buttonGray.small a{_top:-1px}
+.tableData .btnGray.small a{_top:-1px}
 .tableData .wrap{white-space:normal}
 .tableData .regDate{color:#8b8b8b;font-size:11px}
 .tableData tr.articles dt,
@@ -494,8 +494,8 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .listFooter:after{color:"";display:block;clear:both}
 .listFooter .change{padding:6px 0 0 40px;float:left;background:url(../img/lineListFooterL.gif) no-repeat 20px top}
 .listFooter .change .p1{display:inline;color:#8b8b8b;margin-right:5px;line-height:1;*float:left;*padding-top:8px}
-.listFooter .change .buttonGray.large{_vertical-align:top !important}
-.listFooter .change .buttonGray.large button{_font-size:12px;_height:27px;_line-height:28px}
+.listFooter .change .btnGray.large{_vertical-align:top !important}
+.listFooter .change .btnGray.large button{_font-size:12px;_height:27px;_line-height:28px}
 .listFooter .change .category_list{max-height:300px;_height:300px;overflow:scroll;overflow-x:hidden;z-index:200}
 .listFooter .pagination{float:right}
 
@@ -524,15 +524,15 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .subjectList .item dd embed{max-width:100%;_width:100%}
 .subjectList .item .goPost{margin:0;text-align:right}
 .subjectList .item .materialCart{position:absolute;top:15px;right:20px}
-.subjectList .item .buttonDeleteSubject{position:absolute;width:19px;height:19px;top:15px;right:0;border:0;padding:0;cursor:pointer;background:transparent url(../img/buttonTableDataX.gif) no-repeat center center}
-.subjectList .item .buttonDeleteSubject span{position:absolute;width:0;height:0;overflow:hidden;font-size:0;line-height:0}
+.subjectList .item .btnDeleteSubject{position:absolute;width:19px;height:19px;top:15px;right:0;border:0;padding:0;cursor:pointer;background:transparent url(../img/buttonTableDataX.gif) no-repeat center center}
+.subjectList .item .btnDeleteSubject span{position:absolute;width:0;height:0;overflow:hidden;font-size:0;line-height:0}
 
 /* Bookmarklet */
 .bookmarklet{padding:20px 15px 15px 15px;border:1px solid #c2c4c6;background:#ebedee url(../img/bgBookmarklet.gif) repeat-x left bottom;font-size:12px}
 .bookmarklet h3{font-size:12px;margin:0 0 6px 10px;color:#5c6379}
 .bookmarklet p{margin:0 0 10px 10px;color:#9096a9;line-height:1.5}
-.bookmarklet .buttonBookmarklet{display:inline-block;width:198px;height:34px;padding-top:15px;text-align:center;background:url(../img/buttonBookmarkletInstall.gif) no-repeat right 0;font-size:12px;font-weight:bold;color:#fff;text-decoration:none !important}
-.bookmarklet .buttonBookmarklet img{vertical-align:middle;margin:0 5px 0 0}
+.bookmarklet .btnBookmarklet{display:inline-block;width:198px;height:34px;padding-top:15px;text-align:center;background:url(../img/buttonBookmarkletInstall.gif) no-repeat right 0;font-size:12px;font-weight:bold;color:#fff;text-decoration:none !important}
+.bookmarklet .btnBookmarklet img{vertical-align:middle;margin:0 5px 0 0}
 
 /* Bookmarklet Help */
 .bookmarkletHelp{border:1px solid #efefef;background:#f9f9f9;font-size:12px}
@@ -598,7 +598,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .wOption select{height:23px;font-size:12px;vertical-align:middle}
 .wOption .addCategoryToggle button,
 .wOption .addTrackbackURL button{padding:0 5px 0 3px !important;*padding:0 8px 0 6px !important}
-.wOption .buttonGray button img{vertical-align:middle !important}
+.wOption .btnGray button img{vertical-align:middle !important}
 .wOption .addCategory{display:none}
 .wOption .addCategory.open{display:inline}
 .wOption .addCategory .iText{width:140px;margin:-1px 0 0 0}
@@ -618,7 +618,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .wOption em{font-style:normal;color:#ff6600}
 .wOption label{margin-right:10px}
 .wOption p{margin:0}
-.wOption .buttonGray.medium button{_top:0}
+.wOption .btnGray.medium button{_top:0}
 .wOption .trackbackOption{position:relative}
 .wOption .trackbackOption *{vertical-align:top}
 .wOption .trackbackOption .item{display:inline}
@@ -646,16 +646,16 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .category .cStructure li.hover{background:#f5f5f5 url(../img/iconMovable.gif) no-repeat 96% center}
 .category .cStructure li li{border-bottom:0;border-left:0;border-right:0;text-indent:35px;background-image:url(../img/bgHierarchy.gif);background-repeat:no-repeat;background-position:25px center}
 .category .cStructure li .inputRadio{margin-bottom:10px;vertical-align:top}
-.category .cStructure .buttonArea{zoom:1;padding:10px 0}
-.category .cStructure .buttonArea:after{content:"";display:block;clear:both}
-.category .cStructure .buttonArea .aLeft{float:left}
-.category .cStructure .buttonArea .aRight{float:right}
-.category .cStructure .buttonArea .move{vertical-align:top;width:20px;height:20px;padding:0;*margin-left:4px;border:0;cursor:pointer;background-color:transparent;background-image:url(../img/buttonCategoryMove.gif);background-repeat:no-repeat}
-.category .cStructure .buttonArea .move span{position:absolute;width:0;height:0;overflow:hidden;font-size:0;line-height:0;z-index:-1;visibility:hidden}
-.category .cStructure .buttonArea .move.downEnd{background-position:0 0}
-.category .cStructure .buttonArea .move.down{background-position:0 -20px}
-.category .cStructure .buttonArea .move.up{background-position:0 -40px}
-.category .cStructure .buttonArea .move.upEnd{background-position:0 -60px}
+.category .cStructure .btnArea{zoom:1;padding:10px 0}
+.category .cStructure .btnArea:after{content:"";display:block;clear:both}
+.category .cStructure .btnArea .aLeft{float:left}
+.category .cStructure .btnArea .aRight{float:right}
+.category .cStructure .btnArea .move{vertical-align:top;width:20px;height:20px;padding:0;*margin-left:4px;border:0;cursor:pointer;background-color:transparent;background-image:url(../img/buttonCategoryMove.gif);background-repeat:no-repeat}
+.category .cStructure .btnArea .move span{position:absolute;width:0;height:0;overflow:hidden;font-size:0;line-height:0;z-index:-1;visibility:hidden}
+.category .cStructure .btnArea .move.downEnd{background-position:0 0}
+.category .cStructure .btnArea .move.down{background-position:0 -20px}
+.category .cStructure .btnArea .move.up{background-position:0 -40px}
+.category .cStructure .btnArea .move.upEnd{background-position:0 -60px}
 
 .category .cSetup{float:right;width:60%;border-top:2px solid #cbd4df;margin-bottom:50px}
 .category .cSetup .h4{margin:0;font-size:14px;color:#626972;padding:25px 0 15px 20px;background:url(../img/iconH4.gif) no-repeat 0 30px}
@@ -708,8 +708,8 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .tagList .tSum li .tWord:active,
 .tagList .tSum li .tWord:focus{text-decoration:underline}
 .tagList .tSum li .sum{position:absolute;top:8px;right:20px;font-size:12px;color:#ea3f22;font-weight:normal;white-space:nowrap}
-.tagList .tSum .buttonArea{zoom:1;padding:10px 0}
-.tagList .tSum .buttonArea:after{content:"";display:block;clear:both}
+.tagList .tSum .btnArea{zoom:1;padding:10px 0}
+.tagList .tSum .btnArea:after{content:"";display:block;clear:both}
 
 .tagList .tModify{float:right;width:49%;border:1px solid #edeff1;background:#f9f9f9;font-size:12px}
 .tagList .tModify dt{color:#868d95;font-weight:bold}
@@ -733,7 +733,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .spam legend{width:auto !important;height:auto !important;overflow:visible;position:relative !important;visibility:visible;font-size:14px;line-height:1.2;z-index:1;font-weight:bold;margin-bottom:10px;color:#000 !important}
 .spam .header{background:#fafafa;padding:10px;border-bottom:1px solid #e3e5e7;white-space:nowrap;margin-bottom:-1px}
 .spam .header .iText{border:1px solid #c6c6c6;color:#8b8b8b;font-size:12px;padding:3px 4px;height:15px;vertical-align:top;width:56%}
-.spam .header .buttonGray button{_top:0px}
+.spam .header .btnGray button{_top:0px}
 .spam ul{margin:0;padding:0;list-style:none;font-size:12px;overflow:auto;height:360px}
 .spam li{position:relative;border-bottom:1px solid #e3e5e7;color:#555;padding:6px 15px;font-size:11px}
 .spam li button{padding:0;border:0;cursor:pointer;position:absolute;width:17px;height:17px;top:5px;right:10px;background:url(../img/buttonListDataX.gif) no-repeat center center}
@@ -765,15 +765,15 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .mySkin .summary .sHeader{position:relative;padding:10px 0 15px 0;font-size:16px;border-bottom:1px solid #fff;*border-bottom:1px solid #e6e6e6;color:#648ab9}
 .mySkin .summary .sHeader:after{content:"";display:block;background:#e6e6e6;height:1px;font-size:0;line-height:0;overflow:hidden;margin:15px 0 -15px 0}
 .mySkin .summary .sHeader .h4{display:inline;margin:0}
-.mySkin .summary .sHeader .buttonGray{position:absolute;top:10px;right:0}
-.mySkin .summary .sHeader .buttonGray em{font-size:10px;font-weight:bold;color:#ff3636;font-style:normal}
+.mySkin .summary .sHeader .btnGray{position:absolute;top:10px;right:0}
+.mySkin .summary .sHeader .btnGray em{font-size:10px;font-weight:bold;color:#ff3636;font-style:normal}
 .mySkin .summary .contributor{color:#8b8b8b;font-size:11px;font-weight:normal}
 .mySkin .summary .contributor a{color:#555;font-size:11px;text-decoration:none;margin:0 0 0 3px}
 .mySkin .summary .contributor a:hover,
 .mySkin .summary .contributor a:active,
 .mySkin .summary .contributor a:focus{text-decoration:underline}
 .mySkin .summary .description{line-height:1.5;margin:1em 0 2em 0;text-align:left}
-.mySkin .summary .buttonArea .buttonGray span{_top:-1px}
+.mySkin .summary .btnArea .btnGray span{_top:-1px}
 
 .skinList ul{zoom:1;font-size:12px;margin:0;padding:0;list-style:none}
 .skinList ul:after{content:"";display:block;clear:both}
@@ -789,7 +789,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .skinList dd.thumb em span{position:absolute;width:0;height:0;overflow:hidden;font-size:0;line-height:0;z-index:-1;visibility:hidden}
 .skinList dd.meta{font-size:11px;color:#8b8b8b}
 .skinList dd.download{padding:10px 0}
-.skinList dd.download .buttonGray button{_top:-1px !important}
+.skinList dd.download .btnGray button{_top:-1px !important}
 
 /* Code Edit */
 .codeEdit{position:relative}
@@ -865,8 +865,8 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .codeEdit .resizeVertical button{width:100%;height:10px;border:0;margin:0;padding:0;background:transparent;cursor:n-resize;vertical-align:middle}
 .codeEdit .resizeVertical button span{position:absolute;width:0;height:0;font-size:0;line-height:0;overflow:hidden;visibility:hidden;z-index:-1}
 .codeEdit .widgetCreator{position:absolute;top:0;right:2%}
-.codeEdit .buttonArea{width:100%}
-.codeEdit .buttonArea .actionWhite{position:absolute;top:0;right:2%}
+.codeEdit .btnArea{width:100%}
+.codeEdit .btnArea .actionWhite{position:absolute;top:0;right:2%}
 
 /* User Image */
 .userImage{margin:0 0 30px 0}
@@ -874,7 +874,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .userImage .upload{position:relative;height:24px;line-height:24px;border-bottom:1px solid #ddd;margin:0;padding:10px 20px;color:#767676;background:#f9f9f9}
 .userImage .upload input{font-size:12px}
 .userImage .upload em{margin:0 0 0 15px;font-style:normal}
-.userImage .upload .buttonGray{position:absolute;top:10px;right:20px}
+.userImage .upload .btnGray{position:absolute;top:10px;right:20px}
 .userImage ul{list-style:none;margin:0 0 15px 0;padding:0}
 .userImage li{position:relative;border-bottom:1px dotted #ccc;margin:10px 0;overflow:hidden}
 .userImage .thumb{position:relative}
@@ -887,8 +887,8 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .userDefineSkin .upload{position:relative;height:24px;line-height:24px;border-bottom:1px solid #ddd;margin:0;padding:10px 20px;color:#767676;background:#f9f9f9}
 .userDefineSkin .upload input{font-size:12px}
 .userDefineSkin .upload em{margin:0 0 0 15px;font-style:normal}
-.userDefineSkin .upload .buttonGray{position:absolute;top:10px;right:20px}
-.userDefineSkin .buttonArea{}
+.userDefineSkin .upload .btnGray{position:absolute;top:10px;right:20px}
+.userDefineSkin .btnArea{}
 .userDefineSkin #rediscover{display:none}
 .userDefineSkin #rediscover.open{display:block}
 
@@ -909,7 +909,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .setUp p{margin:5px 0;color:#555}
 .setUp p strong{color:#ea3f22}
 .setUp .iText{border:1px solid #c6c6c6;padding:1px 4px;margin:-2px 0;height:16px}
-.setUp .buttonArea{text-align:center;padding:40px 0}
+.setUp .btnArea{text-align:center;padding:40px 0}
 .setUp h4{margin:0 0 20px -40px;padding-left:15px;font-size:14px;background:url(../img/iconH4.gif) no-repeat left center}
 .setUp .thumb{position:relative;float:left;margin-right:20px}
 .setUp .thumb .profilePhoto{display:block;border:1px solid #b0bfde;clear:both;margin-bottom:5px}
@@ -976,8 +976,8 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 #drag_container li a{padding:2px}
 #tree_plus{margin:9px 0 0 7px;z-index:100}
 
-.categoryContent .button{position:absolute;z-index:10;left:328px;top:97px;margin:0;padding:0;width:15px;height:16px;background:url(../img/buttonRefresh.gif) no-repeat !important}
-.categoryContent .button span{position:absolute;width:0;height:0;overflow:hidden;font-size:0;line-height:0;visibility:hidden;background:none}
+.categoryContent .btn{position:absolute;z-index:10;left:328px;top:97px;margin:0;padding:0;width:15px;height:16px;background:url(../img/buttonRefresh.gif) no-repeat !important}
+.categoryContent .btn span{position:absolute;width:0;height:0;overflow:hidden;font-size:0;line-height:0;visibility:hidden;background:none}
 
 #category_info{position:absolute;top:180px !important;left:auto !important;right:30px;width:100% !important;height:0;overflow:visible}
 #category_info .layer{position:relative;top:0;right:0;border:0;border-top:2px solid #cbd4df;margin:0 0 0 610px;padding:24px 0 0 0}
@@ -993,9 +993,9 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 #category_info .layer .layerBody .rowTable td #category_name{width:260px}
 #category_info .layer .layerBody .rowTable td p{display:inline;font-size:11px;color:#767676}
 #category_info .layer .layerBody .rowTable td .checkbox{width:13px;height:13px;margin:0;vertical-align:middle}
-#category_info .layer .layerBody .rowTable th.button{text-align:center;height:0;padding:0;overflow:visible}
+#category_info .layer .layerBody .rowTable th.btn{text-align:center;height:0;padding:0;overflow:visible}
 
-#category_info .layer .layerBody span.button,
-#category_info .layer .layerBody span.button input{position:relative;border:0;margin:0;display:inline-block !important;font-family:Tahoma, Sans-serif;font-weight:bold !important;cursor:pointer;text-decoration:none !important;white-space:nowrap;vertical-align:middle;*vertical-align:top;background-color:transparent;background-image:url(../img/buttonAction.gif);background-repeat:no-repeat;zoom:1}
-#category_info .layer .layerBody span.button{position:relative;top:40px;margin-right:7px;background-position:left top;border:1px solid}
-#category_info .layer .layerBody span.button input{top:0;left:7px;color:#fff;height:39px;padding:0 25px 0 40px !important;font:12px/39px Sans-serif;background-position:right top;overflow:visible}
+#category_info .layer .layerBody span.btn,
+#category_info .layer .layerBody span.btn input{position:relative;border:0;margin:0;display:inline-block !important;font-family:Tahoma, Sans-serif;font-weight:bold !important;cursor:pointer;text-decoration:none !important;white-space:nowrap;vertical-align:middle;*vertical-align:top;background-color:transparent;background-image:url(../img/buttonAction.gif);background-repeat:no-repeat;zoom:1}
+#category_info .layer .layerBody span.btn{position:relative;top:40px;margin-right:7px;background-position:left top;border:1px solid}
+#category_info .layer .layerBody span.btn input{top:0;left:7px;color:#fff;height:39px;padding:0 25px 0 40px !important;font:12px/39px Sans-serif;background-position:right top;overflow:visible}

@@ -41,7 +41,7 @@
 								<!--@end-->
 							</select>
 							<input name="search_keyword" type="text" title="{$lang->cmd_search}" class="iText" value="{htmlspecialchars($search_keyword)}"/>
-							<span class="buttonGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
+							<span class="btnGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
 						</form>
 					</fieldset>
 				</div>
@@ -103,18 +103,18 @@
 										<td>{$category_list[$post->get('category_srl')]->title}&nbsp;</td>
 										<td class="small">{zdate($post->get('last_update'),'Y.m.d')}</td>
 										<td>
-											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManageWrite','document_srl',$post->document_srl,'page',$page)}">{$lang->cmd_edit}</a></span>
+											<span class="btnGray small"><a href="{getUrl('act','dispTextyleToolPostManageWrite','document_srl',$post->document_srl,'page',$page)}">{$lang->cmd_edit}</a></span>
                                             <!--@if($post->get('module_srl')==$logged_info->member_srl)-->
-											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManagePublish','document_srl',$post->document_srl,'page',$page)}">{$lang->publish_go}</a></span>
+											<span class="btnGray small"><a href="{getUrl('act','dispTextyleToolPostManagePublish','document_srl',$post->document_srl,'page',$page)}">{$lang->publish_go}</a></span>
                                             <!--@else-->
-											<span class="buttonGray small"><a href="{getUrl('act','dispTextyleToolPostManagePublish','document_srl',$post->document_srl,'page',$page)}">{$lang->publish_update_go}</a></span>
+											<span class="btnGray small"><a href="{getUrl('act','dispTextyleToolPostManagePublish','document_srl',$post->document_srl,'page',$page)}">{$lang->publish_update_go}</a></span>
                                             <!--@end-->
 										</td>
 										<td>
 											<!--@if($post->get('module_srl') == $logged_info->member_srl)-->
-											<button type="button" class="buttonTableData" onclick="confirmDeletePostItem({$post->document_srl},{$page},'{$lang->msg_confirm_delete_post}')"><span>{$lang->cmd_delete}</span></button>
+											<button type="button" class="btnTableData" onclick="confirmDeletePostItem({$post->document_srl},{$page},'{$lang->msg_confirm_delete_post}')"><span>{$lang->cmd_delete}</span></button>
 											<!--@else-->
-											<button type="button" class="buttonTableData" onclick="trashPostItem({$post->document_srl},{$page})"><span>{$lang->cmd_delete}</span></button>
+											<button type="button" class="btnTableData" onclick="trashPostItem({$post->document_srl},{$page})"><span>{$lang->cmd_delete}</span></button>
 											<!--@end-->
 										</td>
 									</tr>
@@ -132,7 +132,7 @@
 								
 								<!-- Category -->
 								<div class="select">
-									<span class="buttonSelect"><button type="button" onclick="jQuery('ul.category_list').toggleClass('open')">{$lang->cmd_change_category}</button></span>
+									<span class="btnSelect"><button type="button" onclick="jQuery('ul.category_list').toggleClass('open')">{$lang->cmd_change_category}</button></span>
 
 									
 									<ul class="category_list">
@@ -163,7 +163,7 @@
 								
 								<!-- opening -->
 								<div class="select">
-									<span class="buttonSelect"><button type="button" onclick="jQuery('ul.secret_list').toggleClass('open')">{$lang->set_publish}</button></span>
+									<span class="btnSelect"><button type="button" onclick="jQuery('ul.secret_list').toggleClass('open')">{$lang->set_publish}</button></span>
 									<ul class="secret_list"> <!-- ul class="" | ul class="open" -->
 										<li><button type="button" onclick="updatePostItemsSecret('N',{$page})">{$lang->document_open}</button></li>
 										<li><button type="button" onclick="updatePostItemsSecret('Y',{$page})">{$lang->document_close}</button></li>
@@ -171,8 +171,8 @@
 								</div>
 								<!-- /opening -->
 								
-								<span class="buttonGray large"><button type="button" onclick="openLayerCommuicationConfig()">{$lang->comm_management}</button></span>
-								<span class="buttonGray large"><button type="button" onclick="trashPostItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
+								<span class="btnGray large"><button type="button" onclick="openLayerCommuicationConfig()">{$lang->comm_management}</button></span>
+								<span class="btnGray large"><button type="button" onclick="trashPostItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
 								
 							</div>
 							<!-- /Change -->

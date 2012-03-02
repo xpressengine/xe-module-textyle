@@ -235,7 +235,7 @@ a.skipToContent:focus{width:100%;height:auto;margin-bottom:-23px;padding:5px 0}
 #header .search *{vertical-align:middle}
 #header .search .iText{width:172px;color:#fff;border:1px solid #333;border-right-color:#666;border-bottom-color:#666;background:#4d4d4d;padding:2px 24px 2px 2px;_margin:-1px 0 ;height:14px;font-size:12px}
 #header .search .iText:focus{background:#555}
-#header .search .buttonSearch{position:relative;left:-2px;width:16px;height:16px;border:0;padding:0;cursor:pointer;margin-left:-20px}
+#header .search .btnSearch{position:relative;left:-2px;width:16px;height:16px;border:0;padding:0;cursor:pointer;margin-left:-20px}
 
 /* Footer */
 #footer a{text-decoration:none}

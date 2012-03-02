@@ -31,7 +31,7 @@
 	<td><input type="text" name="password_description" value="{$service->password_description}" class="iText lang_code" id="password_description" /></td>
 </tr>
 <tr>
-	<td colspan="2" style="text-align:center"> <span class="button black strong"><button type="submit">{$lang->cmd_insert}</button></span> </td>
+	<td colspan="2" style="text-align:center"> <span class="btn"><button type="submit">{$lang->cmd_insert}</button></span> </td>
 </tr>
 </tbody>
 </table>
@@ -41,12 +41,12 @@
 <table cellspacing="0" class="rowTable">
 <thead>
     <tr>
-        <th scope="col"><div>{$lang->service_name}</div></th>
-        <th scope="col"><div>{$lang->api_type}</div></th>
-        <th scope="col"><div>{$lang->url_description}</div></th>
-        <th scope="col"><div>{$lang->id_description}</div></th>
-        <th scope="col"><div>{$lang->password_description}</div></th>
-        <th scope="col"><div>&nbsp;</div></th>
+        <th scope="col">{$lang->service_name}</th>
+        <th scope="col">{$lang->api_type}</th>
+        <th scope="col">{$lang->url_description}</th>
+        <th scope="col">{$lang->id_description}</th>
+        <th scope="col">{$lang->password_description}</th>
+        <th scope="col">&nbsp;</th>
     </tr>
 </thead>
 <tbody>
@@ -55,12 +55,12 @@
     <tr>
         <td>{$val->service_name}</td>
         <td>{$val->api_type}</td>
-        <td class="nowrap">{$val->url_description}</td>
-        <td class="nowrap">{$val->id_description}</td>
-        <td class="nowrap">{$val->password_description}</td>
-        <td class="nowrap">
-			<a href="{getUrl('textyle_blogapi_services_srl',$val->textyle_blogapi_services_srl)}" class="button green small"><span>{$lang->cmd_modify}...</span></a>
-			<span class="button red small"><button onclick="deleteBlogApiService({$val->textyle_blogapi_services_srl})">{$lang->cmd_delete}</button></span>
+        <td class="nowr">{$val->url_description}</td>
+        <td class="nowr">{$val->id_description}</td>
+        <td class="nowr">{$val->password_description}</td>
+        <td class="nowr">
+			<a href="{getUrl('textyle_blogapi_services_srl',$val->textyle_blogapi_services_srl)}">{$lang->cmd_modify}...</a>
+			<button onclick="deleteBlogApiService({$val->textyle_blogapi_services_srl})" class="text">{$lang->cmd_delete}</button>
 		</td>
     </tr>
     <!--@end-->

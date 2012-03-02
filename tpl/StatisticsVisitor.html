@@ -19,7 +19,7 @@
 					<div class="cNavigation">
 						<div class="calendar">
 							<div id="calendar-holder"></div>
-							<button type="button" class="buttonCalendar"><span>{$lang->calendar}</span></button>
+							<button type="button" class="btnCalendar"><span>{$lang->calendar}</span></button>
 							<h4 class="h4" id="str_selected_date">{$disp_selected_date}</h4>
 							<input type="hidden" class="inputDate" value="{zdate($selected_date,'Y-m-d')}" />
 							<script type="text/javascript">
@@ -27,7 +27,7 @@
                                     {@ $_s = array_pop($lang->unit_week)}
 									$('#calendar-holder').calendar({
 										type : '{$type}',
-										button : '#calendar-holder+button.buttonCalendar',
+										button : '#calendar-holder+button.btnCalendar',
 										activeDate : "{zdate($selected_date,'Y/m/d')}",
 										select : function(year, month, date) {
 											var str = year+'.'+(month>9?'':'0')+month+'.'+(date>9?'':'0')+date;

@@ -23,7 +23,7 @@
 						<h2>{$oDocument->getTitleText()}</h2>
 						<!-- wPublish -->
 						<div class="wPublish">
-							<span class="buttonGray medium"><a href="{getUrl('act','dispTextyleToolPostManageWrite')}">{$lang->cmd_edit}</a></span>
+							<span class="btnGray medium"><a href="{getUrl('act','dispTextyleToolPostManageWrite')}">{$lang->cmd_edit}</a></span>
 						</div>
 						<!-- /wPublish -->
 					</div>
@@ -58,10 +58,10 @@
 											{@$_i++}
 										<!--@endforeach-->
 									</select>
-									<span class="buttonGray medium addCategoryToggle"><button type="button" onclick="jQuery('#add_category').toggleClass('open')"><img src="img/iconAdd.gif" width="8" height="8" alt="{$lang->add_category}" /></button></span>
+									<span class="btnGray medium addCategoryToggle"><button type="button" onclick="jQuery('#add_category').toggleClass('open')"><img src="img/iconAdd.gif" width="8" height="8" alt="{$lang->add_category}" /></button></span>
 									<span id="add_category" class="addCategory">
 										<input type="text" name="add_category" class="iText" />
-										<span class="buttonGray medium"><button type="button" onclick="addCategory()">{$lang->cmd_insert}</button></span>
+										<span class="btnGray medium"><button type="button" onclick="addCategory()">{$lang->cmd_insert}</button></span>
 									</span>
 	
 								</td>
@@ -113,7 +113,7 @@
 												<option value='BIG5'>BIG5</option>
 											</select>
 										</div>
-										<span class="buttonGray medium addTrackbackURL"><button type="button" onclick="appendTrackbackForm();return false;"><img src="img/iconAdd.gif" width="8" height="8" alt="{$lang->add_input_trackback}" /></button></span>
+										<span class="btnGray medium addTrackbackURL"><button type="button" onclick="appendTrackbackForm();return false;"><img src="img/iconAdd.gif" width="8" height="8" alt="{$lang->add_input_trackback}" /></button></span>
 									</div>
 									{@$trackbacks = $oPublish->getTrackbacks()}
 									<!--@if(count($trackbacks))-->
@@ -209,7 +209,7 @@
 										<input name="publish_date_yyyymmdd" type="text" class="disabled_subscription_n iText yymmdd inputDate" value="{$publish_date_yyyymmdd}" maxlength="10"  title="{$lang->ymd}" disabled="disabled" id="publishDate" />
 										<div class="calendar">
 											<div id="calendar-holder"></div>
-											<button type="button" class="buttonCalendar"><span>{$lang->calendar}</span></button>
+											<button type="button" class="btnCalendar"><span>{$lang->calendar}</span></button>
 										</div>
 										<input name="publish_date_hh" value="{$publish_date_hh}" type="text" class="disabled_subscription_n iText hh" maxlength="2" title="{$lang->unit_hour}" disabled="disabled" />
 										:
@@ -222,7 +222,7 @@
 				</fieldset>
 				<!-- wPublish -->
 				<div class="wPublish">
-					<span class="buttonAction actionBlue"><button type="submit">{$lang->cmd_publish}</button></span>
+					<span class="btn"><button type="submit">{$lang->cmd_publish}</button></span>
 				</div>
 				<!-- /wPublish -->
 			</div>
@@ -240,7 +240,7 @@
 		{@ $_s = array_pop($lang->unit_week)}
 		$('#calendar-holder').calendar({
 			type : '{$type}',
-			button : '#calendar-holder+button.buttonCalendar',
+			button : '#calendar-holder+button.btnCalendar',
 			activeDate : "{zdate($selected_date,'Y/m/d')}",
 			select : function(year, month, date) {
 				var str = year+'.'+(month>9?'':'0')+month+'.'+(date>9?'':'0')+date;

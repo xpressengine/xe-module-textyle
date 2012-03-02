@@ -31,7 +31,6 @@
 											<!--@end-->
 											<!--@end-->
 										</select>
-										<!--<a href="{getUrl('','act','dispTextyleToolConfigPostEditorComponent')}" class="buttonSet buttonSetting" onclick="popopen(this.href); return false;" title="{$lang->cmd_setup}"><span>{$lang->cmd_setup}</span></a>-->
                                         {$lang->about_etc_editor} <a href="{getUrl('','mid',$mid,'act','dispTextyleToolConfigEditorComponents')}">[{$lang->config_edit_components}]</a>
 									</td>
 								</tr>
@@ -81,8 +80,8 @@
                             <p class="uriExample">{$lang->blogapi_url} <strong>{getFullSiteUrl($textyle->get('domain'), '', 'mid', $textyle->get('mid'), 'act','api')}</strong></p>
 						</fieldset>
 						
-						<div class="buttonArea">
-							<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_apply}" /></span>
+						<div class="btnArea">
+							<span class="btn"><input type="submit" value="{$lang->cmd_apply}" /></span>
 						</div>
 
 					</form>

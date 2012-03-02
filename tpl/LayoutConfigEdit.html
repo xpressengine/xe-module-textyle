@@ -18,7 +18,7 @@
 				</script>
 				
 				<form action="./" method="post" id="codeEdit" class="codeEdit" onsubmit="return procFilter(this,insert_layout_edit);">
-					<span class="buttonGray medium widgetCreator"><a href="{getUrl('','module','widget','act','dispWidgetGenerateCode')}" onclick="popopen(this.href); return false">{$lang->cmd_generate_widget_code}</a></span>
+					<span class="btnGray medium widgetCreator"><a href="{getUrl('','module','widget','act','dispWidgetGenerateCode')}" onclick="popopen(this.href); return false">{$lang->cmd_generate_widget_code}</a></span>
 					<input type="hidden" name="mid" value="{$mid}" />
 					<input type="hidden" name="vid" value="{$vid}" />
 					
@@ -34,8 +34,8 @@
 					</ul>
 	
 					<!-- Button Area -->
-					<div class="buttonArea aCenter">
-						<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_save}" /></span>
+					<div class="btnArea">
+						<span class="btn"><input type="submit" value="{$lang->cmd_save}" /></span>
 					</div>
 					<!-- /Button Area -->
 				</form>
@@ -48,7 +48,7 @@
     <input type="hidden" name="mid" value="{$mid}" />
     <input type="hidden" name="vid" value="{$vid}" />
     <input type="hidden" name="act" value="procTextyleToolUserImageUpload" />
-	<p class="upload"><input name="user_image" type="file" /> <em>{$lang->msg_check_userimage}</em> <span class="buttonGray medium"><button type="submit">{$lang->cmd_save}</button></span></p>
+	<p class="upload"><input name="user_image" type="file" /> <em>{$lang->msg_check_userimage}</em> <span class="btnGray medium"><button type="submit">{$lang->cmd_save}</button></span></p>
 	<!--@if($user_image_list)-->
 	<ul>
 		<!--@foreach($user_image_list as $no => $file)-->
@@ -72,10 +72,10 @@
 </form>
 
 <div class="userDefineSkin">
-	<div class="buttonArea aCenter">
-		<span class="buttonAction actionWhite"><a href="{getUrl('','act','procTextyleToolUserSkinExport','mid',$mid,'vid',$vid)}">{$lang->cmd_textyle_skin_export}</a></span>
-		<span class="buttonAction actionWhite"><button type="button" onclick="jQuery('#rediscover').toggleClass('open')">{$lang->textyle_skin_import}</button></span>
-		<span class="buttonAction actionWhite"><input type="button" value="{$lang->cmd_reset}" onclick="if(confirm('{$lang->alert_reset_skin}')) doResetLayoutConfig(); return false;"/></span>
+	<div class="btnArea">
+		<span class="btn"><a href="{getUrl('','act','procTextyleToolUserSkinExport','mid',$mid,'vid',$vid)}">{$lang->cmd_textyle_skin_export}</a></span>
+		<span class="btn"><button type="button" onclick="jQuery('#rediscover').toggleClass('open')">{$lang->textyle_skin_import}</button></span>
+		<span class="btn"><input type="button" value="{$lang->cmd_reset}" onclick="if(confirm('{$lang->alert_reset_skin}')) doResetLayoutConfig(); return false;"/></span>
 	</div>
 	<div id="rediscover" class="">
 		<h4>{$lang->textyle_skin_import}</h4>
@@ -85,7 +85,7 @@
 			<input type="hidden" name="mid" value="{$mid}" />
 			<input type="hidden" name="vid" value="{$vid}" />
 			<input type="file" name="file" /> <em>{$lang->about_textyle_skin_import}</em>
-			<span class="buttonGray medium"><button type="submit">{$lang->cmd_submit}</button></span>
+			<span class="btnGray medium"><button type="submit">{$lang->cmd_submit}</button></span>
 		</form>	
 	</div>
 </div>

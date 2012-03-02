@@ -48,12 +48,12 @@
                                         <div>
                                             <b>{$lang->menu_name}</b>
                                                 <input type="text" name="menu_name" id="menu_name" value="<!--@if($selected_extra_menu->name)-->{$selected_extra_menu->name}<!--@end-->"/>
-							<a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','menu_name')}" onclick="popopen(this.href);return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_find_langcode}</span></a>
+							<a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','menu_name')}" onclick="popopen(this.href);return false;">{$lang->cmd_find_langcode}</a>
 							{$lang->about_langcode}
 					</div>
                                         <!-- wPublish -->
                                             <div class="wPublish" id="wPublishButtonContainer">
-                                                    <span class="buttonAction actionWhite normal"><button type="submit">{$lang->cmd_save}</button></span>
+                                                    <span class="btnAction actionWhite normal"><button type="submit">{$lang->cmd_save}</button></span>
                                             </div>
                                         <!-- /wPublish -->
 					<span class="cap capLeft"></span> <span class="cap capRight"></span>

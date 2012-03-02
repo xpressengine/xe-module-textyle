@@ -13,7 +13,7 @@
             <option value="regdate" <!--@if($search_target == 'regdate')-->selected="selected"<!--@end-->>{$lang->regdate}</option>
         </select>
         <input type="text" name="search_keyword" value="{$search_keyword}" />
-        <span class="button"><input type="submit" value="{$lang->cmd_search}" /></span>
+        <span class="btn"><input type="submit" value="{$lang->cmd_search}" /></span>
     </fieldset>
 </form>
 
@@ -44,8 +44,8 @@
 		</td>
         <td class="nowrap">{zdate($val->get('regdate'),"Y-m-d")}</td>
         <td class="nowrap">
-            <a href="{getUrl('act','dispTextyleAdminInsert','module_srl',$val->getModuleSrl())}" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a> 
-            <a href="{getUrl('act','dispTextyleAdminDelete','module_srl',$val->getModuleSrl())}" title="{htmlspecialchars($lang->cmd_delete)}" class="buttonSet buttonDelete"><span>{$lang->cmd_delete}</span></a>
+            <a href="{getUrl('act','dispTextyleAdminInsert','module_srl',$val->getModuleSrl())}">{$lang->cmd_setup}</a> 
+            <a href="{getUrl('act','dispTextyleAdminDelete','module_srl',$val->getModuleSrl())}" title="{htmlspecialchars($lang->cmd_delete)}">{$lang->cmd_delete}</a>
         </td>
     </tr>
     <!--@end-->
