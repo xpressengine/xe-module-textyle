@@ -274,6 +274,7 @@
     $lang->close_calendar_layer = 'Close calendar';
     $lang->select_calendar_layer = 'Select date from calendar';
 
+    $lang->about_textyle_admin = 'You can enter more admins by just sepparating them with a comma (,).';
     $lang->insert_title = 'Input title';
     $lang->new_post = 'Write a Post';
     $lang->modify_post = 'Modify a post';

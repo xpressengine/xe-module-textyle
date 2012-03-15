@@ -44,7 +44,14 @@
         function dispTextyleAdminInsert() {
             $oModuleModel = &getModel('module');
             $oMemberModel = &getModel('member');
-
+			
+            //set identifier type of admin
+        	$memberConfig = $oMemberModel->getMemberConfig();
+            foreach($memberConfig->signupForm as $item){
+            	if($item->isIdentifier) $identifierName = $item->name;
+            }
+            Context::set('identifier',$identifierName);
+            
             $module_srl = Context::get('module_srl');
             if($module_srl) {
                 $oTextyleModel = &getModel('textyle');
@@ -55,18 +62,14 @@
                 $site_admin = array();
                 if(is_array($admin_list)){
                     foreach($admin_list as $k => $v){
-                        $site_admin[] = $v->user_id;
+                    	if($identifierName == 'user_id')  $site_admin[] = $v->user_id;
+                    	   else $site_admin[] = $v->email_address;
                     }
 
                     Context::set('site_admin', join(',',$site_admin));
                 }
             }
-            //set identifier type of admin
-        	$memberConfig = $oMemberModel->getMemberConfig();
-            foreach($memberConfig->signupForm as $item){
-            	if($item->isIdentifier) $identifierName = $item->name;
-            }
-            Context::set('identifier',$identifierName);
+            
             
             $skin_list = $oModuleModel->getSkins($this->module_path);
             Context::set('skin_list',$skin_list);
