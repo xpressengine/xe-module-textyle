@@ -30,7 +30,7 @@
             </td>
         </tr>
 		<tr>
-			<th scope="row"><div>{$lang->textyle_admin}</div></th>
+			<th scope="row"><div>{$lang->textyle_admin} (<!--@if($identifier == 'user_id')-->{$lang->user_id}<!--@else-->{$lang->email_address}<!--@end-->)</div></th>
 			<td>
 				<input type="text" name="user_id" value="{$site_admin}" />
 			</td>

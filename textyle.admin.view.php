@@ -43,6 +43,7 @@
 
         function dispTextyleAdminInsert() {
             $oModuleModel = &getModel('module');
+            $oMemberModel = &getModel('member');
 
             $module_srl = Context::get('module_srl');
             if($module_srl) {
@@ -60,7 +61,13 @@
                     Context::set('site_admin', join(',',$site_admin));
                 }
             }
-
+            //set identifier type of admin
+        	$memberConfig = $oMemberModel->getMemberConfig();
+            foreach($memberConfig->signupForm as $item){
+            	if($item->isIdentifier) $identifierName = $item->name;
+            }
+            Context::set('identifier',$identifierName);
+            
             $skin_list = $oModuleModel->getSkins($this->module_path);
             Context::set('skin_list',$skin_list);
 

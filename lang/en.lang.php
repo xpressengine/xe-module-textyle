@@ -14,7 +14,7 @@
 	$lang->msg_create_textyle = 'Textyle is created';
 	$lang->init_category_title = 'Default Category';
 	$lang->add_category = 'Add a category';
-    $lang->textyle_admin = 'Textyle administrator (Email address)';
+    $lang->textyle_admin = 'Textyle administrator';
     $lang->textyle_title = 'Textyle\'s title';
     $lang->today_visitor = 'Number of today\'s <strong>visitors</strong>';
     $lang->today_comments = 'Number of today\'s <strong>comments</strong>';
