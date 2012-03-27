@@ -1997,32 +1997,48 @@
 		}
 
 		function procTextyleToolExtraMenuInsert(){
-                        $args = Context::getRequestVars();
-                        $menu_name = trim(Context::get('menu_name'));
+            $args = Context::getRequestVars();
+            $menu_name = trim(Context::get('menu_name'));
 			$menu_mid = Context::get('menu_mid');
-			if(!$menu_name || !$menu_mid) return new Object(-1,'msg_invalid_request');
-
-                        $oModuleModel = &getModel('module');
+			
+			$oModuleModel = &getModel('module');
 			$oTextyleModel = &getModel('textyle');
 			$oModuleController = &getController('module');
-                        $oDocumentController = &getController('document');
+            $oDocumentController = &getController('document');
 			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
-                        
-                         //$logged_info = Context::get('logged_info');
-                         //$args->module_srl = $logged_info->member_srl;
-
-                        $output = $oDocumentController->insertDocument($args);
 			
-			$args->site_srl = $this->site_srl;
-			$args->mid = $menu_mid;
-			$args->browser_title = $menu_name;
-			$args->module = 'page';
-			$args->page_type = 'WIDGET';
-                        $args->content = '<img src="./common/tpl/images/widget_bg.jpg" class="zbxe_widget_output" widget="widgetContent" style="float: left; width: 100%;" body="" document_srl="'.$output->get('document_srl').'" widget_padding_left="0" widget_padding_right="0" widget_padding_top="0" widget_padding_bottom="0"  /> ';
-			$output = $oModuleController->insertModule($args);
-			if(!$output->toBool()) return $output;
-                        
-
+            if($args->insert_type == "module_page"){
+            	$menu->type = 'module_page';
+				$module_type = Context::get('module_type');
+				if(!$menu_name || !$module_type || !$menu_mid) return new Object(-1,'msg_invalid_request');
+	
+				$module_count = $oModuleModel->getModuleCount($this->site_srl, $module_type);
+				if($module_count >= $config->allow_service[$module_type]) return new Object(-1,'msg_module_count_exceed');
+				$args->site_srl = $this->site_srl;
+				$args->mid = $menu_mid;
+				$args->browser_title = $menu_name;
+				$args->module = $module_type;
+				$output = $oModuleController->insertModule($args);
+				if(!$output->toBool()) return $output;
+            }else {
+            	$menu->type = 'text_page';
+				if(!$menu_name || !$menu_mid) return new Object(-1,'msg_invalid_request');
+				
+				$module_count = $oModuleModel->getModuleCount($this->site_srl, 'page');
+				if($module_count >= $config->allow_service['page']) return new Object(-1,'msg_module_count_exceed');
+	            	
+	            $output = $oDocumentController->insertDocument($args);
+				
+				$args->site_srl = $this->site_srl;
+				$args->mid = $menu_mid;
+				$args->browser_title = $menu_name;
+				$args->module = 'page';
+				$args->page_type = 'WIDGET';
+	            $args->content = '<img src="./common/tpl/images/widget_bg.jpg" class="zbxe_widget_output" widget="widgetContent" style="float: left; width: 100%;" body="" document_srl="'.$output->get('document_srl').'" widget_padding_left="0" widget_padding_right="0" widget_padding_top="0" widget_padding_bottom="0"  /> ';
+				$output = $oModuleController->insertModule($args);
+				if(!$output->toBool()) return $output;
+            }
+            
 			$menu->name = $menu_name;
 			$menu->site_srl = $this->site_srl;
 			$menu->module_srl = $output->get('module_srl');

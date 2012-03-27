@@ -8,6 +8,7 @@
         <column name="modules.module" alias="module" />
         <column name="modules.mid" alais="mid" />
         <column name="extra_menu.name" alais="name" />
+        <column name="extra_menu.type" alais="type" />
         <column name="extra_menu.list_order" alais="name" />
     </columns>
     <conditions>

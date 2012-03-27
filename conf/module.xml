@@ -60,6 +60,7 @@
 		<permission action="dispTextyleToolConfigChangePassword" target="manager" />
 		<permission action="dispTextyleToolExtraMenuList" target="manager" />
 		<permission action="dispTextyleToolExtraMenuInsert" target="manager" />
+		<permission action="dispTextyleToolExtraMenuModuleInsert" target="manager" />
 
 		<permission action="getTextyleAPITest" target="manager" />
 
@@ -134,6 +135,7 @@
 		<action name="dispTextyleToolConfigChangePassword" type="view" />
 		<action name="dispTextyleToolExtraMenuList" type="view" />
 		<action name="dispTextyleToolExtraMenuInsert" type="view" />
+		<action name="dispTextyleToolExtraMenuModuleInsert" type="view" />
 
 		<action name="dispTextyleGuestbook" type="view" />
 		<action name="dispTextyleGuestbookReply" type="view" />

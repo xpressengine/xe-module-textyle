@@ -344,7 +344,8 @@
             'dispTextyleToolPostManageBasket'=>'Recycle Bin',
         ),
         array(
-        	'dispTextyleToolExtraMenuInsert'=>'New Page',
+        	'dispTextyleToolExtraMenuInsert'=>'New Text Page',
+        	'dispTextyleToolExtraMenuModuleInsert'=>'New Module Page',
         	'dispTextyleToolExtraMenuList'=>'All Pages',
         ),
         array(
@@ -483,7 +484,8 @@
 	$lang->msg_limit_module = '%s module(s) available';
     $lang->about_textyle_extra_menu = 'You may add modules from XpressEngine as menuitems to your Textyle.';
     $lang->cmd_textyle_extra_menu_config = 'Additional Menu';
-    $lang->cmd_textyle_new_page = 'New Page';
+    $lang->cmd_textyle_new_page = 'New Text Page';
+    $lang->cdm_textyle_new_module_page = 'New Module Page';
     $lang->textyle_extra_menu_limit_count = 'Maximum Number';
 	$lang->msg_limit_textyle_extra_mid = 'Only format of alphabets + [alphabets, numbers, and underscore(_)] is allowed.';
 

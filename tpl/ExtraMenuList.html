@@ -31,7 +31,11 @@
 				<td><a href="{getUrl('','mid',$menu->mid)}">{$menu->name}</a></td>
 				<td>{$menu->module}</td>
 				<td><input type="hidden" name="" class="menu_mid" value="{$menu->mid}" />
+				<!--@if($menu->type=='text_page')-->
 				<a href="{getUrl('','act','dispTextyleToolExtraMenuInsert','menu_mid',$menu->mid)}">{$lang->cmd_modify}...</a>
+				<!--@elseif($menu->type=='module_page')-->
+				<a href="{getUrl('','act','dispTextyleToolExtraMenuModuleInsert','menu_mid',$menu->mid)}">{$lang->cmd_modify}...</a>
+				<!--@end-->
 				<button type="button" onclick="deleteExtraMenu('{$menu->mid}','{$lang->confirm_delete}')" class="text">{$lang->cmd_delete}</button>
 				</td>
 			</tr>
