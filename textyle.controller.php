@@ -784,6 +784,7 @@
                         $subscripted = true;
                     }
                 }
+                $oDocumentController->updateCategoryCount($this->module_srl,$var->category_srl);
                 if(!$subscripted) {
                     executeQuery('textyle.deleteTextyleSubscriptionByDocumentSrl', $args);
                     $oPublish->publish();
