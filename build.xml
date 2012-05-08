@@ -14,6 +14,7 @@
 	<property name="version" value="" override="true" />
 	<property name="config.build_dir" value="./build" override="true" />
 	<property name="config.build_dir_module_folder" value="./build/xe-textyle" override="true" />
+	<property name="config.module_folder_name" value="/textyle" override="true" />
 	<property name="config.svn" value="D:\svn\bin\svn.exe" override="true" />
 	<property name="release.repo" value="http://xe-textyle.googlecode.com/svn/tags/textyle/${version}" override="true" />
 	<property name="release.name" value="xe-textyle.${version}" override="true" />
@@ -33,8 +34,8 @@
     <!-- ============================================  -->
     <target name="build" depends="prepare">
         <echo msg="Exporting repo files to build directory..." />
-		<exec command="${config.svn} export ${release.repo} ${config.build_dir_module_folder}" />
-		<exec command="rm ${config.build_dir_module_folder}/build.xml" />
+		<exec command="${config.svn} export ${release.repo} ${config.build_dir_module_folder}${config.module_folder_name}" />
+		<exec command="rm ${config.build_dir_module_folder}${config.module_folder_name}/build.xml" />
     </target>
 
     <!-- ============================================  -->
