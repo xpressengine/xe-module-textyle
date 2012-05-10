@@ -1254,116 +1254,612 @@
         /**
          * @brief Textyle home
          **/
-        function dispTextyle(){
-        	$oDocumentModel = &getModel('document');
-            $var = Context::getRequestVars();
-            if($var->preview == 'Y'){
-            	  Context::set('textyle_mode', 'content');
-            	  $prev_document = $oDocumentModel->getDocument($var->document_srl);
-            	  $document_list[] = $prev_document;
-            	  Context::set('document_list', $document_list);
-            	  return;
-            }
-        	$oTextyleModel = &getModel('textyle');
-            $oTextyleController = &getController('textyle');
-            
-
+    function dispTextyle()
+        {
+        	//$this->module_info->skin
+        	$oModuleModel = &getModel('module');
+        	$skins = $oModuleModel->getSkins($this->module_path);
+        	$current_skin = $skins[$this->module_info->skin];
+        	if(isset($current_skin->extra_vars)){
+	        	foreach($current_skin->extra_vars as $extra_var){
+	        		if($extra_var->name == 'content_type') $current_content_type = $extra_var->title;
+	        	}
+        	}
+        	if($current_content_type == 'multiple_posts'){
+        		$this->dispMultiPostTextyle();
+        	} else {
+        		$oDocumentModel = &getModel('document');
+	            $var = Context::getRequestVars();
+	            if($var->preview == 'Y'){
+	            	  Context::set('textyle_mode', 'content');
+	            	  $prev_document = $oDocumentModel->getDocument($var->document_srl);
+	            	  $document_list[] = $prev_document;
+	            	  Context::set('document_list', $document_list);
+	            	  return;
+	            }
+	        	$oTextyleModel = &getModel('textyle');
+	            $oTextyleController = &getController('textyle');
+	            
+	
+	            $document_srl = Context::get('document_srl');
+	            $page = Context::get('page');
+	            $page = $page>0 ? $page : 1;
+	            Context::set('page',$page);
+	
+	            // set category
+	            $category_list = $oDocumentModel->getCategoryList($this->module_srl);
+	            Context::set('category_list', $category_list);
+	
+	            if($document_srl) {
+	                $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
+	                if($oDocument->isExists()) {
+	                    if($oDocument->get('module_srl')!=$this->module_info->module_srl ) return $this->stop('msg_invalid_request');
+	
+	                    Context::setBrowserTitle($this->textyle->get('browser_title') . ' Â»  ' . $oDocument->getTitleText());
+	
+	                    // meta keywords category + tag
+	                    $tag_array = $oDocument->get('tag_list');
+	                    if($tag_array) {
+	                        $tag = htmlspecialchars(join(', ',$tag_array));
+	                    } else {
+	                        $tag = '';
+	                    }
+	                    $category_srl = $oDocument->get('category_srl');
+	                    if($tag && $category_srl >0) $tag = $category_list[$category_srl]->title .', ' . $tag;
+	                    Context::addHtmlHeader(sprintf('<meta name="keywords" content="%s" />',$tag));
+	
+	                    if($this->grant->manager) $oDocument->setGrant();
+	
+	                } else {
+	                    Context::set('document_srl','',true);
+	                    //$this->alertMessage('msg_not_founded');
+	                }
+	            } else {
+	                $oDocument = $oDocumentModel->getDocument(0,false,false);
+	            }
+	            Context::set('oDocument', $oDocument);
+	
+	            $args->module_srl = $this->module_srl;
+	            $args->category_srl = Context::get('category');
+	            $args->page = $page;
+	            $args->page_count = 10;
+	            $args->search_target = Context::get('search_target');
+	            $args->search_keyword = Context::get('search_keyword');
+	            $args->sort_index = Context::get('sort_index');
+	            $args->order_type = Context::get('order_type');
+	            if(!in_array($args->sort_index, $this->order_target)) $args->sort_index = $this->module_info->order_target?$this->module_info->order_target:'list_order';
+	            if(!in_array($args->order_type, array('asc','desc'))) $args->order_type = $this->module_info->order_type?$this->module_info->order_type:'asc';
+	
+	            if($oDocument->isExists()) {
+	                $document_list[] = $oDocument;
+	                Context::set('none_navigation', true);
+	            } else {
+	                $args->list_count = $this->textyle->getPostListCount();
+	                if($args->search_target && $args->search_keyword || $args->category_srl) $args->list_count=50;
+	                $output = $oDocumentModel->getDocumentList($args, false, false);
+	                $document_list = $output->data;
+	                Context::set('page_navigation', $output->page_navigation);
+	            }
+	
+	            if(is_array($document_list)) $_key = array_keys($document_list);
+	            if(count($_key)==1) {
+	                $_srl = array_pop($_key);
+	                $doc = $document_list[$_srl];
+	                if($doc->document_srl) {
+	                    $args->document_srl = $doc->document_srl;
+	                    $output = executeQuery('textyle.getNextDocument', $args);
+	                    if($output->data->document_srl) Context::set('prev_document', new documentItem($output->data->document_srl,false));
+	                    $output = executeQuery('textyle.getPrevDocument', $args);
+	                    if($output->data->document_srl) Context::set('next_document', new documentItem($output->data->document_srl,false));
+	
+	                    if(!$doc->isSecret() || $doc->isGranted()) $doc->updateReadedCount();
+	
+	                    $oTextyleController->insertReferer($doc);
+	                }
+	            }
+	
+	            Context::set('document_list', $document_list);
+	
+	            if(!$args->category_srl && !$args->search_keyword) {
+	                if($oDocument->isExists()) $mode = 'content';
+	                else $mode = $this->textyle->getPostStyle();
+	            } else {
+	                if($oDocument->isExists()) $mode = 'content';
+	                else $mode = 'list';
+	            }
+	            Context::set('textyle_mode', $mode);
+	
+	            $category_list = $oDocumentModel->getCategoryList($this->module_srl);
+	            if($args->category_srl) Context::set('selected_category', $category_list[$args->category_srl]->title);
+	
+	            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
+	            Context::addJsFilter($this->module_path.'tpl/filter', 'input_password.xml');
+	            Context::addJsFilter($this->module_path.'tpl/filter', 'input_password_for_modify_comment.xml');
+        	}
+        }
+        
+        function dispMultiPostTextyle(){
+        	// $document_srl is obtained only at Comment Reply and Comment Modify.
             $document_srl = Context::get('document_srl');
-            $page = Context::get('page');
-            $page = $page>0 ? $page : 1;
-            Context::set('page',$page);
+            $oDocumentModel = &getModel('document');
+            $category = Context::get('category');
 
-            // set category
+            if ($document_srl)
+            {
+                $oDocument = $oDocumentModel->getDocument($document_srl, false, false);
+                // If document exists, then this is a comment posting case,
+                // so we don't need to perform all other operations
+                if ($oDocument->isExists())
+                {
+                    // If this document doesn't belong to this blog module,
+                    // ignore it.
+                    if ($oDocument->get('module_srl') != $this->module_info->module_srl)
+                    {
+                        return $this->stop('msg_invalid_request');
+                    }
+                }
+                else{
+                    Context::set('document_srl','',true);
+                    return $this->stop('msg_invalid_request');
+                }
+            }
+            else{
+                $alias_title = Context::get('alias_title');
+
+                if ($alias_title)
+                {
+                    $query_arguments->alias_title = "/" . $alias_title . "/";
+                    $output = executeQuery('textyle.getDocumentSrlByAlias', $query_arguments);
+
+                    if($output->data)
+                    {
+                        $document_srl = $output->data->document_srl;
+                        $oDocument = $oDocumentModel->getDocument($document_srl, false, false);
+
+                        if ($oDocument->isExists())
+                        {
+                            $oDocument->alias_title = $category . '/' . $alias_title . '/';
+                        }
+                    }
+                }
+            }
+            // set the page
+            $page = Context::get('page');
+            $page = $page > 0 ? $page : 1;
+            Context::set('page', $page);
+            // get a list of categories of textyle
             $category_list = $oDocumentModel->getCategoryList($this->module_srl);
+
+            Context::set('module_name', $this->textyle->domain);
             Context::set('category_list', $category_list);
 
-            if($document_srl) {
-                $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
-                if($oDocument->isExists()) {
-                    if($oDocument->get('module_srl')!=$this->module_info->module_srl ) return $this->stop('msg_invalid_request');
-
-                    Context::setBrowserTitle($this->textyle->get('browser_title') . ' »  ' . $oDocument->getTitleText());
-
-                    // meta keywords category + tag
-                    $tag_array = $oDocument->get('tag_list');
-                    if($tag_array) {
-                        $tag = htmlspecialchars(join(', ',$tag_array));
-                    } else {
-                        $tag = '';
-                    }
-                    $category_srl = $oDocument->get('category_srl');
-                    if($tag && $category_srl >0) $tag = $category_list[$category_srl]->title .', ' . $tag;
-                    Context::addHtmlHeader(sprintf('<meta name="keywords" content="%s" />',$tag));
-
-                    if($this->grant->manager) $oDocument->setGrant();
-
-                } else {
-                    Context::set('document_srl','',true);
-                    //$this->alertMessage('msg_not_founded');
-                }
-            } else {
-                $oDocument = $oDocumentModel->getDocument(0,false,false);
-            }
-            Context::set('oDocument', $oDocument);
-
+            // Wanted Post List
             $args->module_srl = $this->module_srl;
-            $args->category_srl = Context::get('category');
-            $args->page = $page;
             $args->page_count = 10;
-            $args->search_target = Context::get('search_target');
-            $args->search_keyword = Context::get('search_keyword');
+
             $args->sort_index = Context::get('sort_index');
             $args->order_type = Context::get('order_type');
-            if(!in_array($args->sort_index, $this->order_target)) $args->sort_index = $this->module_info->order_target?$this->module_info->order_target:'list_order';
-            if(!in_array($args->order_type, array('asc','desc'))) $args->order_type = $this->module_info->order_type?$this->module_info->order_type:'asc';
 
-            if($oDocument->isExists()) {
-                $document_list[] = $oDocument;
-                Context::set('none_navigation', true);
-            } else {
-                $args->list_count = $this->textyle->getPostListCount();
-                if($args->search_target && $args->search_keyword || $args->category_srl) $args->list_count=50;
-                $output = $oDocumentModel->getDocumentList($args, false, false);
-                $document_list = $output->data;
-                Context::set('page_navigation', $output->page_navigation);
+            if (!in_array($args->sort_index, $this->order_target))
+            {
+                $args->sort_index = $this->module_info->order_target ? $this->module_info->order_target : 'list_order';
             }
 
-            if(is_array($document_list)) $_key = array_keys($document_list);
-            if(count($_key)==1) {
-                $_srl = array_pop($_key);
-                $doc = $document_list[$_srl];
-                if($doc->document_srl) {
-                    $args->document_srl = $doc->document_srl;
-                    $output = executeQuery('textyle.getNextDocument', $args);
-                    if($output->data->document_srl) Context::set('prev_document', new documentItem($output->data->document_srl,false));
-                    $output = executeQuery('textyle.getPrevDocument', $args);
-                    if($output->data->document_srl) Context::set('next_document', new documentItem($output->data->document_srl,false));
+            if (!in_array($args->order_type, array('asc','desc')))
+            {
+                $args->order_type = $this->module_info->order_type ? $this->module_info->order_type : 'asc';
+            }
 
-                    if(!$doc->isSecret() || $doc->isGranted()) $doc->updateReadedCount();
+            $recentTags = array();
 
-                    $oTextyleController->insertReferer($doc);
+            // ì„ íƒ�ë�œ ê¸€ì�´ í•˜ë‚˜ë�¼ë�„ ê¸€ ëª©ë¡�ìœ¼ë¡œ í˜•ì„±
+            if ($oDocument && $oDocument->isExists())
+            {
+                $mode = 'content';
+                // set the browser title
+                Context::setBrowserTitle($oDocument->getTitle() . ' | ' . $this->textyle->get('browser_title'));
+                // set meta keywords category + all tags of the document
+                $docTags = $oDocument->get('tags');
+                $category_srl = $oDocument->get('category_srl');
+
+                if ($category_srl)
+                {
+                    $tags = $category_list[$category_srl]->title;
+                }
+
+                if ($docTags)
+                {
+                    $docTagsArray = $oDocument->get('tag_list');
+
+                    foreach($docTagsArray as $tag)
+                    {
+                        ++$recentTags[$tag];
+                    }
+
+                    $tags .= ($tags ? ',' : '') . $docTags;
+                }
+
+                // ì„ íƒ�ë�œ ê¸€ì�´ í•˜ë‚˜ì�¼ ê²½ìš° ì�´ì „/ ë‹¤ì�Œ íŽ˜ì�´ì§€ êµ¬í•¨ + ì¡°íšŒìˆ˜ ì¦�ê°€ + referer ê¸°ë¡�
+                $oDocument->updateReadedCount();
+
+                // referer ë‚¨ê¹€
+                $oTextyleController = &getController('textyle');
+                $oTextyleController->insertReferer($oDocument);
+
+                // ê´€ë¦¬ ê¶Œí•œì�´ ìžˆë‹¤ë©´ ê¶Œí•œì�„ ë¶€ì—¬
+                if($this->grant->manager) $oDocument->setGrant();
+				$oDocument->variables['relative_date'] = $this->zdateRelative($oDocument->getRegdateTime());
+                $document_list[] = $oDocument;
+                $nr_documents = count($document_list);
+                Context::set('nr_documents',$nr_documents);
+                if($nr_documents == 1) {
+                	$_comment_list = $oDocument->getComments();
+                	if(isset($_comment_list)){
+	                	foreach($_comment_list as $comment){
+	                		$comment->variables['relativeDate'] = $this->zdateRelative($comment->getRegdateTime());
+	                	}
+                	}
+                	Context::set('_comment_list', $_comment_list);
+                }
+                Context::set('document_list', $document_list);
+            }
+            else{
+                $mode = $this->textyle->getPostStyle();
+                // Check if the search is within a specific tag
+                $search_target = Context::get('search_target');
+
+                if ($search_target == 'tags')
+                {
+                    $args->tag = Context::get('search_keyword');
+                }
+
+                // Get the category
+                $args->category_srl = urldecode($category);
+
+                if ($args->category_srl && !is_numeric($args->category_srl))
+                {
+                    $arguments->category_title = $args->category_srl;
+                    $arguments->module_srl = $this->module_srl;
+                    $output = executeQuery('textyle.getCategorySrl', $arguments);
+
+                    if($output->data)
+                    {
+                        $args->category_srl = $output->data->category_srl;
+                        $args->categories[] = $args->category_srl;
+                        if($category_list[$args->category_srl]->child_count)
+                        foreach($category_list[$args->category_srl]->childs as $child){
+                        	$args->categories[] = $child;
+                        }
+                        $tags = $category_list[$args->category_srl]->title;
+                        // set the browser title for this category
+                        Context::setBrowserTitle($tags . ' | ' . $this->textyle->get('browser_title'));
+                    }
+                }
+                else{
+                    $args->category_srl = Context::get('category_srl');
+                }
+                // If there is such a category
+                if ($args->category_srl)
+                {
+                    Context::set('selected_category', $category_list[$args->category_srl]->title);
+                }
+                // Get the most popular blog (based on readed_count column) for the past month.
+                // By default it return 1 top viewed document.
+                // It is displayed only on the front page of the blog, i.e. on the first page.
+                elseif ($page == 1 && !isset($args->tag))
+                {
+                    $args->module_srl = $this->module_srl;
+                    $args->start_date = date('YmdHis', strtotime("-1 month"));
+                    $args->end_date = date('YmdHis');
+                    $args->sort_index = 'readed_count';
+                    $args->page = 1;
+                    $args->list_count = 3;
+
+                    $mostPopularBlogs = $this->getDocumentItems('textyle.getTopViewDocumentsInDateRange', $args);
+                    foreach($mostPopularBlogs->data as $popularBlog){
+                    	$popularBlog->variables['relative_date'] = $this->zdateRelative($popularBlog->getRegdateTime());
+                    	if($popularBlog->get('alias_title')){
+                    		$popularBlog->variables['url'] = getSiteUrl().$this->textyle->domain.'/entry/'.$popularBlog->get('alias_title');
+                    	}else{
+                    		$popularBlog->variables['url'] = getSiteUrl().$this->textyle->domain.'/'.$popularBlog->get('document_srl');
+                    	}
+                    }
+                    Context::set('mostPopularBlogs', $mostPopularBlogs->data);
+
+                    unset($args->start_date);
+                    unset($args->end_date);
+                    $args->list_count = 5;
+                    $args->page = $page;
+
+                    $allPopularBlogs = $this->getDocumentItems('textyle.getAllTimeTopViewDocuments', $args);
+                	foreach($allPopularBlogs->data as $popularBlog){
+                    	$popularBlog->variables['relative_date'] = $this->zdateRelative($popularBlog->getRegdateTime());
+                		if($popularBlog->get('alias_title')){
+                    		$popularBlog->variables['url'] = getSiteUrl().$this->textyle->domain.'/entry/'.$popularBlog->get('alias_title');
+                    	}else{
+                    		$popularBlog->variables['url'] = getSiteUrl().$this->textyle->domain.'/'.$popularBlog->get('document_srl');
+                    	}
+                    }
+                    Context::set('allPopularBlogs', $allPopularBlogs->data);
+                }
+
+                // Get a list of latest posts
+                $args->module_srl = $this->module_srl;
+                $args->list_count = $this->textyle->getPostListCount();
+                $args->sort_index = 'list_order';
+                $args->page = $page;
+                $args->page_count = 10;
+                
+                $latestBlogs = $this->getDocumentItems('textyle.getPosts', $args);
+
+                Context::set('latestBlogs', $latestBlogs->data);
+                Context::set('page_navigation', $latestBlogs->page_navigation);
+				if(isset($latestBlogs->data)){
+	                foreach($latestBlogs->data as $document)
+	                {
+	                    $docTags = $document->get('tag_list');
+						if(isset($docTags)){
+		                    foreach($docTags as $tag)
+		                    {
+		                        $recentTags[$tag]++;
+		                    }
+						}
+						$document->variables['relative_date'] = $this->zdateRelative($document->getRegdateTime());
+	                		if($document->get('alias_title')){
+	                    		$document->variables['url'] = getSiteUrl().$this->textyle->domain.'/entry/'.$document->get('alias_title');
+	                    	}else{
+	                    		$document->variables['url'] = getSiteUrl().$this->textyle->domain.'/'.$document->get('document_srl');
+	                    	}
+	                }
+				}
+                arsort($recentTags);
+                $tags .= ',' . implode(',', array_keys($recentTags));
+            }
+
+            Context::addHtmlHeader(sprintf('<meta name="keywords" content="%s" />', $tags));
+
+            Context::addJsFilter($this->module_path . 'skins/' . $this->module_info->skin . '/filter', 'insert_comment.xml');
+
+            Context::set('textyle_mode', $mode);
+            Context::set('recentTags', $recentTags);
+
+            Context::set('module_path', $this->module_path);
+        }
+        
+	    function zdateRelative($date)
+	    {
+	        $diff = time() - $date;
+	
+	        if ($diff < 60){
+	            return sprintf($diff > 1 ? Context::getLang('seconds_ago') : Context::getLang('second_ago'), $diff);
+	        }
+	
+	        $diff = floor($diff/60);
+	
+	        if ($diff < 60){
+	            return sprintf($diff > 1 ? Context::getLang('minutes_ago') : Context::getLang('minute_ago'), $diff);
+	        }
+	
+	        $diff = floor($diff/60);
+	
+	        if ($diff < 24){
+	            return sprintf($diff > 1 ? Context::getLang('hours_ago') : Context::getLang('hour_ago'), $diff);
+	        }
+	
+	        $diff = floor($diff/24);
+	
+	        if ($diff < 7){
+	            return sprintf($diff > 1 ? Context::getLang('days_ago') : Context::getLang('day_ago'), $diff);
+	        }
+	
+	        if ($diff < 30)
+	        {
+	            $diff = floor($diff / 7);
+	
+	            return sprintf($diff > 1 ? Context::getLang('weeks_ago') : Context::getLang('week_ago'), $diff);
+	        }
+	
+	        $diff = floor($diff/30);
+	
+	        if ($diff < 12){
+	            return sprintf($diff > 1 ? Context::getLang('months_ago') : Context::getLang('month_ago'), $diff);
+	        }
+	
+	        $diff = floor($diff/12);
+	
+	        return sprintf($diff > 1 ? Context::getLang('years_ago') : Context::getLang('year_ago'), $diff);
+	    }
+	    
+        private function getDocumentItems($query, $args)
+        {
+            $documents = executeQuery($query, $args);
+
+            if ($documents->data)
+            {
+                if (!is_array($documents->data))
+                {
+                    $documents->data = array($documents->data);
+                }
+
+                foreach($documents->data as $key => &$attribute)
+                {
+                    $document_srl = $attribute->document_srl;
+
+                    $oDocumentMostPopular = null;
+                    $oDocumentMostPopular = new documentItem();
+                    $oDocumentMostPopular->setAttribute($attribute, false);
+                    $attribute = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
                 }
             }
 
-            Context::set('document_list', $document_list);
-
-            if(!$args->category_srl && !$args->search_keyword) {
-                if($oDocument->isExists()) $mode = 'content';
-                else $mode = $this->textyle->getPostStyle();
-            } else {
-                if($oDocument->isExists()) $mode = 'content';
-                else $mode = 'list';
-            }
-            Context::set('textyle_mode', $mode);
-
-            $category_list = $oDocumentModel->getCategoryList($this->module_srl);
-            if($args->category_srl) Context::set('selected_category', $category_list[$args->category_srl]->title);
-
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
-            Context::addJsFilter($this->module_path.'tpl/filter', 'input_password.xml');
-            Context::addJsFilter($this->module_path.'tpl/filter', 'input_password_for_modify_comment.xml');
+            return $documents;
         }
 
+        function dispCommentEditor()
+        {
+            $document_srl = Context::get('document_srl');
+            //$logged_info = Context::get('logged_info');
+            //$logged_info->group_list[1] = 1;
+            //Context::set('logged_info',$logged_info);
+
+            $oDocumentModel = &getModel("document");
+            $oDocument = $oDocumentModel->getDocument($document_srl);
+
+            if (!$oDocument->isExists())
+            {
+                return new Object(-1, 'msg_invalid_request');
+            }
+
+            if (!$oDocument->allowComment())
+            {
+                return new Object(-1, 'comments_disabled');
+            }
+
+            Context::set('oDocument', $oDocument);
+
+            $oModuleModel = &getModel('module');
+            $module_info = $oModuleModel->getModuleInfoByModuleSrl($oDocument->get('module_srl'));
+
+            Context::set("module_info", $module_info);
+
+            $module_path = './modules/' . $module_info->module . '/';
+            $skin_path = $module_path . 'skins/' . $module_info->skin . '/';
+
+            if(!$module_info->skin || !is_dir($skin_path))
+            {
+                $skin_path = $module_path . 'skins/multiPost/';
+            }
+
+            $oTemplateHandler = &TemplateHandler::getInstance();
+			$html = base64_encode($oTemplateHandler->compile($skin_path, 'comment_form.html'));
+            $this->add('html', $html);
+            $this->add('message_type', 'info');
+        }
+
+        function dispModifyComment()
+        {
+            // allow only logged in users to comment.
+            if (!Context::get('is_logged'))
+            {
+                return new Object(-1, 'login_to_modify_comment');
+            }
+
+            $comment_srl = Context::get('comment_srl');
+
+            // ì§€ì •ë�œ ëŒ“ê¸€ì�´ ì—†ë‹¤ë©´ ì˜¤ë¥˜
+            if (!$comment_srl)
+            {
+                return new Object(-1, 'msg_invalid_request');
+            }
+
+            // í•´ë‹¹ ëŒ“ê¸€ë¥¼ ì°¾ì•„ë³¸ë‹¤
+            $oCommentModel = &getModel('comment');
+            $oComment = $oCommentModel->getComment($comment_srl, $this->grant->manager);
+
+            // ëŒ“ê¸€ì�´ ì—†ë‹¤ë©´ ì˜¤ë¥˜
+            if (!$oComment->isExists())
+            {
+                return $this->dispWikiMessage('msg_invalid_request');
+            }
+
+            // ê¸€ì�„ ìˆ˜ì •í•˜ë ¤ê³  í•  ê²½ìš° ê¶Œí•œì�´ ì—†ëŠ” ê²½ìš° ë¹„ë°€ë²ˆí˜¸ ìž…ë ¥í™”ë©´ìœ¼ë¡œ
+            if (!$oComment->isGranted())
+            {
+                return $this->setTemplateFile('input_password_form');
+            }
+
+            // í•„ìš”í•œ ì •ë³´ë“¤ ì„¸íŒ…
+            Context::set('oComment', $oComment);
+
+            $oModuleModel = &getModel('module');
+            $module_info = $oModuleModel->getModuleInfoByModuleSrl($oComment->get('module_srl'));
+
+            if (!$oComment->isGranted())
+            {
+                return new Object(-1, 'no_rights_to_modify_comment');
+            }
+
+            Context::set("module_info", $module_info);
+
+            $module_path = './modules/' . $module_info->module . '/';
+            $skin_path = $module_path . 'skins/' . $module_info->skin . '/';
+
+            if(!$module_info->skin || !is_dir($skin_path))
+            {
+                $skin_path = $module_path . 'skins/multiPost/';
+            }
+
+            $oTemplateHandler = &TemplateHandler::getInstance();
+			
+            $html = base64_encode($oTemplateHandler->compile($skin_path, 'comment_form.html'));
+            $this->add('html', $html);
+
+            $this->add('html', $html);
+            $this->add('comment_srl', $oComment->comment_srl);
+        }
+
+        function dispReplyComment()
+        {
+            // ëª©ë¡� êµ¬í˜„ì—� í•„ìš”í•œ ë³€ìˆ˜ë“¤ì�„ ê°€ì ¸ì˜¨ë‹¤
+            $parent_srl = Context::get('comment_srl');
+
+            // ì§€ì •ë�œ ì›� ëŒ“ê¸€ì�´ ì—†ë‹¤ë©´ ì˜¤ë¥˜
+            if (!$parent_srl)
+            {
+                return new Object(-1, 'msg_invalid_request');
+            }
+
+            // í•´ë‹¹ ëŒ“ê¸€ë¥¼ ì°¾ì•„ë³¸ë‹¤
+            $oCommentModel = &getModel('comment');
+            $oSourceComment = $oCommentModel->getComment($parent_srl, $this->grant->manager);
+
+            // ëŒ“ê¸€ì�´ ì—†ë‹¤ë©´ ì˜¤ë¥˜
+            if (!$oSourceComment->isExists())
+            {
+                return new Object(-1, 'msg_invalid_request');
+            }
+
+            $oDocumentModel = &getModel("document");
+            $oDocument = $oDocumentModel->getDocument($oSourceComment->get('document_srl'));
+
+            if (!$oDocument->isExists())
+            {
+                return new Object(-1, 'msg_invalid_request');
+            }
+
+            if (!$oDocument->allowComment())
+            {
+                return new Object(-1, 'comments_disabled');
+            }
+
+            // ëŒ€ìƒ� ëŒ“ê¸€ì�„ ìƒ�ì„±
+            $oComment = $oCommentModel->getComment();
+            $oComment->add('parent_srl', $parent_srl);
+            $oComment->add('document_srl', $oSourceComment->get('document_srl'));
+            $oComment->add('module_srl', $this->module_srl);
+
+            // í•„ìš”í•œ ì •ë³´ë“¤ ì„¸íŒ…
+            Context::set('oComment', $oComment);
+
+            $oModuleModel = &getModel('module');
+            $module_info = $oModuleModel->getModuleInfoByModuleSrl($oDocument->get('module_srl'));
+
+            Context::set("module_info", $module_info);
+
+            $module_path = './modules/' . $module_info->module . '/';
+            $skin_path = $module_path . 'skins/' . $module_info->skin . '/';
+
+            if(!$module_info->skin || !is_dir($skin_path))
+            {
+                $skin_path = $module_path . 'skins/multiPost/';
+            }
+
+            $oTemplateHandler = &TemplateHandler::getInstance();
+
+            $html = base64_encode($oTemplateHandler->compile($skin_path, 'comment_form.html'));
+            $this->add('html', $html);
+            $this->add('parent_srl', $parent_srl);
+        }
         function dispTextyleCommentReply(){
             $parent_srl = Context::get('comment_srl');
             $document_srl = Context::get('document_srl');
@@ -1466,6 +1962,7 @@
          **/
         function dispTextyleTag() {
             $oTagModel = &getModel('tag');
+            $oModuleModel =&getModel('module');
 
             $obj->module_srl = $this->module_srl;
             $obj->list_count = 10000;
@@ -1480,6 +1977,21 @@
                         $tag_list[] = $output->data[$v];
                     }
                 }
+            }
+            $site_admin_list = $oModuleModel->getSiteAdmin($this->module_info->site_srl);
+            foreach($site_admin_list as $admin){
+            	$obj->module_srl = $admin->member_srl;
+            	$output = $oTagModel->getTagList($obj);
+	            if(count($output->data)) {
+	                $numbers = array_keys($output->data);
+	                shuffle($numbers);
+	
+	                if(count($output->data)) {
+	                    foreach($numbers as $k => $v) {
+	                        $tag_list[] = $output->data[$v];
+	                    }
+	                }
+	            }
             }
             Context::set('tag_list', $tag_list);
             Context::set('textyle_mode','tags');

@@ -4,6 +4,28 @@
      * @author NHN (developers@xpressengine.com)
      * @brief  Textyle(textyle) module's English language pack.
      **/
+    $lang->trending_story = 'This month\'s trending story';
+    $lang->trending_story_more = 'More trending stories';
+    $lang->trending_stories_all_time = 'Trending stories of all times';
+    $lang->all_stories = 'All stories';
+    $lang->story_comments = 'comments for this story';
+    $lang->view_number = 'number of views';
+    $lang->prev_page = 'Prev';
+    $lang->next_page = 'Next';
+    $lang->recent_tags = 'Recent Tags';
+    $lang->subscribe = 'Subscribe to this Blog';
+    $lang->subscribe_blog = 'Subscribe to this Blog';
+    $lang->Posted = 'Posted';
+    $lang->posted = 'posted';
+    $lang->tagged = 'tagged';
+    $lang->viewed = 'viewed';
+    $lang->time = 'time';
+    $lang->times = 'times';
+    $lang->related_posts = 'Related Posts';
+    $lang->admin_blog = 'Administer blog';
+    $lang->dashboard = 'Dashboard';
+    $lang->new_post = 'New Post';
+    $lang->mng_guestbook = 'Manage Guestbook';
 
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'Textyle is a blog module running on XpressEngine.';
@@ -27,6 +49,7 @@
     $lang->newest_materials = 'Newest Ingredients';
 	$lang->newest_no_materials = 'There is no ingredient for writing. <a href="%s">Install Writing Ingredients Collector.</a>';
 	$lang->newest_comments = 'Recent Comments';
+	$lang->newest_tutorials = 'Recent Tutorials';
 	$lang->newest_no_comments = 'There is no comment.';
 	$lang->newest_guestbooks = 'Recent Guestbook';
 	$lang->newest_no_guestbooks = 'There is no article in guestbook.';
@@ -149,6 +172,8 @@
     $lang->order_desc = 'Descending order';
     $lang->update_tag = 'Tag modify/delete';
     $lang->tag_name = 'Tag';
+    $lang->tags = 'Tags';
+    $lang->tagged_as = 'Tagged as';
     $lang->tag_with_tags = 'Co-occurred Tags';
     $lang->total_materials = 'Total <strong>%d</strong> ingredients are stored.';
     $lang->none_materials = 'There is no ingredient.';
@@ -265,6 +290,7 @@
     $lang->document_close = 'Closed';
 
     $lang->category = 'Category';
+    $lang->categories = 'Categories';
     $lang->comm_management = 'Communication';
     $lang->publish_date = 'When to publish';
     $lang->publish_now = 'Now';
@@ -495,5 +521,26 @@
 	$lang->cmd_open_close = 'open / close';
 	$lang->msg_write_comment = 'write comments';
 	$lang->msg_mobile_skin_use_not = 'You are not using any mobile skins. Please click on Apply This to use one.';
-	$lang->skip_content = 'Skip body';
+    $lang->skip_content = 'Skip body';
+	$lang->read_more = 'Continue reading »';
+    // View page
+    $lang->share_this_article = 'Share this article';
+    $lang->notify_for_replies = 'Notify by email if someone replies to my comment';
+    $lang->confirm_cancel_comment = 'Would you like to cancel editing your comment?';
+    
+    // added for zdateRelative function
+    $lang->seconds_ago = '%s seconds ago';
+    $lang->second_ago = 'one second ago';
+    $lang->minutes_ago = '%s minutes ago';
+    $lang->minute_ago = 'one minute ago';
+    $lang->hours_ago = '%s hours ago';
+    $lang->hour_ago = 'an hour ago';
+    $lang->days_ago = '%s days ago';
+    $lang->day_ago = 'yesterday';
+    $lang->weeks_ago = '%s weeks ago';
+    $lang->week_ago = 'last week';
+    $lang->months_ago = '%s months ago';
+    $lang->month_ago = 'last month';
+    $lang->years_ago = '%s years ago';
+    $lang->year_ago = 'last year';
 ?>

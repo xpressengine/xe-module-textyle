@@ -136,6 +136,10 @@
 		<action name="dispTextyleToolExtraMenuList" type="view" />
 		<action name="dispTextyleToolExtraMenuInsert" type="view" />
 		<action name="dispTextyleToolExtraMenuModuleInsert" type="view" />
+		<action name="dispCommentEditor" type="view" />
+		<action name="dispModifyComment" type="view" />
+		<action name="dispReplyComment" type="view" />
+		
 
 		<action name="dispTextyleGuestbook" type="view" />
 		<action name="dispTextyleGuestbookReply" type="view" />
