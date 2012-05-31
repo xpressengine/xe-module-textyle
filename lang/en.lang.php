@@ -407,7 +407,8 @@
     $lang->cmd_go_help = 'Help Desk';
     $lang->cmd_textyle_setup = 'Default Settings';
     $lang->cmd_textyle_list = 'Textyle List';
-    $lang->cmd_textyle_creation = 'New Textyle';
+    $lang->cmd_textyle_creation = 'Create a new Textyle';
+    $lang->cmd_textyle_modify = 'Edit textyle';
     $lang->cmd_textyle_update = 'Modify Textyle';
     $lang->cmd_textyle_custom_menu = 'Textyle Menu Customize';
     $lang->cmd_new_post = 'Write New Post';
@@ -496,7 +497,7 @@
     $lang->about_textyle_skin_import = 'It uploads customized skin from local folder, and current skin will be removed.';
 
 	$lang->success_upload = 'It is successfully uploaded.';
-	$lang->cmd_textyle_export_request ='Backup Request';
+	$lang->cmd_textyle_export_request ='Backup Requests';
 	$lang->textyle_export_recode = 'Backup Requests';
 	$lang->textyle_export_waiting = 'Waiting';
 	$lang->textyle_export_request = 'Request backup';
@@ -543,4 +544,7 @@
     $lang->month_ago = 'last month';
     $lang->years_ago = '%s years ago';
     $lang->year_ago = 'last year';
+
+    $lang->export_format = 'Export format';
+    $lang->actions = 'Actions';
 ?>

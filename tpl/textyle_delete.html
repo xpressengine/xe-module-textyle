@@ -2,27 +2,34 @@
 <!--%import("js/textle.js")-->
 <!--#include("header.html")-->
 
-<form action="./" method="get" onsubmit="return procFilter(this, delete_textyle)">
-<input type="hidden" name="page" value="{$page}" />
-<input type="hidden" name="site_srl" value="{$textyle_info->site_srl}" />
-
-    <h4 class="xeAdmin">{$lang->confirm_delete}</h4>
-    <table cellspacing="0" class="rowTable">
-    <tr>
-        <th scope="row"><div>{$lang->module_name}</div></th>
-        <td class="wide">{$textyle_info->mid}</td>
-    </tr>
-    <tr>
-        <th scope="row"><div>{$lang->textyle_title}</div></th>
-        <td class="wide">{$textyle_info->textyle_title}</td>
-    </tr>
-    <tr>
-        <th scope="row"><div><!--@if(isSiteId($textyle_info->domain))-->Site ID<!--@else-->{$lang->domain}<!--@end--></div></th>
-        <td class="wide"><a href="{getSiteUrl($textyle_info->domain)}" onclick="window.open(this.href); return false;">{$textyle_info->domain}</a></td>
-    </tr>
-    </table>
-	<div class="btnArea">
-		<span class="btn"><input type="submit" value="{$lang->cmd_delete}" /></span>
-		<span class="btn"><a href="{getUrl('act','dispTextyleAdminList')}">{$lang->cmd_back}</a></span>
-	</div>
-</form>
+<div id="content" class="cleared">
+    <div class="xe-ui-panel cleared">
+        <div class="xe-ui-panel-content cleared">
+            <form action="./" method="get" onsubmit="return procFilter(this, delete_textyle)" class="form">
+            <input type="hidden" name="page" value="{$page}" />
+            <input type="hidden" name="site_srl" value="{$textyle_info->site_srl}" />
+                <h2>{$lang->confirm_delete}</h2>
+                <table cellspacing="0" class="xe-ui-table" cellpadding="0" width="100%" border="0">
+                    <thead>
+                        <th class="aLeft">{$lang->module_name}</th>
+                        <th>{$lang->textyle_title}</th>
+                        <th><!--@if(isSiteId($textyle_info->domain))-->Site ID<!--@else-->{$lang->domain}<!--@end--></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{$textyle_info->mid}</td>
+                            <td class="center">{$textyle_info->textyle_title}</td>
+                            <td class="center"><a href="{getSiteUrl($textyle_info->domain)}" onclick="window.open(this.href); return false;">{$textyle_info->domain}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="xe-ui-panel-controller cleared">
+            <hr />
+            <p class="center">
+                <a href="#" onclick="jQuery('.form').submit();return false;" class="xe-ui-button-gray">{$lang->cmd_delete}</a>
+            </p>
+        </div>
+    </div>
+</div>

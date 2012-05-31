@@ -1,30 +1,41 @@
 <!--#include("./header.html")-->
 <!--%import("filter/insert_extra_menu_config.xml")-->
-<form action="./" method="post" onsubmit="return procFilter(this, insert_extra_menu_config)" >
-<input type="hidden" name="module_srl" value="{$module_srl}" />
-    <h4 class="xeAdmin">{$lang->cmd_setup}</h4>
-    <table cellspacing="0" class="rowTable">
-		<thead>
-			<tr>
-				<th>{$lang->module} </th>
-				<th>{$lang->textyle_extra_menu_limit_count}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!--@foreach($service_modules as $k => $v)-->
-				<!--@if($v->category == 'service' && $v->default_index_act)-->
-				<tr>
-				<td class="row">
-					{$v->title} 
-				</td>
-				<td><input type="text" name="allow_service_{$v->module}" value="{$config->allow_service[$v->module]}" />
-				</td>
-				</tr>
-				<!--@end-->
-			<!--@end-->
-		</tbody>
-	</table>
-	<div class="btnArea">
-		<span class="btn"><input type="submit" value="{$lang->cmd_save}" /></span>
-	</div>
-</form>
+
+<div id="content" class="cleared">
+    <div class="xe-ui-panel cleared">
+        <div class="xe-ui-panel-content cleared">
+            <form action="./" method="post" onsubmit="return procFilter(this, insert_extra_menu_config)" class="form">
+            <input type="hidden" name="module_srl" value="{$module_srl}" />
+                <h2>{$lang->cmd_setup}</h2>
+                <table cellspacing="0" class="xe-ui-table" cellpadding="0" width="100%" border="0">
+                    <thead>
+                        <tr>
+                            <th class="aLeft">{$lang->module} </th>
+                            <th>{$lang->textyle_extra_menu_limit_count}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--@foreach($service_modules as $k => $v)-->
+                            <!--@if($v->category == 'service' && $v->default_index_act)-->
+                            <tr>
+                                <td>
+                                    {$v->title}
+                                </td>
+                                <td class="center">
+                                    <input type="text" name="allow_service_{$v->module}" value="{$config->allow_service[$v->module]}" class="xe-ui-panel-text"/>
+                                </td>
+                            </tr>
+                            <!--@end-->
+                        <!--@end-->
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="xe-ui-panel-controller cleared">
+            <hr />
+            <p class="center">
+                <a href="#" onclick="jQuery('.form').submit();return false;" class="xe-ui-button-gray">{$lang->cmd_save}</a>
+            </p>
+        </div>
+    </div>
+</div>

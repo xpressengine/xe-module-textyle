@@ -1,45 +1,67 @@
 <!--%import("js/textle.js")-->
 <!--#include("header.html")-->
 
-<table cellspacing="0" class="rowTable">
-<thead>
-    <tr>
-        <th scope="col">{$lang->textyle}</th>
-        <th scope="col">{$lang->nick_name}</th>
-        <th scope="col">{$lang->textyle_export_type}</th>
-        <th scope="col">{$lang->regdate}</th>
-        <th scope="col">{$lang->textyle_export_date}</th>
-        <th scope="col">{$lang->textyle_export_file}</th>
-        <th scope="col">&nbsp;</th>
-    </tr>
-</thead>
-<tbody>
-<!--@if($export_list)-->
-    <!--@foreach($export_list as $no => $val)-->
-    <tr>
-        <td><a href="{getSiteUrl($val->domain)}" onclick="window.open(this.href); return false;" title="{htmlspecialchars($lang->cmd_view)}">{$val->domain}</a></td>
-        <td><span class="member_{$val->member_srl}">{$val->nick_name}</span></td>
-        <td>{$val->export_type}</td>
-        <td>{zdate($val->regdate,'Y.m.d')}</td>
-        <td>{zdate($val->export_date,'Y.m.d H:i')}</td>
-        <td>{$val->export_file}</td>
-        <td class="nowr">
-			<button onclick="exportTextyle({$val->site_srl},'ttxml')" class="text">{$lang->cmd_textyle_export_file}</button>
-			<button onclick="deleteExportTextyle({$val->site_srl})" class="text">{$lang->cmd_delete}</button>
-		</td>
-    </tr>
-    <!--@end-->
-<!--@end-->
-</tbody>
-</table>
-<div class="pagination a1">
-    <a href="{getUrl('page','','module_srl','')}" class="prevEnd">{$lang->first_page}</a> 
-    <!--@while($page_no = $page_navigation->getNextPage())-->
-        <!--@if($page == $page_no)-->
-            <strong>{$page_no}</strong> 
-        <!--@else-->
-            <a href="{getUrl('page',$page_no,'module_srl','')}">{$page_no}</a> 
-        <!--@end-->
-    <!--@end-->
-    <a href="{getUrl('page',$page_navigation->last_page,'module_srl','')}" class="nextEnd">{$lang->last_page}</a>
+<div id="content" class="cleared">
+    <div class="xe-ui-panel cleared">
+        <div class="xe-ui-panel-content cleared">
+            <h2>{$lang->cmd_textyle_export_request}</h2>
+            <table cellspacing="0" class="xe-ui-table" cellpadding="0" width="100%" border="0">
+                <thead>
+                    <tr>
+                        <th>{$lang->textyle}</th>
+                        <th>{$lang->nick_name}</th>
+                        <th>{$lang->export_format}</th>
+                        <th>{$lang->textyle_export_date}</th>
+                        <th>{$lang->textyle_export_file}</th>
+                        <th>{$lang->actions}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!--@if($export_list)-->
+                    <!--@foreach($export_list as $no => $val)-->
+                    <tr>
+                        <td><a href="{getSiteUrl($val->domain)}" onclick="window.open(this.href); return false;" title="{htmlspecialchars($lang->cmd_view)}">{$val->domain}</a></td>
+                        <td class="center"><span class="member_{$val->member_srl}">{$val->nick_name}</span></td>
+                        <td class="center">{$val->export_type}</td>
+                        <td class="center">{zdate($val->export_date,'Y.m.d H:i')}</td>
+                        <td class="center">{$val->export_file}</td>
+                        <td class="button center">
+                            <p><a href="#" onclick="exportTextyle({$val->site_srl},'ttxml')" class="xe-ui-button-gray">{$lang->cmd_textyle_export_file}</a></p>
+                            <p><a href="#" onclick="deleteExportTextyle({$val->site_srl})" class="xe-ui-button-gray">{$lang->cmd_delete}</a></p>
+                        </td>
+                    </tr>
+                    <!--@end-->
+                <!--@end-->
+                </tbody>
+            </table>
+        </div>
+        <div class="xe-ui-panel-controller cleared">
+            <hr />
+            <form action="">
+                <input type="hidden" name="error_return_url" value="" />
+                <input type="hidden" name="module" value="{$module}" />
+                <input type="hidden" name="act" value="{$act}" />
+                <input cond="$search_keyword" type="hidden" name="search_keyword" value="{$search_keyword}" />
+                <input cond="$search_target" type="hidden" name="search_target" value="{$search_target}" />
+                {@ $page = $page_navigation->cur_page}
+                <p style="text-align: center;">
+                    <a href="{getUrl('page', '')}" class="xe-ui-button-gray pagination first"><img src="{getFullUrl()}common/img/pagination_left.png"/></a>
+                    <block cond="$page_navigation->first_page + $page_navigation->page_count > $page_navigation->last_page && $page_navigation->page_count != $page_navigation->total_page">
+                        {@$isGoTo = true}
+                        <a href="{getUrl('page', '')}" class="xe-ui-button-gray pagination">1</a>
+                    </block>
+                    <!--@while($page_no = $page_navigation->getNextPage())-->
+                    {@$last_page = $page_no}
+                    <a href="#" cond="$page_no == $page" class="xe-ui-button-gray pagination disabled">{$page_no}</a>
+                    <a cond="$page_no != $page" href="{getUrl('page', $page_no)}" class="xe-ui-button-gray pagination">{$page_no}</a>
+                    <!--@end-->
+                    <block cond="$last_page != $page_navigation->last_page">
+                        {@$isGoTo = true}
+                        <a href="{getUrl('page', $page_navigation->last_page)}" class="xe-ui-button-gray pagination">{$page_navigation->last_page}</a>
+                    </block>
+                    <a href="{getUrl('page', $page_navigation->last_page)}" class="xe-ui-button-gray pagination last"><img src="{getFullUrl()}common/img/pagination_right.png"/></a>
+                </p>
+            </form>
+        </div>
+    </div>
 </div>
