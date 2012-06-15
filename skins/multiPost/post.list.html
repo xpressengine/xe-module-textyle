@@ -8,7 +8,7 @@
         <!--@$edit_url=getFullSiteUrl()."/".$vid."/?mid=textyle&vid=blog&document_srl=".$document->document_srl."&act=dispTextyleToolPostManageWrite";--><!--@end-->
         <a href="{$edit_url}" class="editPost">Edit</a></p>
     <!--@end-->
-    <div class="addthis_toolbox addthis_default_style" addthis:url="{$url}">
+    <div class="addthis_toolbox addthis_default_style" addthis:url="{$document->variables['url']}">
         <a class="addthis_button_facebook_like" fb:like:layout="standard" fb:like:width="310"></a>
         <a class="addthis_button_tweet"></a>
         <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
@@ -108,7 +108,7 @@
     </div>
     <div class="section" id="sns-buttons">
         <div class="block-title"><span>{$lang->share_this_article}</span></div>
-        <span class="sns-buttons addthis_toolbox addthis_default_style" addthis:url="{$url}">
+        <span class="sns-buttons addthis_toolbox addthis_default_style" addthis:url="{$document->variables['url']}">
             <a class="addthis_button_tweet" tw:count="vertical"></a>
             <a class="addthis_button_facebook_like" fb:like:layout="box_count"></a>
             <a class="addthis_button_google_plusone" g:plusone:size="tall"></a>
