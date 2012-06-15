@@ -5,7 +5,7 @@
     {@ $views = $document->get('readed_count')}
     <p class="postMeta">{$lang->posted} <span class="yymmdd" title="{date('Y/m/d @ H:i', $date)}">{$document->variables['relative_date']}</span> in <span class="category">{$category_list[$document->get('category_srl')]->title}</span> category by <a href="#" class="author member_{$document->get('member_srl')}" onclick="return false;">{$document->get('user_id')}</a>
     <!--@if($logged_info->is_site_admin)-->
-        <!--@$edit_url="http://cubrid.org/?mid=textyle&vid=blog&document_srl=".$document->document_srl."&act=dispTextyleToolPostManageWrite";--><!--@end-->
+        <!--@$edit_url=getFullSiteUrl()."/".$vid."/?mid=textyle&vid=blog&document_srl=".$document->document_srl."&act=dispTextyleToolPostManageWrite";--><!--@end-->
         <a href="{$edit_url}" class="editPost">Edit</a></p>
     <!--@end-->
     <div class="addthis_toolbox addthis_default_style" addthis:url="{$url}">
