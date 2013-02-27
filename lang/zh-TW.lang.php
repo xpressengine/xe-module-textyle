@@ -362,7 +362,6 @@
     $lang->cmd_textyle_setup = '基本設定';
     $lang->cmd_textyle_list = 'Textyle 列表';
     $lang->cmd_textyle_creation = '建立 Textyle';
-    $lang->cmd_textyle_update = '編輯 Textyle';
     $lang->cmd_textyle_custom_menu = '自訂 Textyle 選單';
     $lang->cmd_new_post = '發表文章';
     $lang->cmd_go_blog = '前往部落格';

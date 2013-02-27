@@ -5,7 +5,7 @@
 .btnGray,
 .btnGray a,
 .btnGray button,
-.btnGray input{position:relative;overflow:visible;border:0;margin:0;padding:0;top:0;display:inline-block;color:#000 !important;cursor:pointer;text-decoration:none !important;white-space:nowrap;vertical-align:middle !important;*vertical-align:top !important;background-color:transparent;background-image:url(../img/buttonGray.gif);background-repeat:no-repeat}
+.btnGray input{position:relative;overflow:visible;border:0;margin:0;padding:0;top:0;display:inline-block;color:#000 !important;cursor:pointer;text-decoration:none !important;white-space:nowrap;vertical-align:top;background-color:transparent;background-image:url(../img/buttonGray.gif);background-repeat:no-repeat}
 .btnGray{margin-right:2px}
 .btnGray a,
 .btnGray button,
@@ -50,7 +50,7 @@
 
 /* -- Publish State -- */
 .publishState,
-.publishState span{position:relative;border:0;margin:0;display:inline-block;height:17px;line-height:19px;color:#000;font-family:Tahoma, Sans-serif;text-decoration:none !important;white-space:nowrap;vertical-align:middle;background-color:transparent;background-image:url(../img/bgPublishState.gif);background-repeat:no-repeat;font-weight:normal}
+.publishState span{position:relative;border:0;margin:0;display:inline-block;height:17px;line-height:19px;color:#000;font-family:Tahoma, Sans-serif;text-decoration:none !important;white-space:nowrap;vertical-align:top;background-color:transparent;background-image:url(../img/bgPublishState.gif);background-repeat:no-repeat;font-weight:normal}
 .publishState{margin-right:2px}
 .publishState span{left:2px;padding:0 3px 0 1px;font-size:11px;_top:-1px;*vertical-align:top}
 .publishState.draft{background-position:left top}
@@ -60,9 +60,9 @@
 
 /* -- Active State -- */
 .activeState,
-.activeState button{position:relative;border:0;margin:0;padding:0;overflow:visible;display:inline-block;height:17px;line-height:19px;color:#000;font-family:Tahoma, Sans-serif;text-decoration:none !important;white-space:nowrap;vertical-align:middle;background-color:transparent;background-image:url(../img/bgPublishState.gif);background-repeat:no-repeat;font-weight:normal;cursor:pointer}
+.activeState button{position:relative;border:0;margin:0;padding:0;overflow:visible;display:inline-block;height:17px;line-height:19px;color:#000;font-family:Tahoma, Sans-serif;text-decoration:none !important;white-space:nowrap;vertical-align:top;background-color:transparent;background-image:url(../img/bgPublishState.gif);background-repeat:no-repeat;font-weight:normal;cursor:pointer}
 .activeState{margin-right:2px}
-.activeState button{left:2px;padding:0 3px 0 1px;font-size:11px;_top:-1px;*vertical-align:top}
+.activeState button{left:2px;padding:0 3px 0 1px;font-size:11px}
 .activeState.turnOff{background-position:left top}
 .activeState.turnOff button{background-position:right top;color:#b1b1b1}
 .activeState.turnOn{background-position:left -20px}

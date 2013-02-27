@@ -56,9 +56,9 @@
 										<td>
 											<input type="checkbox" name="trackback_srl" value="{$trackback->trackback_srl}"  class="inputCheck boxlist" />
 										</td>
-										<td class="half"><a href="{getSiteUrl($textyle->domain,'','document_srl',$trackback->document_srl)}#trackback_{$trackback->trackback_srl}" onclick="window.open(this.href); return false;" class="original">{$document_items[$trackback->document_srl]->getTitle()}</a></td>
+										<td class="half"><a href="{getSiteUrl($textyle->domain,'','document_srl',$trackback->document_srl)}#trackback_{$trackback->trackback_srl}" class="original">{$document_items[$trackback->document_srl]->getTitle()}</a></td>
 										<td class="half">
-											<p class="trackbackIn"><a href="{$trackback->url}" target="_blank">{$trackback->title}</a></p>
+											<p class="trackbackIn"><a href="{$trackback->url}">{$trackback->title}</a></p>
 											<p class="trackbackAddress">{$trackback->blog_name}<span class="ipAddress">{$trackback->ipaddress}</span></p>
 										</td>
 										<td class="small">{zdate($trackback->regdate,'Y.m.d')}</td>

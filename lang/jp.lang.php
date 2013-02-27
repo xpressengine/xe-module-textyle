@@ -362,7 +362,6 @@
     $lang->cmd_textyle_setup = '基本設定';
     $lang->cmd_textyle_list = 'Textyleリスト';
     $lang->cmd_textyle_creation = 'Textyle生成';
-    $lang->cmd_textyle_update = 'Textyle修正';
     $lang->cmd_textyle_custom_menu = 'Textyleメニュー修正';
     $lang->cmd_new_post = '新規作成';
     $lang->cmd_go_blog = 'ブログを確認する';

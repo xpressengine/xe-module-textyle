@@ -347,7 +347,6 @@
     $lang->cmd_textyle_setup = 'Varsayılan Ayarlar';
     $lang->cmd_textyle_list = 'Textyle Listesi';
     $lang->cmd_textyle_creation = 'Yeni Textyle';
-    $lang->cmd_textyle_update = 'Textyle\'ı değiştir';
     $lang->cmd_textyle_custom_menu = 'Textyle Menü Özelleştirme';
     $lang->cmd_new_post = 'Yeni mesaj yaz';
     $lang->cmd_go_blog = 'Bloğuma gir';

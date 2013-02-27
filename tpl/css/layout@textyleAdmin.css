@@ -63,6 +63,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 #textyleAdmin #header{width:100%;height:100px;zoom:1;z-index:1;clear:both;background:url(../img/bgHeader.gif) repeat-x}
 #textyleAdmin #header:after{content:"";display:block;clear:both}
 #textyleAdmin #header h1{position:relative;float:left;margin:0;padding:0 10px 0 18px;background:#282e3f}
+#textyleAdmin #header h1 img{display:block}
 #textyleAdmin #header .navigation{position:static;left:-1px;float:left;clear:right;white-space:nowrap;font-size:11px;z-index:1;overflow:visible}
 #textyleAdmin #header .navigation .section{position:static}
 #textyleAdmin #header .navigation ul{padding-top:7px;zoom:1}
@@ -274,7 +275,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .dashboardWire .lastPost li p a{font-weight:bold}
 .dashboardWire .lastPost li .date{position:absolute;top:15px;right:20px;color:#8b8b8b;font-size:11px;float:right}
 .dashboardWire .lastPost li .publishState{margin-right:12px}
-.dashboardWire .lastPost li .publishState span{_top:0}
+.dashboardWire .lastPost li .publishState>*{vertical-align:top}
 .dashboardWire .lastPost li .reply,
 .dashboardWire .lastPost li .trackback{position:relative;top:1px;color:#8b8b8b}
 .dashboardWire .lastPost li .reply{margin-right:4px}
@@ -897,7 +898,7 @@ a.skipToContent{text-align:center;color:#fff;position:absolute;width:100%;font-s
 .setUp input{font-size:12px}
 .setUp fieldset{position:relative;padding:20px 0 20px 60px;border-bottom:1px solid #e3e5e7;zoom:1}
 .setUp fieldset:after{content:"";display:block;clear:both}
-.setUp select{font-size:12px;margin:-2px 0}
+.setUp select{font-size:12px}
 .setUp select option{font-size:12px}
 .setUp .setupData{font-size:12px;border:0;border-spacing:0}
 .setUp .setupData th,

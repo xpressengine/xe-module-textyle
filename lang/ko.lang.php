@@ -14,7 +14,7 @@
 	$lang->msg_create_textyle = '텍스타일 생성이 되었습니다';
 	$lang->init_category_title = '기본 카테고리';
 	$lang->add_category = '카테고리 추가';
-    $lang->textyle_admin = 'Textyle 관리자(아이디)';
+    $lang->textyle_admin = 'Textyle 관리자';
     $lang->textyle_title = 'Textyle 제목';
     $lang->today_visitor = '오늘의 <strong>방문자 수</strong>';
     $lang->today_comments = '오늘의 <strong>댓글 수</strong>';
@@ -261,6 +261,7 @@
     $lang->close_calendar_layer = '달력 닫기';
     $lang->select_calendar_layer = '달력에서 날짜를 선택하기';
 
+    $lang->about_textyle_admin = '콤마(,)를 이용하면 더 많은 관리자를 입력할 수 있습니다.';
     $lang->insert_title = '제목을 입력해 주세요';
     $lang->new_post = '새글 쓰기';
     $lang->modify_post = '글 수정하기';
@@ -363,7 +364,7 @@
     $lang->cmd_textyle_setup = '기본 설정';
     $lang->cmd_textyle_list = 'Textyle 목록';
     $lang->cmd_textyle_creation = 'Textyle 생성';
-    $lang->cmd_textyle_update = 'Textyle 수정';
+    $lang->cmd_textyle_modify = 'Textyle 수정';
     $lang->cmd_textyle_custom_menu = 'Textyle 메뉴 편집';
     $lang->cmd_new_post = '새글 쓰기';
     $lang->cmd_go_blog = '블로그 보기';

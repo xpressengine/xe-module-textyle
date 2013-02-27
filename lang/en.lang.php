@@ -409,7 +409,6 @@
     $lang->cmd_textyle_list = 'Textyle List';
     $lang->cmd_textyle_creation = 'Create a new Textyle';
     $lang->cmd_textyle_modify = 'Edit textyle';
-    $lang->cmd_textyle_update = 'Modify Textyle';
     $lang->cmd_textyle_custom_menu = 'Textyle Menu Customize';
     $lang->cmd_new_post = 'Write New Post';
     $lang->cmd_go_blog = 'Go to My Blog';

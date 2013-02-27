@@ -1,85 +1,48 @@
-<!--%import("filter/insert_custom_menu.xml")-->
-<!--%import("js/textle.js")-->
-<!--#include("header.html")-->
-<script>
-    function changeSubmitValue(type) {
-        switch (type){
-            case 'insert':
-                jQuery('#hidSub').attr('value','{$lang->cmd_insert}');
-                break;
-            case 'apply':
-                jQuery('#hidSub').attr('value','{$lang->cmd_apply}');
-                break;
-        }
-        jQuery('.form').submit();
-    }
-</script>
-
-<div id="content" class="cleared">
-    <div class="xe-ui-panel cleared">
-        <div class="xe-ui-panel-content cleared">
-            <form action="./" method="post" onsubmit="return procFilter(this, insert_custom_menu);" class="form">
-                <input id="hidSub" type="submit" value="" style="display: none;" />
-                <!--@foreach($lang->textyle_first_menus as $key => $val)-->
-                <h2>
-                    {$val[1]}
-                    <input type="checkbox" name="hidden_{$key}" <!--@if(in_array($val, $custom_menu->hidden_menu))-->checked="checked"<!--@end--> value="Y" style="vertical-align:middle;" onchange="doApplySubChecked(this, '{$key}');" />
-                </h2>
-                {@$_sub = $lang->textyle_second_menus[$key]}
-                {@$_attached = $custom_menu->attached_menu[$key]}
-                <!--@if(count($_sub))-->
-                <div class="menu_box_{$key}">
-                    <table class="xe-ui-table" cellpadding="0" cellspacing="0" width="100%" border="0">
-                        <colgroup>
-                            <col width="40%" />
-                            <col width="40%" />
-                            <col width="20%" />
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th class="aLeft">action</th>
-                            <th>title</th>
-                            <th>{$lang->actions}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <!--@foreach($_sub as $k => $v)-->
-                        <tr>
-                            <td>{$k}</td>
-                            <td class="center">{$v}</td>
-                            <td class="center">
-                                <input type="checkbox" name="hidden_{$k}" <!--@if(in_array(strtolower($k), $custom_menu->hidden_menu))-->checked="checked"<!--@end--> value="Y" id="menu_{$k}" /> <label for="menu_{$k}">{$lang->cmd_hide}</label>
-                            </td>
-                        </tr>
-                        <!--@end-->
-                        <!--@foreach($_attached  as $k => $v)-->
-                        <tr>
-                            <td>{$k}</td>
-                            <td class="center">{$v}</td>
-                            <td class="center">
-                                <input type="checkbox" name="delete_{$k}" <!--@if($custom_menu->hidden_menu[$k])-->checked="checked"<!--@end--> value="Y" id="menu_{$k}" /> <label for="menu_{$k}">{$lang->cmd_delete}</label>
-                            </td>
-                        </tr>
-                        <!--@end-->
-                        <tr>
-                            <td><input type="text" name="custom_act_{$key}" class="xe-ui-panel-text"/></td>
-                            <td class="center"><input type="text" name="custom_name_{$key}" class="xe-ui-panel-text lang_code" id="custom_name_{$key}" style="margin-right: 5px;"/></td>
-                            <td class="center">
-                                <a href="#" onclick="changeSubmitValue('insert');" class="xe-ui-button-gray">{$lang->cmd_insert}</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!--@end-->
-                <!--@end-->
-            </form>
-        </div>
-        <div class="xe-ui-panel-controller cleared">
-            <hr />
-            <p class="center">
-                <a href="#" onclick="changeSubmitValue('apply');" class="xe-ui-button-gray">{$lang->cmd_save}</a>
-            </p>
-        </div>
-    </div>
-</div>
+<load target="filter/insert_custom_menu.xml" />
+<load target="js/textle.js" />
+<include target="header.html" />
+<form action="./" method="post" onsubmit="return procFilter(this, insert_custom_menu);">
+	<section class="section" loop="$lang->textyle_first_menus => $key,$val">
+		{@$_sub = $lang->textyle_second_menus[$key]}
+		{@$_attached = $custom_menu->attached_menu[$key]}
+		<h1>
+			{$val[1]}
+			<label cond="!count($_sub)" class="x_inline" style="font-weight:normal"><input type="checkbox" name="hidden_{$key}" checked="checked"|cond="in_array($key, $custom_menu->hidden_menu)" value="Y" /> {$lang->cmd_hide}</label>
+		</h1>
+		<table class="x_table x_table-striped x_table-hover" cond="count($_sub)">
+			<thead>
+				<tr>
+					<th scope="col">action</th>
+					<th scope="col">title</th>
+					<th scope="col"><label><input type="checkbox" name="hidden_{$key}" checked="checked"|cond="in_array($val, $custom_menu->hidden_menu)" value="Y" /> {$lang->cmd_select_all}</label></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr loop="$_sub => $k,$v">
+					<td>{$k}</td>
+					<td>{$v}</td>
+					<td>
+						<label for="menu_{$k}"><input type="checkbox" name="hidden_{$k}" checked="checked"|cond="in_array(strtolower($k), $custom_menu->hidden_menu)" value="Y" id="menu_{$k}" /> {$lang->cmd_hide}</label>
+					</td>
+				</tr>
+				<tr loop="$_attached => $k,$v">
+					<td>{$k}</td>
+					<td>{$v}</td>
+					<td>
+						<label for="menu_{$k}"><input type="checkbox" name="delete_{$k}" checked="checked"|cond="$custom_menu->hidden_menu[$k]" value="Y" id="menu_{$k}" /> {$lang->cmd_delete}</label>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="custom_act_{$key}" /></td>
+					<td><input type="text" name="custom_name_{$key}" id="custom_name_{$key}" class="lang_code" /></td>
+					<td>
+						<input type="submit" value="{$lang->cmd_insert}" class="x_btn">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<div class="x_clearfix">
+		<input type="submit" value="{$lang->save}" class="x_btn x_btn-primary x_pull-right">
+	</div>
+</form>

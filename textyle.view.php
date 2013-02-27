@@ -1042,7 +1042,7 @@
                     for($i=0,$c=count($info->author);$i<$c;$i++) {
                         $name =  $info->author[$i]->name;
                         $homepage = $info->author[$i]->homepage;
-                        if($homepage) $_arr_author[] = '<a href="'.$homepage.'" onclick="window.open(this.href); return false;">'.$name.'</a>';
+                        if($homepage) $_arr_author[] = '<a href="'.$homepage.'">'.$name.'</a>';
                         else $_arr_author[] = $name;
                     }
                     $obj->author = implode(',',$_arr_author);
@@ -1074,7 +1074,7 @@
                     for($i=0,$c=count($info->author);$i<$c;$i++) {
                         $name =  $info->author[$i]->name;
                         $homepage = $info->author[$i]->homepage;
-                        if($homepage) $_arr_author[] = '<a href="'.$homepage.'" onclick="window.open(this.href); return false;">'.$name.'</a>';
+                        if($homepage) $_arr_author[] = '<a href="'.$homepage.'">'.$name.'</a>';
                         else $_arr_author[] = $name;
                     }
                     $obj->author = implode(',',$_arr_author);
