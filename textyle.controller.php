@@ -1250,10 +1250,43 @@
             return $output;
         }
 
-        function setTextylePostItemsSecret($document_srls,$set_secret='Y'){
-            $args->document_srl = join(',',$document_srls);
-            $args->is_secret = $set_secret;
-            $output = executeQuery('document.updateDocumentsSecret',$args);
+        function setTextylePostItemsSecret($document_srls,$set_secret='Y')
+		{
+			$oDB = &DB::getInstance();
+			$oDB->begin();
+
+			$oDocumentModel = getModel('document');
+			$oDocumentController = getController('document');
+
+			$documentList = $oDocumentModel->getDocuments($document_srls);
+
+			$status = NULL;
+			if($set_secret == 'Y')
+			{
+				$status = $oDocumentModel->getConfigStatus('secret');
+			}
+			else
+			{
+				$status = $oDocumentModel->getConfigStatus('public');
+			}
+
+			if(is_array($documentList))
+			{
+				foreach($documentList AS $key=>$oDocument)
+				{
+					$obj = $oDocument->getObjectVars();
+					$obj->status = $status;
+
+					$output = $oDocumentController->updateDocument($oDocument, $obj);
+					if(!$output->toBool())
+					{
+                        $oDB->rollback();
+						return $output;
+					}
+				}
+			}
+			$oDB->commit();
+
             return $output;
         }
 
