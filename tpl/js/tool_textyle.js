@@ -987,7 +987,6 @@ modifyNode = function(node,e) {
 
 	// set value
 	$w.find('input[name="category_srl"]').val(node);
-	$w.find('input[name="parent_srl"]').val(0);
 	$w.find('.category_groups').css('display','none');
 
 	var module_srl = $w.find('input[name="module_srl"]').val();
@@ -1000,6 +999,7 @@ modifyNode = function(node,e) {
 			return;
 		}
 
+		$w.find('input[name="parent_srl"]').val(data.category_info.parent_srl);
 		$w.find('input[name="category_title"]').val(data.category_info.title).trigger('reload-multilingual');
 		$w.find('input[name="category_color"]').val(data.category_info.color).trigger('keyup');
 		$w.find('textarea[name="category_description"]').val(data.category_info.description).trigger('reload-multilingual');
