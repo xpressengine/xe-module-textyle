@@ -282,6 +282,12 @@
             $oCommentModel = &getModel('comment');
             $oCommentController = &getController('comment');
 
+			$oTextyleInfo = new TextyleInfo($this->textyle->textyle_srl);
+			if(!$oTextyleInfo->isEnableComment())
+			{
+				return new Object(-1, 'msg_not_permitted');
+			}
+
             if(!$this->grant->write_comment) return new Object(-1, 'msg_not_permitted');
 
             $obj = Context::gets('document_srl','comment_srl','parent_srl','content','password','nick_name','member_srl','email_address','homepage','is_secret','notify_message');
