@@ -135,6 +135,7 @@
 
 <div class="replyForm" cond="$document->allowComment()">
 	<h3>Leave Comments</h3>
+	<block cond="$textyle->isEnableComment()">
 	<fieldset>
 		<form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
 			<input name="mid" type="hidden" value="textyle" />
@@ -161,5 +162,6 @@
 			<input name="submit" type="submit" value="SUBMIT" class="inputSubmit" />
 		</form>
 	</fieldset>
+	</block>
 	<p cond="!$textyle->isEnableComment()">{$lang->disable_comment}</p>
 </div>
