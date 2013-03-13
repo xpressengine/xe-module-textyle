@@ -38,17 +38,12 @@
                 $body = implode('&',$arr_content);
             }
 
-			debugPrint($url);
-			debugPrint($body);
-			debugPrint($this->application_key);
-			debugPrint($auth);
             $buff = FileHandler::getRemoteResource($url, $body, 3, 'GET', 'application/x-www-form-urlencoded',
                         array(
                             'me2_application_key'=>$this->application_key,
                             'Authorization'=>'Basic '.$auth,
                         )
                     );
-			debugPrint($buff);
             return $buff;
         }
 
