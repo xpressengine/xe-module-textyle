@@ -1104,8 +1104,19 @@
                     $output[$skin_name] = $obj;
                 }
             }
+
+			if($this->module_info->mskin == '/USE_DEFAULT/' && $this->module_info->is_mskin_fix == 'N')
+			{
+            	$site_module_info = Context::get('site_module_info');
+				$defaultSkin = $oModuleModel->getModuleDefaultSkin('textyle', 'M', $site_module_info->site_srl);
+            	Context::set('cur_skin', $output[$defaultSkin]);
+			}
+			else
+			{
+            	Context::set('cur_skin', $output[$this->module_info->mskin]);
+			}
+
             Context::set('skins', $output);
-            Context::set('cur_skin', $output[$this->module_info->mskin]);
         }
 
 

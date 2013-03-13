@@ -1604,6 +1604,7 @@
 				$module_info->module_srl = $module_srl;
 				$module_info->site_srl = $this->site_srl;
 				$module_info->use_mobile = $use_mobile;
+				$module_info->is_mskin_fix = 'Y';
 				$module_info->mskin = $mskin;
 				$output = $oModuleController->updateModule($module_info);
 			}
