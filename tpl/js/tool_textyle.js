@@ -1054,7 +1054,6 @@ function completeBlogApiTest(ret_obj) {
     fo.find('input[name=blogapi_site_url]').val(site_url);
     fo.find('input[name=blogapi_site_title]').val(title);
     if(site_url) {
-        fo.find('tr.hide').removeClass('hide');
         jQuery('.submitButton').css('display','block');
         jQuery('#response_info').show(); 
 	}else{
