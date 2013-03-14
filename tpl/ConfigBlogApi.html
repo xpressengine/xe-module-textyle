@@ -160,9 +160,9 @@
                                     <!--@else-->
                                         {@$iconClass = 'buttonDisable'}
                                     <!--@end-->
-                                    <button type="button" onclick="doToggleAPI(this,'{$val->api_srl}')" class="text">{$lang->use}</button>
-                                    <a href="{getUrl('type','registration','api_srl',$val->api_srl)}">{$lang->cmd_modify}...</a>
-                                    <button type="button" onclick="if(confirm('{$lang->msg_remove_api}')) doRemoveApi({$val->api_srl})" class="text">{$lang->cmd_delete}</button>
+                                    <button type="button" onclick="doToggleAPI(this,'{$val->api_srl}')" class="btn">{$lang->use}</button>
+                                    <a href="{getUrl('type','registration','api_srl',$val->api_srl)}" class="btn">{$lang->cmd_modify}</a>
+                                    <button type="button" onclick="if(confirm('{$lang->msg_remove_api}')) doRemoveApi({$val->api_srl})" class="btn">{$lang->cmd_delete}</button>
                                 </td>
 							</tr>
                         <!--@end-->
