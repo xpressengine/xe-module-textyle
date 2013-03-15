@@ -2,7 +2,7 @@
 <!--%load_js_plugin("ui.calendar")-->
 
 <!--@if($preview == Y) -->
-<script type="text/javascript">
+<script>
 window.open('index.php?act=dispTextyle&preview={$preview}&document_srl={$oDocument->document_srl}&vid={$vid}')
 </script>
 <!--@end  -->
@@ -268,10 +268,10 @@ window.open('index.php?act=dispTextyle&preview={$preview}&document_srl={$oDocume
 <!--#include("_tool_menu.html")-->
 
 <!--#include("_tool_footer.html")-->
-<script type="text/javascript">//<![[CDATA
+<script>//<![[CDATA
 setInterval('isLive()', 30000);
 //]]></script>
-<script type="text/javascript">
+<script>
 	jQuery(function($){
 		{@ $_s = array_pop($lang->unit_week)}
 		$('#calendar-holder').calendar({

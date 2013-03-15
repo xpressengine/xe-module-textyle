@@ -23,7 +23,7 @@
 							<button type="button" class="btnCalendar"><span>{$lang->calendar}</span></button>
 							<h4 class="h4" id="str_selected_date">{$disp_selected_date}</h4>
 							<input type="hidden" class="inputDate" value="{zdate($selected_date,'Y-m-d')}" />
-							<script type="text/javascript">
+							<script>
 								jQuery(function($){
                                     {@ $_s = array_pop($lang->unit_week)}
 									$('#calendar-holder').calendar({
