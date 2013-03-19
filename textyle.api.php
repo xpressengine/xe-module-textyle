@@ -2,7 +2,7 @@
     /**
      * @class  textyleAPI
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle module Action API class
+     * @brief  textyle 모듈의 View Action에 대한 API 처리
      **/
 
     class textyleAPI extends textyle {

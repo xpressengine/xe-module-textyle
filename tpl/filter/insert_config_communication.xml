@@ -17,10 +17,6 @@
         <node target="enable_me2day"  />
         <node target="me2day_userid"  />
         <node target="me2day_userkey"  />
-        <node target="twitter_consumer_key"  />
-        <node target="twitter_consumer_secret"  />
-        <node target="twitter_oauth_token"  />
-        <node target="twitter_oauth_token_secret"  />
         <node target="enable_twitter"  />
         <node target="twitter_userid"  />
         <node target="twitter_password"  />

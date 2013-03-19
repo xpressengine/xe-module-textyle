@@ -199,6 +199,7 @@
                         $uploaded_filename = $file->uploaded_filename;
                         $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
 
+                        // 이미지 리사이즈시 content내의 파일명에서 '.resized.xxx' 제거
                         $extension = strrchr($uploaded_filename, '.');
                         $extension = '.resized'.$extension;
 
@@ -226,6 +227,7 @@
                 }
             }
 
+            // Content에서 상대경로로 되어 있는 파일의 url을 절대로 변환(글감사용시)
             $content = $oDocument->get('content');
             $content = preg_replace('/src="(\.\/)([^"]*)"/i','src="'.getFullUrl().'$2"',$content);
             $oDocument->add('content', $content);
@@ -284,6 +286,7 @@
                         $path = $m[1].'/';
                         $encoded_filename = $path.str_replace('+','%20',urlencode($file->source_filename));
 
+                        // 이미지 리사이즈시 content내의 파일명에서 '.resized.xxx' 제거
                         $uploaded_filename = $file->uploaded_filename;
                         $extension = strrchr($uploaded_filename, '.');
                         $extension = '.resized'.$extension;
@@ -311,6 +314,7 @@
                 }
             }
 
+            // Content에서 상대경로로 되어 있는 파일의 url을 절대로 변환(글감사용시)
             $content = $oDocument->get('content');
             $content = preg_replace('/src="(\.\/)([^"]*)"/i','src="'.getFullUrl().'$2"',$content);
             $oDocument->add('content', $content);

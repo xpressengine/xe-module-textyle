@@ -2,13 +2,13 @@
     /**
      * @class  textyleAdminView
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle module admin view class
+     * @brief  textyle 모듈의 admin view class
      **/
 
     class textyleAdminView extends textyle {
 
         /**
-         * @brief Initialization
+         * @brief 초기화
          **/
         function init() {
             $oTextyleModel = &getModel('textyle');
@@ -126,6 +126,7 @@
 			$config = $oTextyleModel->getModulePartConfig($module_srl);
 			Context::set('config',$config);
 
+            // 서비스 모듈을 구함
             $oModuleModel = &getModel('module');
             $installed_module_list = $oModuleModel->getModulesXmlInfo();
             foreach($installed_module_list as $key => $val) {

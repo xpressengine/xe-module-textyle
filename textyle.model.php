@@ -2,19 +2,19 @@
     /**
      * @class  textyleModel
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle module Model class
+     * @brief  textyle 모듈의 Model class
      **/
 
     class textyleModel extends textyle {
 
         /**
-         * @brief Initialization
+         * @brief 초기화
          **/
         function init() {
         }
 
         /**
-         * @brief get textyle custom menu
+         * @brief 개별 블로그 관리 메뉴에 대해 최고관리자가 설정한 내용을 구함
          **/
         function getTextyleCustomMenu() {
             static $custom_menu = null;
@@ -28,6 +28,7 @@
                 if(!$custom_menu->attached_menu) $custom_menu->attached_menu = array();
             }
 
+            // after 트리거
             $output = ModuleHandler::triggerCall('textyle.getTextyleCustomMenu', 'after', $custom_menu);
             if(!$output->toBool()) return $output;
 
@@ -54,7 +55,8 @@
         }
 
         /**
-         * @brief get member textyle
+         * @brief 특정 회원의 Textyle 정보 얻기
+         * 회원 번호를 입력하지 않으면 현재 로그인 사용자의 Textyle 정보를 구함
          **/
         function getMemberTextyle($member_srl = 0) {
             if(!$member_srl && !Context::get('is_logged')) return new TextyleInfo();
@@ -78,7 +80,7 @@
         }
 
         /**
-         * @brief Textyle return list
+         * @brief Textyle 목록 return
          **/
         function getTextyleList($args) {
             $output = executeQueryArray('textyle.getTextyleList', $args);
@@ -97,7 +99,7 @@
         }
 
         /**
-         * @brief Textyle return
+         * @brief Textyle 개별 정보 return
          **/
         function getTextyle($module_srl=0) {
             static $textyles = array();
@@ -119,7 +121,7 @@
         }
 
         /**
-         * @brief return textyle count
+         * @brief 특정 회원의 Textyle 생성 개수 return
          **/
         function getTextyleCount($member_srl = null) {
             if(!$member_srl) {
@@ -287,7 +289,7 @@
         }
 
         /**
-         * @brief get textyle photo source
+         * @brief Textyle 이미지 유무 체크후 경로 return
          **/
         function getTextylePhotoSrc($member_srl) {
             $oMemberModel = &getModel('member');

@@ -14,7 +14,7 @@
 	$lang->msg_create_textyle = 'Textyle is created';
 	$lang->init_category_title = 'Default Category';
 	$lang->add_category = 'Add a category';
-    $lang->textyle_admin = 'Textyle administrator (Email address)';
+    $lang->textyle_admin = 'Textyle administrator(ID)';
     $lang->textyle_title = 'Textyle\'s title';
     $lang->today_visitor = 'Number of today\'s <strong>visitors</strong>';
     $lang->today_comments = 'Number of today\'s <strong>comments</strong>';
@@ -37,7 +37,6 @@
     $lang->published = 'Published';
     $lang->publish_option = 'Publish Options';
 	$lang->publish_this_blog = 'Publish this blog.';
-	$lang->cmd_preview ='Preview';
     $lang->ask_time_publish = 'Would you like to publish (or update) this posting right now?';
     $lang->ask_micro_publish = 'Do you want to publish on micro blogs?';
     $lang->noti_publish = 'Notify publish';
@@ -75,12 +74,12 @@
     $lang->font_size = 'Font Size';
     $lang->about_font_family = 'You can choose default fonts for contents (ex:%s)';
     $lang->font_family_list = array(
-		'??, Dotum'=> 'Dotum',
-		'??, Gulim'=> 'Gulim',
-		'??, Batang'=> 'Batang',
-		'?? ??, Malgun Gothic'=> 'Malgun Gothic',
-		'????, NanumGothic'=> 'Nanum Gothic',
-		'????, NanumMyeongjo'=> 'Nanum Myeongjo'
+		'돋움, Dotum'=> 'Dotum',
+		'굴림, Gulim'=> 'Gulim',
+		'바탕, Batang'=> 'Batang',
+		'맑은 고딕, Malgun Gothic'=> 'Malgun Gothic',
+		'나눔고딕, NanumGothic'=> 'Nanum Gothic',
+		'나눔명조, NanumMyeongjo'=> 'Nanum Myeongjo'
 	);
     $lang->about_font_size = 'You can choose default font size (ex: 12px or 1em - unit should be included)';
     $lang->about_textyle_editor = 'Textyle\'s default editor: You can edit each paragraph separately in your posts';
@@ -168,28 +167,15 @@
     $lang->msg_migration_file_is_null = 'Input the location of XML file for data import';
     $lang->cmd_import = 'Import';
     $lang->send_me2 = 'Publish to Me2Day';
-    $lang->send_twitter = 'Publish to Twitter';
     $lang->about_send_me2 = 'Writing a post, publish the title to Me2Day.';
-    $lang->about_send_twitter = 'Writing a post, publish the title to Twitter.';
     $lang->me2day_userid = 'Me2Day ID';
-    $lang->twitter_consumer_key = 'Twitter consumer key';
     $lang->about_me2day_userid = 'Input ID for you Me2Day "http://me2day.net/ID".';
-    $lang->about_twitter_consumer_key = 'Input consumer key for Twitter application.';
     $lang->me2day_userkey = 'Me2Day UserKey';
-    $lang->twitter_consumer_secret = 'Twitter consumer secret';
     $lang->about_me2day_userkey = 'Input user key appeared in the configuration page of Me2Day.';
-    $lang->about_twitter_consumer_secret = 'Input consumer secret for Twitter API.';
-    $lang->twitter_oauth_token = 'Twitter access token';
-    $lang->about_twitter_oauth_token = 'Input twitter access token for Twitter'; 
-    $lang->twitter_oauth_token_secret = 'Twitter token secret'; 
-    $lang->about_twitter_oauth_token_secret = 'Input twitter token secret for Twitter application';
     $lang->check_me2day_info = 'Check Connection';
-    $lang->check_twitter_info = 'Check Connection';
     $lang->msg_success_to_me2day = 'The information you input is correct.';
-    $lang->msg_success_to_twitter = 'The information you input is correct.';
     $lang->msg_fail_to_me2day = 'Connection to Me2Day failed. Check ID and User Key';
-    $lang->msg_fail_to_twitter = 'Connection to Twitter failed. Check the parameters';
-		
+
     $lang->send_twitter = 'Publish to Twitter';
     $lang->about_send_twitter = 'writing a post, publish the title to Twitter';
     $lang->twitter_userid = 'Twitter ID';
@@ -325,7 +311,6 @@
     $lang->textyle_first_menus = array(
         array('dispTextyleToolDashboard','Dashboard'),
         array('','My Posts'),
-        array('','My Pages'),
         array('','Communication'),
         array('','Statistics'),
         array('','Design'),
@@ -341,10 +326,6 @@
             'dispTextyleToolPostManageCategory'=>'Category',
             'dispTextyleToolPostManageTag'=>'Tags',
             'dispTextyleToolPostManageBasket'=>'Recycle Bin',
-        ),
-        array(
-        	'dispTextyleToolExtraMenuInsert'=>'New Page',
-        	'dispTextyleToolExtraMenuList'=>'All Pages',
         ),
         array(
             'dispTextyleToolCommunicationComment'=>'Comments',
@@ -373,6 +354,7 @@
             'dispTextyleToolConfigAddon'=>'Addons',
             'dispTextyleToolConfigData'=>'Data',
             'dispTextyleToolConfigChangePassword'=>'Change Password',
+            'dispTextyleToolExtraMenuList'=>'Additional Menu',
         ),
     );
 
@@ -403,7 +385,7 @@
     $lang->cmd_empty_basket = 'Clear Recycle Bin';
     $lang->cmd_change_category = 'Change Category';
     $lang->cmd_publish = 'Publish';
-    $lang->cmd_save_publish = 'Publish';
+    $lang->cmd_save_publish = 'Save and Publish';
     $lang->cmd_save_temp = 'Temporarily save';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS Edit';
     $lang->cmd_edit_html = 'HTML Edit';
@@ -482,7 +464,6 @@
 	$lang->msg_limit_module = '%s module(s) available';
     $lang->about_textyle_extra_menu = 'You may add modules from XpressEngine as menuitems to your Textyle.';
     $lang->cmd_textyle_extra_menu_config = 'Additional Menu';
-    $lang->cmd_textyle_new_page = 'New Page';
     $lang->textyle_extra_menu_limit_count = 'Maximum Number';
 	$lang->msg_limit_textyle_extra_mid = 'Only format of alphabets + [alphabets, numbers, and underscore(_)] is allowed.';
 

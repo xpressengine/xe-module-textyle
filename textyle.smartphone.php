@@ -2,7 +2,7 @@
     /**
      * @class  textyleSmartphone
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle module SmartPhone IPhone class
+     * @brief  textyle 모듈의 SmartPhone IPhone class
      **/
 
     class textyleSPhone extends textyle {

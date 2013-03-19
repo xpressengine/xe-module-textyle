@@ -181,7 +181,7 @@
             }
 
             if($this->publish_me2day && $oTextyle->getEnableMe2day()) $this->sendMe2day($oTextyle->getMe2dayUserID(), $oTextyle->getMe2dayUserKey());
-            if($this->publish_twitter && $oTextyle->getEnableTwitter()) $this->sendTwitter($oTextyle->getTwitterConsumerKey(), $oTextyle->getTwitterConsumerSecret(), $oTextyle->getTwitterOauthToken(), $oTextyle->getTwitterOauthTokenSecret());
+            if($this->publish_twitter && $oTextyle->getEnableTwitter()) $this->sendTwitter($oTextyle->getTwitterUserID(), $oTextyle->getTwitterPassword());
 
             $this->save();
         }
@@ -246,16 +246,19 @@
             if($output->toBool()) $this->published_me2day = true;
         }
 
-        function sendTwitter($consumer_key, $consumer_secret, $oauth_token, $oauth_token_secret) {
-			require_once(_XE_PATH_.'modules/textyle/libs/twitteroauth.php');
-            if(!$consumer_key || !$consumer_secret || !$oauth_token || !$oauth_token_secret) return;
-            $twitteroauth = new TwitterOAuth($consumer_key, $consumer_secret , $oauth_token , $oauth_token_secret);
-			$shortURL= file_get_contents("http://tinyurl.com/api-create.php?url=" . $this->oDocument->getPermanentUrl()); 
-            $status = sprintf('%s %s', $this->oDocument->getTitleText(), $shortURL);
-            $response = $twitteroauth->post('statuses/update', array("status" => $status));
-          
-            //$buff = FileHandler::getRemoteResource($url, 'status='.urlencode(sprintf('%s %s', $this->oDocument->getTitleText(), $this->oDocument->getPermanentUrl())), 3, 'POST', 'application/x-www-form-urlencoded');
-            $this->published_twitter = true;
+        function sendTwitter($user_id, $password) {
+			//2011.03.04 twitter발행기능 제거 - cherryfilter
+			return;
+
+            /*if(!$user_id || !$password) return;
+
+            $url = 'http://twitter.com/statuses/update.xml';
+            $buff = FileHandler::getRemoteResource($url, 'status='.urlencode(sprintf('%s %s', $this->oDocument->getTitleText(), $this->oDocument->getPermanentUrl())), 3, 'POST', 'application/x-www-form-urlencoded',
+                        array(
+                            'Authorization'=>'Basic '.base64_encode($user_id.':'.$password),
+                        )
+                    );
+            $this->published_twitter = true;*/
         }
 
     }
