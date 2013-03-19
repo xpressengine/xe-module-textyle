@@ -4,7 +4,7 @@
 	<form method="post" onsubmit="return insertGuestbookItem(this, insert_guestbook)" action="" cond="$textyle->isEnableGuestbook()">
 		<input name="mid" type="hidden" value="textyle" />
 		<fieldset>
-			<textarea class="inputTextarea" name="content" rows="5" cols="50"></textarea>
+			<textarea class="iTextArea" name="content" rows="8" cols="42"></textarea>
 			<block cond="$is_logged">
 				<strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
 			</block>
@@ -36,7 +36,7 @@
 						<input name="mid" type="hidden" value="textyle" />
 						<input type="hidden" name="textyle_guestbook_srl" value="{$val->textyle_guestbook_srl}" />
 						<fieldset>
-							<textarea class="inputTextarea" name="content" rows="5" cols="50">{htmlspecialchars($val->content)}</textarea>
+							<textarea class="iTextArea" name="content" rows="8" cols="42">{htmlspecialchars($val->content)}</textarea>
 							<block cond="$is_logged">
 								<strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
 							</block>
@@ -95,11 +95,11 @@
 					<ul class="reAction" cond="$val->view_grant">
 						<li cond="$val->parent_srl==0&&$textyle->isEnableGuestbook()"><a href="{getUrl('modify','','reply',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_reply}</a></li>
 						<block cond="$val->member_srl">
-							<li cond="$logged_info->member_srl == $val->member_srl"><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}</a></li>
+							<li cond="$logged_info->member_srl == $val->member_srl"><a href="{getUrl('reply','','modify',$val->textyle_guestbook_srl)}#gusetbook_{$val->textyle_guestbook_srl}">{$lang->cmd_modify}...</a></li>
 							<li cond="$logged_info->is_site_admin || $logged_info->member_srl == $val->member_srl"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteGuestbookItem({$val->textyle_guestbook_srl});">{$lang->cmd_delete}</button></li>
 						</block>
 						<block cond="!$val->member_srl">
-							<li><button type="button" onclick="jQuery('.guestbook{$key}').removeClass('active');jQuery('.modifyPw.guestbook{$key}').addClass('active')">{$lang->cmd_modify}</button></li>
+							<li><button type="button" onclick="jQuery('.guestbook{$key}').removeClass('active');jQuery('.modifyPw.guestbook{$key}').addClass('active')">{$lang->cmd_modify}...</button></li>
 							<li><button type="button" onclick="jQuery('.guestbook{$key}').removeClass('active');jQuery('.deletePw.guestbook{$key}').addClass('active')">{$lang->cmd_delete}</button></li>
 						</block>
 					</ul>
@@ -109,7 +109,7 @@
 						<input name="mid" type="hidden" value="textyle" />
 						<input type="hidden" name="parent_srl" value="{$val->textyle_guestbook_srl}" />
 						<fieldset>
-							<textarea class="inputTextarea" name="content" rows="5" cols="50"></textarea>
+							<textarea class="iTextArea" name="content" rows="8" cols="42"></textarea>
 							<block cond="$is_logged">
 								<strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
 							</block>
@@ -137,3 +137,5 @@
 	</ol>
 </div>
 <!-- /GuestBook -->
+<!-- /display Post list --> 
+<include target="pagination.num.html" />

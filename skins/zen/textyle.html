@@ -24,8 +24,8 @@
 				<input name="search_target" type="hidden" value="title_content" />
 				<fieldset>
 					<legend>{$lang->cmd_search}</legend>
-					<input name="search_keyword" type="text" class="inputText" value="{$search_keyword}" accesskey="S" title="SEARCH" />
-					<input type="image" src="img/buttonSearch.gif" alt="{$lang->cmd_search}" class="buttonSearch" />
+					<input name="search_keyword" type="text" class="iText" value="{$search_keyword}" title="SEARCH" />
+					<input type="image" src="img/buttonSearch.gif" alt="{$lang->cmd_search}" class="btnSearch" />
 				</fieldset>
 			</form>
 		</div>
@@ -42,26 +42,26 @@
 
                 <!--// GuestBook -->
                 <!--@else if($textyle_mode == 'guestbook')-->
-					<!--#include('guestbook.html')-->
+					<!--#include("guestbook.html")-->
 
 				<!--// Tags -->
                 <!--@else if($textyle_mode=='tags')-->
-					<!--#include('tags.html')-->
+					<!--#include("tags.html")-->
 
                 <!--// Comment Reply, Modify -->
                 <!--@else if($textyle_mode=='comment_form')-->
-					<!--#include('comment_form.html')-->
+					<!--#include("comment_form.html")-->
 
                 <!--// display Post list --> 
                 <!--@elseif($textyle_mode=='list')-->
-					<!--#include('post.title_list.html')-->
+					<!--#include("post.title_list.html")-->
 				<!--// display Post Summary -->
                 <!--@elseif($textyle_mode=='summary')-->
-					<!--#include('post.summary.html')-->
+					<!--#include("post.summary.html")-->
 
 				<!--// display post body or body list -->
 				<!--@else-->
-					<!--#include('post.list.html')-->
+					<!--#include("post.list.html")-->
                 <!--@end-->
 
                 <!--// display pagenavigation -->

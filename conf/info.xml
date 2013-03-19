@@ -14,16 +14,16 @@
     <description xml:lang="jp">XpressEngine基盤のブログ専用モジュールです。</description>
     <description xml:lang="zh-TW">Textyle 是 XpressEngine 的部落格模組。</description>
     <description xml:lang="tr">Textyle, XpressEngine'de bulunan harici blog modülüdür.</description>
-    <version>1.3.2.beta</version>
-    <date>2011-03-11</date>
+    <version>1.3.5</version>
+    <date>2013-03-15</date>
     <category>package</category>
-    <author email_address="" link="http://textyle.xpressengine.net">
-        <name xml:lang="ko">NHN</name>
-        <name xml:lang="en">NHN</name>
-		<name xml:lang="vi">NHN</name>
-        <name xml:lang="zh-CN">NHN</name>
-        <name xml:lang="jp">NHN</name>
-        <name xml:lang="zh-TW">NHN</name>
-        <name xml:lang="tr">NHN</name>
+    <author email_address="xe_dev@arnia.ro" link="http://www.xpressengine.org">
+        <name xml:lang="ko">Arnia</name>
+        <name xml:lang="en">Arnia</name>
+		<name xml:lang="vi">Arnia</name>
+        <name xml:lang="zh-CN">Arnia</name>
+        <name xml:lang="jp">Arnia</name>
+        <name xml:lang="zh-TW">Arnia</name>
+        <name xml:lang="tr">Arnia</name>
 	</author>
 </module>

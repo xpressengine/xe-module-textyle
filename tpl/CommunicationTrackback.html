@@ -20,8 +20,8 @@
 							<input type="hidden" name="vid" value="{$vid}" />
 							<input type="hidden" name="mid" value="{$mid}" />
 							<input type="hidden" name="search_target" value="excerpt" />
-							<input name="search_keyword" type="text" title="{$lang->cmd_search}" value="{$search_keyword}" class="inputText" />
-							<span class="buttonGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
+							<input name="search_keyword" type="text" title="{$lang->cmd_search}" value="{$search_keyword}" class="iText" />
+							<span class="btnGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
 						</form>
 					</fieldset>
 				</div>
@@ -56,16 +56,16 @@
 										<td>
 											<input type="checkbox" name="trackback_srl" value="{$trackback->trackback_srl}"  class="inputCheck boxlist" />
 										</td>
-										<td class="half"><a href="{getSiteUrl($textyle->domain,'','document_srl',$trackback->document_srl)}#trackback_{$trackback->trackback_srl}" onclick="window.open(this.href); return false;" class="original">{$document_items[$trackback->document_srl]->getTitle()}</a></td>
+										<td class="half"><a href="{getSiteUrl($textyle->domain,'','document_srl',$trackback->document_srl)}#trackback_{$trackback->trackback_srl}" class="original">{$document_items[$trackback->document_srl]->getTitle()}</a></td>
 										<td class="half">
-											<p class="trackbackIn"><a href="{$trackback->url}" target="_blank">{$trackback->title}</a></p>
+											<p class="trackbackIn"><a href="{$trackback->url}">{$trackback->title}</a></p>
 											<p class="trackbackAddress">{$trackback->blog_name}<span class="ipAddress">{$trackback->ipaddress}</span></p>
 										</td>
 										<td class="small">{zdate($trackback->regdate,'Y.m.d')}</td>
 										<td>
                                         
-										<span class="buttonGray small"><button type="button" onclick="openLayerAddDenyItem('{$trackback->trackback_srl}','_addDenyTrackbackList')">{$lang->cmd_deny}</button></span><br />
-										<td><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteTrackbackItem({$trackback->trackback_srl},{$page_navigation->cur_page});return false;" class="buttonTableData"><span>{$lang->cmd_delete}</span></button></td>
+										<span class="btnGray small"><button type="button" onclick="openLayerAddDenyItem('{$trackback->trackback_srl}','_addDenyTrackbackList')">{$lang->cmd_deny}</button></span><br />
+										<td><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteTrackbackItem({$trackback->trackback_srl},{$page_navigation->cur_page});return false;" class="btnTableData"><span>{$lang->cmd_delete}</span></button></td>
 									</tr>			
 									<!--@end-->
 								<!--@end-->
@@ -78,8 +78,8 @@
 							<div class="change">
 								<p class="p1">{$lang->selected_articles}</p>
 								
-								<span class="buttonGray large"><button type="button" onclick="openLayerAddDeny('_addDenyTrackbackList')">{$lang->cmd_deny}</button></span>
-								<span class="buttonGray large"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteTrackbackItems({$page_navigation->cur_page});return false;"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
+								<span class="btnGray large"><button type="button" onclick="openLayerAddDeny('_addDenyTrackbackList')">{$lang->cmd_deny}</button></span>
+								<span class="btnGray large"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteTrackbackItems({$page_navigation->cur_page});return false;"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
 								
 							</div>
 							<!-- /Change -->

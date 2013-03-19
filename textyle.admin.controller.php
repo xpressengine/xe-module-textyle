@@ -2,19 +2,19 @@
     /**
      * @class  textyleAdminController
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle 모듈의 admin controller class
+     * @brief  textyle module admin controller class
      **/
 
     class textyleAdminController extends textyle {
 
         /**
-         * @brief 초기화
+         * @brief Initialization
          **/
         function init() {
         }
 
         /**
-         * @brief textyle 생성
+         * @brief Textyle Admin Create
          **/
         function procTextyleAdminCreate() {
             $oModuleModel = &getModel('module');
@@ -37,7 +37,6 @@
             }
             if(count($user_id_list)==0) return new Object(-1,'msg_invalid_request');
 
-            // textyle 생성
             $output = $this->insertTextyle($domain, $user_id_list);
             if(!$output->toBool()) return $output;
 
@@ -56,21 +55,26 @@
             $oTextyleModel = &getModel('textyle');
             $oTextyleController = &getController('textyle');
             $oDocumentController = &getController('document');
-
-            // 관리자 아이디 검사
-            $member_srl = $oMemberModel->getMemberSrlByUserID($user_id_list[0]);
+			
+            $memberConfig = $oMemberModel->getMemberConfig();
+            foreach($memberConfig->signupForm as $item){
+            	if($item->isIdentifier) $identifierName = $item->name;
+            }
+            if($identifierName == "user_id") {
+            	$member_srl = $oMemberModel->getMemberSrlByUserID($user_id_list[0]);
+            	}
+            else {
+            	$member_srl = $oMemberModel->getMemberSrlByEmailAddress($user_id_list[0]);
+            }
             if(!$member_srl) return new Object(-1,'msg_not_user');
 
-            // 관리자의 정보를 구함
             $member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
 
-            // 가상 사이트 생성
             if(strpos($domain, '.') !== false) $domain = strtolower($domain);
             $output = $oModuleController->insertSite($domain, 0);
             if(!$output->toBool()) return $output;
             $site_srl = $output->get('site_srl');
 
-            // textyle 모듈 생성
             $textyle->site_srl = $site_srl;
             $textyle->mid = $this->textyle_mid;
             $textyle->module = 'textyle';
@@ -83,16 +87,13 @@
             //$module_srl = $output->get('module_srl');
             $module_srl = $textyle->module_srl;
 
-            // 가상사이트에 index_module_srl 업데이트
             $site->site_srl = $site_srl;
             $site->index_module_srl = $module_srl;
 			$site->domain = $domain;
             $output = $oModuleController->updateSite($site);
 
-            // 가상 사이트의 관리자 지정
             $output = $oModuleController->insertSiteAdmin($site_srl, $user_id_list);
 
-            // 텍스타일 정보 기록
             $args->textyle_title = $textyle->browser_title;
             $args->module_srl = $module_srl;
             $args->member_srl = $member_srl;
@@ -115,11 +116,9 @@
 
             $oTextyleController->updateTextyleCommentEditor($module_srl, $args->comment_editor_skin, $args->comment_editor_colorset);
 
-            //rss 등록
             $output = $oRssAdminController->setRssModuleConfig($module_srl, 'Y', 'Y');
             if(!$output->toBool()) return $output;
 
-            //addon 설정
             $oAddonAdminController->doInsert('autolink', $site_srl);
             $oAddonAdminController->doInsert('counter', $site_srl);
             $oAddonAdminController->doInsert('member_communication', $site_srl);
@@ -140,7 +139,6 @@
             $oAddonAdminController->doActivate('blogapi', $site_srl);
             $oAddonAdminController->makeCacheFile($site_srl);
 
-            // 기본 에디터 컴포넌트 On
             $oEditorController = &getAdminController('editor');
             $oEditorController->insertComponent('colorpicker_text',true, $site_srl);
             $oEditorController->insertComponent('colorpicker_bg',true, $site_srl);
@@ -158,24 +156,20 @@
             $obj->title = Context::getLang('init_category_title');
             $oDocumentController->insertCategory($obj);
 
-            // 기본 스킨 디자인 복사
             FileHandler::copyDir($this->module_path.'skins/'.$textyle->skin, $oTextyleModel->getTextylePath($module_srl));
 
-            // 모듈의 관리자 아이디로 지정
             foreach($user_id_list as $k => $v){
                 $output = $oModuleController->insertAdminId($module_srl, $v);
                 if(!$output->toBool()) return $output;
             }
 
-            // 첫 글 등록
             $langType = Context::getLangType();
             $file = sprintf('%ssample/%s.html',$this->module_path,$langType);
             if(!file_exists(FileHandler::getRealPath($file))){
                 $file = sprintf('%ssample/ko.html',$this->module_path);
             }
-            // 소유자 회원정보
             $oMemberModel = &getModel('member');
-            $member_info = $oMemberModel->getMemberInfoByUserID($user_id_list[0]);
+            $member_info = $oMemberModel->getMemberInfoByEmailAddress($user_id_list[0]);
 
             $doc->module_srl = $module_srl;
             $doc->title = Context::getLang('sample_title');
@@ -202,16 +196,21 @@
             else $args->domain = $vars->vid;
             if(!$args->domain) return new Object(-1,'msg_invalid_request');
 
-            // 관리자 아이디 검사
             $oMemberModel = &getModel('member');
-
+			$member_config = $oMemberModel->getMemberConfig();
+			
             $tmp_member_list = explode(',',$vars->user_id);
             $admin_list = array();
             $admin_member_srl = array();
             foreach($tmp_member_list as $k => $v){
                 $v = trim($v);
                 if($v){
-                    $member_srl = $oMemberModel->getMemberSrlByUserID($v);
+	                if($member_config->identifier == "user_id") {
+		            	$member_srl = $oMemberModel->getMemberSrlByUserID($v);
+		            	}
+		            else {
+		            	$member_srl = $oMemberModel->getMemberSrlByEmailAddress($v);
+		            }
                     if($member_srl){
                         $admin_list[] = $v;
                         $admin_member_srl[] = $member_srl;
@@ -229,7 +228,6 @@
             $output = $oModuleController->insertSiteAdmin($vars->site_srl, $admin_list);
             if(!$output->toBool()) return $output;
 
-            // 모듈의 관리자 아이디로 지정
             $oModuleController->deleteAdminId($vars->module_srl);
 
             foreach($admin_list as $k => $v){
@@ -239,7 +237,6 @@
                 if(!$output->toBool()) return $output;
             }
 
-            // 도메인 변경
             $args->site_srl = $vars->site_srl;
             $output = $oModuleController->updateSite($args);
             if(!$output->toBool()) return $output;
@@ -269,21 +266,30 @@
             $site_info = $oModuleModel->getSiteInfo($site_srl);
             $module_srl = $site_info->index_module_srl;
 
-            // 원본을 구해온다
             $oTextyle = new TextyleInfo($module_srl);
             if($oTextyle->module_srl != $module_srl) return new Object(-1,'msg_invalid_request');
 
-            // 모듈 삭제
             $output = $oModuleController->deleteModule($module_srl);
             if(!$output->toBool()) return $output;
 
-            // 가상 사이트 삭제
             $args->site_srl = $oTextyle->site_srl;
             executeQuery('module.deleteSite', $args);
             executeQuery('module.deleteSiteAdmin', $args);
             executeQuery('member.deleteMemberGroup', $args);
             executeQuery('member.deleteSiteGroup', $args);
             executeQuery('module.deleteLangs', $args);
+            
+        	//clear cache for default mid
+            $vid = $site_info->domain;
+            $mid = $site_info->mid;
+            $oCacheHandler = &CacheHandler::getInstance('object');
+            if($oCacheHandler->isSupport()){
+            	$cache_key = 'object_default_mid:'.$vid.'_'.$mid;
+            	$oCacheHandler->delete($cache_key);
+            	$cache_key = 'object_default_mid:'.$vid.'_';
+            	$oCacheHandler->delete($cache_key);
+            }
+            
             $lang_supported = Context::get('lang_supported');
             foreach($lang_supported as $key => $val) {
                 $lang_cache_file = _XE_PATH_.'files/cache/lang_defined/'.$args->site_srl.'.'.$key.'.php';
@@ -293,7 +299,6 @@
             $oAddonController->removeAddonConfig($args->site_srl);
             $oEditorController->removeEditorConfig($args->site_srl);
 
-            // 관련 DB 삭제
             $args->module_srl = $module_srl;
             executeQuery('textyle.deleteTextyle', $args);
             executeQuery('textyle.deleteTextyleFavorites', $args);
@@ -308,7 +313,6 @@
             executeQuery('textyle.deleteTextyleSubscriptions', $args);
             executeQuery('textyle.deletePublishLogs', $args);
 
-            // 파일들 삭제
             @FileHandler::removeFile(sprintf("files/cache/textyle/textyle_deny/%d.php",$module_srl));
 
             FileHandler::removeDir($oTextyleModel->getTextylePath($module_srl));
@@ -351,6 +355,7 @@
                 } elseif(strpos($key, 'custom_name_')!==false && $val) {
                     $idx = substr($key, 12);
                     $attached[$idx]->name = $val;
+
                 }
             }
 
@@ -411,14 +416,12 @@
             $module_srl = $site_info->index_module_srl;
             $args->site_srl = $site_srl;
 
-            // 원본을 구해온다
             $oTextyle = new TextyleInfo($module_srl);
             if($oTextyle->module_srl != $module_srl) return new Object(-1,'msg_invalid_request');
 
             $oCounterController->deleteSiteCounterLogs($args->site_srl);
             $oAddonController->removeAddonConfig($args->site_srl);
 
-            // 관련 DB 삭제
             $args->module_srl = $module_srl;
             $output = executeQuery('textyle.deleteTextyleFavorites', $args);
             $output = executeQuery('textyle.deleteTextyleTags', $args);
@@ -430,7 +433,6 @@
             $output = executeQuery('textyle.deleteTextyleSupporters', $args);
             $output = executeQuery('textyle.deletePublishLogs', $args);
 
-            // 파일들 삭제
             FileHandler::removeFile(sprintf("./files/cache/textyle/textyle_deny/%d.php",$module_srl));
             FileHandler::removeDir($oTextyleModel->getTextylePath($module_srl));
 
@@ -451,18 +453,15 @@
             $obj->title = Context::getLang('init_category_title');
             $oDocumentController->insertCategory($obj);
 
-            // 기본 스킨 디자인 복사
             FileHandler::copyDir($this->module_path.'skins/'.$this->skin, $oTextyleModel->getTextylePath($module_srl));
 
-            // 첫 글 등록
             $langType = Context::getLangType();
             $file = sprintf('%ssample/%s.html',$this->module_path,$langType);
             if(!file_exists(FileHandler::getRealPath($file))){
                 $file = sprintf('%ssample/ko.html',$this->module_path);
             }
 
-            // 소유자 회원정보
-            $member_info = $oMemberModel->getMemberInfoByUserID($oTextyle->getUserId());
+            $member_info = $oMemberModel->getMemberInfoByEmailAddress($oTextyle->getUserId());
 
             $doc->module_srl = $module_srl;
             $doc->title = Context::getLang('sample_title');
@@ -557,11 +556,9 @@
 			$config = $oTextyleModel->getModulePartConfig($module_srl);
 			$config->allow_service = $allow_service;
 
-			// 개별 설정
 			if($module_srl){
                 $oModuleController->insertModulePartConfig('textyle', $module_srl, $config);
 
-			// 기본 설정
 			}else{
                 $oModuleController->insertModuleConfig('textyle', $config);
 			}

@@ -367,7 +367,6 @@
     $lang->cmd_textyle_setup = 'Thiết lập mặc định';
     $lang->cmd_textyle_list = 'Danh sách Blog';
     $lang->cmd_textyle_creation = 'Tạo Blog mới';
-    $lang->cmd_textyle_update = 'Sửa Blog';
     $lang->cmd_textyle_custom_menu = 'Sửa Menu Blog';
     $lang->cmd_new_post = 'Gửi bài mới';
     $lang->cmd_go_blog = 'Xem Blog của tôi';

@@ -2,13 +2,13 @@
     /**
      * @class  textyleAdminView
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle 모듈의 admin view class
+     * @brief  textyle module admin view class
      **/
 
     class textyleAdminView extends textyle {
 
         /**
-         * @brief 초기화
+         * @brief Initialization
          **/
         function init() {
             $oTextyleModel = &getModel('textyle');
@@ -43,7 +43,15 @@
 
         function dispTextyleAdminInsert() {
             $oModuleModel = &getModel('module');
-
+            $oMemberModel = &getModel('member');
+			
+            //set identifier type of admin
+        	$memberConfig = $oMemberModel->getMemberConfig();
+            foreach($memberConfig->signupForm as $item){
+            	if($item->isIdentifier) $identifierName = $item->name;
+            }
+            Context::set('identifier',$identifierName);
+            
             $module_srl = Context::get('module_srl');
             if($module_srl) {
                 $oTextyleModel = &getModel('textyle');
@@ -54,13 +62,15 @@
                 $site_admin = array();
                 if(is_array($admin_list)){
                     foreach($admin_list as $k => $v){
-                        $site_admin[] = $v->user_id;
+                    	if($identifierName == 'user_id')  $site_admin[] = $v->user_id;
+                    	   else $site_admin[] = $v->email_address;
                     }
 
                     Context::set('site_admin', join(',',$site_admin));
                 }
             }
-
+            
+            
             $skin_list = $oModuleModel->getSkins($this->module_path);
             Context::set('skin_list',$skin_list);
 
@@ -126,7 +136,6 @@
 			$config = $oTextyleModel->getModulePartConfig($module_srl);
 			Context::set('config',$config);
 
-            // 서비스 모듈을 구함
             $oModuleModel = &getModel('module');
             $installed_module_list = $oModuleModel->getModulesXmlInfo();
             foreach($installed_module_list as $key => $val) {

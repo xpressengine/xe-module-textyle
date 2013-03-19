@@ -24,10 +24,10 @@
 					<!--@if($val->member_srl == $logged_info->member_srl||$logged_info->is_site_admin)-->
 						<p>{$val->content}</p>
 					<!--@else-->
-						<p>비밀글입니다.</p>
+						<p>{$lang->msg_is_secret}</p>
 					<!--@end-->
 				<!--@else-->
-					<p>비밀글입니다.</p>
+					<p>{$lang->msg_is_secret}</p>
 				<!--@end-->
 			<!--@end-->
 			<span class="auth">

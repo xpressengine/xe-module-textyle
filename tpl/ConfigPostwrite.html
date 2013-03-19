@@ -31,7 +31,6 @@
 											<!--@end-->
 											<!--@end-->
 										</select>
-										<!--<a href="{getUrl('','act','dispTextyleToolConfigPostEditorComponent')}" class="buttonSet buttonSetting" onclick="popopen(this.href); return false;" title="{$lang->cmd_setup}"><span>{$lang->cmd_setup}</span></a>-->
                                         {$lang->about_etc_editor} <a href="{getUrl('','mid',$mid,'act','dispTextyleToolConfigEditorComponents')}">[{$lang->config_edit_components}]</a>
 									</td>
 								</tr>
@@ -43,7 +42,7 @@
 							<table border="1" cellspacing="0" class="setupData">
 								<tr>
 									<th scope="row" rowspan="2"><label for="fontFamily">{$lang->font_family}</label></th>
-									<td><input name="font_family" type="text" class="inputText" id="fontFamily" value="{$textyle->getFontFamily()}" style="width:200px" /></td>
+									<td><input name="font_family" type="text" class="iText" id="fontFamily" value="{$textyle->getFontFamily()}" style="width:200px" /></td>
 								</tr>
 								<tr>
 									{@$_font_family=array();}
@@ -54,7 +53,7 @@
 								</tr>
 								<tr>
 									<th scope="row" rowspan="2"><label for="fontSize">{$lang->font_size}</label></th>
-									<td><input name="font_size" type="text" class="inputText" id="fontSize" value="{$textyle->getFontSize()}" style="width:200px" /></td>
+									<td><input name="font_size" type="text" class="iText" id="fontSize" value="{$textyle->getFontSize()}" style="width:200px" /></td>
 								</tr>
 								<tr>
 									<td>{$lang->about_font_size}</td>
@@ -65,13 +64,13 @@
 						<fieldset>
 							<h4 class="h4">{$lang->set_prefix}</h4>
 							<p><input name="post_use_prefix" type="checkbox" value="Y" class="inputCheck" id="post_use_prefix"<!--@if($textyle->getPostUsePrefix()=='Y')--> checked="checked"<!--@end--> /><label for="post_use_prefix">{$lang->about_prefix}</label></p>
-							<textarea name="post_prefix" class="inputTextarea">{htmlspecialchars($textyle->getPostPrefix(true))}</textarea>
+							<textarea name="post_prefix" class="iTextArea" rows="8" cols="42">{htmlspecialchars($textyle->getPostPrefix(true))}</textarea>
 						</fieldset>
 						
 						<fieldset>
 							<h4 class="h4">{$lang->set_suffix}</h4>
 							<p><input name="post_use_suffix" type="checkbox" value="Y" class="inputCheck" id="post_use_suffix"<!--@if($textyle->getPostUseSuffix()=='Y')--> checked="checked"<!--@end--> /><label for="post_use_suffix">{$lang->about_suffix}</label></p>
-							<textarea name="post_suffix" class="inputTextarea">{htmlspecialchars($textyle->getPostSuffix(true))}</textarea>
+							<textarea name="post_suffix" class="iTextArea" rows="8" cols="42">{htmlspecialchars($textyle->getPostSuffix(true))}</textarea>
 						</fieldset>
 						
 						<fieldset>
@@ -81,8 +80,8 @@
                             <p class="uriExample">{$lang->blogapi_url} <strong>{getFullSiteUrl($textyle->get('domain'), '', 'mid', $textyle->get('mid'), 'act','api')}</strong></p>
 						</fieldset>
 						
-						<div class="buttonArea">
-							<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_apply}" /></span>
+						<div class="btnArea">
+							<span class="btn"><input type="submit" value="{$lang->cmd_apply}" /></span>
 						</div>
 
 					</form>

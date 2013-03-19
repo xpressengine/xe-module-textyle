@@ -1,31 +1,27 @@
-<!--#include("./header.html")-->
-<!--%import("filter/insert_extra_menu_config.xml")-->
-<form action="./" method="post" onsubmit="return procFilter(this, insert_extra_menu_config)" >
-<input type="hidden" name="module_srl" value="{$module_srl}" />
-    <h4 class="xeAdmin">{$lang->cmd_setup}</h4>
-    <table cellspacing="0" class="rowTable">
-	<thead>
-		<tr>
-			<th>{$lang->module} </th>
-			<th>{$lang->textyle_extra_menu_limit_count}</th>
-		</tr>
-	</thead>
-	<tbody>
-        <!--@foreach($service_modules as $k => $v)-->
-            <!--@if($v->category == 'service' && $v->default_index_act)-->
+<include target="./header.html" />
+<load target="filter/insert_extra_menu_config.xml" />
+<form action="./" method="post" onsubmit="return procFilter(this, insert_extra_menu_config)" class="section">
+	<input type="hidden" name="module_srl" value="{$module_srl}" />
+	<h1>{$lang->cmd_setup}</h1>
+	<table class="x_table x_table-striped x_table-hover">
+		<thead>
 			<tr>
-            <td class="row">
-                {$v->title} 
-			</td>
-			<td><input type="text" name="allow_service_{$v->module}" value="{$config->allow_service[$v->module]}" class="inputTypeText w80" />
-            </td>
+				<th scope="col">{$lang->module} </th>
+				<th scope="col">{$lang->textyle_extra_menu_limit_count}</th>
 			</tr>
-            <!--@end-->
-        <!--@end-->
-        <tr>
-            <th class="button" colspan="2"><span class="button black strong"><input type="submit" value="{$lang->cmd_save}" accesskey="s" /></span></div></th>
-        </tr>
-    </tbody>
-
+		</thead>
+		<tbody>
+			<tr loop="$service_modules => $k,$v" cond="$v->category == 'service' && $v->default_index_act">
+				<th scope="row">
+					{$v->title}
+				</td>
+				<td>
+					<input type="number" style="width:50px" min="0" name="allow_service_{$v->module}" value="{$config->allow_service[$v->module]}" />
+				</td>
+			</tr>
+		</tbody>
 	</table>
+	<div class="x_clearfix">
+		<input type="submit" class="x_btn x_btn-primary x_pull-right" value="{$lang->save}">
+	</div>
 </form>

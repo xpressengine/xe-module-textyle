@@ -4,6 +4,28 @@
      * @author NHN (developers@xpressengine.com)
      * @brief  Textyle(textyle) module's English language pack.
      **/
+    $lang->trending_story = 'This month\'s trending story';
+    $lang->trending_story_more = 'More trending stories';
+    $lang->trending_stories_all_time = 'Trending stories of all times';
+    $lang->all_stories = 'All stories';
+    $lang->story_comments = 'comments for this story';
+    $lang->view_number = 'number of views';
+    $lang->prev_page = 'Prev';
+    $lang->next_page = 'Next';
+    $lang->recent_tags = 'Recent Tags';
+    $lang->subscribe = 'Subscribe to this Blog';
+    $lang->subscribe_blog = 'Subscribe to this Blog';
+    $lang->Posted = 'Posted';
+    $lang->posted = 'posted';
+    $lang->tagged = 'tagged';
+    $lang->viewed = 'viewed';
+    $lang->time = 'time';
+    $lang->times = 'times';
+    $lang->related_posts = 'Related Posts';
+    $lang->admin_blog = 'Administer blog';
+    $lang->dashboard = 'Dashboard';
+    $lang->new_post = 'New Post';
+    $lang->mng_guestbook = 'Manage Guestbook';
 
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'Textyle is a blog module running on XpressEngine.';
@@ -14,7 +36,7 @@
 	$lang->msg_create_textyle = 'Textyle is created';
 	$lang->init_category_title = 'Default Category';
 	$lang->add_category = 'Add a category';
-    $lang->textyle_admin = 'Textyle administrator(ID)';
+    $lang->textyle_admin = 'Textyle administrator';
     $lang->textyle_title = 'Textyle\'s title';
     $lang->today_visitor = 'Number of today\'s <strong>visitors</strong>';
     $lang->today_comments = 'Number of today\'s <strong>comments</strong>';
@@ -27,6 +49,7 @@
     $lang->newest_materials = 'Newest Ingredients';
 	$lang->newest_no_materials = 'There is no ingredient for writing. <a href="%s">Install Writing Ingredients Collector.</a>';
 	$lang->newest_comments = 'Recent Comments';
+	$lang->newest_tutorials = 'Recent Tutorials';
 	$lang->newest_no_comments = 'There is no comment.';
 	$lang->newest_guestbooks = 'Recent Guestbook';
 	$lang->newest_no_guestbooks = 'There is no article in guestbook.';
@@ -37,6 +60,7 @@
     $lang->published = 'Published';
     $lang->publish_option = 'Publish Options';
 	$lang->publish_this_blog = 'Publish this blog.';
+	$lang->cmd_preview ='Preview';
     $lang->ask_time_publish = 'Would you like to publish (or update) this posting right now?';
     $lang->ask_micro_publish = 'Do you want to publish on micro blogs?';
     $lang->noti_publish = 'Notify publish';
@@ -74,12 +98,12 @@
     $lang->font_size = 'Font Size';
     $lang->about_font_family = 'You can choose default fonts for contents (ex:%s)';
     $lang->font_family_list = array(
-		'돋움, Dotum'=> 'Dotum',
-		'굴림, Gulim'=> 'Gulim',
-		'바탕, Batang'=> 'Batang',
-		'맑은 고딕, Malgun Gothic'=> 'Malgun Gothic',
-		'나눔고딕, NanumGothic'=> 'Nanum Gothic',
-		'나눔명조, NanumMyeongjo'=> 'Nanum Myeongjo'
+		'??, Dotum'=> 'Dotum',
+		'??, Gulim'=> 'Gulim',
+		'??, Batang'=> 'Batang',
+		'?? ??, Malgun Gothic'=> 'Malgun Gothic',
+		'????, NanumGothic'=> 'Nanum Gothic',
+		'????, NanumMyeongjo'=> 'Nanum Myeongjo'
 	);
     $lang->about_font_size = 'You can choose default font size (ex: 12px or 1em - unit should be included)';
     $lang->about_textyle_editor = 'Textyle\'s default editor: You can edit each paragraph separately in your posts';
@@ -148,6 +172,8 @@
     $lang->order_desc = 'Descending order';
     $lang->update_tag = 'Tag modify/delete';
     $lang->tag_name = 'Tag';
+    $lang->tags = 'Tags';
+    $lang->tagged_as = 'Tagged as';
     $lang->tag_with_tags = 'Co-occurred Tags';
     $lang->total_materials = 'Total <strong>%d</strong> ingredients are stored.';
     $lang->none_materials = 'There is no ingredient.';
@@ -167,15 +193,28 @@
     $lang->msg_migration_file_is_null = 'Input the location of XML file for data import';
     $lang->cmd_import = 'Import';
     $lang->send_me2 = 'Publish to Me2Day';
+    $lang->send_twitter = 'Publish to Twitter';
     $lang->about_send_me2 = 'Writing a post, publish the title to Me2Day.';
+    $lang->about_send_twitter = 'Writing a post, publish the title to Twitter.';
     $lang->me2day_userid = 'Me2Day ID';
+    $lang->twitter_consumer_key = 'Twitter consumer key';
     $lang->about_me2day_userid = 'Input ID for you Me2Day "http://me2day.net/ID".';
+    $lang->about_twitter_consumer_key = 'Input consumer key for Twitter application.';
     $lang->me2day_userkey = 'Me2Day UserKey';
+    $lang->twitter_consumer_secret = 'Twitter consumer secret';
     $lang->about_me2day_userkey = 'Input user key appeared in the configuration page of Me2Day.';
+    $lang->about_twitter_consumer_secret = 'Input consumer secret for Twitter API.';
+    $lang->twitter_oauth_token = 'Twitter access token';
+    $lang->about_twitter_oauth_token = 'Input twitter access token for Twitter'; 
+    $lang->twitter_oauth_token_secret = 'Twitter token secret'; 
+    $lang->about_twitter_oauth_token_secret = 'Input twitter token secret for Twitter application';
     $lang->check_me2day_info = 'Check Connection';
+    $lang->check_twitter_info = 'Check Connection';
     $lang->msg_success_to_me2day = 'The information you input is correct.';
+    $lang->msg_success_to_twitter = 'The information you input is correct.';
     $lang->msg_fail_to_me2day = 'Connection to Me2Day failed. Check ID and User Key';
-
+    $lang->msg_fail_to_twitter = 'Connection to Twitter failed. Check the parameters';
+		
     $lang->send_twitter = 'Publish to Twitter';
     $lang->about_send_twitter = 'writing a post, publish the title to Twitter';
     $lang->twitter_userid = 'Twitter ID';
@@ -251,6 +290,7 @@
     $lang->document_close = 'Closed';
 
     $lang->category = 'Category';
+    $lang->categories = 'Categories';
     $lang->comm_management = 'Communication';
     $lang->publish_date = 'When to publish';
     $lang->publish_now = 'Now';
@@ -260,6 +300,7 @@
     $lang->close_calendar_layer = 'Close calendar';
     $lang->select_calendar_layer = 'Select date from calendar';
 
+    $lang->about_textyle_admin = 'You can enter more admins by just sepparating them with a comma (,).';
     $lang->insert_title = 'Input title';
     $lang->new_post = 'Write a Post';
     $lang->modify_post = 'Modify a post';
@@ -311,6 +352,7 @@
     $lang->textyle_first_menus = array(
         array('dispTextyleToolDashboard','Dashboard'),
         array('','My Posts'),
+        array('','My Pages'),
         array('','Communication'),
         array('','Statistics'),
         array('','Design'),
@@ -326,6 +368,11 @@
             'dispTextyleToolPostManageCategory'=>'Category',
             'dispTextyleToolPostManageTag'=>'Tags',
             'dispTextyleToolPostManageBasket'=>'Recycle Bin',
+        ),
+        array(
+        	'dispTextyleToolExtraMenuInsert'=>'New Text Page',
+        	'dispTextyleToolExtraMenuModuleInsert'=>'New Module Page',
+        	'dispTextyleToolExtraMenuList'=>'All Pages',
         ),
         array(
             'dispTextyleToolCommunicationComment'=>'Comments',
@@ -354,15 +401,14 @@
             'dispTextyleToolConfigAddon'=>'Addons',
             'dispTextyleToolConfigData'=>'Data',
             'dispTextyleToolConfigChangePassword'=>'Change Password',
-            'dispTextyleToolExtraMenuList'=>'Additional Menu',
         ),
     );
 
     $lang->cmd_go_help = 'Help Desk';
     $lang->cmd_textyle_setup = 'Default Settings';
     $lang->cmd_textyle_list = 'Textyle List';
-    $lang->cmd_textyle_creation = 'New Textyle';
-    $lang->cmd_textyle_update = 'Modify Textyle';
+    $lang->cmd_textyle_creation = 'Create a new Textyle';
+    $lang->cmd_textyle_modify = 'Edit textyle';
     $lang->cmd_textyle_custom_menu = 'Textyle Menu Customize';
     $lang->cmd_new_post = 'Write New Post';
     $lang->cmd_go_blog = 'Go to My Blog';
@@ -385,7 +431,7 @@
     $lang->cmd_empty_basket = 'Clear Recycle Bin';
     $lang->cmd_change_category = 'Change Category';
     $lang->cmd_publish = 'Publish';
-    $lang->cmd_save_publish = 'Save and Publish';
+    $lang->cmd_save_publish = 'Publish';
     $lang->cmd_save_temp = 'Temporarily save';
     $lang->cmd_edit_htmlcss = 'HTML&middot;CSS Edit';
     $lang->cmd_edit_html = 'HTML Edit';
@@ -450,7 +496,7 @@
     $lang->about_textyle_skin_import = 'It uploads customized skin from local folder, and current skin will be removed.';
 
 	$lang->success_upload = 'It is successfully uploaded.';
-	$lang->cmd_textyle_export_request ='Backup Request';
+	$lang->cmd_textyle_export_request ='Backup Requests';
 	$lang->textyle_export_recode = 'Backup Requests';
 	$lang->textyle_export_waiting = 'Waiting';
 	$lang->textyle_export_request = 'Request backup';
@@ -464,6 +510,8 @@
 	$lang->msg_limit_module = '%s module(s) available';
     $lang->about_textyle_extra_menu = 'You may add modules from XpressEngine as menuitems to your Textyle.';
     $lang->cmd_textyle_extra_menu_config = 'Additional Menu';
+    $lang->cmd_textyle_new_page = 'New Text Page';
+    $lang->cdm_textyle_new_module_page = 'New Module Page';
     $lang->textyle_extra_menu_limit_count = 'Maximum Number';
 	$lang->msg_limit_textyle_extra_mid = 'Only format of alphabets + [alphabets, numbers, and underscore(_)] is allowed.';
 
@@ -473,5 +521,29 @@
 	$lang->cmd_open_close = 'open / close';
 	$lang->msg_write_comment = 'write comments';
 	$lang->msg_mobile_skin_use_not = 'You are not using any mobile skins. Please click on Apply This to use one.';
-	$lang->skip_content = 'Skip body';
+    $lang->skip_content = 'Skip body';
+	$lang->read_more = 'Continue reading »';
+    // View page
+    $lang->share_this_article = 'Share this article';
+    $lang->notify_for_replies = 'Notify by email if someone replies to my comment';
+    $lang->confirm_cancel_comment = 'Would you like to cancel editing your comment?';
+    
+    // added for zdateRelative function
+    $lang->seconds_ago = '%s seconds ago';
+    $lang->second_ago = 'one second ago';
+    $lang->minutes_ago = '%s minutes ago';
+    $lang->minute_ago = 'one minute ago';
+    $lang->hours_ago = '%s hours ago';
+    $lang->hour_ago = 'an hour ago';
+    $lang->days_ago = '%s days ago';
+    $lang->day_ago = 'yesterday';
+    $lang->weeks_ago = '%s weeks ago';
+    $lang->week_ago = 'last week';
+    $lang->months_ago = '%s months ago';
+    $lang->month_ago = 'last month';
+    $lang->years_ago = '%s years ago';
+    $lang->year_ago = 'last year';
+
+    $lang->export_format = 'Export format';
+    $lang->actions = 'Actions';
 ?>

@@ -70,7 +70,7 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="api_url">{$lang->blogapi_url}</label></th>
 									<td>
-                                        <input name="blogapi_url" type="text" class="inputText" id="api_url" value="{htmlspecialchars($api_info->blogapi_url)}" style="width:400px" />
+                                        <input name="blogapi_url" type="text" class="iText" id="api_url" value="{htmlspecialchars($api_info->blogapi_url)}" style="width:400px" />
                                     </td>
 								</tr>
 								<tr>
@@ -78,7 +78,7 @@
 								</tr>
 								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_userid">{$lang->user_id}</label></th>
-									<td><input name="blogapi_user_id" type="text" class="inputText" id="blogapi_userid" value="{htmlspecialchars($api_info->blogapi_user_id)}" style="width:200px" /></td>
+									<td><input name="blogapi_user_id" type="text" class="iText" id="blogapi_userid" value="{htmlspecialchars($api_info->blogapi_user_id)}" style="width:200px" /></td>
 								</tr>
 								<tr>
 									<td id="blogapi_userid_label" class="hosted"></td>
@@ -86,7 +86,7 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_password">{$lang->password}</label></th>
 									<td>
-                                        <input name="blogapi_password" type="password" class="inputText" id="blogapi_password" value="{htmlspecialchars($api_info->blogapi_password)}" style="width:200px" />
+                                        <input name="blogapi_password" type="password" class="iText" id="blogapi_password" value="{htmlspecialchars($api_info->blogapi_password)}" style="width:200px" />
                                     </td>
 								</tr>
 								<tr>
@@ -95,22 +95,22 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="blogapi_blogid">{$lang->blogapi_blogid}</label></th>
 									<td>
-                                        <input name="blogapi_blogid" type="text" class="inputText" id="blogapi_blogid" value="{htmlspecialchars($api_info->blogapi_blogid)}" style="width:200px" />
+                                        <input name="blogapi_blogid" type="text" class="iText" id="blogapi_blogid" value="{htmlspecialchars($api_info->blogapi_blogid)}" style="width:200px" />
                                     </td>
 								</tr>
 								<tr>
-									<td id="blogapi_blogid_label" class="hosted">blog id는 여러개의 Blog를 운영할 경우 선택적으로 입력하는 값입니다.</td>
+									<td id="blogapi_blogid_label">blog id는 여러개의 Blog를 운영할 경우 선택적으로 입력하는 값입니다.</td>
 								</tr>
                             </table>
-                            <div class="buttonArea">
-                                    <span class="buttonAction actionWhite"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>
+                            <div class="btnArea">
+                                <span class="btn"><button type="button" onclick="doBlogApiTest(); return false;">{$lang->cmd_check_api_connect}</button></span>
                             </div>
 
 							<table border="0" cellspacing="0" class="setupData" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end--> id="response_info">
 								<tr>
 									<th scope="row" rowspan="2"><label for="site_title">{$lang->blogapi_site_title}</label></th>
 									<td>
-                                        <input name="blogapi_site_title" type="text" class="inputText" id="site_title" value="{htmlspecialchars($api_info->blogapi_site_title)}" style="width:400px" />
+                                        <input name="blogapi_site_title" type="text" class="iText" id="site_title" value="{htmlspecialchars($api_info->blogapi_site_title)}" style="width:400px" />
                                     </td>
 								</tr>
 								<tr>
@@ -119,18 +119,18 @@
 								<tr>
 									<th scope="row" rowspan="2"><label for="site_url">{$lang->blogapi_site_url}</label></th>
 									<td>
-                                        <input name="blogapi_site_url" type="text" class="inputText" id="site_url" value="{htmlspecialchars($api_info->blogapi_site_url)}" style="width:400px" />
+                                        <input name="blogapi_site_url" type="text" class="iText" id="site_url" value="{htmlspecialchars($api_info->blogapi_site_url)}" style="width:400px" />
                                     </td>
 								</tr>
 								<tr>
 									<td>{$lang->about_blogapi_site_url}</td>
 								</tr>
                             </table>
-                            <div class="buttonArea submitButton" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end-->>
+                            <div class="btnArea submitButton" <!--@if(!$api_info->api_srl)-->style="display:none;"<!--@end-->>
                                     <!--@if($api_info->api_srl)-->
-                                    <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_modify}</button></span>
+                                    <span class="btn"><button type="submit" >{$lang->cmd_modify}...</button></span>
                                     <!--@else-->
-                                    <span class="buttonAction actionBlue"><button type="submit" >{$lang->cmd_registration}</button></span>
+                                    <span class="btn"><button type="submit" >{$lang->cmd_registration}</button></span>
                                     <!--@end-->
                             </div>
 						</fieldset>
@@ -151,7 +151,7 @@
                             <!--@foreach($textyle->getApis() as $key => $val)-->
 							<tr>
 								<th scope="row"><a href="{$val->blogapi_site_url}" onclick="window.open(this.href);return false;">{$val->blogapi_site_title}</a></th>
-								<td><a href="{$val->blogapi_site_url}" onclick="window.open(this.href); return false;">{$val->blogapi_site_url}</a></td>
+								<td><a href="{$val->blogapi_site_url}">{$val->blogapi_site_url}</a></td>
 								<td>{$val->blogapi_type}</td>
 								<td>{zdate($val->regdate, 'Y-m-d')}</td>
 								<td>
@@ -160,16 +160,16 @@
                                     <!--@else-->
                                         {@$iconClass = 'buttonDisable'}
                                     <!--@end-->
-                                    <a href="#" onclick="doToggleAPI(this,'{$val->api_srl}');return false;" class="buttonSet {$iconClass}"><span>{$lang->use}</span></a>
-                                    <a href="{getUrl('type','registration','api_srl',$val->api_srl)}" class="buttonSet buttonSetting"><span>{$lang->cmd_modify}</span></a>
-                                    <a href="#" onclick="if(confirm('{$lang->msg_remove_api}')) doRemoveApi({$val->api_srl});return false;" class="buttonSet buttonDelete"><span>{$lang->cmd_delete}</span></a>
+                                    <button type="button" onclick="doToggleAPI(this,'{$val->api_srl}')" class="btn">{$lang->use}</button>
+                                    <a href="{getUrl('type','registration','api_srl',$val->api_srl)}" class="btn">{$lang->cmd_modify}</a>
+                                    <button type="button" onclick="if(confirm('{$lang->msg_remove_api}')) doRemoveApi({$val->api_srl})" class="btn">{$lang->cmd_delete}</button>
                                 </td>
 							</tr>
                         <!--@end-->
 						</tbody>
 					</table>
-                    <div class="buttonArea">
-                        <span class="buttonAction actionBlue"><input type="button" onclick="location.href=current_url.setQuery('type','registration').setQuery('api_srl','');return false;" value="{$lang->cmd_registration}" /></span>
+                    <div class="btnArea">
+                        <span class="btn"><input type="button" onclick="location.href=current_url.setQuery('type','registration').setQuery('api_srl','');return false;" value="{$lang->cmd_registration}" /></span>
                     </div>
 
                     <!--@end-->

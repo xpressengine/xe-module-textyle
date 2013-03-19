@@ -34,15 +34,18 @@
                             </td>
                             <td>{zdate($xml_info->date, 'Y-m-d')}</td>
          
-                            <th><a href="#" onclick="doSetupComponent('{$component_name}'); return false;" title="{htmlspecialchars($lang->cmd_setup)}" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a></th>
+                            <th><button type="button" onclick="doSetupComponent('{$component_name}'); return false;" title="{htmlspecialchars($lang->cmd_setup)}" class="text">{$lang->cmd_setup}</button></th>
                             <th>
                                 <!--@if($xml_info->enabled=='Y')-->
-                                    <a href="#" onclick="doDisableComponent('{$component_name}');return false;" title="{htmlspecialchars($lang->cmd_enable)}" class="buttonSet buttonActive"><span>{$lang->cmd_enable}</span></a>
+                                    <button type="button" onclick="doDisableComponent('{$component_name}');return false;" title="{htmlspecialchars($lang->cmd_enable)}" class="text">{$lang->cmd_enable}</button>
                                 <!--@else-->
-                                    <a href="#" onclick="doEnableComponent('{$component_name}');return false;" title="{htmlspecialchars($lang->cmd_disable)}" class="buttonSet buttonDisable"><span>{$lang->cmd_disable}</span></a>
+                                    <button type="button" onclick="doEnableComponent('{$component_name}');return false;" title="{htmlspecialchars($lang->cmd_disable)}" class="text">{$lang->cmd_disable}</button>
                                 <!--@end-->
                             </th>
-                            <th><a href="#" onclick="doMoveListOrder('{$component_name}','up');return false;" title="{htmlspecialchars($lang->cmd_move_up)}" class="buttonSet buttonUp"><span>{$lang->cmd_move_up}</span></a><a href="#" onclick="doMoveListOrder('{$component_name}','down');return false;" title="{htmlspecialchars($lang->cmd_move_down)}" class="buttonSet buttonDown"><span>{$lang->cmd_move_down}</span></a></th>
+                            <th>
+								<button type="button" onclick="doMoveListOrder('{$component_name}','up');return false;" title="{htmlspecialchars($lang->cmd_move_up)}" class="text">{$lang->cmd_move_up}</button>
+								<button type="button" onclick="doMoveListOrder('{$component_name}','down');return false;" title="{htmlspecialchars($lang->cmd_move_down)}" class="text">{$lang->cmd_move_down}</button>
+							</th>
                         </tr>
                         <tr>
                             <td colspan="6" class="wrap">{nl2br($xml_info->description)}</td>

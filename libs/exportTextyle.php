@@ -259,7 +259,6 @@ class TTXMLExport extends ExportTextyle{
 	}
 	
 	function _replacePostContent($oDocument){
-		//2011.03.04 cherryfilter : 관리자가 export 시 embed 태그가 있는 내용이 변환되어 나오기 때문에 parameter 추가
 		$content = $oDocument->getContent(false,false, false, true, true);
 		$content = preg_replace_callback('/<(a|img) +([^>]+)>/i',array(&$this,'_replaceFilePath'),$content);
 

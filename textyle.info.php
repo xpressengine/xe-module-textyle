@@ -2,7 +2,7 @@
     /**
      * @class  TextyleInfo
      * @author NHN (developers@xpressengine.com)
-     * @brief  textyle 모듈의 Textyle class
+     * @brief  textyle module Textyle info class
      **/
 
     class TextyleInfo extends Object {
@@ -169,6 +169,22 @@
 
         function getMe2dayUserKey() {
             return $this->get('me2day_userkey');
+        }
+        
+    	function getTwitterConsumerKey() {
+            return $this->get('twitter_consumer_key');
+        }
+        
+    	function getTwitterConsumerSecret() {
+            return $this->get('twitter_consumer_secret');
+        }
+        
+    	function getTwitterOauthToken() {
+            return $this->get('twitter_oauth_token');
+        }
+        
+    	function getTwitterOauthTokenSecret() {
+            return $this->get('twitter_oauth_token_secret');
         }
 
         function getEnableTwitter() {

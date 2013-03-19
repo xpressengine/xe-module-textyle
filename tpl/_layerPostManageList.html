@@ -14,18 +14,18 @@
 						<li><input name="allow_comment" type="checkbox" value="Y" class="inputCheck" id="replyOn" /> <label for="replyOn">{$lang->allow_comment}</label></li>
 						<li><input name="allow_trackback" type="checkbox" value="Y" class="inputCheck" id="trackbackOn" /> <label for="trackbackOn">{$lang->allow_trackback}</label></li>
 					</ul>
-					<div class="buttonArea">
-						<span class="buttonGray large strong"><input name="" type="submit" value="{$lang->cmd_confirm}" /></span>
+					<div class="btnArea">
+						<span class="btnGray large strong"><input name="" type="submit" value="{$lang->cmd_confirm}" /></span>
 					</div>
 
 				</fieldset>
 			</form>
-			<button type="button" class="buttonCloseLayer" onclick="hideLayerCommuicationConfig()"><span>{$lang->cmd_close}</span></button>
+			<button type="button" class="btnCloseLayer" onclick="hideLayerCommuicationConfig()"><span>{$lang->cmd_close}</span></button>
 		</div> 
 		<!-- /Layer -->
 	</div>
 	<!-- /Layer Container -->
-<script type="text/javascript">
+<script>
 if(jQuery.browser.msie && jQuery.browser.version<7){
 	jQuery(function(){
 		jQuery('.layerCommunicationConfig').css('position','absolute');

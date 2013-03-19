@@ -19,8 +19,8 @@
 							<input type="hidden" name="act" value="{$act}" />
 							<input type="hidden" name="mid" value="{$mid}" />
 							<input type="hidden" name="vid" value="{$vid}" />
-							<input name="search_keyword" type="text" value="{$search_keyword}" title="{$lang->cmd_search}" class="inputText" />
-							<span class="buttonGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
+							<input name="search_keyword" type="text" value="{$search_keyword}" title="{$lang->cmd_search}" class="iText" />
+							<span class="btnGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
 						</form>
 					</fieldset>
 				</div>
@@ -72,19 +72,19 @@
 										<td class="ipAddress">{$v->ipaddress}</td>
 										<td class="state"><!--@if($v->is_secret<0)-->{$lang->public}<!--@else--><em>{$lang->secret}</em><!--@end--></td>
 									</tr>
-									<tr class="buttonArea">
+									<tr class="trBtnArea">
 										<td>&nbsp;</td>
 										<td>&nbsp;</td>
 										<td colspan="4">
 											<div class="reAction">
 												<!--@if($v->parent_srl==0)-->
-												<span class="buttonGray small"><a href="{getUrl('','mid',$mid,'act','dispTextyleToolCommunicationGuestbookReply','textyle_guestbook_srl',$v->textyle_guestbook_srl)}">{$lang->cmd_reply_comment}</a></span>
+												<span class="btnGray small"><a href="{getUrl('','mid',$mid,'act','dispTextyleToolCommunicationGuestbookReply','textyle_guestbook_srl',$v->textyle_guestbook_srl)}">{$lang->cmd_reply_comment}</a></span>
 												<!--@end-->
 											</div>
 											<div class="control">
-												<span class="buttonGray small"><button type="button" onclick="updateGuestbookItemChangeSecret({$v->textyle_guestbook_srl},{$page})"><!--@if($v->is_secret<0)-->{$lang->private}<!--@else-->{$lang->public}<!--@end--></button></span> 
-												<span class="buttonGray small"><button type="button" onclick="openLayerAddDenyItem('{$v->textyle_guestbook_srl}','_addDenyGuestbookList')">{$lang->cmd_deny}</button></span> 
-												<span class="buttonGray small"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteGuestbookItem({$v->textyle_guestbook_srl},{$page});return false;">{$lang->cmd_delete}</button></span>
+												<span class="btnGray small"><button type="button" onclick="updateGuestbookItemChangeSecret({$v->textyle_guestbook_srl},{$page})"><!--@if($v->is_secret<0)-->{$lang->private}<!--@else-->{$lang->public}<!--@end--></button></span> 
+												<span class="btnGray small"><button type="button" onclick="openLayerAddDenyItem('{$v->textyle_guestbook_srl}','_addDenyGuestbookList')">{$lang->cmd_deny}</button></span> 
+												<span class="btnGray small"><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteGuestbookItem({$v->textyle_guestbook_srl},{$page});return false;">{$lang->cmd_delete}</button></span>
 											</div>
 										</td>
 									</tr>
@@ -100,8 +100,8 @@
 							<div class="change">
 								<p class="p1">{$lang->selected_articles}</p>
 								
-								<span class="buttonGray large"><button type="button" onclick="openLayerAddDeny('_addDenyGuestbookList')">{$lang->cmd_deny}</button></span>
-								<span class="buttonGray large"><button type="button" onclick="deleteGuestbookItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
+								<span class="btnGray large"><button type="button" onclick="openLayerAddDeny('_addDenyGuestbookList')">{$lang->cmd_deny}</button></span>
+								<span class="btnGray large"><button type="button" onclick="deleteGuestbookItems({$page})"><img src="img/buttonTableDataX.gif" width="7" height="7" alt="" class="icon" />{$lang->cmd_delete}</button></span>
 								
 							</div>
 							<!-- /Change -->

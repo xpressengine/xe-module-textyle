@@ -68,7 +68,6 @@ function insertCommentItem(obj,filter){
 	return procFilter(obj,filter);
 }
 
-/* 댓글 글쓰기 작성후 */
 function completeInsertComment(ret_obj) {
 	var error = ret_obj['error'];
 	var message = ret_obj['message'];
@@ -813,7 +812,6 @@ jQuery("div#tool_navigation > ul > li").hover(
 	});
 });
 
-/* 로그인 후 */
 function completeTextyleLogin(ret_obj, response_tags, params, fo_obj) {
     var stat = ret_obj['stat'];
     var msg = ret_obj['message'];
@@ -830,7 +828,6 @@ function completeTextyleLogin(ret_obj, response_tags, params, fo_obj) {
     location.href = current_url.setQuery('act','dispTextyleToolDashboard');
 }
 
-/* brief 임포트 준비 */
 var prepared = false;
 function doPreProcessing(fo_obj) {
     var xml_file = fo_obj.xml_file.value;
@@ -853,7 +850,6 @@ function doPreProcessing(fo_obj) {
     return false;
 }
 
-/* 준비중일때 .(dot) 찍어주는.. */
 function doPrepareDot() {
     if(prepared) return;
 
@@ -864,7 +860,6 @@ function doPrepareDot() {
     setTimeout(doPrepareDot, 50);
 }
 
-/* 준비가 끝났을때 호출되는 함수 */
 function completePreProcessing(ret_obj, response_tags) {
     prepared = true;
     jQuery('dl.prepare').removeClass('open');
@@ -886,12 +881,10 @@ function completePreProcessing(ret_obj, response_tags) {
     fo_obj.cur.value = cur;
     fo_obj.key.value = key;
     
-    // extract된 파일을 이용해서 import
     doImport();
 }
 
 
-/* @brief 임포트 시작 */
 function doImport() {
     var fo_obj = jQuery('#fo_process').get(0);
 
@@ -918,7 +911,6 @@ function doImport() {
     return false;
 }
 
-/* import중 표시 */
 function completeImport(ret_obj, response_tags) {
     var message = ret_obj['message'];
     var type = ret_obj['type'];
@@ -934,7 +926,6 @@ function completeImport(ret_obj, response_tags) {
     fo_obj.cur.value = cur;
     fo_obj.key.value = key;
     
-    // extract된 파일을 이용해서 import
     if(total > cur) doImport();
     else {
         alert(message);
@@ -943,9 +934,7 @@ function completeImport(ret_obj, response_tags) {
     }
 }
 
-/* 상태 표시 함수 */
 function displayProgress(total, cur) {
-    // 진행률 구함
     var per = 0;
     if(total > 0) per = Math.round(cur / total * 100);
     else per = 100;
@@ -955,7 +944,6 @@ function displayProgress(total, cur) {
     jQuery('dl.progress').find('em').html(per+'%');
 }
 
-/* me2 연결 확인 */
 function doCheckMe2day() {
     var params = new Array();
     params['me2day_userid'] = jQuery('#me2userid').val();
@@ -963,23 +951,68 @@ function doCheckMe2day() {
 	exec_xml('textyle', 'procTextyleCheckMe2day', params, function() {});
 }
 
-/* category 에서 그룹제한 row를 제거*/
-addNode = function(node,e) {
-    var params ={ "category_srl":0,"parent_srl":node,"module_srl":jQuery("#fo_category [name=module_srl]").val() };
-    jQuery.exec_json('document.getDocumentCategoryTplInfo', params, function(data){
-        jQuery('#category_info').html(data.tpl).css('left',e.pageX).css('top',e.pageY);
-        if(node) jQuery('#category_info').find('tr').get(4).style.display = 'none';
-        else jQuery('#category_info').find('tr').get(3).style.display = 'none';
-    });
+/* check twitter account */
+function doCheckTwitter() {
+    var params = new Array();
+    params['twitter_consumer_key'] = jQuery('#twitterconsumerkey').val();
+    params['twitter_consumer_secret'] = jQuery('#twitterconsumersecret').val();
+    params['twitter_oauth_token'] = jQuery('#twitteroauthtoken').val();
+    params['twitter_oauth_token_secret'] = jQuery('#twitteroauthtokensecret').val();
+	exec_xml('textyle', 'procTextyleCheckTwitter', params, function() {});
+}
 
+addNode = function(node,e) {
+	var $ = jQuery;
+	var $w = $('#__category_info');
+
+	clearValue();
+
+	// set value
+	$w.find('input[name="category_srl"]').val(0);
+	$w.find('input[name="parent_srl"]').val(node);
+	$w.find('.category_groups').css('display','none');
+	if(node){
+		$('#__parent_category_info').show().next('.x_control-group').css('borderTop','1px dotted #ddd');
+		$('#__parent_category_title').text($('#tree_' + node + ' > span').text());
+	}else{
+		$('#__parent_category_info').hide().next('.x_control-group').css('borderTop','0');
+	}
 
 }
 modifyNode = function(node,e) {
-    var params ={ "category_srl":node ,"parent_srl":0 ,"module_srl":jQuery("#fo_category [name=module_srl]").val() };
-    jQuery.exec_json('document.getDocumentCategoryTplInfo', params, function(data){
-        jQuery('#category_info').html(data.tpl).css('left',e.pageX).css('top',e.pageY);
-        jQuery('#category_info').find('tr').get(3).style.display = 'none';
-    });
+	var $ = jQuery;
+	var $w = $('#__category_info');
+
+	clearValue();
+
+	// set value
+	$w.find('input[name="category_srl"]').val(node);
+	$w.find('.category_groups').css('display','none');
+
+	var module_srl = $w.find('input[name="module_srl"]').val();
+
+	$.exec_json('document.getDocumentCategoryTplInfo', {'module_srl': module_srl, 'category_srl': node}, function(data){
+		if(!data || !data.category_info) return;
+
+		if(data.error){
+			alert(data.message);
+			return;
+		}
+
+		$w.find('input[name="parent_srl"]').val(data.category_info.parent_srl);
+		$w.find('input[name="category_title"]').val(data.category_info.title).trigger('reload-multilingual');
+		$w.find('input[name="category_color"]').val(data.category_info.color).trigger('keyup');
+		$w.find('textarea[name="category_description"]').val(data.category_info.description).trigger('reload-multilingual');
+		for(var i in data.category_info.group_srls){
+			var group_srl = data.category_info.group_srls[i];
+			$w.find('input[name="group_srls[]"][value="' + group_srl + '"]').attr('checked', 'checked');
+		}
+		if(data.category_info.expand == 'Y'){
+			$w.find('input[name="expand"]').attr('checked', 'checked');
+		}
+	});
+
+	$('#__parent_category_info').hide().next('.x_control-group').css('borderTop','0');
 }
 
 function doBlogApiTest() {
@@ -1021,7 +1054,6 @@ function completeBlogApiTest(ret_obj) {
     fo.find('input[name=blogapi_site_url]').val(site_url);
     fo.find('input[name=blogapi_site_title]').val(title);
     if(site_url) {
-        fo.find('tr.hide').removeClass('hide');
         jQuery('.submitButton').css('display','block');
         jQuery('#response_info').show(); 
 	}else{
@@ -1183,11 +1215,12 @@ validator.cast('ADD_CALLBACK', ['save_post', function callback(form) {
 
 $(function(){
 	inputPublish  = $('input[name=publish]');
+	inputPreview  = $('input[name=preview]');
 	submitButtons = $('#wPublishButtonContainer button');
 
 	submitButtons.click(function(){
 		inputPublish.val( $(this).parent().hasClass('_publish')?'Y':'N' );
-
+		inputPreview.val( $(this).parent().hasClass('_preview')?'Y':'N' );
 		$('input:text,textarea', this.form).each(function(){
 			var t = $(this);
 			var v = $.trim(t.val());

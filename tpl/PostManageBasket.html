@@ -25,8 +25,8 @@
 								<option value="{$key}" <!--@if($search_target==$key)-->selected="selected"<!--@end-->>{$val}</option>
 								<!--@end-->
 							</select>
-							<input name="search_keyword" type="text" title="{$lang->cmd_search}" class="inputText" value="{htmlspecialchars($search_keyword)}"/>
-							<span class="buttonGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
+							<input name="search_keyword" type="text" title="{$lang->cmd_search}" class="iText" value="{htmlspecialchars($search_keyword)}"/>
+							<span class="btnGray medium"><input type="submit" value="{$lang->cmd_search}" /></span>
 						</form>
 					</fieldset>
 				</div>
@@ -70,8 +70,8 @@
 									<td class="small">{$post->getCommentCount()}</td>
 									<td class="small">{$post->getTrackbackCount()}</td>
 									<td class="small">{zdate($post->get('last_update'),'Y.m.d')}</td>
-									<td><span class="buttonGray small"><button type="button" onclick="restorePostItem({$post->document_srl},{$page})">{$lang->cmd_restore}</button></span></td>
-									<td><button type="button" class="buttonTableData" onclick="deletePostItem({$post->document_srl},{$page})"><span>{$lang->cmd_empty}</span></button></td>
+									<td><span class="btnGray small"><button type="button" onclick="restorePostItem({$post->document_srl},{$page})">{$lang->cmd_restore}</button></span></td>
+									<td><button type="button" class="btnTableData" onclick="deletePostItem({$post->document_srl},{$page})"><span>{$lang->cmd_empty}</span></button></td>
 								</tr>
 									<!--@end-->
 								<!--@end-->
@@ -84,8 +84,8 @@
 							<!-- Change-->
 							<div class="change">
 								<p class="p1">{$lang->selected_articles}</p>
-								<span class="buttonGray large"><button type="button" onclick="restorePostItems({$page})">{$lang->cmd_restore}</button></span>
-								<span class="buttonGray large"><button type="button" onclick="deletePostItems({$page})"><img src="img/iconClear.gif" width="8" height="8" alt="" class="icon" />{$lang->cmd_empty_basket}</button></span>
+								<span class="btnGray large"><button type="button" onclick="restorePostItems({$page})">{$lang->cmd_restore}</button></span>
+								<span class="btnGray large"><button type="button" onclick="deletePostItems({$page})"><img src="img/iconClear.gif" width="8" height="8" alt="" class="icon" />{$lang->cmd_empty_basket}</button></span>
 								
 							</div>
 							<!-- /Change -->

@@ -7,7 +7,7 @@
     <node target="title" required="true" minlength="1" maxlength="250" />
     <node target="category_srl" required="true" />
   </form>
-  <response callback_func="completePostsave">
+  <response callback_func="completePostwrite">
     <tag name="error" />
     <tag name="message" />
     <tag name="mid" />

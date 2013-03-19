@@ -14,7 +14,7 @@
 	$lang->msg_create_textyle = '텍스타일 생성이 되었습니다';
 	$lang->init_category_title = '기본 카테고리';
 	$lang->add_category = '카테고리 추가';
-    $lang->textyle_admin = 'Textyle 관리자(아이디)';
+    $lang->textyle_admin = 'Textyle 관리자';
     $lang->textyle_title = 'Textyle 제목';
     $lang->today_visitor = '오늘의 <strong>방문자 수</strong>';
     $lang->today_comments = '오늘의 <strong>댓글 수</strong>';
@@ -190,10 +190,19 @@
     $lang->send_me2 = '미투데이 발행';
     $lang->about_send_me2 = '글작성시 제목을 지정된 미투데이로 발행하도록 설정합니다';
     $lang->me2day_userid = '미투 아이디';
+    $lang->twitter_consumer_key = 'Twitter consumer key';
     $lang->about_me2day_userid = '"http://me2day.net/아이디"의 아이디값을 입력해주세요.';
+    $lang->about_twitter_consumer_key = 'Twitter 앱을 위한 consumer key를 입력해 주세요.';
     $lang->me2day_userkey = '미투 사용자키';
+    $lang->twitter_consumer_secret = 'Twitter consumer secret';
     $lang->about_me2day_userkey = '미투데이의 환경설정에 표시된 사용자키값을 입력해주세요.';
+    $lang->about_twitter_consumer_secret = 'Twitter API를 위한 consumer secret을 입력해 주세요.';
+    $lang->twitter_oauth_token = 'Twitter access token';
+    $lang->about_twitter_oauth_token = 'Twitter를 위한 access token을 입력해 주세요.'; 
+    $lang->twitter_oauth_token_secret = 'Twitter token secret'; 
+    $lang->about_twitter_oauth_token_secret = 'Twitter 앱을 위한 twitter token을 입력해 주세요.';
     $lang->check_me2day_info = '연결 확인';
+    $lang->check_twitter_info = '연결 확인';
     $lang->msg_success_to_me2day = '입력하신 미투데이 정보로 연결확인이 정상적으로 이루어졌습니다';
     $lang->msg_fail_to_me2day = '미투데이 연결 실패하였습니다. 아이디와 사용자키를 확인해주세요';
 
@@ -261,6 +270,7 @@
     $lang->close_calendar_layer = '달력 닫기';
     $lang->select_calendar_layer = '달력에서 날짜를 선택하기';
 
+    $lang->about_textyle_admin = '콤마(,)를 이용하면 더 많은 관리자를 입력할 수 있습니다.';
     $lang->insert_title = '제목을 입력해 주세요';
     $lang->new_post = '새글 쓰기';
     $lang->modify_post = '글 수정하기';
@@ -363,7 +373,7 @@
     $lang->cmd_textyle_setup = '기본 설정';
     $lang->cmd_textyle_list = 'Textyle 목록';
     $lang->cmd_textyle_creation = 'Textyle 생성';
-    $lang->cmd_textyle_update = 'Textyle 수정';
+    $lang->cmd_textyle_modify = 'Textyle 수정';
     $lang->cmd_textyle_custom_menu = 'Textyle 메뉴 편집';
     $lang->cmd_new_post = '새글 쓰기';
     $lang->cmd_go_blog = '블로그 보기';

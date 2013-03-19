@@ -99,7 +99,7 @@
 											<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
 											<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
 
-											<label for="readPw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="readPw" value="" /><input name="" type="submit" value="확인" class="submit" />
+											<label for="readPw">{$lang->password} : </label> <input name="password" type="password" class="iText" id="readPw" value="" /><input name="" type="submit" value="확인" class="submit" />
 										</form>
 										<!--@end-->
 
@@ -110,7 +110,7 @@
 											<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
 											<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
 
-											<label for="modifyPw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="modifyPw" value="" /><input name="" type="submit" value="확인" class="submit" />
+											<label for="modifyPw">{$lang->password} : </label> <input name="password" type="password" class="iText" id="modifyPw" value="" /><input name="" type="submit" value="확인" class="submit" />
 										</form>
 										<form action="" method="post" class="deletePw pwForm comment{$key}" onsubmit="return checkPasswordForDeleteComment(this)">
 											<input type="hidden" name="mid" value="{$mid}" />
@@ -118,7 +118,7 @@
 											<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
 											<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
 
-											<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="inputText" id="deletePw" value="" /><input name="" type="submit" value="확인" class="submit" />
+											<label for="deletePw">{$lang->password} : </label> <input name="password" type="password" class="iText" id="deletePw" value="" /><input name="" type="submit" value="확인" class="submit" />
 										</form>
 	
 										<!--@end-->
@@ -128,7 +128,7 @@
                                             <li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentReply')}">{$lang->cmd_reply}</a></li>
 											<!--@if($comment->member_srl)-->
 												<!--@if($comment->isGranted() || $comment->member_srl==$logged_info->member_srl)-->
-												<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}</a></li>
+												<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}...</a></li>
 												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
                                                 <!--@elseif($logged_info->is_site_admin)-->
 												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
@@ -137,7 +137,7 @@
                                                 <!--@if($logged_info->is_site_admin)-->
 												<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
                                                 <!--@else-->
-												<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.modifyPw.comment{$key}').addClass('active')">{$lang->cmd_modify}</button></li>
+												<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.modifyPw.comment{$key}').addClass('active')">{$lang->cmd_modify}...</button></li>
 												<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.deletePw.comment{$key}').addClass('active')">{$lang->cmd_delete}</button></li>
                                                 <!--@end-->
 											<!--@end-->
@@ -177,15 +177,15 @@
 											<!--@if($is_logged)-->
 											<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
 											<!--@else-->
-											<input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
-											<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
+											<input name="nick_name" type="text" class="iText name" value="Name" title="Name"/>
+											<input name="password" type="password" class="iText pw" value="Password" title="Password" />
 											<!--@if($textyle->getInputEmail()!='N')-->
 												<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-												<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
+												<input name="email_address" type="text" class="iText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
 											<!--@end-->
 											<!--@if($textyle->getInputWebsite()!='N')-->
 												<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-												<input name="homepage" type="text" class="inputText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
+												<input name="homepage" type="text" class="iText url<!--@if($textyle->getInputWebsite()=='R')--> request<!--@end-->" value="URL" title="URL" />
 											<!--@end-->
 											<!--@end-->
 											<input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />

@@ -19,7 +19,7 @@
 	<li class="facebook"><a href="http://facebook.com/">Facebook</a></li>
 	<li class="delicious"><a href="http://delicious.com/">Delicious</a></li>
 </ul>
-<script type="text/javascript">
+<script>
 	jQuery(function($){
 		$('.twitter>a').snspost({
 			type : 'twitter',
@@ -108,12 +108,12 @@
 				<li cond="$textyle->isEnableComment()"><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentReply')}">{$lang->cmd_reply}</a></li>
 				<block cond="$comment->member_srl">
 					<block cond="$comment->isGranted() || $comment->member_srl==$logged_info->member_srl">
-						<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}</a></li>
+						<li><a href="{getUrl('','mid',$mid,'comment_srl',$comment->comment_srl,'document_srl',$document->document_srl,'act','dispTextyleCommentModify')}">{$lang->cmd_modify}...</a></li>
 						<li><button type="button" onclick="if(confirm('{$lang->confirm_delete}')) deleteCommentItem({$comment->comment_srl});">{$lang->cmd_delete}</button></li>
 					</block>
 				</block>
 				<block cond="!$comment->member_srl">
-					<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.modifyPw.comment{$key}').addClass('active')">{$lang->cmd_modify}</button></li>
+					<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.modifyPw.comment{$key}').addClass('active')">{$lang->cmd_modify}...</button></li>
 					<li><button type="button" onclick="jQuery('.comment{$key}').removeClass('active');jQuery('.deletePw.comment{$key}').addClass('active')">{$lang->cmd_delete}</button></li>
 				</block>
 			</ul>
@@ -135,25 +135,26 @@
 
 <div class="replyForm" cond="$document->allowComment()">
 	<h3>Leave Comments</h3>
+	<block cond="$textyle->isEnableComment()">
 	<fieldset>
 		<form method="post" onsubmit="return insertCommentItem(this, insert_comment)" action="">
 			<input name="mid" type="hidden" value="textyle" />
 			<input type="hidden" name="document_srl" value="{$document->document_srl}" />
 			<input type="hidden" name="comment_srl" value="" />
-			<textarea class="inputTextarea" name="content" rows="5" cols="50"></textarea>
+			<textarea class="iTextArea" name="content" rows="8" cols="42"></textarea>
 			<block cond="$is_logged">
 				<strong class="name">{$logged_info->nick_name}</strong> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
 			</block>
 			<block cond="!$is_logged">
-				<input name="nick_name" type="text" class="iText name" value="Name" title="Name"/>
-				<input name="password" type="password" class="iText pw" value="Password" title="Password" />
+				<input name="nick_name" type="text" class="iText name" placeholder="Name" title="Name"/>
+				<input name="password" type="password" class="iText pw" placeholder="Password" title="Password" />
 				<block cond="$textyle->getInputEmail()!='N'">
 					<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-					<input name="email_address" type="text" class="iText email"|cond="$textyle->getInputEmail()!='R'" class="iText email request"| class="iText email"|cond="$textyle->getInputEmail()=='R'" value="Email address" title="Email address" />
+					<input name="email_address" type="text" class="iText email"|cond="$textyle->getInputEmail()!='R'" class="iText email request"| class="iText email"|cond="$textyle->getInputEmail()=='R'" placeholder="Email address" title="Email address" />
 				</block>
 				<block cond="$textyle->getInputWebsite()!='N'">
 					<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
-					<input name="homepage" type="text" class="iText url"|cond="$textyle->getInputWebsite()!='R'" class="iText url request"|cond="$textyle->getInputWebsite()=='R'" value="URL" title="URL" />
+					<input name="homepage" type="text" class="iText url"|cond="$textyle->getInputWebsite()!='R'" class="iText url request"|cond="$textyle->getInputWebsite()=='R'" placeholder="URL" title="URL" />
 				</block>
 			</block>
 			<input name="is_secret" id="secret1" type="checkbox" value="Y" class="iCheck" />
@@ -161,5 +162,6 @@
 			<input name="submit" type="submit" value="SUBMIT" class="inputSubmit" />
 		</form>
 	</fieldset>
+	</block>
 	<p cond="!$textyle->isEnableComment()">{$lang->disable_comment}</p>
 </div>

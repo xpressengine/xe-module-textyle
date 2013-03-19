@@ -27,7 +27,7 @@
 								</tr>
 								<tr>
 									<th scope="row"><label for="postNum">{$lang->blog_display_count}</label></th>
-									<td><input name="post_list_count" type="text" class="inputText" id="num" maxlength="2" style="width:40px; text-align:center" value="{$textyle->getPostListCount()}" /> {$lang->item_unit}</td>
+									<td><input name="post_list_count" type="text" class="iText" id="num" maxlength="2" style="width:40px; text-align:center" value="{$textyle->getPostListCount()}" /> {$lang->item_unit}</td>
 								</tr>
 							</table>
 						</fieldset>
@@ -38,21 +38,61 @@
 							<table border="1" cellspacing="0" class="setupData">
 								<tr>
 									<th scope="row" rowspan="2"><label for="me2userid">{$lang->me2day_userid}</label></th>
-									<td><input name="me2day_userid" type="text" class="inputText" id="me2userid" value="{$textyle->getMe2dayUserID()}" style="width:200px" /></td>
+									<td><input name="me2day_userid" type="text" class="iText" id="me2userid" value="{$textyle->getMe2dayUserID()}" style="width:200px" /></td>
 								</tr>
 								<tr>
 									<td>{$lang->about_me2day_userid}</td>
 								</tr>
 								<tr>
 									<th scope="row" rowspan="2"><label for="me2userkey">{$lang->me2day_userkey}</label></th>
-									<td><input name="me2day_userkey" type="text" class="inputText" id="me2userkey" value="{$textyle->getMe2dayUserKey()}" style="width:200px" /></td>
+									<td><input name="me2day_userkey" type="text" class="iText" id="me2userkey" value="{$textyle->getMe2dayUserKey()}" style="width:200px" /></td>
 								</tr>
 								<tr>
 									<td>{$lang->about_me2day_userkey}</td>
 								</tr>
                                 <tr>
                                     <td colspan="2">
-                                        <span class="buttonGray medium"><button type="button" onclick="doCheckMe2day(); return false;">{$lang->check_me2day_info}</button></span>
+                                        <span class="btnGray medium"><button type="button" onclick="doCheckMe2day(); return false;">{$lang->check_me2day_info}</button></span>
+                                    </td>
+                                </tr>
+							</table>
+						</fieldset>
+						
+						<fieldset>
+							<h4 class="h4">{$lang->send_twitter}</h4>
+							<p><label for="enableTwitter">{$lang->about_send_twitter}</label></p>
+							<table border="1" cellspacing="0" class="setupData">
+								<tr>
+									<th scope="row" rowspan="2"><label for="twitterconsumerkey">{$lang->twitter_consumer_key}</label></th>
+									<td><input name="twitter_consumer_key" type="text" class="iText" id="twitterconsumerkey" value="{$textyle->getTwitterConsumerKey()}" style="width:200px" /></td>
+								</tr>
+								<tr>
+									<td>{$lang->about_twitter_consumer_key}</td>
+								</tr>
+								<tr>
+									<th scope="row" rowspan="2"><label for="twitterconsumersecret">{$lang->twitter_consumer_secret}</label></th>
+									<td><input name="twitter_consumer_secret" type="text" class="iText" id="twitterconsumersecret" value="{$textyle->getTwitterConsumerSecret()}" style="width:200px" /></td>
+								</tr>
+								<tr>
+									<td>{$lang->about_twitter_consumer_secret}</td>
+								</tr>
+								<tr>
+									<th scope="row" rowspan="2"><label for="twitteroauthtoken">{$lang->twitter_oauth_token}</label></th>
+									<td><input name="twitter_oauth_token" type="text" class="iText" id="twitteroauthtoken" value="{$textyle->getTwitterOauthToken()}" style="width:200px" /></td>
+								</tr>
+								<tr>
+									<td>{$lang->about_twitter_oauth_token}</td>
+								</tr>
+								<tr>
+									<th scope="row" rowspan="2"><label for="twitteroauthtokensecret">{$lang->twitter_oauth_token_secret}</label></th>
+									<td><input name="twitter_oauth_token_secret" type="text" class="iText" id="twitteroauthtokensecret" value="{$textyle->getTwitterOauthTokenSecret()}" style="width:200px" /></td>
+								</tr>
+								<tr>
+									<td>{$lang->about_twitter_oauth_token_secret}</td>
+								</tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <span class="btnGray medium"><button type="button" onclick="doCheckTwitter(); return false;">{$lang->check_twitter_info}</button></span>
                                     </td>
                                 </tr>
 							</table>
@@ -118,11 +158,11 @@
 								</tr>
 								<tr>
 									<th scope="row"><label for="replyNum">{$lang->comment_list_count}</label></th>
-									<td><input name="comment_list_count" type="text" class="inputText" id="replyNum" maxlength="2" style="width:40px; text-align:center" value="{$textyle->getCommentListCount()}" /> {$lang->item_unit}</td>
+									<td><input name="comment_list_count" type="text" class="iText" id="replyNum" maxlength="2" style="width:40px; text-align:center" value="{$textyle->getCommentListCount()}" /> {$lang->item_unit}</td>
 								</tr>
 								<tr>
 									<th scope="row"><label for="sayHello">{$lang->guestbook_list_count}</label></th>
-									<td><input name="guestbook_list_count" type="text" class="inputText" id="sayHello" maxlength="2" style="width:40px; text-align:center" value="{$textyle->getGuestbookListCount()}" /> {$lang->item_unit}</td>
+									<td><input name="guestbook_list_count" type="text" class="iText" id="sayHello" maxlength="2" style="width:40px; text-align:center" value="{$textyle->getGuestbookListCount()}" /> {$lang->item_unit}</td>
 								</tr>
 								<tr>
 									<th rowspan="2" scope="row"><label for="commentGrant">{$lang->comment_grant}</label></th>
@@ -150,15 +190,15 @@
 								</tr>
 							</table>
 
-                            <script type="text/javascript">
+                            <script>
                                 jQuery(window).load(function() { 
                                     getEditorSkinColorList('{$textyle->get('comment_editor_skin')}','{$textyle->get('comment_editor_colorset')}','comment'); 
                                     getEditorSkinColorList('{$textyle->get('guestbook_editor_skin')}','{$textyle->get('guestbook_editor_colorset')}','guestbook'); 
                                 } );
                             </script>
 						</fieldset>
-						<div class="buttonArea">
-							<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_apply}" /></span>
+						<div class="btnArea">
+							<span class="btn"><input type="submit" value="{$lang->cmd_apply}" /></span>
 						</div>
 
 					</form>

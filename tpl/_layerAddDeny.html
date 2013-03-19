@@ -15,16 +15,16 @@
 					<li><input name="user_name" value="" class="inputCheck" id="name" type="checkbox"> <label for="name">{$lang->user_name}</label></li>
 				</ul>
 
-				<div class="buttonArea">
-					<span class="buttonGray large strong"><input type="submit" value="{$lang->cmd_insert}" /></span>
+				<div class="btnArea">
+					<span class="btnGray large strong"><input type="submit" value="{$lang->cmd_insert}" /></span>
 				</div>
 			</fieldset>
 		</form>
-		<button type="button" class="buttonCloseLayer" onclick="hideLayerAddDeny()"><span>{$lang->cmd_close}</span></button>
+		<button type="button" class="btnCloseLayer" onclick="hideLayerAddDeny()"><span>{$lang->cmd_close}</span></button>
 	</div> 
 	<!-- /Layer -->
 </div>
-<script type="text/javascript">
+<script>
 if(jQuery.browser.msie && jQuery.browser.version<7){
 	jQuery(function(){
 		jQuery('.layerAddDeny').css('position','absolute');

@@ -18,9 +18,9 @@
 <!--%load_js_plugin("ui.tree")-->
 
 <h4 class="xeAdmin">{$lang->cmd_admin_menus[$act]}</h4>
-<span style="float:right">
-    <a href="#" onclick="doReloadTreeMenu('{$menu_info->menu_srl}');return false;" class="button"><span>{$lang->cmd_remake_cache}</span></a>
-</span>
+<div class="btnArea">
+    <button type="button" onclick="doReloadTreeMenu('{$menu_info->menu_srl}');return false;" class="text">{$lang->cmd_remake_cache}</button>
+</div>
 <p class="summary">{$lang->about_cafe_act[$act]}</p>
 
 <form method="post" action="./" id="menu_item_form">
@@ -73,15 +73,15 @@
         <tr id="urlForm" style="display:none;">
             <th scope="row"><div>{$lang->url}</div></th>
             <td colspan="2">
-                http://<input type="text" name="url" value="" class="inputTypeText fullWidth" />
+                http://<input type="text" name="url" value="" />
                 <p>{$lang->about_menu_item_url}</p>
             </td>
         </tr>
         <tr>
             <th scope="row"><div>{$lang->menu_name}</div></th>
             <td colspan="2">
-                <input type="text" name="menu_name" id="menu_name" value="" class="inputTypeText"/>
-                <a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','menu_name')}" onclick="popopen(this.href);return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_find_langcode}</span></a>
+                <input type="text" name="menu_name" id="menu_name" value=""/>
+                <a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','menu_name')}" onclick="popopen(this.href);return false;">{$lang->cmd_find_langcode}</a>
                 <p>{$lang->about_langcode}</p>
             </td>
         </tr>
@@ -111,9 +111,9 @@
             <td>
                 <div id="menu_normal_btn_zone" <!--@if(!$item_info->normal_btn)-->style="display:none;"<!--@end-->>
                     <img src="" alt="" id="menu_normal_btn_img" /><br />
-                    <a href="#" onclick="doDeleteButton('menu_normal_btn');return false;" class="button"><span>{$lang->cmd_delete}</span></a>
+                    <button type="button" onclick="doDeleteButton('menu_normal_btn')" class="text">{$lang->cmd_delete}</button>
                 </div>
-                <input type="file" name="menu_normal_btn" value="" class="inputTypeText" onchange="doHomepageMenuUploadButton(this); return false;"/>
+                <input type="file" name="menu_normal_btn" value="" onchange="doHomepageMenuUploadButton(this); return false;"/>
             </td>
         </tr>
         <tr>
@@ -121,9 +121,9 @@
             <td>
                 <div id="menu_hover_btn_zone") <!--@if(!$item_info->hover_btn)-->style="display:none;"<!--@end-->>
                     <img src="" alt="" id="menu_hover_btn_img" /><br />
-                    <a href="#" onclick="doDeleteButton('menu_hover_btn');return false;" class="button"><span>{$lang->cmd_delete}</span></a>
+                    <button type="button" onclick="doDeleteButton('menu_hover_btn')" class="text">{$lang->cmd_delete}</button>
                 </div>
-                <input type="file" name="menu_hover_btn" value="" class="inputTypeText" onchange="doHomepageMenuUploadButton(this); return false;"/>
+                <input type="file" name="menu_hover_btn" value="" onchange="doHomepageMenuUploadButton(this); return false;"/>
             </td>
         </tr>
         <tr>
@@ -131,23 +131,18 @@
             <td>
                 <div id="menu_active_btn_zone" <!--@if(!$item_info->active_btn)-->style="display:none;"<!--@end-->>
                     <img src="" alt="" id="menu_active_btn_img" /><br />
-                    <a href="#" onclick="doDeleteButton('menu_active_btn');return false;" class="button"><span>{$lang->cmd_delete}</span></a>
+                    <button type="button" onclick="doDeleteButton('menu_active_btn')" class="text">{$lang->cmd_delete}</button>
                 </div>
-                <input type="file" name="menu_active_btn" value="" class="inputTypeText" onchange="doHomepageMenuUploadButton(this); return false;"/>
+                <input type="file" name="menu_active_btn" value="" onchange="doHomepageMenuUploadButton(this); return false;"/>
             </td>
         </tr>
         <tr>
             <td colspan="2">{$lang->about_menu_image_button}</td>
         </tr>
         </table>
-
-        <table cellspacing="0" class="rowTable">
-        <tr>
-            <th scope="row" class="button"><div>
-                <span class="button black strong"><input type="submit" value="{$lang->cmd_save}" /></span>
-            </div></th>
-        </tr>
-        </table>
+        <div class="btnArea">
+			<span class="btn"><input type="submit" value="{$lang->cmd_save}" /></span>
+		</div>
     </div>
 
     </form>
@@ -155,7 +150,7 @@
 
 <iframe id='tmp_upload_iframe' name='tmp_upload_iframe' style='display:none;width:1px;height:1px;position:absolute;top:-10px;left:-10px'></iframe>
 
-<script type="text/javascript">
+<script>
 var max_menu_depth = 1; //{$menu_max_depth};
 var simpleTreeCollection;
 var alertImageOnly = "{$lang->alert_image_only}";

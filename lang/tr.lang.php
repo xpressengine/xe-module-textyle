@@ -4,17 +4,15 @@
      * @author haneul (haneul0318@gmail.com)
      * @brief  Textyle(textyle) module's English language pack.
      **/
-
     $lang->textyle = 'Textyle';
     $lang->about_textyle = 'Textyle, XpressEngine\'de çalışan bir blog modülüdür.';
     $lang->msg_requried_version = "Textyle, XE core sürümüne eşit veya %s 'dan daha büyük bir sürüme ihtiyaç duyar.";
-
 	$lang->cmd_open_id = 'Giriş kimliğini aç';
 	$lang->cmd_common_id = 'Varsayılan Giriş';
 	$lang->msg_create_textyle = 'Textyle oluşturuldu.';
 	$lang->init_category_title = 'Varsayılan Kategori';
 	$lang->add_category = 'Kategori ekle';
-    $lang->textyle_admin = 'Textyle yöneticisi(ID)';
+    $lang->textyle_admin = 'Textyle Yöneticisi(ID)';
     $lang->textyle_title = 'Textyle\'ın başlığı';
     $lang->today_visitor = 'Bugünkülerin  sayısı<strong>Ziyaretçiler</strong>';
     $lang->today_comments = 'Bugünkülerin sayısı <strong>Yorumlar</strong>';
@@ -58,7 +56,7 @@
     $lang->blog_title = 'Blog\'un Başlı\'ğı.';
     $lang->about_blog_title = '';
     $lang->blog_description = 'Tek satırlık ifade';
-    $lang->about_blog_description = 'Görüntülenip-görüntülenmeyeceği dış görünümlere bağlıdır, ya da  HTML&middot;CSS editor kullanarak onları gösterebilirsiniz.';
+    $lang->about_blog_description = 'Görüntülenip-görüntülenmeyeceği dış görünümlere bağlıdır, ya da  HTML&middot;CSS editörünü kullanarak onları gösterebilirsiniz.';
     $lang->favicon = 'Sık Kullanılan Simge';
     $lang->registed_favicon ='Kayıtlı Sık Kullanılan Simge' ;
     $lang->about_favicon = '<strong>16x16px</strong> boyutunda <strong>ico</strong> türünde dosya yüklenebilir.';
@@ -86,7 +84,7 @@
     $lang->etc_editor = 'Diğer Editörler';
     $lang->about_etc_editor = 'Zengin Metin Editörleri.';
     $lang->set_editor_components = 'Editör Bileşenlerini Yapılandır.';
-    $lang->set_prefix = 'Önek';
+    $lang->set_prefix = 'Ön ek';
     $lang->about_prefix = 'Her gönderi aşağıdaki içeriği içerir. (HTML kullanabilirsiniz)';
     $lang->set_suffix = 'Son ek';
     $lang->about_suffix = 'Her gönderi aşağıdaki içeriği içerir. (HTML kullanabilirsiniz)';
@@ -137,7 +135,7 @@
     $lang->total_result_count = 'Toplam <strong>%d</strong> Öğe';
     $lang->search_result_count = '<strong>%d</strong> sonuçlar bulundu.';
     $lang->no_result_count = 'Bir sonuç yok';
-    $lang->selected_articles = 'İstiyorum';
+    $lang->selected_articles = 'Seçilen Yazılar';
     $lang->avatar = 'Avatar';
     $lang->status = 'Durum';
     $lang->pingback = 'Pingback';
@@ -169,20 +167,18 @@
     $lang->send_me2 = 'Me2Day\'de yayınla';
     $lang->about_send_me2 = 'Bir gönderi oluştur, başlığı Me2Day\'de yayınla.';
     $lang->me2day_userid = 'Me2Day Kimlik Bilgileri';
-    $lang->about_me2day_userid = 'Me2Day için kimlik bilgilerizi girin "http://me2day.net/ID".';
+    $lang->about_me2day_userid = 'Me2Day için kimlik bilgilerinizi girin "http://me2day.net/ID".';
     $lang->me2day_userkey = 'Me2Day Kullanıcı şifresi';
     $lang->about_me2day_userkey = 'Me2Day\'in yapılandırma sayfasında kullanıcı şifresini girin.';
     $lang->check_me2day_info = 'Bağlantıyı kontrol et';
     $lang->msg_success_to_me2day = 'Girdiğiniz bilgiler doğru.';
     $lang->msg_fail_to_me2day = 'Me2Day bağlantısı sağlanamadı. Kimlik bilgileri ve şifrenizi kontrol edin';
-
     $lang->send_twitter = 'Twitter\'da yayınla';
     $lang->about_send_twitter ='gönderi oluştur, başlığı Twitter\'da yayınla';
     $lang->twitter_userid = 'Twitter Kimilk Bilgileri';
     $lang->about_twitter_userid = 'Twitter Kimlik bilgilerinizi girin';
     $lang->twitter_password = 'Twitter Şifre';
     $lang->about_twitter_password = 'Twitter şifrenizi girin';
-
     $lang->blogapi_publish = 'BlogAPI';
     $lang->about_blog_api = 'BlogAPI\'yi kullanarak diğer bloglarda yada ilan panosunda gönderilerinizi yayınlayabilir, değiştirebilir ve silebilirsiniz.  <BR /> Şu anda, Textyle sadece MetaWebLog API\'yi desteklemektedir, ancak kısa bir süre sonra diğer API\'leri de destekleyecek duruma gelecektir.<br/>BlogAPI kullanımı,Textyle\'ın kurulu olduğu sunucunun yapılandırma ayarlarına göre sınırlandırılmış olabilir .';
     $lang->cmd_registration_blogapi = 'BlogAPI Sitesine kayıt ol';
@@ -229,7 +225,6 @@
         'Kimlik bilgilerini girin',
         'Şifreyi girin',
     );
-
     $lang->about_use_bookmarklet = 'Tarayıcı düğmesi nasıl kullanılır?';
     $lang->about_use_bookmarklet_item = array(
         'Tarayıcınıza, "Bileşen Toplayıcı" tarayıcı düğmesini ekleyin. ',
@@ -240,16 +235,13 @@
     $lang->basket_management = 'Geri Dönüşüm Kutusu';
     $lang->basket_list = 'Geri Dönüşüm Kutusu Listesi';
     $lang->basket_empty = 'Geri Dönüşüm Kutusu boş :)';
-
     $lang->document_all = 'Tümünü gör';
     $lang->document_published = 'Yayınlananları gör';
     $lang->document_reserved = 'Geçici olarak kaydedilenleri gör';
-
     $lang->my_document_management = 'Gönderilerim yönetimi';
     $lang->set_publish = 'Yapılandırmayı yayınla';
     $lang->document_open = 'Açık';
     $lang->document_close = 'Kapalı';
-
     $lang->category = 'Kategori';
     $lang->comm_management = 'İletişim';
     $lang->publish_date = 'Yayınlama Zamanı';
@@ -259,7 +251,6 @@
     $lang->calendar = 'Takvim';
     $lang->close_calendar_layer = 'Takvimi kapat';
     $lang->select_calendar_layer = 'Takvimde tarih seçin';
-
     $lang->insert_title = 'Başlığı gir';
     $lang->new_post = 'Bir mesaj yaz';
     $lang->modify_post = 'Bir mesaj değiştir';
@@ -267,7 +258,6 @@
     $lang->post_url = 'Mesaj için Url';
     $lang->about_tag = 'Çoklu etiketler virgül(,)ile birbirinden ayrılır.';
 	$lang->success_temp_saved = 'Başarıyla geçici olarak kaydedildi.';
-
     $lang->daily = 'Günlük';
     $lang->weekly = 'Haftalık';
     $lang->monthly = 'Aylık';
@@ -293,7 +283,6 @@
     $lang->visit_count = 'Ziyaretçiler';
     $lang->visit_per = 'Oran';
     $lang->trackback_division = 'Çoklu geri izleme URL\'leri satırbaşı(Enter) ile birbirinden ayrılır';
-
     $lang->about_supporter = 'Destekçiler; yorum yazan, ziyaretçi defterine gönderi yapan ve geri izlemede bulunan kullanıcı anlamına gelir.';
     $lang->supporter_rank = 'Destekçi Rütbesi';
     $lang->rank = 'Rütbe';
@@ -307,7 +296,6 @@
     $lang->read = 'Görüntü';
     $lang->no_popular = 'Popüler içerik bulunmamaktadır.';
     $lang->resize_vertical = 'Giriş formunu tekrar boyutlandır.';
-
     $lang->textyle_first_menus = array(
         array('dispTextyleToolDashboard','Pano'),
         array('','Mesajlarım'),
@@ -316,7 +304,6 @@
         array('','Tasarım'),
         array('','Yapılandırma'),
     );
-
     $lang->textyle_second_menus = array(
         array(),
         array(
@@ -356,12 +343,10 @@
             'dispTextyleToolExtraMenuList'=>'Ek Menü',
         ),
     );
-
     $lang->cmd_go_help = 'Yardım Masası';
     $lang->cmd_textyle_setup = 'Varsayılan Ayarlar';
     $lang->cmd_textyle_list = 'Textyle Listesi';
     $lang->cmd_textyle_creation = 'Yeni Textyle';
-    $lang->cmd_textyle_update = 'Textyle\'ı değiştir';
     $lang->cmd_textyle_custom_menu = 'Textyle Menü Özelleştirme';
     $lang->cmd_new_post = 'Yeni mesaj yaz';
     $lang->cmd_go_blog = 'Bloğuma gir';
@@ -393,22 +378,17 @@
     $lang->cmd_new_window = 'Yeni pencere';
     $lang->cmd_select_skin = 'Uygula';
     $lang->msg_select_skin = 'Textyle dış görünümü istediğiniz şekilde değiştirin.\n\nVarolan dış gorünüm ve yapılandırma ayarları kaldırılacak.\n\nDeğiştirmek istediğinize emin misiniz?';
-
     $lang->cmd_preview_skin = 'Önizleme';
     $lang->cmd_generate_widget_code = 'Widget Kodu Üret';
-
     $lang->msg_already_used_url = 'Bu URL zaten kullanımda.';
     $lang->alert_reset_skin = 'Dış görünümü değiştirirseniz, HTML&middot;CSS\'ye girdiğiniz tüm veriler kaldırılacaktır.\n\nYeniden ayarlamak istediğinize emin misiniz?';
     $lang->msg_used_disabled_function = 'Yasak fonksiyonlar içeriyor.';
-
 	$lang->msg_close_before_write = "Değiştirilmiş içerikler kayıtlı değil.";
-
     $lang->no_post = 'Bir mesaj yazmadınız, <a href="%s">Lütfen bir mesaj yazınız!</a>';
     $lang->no_trash = 'Geri Dönüşüm Kutusu temiz!';
     $lang->no_comment = 'Hiç yorum bulunmamaktadır.';
     $lang->no_guestbook = 'Ziyaretçi defterinizde mesaj bulunmamaktadır.';
     $lang->no_trackback = 'Geri İzleme bulunmamaktadır';
-
     // service
     $lang->view_all = 'Tümünü Görüntüle';
     $lang->search_result = 'Arama Sonuçları';
@@ -419,19 +399,15 @@
     $lang->archive = 'Arşiv';
     $lang->link = 'Bağlantılar';
     $lang->visitor_count = 'Ziyaretçi';
-
     $lang->mail = 'Mail';
     $lang->ip = 'IP';
-
     $lang->cmd_hide = 'Sakla';
-
 	$lang->secret_comment = 'Gizli Yorum';
 	$lang->insert_comment = 'Bir yorum ekle';
 	$lang->content_list = 'İçerik Listesi';
 	$lang->msg_input_email_address = 'Eposta adresinizi girin';
 	$lang->msg_input_homepage = 'Anasayfa adresinizi girin';
 	$lang->msg_confirm_delete_post = 'Geçici olarak kaydedilen mesajlar geri getirilemez. Silmek istediğinizden emin misiniz?';
-
     $lang->sample_title = 'Textyle Dünyasına Hoş Geldiniz!';
     $lang->sample_tags = 'Textyle, Textyle Editörü, Yazım Bileşenleri Toplayıcı';
     $lang->msg_preparation = 'Hazırlık Aşamasında';
@@ -441,13 +417,11 @@
     $lang->cmd_textyle_init = 'Textyle\'ı tekrar ayarla';
     $lang->msg_textyle_init_about = 'Mesajları, yorumları, geri izlemeleri, ziyaretçi defteri ve yerleşim düzeni ile ilgili verileri de kapsamak üzere tüm bilgileri sıfırla.Textyle\'ı sıfırladıktan sonra verileri geri getirme şansınız bulunmamaktadır.';
     $lang->msg_confirm_textyle_init = 'Ayarları sıfırlamak istediğinize emin misiniz?';
-
 	$lang->textyle_skin_userimage = 'Kullanıcı Resmi';
 	$lang->msg_check_userimage = 'gif, png, jpg, swf dosyalarını yükleyebilirsiniz.';
     $lang->cmd_textyle_skin_export = 'Dış Görünümü yedekle';
     $lang->textyle_skin_import = 'Dış Görünümü eski haline getir.';
     $lang->about_textyle_skin_import = 'Yerel klasörden kişiselleştirilmiş dış görünümleri içe aktarır; güncel dış görünüm ise kaldırılacaktır.';
-
 	$lang->success_upload = 'Başarıyla yüklendi.';
 	$lang->cmd_textyle_export_request ='Yedekleme İsteği';
 	$lang->textyle_export_recode = 'Yedekleme İstekleri';
@@ -457,7 +431,6 @@
 	$lang->textyle_export_date = 'Yedekleme Tarihi';
 	$lang->textyle_export_file = 'Veri Dosyası';
 	$lang->cmd_textyle_export_file = 'Yedekle';
-
 	$lang->menu_name = 'Menü Adı';
 	$lang->msg_module_count_exceed = 'Artık bu türde modül ekleyemezsiniz.';
 	$lang->msg_limit_module = '%s modulü(leri) mevcut';
@@ -465,11 +438,9 @@
     $lang->cmd_textyle_extra_menu_config = 'Ek Menü';
     $lang->textyle_extra_menu_limit_count = 'Üst sınır';
 	$lang->msg_limit_textyle_extra_mid = 'Sadece ingilizce harfler + [ingilizce harfler, sayılar, ve alttire(_)] kullanılır.';
-
-	$lang->msg_microblog_setup = '마이크로블로그에 동시 발행을 원하시면 %s을 먼저 해야 합니다.';
+	$lang->msg_microblog_setup = 'Mikro blogda aynı anda yayın yapmak istiyorsanız, %sı öncelikle yapmanız gerekmektedir.';
 	$lang->config_edit_components = 'Düzen bileşenlerini yapılandır';
 	$lang->textyle_bug_report = 'Hataları Bildir';
 	$lang->cmd_open_close = 'Aç/Kapat';
 	$lang->msg_write_comment = 'Yorum yaz';
-
 ?>

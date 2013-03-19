@@ -60,6 +60,7 @@
 		<permission action="dispTextyleToolConfigChangePassword" target="manager" />
 		<permission action="dispTextyleToolExtraMenuList" target="manager" />
 		<permission action="dispTextyleToolExtraMenuInsert" target="manager" />
+		<permission action="dispTextyleToolExtraMenuModuleInsert" target="manager" />
 
 		<permission action="getTextyleAPITest" target="manager" />
 
@@ -134,6 +135,11 @@
 		<action name="dispTextyleToolConfigChangePassword" type="view" />
 		<action name="dispTextyleToolExtraMenuList" type="view" />
 		<action name="dispTextyleToolExtraMenuInsert" type="view" />
+		<action name="dispTextyleToolExtraMenuModuleInsert" type="view" />
+		<action name="dispCommentEditor" type="view" />
+		<action name="dispModifyComment" type="view" />
+		<action name="dispReplyComment" type="view" />
+		
 
 		<action name="dispTextyleGuestbook" type="view" />
 		<action name="dispTextyleGuestbookReply" type="view" />
@@ -164,6 +170,7 @@
 		<action name="procTextyleInfoUpdate" type="controller" />
 		<action name="procTextyleConfigPostwriteInsert" type="controller" />
 		<action name="procTextyleCheckMe2day" type="controller" />
+		<action name="procTextyleCheckTwitter" type="controller" />
 		<action name="procTextylePostsave" type="controller" />
 		<action name="procTextylePostPublish" type="controller" />
 		<action name="procTextylePostDelete" type="controller" />

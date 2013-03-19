@@ -27,7 +27,7 @@
 								<tr>
 									<th scope="row"><label for="pName">{$lang->display_name}</label></th>
 								<td>
-								<input name="nick_name" type="text" value="{$textyle->getNickName()}" class="inputText" style="width:300px" id="pName" />
+								<input name="nick_name" type="text" value="{$textyle->getNickName()}" class="iText" style="width:300px" id="pName" />
 										<p>{$lang->about_display_name}</p>
 									</td>
 								</tr>
@@ -37,7 +37,7 @@
 						<fieldset>
 							<h4 class="h4"><label for="eMail">{$lang->email_address}</label></h4>
 							<div style="padding-left:170px">
-								<input name="email_address" value="{$textyle->getEmail()}" type="text" class="inputText" style="width:300px" id="eMail" />
+								<input name="email_address" value="{$textyle->getEmail()}" type="text" class="iText" style="width:300px" id="eMail" />
 								<p>{$lang->about_email}</p>
 							</div>
 						</fieldset>
@@ -61,8 +61,8 @@
 							{$profile_content_editor}
 						</fieldset>
 						
-						<div class="buttonArea">
-							<span class="buttonAction actionBlue"><input type="submit" value="{$lang->cmd_apply}" /></span>
+						<div class="btnArea">
+							<span class="btn"><input type="submit" value="{$lang->cmd_apply}" /></span>
 						</div>
 
 					</form>
