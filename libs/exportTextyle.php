@@ -33,12 +33,12 @@ class ExportTextyle{
 	}
 
 	function setTextyle($module_srl){
-		$oTextyleModel = &getModel('textyle');
+		$oTextyleModel = getModel('textyle');
 		$this->oTextyle = $oTextyleModel->getTextyle($module_srl);
 		$this->module_srl = $module_srl;
 		$this->site_srl = $oTextyle->site_srl;
 
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$this->site_info = $oModuleModel->getSiteInfo($this->site_srl);
 
 		// setting
@@ -49,7 +49,7 @@ class ExportTextyle{
 	}
 
 	function getCategoryList(){
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$category_list = $oDocumentModel->getCategoryList($this->module_srl);
 		$this->category_list = $category_list;
 
@@ -89,7 +89,7 @@ class ExportTextyle{
 	}
 
 	function getCommentList($document_srl){
-		$oCommentModel = &getModel('comment');
+		$oCommentModel = getModel('comment');
 		$oCommentList = array();
 
 		$args->document_srl = $document_srl;
@@ -269,7 +269,7 @@ class TTXMLExport extends ExportTextyle{
 		$attr = $this->_htmlAttributeArray($matches[2]);
 		$return = $matches[0];
 
-		$oFileModel = &getModel('file');
+		$oFileModel = getModel('file');
 		$file_list = $oFileModel->getFiles($this->post_srl);
 		if($file_list){	
 			foreach($file_list as $file){
@@ -442,7 +442,7 @@ class TTXMLExport extends ExportTextyle{
 
 
 	function _writeAttachmentList($document_srl){
-		$oFileModel = &getModel('file');
+		$oFileModel = getModel('file');
 		$file_list = $oFileModel->getFiles($document_srl);
 		if(count($file_list)) {
 			foreach($file_list as $file) {

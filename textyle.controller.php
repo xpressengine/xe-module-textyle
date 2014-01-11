@@ -10,8 +10,8 @@
          * @brief Initialization
          **/
         function init() {
-            $oTextyleModel = &getModel('textyle');
-            $oModuleModel = &getModel('module');
+            $oTextyleModel = getModel('textyle');
+            $oModuleModel = getModel('module');
 
             $site_module_info = Context::get('site_module_info');
             $site_srl = $site_module_info->site_srl;
@@ -51,8 +51,8 @@
 
         function procTextyleConfigCommunicationInsert(){
         	$logged_info = Context::get('logged_info');
-            $oModuleModel = &getModel('module');
-            $oModuleController = &getController('module');
+            $oModuleModel = getModel('module');
+            $oModuleController = getController('module');
 
             if(in_array(strtolower('dispTextyleToolConfigCommunication'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 			
@@ -62,7 +62,7 @@
             $output = $this->updateTextyle($args);
             if(!$output->toBool()) return $output;
 
-            $oRssAdminController = &getAdminController('rss');
+            $oRssAdminController = getAdminController('rss');
             $open_rss = Context::get('rss_type');
             $output = $oRssAdminController->setRssModuleConfig($this->module_srl, $open_rss, 'Y');
             if(!$output->toBool()) return $output;
@@ -95,7 +95,7 @@
         }
 
         function procTextyleLogin() {
-            $oMemberController = &getController('member');
+            $oMemberController = getController('member');
 
             if(!$user_id) $user_id = Context::get('user_id');
             $user_id = trim($user_id);
@@ -150,8 +150,8 @@
         }
 
         function updateTextyleCommentEditor($module_srl, $comment_editor_skin, $comment_editor_colorset) {
-            $oEditorModel = &getModel('editor');
-            $oModuleController = &getController('module');
+            $oEditorModel = getModel('editor');
+            $oModuleController = getController('module');
 
             $editor_config = $oEditorModel->getEditorConfig($module_srl);
 
@@ -181,7 +181,7 @@
         }
 
         function procTextyleProfileUpdate(){
-            $oMemberController = &getController('member');
+            $oMemberController = getController('member');
 
             if(in_array(strtolower('dispTextyleToolConfigProfile'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
@@ -203,7 +203,7 @@
         }
 
         function procTextyleProfileImageUpload() {
-            $oMemberController = &getController('member');
+            $oMemberController = getController('member');
 
             $photo = Context::get('photo');
             if($this->textyle && Context::isUploaded() && is_uploaded_file($photo['tmp_name'])) {
@@ -215,7 +215,7 @@
         }
 
         function deleteTextylePhoto($module_srl){
-            $oMemberController = &getController('member');
+            $oMemberController = getController('member');
             Context::set('member_srl', $this->textyle->member_srl);
             $output = $oMemberController->procMemberDeleteProfileImage();
         }
@@ -227,9 +227,9 @@
         }
 
         function procTextyleInfoUpdate(){
-            $oModuleController = &getController('module');
-            $oModuleModel = &getModel('module');
-            $oTextyleModel = &getModel('textyle');
+            $oModuleController = getController('module');
+            $oModuleModel = getModel('module');
+            $oTextyleModel = getModel('textyle');
 
             if(in_array(strtolower('dispTextyleToolConfigInfo'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
@@ -260,7 +260,7 @@
         }
 
         function insertTextyleFavicon($module_srl, $source) {
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $path = $oTextyleModel->getTextyleFaviconPath($module_srl);
             if(!is_dir($path)) FileHandler::makeDir($path);
             $filename = sprintf('%sfavicon.ico', $path);
@@ -268,7 +268,7 @@
         }
 
         function deleteTextyleFavicon($module_srl){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $path = $oTextyleModel->getTextyleFaviconPath($module_srl);
             $filename = sprintf('%s/favicon.ico', $path);
             FileHandler::removeFile($filename);
@@ -278,9 +278,9 @@
          * @brief comment insert
          **/
         function procTextyleInsertComment() {
-            $oDocumentModel = &getModel('document');
-            $oCommentModel = &getModel('comment');
-            $oCommentController = &getController('comment');
+            $oDocumentModel = getModel('document');
+            $oCommentModel = getModel('comment');
+            $oCommentController = getController('comment');
 
 			$oTextyleInfo = new TextyleInfo($this->textyle->textyle_srl);
 			if(!$oTextyleInfo->isEnableComment())
@@ -351,10 +351,10 @@
             $document_srl = Context::get('document_srl');
             $comment_srl = Context::get('comment_srl');
 
-            $oMemberModel = &getModel('member');
+            $oMemberModel = getModel('member');
 
             if($comment_srl) {
-                $oCommentModel = &getModel('comment');
+                $oCommentModel = getModel('comment');
                 $oComment = $oCommentModel->getComment($comment_srl);
                 if(!$oComment->isExists()) return new Object(-1, 'msg_invalid_request');
 
@@ -366,7 +366,7 @@
 
 
         function procTextyleGuestbookVerificationPassword() {
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $password = Context::get('password');
             $textyle_guestbook_srl = Context::get('textyle_guestbook_srl');
 
@@ -451,7 +451,7 @@
             $notified_srl = Context::get('notified_srl');
             $child_notified_srl = Context::get('child_notified_srl');
             if(!$notified_srl && !$child_notified_srl) return new Object(-1,'msg_invalid_request');
-            $oNotifyAdminController = &getAdminController('tccommentnotify');
+            $oNotifyAdminController = getAdminController('tccommentnotify');
             if($notified_srl)
             {
                 $parent_list = explode(',', $notified_srl);
@@ -488,7 +488,7 @@
          * @brief Guestbook items delete
          **/
         function procTextyleGuestbookItemsDelete(){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
 
             $textyle_guestbook_srl = Context::get('textyle_guestbook_srl');
             if(!$textyle_guestbook_srl) return new Object(-1,'msg_invalid_request');
@@ -504,7 +504,7 @@
         }
 
         function deleteGuestbookItem($textyle_guestbook_srl){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $output = $oTextyleModel->getTextyleGuestbook($textyle_guestbook_srl);
             $oGuest = $output->data;
 
@@ -563,7 +563,7 @@
             $comment_srl = explode(',',trim($comment_srl));
             if(count($comment_srl)<1) return new Object(-1,'msg_invalid_request');
 
-            $oCommentController = &getController('comment');
+            $oCommentController = getController('comment');
 
             for($i=0,$c=count($comment_srl);$i<$c;$i++){
                 $output = $oCommentController->deleteComment($comment_srl[$i], $this->grant->manager);
@@ -582,7 +582,7 @@
 
             $args->comment_srl = Context::get('comment_srl');
             $args->module_srl = Context::get('module_srl');
-            $oCommentController = &getController('comment');
+            $oCommentController = getController('comment');
             $output = $oCommentController->updateComment($args, $this->grant->manager);
             $this->add('mid', Context::get('mid'));
             $this->add('page', Context::get('page'));
@@ -599,7 +599,7 @@
             $trackback_srl = explode(',',trim($trackback_srl));
             if(count($trackback_srl)<1) return new Object(-1,'msg_invalid_request');
 
-            $oTrackbackController = &getController('trackback');
+            $oTrackbackController = getController('trackback');
 
             for($i=0,$c=count($trackback_srl);$i<$c;$i++){
                 $output = $oTrackbackController->deleteTrackback($trackback_srl[$i], $this->grant->manager);
@@ -658,7 +658,7 @@
         }
 
         function insertDeny($obj){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $check = $oTextyleModel->_checkDeny($obj->module_srl,$obj->deny_type,$obj->deny_content);
             if($check) return new Object();
 
@@ -685,15 +685,15 @@
         }
 
         function deleteTextyleDenyFile($module_srl){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $cache_file = $oTextyleModel->getDenyCacheFile($module_srl);
             FileHandler::removeFile($cache_file);
         }
 
         function procTextylePostsave(){
-            $oDocumentModel = &getModel('document');
-            $oDocumentController = &getController('document');
-            $oTextyleModel = &getModel('textyle');
+            $oDocumentModel = getModel('document');
+            $oDocumentController = getController('document');
+            $oTextyleModel = getModel('textyle');
             
             $var = Context::getRequestVars();
             $site_module_info = Context::get('site_module_info');
@@ -804,9 +804,9 @@
         }
 
         function procTextylePostPublish() {
-            $oTextyleModel = &getModel('textyle');
-            $oDocumentModel = &getModel('document');
-            $oDocumentController = &getController('document');
+            $oTextyleModel = getModel('textyle');
+            $oDocumentModel = getModel('document');
+            $oDocumentController = getController('document');
             $subscripted = false;
 
             $var = Context::getRequestVars();
@@ -893,7 +893,7 @@
         }
 
         function savePost($args) {
-        	$oDocumentController = &getController('document');
+        	$oDocumentController = getController('document');
 
             $logged_info = Context::get('logged_info');
             $args->module_srl = $logged_info->member_srl;
@@ -903,8 +903,8 @@
         }
 
         function updatePost($args){
-            $oDocumentModel = &getModel('document');
-            $oDocumentController = &getController('document');
+            $oDocumentModel = getModel('document');
+            $oDocumentController = getController('document');
 
             $oDocument = $oDocumentModel->getDocument($args->document_srl);
 			if(!$args->module_srl) $args->module_srl = $oDocument->get('module_srl');
@@ -916,7 +916,7 @@
         }
 
         function insertPost($args) {
-            $oDocumentController = &getController('document');
+            $oDocumentController = getController('document');
 
             $output = $oDocumentController->insertDocument($args);
             return $output;
@@ -928,9 +928,9 @@
             if(preg_match('/^([0-9,]+)$/',$document_srl)) $document_srl = explode(',',$document_srl);
             else $document_srl = array($document_srl);
 
-            $oDocumentAdminController = &getAdminController('document');
-            $oDocumentController = &getController('document');
-            $oDocumentModel = &getModel('document');
+            $oDocumentAdminController = getAdminController('document');
+            $oDocumentController = getController('document');
+            $oDocumentModel = getModel('document');
 
             $oDB = &DB::getInstance();
             $oDB->begin();
@@ -1001,9 +1001,9 @@
             if(preg_match('/^([0-9,]+)$/',$document_srl)) $document_srls = explode(',',$document_srl);
             else $document_srls = array($document_srl);
 
-            $oDocumentController = &getController('document');
-            $oDocumentModel = &getModel('document');
-            $oCommentController = &getController('comment');
+            $oDocumentController = getController('document');
+            $oDocumentModel = getModel('document');
+            $oCommentController = getController('comment');
 
             $oDB = &DB::getInstance();
             $oDB->begin();
@@ -1069,7 +1069,7 @@
         }
 
         function syncTextyleSubscriptionDate($module_srl){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $output = $oTextyleModel->getSubscriptionMinPublishDate($module_srl);
 
             if($output->data && $output->data->publish_date){
@@ -1096,7 +1096,7 @@
             $document_srl = is_array($document_srl) ? $document_srl : array($document_srl);
 
             // delete document
-            $oDocumentController = &getController('document');
+            $oDocumentController = getController('document');
 
             $oDB = &DB::getInstance();
             $oDB->begin();
@@ -1168,7 +1168,7 @@
         }
 
         function updateTextyleSupporter($obj){
-            $oMemberModel = &getModel('member');
+            $oMemberModel = getModel('member');
 
             $args->module_srl = $obj->module_srl;
             if($obj->member_srl) $args->member_srl = $obj->member_srl;
@@ -1213,8 +1213,8 @@
             if(preg_match('/^([0-9,]+)$/',$document_srl)) $document_srl = explode(',',$document_srl);
             else $document_srl = array($document_srl);
 
-            $oDocumentModel = &getModel('document');
-            $oDocumentAdminController = &getAdminController('document');
+            $oDocumentModel = getModel('document');
+            $oDocumentAdminController = getAdminController('document');
 
             // check temp saved documents
             $document_srls = array();
@@ -1319,7 +1319,7 @@
          **/
         function publishSubscriptedPost($module_srl){
             $now = date('YmdHis');
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
 
             $args->module_srl = $module_srl;
             $args->less_publish_date = $now;
@@ -1342,7 +1342,7 @@
         }
 
         function _updatePublishPost($document_srl,$publish_date,$module_srl){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
 
             $args->module_srl = $module_srl;
             $args->document_srl = $document_srl;
@@ -1366,8 +1366,8 @@
         }
 
         function procTextyleConfigPostwriteInsert(){
-            $oEditorModel = &getModel('editor');
-            $oModuleController = &getController('module');
+            $oEditorModel = getModel('editor');
+            $oModuleController = getController('module');
 
             if(in_array(strtolower('dispTextyleToolConfigPostwrite'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
@@ -1415,7 +1415,7 @@
             $comment_srl = Context::get('comment_srl');
             if(!$comment_srl) return $this->doError('msg_invalid_request');
 
-            $oCommentController = &getController('comment');
+            $oCommentController = getController('comment');
 
             $output = $oCommentController->deleteComment($comment_srl, $this->grant->manager);
             if(!$output->toBool()) return $output;
@@ -1429,7 +1429,7 @@
          * @brief textyle colorset modify
          **/
         function procTextyleColorsetModify() {
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $mytextyle = $oTextyleModel->getMemberTextyle();
             if(!$mytextyle->isExists()) return new Object(-1, 'msg_not_permitted');
 
@@ -1453,7 +1453,7 @@
             $args->tag = $selected_tag;
             $args->module_srl = $this->module_srl;
 
-            $oTagModel = &getModel('tag');
+            $oTagModel = getModel('tag');
             $output = $oTagModel->getDocumentSrlByTag($args);
             $document_srl = array();
             if($output->data){
@@ -1482,7 +1482,7 @@
             $args->tag = $selected_tag;
             $args->module_srl = $this->module_srl;
 
-            $oTagModel = &getModel('tag');
+            $oTagModel = getModel('tag');
             $output = $oTagModel->getDocumentSrlByTag($args);
             $document_srl = array();
             if($output->data){
@@ -1546,9 +1546,9 @@
         function procTextyleContentTagModify(){
             $req = Context::getRequestVars();
 
-            $oDocumentModel = &getModel('document');
+            $oDocumentModel = getModel('document');
 
-            $oDocumentController = &getController('document');
+            $oDocumentController = getController('document');
             $oDocument = $oDocumentModel->getDocument($req->document_srl);
             $oDocument->add('tags',$req->textyle_content_tag);
             $obj = $oDocument->getObjectVars();
@@ -1558,9 +1558,9 @@
         }
 
         function procTextyleToolLayoutConfigSkin() {
-            $oModuleModel = &getModel('module');
-            $oModuleController = &getController('module');
-            $oTextyleModel = &getModel('textyle');
+            $oModuleModel = getModel('module');
+            $oModuleController = getController('module');
+            $oTextyleModel = getModel('textyle');
 
             if(in_array(strtolower('dispTextyleToolLayoutConfigSkin'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
@@ -1577,9 +1577,9 @@
         }
 
         function procTextyleToolLayoutConfigMobileSkin() {
-            $oModuleModel = &getModel('module');
-            $oModuleController = &getController('module');
-            $oTextyleModel = &getModel('textyle');
+            $oModuleModel = getModel('module');
+            $oModuleController = getController('module');
+            $oTextyleModel = getModel('textyle');
 
             if(in_array(strtolower('dispTextyleToolLayoutConfigMobileSkin'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
             $mskin = Context::get('mskin');
@@ -1617,7 +1617,7 @@
         }
 
         function procTextyleToolLayoutResetConfigSkin() {
-            $oModuleModel = &getModel('module');
+            $oModuleModel = getModel('module');
             $module_info  = $oModuleModel->getModuleInfoByModuleSrl($this->module_srl);
             $skin = $module_info->skin;
 
@@ -1627,7 +1627,7 @@
         function resetSkin($module_srl,$skin=null){
             if(!$skin) $skin = $this->skin;
             if(!file_exists($this->module_path.'skins/'.$skin)) $skin = $this->skin;
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             FileHandler::removeDir($oTextyleModel->getTextylePath($module_srl));
             FileHandler::copyDir($this->module_path.'skins/'.$skin, $oTextyleModel->getTextylePath($module_srl));
         }
@@ -1636,7 +1636,7 @@
         function procTextyleToolLayoutConfigEdit() {
             if(in_array(strtolower('dispTextyleToolLayoutConfigEdit'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
 
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $skin_path = $oTextyleModel->getTextylePath($this->module_srl);
 
             $skin_file_list = $oTextyleModel->getTextyleUserSkinFileList($this->module_srl);
@@ -1655,7 +1655,7 @@
             if(!is_uploaded_file($image['tmp_name'])) exit();
             if(!preg_match('/\.(gif|jpg|jpeg|gif|png|swf|flv)$/i', $image['name'])) return false;
 
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $user_image_path = sprintf('%suser_images/',$oTextyleModel->getTextylePath($this->module_srl));
             if(!is_dir($user_image_path)) FileHandler::makeDir($user_image_path);
 
@@ -1677,7 +1677,7 @@
             if(!$this->module_srl) exit();
             $filename = Context::get('filename');
 
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $user_image_path = sprintf('%suser_images/',$oTextyleModel->getTextylePath($this->module_srl));
 
             if(file_exists($user_image_path . $filename)) @unlink($user_image_path . $filename);
@@ -1687,7 +1687,7 @@
          function procTextyleToolUserSkinExport(){
             if(!$this->module_srl) return new Object('-1','msg_invalid_request');
 
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $skin_path = FileHandler::getRealPath($oTextyleModel->getTextylePath($this->module_srl));
 
             $tar_list = FileHandler::readDir($skin_path,'/(\.css|\.html|\.htm|\.js)$/');
@@ -1728,7 +1728,7 @@
             if(!is_uploaded_file($file['tmp_name'])) exit();
             if(!preg_match('/\.(tar)$/i', $file['name'])) exit();
 
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $skin_path = FileHandler::getRealPath($oTextyleModel->getTextylePath($this->module_srl));
 
             $tar_file = $skin_path . 'textyle_skin.tar';
@@ -1792,7 +1792,7 @@
          * @brief textyle insert config
          **/
         function insertTextyleConfig($textyle) {
-            $oModuleController = &getController('module');
+            $oModuleController = getController('module');
             $oModuleController->insertModuleConfig('textyle', $textyle);
         }
 
@@ -1805,20 +1805,20 @@
             return executeQuery('textyle.updateTextyleBrowserTitle', $args);
         }
         function procTextyleEnableRss() {
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $mytextyle = $oTextyleModel->getMemberTextyle();
             if(!$mytextyle->isExists()) return new Object(-1,'msg_not_permitted');
 
-            $oRssAdminController = &getAdminController('rss');
+            $oRssAdminController = getAdminController('rss');
             $oRssAdminController->setRssModuleConfig($mytextyle->getModuleSrl(), 'Y');
         }
 
         function procTextyleDisableRss() {
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $mytextyle = $oTextyleModel->getMemberTextyle();
             if(!$mytextyle->isExists()) return new Object(-1,'msg_not_permitted');
 
-            $oRssAdminController = &getAdminController('rss');
+            $oRssAdminController = getAdminController('rss');
             $oRssAdminController->setRssModuleConfig($mytextyle->getModuleSrl(), 'N');
         }
 
@@ -1839,7 +1839,7 @@
             if($site_module_info->site_srl && !$default_url) return new Object();
 
             $url = getSiteUrl($default_url, '','mid',$output->data->mid);
-            $oMemberController = &getController('member');
+            $oMemberController = getController('member');
             $oMemberController->addMemberPopupMenu($url, 'textyle', './modules/textyle/tpl/images/textyle.gif');
 
             return new Object();
@@ -1861,12 +1861,12 @@
             $site_module_info = Context::get('site_module_info');
             if(!$site_module_info || !$site_module_info->site_srl || $site_module_info->mid != $this->textyle_mid) return new Object();
 
-            $oModuleModel = &getModel('module');
+            $oModuleModel = getModel('module');
             $xml_info = $oModuleModel->getModuleActionXml('textyle');
             if($oModule->mid == $this->textyle_mid && isset($xml_info->action->{$oModule->act})) return new Object();
 
-            $oTextyleModel = &getModel('textyle');
-            $oTextyleView = &getView('textyle');
+            $oTextyleModel = getModel('textyle');
+            $oTextyleView = getView('textyle');
 
             Context::set('layout',null);
 
@@ -1924,7 +1924,7 @@
         }
 
         function procTextyleToolImportPrepare() {
-            $oImporterAdminController = &getAdminController('importer');
+            $oImporterAdminController = getAdminController('importer');
             $oImporterAdminController->procImporterAdminPreProcessing();
 
             if(in_array(strtolower('dispTextyleToolConfigData'),$this->custom_menu->hidden_menu)) return new Object(-1,'msg_invalid_request');
@@ -1938,7 +1938,7 @@
         }
 
         function procTextyleToolImport() {
-            $oImporterAdminController = &getAdminController('importer');
+            $oImporterAdminController = getAdminController('importer');
             $oImporterAdminController->procImporterAdminImport();
             $this->setError($oImporterAdminController->getError());
             $this->setMessage($oImporterAdminController->getMessage());
@@ -2014,7 +2014,7 @@
         function procTextyleToolInit(){
             if(!$this->site_srl) return new Object(-1,'msg_invalid_request');
 
-            $oTextyleAdminController = &getAdminController('textyle');
+            $oTextyleAdminController = getAdminController('textyle');
             $output = $oTextyleAdminController->initTextyle($this->site_srl);
             return $output;
         }
@@ -2022,7 +2022,7 @@
 		function procTextyleRequestExport(){
             if(!$this->site_srl) return new Object(-1,'msg_invalid_request');
 
-			$oTextyleAdminController = &getAdminController('textyle');
+			$oTextyleAdminController = getAdminController('textyle');
 			$oTextyleAdminController->deleteExport($this->site_srl);
 
 			$args->export_type = Context::get('export_type');
@@ -2042,10 +2042,10 @@
             $menu_name = trim(Context::get('menu_name'));
 			$menu_mid = Context::get('menu_mid');
 			
-			$oModuleModel = &getModel('module');
-			$oTextyleModel = &getModel('textyle');
-			$oModuleController = &getController('module');
-            $oDocumentController = &getController('document');
+			$oModuleModel = getModel('module');
+			$oTextyleModel = getModel('textyle');
+			$oModuleController = getController('module');
+            $oDocumentController = getController('document');
 			$config = $oTextyleModel->getModulePartConfig($this->module_srl);
 			
             if($args->insert_type == "module_page"){
@@ -2093,9 +2093,9 @@
                     $menu_mid= Context::get('menu_mid');
                     if(!$menu_name || !$menu_mid) return new Object(-1,'msg_invalid_request');
 
-                    $oModuleModel = &getModel('module');
-                    $oDocumentModel = &getModel('document');
-                    $oDocumentController = &getController('document');
+                    $oModuleModel = getModel('module');
+                    $oDocumentModel = getModel('document');
+                    $oDocumentController = getController('document');
                     $module_info = $oModuleModel->getModuleInfoByMid($menu_mid,$this->site_srl);
                     if(!$module_info) return new Object(-1,'msg_invalid_request');
                     
@@ -2118,8 +2118,8 @@
             $menu_mid = Context::get('menu_mid');
 			if(!$menu_mid) return new Object(-1,'msg_invalid_request');
 
-            $oModuleModel = &getModel('module');
-			$oModuleController = &getController('module');
+            $oModuleModel = getModel('module');
+			$oModuleController = getController('module');
 
 			$module_info = $oModuleModel->getModuleInfoByMid($menu_mid, $this->site_srl);
 			if($module_info && $module_info->module_srl) $output = $oModuleController->deleteModule($module_info->module_srl);

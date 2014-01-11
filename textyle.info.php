@@ -27,7 +27,7 @@
         }
 
         function _loadFromDB() {
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
 
             if(!$this->textyle_srl) return;
             $args->module_srl = $this->textyle_srl;
@@ -233,25 +233,25 @@
 
         function getProfilePhotoSrc(){
             if(!$this->isExists()) return;
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $src = $oTextyleModel->getTextylePhotoSrc($this->member_srl);
             return $src;
         }
 
         function getProfileDefaultPhotoSrc(){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $src = $oTextyleModel->getTextyleDefaultPhotoSrc();
             return $src;
         }
 
         function getFaviconSrc(){
             if(!$this->isExists()) return;
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             return $oTextyleModel->getTextyleFaviconSrc($this->module_srl);
         }
 
         function getDefaultFaviconSrc(){
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $src = $oTextyleModel->getTextyleDefaultFaviconSrc();
             return $src;
         }
@@ -267,7 +267,7 @@
 
         function getPostCount(){
             if(!$this->isExists()) return;
-            $oDocumentModel = &getModel('document');
+            $oDocumentModel = getModel('document');
             $count = 0;
             $count += $oDocumentModel->getDocumentCount($this->module_srl);
             $count += $oDocumentModel->getDocumentCount($this->module_srl * -1);
@@ -276,7 +276,7 @@
 
         function getPostTempCount(){
             if(!$this->isExists()) return;
-            $oDocumentModel = &getModel('document');
+            $oDocumentModel = getModel('document');
             $count = 0;
             $count += $oDocumentModel->getDocumentCount($this->member_srl);
             return $count;
@@ -284,13 +284,14 @@
 
         function getCommentAllCount($flag=1){
             if(!$this->isExists()) return;
-            $oCommentModel = &getModel('comment');
+            $oCommentModel = getModel('comment');
             return $oCommentModel->getCommentAllCount($this->module_srl*$flag);
         }
 
         function getTrackbackAllCount($flag=1){
             if(!$this->isExists()) return;
-            $oTrackbackModel = &getModel('trackback');
+            $oTrackbackModel = getModel('trackback');
+            if(!$oTrackbackModel) return;
             return $oTrackbackModel->getTrackbackAllCount($this->module_srl*$flag);
         }
 
@@ -298,7 +299,7 @@
             static $open_rss = null;
             if(!$this->isExists()) return;
             if(is_null($open_rss)) {
-                $oRssModel = &getModel('rss');
+                $oRssModel = getModel('rss');
                 $module_info = $oRssModel->getRssModuleConfig($this->getModuleSrl());
                 $open_rss = $module_info->open_rss;
             }
@@ -309,7 +310,7 @@
         function getFontFamily() {
             static $font_family = null;
             if(is_null($font_family)) {
-                $oEditorModel = &getModel('editor');
+                $oEditorModel = getModel('editor');
                 $editor_config = $oEditorModel->getEditorConfig($this->getModuleSrl());
                 $font_family = $editor_config->content_font;
             }
@@ -319,7 +320,7 @@
         function getFontSize() {
             static $font_size = null;
             if(is_null($font_size)) {
-                $oEditorModel = &getModel('editor');
+                $oEditorModel = getModel('editor');
                 $editor_config = $oEditorModel->getEditorConfig($this->getModuleSrl());
                 $font_size = $editor_config->content_font_size;
             }

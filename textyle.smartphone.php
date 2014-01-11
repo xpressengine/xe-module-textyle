@@ -8,7 +8,7 @@
     class textyleSPhone extends textyle {
 
         function procSmartPhone(&$oSmartPhone) {
-            $oDocumentModel = &getModel('document');
+            $oDocumentModel = getModel('document');
 
             $oDocument = Context::get('oDocument');
             if($oDocument->isExists()) {

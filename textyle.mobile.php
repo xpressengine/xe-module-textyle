@@ -6,7 +6,7 @@
 		function init() {
 			parent::init();
 
-			$oTextyleModel = &getModel('textyle');
+			$oTextyleModel = getModel('textyle');
 			if((preg_match("/TextyleTool/",$this->act) || $oTextyleModel->isAttachedMenu($this->act))) {
 				Context::addJsFile("./common/js/jquery.js", true, '', -100000);
 				Context::addJsFile("./common/js/x.js", true, '', -100000);
@@ -45,9 +45,9 @@
 		}
 
 		function dispTextyle(){
-            $oTextyleModel = &getModel('textyle');
-            $oTextyleController = &getController('textyle');
-            $oDocumentModel = &getModel('document');
+            $oTextyleModel = getModel('textyle');
+            $oTextyleController = getController('textyle');
+            $oDocumentModel = getModel('document');
 
             $args->category_srl = Context::get('category_srl');
             $args->search_target = Context::get('search_target');
@@ -152,7 +152,7 @@
 		function dispTextyleGuestbookWrite() {
 			$textyle_guestbook_srl = Context::get('textyle_guestbook_srl');
 			if($textyle_guestbook_srl){
-				$oTextyleModel = &getModel('textyle');
+				$oTextyleModel = getModel('textyle');
 				$output = $oTextyleModel->getTextyleGuestbook($textyle_guestbook_srl);
 				$guestbook_list = $output->data;
 				if(is_array($guestbook_list) && count($guestbook_list)){
@@ -174,7 +174,7 @@
             $args->page = $page;
 			$args->list_count = $this->textyle->getGuestbookListCount();
 
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $output = $oTextyleModel->getTextyleGuestbookList($args);
             Context::set('guestbook_list',$output->data);
             Context::set('page_navigation', $output->page_navigation);
@@ -183,7 +183,7 @@
 		}
 
 		function dispTextyleCategory() {
-            $oDocumentModel = &getModel('document');
+            $oDocumentModel = getModel('document');
             $category_list = $oDocumentModel->getCategoryList($this->module_srl);
             Context::set('category_list', $category_list);
 
@@ -203,7 +203,7 @@
 		}
 
 		function dispTextylePostWrite(){
-            $oDocumentModel = &getModel('document');
+            $oDocumentModel = getModel('document');
 
 			$document_srl = Context::get('document_srl');
 			if($document_srl){
@@ -250,7 +250,7 @@
 			$args = Context::getRequestVars();
 			$args->content = $args->content_text;
 			$args->module_srl = $this->module_srl;
-			$oTextyleController = &getController('textyle');
+			$oTextyleController = getController('textyle');
 			$output = $oTextyleController->insertPost($args);
 			return $output;
 		}

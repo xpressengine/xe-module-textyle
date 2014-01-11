@@ -16,7 +16,7 @@
             $this->document_srl = $document_srl;
             if(!$document_srl) return;
 
-            $oDocumentModel = &getModel('document');
+            $oDocumentModel = getModel('document');
             $this->oDocument = $oDocumentModel->getDocument($document_srl);
             if(!$this->oDocument->isExists()) return;
 
@@ -142,8 +142,8 @@
         }
 
         function publish() {
-            $oTextyleModel = &getModel('textyle');
-            $oTrackbackController = &getController('trackback');
+            $oTextyleModel = getModel('textyle');
+            $oTrackbackController = getController('trackback');
 
             if(!$this->oDocument->isExists()) return;
 

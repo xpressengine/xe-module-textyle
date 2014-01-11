@@ -17,7 +17,7 @@
          * @brief Textyle Admin Create
          **/
         function procTextyleAdminCreate() {
-            $oModuleModel = &getModel('module');
+            $oModuleModel = getModel('module');
 
             $user_id = Context::get('user_id');
             $domain = preg_replace('/^(http|https):\/\//i','', trim(Context::get('domain')));
@@ -47,14 +47,14 @@
         function insertTextyle($domain, $user_id_list, $settings = null) {
             if(!is_array($user_id_list)) $user_id_list = array($user_id_list);
 
-            $oAddonAdminController = &getAdminController('addon');
-            $oMemberModel = &getModel('member');
-            $oModuleModel = &getModel('module');
-            $oModuleController = &getController('module');
-            $oRssAdminController = &getAdminController('rss');
-            $oTextyleModel = &getModel('textyle');
-            $oTextyleController = &getController('textyle');
-            $oDocumentController = &getController('document');
+            $oAddonAdminController = getAdminController('addon');
+            $oMemberModel = getModel('member');
+            $oModuleModel = getModel('module');
+            $oModuleController = getController('module');
+            $oRssAdminController = getAdminController('rss');
+            $oTextyleModel = getModel('textyle');
+            $oTextyleController = getController('textyle');
+            $oDocumentController = getController('document');
 			
             $memberConfig = $oMemberModel->getMemberConfig();
             foreach($memberConfig->signupForm as $item){
@@ -139,7 +139,7 @@
             $oAddonAdminController->doActivate('blogapi', $site_srl);
             $oAddonAdminController->makeCacheFile($site_srl);
 
-            $oEditorController = &getAdminController('editor');
+            $oEditorController = getAdminController('editor');
             $oEditorController->insertComponent('colorpicker_text',true, $site_srl);
             $oEditorController->insertComponent('colorpicker_bg',true, $site_srl);
             $oEditorController->insertComponent('emoticon',true, $site_srl);
@@ -168,7 +168,7 @@
             if(!file_exists(FileHandler::getRealPath($file))){
                 $file = sprintf('%ssample/ko.html',$this->module_path);
             }
-            $oMemberModel = &getModel('member');
+            $oMemberModel = getModel('member');
             $member_info = $oMemberModel->getMemberInfoByEmailAddress($user_id_list[0]);
 
             $doc->module_srl = $module_srl;
@@ -196,7 +196,7 @@
             else $args->domain = $vars->vid;
             if(!$args->domain) return new Object(-1,'msg_invalid_request');
 
-            $oMemberModel = &getModel('member');
+            $oMemberModel = getModel('member');
 			$member_config = $oMemberModel->getMemberConfig();
 			
             $tmp_member_list = explode(',',$vars->user_id);
@@ -220,11 +220,11 @@
                 }
             }
 
-            $oModuleModel = &getModel('module');
+            $oModuleModel = getModel('module');
             $site_info = $oModuleModel->getSiteInfo($vars->site_srl);
             if(!$site_info) return new Object(-1,'msg_invalid_request');
 
-            $oModuleController = &getController('module');
+            $oModuleController = getController('module');
             $output = $oModuleController->insertSiteAdmin($vars->site_srl, $admin_list);
             if(!$output->toBool()) return $output;
 
@@ -253,12 +253,12 @@
         }
 
         function procTextyleAdminDelete() {
-            $oModuleController = &getController('module');
-            $oCounterController = &getController('counter');
-            $oAddonController = &getController('addon');
-            $oEditorController = &getController('editor');
-            $oTextyleModel = &getModel('textyle');
-            $oModuleModel = &getModel('module');
+            $oModuleController = getController('module');
+            $oCounterController = getController('counter');
+            $oAddonController = getController('addon');
+            $oEditorController = getController('editor');
+            $oTextyleModel = getModel('textyle');
+            $oModuleModel = getModel('module');
 
             $site_srl = Context::get('site_srl');
             if(!$site_srl) return new Object(-1,'msg_invalid_request');
@@ -282,7 +282,7 @@
         	//clear cache for default mid
             $vid = $site_info->domain;
             $mid = $site_info->mid;
-            $oCacheHandler = &CacheHandler::getInstance('object');
+            $oCacheHandler = CacheHandler::getInstance('object', null, true);
             if($oCacheHandler->isSupport()){
             	$cache_key = 'object_default_mid:'.$vid.'_'.$mid;
             	$oCacheHandler->delete($cache_key);
@@ -317,14 +317,20 @@
 
             FileHandler::removeDir($oTextyleModel->getTextylePath($module_srl));
 
+            $oCacheHandler = CacheHandler::getInstance('object', null, true);
+            if($oCacheHandler->isSupport())
+            {
+                $oCacheHandler->invalidateGroupKey('site_and_module');
+            }
+
             $this->add('module','textyle');
             $this->add('page',Context::get('page'));
             $this->setMessage('success_deleted');
         }
 
         function procTextyleAdminInsertCustomMenu() {
-            $oModuleController = &getController('module');
-            $oModuleModel = &getModel('module');
+            $oModuleController = getController('module');
+            $oModuleModel = getModel('module');
 
             $config = $oModuleModel->getModuleConfig('textyle');
             $second_menus = Context::getLang('textyle_second_menus');
@@ -401,16 +407,16 @@
         }
 
         function initTextyle($site_srl){
-            $oCounterController = &getController('counter');
-            $oDocumentController = &getController('document');
-            $oCommentController = &getController('comment');
-            $oTagController = &getController('tag');
-            $oAddonController = &getController('addon');
-            $oEditorController = &getController('editor');
-            $oTrackbackController = &getController('trackback');
-            $oModuleModel = &getModel('module');
-            $oTextyleModel = &getModel('textyle');
-            $oMemberModel = &getModel('member');
+            $oCounterController = getController('counter');
+            $oDocumentController = getController('document');
+            $oCommentController = getController('comment');
+            $oTagController = getController('tag');
+            $oAddonController = getController('addon');
+            $oEditorController = getController('editor');
+            $oTrackbackController = getController('trackback');
+            $oModuleModel = getModel('module');
+            $oTextyleModel = getModel('textyle');
+            $oMemberModel = getModel('member');
 
             $site_info = $oModuleModel->getSiteInfo($site_srl);
             $module_srl = $site_info->index_module_srl;
@@ -440,7 +446,7 @@
             $output = $oDocumentController->triggerDeleteModuleDocuments($args);
             $output = $oCommentController->triggerDeleteModuleComments($args);
             $output = $oTagController->triggerDeleteModuleTags($args);
-            $output = $oTrackbackController->triggerDeleteModuleTrackbacks($args);
+            if($oTrackbackController) $output = $oTrackbackController->triggerDeleteModuleTrackbacks($args);
             $args->module_srl = $args->module_srl *-1;
 
             $output = $oDocumentController->triggerDeleteModuleDocuments($args);
@@ -487,7 +493,7 @@
 			$file = $path.sprintf('tt-%s.xml',date('YmdHis'));
 
 			// $textyle_srl 
-			$oModuleModel = &getModel('module');
+			$oModuleModel = getModel('module');
 			$site_info = $oModuleModel->getSiteInfo($site_srl);
 			$textyle_srl = $site_info->index_module_srl;
 
@@ -543,8 +549,8 @@
 		function procTextyleAdminInsertExtraMenuConfig(){
 			$module_srl = Context::get('module_srl');
 
-            $oModuleController = &getController('module');
-            $oTextyleModel = &getModel('textyle');
+            $oModuleController = getController('module');
+            $oTextyleModel = getModel('textyle');
 
 			$vars = Context::getRequestVars();
 			$allow_service = array();

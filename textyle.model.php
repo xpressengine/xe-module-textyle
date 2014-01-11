@@ -20,7 +20,7 @@
             static $custom_menu = null;
 
             if(is_null($custom_menu)) {
-                $oModuleModel = &getModel('module');
+                $oModuleModel = getModel('module');
                 $config = $oModuleModel->getModuleConfig('textyle');
                 $custom_menu->hidden_menu = $config->hidden_menu;
                 if(!$custom_menu->hidden_menu) $custom_menu->hidden_menu = array();
@@ -135,8 +135,8 @@
         }
 
         function getTextyleGuestbookList($vars){
-            $oMemberModel = &getModel('member');
-            $oTextyleController = &getController('textyle');
+            $oMemberModel = getModel('member');
+            $oTextyleController = getController('textyle');
             $logged_info = Context::get('logged_info');
 
             $args->module_srl = $vars->module_srl;
@@ -168,7 +168,7 @@
         }
 
         function getTextyleGuestbook($textyle_guestbook_srl){
-            $oMemberModel = &getModel('member');
+            $oMemberModel = getModel('member');
 
             $args->textyle_guestbook_srl = $textyle_guestbook_srl;
             $output = executeQueryArray('textyle.getTextyleGuestbook',$args);
@@ -290,7 +290,7 @@
          * @brief get textyle photo source
          **/
         function getTextylePhotoSrc($member_srl) {
-            $oMemberModel = &getModel('member');
+            $oMemberModel = getModel('member');
             $info = $oMemberModel->getProfileImage($member_srl);
             $filename = $info->file;
 
@@ -319,8 +319,8 @@
         }
 
         function getTextyleSupporterList($module_srl,$YYYYMM="",$sort_index="total_count"){
-            $oMemberModel = &getModel('member');
-            $oModuleModel = &getModel('module');
+            $oMemberModel = getModel('member');
+            $oModuleModel = getModel('module');
 
             $module_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl);
             $site_admin_list = $oModuleModel->getSiteAdmin($module_info->site_srl);
@@ -359,7 +359,7 @@
         function checkTextylePath($module_srl, $skin = null) {
             $path = $this->getTextylePath($module_srl);
             if(!file_exists($path)){
-                $oTextyleController = &getController('textyle');
+                $oTextyleController = getController('textyle');
                 $oTextyleController->resetSkin($module_srl, $skin);
             }
             return true;
@@ -372,8 +372,8 @@
         }
 
         function getTextyleAPITest() {
-            $oTextyleModel = &getModel('textyle');
-            $oTextyleController = &getController('textyle');
+            $oTextyleModel = getModel('textyle');
+            $oTextyleController = getController('textyle');
             $oPublish = $oTextyleModel->getPublishObject($this->module_srl);
 
             $var = Context::getRequestVars();
@@ -387,7 +387,8 @@
         }
 
         function getTrackbackUrl($domain,$document_srl){
-            $oTrackbackModel = &getModel('trackback');
+            $oTrackbackModel = getModel('trackback');
+            if(!$oTrackbackModel) return;
             $key = $oTrackbackModel->getTrackbackKey($document_srl);
 
             return getFullSiteUrl($domain,'','document_srl',$document_srl,'key',$key,'act','trackback');
@@ -404,7 +405,7 @@
 		function getModulePartConfig($module_srl=0){
 			static $configs = array();
 
-            $oModuleModel = &getModel('module');
+            $oModuleModel = getModel('module');
 			$config = $oModuleModel->getModuleConfig('textyle');
 			if(!$config || !$config->allow_service) {
 				$config->allow_service = array('board'=>1,'page'=>1);

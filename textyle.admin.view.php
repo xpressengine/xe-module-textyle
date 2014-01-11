@@ -11,7 +11,7 @@
          * @brief Initialization
          **/
         function init() {
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
 
             $this->setTemplatePath($this->module_path."/tpl/");
             $template_path = sprintf("%stpl/",$this->module_path);
@@ -20,7 +20,7 @@
 
         function dispTextyleAdminList() {
             $vars = Context::getRequestVars();
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
 
             $page = Context::get('page');
             if(!$page) $page = 1;
@@ -29,6 +29,7 @@
                 $args->{'s_'.$vars->search_target} = strtolower($vars->search_keyword);
             }
 
+            $args = new stdClass;
             $args->list_count = 20;
             $args->page = $page;
             $args->list_order = 'regdate';
@@ -42,8 +43,8 @@
         }
 
         function dispTextyleAdminInsert() {
-            $oModuleModel = &getModel('module');
-            $oMemberModel = &getModel('member');
+            $oModuleModel = getModel('module');
+            $oMemberModel = getModel('member');
 			
             //set identifier type of admin
         	$memberConfig = $oMemberModel->getMemberConfig();
@@ -54,7 +55,7 @@
             
             $module_srl = Context::get('module_srl');
             if($module_srl) {
-                $oTextyleModel = &getModel('textyle');
+                $oTextyleModel = getModel('textyle');
                 $textyle = $oTextyleModel->getTextyle($module_srl);
                 Context::set('textyle', $textyle);
 
@@ -81,11 +82,11 @@
             if(!Context::get('module_srl')) return $this->dispTextyleAdminList();
             $module_srl = Context::get('module_srl');
 
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $oTextyle = $oTextyleModel->getTextyle($module_srl);
             $textyle_info = $oTextyle->getObjectVars();
 
-            $oDocumentModel = &getModel('document');
+            $oDocumentModel = getModel('document');
             $document_count = $oDocumentModel->getDocumentCount($textyle_info->module_srl);
             $textyle_info->document_count = $document_count;
 
@@ -95,7 +96,7 @@
         }
 
         function dispTextyleAdminCustomMenu() {
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $custom_menu = $oTextyleModel->getTextyleCustomMenu();
             Context::set('custom_menu', $custom_menu);
 
@@ -105,7 +106,7 @@
         function dispTextyleAdminBlogApiConfig(){
             $textyle_blogapi_services_srl = Context::get('textyle_blogapi_services_srl');
 
-            $oTextyleModel = &getModel('textyle');
+            $oTextyleModel = getModel('textyle');
             $output = $oTextyleModel->getBlogApiService();
             if($output->toBool() && $output->data){
                 if($textyle_blogapi_services_srl){
@@ -132,11 +133,11 @@
 		function dispTextyleAdminExtraMenu(){
             $module_srl = Context::get('module_srl');
 
-			$oTextyleModel = &getModel('textyle');
+			$oTextyleModel = getModel('textyle');
 			$config = $oTextyleModel->getModulePartConfig($module_srl);
 			Context::set('config',$config);
 
-            $oModuleModel = &getModel('module');
+            $oModuleModel = getModel('module');
             $installed_module_list = $oModuleModel->getModulesXmlInfo();
             foreach($installed_module_list as $key => $val) {
                 if($val->category != 'service') continue;
