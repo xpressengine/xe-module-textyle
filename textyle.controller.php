@@ -795,10 +795,13 @@
                     executeQuery('textyle.deleteTextyleSubscriptionByDocumentSrl', $args);
                     $oPublish->publish();
                 }
-                $this->setRedirectUrl( getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManageList') );
-            }  
+                //$this->setRedirectUrl( getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManageList') );
+				$this->add('redirect_url', getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManageList'));
+            }
             else {
-                $this->setRedirectUrl( getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManageWrite', 'document_srl', $this->get('document_srl'),'preview',$var->preview) );
+				//$this->setRedirectUrl( getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManageWrite', 'document_srl', $this->get('document_srl'),'preview',$var->preview) );
+				$this->add('redirect_url', getSiteUrl($site_module_info->domain, '', 'mid', Context::get('mid'), 'act', 'dispTextyleToolPostManageWrite', 'document_srl', $this->get('document_srl'),'preview',$var->preview));
+				//$this->add('preview', $var->preview);
              }
             $this->setMessage('success_saved');
         }
