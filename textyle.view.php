@@ -1301,6 +1301,11 @@
         	} else {
         		$oDocumentModel = getModel('document');
 	            $var = Context::getRequestVars();
+
+	            // set category
+	            $category_list = $oDocumentModel->getCategoryList($this->module_srl);
+	            Context::set('category_list', $category_list);
+	
 	            if($var->preview == 'Y'){
 	            	  Context::set('textyle_mode', 'content');
 	            	  $prev_document = $oDocumentModel->getDocument($var->document_srl);
@@ -1316,10 +1321,6 @@
 	            $page = Context::get('page');
 	            $page = $page>0 ? $page : 1;
 	            Context::set('page',$page);
-	
-	            // set category
-	            $category_list = $oDocumentModel->getCategoryList($this->module_srl);
-	            Context::set('category_list', $category_list);
 	
 	            if($document_srl) {
 	                $oDocument = $oDocumentModel->getDocument($document_srl,false,false);
